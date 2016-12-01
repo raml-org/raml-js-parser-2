@@ -1,76 +1,74 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "name": "eleo"
-          },
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "name": "eleo"
+        },
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            }
+          },
+          "title??": {
+            "name": "title??",
+            "displayName": "title??",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "title??": {
-              "name": "title??",
-              "displayName": "title??",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              }
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"eleo\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "name": "eleo"
-            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"name\": \"eleo\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "name": "eleo"
           }
         }
       }
-    ],
+    },
     "title": "properties with trailing question marks"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,110 +1,106 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "t1": {
-          "name": "t1",
-          "displayName": "t1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "prop": {
-              "name": "prop",
-              "displayName": "prop",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "/[a-z]+/": {
-                  "name": "/[a-z]+/",
-                  "displayName": "/[a-z]+/",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+    "types": {
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "prop": {
+            "name": "prop",
+            "displayName": "prop",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "/[a-z]+/": {
+                "name": "/[a-z]+/",
+                "displayName": "/[a-z]+/",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
-              },
-              "maxProperties": 5,
-              "scalarsAnnotations": {
-                "maxProperties": [
-                  {
-                    "structuredValue": "abcdefghijkl",
-                    "name": "a"
-                  }
-                ]
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+              }
+            },
+            "maxProperties": 5,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "scalarsAnnotations": {
+              "maxProperties": [
+                {
+                  "name": "a",
+                  "structuredValue": "abcdefghijkl"
+                }
+              ]
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "a": {
-          "name": "a",
-          "displayName": "a",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "minLength": 8,
-          "maxLength": 64,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "testAPI",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

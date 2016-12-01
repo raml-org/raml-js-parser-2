@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -12,10 +10,9 @@
         "value": "libs/lib.raml"
       }
     ],
-    "resourceTypes": [
-      {
-        "rt": {
-          "name": "rt",
+    "resourceTypes": {
+      "rt": {
+        "methods": {
           "post": {
             "body": {
               "application/json": {
@@ -50,14 +47,15 @@
             },
             "method": "post"
           }
-        }
+        },
+        "name": "rt"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "put": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -87,7 +85,7 @@
             },
             "method": "put"
           },
-          {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -121,7 +119,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "type": "rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -139,5 +137,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

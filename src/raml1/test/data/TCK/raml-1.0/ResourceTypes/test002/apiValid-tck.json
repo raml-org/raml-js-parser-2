@@ -1,74 +1,69 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "SomeType": {
-          "name": "SomeType",
+    },
+    "resourceTypes": {
+      "SomeType": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -97,12 +92,11 @@
             },
             "method": "get"
           }
-        }
+        },
+        "name": "SomeType"
       },
-      {
-        "AnotherType": {
-          "type": "SomeType",
-          "name": "AnotherType",
+      "AnotherType": {
+        "methods": {
           "put": {
             "body": {
               "application/json": {
@@ -126,14 +120,16 @@
             },
             "method": "put"
           }
-        }
+        },
+        "type": "SomeType",
+        "name": "AnotherType"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "put": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -156,7 +152,7 @@
             },
             "method": "put"
           },
-          {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -184,7 +180,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "type": "AnotherType",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -202,5 +198,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

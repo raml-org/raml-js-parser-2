@@ -1,33 +1,31 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "method": "post"
           },
-          {
+          "get": {
             "method": "get"
           },
-          {
+          "put": {
             "method": "put"
           },
-          {
+          "options": {
             "method": "options"
           },
-          {
+          "head": {
             "method": "head"
           },
-          {
+          "patch": {
             "method": "patch"
           },
-          {
+          "delete": {
             "method": "delete"
           }
-        ],
+        },
         "relativeUri": "/methods",
         "displayName": "/methods",
         "__METADATA__": {
@@ -44,6 +42,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "UNKNOWN_NODE",

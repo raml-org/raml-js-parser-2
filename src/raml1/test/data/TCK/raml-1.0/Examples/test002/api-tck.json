@@ -1,100 +1,200 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "URL": {
-          "name": "URL",
-          "displayName": "URL",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "URL": {
+        "name": "URL",
+        "displayName": "URL",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "firstName": {
-              "name": "firstName",
-              "displayName": "firstName",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "lastName": {
-              "name": "lastName",
-              "displayName": "lastName",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "firstName": {
+            "name": "firstName",
+            "displayName": "firstName",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "lastName": {
+            "name": "lastName",
+            "displayName": "lastName",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Brand": {
-          "name": "Brand",
-          "displayName": "Brand",
-          "type": [
-            "object"
-          ],
-          "example": {
+      "Brand": {
+        "name": "Brand",
+        "displayName": "Brand",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "name": "Brandicted",
+          "logo": "http://www.domain.com/logo.gif",
+          "followers": [
+            {
+              "firstName": "Fred",
+              "lastName": "Armand"
+            },
+            {
+              "firstName": "Joan",
+              "lastName": "Rivers"
+            }
+          ]
+        },
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "logo": {
+            "name": "logo",
+            "displayName": "logo",
+            "type": [
+              "URL"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "followers": {
+            "name": "followers",
+            "displayName": "followers",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "User"
+          },
+          "/^X\\-/": {
+            "name": "/^X\\-/",
+            "displayName": "/^X\\-/",
+            "type": [
+              "any"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ]\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "name": "Brandicted",
             "logo": "http://www.domain.com/logo.gif",
             "followers": [
@@ -107,120 +207,14 @@
                 "lastName": "Rivers"
               }
             ]
-          },
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "logo": {
-              "name": "logo",
-              "displayName": "logo",
-              "type": [
-                "URL"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "followers": {
-              "name": "followers",
-              "displayName": "followers",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "User"
-            },
-            "/^X\\-/": {
-              "name": "/^X\\-/",
-              "displayName": "/^X\\-/",
-              "type": [
-                "any"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "name": "Brandicted",
-              "logo": "http://www.domain.com/logo.gif",
-              "followers": [
-                {
-                  "firstName": "Fred",
-                  "lastName": "Armand"
-                },
-                {
-                  "firstName": "Joan",
-                  "lastName": "Rivers"
-                }
-              ]
-            }
           }
         }
       }
-    ],
+    },
     "title": "Testing with Jonathan",
     "mediaType": "application/json"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

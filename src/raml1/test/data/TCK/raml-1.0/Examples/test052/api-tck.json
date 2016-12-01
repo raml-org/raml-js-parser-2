@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -17,8 +15,8 @@
     "mediaType": "application/json",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -126,7 +124,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/features",
         "displayName": "/features",
         "__METADATA__": {
@@ -150,5 +148,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "uses": [
       {
@@ -11,12 +9,12 @@
     "title": "Slave RAML",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "decls.important": {
-                "structuredValue": null,
-                "name": "decls.important"
+                "name": "decls.important",
+                "structuredValue": null
               }
             },
             "responses": {
@@ -27,7 +25,7 @@
             "description": "describing your method here\n",
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {
@@ -45,5 +43,7 @@
     ],
     "extends": "master.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

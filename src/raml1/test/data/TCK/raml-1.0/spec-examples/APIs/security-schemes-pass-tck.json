@@ -1,50 +1,46 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "securitySchemes": [
-      {
-        "passthrough": {
-          "name": "passthrough",
-          "type": "Pass Through",
-          "description": "This API supports Pass Through Authentication.\n",
-          "describedBy": {
-            "queryParameters": {
-              "query": {
-                "name": "query",
-                "displayName": "query",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+    "securitySchemes": {
+      "passthrough": {
+        "name": "passthrough",
+        "type": "Pass Through",
+        "description": "This API supports Pass Through Authentication.\n",
+        "describedBy": {
+          "queryParameters": {
+            "query": {
+              "name": "query",
+              "displayName": "query",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
-            },
-            "headers": {
-              "api_key": {
-                "name": "api_key",
-                "displayName": "api_key",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+            }
+          },
+          "headers": {
+            "api_key": {
+              "name": "api_key",
+              "displayName": "api_key",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
@@ -52,7 +48,7 @@
           }
         }
       }
-    ],
+    },
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
@@ -97,5 +93,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

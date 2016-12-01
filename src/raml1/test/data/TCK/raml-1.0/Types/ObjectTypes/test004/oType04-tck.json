@@ -1,137 +1,135 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Initial_comments": {
-          "name": "Initial_comments",
-          "displayName": "Initial_comments",
-          "type": [
-            "object"
-          ],
-          "example": {
+    "types": {
+      "Initial_comments": {
+        "name": "Initial_comments",
+        "displayName": "Initial_comments",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "initial_comments": "oo",
+          "user": "Raml",
+          "time_stamp": 1422378528
+        },
+        "required": true,
+        "properties": {
+          "comment_id": {
+            "name": "comment_id",
+            "displayName": "comment_id",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          "initial_comments": {
+            "name": "initial_comments",
+            "displayName": "initial_comments",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "user": {
+            "name": "user",
+            "displayName": "user",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "time_stamp": {
+            "name": "time_stamp",
+            "displayName": "time_stamp",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "created": {
+            "name": "created",
+            "displayName": "created",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "minProperties": 2,
+        "maxProperties": 4,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "initial_comments": "oo",
             "user": "Raml",
             "time_stamp": 1422378528
-          },
-          "required": true,
-          "properties": {
-            "comment_id": {
-              "name": "comment_id",
-              "displayName": "comment_id",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              }
-            },
-            "initial_comments": {
-              "name": "initial_comments",
-              "displayName": "initial_comments",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "user": {
-              "name": "user",
-              "displayName": "user",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "time_stamp": {
-              "name": "time_stamp",
-              "displayName": "time_stamp",
-              "type": [
-                "integer"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "created": {
-              "name": "created",
-              "displayName": "created",
-              "type": [
-                "integer"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "minProperties": 2,
-          "maxProperties": 4,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "initial_comments": "oo",
-              "user": "Raml",
-              "time_stamp": 1422378528
-            }
           }
         }
       }
-    ],
+    },
     "title": "My API With Types"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "REQUIRED_PROPERTY_MISSING",

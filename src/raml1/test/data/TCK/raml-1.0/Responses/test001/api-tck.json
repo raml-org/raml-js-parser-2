@@ -1,65 +1,61 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "TestType": {
-          "name": "TestType",
-          "displayName": "TestType",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "field": "value"
-          },
-          "required": true,
-          "properties": {
-            "field": {
-              "name": "field",
-              "displayName": "field",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "TestType": {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "field": "value"
+        },
+        "required": true,
+        "properties": {
+          "field": {
+            "name": "field",
+            "displayName": "field",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "{\n  \"field\": \"value\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "field": "value"
-            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"field\": \"value\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "field": "value"
           }
         }
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200"
@@ -67,7 +63,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -84,5 +80,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

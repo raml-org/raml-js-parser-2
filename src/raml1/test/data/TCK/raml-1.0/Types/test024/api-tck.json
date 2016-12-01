@@ -1,748 +1,730 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Zip": {
-          "name": "Zip",
-          "displayName": "Zip",
-          "type": [
-            "number"
-          ],
-          "example": 630128,
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+    "types": {
+      "Zip": {
+        "name": "Zip",
+        "displayName": "Zip",
+        "type": [
+          "number"
+        ],
+        "example": 630128,
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "630128",
+          "strict": true,
+          "name": null,
+          "structuredValue": 630128
+        }
+      },
+      "Address": {
+        "name": "Address",
+        "displayName": "Address",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "country": "US",
+          "city": "SF",
+          "street": "Geary Street",
+          "house": "77, Suite 400",
+          "zip": 94108
+        },
+        "required": true,
+        "properties": {
+          "country": {
+            "name": "country",
+            "displayName": "country",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "US",
+              "ARG",
+              "RUS",
+              "GB"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
             }
           },
-          "structuredExample": {
-            "value": "630128",
-            "strict": true,
-            "name": null,
-            "structuredValue": 630128
+          "city": {
+            "name": "city",
+            "displayName": "city",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "street": {
+            "name": "street",
+            "displayName": "street",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "house": {
+            "name": "house",
+            "displayName": "house",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "zip": {
+            "name": "zip",
+            "displayName": "zip",
+            "type": [
+              "Zip"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           }
-        }
-      },
-      {
-        "Address": {
-          "name": "Address",
-          "displayName": "Address",
-          "type": [
-            "object"
-          ],
-          "example": {
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "country": "US",
             "city": "SF",
             "street": "Geary Street",
             "house": "77, Suite 400",
             "zip": 94108
-          },
-          "required": true,
-          "properties": {
-            "country": {
-              "name": "country",
-              "displayName": "country",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "US",
-                "ARG",
-                "RUS",
-                "GB"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
+          }
+        }
+      },
+      "Email": {
+        "name": "Email",
+        "displayName": "Email",
+        "type": [
+          "string"
+        ],
+        "example": "press@mulesoft.com",
+        "required": true,
+        "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
+        "minLength": 15,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "city": {
-              "name": "city",
-              "displayName": "city",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
+            "type": {
+              "insertedAsDefault": true
             },
-            "street": {
-              "name": "street",
-              "displayName": "street",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "house": {
-              "name": "house",
-              "displayName": "house",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "zip": {
-              "name": "zip",
-              "displayName": "zip",
-              "type": [
-                "Zip"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "press@mulesoft.com",
+          "strict": true,
+          "name": null,
+          "structuredValue": "press@mulesoft.com"
+        }
+      },
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "facets": {
+          "role": {
+            "name": "role",
+            "displayName": "role",
+            "type": [
+              "string"
+            ],
+            "default": "user",
+            "required": true,
+            "enum": [
+              "user",
+              "manager",
+              "admin",
+              "super-admin"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
+          }
+        },
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
             "strict": true,
-            "name": null,
+            "name": "value1",
             "structuredValue": {
-              "country": "US",
-              "city": "SF",
-              "street": "Geary Street",
-              "house": "77, Suite 400",
-              "zip": 94108
-            }
-          }
-        }
-      },
-      {
-        "Email": {
-          "name": "Email",
-          "displayName": "Email",
-          "type": [
-            "string"
-          ],
-          "example": "press@mulesoft.com",
-          "required": true,
-          "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
-          "minLength": 15,
-          "maxLength": 64,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+              "id": 11,
+              "name": "John Johnson",
+              "email": "press@mulesoft.com",
+              "phone": "+7-913-111-1111",
+              "address": {
+                "country": "RUS",
+                "city": "Novosibirsk",
+                "zip": 630090
               }
             }
           },
-          "structuredExample": {
-            "value": "press@mulesoft.com",
+          {
+            "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
             "strict": true,
-            "name": null,
-            "structuredValue": "press@mulesoft.com"
-          }
-        }
-      },
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "facets": {
-            "role": {
-              "name": "role",
-              "displayName": "role",
-              "type": [
-                "string"
-              ],
-              "default": "user",
-              "required": true,
-              "enum": [
-                "user",
-                "manager",
-                "admin",
-                "super-admin"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "type": [
-            "object"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
-              "strict": true,
-              "name": "value1",
-              "structuredValue": {
-                "id": 11,
-                "name": "John Johnson",
-                "email": "press@mulesoft.com",
-                "phone": "+7-913-111-1111",
-                "address": {
-                  "country": "RUS",
-                  "city": "Novosibirsk",
-                  "zip": 630090
-                }
-              }
-            },
-            {
-              "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
-              "strict": true,
-              "name": "value2",
-              "structuredValue": {
-                "id": 12,
-                "name": "John Johnson",
-                "email": "press1@mulesoft.com",
-                "phone": "+1-222-222-2222",
-                "address": {
-                  "country": "US",
-                  "city": "SF",
-                  "zip": 123456
-                }
-              }
-            }
-          ],
-          "required": true,
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "email": {
-              "name": "email",
-              "displayName": "email",
-              "type": [
-                "Email"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "phone": {
-              "name": "phone",
-              "displayName": "phone",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "pattern": "\\+\\d{1}\\-\\d{3}\\-\\d{3}\\-\\d{4}",
-              "minLength": 15,
-              "maxLength": 15,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "address": {
-              "name": "address",
-              "displayName": "address",
-              "type": [
-                "Address"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+            "name": "value2",
+            "structuredValue": {
+              "id": 12,
+              "name": "John Johnson",
+              "email": "press1@mulesoft.com",
+              "phone": "+1-222-222-2222",
+              "address": {
+                "country": "US",
+                "city": "SF",
+                "zip": 123456
               }
             }
           }
-        }
-      },
-      {
-        "Manager": {
-          "name": "Manager",
-          "displayName": "Manager",
-          "type": [
-            "User"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  },\n  \"managerId\": 77\n}",
-              "strict": true,
-              "name": "manager1",
-              "structuredValue": {
-                "id": 11,
-                "name": "John Johnson",
-                "email": "press@mulesoft.com",
-                "phone": "+7-913-111-1111",
-                "address": {
-                  "country": "RUS",
-                  "city": "Novosibirsk",
-                  "zip": 630090
+        ],
+        "required": true,
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 },
-                "managerId": 77
-              }
-            },
-            {
-              "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  },\n  \"managerId\": 88\n}",
-              "strict": true,
-              "name": "manager2",
-              "structuredValue": {
-                "id": 12,
-                "name": "John Johnson",
-                "email": "press1@mulesoft.com",
-                "phone": "+1-222-222-2222",
-                "address": {
-                  "country": "US",
-                  "city": "SF",
-                  "zip": 123456
-                },
-                "managerId": 88
-              }
-            }
-          ],
-          "required": true,
-          "properties": {
-            "managerId": {
-              "name": "managerId",
-              "displayName": "managerId",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "fixedFacets": {
-            "role": "manager"
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          },
+          "email": {
+            "name": "email",
+            "displayName": "email",
+            "type": [
+              "Email"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "phone": {
+            "name": "phone",
+            "displayName": "phone",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "pattern": "\\+\\d{1}\\-\\d{3}\\-\\d{3}\\-\\d{4}",
+            "minLength": 15,
+            "maxLength": 15,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "address": {
+            "name": "address",
+            "displayName": "address",
+            "type": [
+              "Address"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Admin": {
-          "name": "Admin",
-          "displayName": "Admin",
-          "type": [
-            "User"
-          ],
-          "required": true,
-          "properties": {
-            "adminId": {
-              "name": "adminId",
-              "displayName": "adminId",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Manager": {
+        "name": "Manager",
+        "displayName": "Manager",
+        "type": [
+          "User"
+        ],
+        "examples": [
+          {
+            "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  },\n  \"managerId\": 77\n}",
+            "strict": true,
+            "name": "manager1",
+            "structuredValue": {
+              "id": 11,
+              "name": "John Johnson",
+              "email": "press@mulesoft.com",
+              "phone": "+7-913-111-1111",
+              "address": {
+                "country": "RUS",
+                "city": "Novosibirsk",
+                "zip": 630090
+              },
+              "managerId": 77
+            }
+          },
+          {
+            "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  },\n  \"managerId\": 88\n}",
+            "strict": true,
+            "name": "manager2",
+            "structuredValue": {
+              "id": 12,
+              "name": "John Johnson",
+              "email": "press1@mulesoft.com",
+              "phone": "+1-222-222-2222",
+              "address": {
+                "country": "US",
+                "city": "SF",
+                "zip": 123456
+              },
+              "managerId": 88
+            }
+          }
+        ],
+        "required": true,
+        "properties": {
+          "managerId": {
+            "name": "managerId",
+            "displayName": "managerId",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "fixedFacets": {
-            "role": "admin"
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "role": "manager"
+        }
+      },
+      "Admin": {
+        "name": "Admin",
+        "displayName": "Admin",
+        "type": [
+          "User"
+        ],
+        "required": true,
+        "properties": {
+          "adminId": {
+            "name": "adminId",
+            "displayName": "adminId",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "role": "admin"
+        }
+      },
+      "SuperAdmin": {
+        "name": "SuperAdmin",
+        "displayName": "SuperAdmin",
+        "type": [
+          "Admin"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "SuperAdmin": {
-          "name": "SuperAdmin",
-          "displayName": "SuperAdmin",
-          "type": [
-            "Admin"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+      "Team": {
+        "name": "Team",
+        "displayName": "Team",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
             }
-          }
-        }
-      },
-      {
-        "Team": {
-          "name": "Team",
-          "displayName": "Team",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "title": {
-              "name": "title",
-              "displayName": "title",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "pattern": "/[A-Z][a-z]*/",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "manager": {
-              "name": "manager",
-              "displayName": "manager",
-              "type": [
-                "Manager"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "admin": {
-              "name": "admin",
-              "displayName": "admin",
-              "type": [
-                "Admin|SuperAdmin"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "members": {
-              "name": "members",
-              "displayName": "members",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "(User|Team)"
-            },
-            "info": {
-              "name": "info",
-              "displayName": "info",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "address": {
-                  "name": "address",
-                  "displayName": "address",
-                  "type": [
-                    "Address"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
+          },
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "pattern": "/[A-Z][a-z]*/",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 },
-                "email": {
-                  "name": "email",
-                  "displayName": "email",
-                  "type": [
-                    "Email"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
+                "type": {
+                  "insertedAsDefault": true
                 },
-                "size": {
-                  "name": "size",
-                  "displayName": "size",
-                  "type": [
-                    "number"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "manager": {
+            "name": "manager",
+            "displayName": "manager",
+            "type": [
+              "Manager"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "admin": {
+            "name": "admin",
+            "displayName": "admin",
+            "type": [
+              "Admin|SuperAdmin"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "members": {
+            "name": "members",
+            "displayName": "members",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "(User|Team)"
+          },
+          "info": {
+            "name": "info",
+            "displayName": "info",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "address": {
+                "name": "address",
+                "displayName": "address",
+                "type": [
+                  "Address"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+              "email": {
+                "name": "email",
+                "displayName": "email",
+                "type": [
+                  "Email"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "size": {
+                "name": "size",
+                "displayName": "size",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
                   }
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "TCK Sample. RAML 1.0 Types 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
@@ -781,8 +763,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -821,7 +803,7 @@
               }
             }
           },
-          {
+          "post": {
             "responses": {
               "204": {
                 "code": "204",
@@ -833,9 +815,6 @@
                       "User"
                     ],
                     "required": true,
-                    "fixedFacets": {
-                      "role": "admin"
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -845,6 +824,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "fixedFacets": {
+                      "role": "admin"
                     }
                   }
                 }
@@ -910,13 +892,13 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams",
         "displayName": "/teams",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -980,7 +962,7 @@
                   }
                 }
               }
-            ],
+            },
             "uriParameters": {
               "id": {
                 "name": "id",
@@ -1033,8 +1015,8 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -1073,7 +1055,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -1089,8 +1071,8 @@
         "absoluteUri": "http://api.samplehost.com/{version}/users"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -1102,9 +1084,6 @@
                       "User"
                     ],
                     "required": true,
-                    "fixedFacets": {
-                      "role": "admin"
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -1114,6 +1093,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "fixedFacets": {
+                      "role": "admin"
                     }
                   }
                 }
@@ -1131,7 +1113,7 @@
               }
             }
           }
-        ],
+        },
         "uriParameters": {
           "id": {
             "name": "id",
@@ -1180,5 +1162,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

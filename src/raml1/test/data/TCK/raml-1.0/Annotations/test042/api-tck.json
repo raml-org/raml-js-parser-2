@@ -1,46 +1,42 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "xz": {
-          "name": "xz",
-          "displayName": "xz",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "allowedTargets": [
-            "Method"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "xz": {
+        "name": "xz",
+        "displayName": "xz",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "allowedTargets": [
+          "Method"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "annotations": {
                   "xz": {
-                    "structuredValue": "z",
-                    "name": "xz"
+                    "name": "xz",
+                    "structuredValue": "z"
                   }
                 },
                 "name": "application/json",
@@ -66,7 +62,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {
@@ -83,6 +79,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "INVALID_ANNOTATION_LOCATION",

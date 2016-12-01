@@ -1,158 +1,212 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SimpleType1": {
-          "name": "SimpleType1",
-          "displayName": "SimpleType1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "property1": {
-              "name": "property1",
-              "displayName": "property1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "property2": {
-              "name": "property2",
-              "displayName": "property2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "SimpleType1": {
+        "name": "SimpleType1",
+        "displayName": "SimpleType1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "property1": {
+            "name": "property1",
+            "displayName": "property1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "property2": {
+            "name": "property2",
+            "displayName": "property2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "SimpleType2": {
-          "name": "SimpleType2",
-          "displayName": "SimpleType2",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "property3": {
-              "name": "property3",
-              "displayName": "property3",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "property4": {
-              "name": "property4",
-              "displayName": "property4",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "SimpleType2": {
+        "name": "SimpleType2",
+        "displayName": "SimpleType2",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "property3": {
+            "name": "property3",
+            "displayName": "property3",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "property4": {
+            "name": "property4",
+            "displayName": "property4",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "SimpleUnion": {
-          "name": "SimpleUnion",
-          "displayName": "SimpleUnion",
-          "type": [
-            "SimpleType1 | SimpleType2"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "SimpleUnion": {
+        "name": "SimpleUnion",
+        "displayName": "SimpleUnion",
+        "type": [
+          "SimpleType1 | SimpleType2"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "TypeWithUnionProps": {
-          "name": "TypeWithUnionProps",
-          "displayName": "TypeWithUnionProps",
-          "type": [
-            "object"
-          ],
-          "example": {
+      "TypeWithUnionProps": {
+        "name": "TypeWithUnionProps",
+        "displayName": "TypeWithUnionProps",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "union1": {
+            "property3": "blahblah",
+            "property2": "blahblah"
+          },
+          "union2": {
+            "property3": "blahblah",
+            "property4": "blahblah"
+          }
+        },
+        "required": true,
+        "properties": {
+          "union1": {
+            "name": "union1",
+            "displayName": "union1",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "union2": {
+            "name": "union2",
+            "displayName": "union2",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"union1\": {\n    \"property3\": \"blahblah\",\n    \"property2\": \"blahblah\"\n  },\n  \"union2\": {\n    \"property3\": \"blahblah\",\n    \"property4\": \"blahblah\"\n  }\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "union1": {
               "property3": "blahblah",
               "property2": "blahblah"
@@ -161,76 +215,14 @@
               "property3": "blahblah",
               "property4": "blahblah"
             }
-          },
-          "required": true,
-          "properties": {
-            "union1": {
-              "name": "union1",
-              "displayName": "union1",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "union2": {
-              "name": "union2",
-              "displayName": "union2",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"union1\": {\n    \"property3\": \"blahblah\",\n    \"property2\": \"blahblah\"\n  },\n  \"union2\": {\n    \"property3\": \"blahblah\",\n    \"property4\": \"blahblah\"\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "union1": {
-                "property3": "blahblah",
-                "property2": "blahblah"
-              },
-              "union2": {
-                "property3": "blahblah",
-                "property4": "blahblah"
-              }
-            }
           }
         }
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "UNION_TYPE_FAILURE_DETAILS",

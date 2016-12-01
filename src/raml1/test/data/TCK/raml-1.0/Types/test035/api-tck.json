@@ -1,87 +1,83 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Data": {
-          "name": "Data",
-          "displayName": "Data",
-          "type": [
-            "object"
-          ],
-          "example": {
+      "Data": {
+        "name": "Data",
+        "displayName": "Data",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "reports": [
+            null
+          ]
+        },
+        "required": true,
+        "properties": {
+          "reports": {
+            "name": "reports",
+            "displayName": "reports",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "Person"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"reports\": [\n    null\n  ]\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "reports": [
               null
             ]
-          },
-          "required": true,
-          "properties": {
-            "reports": {
-              "name": "reports",
-              "displayName": "reports",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "Person"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"reports\": [\n    null\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "reports": [
-                null
-              ]
-            }
           }
         }
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "NULL_NOT_ALLOWED",

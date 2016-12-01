@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Test API",
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "param1": {
                 "name": "param1",
@@ -30,7 +28,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -46,5 +44,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

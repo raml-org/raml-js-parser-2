@@ -1,15 +1,13 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "title": "Pet shop",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "method": "post"
           },
-          {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -53,7 +51,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -71,6 +69,8 @@
     ],
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": [
     {
       "code": "INVALID_OVERLAY_NODE",

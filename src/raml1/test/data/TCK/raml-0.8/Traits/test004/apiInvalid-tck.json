@@ -1,74 +1,68 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "A",
-    "traits": [
-      {
-        "SomeTrait": {
-          "queryParameters": {
-            "<<queryParamName>>": {
-              "name": "<<queryParamName>>",
-              "displayName": "<<queryParamName>>",
-              "type": "number",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<queryParamName>>": {
+            "name": "<<queryParamName>>",
+            "displayName": "<<queryParamName>>",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "headers": {
-            "<<headerName>>": {
-              "name": "<<headerName>>",
-              "displayName": "<<headerName>>",
-              "type": "boolean",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
+          }
+        },
+        "headers": {
+          "<<headerName>>": {
+            "name": "<<headerName>>",
+            "displayName": "<<headerName>>",
+            "type": "boolean",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "SomeTrait"
-        }
+          }
+        },
+        "name": "SomeTrait"
       },
-      {
-        "Trait1": {
-          "responses": {
-            "200": {
-              "code": "200"
-            }
-          },
-          "name": "Trait1"
-        }
+      "Trait1": {
+        "responses": {
+          "200": {
+            "code": "200"
+          }
+        },
+        "name": "Trait1"
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -135,7 +129,7 @@
               }
             ]
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -151,6 +145,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

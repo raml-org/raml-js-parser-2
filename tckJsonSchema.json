@@ -353,20 +353,15 @@
 
     "TraitFragment": {
       "type": "object",
-      "properties": {
-        "undefined": {
-          "anyOf":[
-            {
-              "properties": {
-                "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-              }
-            },
-            {"$ref": "#/definitions/Trait10"}
-          ],
-          "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
-        }
-      },
-      "additionalProperties": false
+      "anyOf":[
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        },
+        {"$ref": "#/definitions/Trait10"}
+      ],
+      "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "ExampleFragment": {
@@ -382,23 +377,18 @@
 
     "ResourceTypeFragment": {
       "type": "object",
-      "properties": {
-        "undefined": {
-          "anyOf":[
-            {
-              "properties": {
-                "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-              }
-            },
-            {"$ref": "#/definitions/ResourceType10"}
-          ],
-          "patternProperties": {
-            "^(get|post|delete|put|patch|options)?$": {"$ref": "#/definitions/Method10"}
-          },
-          "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
-        }
+      "anyOf":[
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        },
+        {"$ref": "#/definitions/ResourceType10"}
+      ],
+      "patternProperties": {
+        "^(get|post|delete|put|patch|options)?$": {"$ref": "#/definitions/Method10"}
       },
-      "additionalProperties": false
+      "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "LibraryBase10": {
@@ -407,63 +397,45 @@
         {
           "properties": {
             "schemas": {
-              "type": "array",
+              "type": "object",
               "description": "Alias for the equivalent \"types\" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the \"types\" property, as the \"schemas\" alias for that property name may be removed in a future RAML version. The \"types\" property allows for XML and JSON schemas.",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
               }
             },
             "types": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of (data) types for use within this API",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
               }
             },
             "resourceTypes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of resource types for use within this API",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/ResourceType10"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/ResourceType10"}
               }
             },
             "traits": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of traits for use within this API",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Trait10"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Trait10"}
               }
             },
             "securitySchemes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of security schemes for use within this API.",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/SecuritySchemeDeclaration"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/SecuritySchemeDeclaration"}
               }
             },
             "annotationTypes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of annotation types for use by annotations",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
               }
             }
           }
@@ -1134,10 +1106,15 @@
               "items": {"$ref": "#/definitions/Resource10"}
             },
             "methods": {
-              "type": "array",
               "description": "Methods that are part of this resource type definition",
-              "items": {"$ref": "#/definitions/Method10"}
+              "patternProperties": {
+                "^(get|post|delete|put|patch|options|head)$": {
+                  "$ref": "#/definitions/Method10"
+                }
+              },
+              "additionalProperties": false
             },
+
             "relativeUri": {
               "type": "string",
               "description": "Relative URL of this resource from the parent resource"
@@ -1167,13 +1144,18 @@
             "usage": {
               "type": "string",
               "description": "Instructions on how and when the resource type should be used."
+            },
+            "methods": {
+              "patternProperties": {
+                "^(get|post|delete|put|patch|options|head|<<[a-zA-Z0-9]+>>)?$": {
+                  "$ref": "#/definitions/Method10"
+                }
+              },
+              "additionalProperties": false
             }
           }
         }
       ],
-      "patternProperties": {
-        "^(get|post|delete|put|patch|options)?$": {"$ref": "#/definitions/Method10"}
-      },
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
     "ResourceBase10": {
@@ -1854,10 +1836,12 @@
           }
         },
         "traits":{
-          "type": "array",
+          "type": "object",
           "description": "Declarations of traits used in this API",
-          "items":{
-            "$ref": "#/definitions/Trait"
+          "patternProperties": {
+            "^[a-zA-Z0-9]+": {
+              "$ref": "#/definitions/Trait"
+            }
           }
         },
         "securedBy":{
@@ -1868,17 +1852,21 @@
           }
         },
         "securitySchemes":{
-          "type": "array",
+          "type": "object",
           "description": "Security schemes that can be applied using securedBy",
-          "items":{
-            "$ref": "#/definitions/AbstractSecurityScheme08"
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+": {
+              "$ref": "#/definitions/AbstractSecurityScheme08"
+            }
           }
         },
         "resourceTypes":{
-          "type": "array",
+          "type": "object",
           "description": "Declaration of resource types used in this API",
-          "items":{
-            "$ref": "#/definitions/ResourceType08"
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+": {
+              "$ref": "#/definitions/ResourceType08"
+            }
           }
         },
         "resources":{
@@ -2034,36 +2022,31 @@
     "Trait": {
       "type": "object",
       "description": "A partial method definition that, like a method, can provide method-level properties such as description, headers, query string parameters, and responses. Methods that use one or more traits inherit those traits' properties.",
-      "patternProperties": {
-        "^[a-zA-Z0-9]+":{
-          "allOf":[
-            {"$ref": "#/definitions/MethodBase08"},
-            {
-              "properties": {
-                "name":{
-                  "type": "string",
-                  "description": "Name of the trait"
-                },
-                "usage":{
-                  "type": "string",
-                  "description": "Instructions on how and when the trait should be used."
-                },
-                "displayName":{
-                  "type": "string",
-                  "description": "An alternate, human-friendly name for the trait"
-                },
-                "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
-                "properties": {"$ref": "#/definitions/TypeInstance08/properties/properties"},
-                "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
-              }
-            }
-          ],
+      "allOf":[
+        {"$ref": "#/definitions/MethodBase08"},
+        {
+          "properties": {
+            "name":{
+              "type": "string",
+              "description": "Name of the trait"
+            },
+            "usage":{
+              "type": "string",
+              "description": "Instructions on how and when the trait should be used."
+            },
+            "displayName":{
+              "type": "string",
+              "description": "An alternate, human-friendly name for the trait"
+            },
+            "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
+            "properties": {"$ref": "#/definitions/TypeInstance08/properties/properties"},
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+          },
           "patternProperties":{
             "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/TypeInstance08/properties/value"}
           }
         }
-      },
-      "additionalProperties": false
+      ]
     },
     "Reference08":{
       "oneOf": [
@@ -2174,11 +2157,12 @@
           },
           "additionalProperties": false
         },
-        "methods":{
-          "type": "array",
+        "methods": {
           "description": "Methods that can be called on this resource",
-          "items":{
-            "$ref": "#/definitions/Method08"
+          "patternProperties": {
+            "^(get|post|delete|put|patch|options|head)?$": {
+              "$ref": "#/definitions/Method08"
+            }
           },
           "additionalProperties": false
         },
@@ -2237,14 +2221,10 @@
     "AbstractSecurityScheme08": {
       "description": "Declares globally referable security schema definition",
       "anyOf": [
-        {
-          "oneOf":[
-            {"$ref": "#/definitions/OAuth2SecurityScheme08"},
-            {"$ref": "#/definitions/OAuth1SecurityScheme08"},
-            {"$ref": "#/definitions/BasicSecurityScheme08"},
-            {"$ref": "#/definitions/DigestSecurityScheme08"}
-          ]
-        },
+        {"$ref": "#/definitions/OAuth2SecurityScheme08"},
+        {"$ref": "#/definitions/OAuth1SecurityScheme08"},
+        {"$ref": "#/definitions/BasicSecurityScheme08"},
+        {"$ref": "#/definitions/DigestSecurityScheme08"},
         {"$ref": "#/definitions/CustomSecurityScheme08"}
       ]
     },
@@ -2295,236 +2275,204 @@
     "OAuth2SecurityScheme08":{
       "type": "object",
       "description": "Declares globally referable security schema definition",
-      "patternProperties": {
-        "^[a-zA-Z0-9]+":{
-          "type": "object",
-          "properties": {
-            "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-            "type":{
-              "type": "string",
-              "pattern": "OAuth 2.0"
-            },
-            "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-            "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-            "settings":{
-              "type": "object",
-              "properties":{
-                "accessTokenUri":{
-                  "type":"string",
-                  "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
-                },
-                "authorizationUri":{
-                  "type":"string",
-                  "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
-                },
-                "authorizationGrants":{
-                  "type":"array",
-                  "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
-                  "items":{
-                    "type":"string"
-                  }
-                },
-                "scopes":{
-                  "type":"array",
-                  "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
-                  "items":{
-                    "type":"string"
-                  }
-                }
-              },
-              "additionalProperties": false
-            }
-          },
-          "additionalProperties": false
-        }
+      "properties": {
+        "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
+        "type":{
+          "type": "string",
+          "pattern": "OAuth 2.0"
+         },
+         "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
+         "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
+         "settings":{
+           "type": "object",
+           "properties":{
+             "accessTokenUri":{
+               "type":"string",
+               "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+             },
+             "authorizationUri":{
+               "type":"string",
+               "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
+             },
+             "authorizationGrants":{
+               "type":"array",
+               "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
+               "items":{
+                 "type":"string"
+               }
+             },
+             "scopes":{
+               "type":"array",
+               "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
+               "items":{
+                 "type":"string"
+               }
+             }
+           }
+         }
       },
       "additionalProperties": false
     },
     "OAuth1SecurityScheme08":{
       "type": "object",
       "description": "Declares globally referable security schema definition",
-      "patternProperties": {
-        "^[a-zA-Z0-9]+":{
+      "properties": {
+        "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
+        "type":{
+          "type": "string",
+          "pattern": "OAuth 1.0"
+        },
+        "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
+        "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
+        "settings":{
           "type": "object",
-          "properties": {
-            "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-            "type":{
-              "type": "string",
-              "pattern": "OAuth 1.0"
+          "properties":{
+            "requestTokenUri":{
+              "type":"string",
+              "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
             },
-            "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-            "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-            "settings":{
-              "type": "object",
-              "properties":{
-                "requestTokenUri":{
-                  "type":"string",
-                  "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
-                },
-                "authorizationUri":{
-                  "type":"string",
-                  "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
-                },
-                "tokenCredentialsUri":{
-                  "type":"string",
-                  "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
-                }
-              },
-              "additionalProperties": false
+            "authorizationUri":{
+              "type":"string",
+              "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
+            },
+            "tokenCredentialsUri":{
+              "type":"string",
+              "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "BasicSecurityScheme08":{
       "type": "object",
       "description": "Declares globally referable security schema definition",
-      "patternProperties": {
-        "^[a-zA-Z0-9]+":{
-          "allOf":[
-            {"$ref": "#/definitions/SecuritySchemeBase08"},
-            {
-              "properties": {
-                "type":{
-                  "type": "string",
-                  "pattern": "Basic Authentication"
+      "allOf":[
+        {"$ref": "#/definitions/SecuritySchemeBase08"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "pattern": "Basic Authentication"
                 }
               }
             }
-          ]
-        }
-      },
+      ],
       "additionalProperties": false
     },
     "DigestSecurityScheme08":{
       "type": "object",
       "description": "Declares globally referable security schema definition",
-      "patternProperties": {
-        "^[a-zA-Z0-9]+":{
-          "allOf":[
-            {"$ref": "#/definitions/SecuritySchemeBase08"},
-            {
-              "properties": {
-                "type":{
-                  "type": "string",
-                  "pattern": "Digest Authentication"
-                }
-              }
+      "allOf":[
+        {"$ref": "#/definitions/SecuritySchemeBase08"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "pattern": "Digest Authentication"
             }
-          ]
+          }
         }
-      },
+      ],
       "additionalProperties": false
     },
     "CustomSecurityScheme08":{
       "type": "object",
       "description": "Declares globally referable security schema definition",
-      "patternProperties": {
-        "^[a-zA-Z0-9]+":{
-          "allOf":[
-            {"$ref": "#/definitions/SecuritySchemeBase08"},
-            {
-              "properties": {
-                "type":{
-                  "type": "string",
-                  "pattern": "[a-zA-Z0-9<>]-[a-zA-Z0-9<>]+"
-                }
-              }
+      "allOf":[
+        {"$ref": "#/definitions/SecuritySchemeBase08"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "pattern": "[a-zA-Z0-9<>_-]+"
             }
-          ]
+          }
         }
-      },
-      "additionalProperties": false
+      ]
     },
     "ResourceType08": {
       "type": "object",
-      "patternProperties":{
-        "^[a-zA-Z0-9<>]+":{
+      "properties":{
+        "name":{
+          "type": "string",
+          "description": "Name of the resource type"
+        },
+        "usage":{
+          "type": "string",
+          "description": "Instructions on how and when the resource type should be used."
+        },
+        "is":{
+          "type": "array",
+          "description": "Instantiation of applyed traits",
+          "items":{
+            "$ref": "#/definitions/Reference08"
+          }
+        },
+        "type":{"$ref": "#/definitions/Reference08"},
+        "securedBy":{
+          "type": "array",
+          "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
+          "items":{
+            "$ref": "#/definitions/Reference08"
+          }
+        },
+        "uriParameters":{
           "type": "object",
-          "properties":{
-            "name":{
-              "type": "string",
-              "description": "Name of the resource type"
-            },
-            "usage":{
-              "type": "string",
-              "description": "Instructions on how and when the resource type should be used."
-            },
-            "is":{
-              "type": "array",
-              "description": "Instantiation of applyed traits",
-              "items":{
-                "$ref": "#/definitions/Reference08"
-              }
-            },
-            "type":{"$ref": "#/definitions/Reference08"},
-            "securedBy":{
-              "type": "array",
-              "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
-              "items":{
-                "$ref": "#/definitions/Reference08"
-              }
-            },
-            "uriParameters":{
-              "type": "object",
-              "description": "Uri parameters of this resource",
-              "patternProperties": {
-                "^[a-zA-Z0-9<>]+": {
-                  "oneOf":[
-                    {"$ref": "#/definitions/Parameter08"},
-                    {
-                      "type": "array",
-                      "items": {"$ref": "#/definitions/Parameter08"}
-                    }
-                  ]
+          "description": "Uri parameters of this resource",
+          "patternProperties": {
+            "^[a-zA-Z0-9<>]+": {
+              "oneOf":[
+                {"$ref": "#/definitions/Parameter08"},
+                {
+                  "type": "array",
+                  "items": {"$ref": "#/definitions/Parameter08"}
                 }
-              },
-              "additionalProperties": false
-            },
-            "displayName":{
-              "type": "string",
-              "description": "An alternate, human-friendly name for the resource type"
-            },
-            "baseUriParameters": {
-              "type": "object",
-              "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
-              "patternProperties": {
-                "^[a-zA-Z0-9<>]+": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/definitions/Parameter08"
-                    },
-                    {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/Parameter08"
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "description":{
-              "type": "string",
-              "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
-            },
-            "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
-            "properties+": {
-              "$ref": "#/definitions/TypeInstance08/properties/properties"
-            },
-            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+              ]
+            }
           },
-          "patternProperties":{
+          "additionalProperties": false
+        },
+        "displayName":{
+          "type": "string",
+          "description": "An alternate, human-friendly name for the resource type"
+        },
+        "baseUriParameters": {
+          "type": "object",
+          "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
+          "patternProperties": {
+            "^[a-zA-Z0-9<>]+": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Parameter08"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Parameter08"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "description":{
+          "type": "string",
+          "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
+        },
+        "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
+        "properties+": {
+          "$ref": "#/definitions/TypeInstance08/properties/properties"
+        },
+        "methods": {
+          "patternProperties": {
             "^(get|post|delete|put|patch|options|head|<<[a-zA-Z0-9]+>>)?$": {
               "$ref": "#/definitions/Method08"
             }
           },
           "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
+        },
+        "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+      }
     },
     "Response08":{
       "type": "object",

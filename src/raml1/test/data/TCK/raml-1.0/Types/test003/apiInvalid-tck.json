@@ -1,163 +1,157 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "type": [
-            "object"
-          ],
-          "example": {
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "name": "somestring"
+        },
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"name\": \"somestring\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "name": "somestring"
-          },
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          }
+        }
+      },
+      "AnotherType": {
+        "name": "AnotherType",
+        "displayName": "AnotherType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"somestring\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "name": "somestring"
+          }
+        },
+        "additionalProperties": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "AnotherType": {
-          "name": "AnotherType",
-          "displayName": "AnotherType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "ComplexType": {
+        "name": "ComplexType",
+        "displayName": "ComplexType",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "someProperty": {
+            "name": "stringValue",
+            "age": "123s"
+          }
+        },
+        "required": true,
+        "properties": {
+          "someProperty": {
+            "name": "someProperty",
+            "displayName": "someProperty",
+            "type": [
+              "AnotherType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "additionalProperties": false,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
-        }
-      },
-      {
-        "ComplexType": {
-          "name": "ComplexType",
-          "displayName": "ComplexType",
-          "type": [
-            "object"
-          ],
-          "example": {
+        },
+        "structuredExample": {
+          "value": "{\n  \"someProperty\": {\n    \"name\": \"stringValue\",\n    \"age\": \"123s\"\n  }\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "someProperty": {
               "name": "stringValue",
               "age": "123s"
             }
-          },
-          "required": true,
-          "properties": {
-            "someProperty": {
-              "name": "someProperty",
-              "displayName": "someProperty",
-              "type": [
-                "AnotherType"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"someProperty\": {\n    \"name\": \"stringValue\",\n    \"age\": \"123s\"\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "someProperty": {
-                "name": "stringValue",
-                "age": "123s"
-              }
-            }
           }
         }
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "UNKNOWN_PROPERTY",

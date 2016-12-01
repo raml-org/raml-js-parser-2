@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -8,302 +6,281 @@
         "value": "types.raml"
       }
     ],
-    "traits": [
-      {
-        "acceptCallback": {
-          "queryParameters": {
-            "callback": {
-              "name": "callback",
-              "displayName": "callback",
-              "type": [
-                "string"
-              ],
-              "example": "callbackFunction",
-              "required": true,
-              "description": "Callback function name. All output will be wrapper under this function name.\n",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "acceptCallback": {
+        "queryParameters": {
+          "callback": {
+            "name": "callback",
+            "displayName": "callback",
+            "type": [
+              "string"
+            ],
+            "example": "callbackFunction",
+            "required": true,
+            "description": "Callback function name. All output will be wrapper under this function name.\n",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
-                "value": "callbackFunction",
-                "strict": true,
-                "name": null,
-                "structuredValue": "callbackFunction"
               }
+            },
+            "structuredExample": {
+              "value": "callbackFunction",
+              "strict": true,
+              "name": null,
+              "structuredValue": "callbackFunction"
             }
-          },
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "acceptCallback",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+          }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "acceptCallback",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       },
-      {
-        "limitableByGeoPoint": {
-          "queryParameters": {
-            "lat": {
-              "name": "lat",
-              "displayName": "lat",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "description": "Latitude of the center search coordinate. If used, lng is required.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "lng": {
-              "name": "lng",
-              "displayName": "lng",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "description": "Longitude of the center search coordinate. If used, lat is required.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "distance": {
-              "name": "distance",
-              "displayName": "distance",
-              "type": [
-                "integer"
-              ],
-              "default": 1000,
-              "required": true,
-              "description": "Default is 1000m (distance=1000), max distance is 5000.",
-              "maximum": 5000,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "limitableByGeoPoint": {
+        "queryParameters": {
+          "lat": {
+            "name": "lat",
+            "displayName": "lat",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "description": "Latitude of the center search coordinate. If used, lng is required.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "limitableByGeoPoint",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
+          "lng": {
+            "name": "lng",
+            "displayName": "lng",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "description": "Longitude of the center search coordinate. If used, lat is required.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          },
+          "distance": {
+            "name": "distance",
+            "displayName": "distance",
+            "type": [
+              "integer"
+            ],
+            "default": 1000,
+            "required": true,
+            "description": "Default is 1000m (distance=1000), max distance is 5000.",
+            "maximum": 5000,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "limitableByGeoPoint",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       },
-      {
-        "limitable": {
-          "queryParameters": {
-            "count": {
-              "name": "count",
-              "displayName": "count",
-              "type": [
-                "integer"
-              ],
-              "example": 1,
-              "required": true,
-              "description": "Number of items you would like to receive.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "limitable": {
+        "queryParameters": {
+          "count": {
+            "name": "count",
+            "displayName": "count",
+            "type": [
+              "integer"
+            ],
+            "example": 1,
+            "required": true,
+            "description": "Number of items you would like to receive.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
-                "value": "1",
-                "strict": true,
-                "name": null,
-                "structuredValue": 1
               }
+            },
+            "structuredExample": {
+              "value": "1",
+              "strict": true,
+              "name": null,
+              "structuredValue": 1
             }
-          },
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "limitable",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+          }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "limitable",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       },
-      {
-        "limitableByTime": {
-          "queryParameters": {
-            "max_timestamp": {
-              "name": "max_timestamp",
-              "displayName": "max_timestamp",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "description": "Return media before this UNIX timestamp.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "min_timestamp": {
-              "name": "min_timestamp",
-              "displayName": "min_timestamp",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "description": "Return media after this UNIX timestamp.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "limitableByTime": {
+        "queryParameters": {
+          "max_timestamp": {
+            "name": "max_timestamp",
+            "displayName": "max_timestamp",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media before this UNIX timestamp.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "limitableByTime",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
+          "min_timestamp": {
+            "name": "min_timestamp",
+            "displayName": "min_timestamp",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media after this UNIX timestamp.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "limitableByTime",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       },
-      {
-        "limitableById": {
-          "queryParameters": {
-            "min_id": {
-              "name": "min_id",
-              "displayName": "min_id",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "description": "Return media later than this min_id.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "max_id": {
-              "name": "max_id",
-              "displayName": "max_id",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "description": "Return media earlier than this max_id.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "limitableById": {
+        "queryParameters": {
+          "min_id": {
+            "name": "min_id",
+            "displayName": "min_id",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media later than this min_id.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "limitableById",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
+          "max_id": {
+            "name": "max_id",
+            "displayName": "max_id",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media earlier than this max_id.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "limitableById",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "usersListing": {
-          "type": "base",
-          "securedBy": [
-            {
-              "oauth_2_0": {
-                "scopes": [
-                  "relationships"
-                ]
-              }
-            }
-          ],
-          "name": "usersListing",
+    },
+    "resourceTypes": {
+      "usersListing": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -403,23 +380,21 @@
               }
             }
           }
-        }
-      },
-      {
-        "mediaSearch": {
-          "type": "base",
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "mediaSearch",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+        },
+        "type": "base",
+        "securedBy": [
+          {
+            "oauth_2_0": {
+              "scopes": [
+                "relationships"
+              ]
             }
-          },
+          }
+        ],
+        "name": "usersListing"
+      },
+      "mediaSearch": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -652,21 +627,23 @@
               }
             }
           }
+        },
+        "type": "base",
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "mediaSearch",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       },
-      {
-        "secured": {
-          "type": "base",
-          "securedBy": [
-            {
-              "oauth_2_0": {
-                "scopes": [
-                  "<<scope>>"
-                ]
-              }
-            }
-          ],
-          "name": "secured",
+      "secured": {
+        "methods": {
           "delete": {
             "responses": {
               "200": {
@@ -784,22 +761,21 @@
               "optional": true
             }
           }
-        }
-      },
-      {
-        "base": {
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "base",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+        },
+        "type": "base",
+        "securedBy": [
+          {
+            "oauth_2_0": {
+              "scopes": [
+                "<<scope>>"
+              ]
             }
-          },
+          }
+        ],
+        "name": "secured"
+      },
+      "base": {
+        "methods": {
           "delete": {
             "responses": {
               "503": {
@@ -867,23 +843,22 @@
               }
             }
           }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "base",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       },
-      {
-        "feedsListing": {
-          "type": "base",
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "name": "feedsListing",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          },
+      "feedsListing": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -1298,97 +1273,106 @@
               }
             }
           }
+        },
+        "type": "base",
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "name": "feedsListing",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       }
-    ],
-    "securitySchemes": [
-      {
-        "oauth_2_0": {
-          "name": "oauth_2_0",
-          "type": "OAuth 2.0",
-          "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
-          "describedBy": {
-            "queryParameters": {
-              "access_token": {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+    },
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+        "describedBy": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
             }
-          },
-          "settings": {
-            "accessTokenUri": "https://api.instagram.com/oauth/access_token",
-            "authorizationUri": "https://api.instagram.com/oauth/authorize",
-            "authorizationGrants": [
-              "password"
-            ],
-            "scopes": [
-              "basic",
-              "comments",
-              "relationships",
-              "likes"
-            ]
           }
+        },
+        "settings": {
+          "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+          "authorizationUri": "https://api.instagram.com/oauth/authorize",
+          "authorizationGrants": [
+            "password"
+          ],
+          "scopes": [
+            "basic",
+            "comments",
+            "relationships",
+            "likes"
+          ]
         }
       },
-      {
-        "clientId": {
-          "name": "clientId",
-          "type": "x-customHeader",
-          "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
-          "describedBy": {
-            "queryParameters": {
-              "client_id": {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": [
-                  "string"
-                ],
-                "example": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "required": true,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+      "clientId": {
+        "name": "clientId",
+        "type": "x-customHeader",
+        "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
+        "describedBy": {
+          "queryParameters": {
+            "client_id": {
+              "name": "client_id",
+              "displayName": "client_id",
+              "type": [
+                "string"
+              ],
+              "example": "9e0dbc0a3b8d436ca65ae2df9825c893",
+              "required": true,
+              "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
-                },
-                "structuredExample": {
-                  "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "9e0dbc0a3b8d436ca65ae2df9825c893"
                 }
+              },
+              "structuredExample": {
+                "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
+                "strict": true,
+                "name": null,
+                "structuredValue": "9e0dbc0a3b8d436ca65ae2df9825c893"
               }
             }
           }
         }
       }
-    ],
+    },
     "title": "Instagram",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
@@ -1440,8 +1424,8 @@
         "displayName": "/media",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "count": {
                     "name": "count",
@@ -1552,7 +1536,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -1586,8 +1570,8 @@
             "displayName": "/{mediaId}",
             "resources": [
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "count": {
                         "name": "count",
@@ -1703,7 +1687,7 @@
                       }
                     }
                   },
-                  {
+                  "post": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -1816,7 +1800,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": {
                   "secured": {
                     "scope": "comments"
@@ -1835,8 +1819,8 @@
                 "displayName": "/comments",
                 "resources": [
                   {
-                    "methods": [
-                      {
+                    "methods": {
+                      "delete": {
                         "responses": {
                           "200": {
                             "code": "200",
@@ -1909,7 +1893,7 @@
                           }
                         }
                       }
-                    ],
+                    },
                     "type": {
                       "secured": {
                         "scope": "comments"
@@ -1973,8 +1957,8 @@
                 "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
               },
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "count": {
                         "name": "count",
@@ -2090,7 +2074,7 @@
                       }
                     }
                   },
-                  {
+                  "post": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2160,7 +2144,7 @@
                       }
                     }
                   },
-                  {
+                  "delete": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2236,7 +2220,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": {
                   "secured": {
                     "scope": "likes"
@@ -2282,8 +2266,8 @@
             "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}"
           },
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "max_timestamp": {
                     "name": "max_timestamp",
@@ -2686,7 +2670,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "mediaSearch",
             "securedBy": [
               "oauth_2_0",
@@ -2710,8 +2694,8 @@
             "absoluteUri": "https://api.instagram.com/{version}/media/search"
           },
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "count": {
                     "name": "count",
@@ -3015,7 +2999,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "mediaSearch",
             "securedBy": [
               "oauth_2_0",
@@ -3063,8 +3047,8 @@
         "displayName": "/tags",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "count": {
                     "name": "count",
@@ -3175,7 +3159,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -3209,8 +3193,8 @@
             "displayName": "/{tagName}",
             "resources": [
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "min_id": {
                         "name": "min_id",
@@ -3360,7 +3344,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "base",
                 "securedBy": [
                   "oauth_2_0",
@@ -3401,8 +3385,8 @@
             "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}"
           },
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "q": {
                     "name": "q",
@@ -3539,7 +3523,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -3587,8 +3571,8 @@
         "displayName": "/users",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "count": {
                     "name": "count",
@@ -3699,7 +3683,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -3733,8 +3717,8 @@
             "displayName": "/{userId}",
             "resources": [
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "count": {
                         "name": "count",
@@ -3905,7 +3889,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "usersListing",
                 "securedBy": [
                   {
@@ -3931,8 +3915,8 @@
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows"
               },
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "count": {
                         "name": "count",
@@ -4103,7 +4087,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "usersListing",
                 "securedBy": [
                   {
@@ -4129,8 +4113,8 @@
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by"
               },
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "min_id": {
                         "name": "min_id",
@@ -4694,7 +4678,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -4719,8 +4703,8 @@
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent"
               },
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "count": {
                         "name": "count",
@@ -4836,7 +4820,7 @@
                       }
                     }
                   },
-                  {
+                  "post": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -4960,7 +4944,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": {
                   "secured": {
                     "scope": "comments"
@@ -5006,8 +4990,8 @@
             "absoluteUri": "https://api.instagram.com/{version}/users/{userId}"
           },
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "q": {
                     "name": "q",
@@ -5204,7 +5188,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "usersListing",
             "securedBy": [
               {
@@ -5230,8 +5214,8 @@
             "absoluteUri": "https://api.instagram.com/{version}/users/search"
           },
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "count": {
                     "name": "count",
@@ -5347,7 +5331,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": {
               "secured": {
                 "scope": "basic"
@@ -5366,8 +5350,8 @@
             "displayName": "/self",
             "resources": [
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "min_id": {
                         "name": "min_id",
@@ -5892,7 +5876,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -5916,8 +5900,8 @@
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/feed"
               },
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "count": {
                         "name": "count",
@@ -6088,7 +6072,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "usersListing",
                 "securedBy": [
                   {
@@ -6114,8 +6098,8 @@
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by"
               },
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "max_like_id": {
                         "name": "max_like_id",
@@ -6627,7 +6611,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -6689,8 +6673,8 @@
         "displayName": "/locations",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "count": {
                     "name": "count",
@@ -6801,7 +6785,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -6831,8 +6815,8 @@
             "displayName": "/{locId}",
             "resources": [
               {
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "queryParameters": {
                       "min_id": {
                         "name": "min_id",
@@ -7396,7 +7380,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -7437,8 +7421,8 @@
             "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}"
           },
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "foursquare_v2_id": {
                     "name": "foursquare_v2_id",
@@ -7653,7 +7637,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -7693,8 +7677,8 @@
         "absoluteUri": "https://api.instagram.com/{version}/locations"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "min_id": {
                 "name": "min_id",
@@ -7811,7 +7795,7 @@
               }
             }
           }
-        ],
+        },
         "type": "base",
         "securedBy": [
           "oauth_2_0",
@@ -7862,8 +7846,8 @@
         "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "client_id": {
                 "name": "client_id",
@@ -8008,7 +7992,7 @@
               }
             }
           },
-          {
+          "post": {
             "responses": {
               "200": {
                 "code": "200",
@@ -8266,7 +8250,7 @@
               }
             }
           },
-          {
+          "delete": {
             "queryParameters": {
               "client_id": {
                 "name": "client_id",
@@ -8403,7 +8387,7 @@
               }
             }
           }
-        ],
+        },
         "type": "base",
         "securedBy": [
           "oauth_2_0",
@@ -8445,5 +8429,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,39 +1,37 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "z": {
-          "name": "z",
-          "displayName": "z",
-          "type": [
-            "number"
-          ],
-          "required": true,
-          "maximum": 10,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "z": {
+        "name": "z",
+        "displayName": "z",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "maximum": 10,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Hello",
     "scalarsAnnotations": {
       "title": [
         {
-          "structuredValue": 1,
-          "name": "z"
+          "name": "z",
+          "structuredValue": 1
         }
       ]
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

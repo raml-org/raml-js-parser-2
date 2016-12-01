@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -12,39 +10,37 @@
         "value": "libraries/annotations.raml"
       }
     ],
-    "traits": [
-      {
-        "tr": {
-          "annotations": {
-            "lib2.MyAnnotation": {
-              "structuredValue": "stringValue",
-              "name": "lib2.MyAnnotation"
-            }
-          },
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "type": [
-                "typesLib.LibType"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "tr": {
+        "annotations": {
+          "lib2.MyAnnotation": {
+            "name": "lib2.MyAnnotation",
+            "structuredValue": "stringValue"
+          }
+        },
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "typesLib.LibType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "tr"
-        }
+          }
+        },
+        "name": "tr"
       }
-    ],
+    },
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -53,12 +49,12 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "annotations": {
               "lib2.MyAnnotation": {
-                "structuredValue": "stringValue",
-                "name": "lib2.MyAnnotation"
+                "name": "lib2.MyAnnotation",
+                "structuredValue": "stringValue"
               }
             },
             "body": {
@@ -106,7 +102,7 @@
               }
             }
           }
-        ],
+        },
         "is": [
           "tr"
         ],
@@ -133,5 +129,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

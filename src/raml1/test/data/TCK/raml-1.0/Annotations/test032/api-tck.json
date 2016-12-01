@@ -1,122 +1,126 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "bindingDefinition": {
-          "name": "bindingDefinition",
-          "displayName": "BindingDefinition",
+    "annotationTypes": {
+      "bindingDefinition": {
+        "name": "bindingDefinition",
+        "displayName": "BindingDefinition",
+        "type": [
+          "array"
+        ],
+        "required": true,
+        "items": {
+          "name": "items",
+          "displayName": "items",
           "type": [
-            "array"
+            "object"
           ],
           "required": true,
-          "items": {
-            "name": "items",
-            "displayName": "items",
-            "type": [
-              "object"
-            ],
-            "required": true,
-            "properties": {
-              "method": {
-                "name": "method",
-                "displayName": "method",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "This field defines to which method the binding applies",
-                "enum": [
-                  "GET",
-                  "PATCH",
-                  "POST",
-                  "PUT",
-                  "DELETE"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                }
-              },
-              "input": {
-                "name": "input",
-                "displayName": "input",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "The binding related to the field when used as an input",
-                "enum": [
-                  "OPTIONAL",
-                  "REQUIRED",
-                  "NONE"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
-                  }
-                }
-              },
-              "output": {
-                "name": "output",
-                "displayName": "output",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "The binding related to the field when used as an output",
-                "enum": [
-                  "OPTIONAL",
-                  "REQUIRED",
-                  "NONE"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    }
+          "properties": {
+            "method": {
+              "name": "method",
+              "displayName": "method",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "This field defines to which method the binding applies",
+              "enum": [
+                "GET",
+                "PATCH",
+                "POST",
+                "PUT",
+                "DELETE"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
                   }
                 }
               }
             },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
+            "input": {
+              "name": "input",
+              "displayName": "input",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "The binding related to the field when used as an input",
+              "enum": [
+                "OPTIONAL",
+                "REQUIRED",
+                "NONE"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            },
+            "output": {
+              "name": "output",
+              "displayName": "output",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "The binding related to the field when used as an output",
+              "enum": [
+                "OPTIONAL",
+                "REQUIRED",
+                "NONE"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
                 }
               }
             }
           },
           "__METADATA__": {
             "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
               "required": {
                 "insertedAsDefault": true
               }
             }
           }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
         }
       }
-    ],
+    },
     "title": "Test API",
     "baseUri": "https://example.com",
     "protocols": [
       "HTTPS"
     ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    },
     "scalarsAnnotations": {
       "baseUri": [
         {
+          "name": "bindingDefinition",
           "structuredValue": [
             {
               "method": "GET",
@@ -128,18 +132,12 @@
               "input": "NONE",
               "output": "REQUIRED"
             }
-          ],
-          "name": "bindingDefinition"
+          ]
         }
       ]
-    },
-    "__METADATA__": {
-      "primitiveValuesMeta": {
-        "protocols": {
-          "calculated": true
-        }
-      }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

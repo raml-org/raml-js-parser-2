@@ -44,23 +44,18 @@ export class TCKDumper {
             new ExamplesTransformer(this.options.dumpXMLRepresentationOfExamples),
             //new ParametersTransformer(),
             new ArrayExpressionTransformer(),
-            new TypesTransformer(),
             //new UsesTransformer(),
             //new PropertiesTransformer(),
             //new ResponsesTransformer(),
             //new BodiesTransformer(),
             //new AnnotationsTransformer(),
-            new SecuritySchemesTransformer(),
-            new AnnotationTypesTransformer(),
+            new SimpleNamesTransformer(),
             new TemplateParametrizedPropertiesTransformer(),
-            new TraitsTransformer(),
-            new ResourceTypesTransformer(),
+
             //new FacetsTransformer(),
             new SchemasTransformer(),
             new ProtocolsToUpperCaseTransformer(),
-            new ResourceTypeMethodsToMapTransformer(),
             new ReferencesTransformer(),
-            new SimpleNamesTransformer(),
             //new OneElementArrayTransformer()
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
@@ -70,6 +65,12 @@ export class TCKDumper {
     nodeTransformers:Transformation[];
 
     nodePropertyTransformers:Transformation[] = [
+        new MethodsToMapTransformer(),
+        new TypesTransformer(),
+        new AnnotationTypesTransformer(),
+        new TraitsTransformer(),
+        new SecuritySchemesTransformer(),
+        new ResourceTypesTransformer(),
         //new ResourcesTransformer(),
         //new TypeExampleTransformer(),
         new ParametersTransformer(),
@@ -669,7 +670,7 @@ class ArrayToMapTransformer implements Transformation{
         return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
             var obj = {};
             value.forEach(x=>{
@@ -739,22 +740,14 @@ class ParametersTransformer extends ArrayToMapTransformer{
 
 }
 
-class TypesTransformer extends ArrayToMappingsArrayTransformer{
+class TypesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.types.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.schemas.name,true)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true)
         ]),"name");
     }
-
-    transform(value:any,node:hl.IParseResult){
-        if(node.parent()==null||!universeHelpers.isLibraryBaseSibling(node.parent().definition())){
-            return value;
-        }
-        return super.transform(value,node);
-    }
-
 }
 
 class UsesTransformer extends ArrayToMapTransformer{
@@ -807,52 +800,25 @@ class BodiesTransformer extends ArrayToMapTransformer{
 
 }
 
-class TraitsTransformer extends ArrayToMappingsArrayTransformer{
+class TraitsTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Trait.name,null)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
+                universes.Universe10.LibraryBase.properties.traits.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
+                universes.Universe08.Api.properties.traits.name,true)
         ]),"name");
-    }
-    
-    transform(value,node){
-        // if(node.parent()==null){
-        //     return value;
-        // }
-        return super.transform(value,node);
     }
 }
 
-class ResourceTypesTransformer extends ArrayToMappingsArrayTransformer{
+class ResourceTypesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceType.name,null)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
         ]),"name");
-    }
-
-    transform(value:any,node:hl.IParseResult){
-        var methodsPropertyName = universes.Universe10.ResourceBase.properties.methods.name;
-        if(Array.isArray(value)) {
-            return value;
-        }
-        else{
-            var methods = value[methodsPropertyName];
-            if (methods) {
-                methods.forEach(m=> {
-                    var keys = Object.keys(m);
-                    if (keys.length > 0) {
-                        var methodName = keys[0];
-                        value[methodName] = m[methodName];
-                    }
-                })
-            }
-            delete value[methodsPropertyName];
-            // if(node.parent()==null){
-            //     return value;
-            // }
-            return super.transform(value,node);
-        }
     }
 }
 
@@ -865,52 +831,33 @@ class FacetsTransformer extends ArrayToMapTransformer{
     }
 }
 
-class SecuritySchemesTransformer extends ArrayToMappingsArrayTransformer{
+class SecuritySchemesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.AbstractSecurityScheme.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.AbstractSecurityScheme.name,universes.Universe08.Api.properties.securitySchemes.name,true)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
         ]),"name");
-    }
-    transform(value:any,node:hl.IParseResult){
-        // if(node.parent()==null){
-        //     return value;
-        // }
-        return super.transform(value,node);
     }
 }
 
-class AnnotationTypesTransformer extends ArrayToMappingsArrayTransformer{
+class AnnotationTypesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
         ]),"name");
     }
-
-    transform(value:any,node:hl.IParseResult){
-        if(node.parent()==null){
-            return value;
-        }
-        return super.transform(value,node);
-    }
-
 }
 
-class ResourceTypeMethodsToMapTransformer extends ArrayToMappingsArrayTransformer{
+class MethodsToMapTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Method.name,universes.Universe10.ResourceBase.properties.methods.name)
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
         ]),"method");
-    }
-
-    transform(value:any,node:hl.IParseResult){
-        if(node.parent()==null||!universeHelpers.isResourceTypeType(node.parent().definition())){
-            return value;
-        }
-        return super.transform(value,node);
     }
 }
 
@@ -1090,7 +1037,7 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
             original = (<proxy.LowLevelProxyNode>original).originalNode();
         }
         var oKey = original.key();
-        var aVal = value[Object.keys(value)[0]];
+        var aVal =  value;
         aVal.name = oKey;
         if(aVal.displayName==key){
             aVal.displayName = oKey;

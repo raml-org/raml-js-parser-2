@@ -1,390 +1,373 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "RTType1": {
-          "name": "RTType1",
-          "displayName": "RTType1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "rtTypeProperty1": {
-              "name": "rtTypeProperty1",
-              "displayName": "rtTypeProperty1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "RTType1": {
+        "name": "RTType1",
+        "displayName": "RTType1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "rtTypeProperty1": {
+            "name": "rtTypeProperty1",
+            "displayName": "rtTypeProperty1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "RTType2": {
-          "name": "RTType2",
-          "displayName": "RTType2",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "rtTypeProperty2": {
-              "name": "rtTypeProperty2",
-              "displayName": "rtTypeProperty2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "RTType2": {
+        "name": "RTType2",
+        "displayName": "RTType2",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "rtTypeProperty2": {
+            "name": "rtTypeProperty2",
+            "displayName": "rtTypeProperty2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Type1": {
-          "name": "Type1",
-          "displayName": "Type1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "typeProperty1": {
-              "name": "typeProperty1",
-              "displayName": "typeProperty1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Type1": {
+        "name": "Type1",
+        "displayName": "Type1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "typeProperty1": {
+            "name": "typeProperty1",
+            "displayName": "typeProperty1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Type2": {
-          "name": "Type2",
-          "displayName": "Type2",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "typeProperty2": {
-              "name": "typeProperty2",
-              "displayName": "typeProperty2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Type2": {
+        "name": "Type2",
+        "displayName": "Type2",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "typeProperty2": {
+            "name": "typeProperty2",
+            "displayName": "typeProperty2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "RTTrait": {
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "type": [
-                "<<RTType>>"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "traits": {
+      "RTTrait": {
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "<<RTType>>"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "RTTrait"
-        }
+          }
+        },
+        "name": "RTTrait"
       },
-      {
-        "Trait1": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "object"
-                  ],
-                  "required": true,
-                  "properties": {
-                    "traitProperty1": {
-                      "name": "traitProperty1",
-                      "displayName": "traitProperty1",
-                      "type": [
-                        "boolean"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    },
-                    "traitProperty2": {
-                      "name": "traitProperty2",
-                      "displayName": "traitProperty2",
-                      "type": [
-                        "number"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    },
-                    "traitProperty1_3": {
-                      "name": "traitProperty1_3",
-                      "displayName": "traitProperty1_3",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
+      "Trait1": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "properties": {
+                  "traitProperty1": {
+                    "name": "traitProperty1",
+                    "displayName": "traitProperty1",
+                    "type": [
+                      "boolean"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
                         }
                       }
                     }
                   },
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                  "traitProperty2": {
+                    "name": "traitProperty2",
+                    "displayName": "traitProperty2",
+                    "type": [
+                      "number"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
+                    }
+                  },
+                  "traitProperty1_3": {
+                    "name": "traitProperty1_3",
+                    "displayName": "traitProperty1_3",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               }
             }
-          },
-          "name": "Trait1"
-        }
+          }
+        },
+        "name": "Trait1"
       },
-      {
-        "Trait2": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "object"
-                  ],
-                  "required": true,
-                  "properties": {
-                    "traitProperty1": {
-                      "name": "traitProperty1",
-                      "displayName": "traitProperty1",
-                      "type": [
-                        "number"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    },
-                    "traitProperty2": {
-                      "name": "traitProperty2",
-                      "displayName": "traitProperty2",
-                      "type": [
-                        "boolean"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    },
-                    "traitProperty2_3": {
-                      "name": "traitProperty2_3",
-                      "displayName": "traitProperty2_3",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
+      "Trait2": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "properties": {
+                  "traitProperty1": {
+                    "name": "traitProperty1",
+                    "displayName": "traitProperty1",
+                    "type": [
+                      "number"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
                         }
                       }
                     }
                   },
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                  "traitProperty2": {
+                    "name": "traitProperty2",
+                    "displayName": "traitProperty2",
+                    "type": [
+                      "boolean"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
+                    }
+                  },
+                  "traitProperty2_3": {
+                    "name": "traitProperty2_3",
+                    "displayName": "traitProperty2_3",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               }
             }
-          },
-          "name": "Trait2"
-        }
+          }
+        },
+        "name": "Trait2"
       }
-    ],
-    "resourceTypes": [
-      {
-        "ResourceType1": {
-          "name": "ResourceType1",
+    },
+    "resourceTypes": {
+      "ResourceType1": {
+        "methods": {
           "put": {
             "is": [
               {
@@ -395,11 +378,11 @@
             ],
             "method": "put"
           }
-        }
+        },
+        "name": "ResourceType1"
       },
-      {
-        "ResourceType2": {
-          "name": "ResourceType2",
+      "ResourceType2": {
+        "methods": {
           "put": {
             "is": [
               {
@@ -410,14 +393,15 @@
             ],
             "method": "put"
           }
-        }
+        },
+        "name": "ResourceType2"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "put": {
             "responses": {
               "200": {
                 "code": "200",
@@ -560,7 +544,7 @@
             ],
             "method": "put"
           },
-          {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -682,7 +666,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "is": [
           "Trait2",
           "Trait1"
@@ -704,6 +688,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

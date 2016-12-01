@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -18,6 +16,7 @@
                   {
                     "value": "{\n  \"p1\": 5\n}",
                     "strict": true,
+                    "name": null,
                     "structuredValue": {
                       "p1": 5
                     }
@@ -25,6 +24,7 @@
                   {
                     "value": "{\n  \"p1\": 8\n}",
                     "strict": true,
+                    "name": null,
                     "structuredValue": {
                       "p1": 8
                     }
@@ -48,7 +48,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -65,6 +65,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MAP_EXPECTED",

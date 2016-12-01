@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -16,24 +14,14 @@
         "value": "libs/lib.raml"
       }
     ],
-    "resourceTypes": [
-      {
-        "rt": {
-          "name": "rt",
+    "resourceTypes": {
+      "rt": {
+        "methods": {
           "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": 5
-                  }
-                },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
@@ -103,6 +91,15 @@
                     }
                   }
                 },
+                "example": {
+                  "ownLibProperty": {
+                    "prop": "stringValue"
+                  },
+                  "rootLibProperty": {
+                    "integerProperty": 5
+                  }
+                },
+                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -130,27 +127,19 @@
             },
             "method": "post"
           }
-        }
+        },
+        "name": "rt"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue2"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": 8
-                  }
-                },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
@@ -220,6 +209,15 @@
                     }
                   }
                 },
+                "example": {
+                  "ownLibProperty": {
+                    "prop": "stringValue2"
+                  },
+                  "rootLibProperty": {
+                    "integerProperty": 8
+                  }
+                },
+                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -247,7 +245,7 @@
             },
             "method": "post"
           },
-          {
+          "put": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -277,7 +275,7 @@
             },
             "method": "put"
           }
-        ],
+        },
         "type": "rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -295,5 +293,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

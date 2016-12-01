@@ -1,107 +1,100 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "File": {
-          "name": "File",
-          "displayName": "File",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "length": {
-              "name": "length",
-              "displayName": "length",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "File": {
+        "name": "File",
+        "displayName": "File",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "length": {
+            "name": "length",
+            "displayName": "length",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "drm": {
-          "headers": {
-            "drm-key": {
-              "name": "drm-key",
-              "displayName": "drm-key",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "traits": {
+      "drm": {
+        "headers": {
+          "drm-key": {
+            "name": "drm-key",
+            "displayName": "drm-key",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "drm"
-        }
+          }
+        },
+        "name": "drm"
       }
-    ],
-    "resourceTypes": [
-      {
-        "file": {
-          "name": "file",
+    },
+    "resourceTypes": {
+      "file": {
+        "methods": {
           "get": {
             "is": [
               "drm"
@@ -114,10 +107,13 @@
             ],
             "method": "put"
           }
-        }
+        },
+        "name": "file"
       }
-    ],
+    },
     "usage": "Use to define some basic file-related constructs.\n"
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": []
 }

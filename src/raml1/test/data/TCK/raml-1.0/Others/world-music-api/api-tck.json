@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "info": {
+        "name": "info",
         "structuredValue": {
           "license": "MIT"
-        },
-        "name": "info"
+        }
       }
     },
     "uses": [
@@ -20,177 +18,158 @@
         "value": "libraries/api-library.raml"
       }
     ],
-    "types": [
-      {
-        "Entry": {
-          "name": "Entry",
-          "displayName": "Entry",
-          "type": [
-            "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Entry": {
+        "name": "Entry",
+        "displayName": "Entry",
+        "type": [
+          "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "AnotherEntry": {
-          "name": "AnotherEntry",
-          "displayName": "AnotherEntry",
-          "type": [
-            "Entry"
-          ],
-          "required": true,
-          "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "AnotherEntry": {
+        "name": "AnotherEntry",
+        "displayName": "AnotherEntry",
+        "type": [
+          "Entry"
+        ],
+        "required": true,
+        "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "firstname": "John"
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "firstname": "John"
+        },
+        "required": true,
+        "properties": {
+          "firstname": {
+            "name": "firstname",
+            "displayName": "firstname",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           },
-          "required": true,
-          "properties": {
-            "firstname": {
-              "name": "firstname",
-              "displayName": "firstname",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          "lastname": {
+            "name": "lastname",
+            "displayName": "lastname",
+            "type": [
+              "string"
+            ],
+            "example": "Doe",
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
               }
             },
-            "lastname": {
-              "name": "lastname",
-              "displayName": "lastname",
-              "type": [
-                "string"
-              ],
-              "example": "Doe",
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+            "structuredExample": {
+              "value": "Doe",
+              "strict": true,
+              "name": null,
+              "structuredValue": "Doe"
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"firstname\": \"John\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "firstname": "John"
+          }
+        }
+      }
+    },
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
-                "value": "Doe",
-                "strict": true,
-                "name": null,
-                "structuredValue": "Doe"
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"firstname\": \"John\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "firstname": "John"
+          }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "name": "secured",
+        "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "secured": {
-          "queryParameters": {
-            "access_token": {
-              "name": "access_token",
-              "displayName": "access_token",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "securedBy": [
-            "custom_scheme"
-          ],
-          "name": "secured",
-          "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "securedBy": [
-            "custom_scheme"
-          ],
-          "name": "collection",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          },
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -233,164 +212,242 @@
               }
             }
           }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "name": "collection",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "deprecated": {
-          "name": "deprecated",
-          "displayName": "deprecated",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "date": {
-              "name": "date",
-              "displayName": "date",
-              "type": [
-                "datetime"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "deprecatedBy": {
-              "name": "deprecatedBy",
-              "displayName": "deprecatedBy",
-              "type": [
-                "User"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "comment": {
-              "name": "comment",
-              "displayName": "comment",
-              "type": [
-                "nil | string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "date": {
+            "name": "date",
+            "displayName": "date",
+            "type": [
+              "datetime"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "deprecatedBy": {
+            "name": "deprecatedBy",
+            "displayName": "deprecatedBy",
+            "type": [
+              "User"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
             }
-          }
-        }
-      },
-      {
-        "monitoringInterval": {
-          "name": "monitoringInterval",
-          "displayName": "monitoringInterval",
-          "type": [
-            "integer"
-          ],
-          "example": 2,
-          "structuredExample": {
-            "value": "2",
-            "strict": true,
-            "name": null,
-            "structuredValue": 2
           },
-          "required": true,
-          "description": "interval in seconds",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "comment": {
+            "name": "comment",
+            "displayName": "comment",
+            "type": [
+              "nil | string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "ready": {
-          "name": "ready",
-          "displayName": "ready",
-          "type": [
-            "nil"
-          ],
-          "required": true,
-          "description": "markes a resource as ready",
-          "allowedTargets": [
-            "Resource"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "monitoringInterval": {
+        "name": "monitoringInterval",
+        "displayName": "monitoringInterval",
+        "type": [
+          "integer"
+        ],
+        "example": 2,
+        "required": true,
+        "description": "interval in seconds",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "2",
+          "strict": true,
+          "name": null,
+          "structuredValue": 2
+        }
+      },
+      "ready": {
+        "name": "ready",
+        "displayName": "ready",
+        "type": [
+          "nil"
+        ],
+        "required": true,
+        "description": "markes a resource as ready",
+        "allowedTargets": [
+          "Resource"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "info": {
-          "name": "info",
-          "displayName": "info",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "allowedTargets": [
-            "API"
-          ],
-          "properties": {
-            "license": {
-              "name": "license",
-              "displayName": "license",
+      "info": {
+        "name": "info",
+        "displayName": "info",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "allowedTargets": [
+          "API"
+        ],
+        "properties": {
+          "license": {
+            "name": "license",
+            "displayName": "license",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "MIT",
+              "Apache 2.0"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "rediractable": {
+        "name": "rediractable",
+        "displayName": "rediractable",
+        "type": [
+          "boolean"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth_1_0": {
+        "name": "oauth_1_0",
+        "type": "OAuth 1.0",
+        "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
+        "settings": {
+          "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
+          "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
+          "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+          "signatures": [
+            "HMAC-SHA1",
+            "PLAINTEXT"
+          ]
+        }
+      },
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "describedBy": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
               "type": [
                 "string"
               ],
               "required": true,
-              "enum": [
-                "MIT",
-                "Apache 2.0"
-              ],
+              "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -403,169 +460,86 @@
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "rediractable": {
-          "name": "rediractable",
-          "displayName": "rediractable",
-          "type": [
-            "boolean"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      }
-    ],
-    "securitySchemes": [
-      {
-        "oauth_1_0": {
-          "name": "oauth_1_0",
-          "type": "OAuth 1.0",
-          "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
-          "settings": {
-            "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
-            "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
-            "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
-            "signatures": [
-              "HMAC-SHA1",
-              "PLAINTEXT"
-            ]
-          }
-        }
-      },
-      {
-        "oauth_2_0": {
-          "name": "oauth_2_0",
-          "type": "OAuth 2.0",
-          "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-          "describedBy": {
-            "queryParameters": {
-              "access_token": {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+          "headers": {
+            "Authorization": {
+              "name": "Authorization",
+              "displayName": "Authorization",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
-            },
-            "headers": {
-              "Authorization": {
-                "name": "Authorization",
-                "displayName": "Authorization",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
-              },
-              {
-                "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
-              }
-            ]
+            }
           },
-          "settings": {
-            "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-            "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-            "authorizationGrants": [
-              "authorization_code",
-              "implicit",
-              "urn:ietf:params:oauth:grant-type:saml2-bearer"
-            ]
-          }
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+            },
+            {
+              "code": "403",
+              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+            }
+          ]
+        },
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "authorization_code",
+            "implicit",
+            "urn:ietf:params:oauth:grant-type:saml2-bearer"
+          ]
         }
       },
-      {
-        "custom_scheme": {
-          "name": "custom_scheme",
-          "type": "x-custom",
-          "description": "A custom security scheme for authenticating requests.\n",
-          "describedBy": {
-            "headers": {
-              "SpecialToken": {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+      "custom_scheme": {
+        "name": "custom_scheme",
+        "type": "x-custom",
+        "description": "A custom security scheme for authenticating requests.\n",
+        "describedBy": {
+          "headers": {
+            "SpecialToken": {
+              "name": "SpecialToken",
+              "displayName": "SpecialToken",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a custom token.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
+            }
+          },
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad token.\n"
             },
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n"
-              },
-              {
-                "code": "403"
-              }
-            ]
-          }
+            {
+              "code": "403"
+            }
+          ]
         }
       }
-    ],
+    },
     "title": "World Music API",
     "description": "This is an example of a music API.",
     "version": "v1",
@@ -634,8 +608,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
@@ -713,7 +687,7 @@
               }
             }
           },
-          {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -752,7 +726,7 @@
               }
             }
           }
-        ],
+        },
         "securedBy": [
           "custom_scheme"
         ],
@@ -774,8 +748,8 @@
         "absoluteUri": "http://{environment}.musicapi.com/{version}/api"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "responses": {
               "200": {
                 "code": "200",
@@ -819,7 +793,7 @@
               }
             }
           },
-          {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -867,7 +841,7 @@
               }
             }
           }
-        ],
+        },
         "type": "collection",
         "securedBy": [
           "custom_scheme"
@@ -892,16 +866,15 @@
       {
         "annotations": {
           "ready": {
-            "structuredValue": null,
             "name": "ready"
           }
         },
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "monitoringInterval": {
-                "structuredValue": 30,
-                "name": "monitoringInterval"
+                "name": "monitoringInterval",
+                "structuredValue": 30
               }
             },
             "queryParameters": {
@@ -962,7 +935,7 @@
               }
             }
           },
-          {
+          "post": {
             "queryParameters": {
               "access_token": {
                 "name": "access_token",
@@ -1001,7 +974,7 @@
               }
             }
           }
-        ],
+        },
         "is": [
           "secured"
         ],
@@ -1013,18 +986,18 @@
         "displayName": "Songs",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "annotations": {
                   "deprecated": {
+                    "name": "deprecated",
                     "structuredValue": {
                       "date": "2016-02-28T16:41:41.090Z",
                       "deprecatedBy": {
                         "firstname": "Christian"
                       },
                       "comment": "no comment"
-                    },
-                    "name": "deprecated"
+                    }
                   }
                 },
                 "responses": {
@@ -1095,7 +1068,7 @@
                   }
                 }
               }
-            ],
+            },
             "securedBy": [
               "custom_scheme"
             ],
@@ -1167,11 +1140,13 @@
     "scalarsAnnotations": {
       "baseUri": [
         {
-          "structuredValue": true,
-          "name": "rediractable"
+          "name": "rediractable",
+          "structuredValue": true
         }
       ]
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

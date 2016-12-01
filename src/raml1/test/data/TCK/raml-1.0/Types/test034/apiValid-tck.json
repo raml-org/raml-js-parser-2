@@ -1,734 +1,702 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "StringType_10": {
-          "name": "StringType_10",
-          "displayName": "StringType_10",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "StringType_10": {
+        "name": "StringType_10",
+        "displayName": "StringType_10",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "StringType_11": {
-          "name": "StringType_11",
-          "displayName": "StringType_11",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "StringType_11": {
+        "name": "StringType_11",
+        "displayName": "StringType_11",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "stringValue",
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_12": {
+        "name": "StringType_12",
+        "displayName": "StringType_12",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_20": {
+        "name": "StringType_20",
+        "displayName": "StringType_20",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "StringType_21": {
+        "name": "StringType_21",
+        "displayName": "StringType_21",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_30": {
+        "name": "StringType_30",
+        "displayName": "StringType_30",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "StringType_31": {
+        "name": "StringType_31",
+        "displayName": "StringType_31",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_40": {
+        "name": "StringType_40",
+        "displayName": "StringType_40",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "StringType_41": {
+        "name": "StringType_41",
+        "displayName": "StringType_41",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_50": {
+        "name": "StringType_50",
+        "displayName": "StringType_50",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "StringType_51": {
+        "name": "StringType_51",
+        "displayName": "StringType_51",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_60": {
+        "name": "StringType_60",
+        "displayName": "StringType_60",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "StringType_61": {
+        "name": "StringType_61",
+        "displayName": "StringType_61",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "StringType_70": {
+        "name": "StringType_70",
+        "displayName": "StringType_70",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "StringType_71": {
+        "name": "StringType_71",
+        "displayName": "StringType_71",
+        "type": [
+          "string"
+        ],
+        "example": "stringValue",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "stringValue",
+          "strict": true,
+          "name": null,
+          "structuredValue": "stringValue"
+        }
+      },
+      "TypeWithStringProperties": {
+        "name": "TypeWithStringProperties",
+        "displayName": "TypeWithStringProperties",
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": "{\n  \"strProp_10\": \"stringValue_StringType_10\",\n  \"strProp_11\": \"stringValue_StringType_11\",\n  \"strProp_12\": \"stringValue_StringType_12\",\n  \"strProp_20\": \"stringValue_StringType_20\",\n  \"strProp_21\": \"stringValue_StringType_21\",\n  \"strProp_30\": \"stringValue_StringType_30\",\n  \"strProp_31\": \"stringValue_StringType_31\",\n  \"strProp_40\": \"stringValue_StringType_40\",\n  \"strProp_41\": \"stringValue_StringType_41\",\n  \"strProp_50\": \"stringValue_StringType_50\",\n  \"strProp_51\": \"stringValue_StringType_51\",\n  \"strProp_60\": \"stringValue_StringType_60\",\n  \"strProp_61\": \"stringValue_StringType_61\",\n  \"strProp_70\": \"stringValue_StringType_70\",\n  \"strProp_71\": \"stringValue_StringType_71\"\n}",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_12": {
-          "name": "StringType_12",
-          "displayName": "StringType_12",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+            "name": "exampleWithNonEmptyStrings",
+            "structuredValue": {
+              "strProp_10": "stringValue_StringType_10",
+              "strProp_11": "stringValue_StringType_11",
+              "strProp_12": "stringValue_StringType_12",
+              "strProp_20": "stringValue_StringType_20",
+              "strProp_21": "stringValue_StringType_21",
+              "strProp_30": "stringValue_StringType_30",
+              "strProp_31": "stringValue_StringType_31",
+              "strProp_40": "stringValue_StringType_40",
+              "strProp_41": "stringValue_StringType_41",
+              "strProp_50": "stringValue_StringType_50",
+              "strProp_51": "stringValue_StringType_51",
+              "strProp_60": "stringValue_StringType_60",
+              "strProp_61": "stringValue_StringType_61",
+              "strProp_70": "stringValue_StringType_70",
+              "strProp_71": "stringValue_StringType_71"
             }
           },
-          "structuredExample": {
-            "value": "stringValue",
+          {
+            "value": "{\n  \"strProp_10\": \"\",\n  \"strProp_11\": \"\",\n  \"strProp_12\": \"\",\n  \"strProp_20\": \"\",\n  \"strProp_21\": \"\",\n  \"strProp_30\": \"\",\n  \"strProp_31\": \"\",\n  \"strProp_40\": \"\",\n  \"strProp_41\": \"\",\n  \"strProp_50\": \"\",\n  \"strProp_51\": \"\",\n  \"strProp_60\": \"\",\n  \"strProp_61\": \"\",\n  \"strProp_70\": \"\",\n  \"strProp_71\": \"\"\n}",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_20": {
-          "name": "StringType_20",
-          "displayName": "StringType_20",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+            "name": "exampleWithEmptyStrings",
+            "structuredValue": {
+              "strProp_10": "",
+              "strProp_11": "",
+              "strProp_12": "",
+              "strProp_20": "",
+              "strProp_21": "",
+              "strProp_30": "",
+              "strProp_31": "",
+              "strProp_40": "",
+              "strProp_41": "",
+              "strProp_50": "",
+              "strProp_51": "",
+              "strProp_60": "",
+              "strProp_61": "",
+              "strProp_70": "",
+              "strProp_71": ""
             }
           }
-        }
-      },
-      {
-        "StringType_21": {
-          "name": "StringType_21",
-          "displayName": "StringType_21",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "stringValue",
-            "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_30": {
-          "name": "StringType_30",
-          "displayName": "StringType_30",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "StringType_31": {
-          "name": "StringType_31",
-          "displayName": "StringType_31",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "stringValue",
-            "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_40": {
-          "name": "StringType_40",
-          "displayName": "StringType_40",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "StringType_41": {
-          "name": "StringType_41",
-          "displayName": "StringType_41",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "stringValue",
-            "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_50": {
-          "name": "StringType_50",
-          "displayName": "StringType_50",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "StringType_51": {
-          "name": "StringType_51",
-          "displayName": "StringType_51",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "stringValue",
-            "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_60": {
-          "name": "StringType_60",
-          "displayName": "StringType_60",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "StringType_61": {
-          "name": "StringType_61",
-          "displayName": "StringType_61",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "stringValue",
-            "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "StringType_70": {
-          "name": "StringType_70",
-          "displayName": "StringType_70",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "StringType_71": {
-          "name": "StringType_71",
-          "displayName": "StringType_71",
-          "type": [
-            "string"
-          ],
-          "example": "stringValue",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "stringValue",
-            "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
-          }
-        }
-      },
-      {
-        "TypeWithStringProperties": {
-          "name": "TypeWithStringProperties",
-          "displayName": "TypeWithStringProperties",
-          "type": [
-            "object"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"strProp_10\": \"stringValue_StringType_10\",\n  \"strProp_11\": \"stringValue_StringType_11\",\n  \"strProp_12\": \"stringValue_StringType_12\",\n  \"strProp_20\": \"stringValue_StringType_20\",\n  \"strProp_21\": \"stringValue_StringType_21\",\n  \"strProp_30\": \"stringValue_StringType_30\",\n  \"strProp_31\": \"stringValue_StringType_31\",\n  \"strProp_40\": \"stringValue_StringType_40\",\n  \"strProp_41\": \"stringValue_StringType_41\",\n  \"strProp_50\": \"stringValue_StringType_50\",\n  \"strProp_51\": \"stringValue_StringType_51\",\n  \"strProp_60\": \"stringValue_StringType_60\",\n  \"strProp_61\": \"stringValue_StringType_61\",\n  \"strProp_70\": \"stringValue_StringType_70\",\n  \"strProp_71\": \"stringValue_StringType_71\"\n}",
-              "strict": true,
-              "name": "exampleWithNonEmptyStrings",
-              "structuredValue": {
-                "strProp_10": "stringValue_StringType_10",
-                "strProp_11": "stringValue_StringType_11",
-                "strProp_12": "stringValue_StringType_12",
-                "strProp_20": "stringValue_StringType_20",
-                "strProp_21": "stringValue_StringType_21",
-                "strProp_30": "stringValue_StringType_30",
-                "strProp_31": "stringValue_StringType_31",
-                "strProp_40": "stringValue_StringType_40",
-                "strProp_41": "stringValue_StringType_41",
-                "strProp_50": "stringValue_StringType_50",
-                "strProp_51": "stringValue_StringType_51",
-                "strProp_60": "stringValue_StringType_60",
-                "strProp_61": "stringValue_StringType_61",
-                "strProp_70": "stringValue_StringType_70",
-                "strProp_71": "stringValue_StringType_71"
-              }
-            },
-            {
-              "value": "{\n  \"strProp_10\": \"\",\n  \"strProp_11\": \"\",\n  \"strProp_12\": \"\",\n  \"strProp_20\": \"\",\n  \"strProp_21\": \"\",\n  \"strProp_30\": \"\",\n  \"strProp_31\": \"\",\n  \"strProp_40\": \"\",\n  \"strProp_41\": \"\",\n  \"strProp_50\": \"\",\n  \"strProp_51\": \"\",\n  \"strProp_60\": \"\",\n  \"strProp_61\": \"\",\n  \"strProp_70\": \"\",\n  \"strProp_71\": \"\"\n}",
-              "strict": true,
-              "name": "exampleWithEmptyStrings",
-              "structuredValue": {
-                "strProp_10": "",
-                "strProp_11": "",
-                "strProp_12": "",
-                "strProp_20": "",
-                "strProp_21": "",
-                "strProp_30": "",
-                "strProp_31": "",
-                "strProp_40": "",
-                "strProp_41": "",
-                "strProp_50": "",
-                "strProp_51": "",
-                "strProp_60": "",
-                "strProp_61": "",
-                "strProp_70": "",
-                "strProp_71": ""
-              }
-            }
-          ],
-          "required": true,
-          "properties": {
-            "strProp_10": {
-              "name": "strProp_10",
-              "displayName": "strProp_10",
-              "type": [
-                "StringType_10"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_11": {
-              "name": "strProp_11",
-              "displayName": "strProp_11",
-              "type": [
-                "StringType_11"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_12": {
-              "name": "strProp_12",
-              "displayName": "strProp_12",
-              "type": [
-                "StringType_12"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_20": {
-              "name": "strProp_20",
-              "displayName": "strProp_20",
-              "type": [
-                "StringType_20"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_21": {
-              "name": "strProp_21",
-              "displayName": "strProp_21",
-              "type": [
-                "StringType_21"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_30": {
-              "name": "strProp_30",
-              "displayName": "strProp_30",
-              "type": [
-                "StringType_30"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_31": {
-              "name": "strProp_31",
-              "displayName": "strProp_31",
-              "type": [
-                "StringType_31"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_40": {
-              "name": "strProp_40",
-              "displayName": "strProp_40",
-              "type": [
-                "StringType_40"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_41": {
-              "name": "strProp_41",
-              "displayName": "strProp_41",
-              "type": [
-                "StringType_41"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_50": {
-              "name": "strProp_50",
-              "displayName": "strProp_50",
-              "type": [
-                "StringType_50"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_51": {
-              "name": "strProp_51",
-              "displayName": "strProp_51",
-              "type": [
-                "StringType_51"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_60": {
-              "name": "strProp_60",
-              "displayName": "strProp_60",
-              "type": [
-                "StringType_60"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_61": {
-              "name": "strProp_61",
-              "displayName": "strProp_61",
-              "type": [
-                "StringType_61"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_70": {
-              "name": "strProp_70",
-              "displayName": "strProp_70",
-              "type": [
-                "StringType_70"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "strProp_71": {
-              "name": "strProp_71",
-              "displayName": "strProp_71",
-              "type": [
-                "StringType_71"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+        ],
+        "required": true,
+        "properties": {
+          "strProp_10": {
+            "name": "strProp_10",
+            "displayName": "strProp_10",
+            "type": [
+              "StringType_10"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "strProp_11": {
+            "name": "strProp_11",
+            "displayName": "strProp_11",
+            "type": [
+              "StringType_11"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          },
+          "strProp_12": {
+            "name": "strProp_12",
+            "displayName": "strProp_12",
+            "type": [
+              "StringType_12"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_20": {
+            "name": "strProp_20",
+            "displayName": "strProp_20",
+            "type": [
+              "StringType_20"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_21": {
+            "name": "strProp_21",
+            "displayName": "strProp_21",
+            "type": [
+              "StringType_21"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_30": {
+            "name": "strProp_30",
+            "displayName": "strProp_30",
+            "type": [
+              "StringType_30"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_31": {
+            "name": "strProp_31",
+            "displayName": "strProp_31",
+            "type": [
+              "StringType_31"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_40": {
+            "name": "strProp_40",
+            "displayName": "strProp_40",
+            "type": [
+              "StringType_40"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_41": {
+            "name": "strProp_41",
+            "displayName": "strProp_41",
+            "type": [
+              "StringType_41"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_50": {
+            "name": "strProp_50",
+            "displayName": "strProp_50",
+            "type": [
+              "StringType_50"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_51": {
+            "name": "strProp_51",
+            "displayName": "strProp_51",
+            "type": [
+              "StringType_51"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_60": {
+            "name": "strProp_60",
+            "displayName": "strProp_60",
+            "type": [
+              "StringType_60"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_61": {
+            "name": "strProp_61",
+            "displayName": "strProp_61",
+            "type": [
+              "StringType_61"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_70": {
+            "name": "strProp_70",
+            "displayName": "strProp_70",
+            "type": [
+              "StringType_70"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "strProp_71": {
+            "name": "strProp_71",
+            "displayName": "strProp_71",
+            "type": [
+              "StringType_71"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

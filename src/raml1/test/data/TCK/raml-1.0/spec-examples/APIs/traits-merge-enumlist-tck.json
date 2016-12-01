@@ -1,47 +1,43 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "withQueryParameters": {
-          "queryParameters": {
-            "platform": {
-              "name": "platform",
-              "displayName": "platform",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "win",
-                "mac"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "withQueryParameters": {
+        "queryParameters": {
+          "platform": {
+            "name": "platform",
+            "displayName": "platform",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "win",
+              "mac"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "withQueryParameters"
-        }
+          }
+        },
+        "name": "withQueryParameters"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "platform": {
                 "name": "platform",
@@ -75,7 +71,7 @@
             ],
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/installer",
         "displayName": "/installer",
         "__METADATA__": {
@@ -92,5 +88,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

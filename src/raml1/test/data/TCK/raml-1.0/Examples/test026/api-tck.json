@@ -1,208 +1,198 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "TestType": {
-          "name": "TestType",
-          "displayName": "TestType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "TestType": {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            }
+          },
+          "name2": {
+            "name": "name2",
+            "displayName": "name2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "name3": {
+            "name": "name3",
+            "displayName": "name3",
+            "type": [
+              "TestType4"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "name2": {
-              "name": "name2",
-              "displayName": "name2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
+            "type": {
+              "insertedAsDefault": true
             },
-            "name3": {
-              "name": "name3",
-              "displayName": "name3",
-              "type": [
-                "TestType4"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "TestType2": {
-          "name": "TestType2",
-          "displayName": "TestType2",
-          "type": [
-            "TestType"
-          ],
-          "required": true,
-          "properties": {
-            "name4": {
-              "name": "name4",
-              "displayName": "name4",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TestType2": {
+        "name": "TestType2",
+        "displayName": "TestType2",
+        "type": [
+          "TestType"
+        ],
+        "required": true,
+        "properties": {
+          "name4": {
+            "name": "name4",
+            "displayName": "name4",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "TestType3": {
-          "name": "TestType3",
-          "displayName": "TestType3",
-          "type": [
-            "TestType2"
-          ],
-          "required": true,
-          "properties": {
-            "name5": {
-              "name": "name5",
-              "displayName": "name5",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TestType3": {
+        "name": "TestType3",
+        "displayName": "TestType3",
+        "type": [
+          "TestType2"
+        ],
+        "required": true,
+        "properties": {
+          "name5": {
+            "name": "name5",
+            "displayName": "name5",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "TestType4": {
-          "name": "TestType4",
-          "displayName": "TestType4",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "proppp": {
-              "name": "proppp",
-              "displayName": "proppp",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TestType4": {
+        "name": "TestType4",
+        "displayName": "TestType4",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "proppp": {
+            "name": "proppp",
+            "displayName": "proppp",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Blah",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
@@ -245,8 +235,8 @@
         "displayName": "/test",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "bbb": {
                     "name": "bbb",
@@ -349,6 +339,7 @@
                         "type": [
                           "TestType"
                         ],
+                        "example": null,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -363,7 +354,8 @@
                         "structuredExample": {
                           "value": "{\n  \"name\" : \"blah\",\n  \"name2\" : \"blah\",\n  \"name3\" : {\n      proppp: \"123245\"\n  }\n}\n",
                           "strict": true,
-                          "name": null
+                          "name": null,
+                          "structuredValue": null
                         }
                       }
                     }
@@ -381,7 +373,7 @@
                   }
                 }
               }
-            ],
+            },
             "relativeUri": "/helloWorldddd1234ddd2",
             "displayName": "/helloWorldddd1234ddd2",
             "__METADATA__": {
@@ -418,6 +410,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "CAN_NOT_PARSE_JSON",

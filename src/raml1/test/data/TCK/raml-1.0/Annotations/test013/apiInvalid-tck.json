@@ -1,115 +1,109 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "logo": {
-          "name": "logo",
-          "displayName": "logo",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "logo": {
+        "name": "logo",
+        "displayName": "logo",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "test-harness": {
-          "name": "test-harness",
-          "displayName": "test-harness",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "level": {
-              "name": "level",
-              "displayName": "level",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "low",
-                "medium",
-                "high"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "test-harness": {
+        "name": "test-harness",
+        "displayName": "test-harness",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "level": {
+            "name": "level",
+            "displayName": "level",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Playing with annotations",
     "resources": [
       {
         "annotations": {
           "test-harness": {
+            "name": "test-harness",
             "structuredValue": {
               "name": "user-harness",
               "level": "medium1"
-            },
-            "name": "test-harness"
+            }
           },
           "logo": {
-            "structuredValue": "google.com",
-            "name": "logo"
+            "name": "logo",
+            "structuredValue": "google.com"
           }
         },
         "relativeUri": "/users",
@@ -128,6 +122,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "ENUM_RESTRICTION",

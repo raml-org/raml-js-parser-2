@@ -1,83 +1,77 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "p1": {
-              "name": "p1",
-              "displayName": "p1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "meta": {
-          "name": "meta",
-          "displayName": "Resource metadata",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "description": "Metadata for this resource",
-          "allowedTargets": [
-            "Resource"
-          ],
-          "minLength": 10,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "meta": {
+        "name": "meta",
+        "displayName": "Resource metadata",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "description": "Metadata for this resource",
+        "allowedTargets": [
+          "Resource"
+        ],
+        "minLength": 10,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Annotations 14",
     "resources": [
       {
         "annotations": {
           "meta": {
-            "structuredValue": "users.gif",
-            "name": "meta"
+            "name": "meta",
+            "structuredValue": "users.gif"
           }
         },
         "relativeUri": "/users",
@@ -96,6 +90,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

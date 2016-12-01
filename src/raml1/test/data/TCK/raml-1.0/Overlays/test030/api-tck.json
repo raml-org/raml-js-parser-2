@@ -1,45 +1,41 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
-    "traits": [
-      {
-        "tr1": {
-          "queryParameters": {
-            "q1": {
-              "name": "q1",
-              "displayName": "q1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "tr1": {
+        "queryParameters": {
+          "q1": {
+            "name": "q1",
+            "displayName": "q1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "tr1",
-          "__METADATA__": {
-            "calculated": true
           }
+        },
+        "name": "tr1",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "q1": {
                 "name": "q1",
@@ -68,7 +64,7 @@
             ],
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -86,5 +82,7 @@
     ],
     "extends": "o1.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

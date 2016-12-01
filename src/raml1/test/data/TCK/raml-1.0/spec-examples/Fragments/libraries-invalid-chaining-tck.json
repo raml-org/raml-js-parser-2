@@ -1,14 +1,6 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "ResourceType",
   "specification": {
-    "undefined": {
-      "uses": [
-        {
-          "key": "files",
-          "value": "libraries/files.raml"
-        }
-      ],
+    "methods": {
       "get": {
         "responses": {
           "200": {
@@ -40,8 +32,16 @@
         ],
         "method": "get"
       }
-    }
+    },
+    "uses": [
+      {
+        "key": "files",
+        "value": "libraries/files.raml"
+      }
+    ]
   },
+  "ramlVersion": "RAML10",
+  "type": "ResourceType",
   "errors": [
     {
       "code": "INHERITING_UNKNOWN_TYPE",

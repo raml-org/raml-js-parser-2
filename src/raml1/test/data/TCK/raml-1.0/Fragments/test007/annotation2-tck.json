@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "ObjectTypeDeclaration",
   "specification": {
     "displayName": "MyAnnotation",
     "type": [
@@ -59,5 +57,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
   "errors": []
 }

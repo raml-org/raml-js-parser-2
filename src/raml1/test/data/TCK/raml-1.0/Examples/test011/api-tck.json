@@ -1,9 +1,8 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "MyAnnotationType1": {
+        "name": "MyAnnotationType1",
         "structuredValue": {
           "cc": [
             1,
@@ -11,108 +10,103 @@
             3,
             4
           ]
-        },
-        "name": "MyAnnotationType1"
+        }
       },
       "MyAnnotationType2": {
-        "structuredValue": "a",
-        "name": "MyAnnotationType2"
+        "name": "MyAnnotationType2",
+        "structuredValue": "a"
       }
     },
-    "types": [
-      {
-        "SmallArray": {
-          "name": "SmallArray",
-          "displayName": "SmallArray",
-          "type": [
-            "array"
-          ],
-          "required": true,
-          "minItems": 5,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "SmallArray": {
+        "name": "SmallArray",
+        "displayName": "SmallArray",
+        "type": [
+          "array"
+        ],
+        "required": true,
+        "minItems": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "items": "number"
-        }
+          }
+        },
+        "items": "number"
       }
-    ],
-    "annotationTypes": [
-      {
-        "MyAnnotationType1": {
-          "name": "MyAnnotationType1",
-          "displayName": "MyAnnotationType1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "cc": {
-              "name": "cc",
-              "displayName": "cc",
-              "type": [
-                "SmallArray"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "MyAnnotationType1": {
+        "name": "MyAnnotationType1",
+        "displayName": "MyAnnotationType1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "cc": {
+            "name": "cc",
+            "displayName": "cc",
+            "type": [
+              "SmallArray"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "MyAnnotationType2": {
-          "name": "MyAnnotationType2",
-          "displayName": "MyAnnotationType2",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "MyAnnotationType2": {
+        "name": "MyAnnotationType2",
+        "displayName": "MyAnnotationType2",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

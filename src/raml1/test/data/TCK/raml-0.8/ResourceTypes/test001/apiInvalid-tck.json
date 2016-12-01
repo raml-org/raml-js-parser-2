@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "A",
-    "resourceTypes": [
-      {
-        "Resource": {
-          "name": "Resource",
+    "resourceTypes": {
+      "Resource": {
+        "name": "Resource",
+        "methods": {
           "get": {
             "queryParameters": {
               "a": {
@@ -74,13 +72,13 @@
           }
         }
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
         "type": "Resource",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -158,7 +156,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -174,6 +172,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

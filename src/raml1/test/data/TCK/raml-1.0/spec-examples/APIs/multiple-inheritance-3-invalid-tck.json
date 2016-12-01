@@ -1,76 +1,70 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Number1": {
-          "name": "Number1",
-          "displayName": "Number1",
-          "type": [
-            "number"
-          ],
-          "required": true,
-          "minimum": 4,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Number1": {
+        "name": "Number1",
+        "displayName": "Number1",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "minimum": 4,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Number2": {
-          "name": "Number2",
-          "displayName": "Number2",
-          "type": [
-            "number"
-          ],
-          "required": true,
-          "maximum": 2,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "Number2": {
+        "name": "Number2",
+        "displayName": "Number2",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "maximum": 2,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Number3": {
-          "name": "Number3",
-          "displayName": "Number3",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "Number3": {
+        "name": "Number3",
+        "displayName": "Number3",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Mulitple Inheritance using facets"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "RESTRICTIONS_CONFLICT",

@@ -1,49 +1,47 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "redirectable": {
-          "name": "redirectable",
-          "displayName": "redirectable",
-          "type": [
-            "boolean"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "redirectable": {
+        "name": "redirectable",
+        "displayName": "redirectable",
+        "type": [
+          "boolean"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Annotating scalar nodes",
     "baseUri": "http://www.example.com/api",
     "protocols": [
       "HTTP"
     ],
-    "scalarsAnnotations": {
-      "baseUri": [
-        {
-          "structuredValue": true,
-          "name": "redirectable"
-        }
-      ]
-    },
     "__METADATA__": {
       "primitiveValuesMeta": {
         "protocols": {
           "calculated": true
         }
       }
+    },
+    "scalarsAnnotations": {
+      "baseUri": [
+        {
+          "name": "redirectable",
+          "structuredValue": true
+        }
+      ]
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

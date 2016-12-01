@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -8,103 +6,95 @@
         "value": "library.raml"
       }
     ],
-    "types": [
-      {
-        "Example": {
-          "name": "Example",
-          "displayName": "Example",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Example": {
+        "name": "Example",
+        "displayName": "Example",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "lib.hasResponseCollection": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "<<resourcePathName|!uppercamelcase>>"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+    },
+    "traits": {
+      "lib.hasResponseCollection": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "<<resourcePathName|!uppercamelcase>>"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               }
             }
-          },
-          "name": "lib.hasResponseCollection",
-          "usage": "Use this trait for resources whose response body is a collection of items",
-          "__METADATA__": {
-            "calculated": true
           }
+        },
+        "name": "lib.hasResponseCollection",
+        "usage": "Use this trait for resources whose response body is a collection of items",
+        "__METADATA__": {
+          "calculated": true
         }
       },
-      {
-        "hasResponseCollection": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "<<resourcePathName|!uppercamelcase>>"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+      "hasResponseCollection": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "<<resourcePathName|!uppercamelcase>>"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               }
             }
-          },
-          "name": "hasResponseCollection",
-          "usage": "Use this trait for resources whose response body is a collection of items"
-        }
+          }
+        },
+        "name": "hasResponseCollection",
+        "usage": "Use this trait for resources whose response body is a collection of items"
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "description": "A collection of <<resourcePathName|!uppercamelcase>>",
-          "name": "collection",
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "is": [
               "lib.hasResponseCollection"
@@ -119,14 +109,16 @@
             "description": "Create a <<resourcePathName|!uppercamelcase>>\n",
             "method": "post"
           }
-        }
+        },
+        "description": "A collection of <<resourcePathName|!uppercamelcase>>",
+        "name": "collection"
       }
-    ],
+    },
     "title": "My API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -158,7 +150,7 @@
             "description": "Get all Example,\noptionally filtered\n",
             "method": "get"
           },
-          {
+          "post": {
             "responses": {
               "200": {
                 "code": "200",
@@ -190,7 +182,7 @@
             "description": "Create a Example\n",
             "method": "post"
           }
-        ],
+        },
         "type": "collection",
         "description": "A collection of Example",
         "relativeUri": "/example",
@@ -209,5 +201,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

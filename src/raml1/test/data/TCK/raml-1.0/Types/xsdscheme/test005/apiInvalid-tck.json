@@ -1,38 +1,36 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "type": [
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?><xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n  <xs:complexType name=\"City\">\n    <xs:sequence>\n      <xs:element name=\"country_name\" type=\"xs:string\"/>\n      <xs:element name=\"population\" type=\"xs:decimal\"/>\n    </xs:sequence>\n  </xs:complexType>\n<xs:element name=\"c2NoZW1hLnhzZC9DaXR5\" type=\"City\" requestedname=\"City\" extraelement=\"true\"/></xs:schema>"
-          ],
-          "example": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n",
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "<?xml version=\"1.0\" encoding=\"utf-8\"?><xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n  <xs:complexType name=\"City\">\n    <xs:sequence>\n      <xs:element name=\"country_name\" type=\"xs:string\"/>\n      <xs:element name=\"population\" type=\"xs:decimal\"/>\n    </xs:sequence>\n  </xs:complexType>\n<xs:element name=\"c2NoZW1hLnhzZC9DaXR5\" type=\"City\" requestedname=\"City\" extraelement=\"true\"/></xs:schema>"
+        ],
+        "example": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n",
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n",
-            "strict": true,
-            "name": null,
-            "structuredValue": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
           }
+        },
+        "structuredExample": {
+          "value": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n",
+          "strict": true,
+          "name": null,
+          "structuredValue": "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
         }
       }
-    ],
+    },
     "title": "Blah"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "EXAMPLE_SCHEMA_FAILURE",

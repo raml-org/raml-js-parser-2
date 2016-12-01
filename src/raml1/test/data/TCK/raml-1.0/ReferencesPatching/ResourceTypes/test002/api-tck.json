@@ -1,115 +1,107 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "myTrait": {
-          "queryParameters": {
-            "<<param>>": {
-              "name": "<<param>>",
-              "displayName": "<<param>>",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "myTrait": {
+        "queryParameters": {
+          "<<param>>": {
+            "name": "<<param>>",
+            "displayName": "<<param>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          }
+        },
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "myTrait"
-        }
+          }
+        },
+        "name": "myTrait"
       },
-      {
-        "simpleTrait": {
-          "queryParameters": {
-            "stringParam": {
-              "name": "stringParam",
-              "displayName": "stringParam",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "simpleTrait": {
+        "queryParameters": {
+          "stringParam": {
+            "name": "stringParam",
+            "displayName": "stringParam",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "simpleTrait"
-        }
+          }
+        },
+        "name": "simpleTrait"
       }
-    ],
-    "resourceTypes": [
-      {
-        "rt1": {
-          "type": {
-            "rt2": {
-              "param": "<<param>>"
-            }
-          },
-          "name": "rt1"
-        }
+    },
+    "resourceTypes": {
+      "rt1": {
+        "type": {
+          "rt2": {
+            "param": "<<param>>"
+          }
+        },
+        "name": "rt1"
       },
-      {
-        "rt2": {
-          "is": [
-            {
-              "myTrait": {
-                "param": "<<param>>"
-              }
-            },
-            "simpleTrait"
-          ],
-          "name": "rt2",
+      "rt2": {
+        "methods": {
           "post": {
             "method": "post"
           }
-        }
+        },
+        "is": [
+          {
+            "myTrait": {
+              "param": "<<param>>"
+            }
+          },
+          "simpleTrait"
+        ],
+        "name": "rt2"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "qParam": {
                 "name": "qParam",
@@ -173,7 +165,7 @@
             },
             "method": "get"
           },
-          {
+          "post": {
             "queryParameters": {
               "qParam": {
                 "name": "qParam",
@@ -237,7 +229,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "is": [
           {
             "myTrait": {
@@ -267,5 +259,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

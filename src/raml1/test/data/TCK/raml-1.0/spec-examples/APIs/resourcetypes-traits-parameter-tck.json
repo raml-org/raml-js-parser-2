@@ -1,71 +1,64 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "secured": {
-          "queryParameters": {
-            "<<tokenName>>": {
-              "name": "<<tokenName>>",
-              "displayName": "<<tokenName>>",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "A valid <<tokenName>> is required",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "<<tokenName>>": {
+            "name": "<<tokenName>>",
+            "displayName": "<<tokenName>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "A valid <<tokenName>> is required",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "secured"
-        }
+          }
+        },
+        "name": "secured"
       },
-      {
-        "paged": {
-          "queryParameters": {
-            "numPages": {
-              "name": "numPages",
-              "displayName": "numPages",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "The number of pages to return, not to exceed <<maxPages>>",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "paged": {
+        "queryParameters": {
+          "numPages": {
+            "name": "numPages",
+            "displayName": "numPages",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "The number of pages to return, not to exceed <<maxPages>>",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "paged"
-        }
+          }
+        },
+        "name": "paged"
       }
-    ],
-    "resourceTypes": [
-      {
-        "searchableCollection": {
-          "name": "searchableCollection",
+    },
+    "resourceTypes": {
+      "searchableCollection": {
+        "methods": {
           "get": {
             "queryParameters": {
               "<<queryParamName>>": {
@@ -115,15 +108,16 @@
             },
             "method": "get"
           }
-        }
+        },
+        "name": "searchableCollection"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "title": {
                 "name": "title",
@@ -228,7 +222,7 @@
             ],
             "method": "get"
           }
-        ],
+        },
         "type": {
           "searchableCollection": {
             "queryParamName": "title",
@@ -251,5 +245,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

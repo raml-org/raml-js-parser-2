@@ -1,76 +1,25 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "chargeable": {
-          "headers": {
-            "X-Dept": {
-              "name": "X-Dept",
-              "displayName": "X-Dept",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "description": "A department code to be charged.\nMultiple of such headers are allowed.\n",
-              "items": {
-                "name": "items",
-                "displayName": "items",
-                "type": [
-                  "string"
-                ],
-                "example": "230-OCTO",
-                "required": true,
-                "pattern": "^\\d+\\-\\w+$",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "structuredExample": {
-                  "value": "230-OCTO",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "230-OCTO"
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "name": "chargeable"
-        }
-      },
-      {
-        "traceable": {
-          "headers": {
-            "X-Tracker": {
-              "name": "X-Tracker",
-              "displayName": "X-Tracker",
+    "traits": {
+      "chargeable": {
+        "headers": {
+          "X-Dept": {
+            "name": "X-Dept",
+            "displayName": "X-Dept",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "description": "A department code to be charged.\nMultiple of such headers are allowed.\n",
+            "items": {
+              "name": "items",
+              "displayName": "items",
               "type": [
                 "string"
               ],
-              "example": "abcdefghijklmnop",
+              "example": "230-OCTO",
               "required": true,
-              "description": "A code to track API calls end to end",
-              "pattern": "^\\w{16}$",
+              "pattern": "^\\d+\\-\\w+$",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -85,22 +34,67 @@
                 }
               },
               "structuredExample": {
-                "value": "abcdefghijklmnop",
+                "value": "230-OCTO",
                 "strict": true,
                 "name": null,
-                "structuredValue": "abcdefghijklmnop"
+                "structuredValue": "230-OCTO"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
             }
-          },
-          "name": "traceable"
-        }
+          }
+        },
+        "name": "chargeable"
+      },
+      "traceable": {
+        "headers": {
+          "X-Tracker": {
+            "name": "X-Tracker",
+            "displayName": "X-Tracker",
+            "type": [
+              "string"
+            ],
+            "example": "abcdefghijklmnop",
+            "required": true,
+            "description": "A code to track API calls end to end",
+            "pattern": "^\\w{16}$",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "structuredExample": {
+              "value": "abcdefghijklmnop",
+              "strict": true,
+              "name": null,
+              "structuredValue": "abcdefghijklmnop"
+            }
+          }
+        },
+        "name": "traceable"
       }
-    ],
+    },
     "title": "Example with headers",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "headers": {
               "X-Dept": {
                 "name": "X-Dept",
@@ -201,7 +195,7 @@
             "description": "The HTTP interaction will look like\n\nGET /users HTTP/1.1\nX-Dept: 18-FINANCE\nX-Dept: 200-MISC\nX-Tracker: gfr456d03ygh38s2\n",
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -218,5 +212,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

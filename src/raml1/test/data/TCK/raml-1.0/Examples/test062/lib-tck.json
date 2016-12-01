@@ -1,36 +1,34 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "MyBooleanType": {
-          "name": "MyBooleanType",
-          "displayName": "MyBooleanType",
-          "type": [
-            "boolean"
-          ],
-          "example": false,
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "MyBooleanType": {
+        "name": "MyBooleanType",
+        "displayName": "MyBooleanType",
+        "type": [
+          "boolean"
+        ],
+        "example": false,
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "false",
-            "strict": true,
-            "name": null,
-            "structuredValue": false
           }
+        },
+        "structuredExample": {
+          "value": "false",
+          "strict": true,
+          "name": null,
+          "structuredValue": false
         }
       }
-    ]
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": []
 }

@@ -1,19 +1,17 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "annotations": {
       "lib2.a2": {
-        "structuredValue": null,
-        "name": "lib2.a2"
+        "name": "lib2.a2",
+        "structuredValue": null
       },
       "lib1.a1": {
-        "structuredValue": null,
-        "name": "lib1.a1"
+        "name": "lib1.a1",
+        "structuredValue": null
       },
       "lib0.a0": {
-        "structuredValue": null,
-        "name": "lib0.a0"
+        "name": "lib0.a0",
+        "structuredValue": null
       }
     },
     "uses": [
@@ -33,5 +31,7 @@
     "title": "test API",
     "extends": "o1.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

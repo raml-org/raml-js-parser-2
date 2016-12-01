@@ -1,50 +1,42 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
-    "traits": [
-      {
-        "env-org-pair": {
-          "securedBy": [
-            "x-ttt"
-          ],
-          "name": "env-org-pair",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+    "traits": {
+      "env-org-pair": {
+        "securedBy": [
+          "x-ttt"
+        ],
+        "name": "env-org-pair",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "servers-collection": {
-          "securedBy": [
-            "x-ttt"
-          ],
-          "name": "servers-collection",
-          "__METADATA__": {
-            "calculated": true,
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+    },
+    "resourceTypes": {
+      "servers-collection": {
+        "securedBy": [
+          "x-ttt"
+        ],
+        "name": "servers-collection",
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       }
-    ],
-    "securitySchemes": [
-      {
-        "x-ttt": {
-          "name": "x-ttt",
-          "type": "Digest Authentication"
-        }
+    },
+    "securitySchemes": {
+      "x-ttt": {
+        "name": "x-ttt",
+        "type": "Digest Authentication"
       }
-    ],
+    },
     "title": "Extension",
     "version": "0.4",
     "baseUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
@@ -80,5 +72,7 @@
     ],
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

@@ -1,69 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MM": {
-          "name": "MM",
-          "displayName": "MM",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "a": 5
-          },
-          "required": true,
-          "properties": {
-            "a": {
-              "name": "a",
-              "displayName": "a",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"a\": 5\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "a": 5
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
+        },
+        "structuredExample": {
+          "value": "{\n  \"a\": 5\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "a": 5
+          }
+        },
+        "example": {
+          "a": 5
         }
       }
-    ],
+    },
     "title": "WebOfMe",
     "mediaType": "application/json",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -74,6 +70,7 @@
                     "type": [
                       "object"
                     ],
+                    "example": null,
                     "required": true,
                     "properties": {
                       "x": {
@@ -111,7 +108,8 @@
                     "structuredExample": {
                       "value": "{ d\":5 ,\"r\":2 }\n",
                       "strict": true,
-                      "name": null
+                      "name": null,
+                      "structuredValue": null
                     }
                   }
                 }
@@ -119,7 +117,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {
@@ -136,6 +134,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "CAN_NOT_PARSE_JSON",

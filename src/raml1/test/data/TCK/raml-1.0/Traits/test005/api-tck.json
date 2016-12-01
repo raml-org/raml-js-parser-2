@@ -1,22 +1,18 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "securitySchemes": [
-      {
-        "oauth2": {
-          "name": "oauth2",
-          "type": "OAuth 2.0",
-          "settings": {
-            "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-            "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-            "authorizationGrants": [
-              "client_credentials"
-            ]
-          }
+    "securitySchemes": {
+      "oauth2": {
+        "name": "oauth2",
+        "type": "OAuth 2.0",
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "client_credentials"
+          ]
         }
       }
-    ],
+    },
     "title": "Demo",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -25,8 +21,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -85,7 +81,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -109,5 +105,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

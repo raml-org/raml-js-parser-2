@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -12,68 +10,65 @@
         "value": "types/error-types.raml"
       }
     ],
-    "traits": [
-      {
-        "defaultResponses.general": {
-          "responses": {
-            "422": {
-              "code": "422",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "error-types.<<parentType>>-<<resourcePathName>>-errors"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "423": {
-              "code": "423",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+    "traits": {
+      "defaultResponses.general": {
+        "responses": {
+          "422": {
+            "code": "422",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               }
             }
           },
-          "name": "defaultResponses.general",
-          "__METADATA__": {
-            "calculated": true
+          "423": {
+            "code": "423",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            }
           }
+        },
+        "name": "defaultResponses.general",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "name": "collection",
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "is": [
               {
@@ -84,9 +79,10 @@
             ],
             "method": "get"
           }
-        }
+        },
+        "name": "collection"
       }
-    ],
+    },
     "title": "test API",
     "baseUri": "https://example.com",
     "protocols": [
@@ -99,8 +95,8 @@
         "displayName": "/alpha",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "422": {
                     "code": "422",
@@ -173,7 +169,7 @@
                   }
                 }
               }
-            ],
+            },
             "type": {
               "collection": {
                 "parentType": "alpha"
@@ -215,5 +211,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

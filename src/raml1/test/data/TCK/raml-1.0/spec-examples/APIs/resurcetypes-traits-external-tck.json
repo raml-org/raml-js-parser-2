@@ -1,82 +1,73 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "secured": {
-          "headers": {
-            "access_token": {
-              "name": "access_token",
-              "displayName": "access_token",
-              "type": [
-                "string"
-              ],
-              "example": "5757gh76",
-              "required": true,
-              "description": "Access Token",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "secured": {
+        "headers": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "example": "5757gh76",
+            "required": true,
+            "description": "Access Token",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
-                "value": "5757gh76",
-                "strict": true,
-                "name": null,
-                "structuredValue": "5757gh76"
               }
+            },
+            "structuredExample": {
+              "value": "5757gh76",
+              "strict": true,
+              "name": null,
+              "structuredValue": "5757gh76"
             }
-          },
-          "description": "Some requests require authentication.",
-          "name": "secured",
-          "usage": "Apply this to any method that needs to be secured"
-        }
+          }
+        },
+        "description": "Some requests require authentication.",
+        "name": "secured",
+        "usage": "Apply this to any method that needs to be secured"
       },
-      {
-        "rateLimited": {
-          "headers": {
-            "limit": {
-              "name": "limit",
-              "displayName": "limit",
-              "type": [
-                "integer"
-              ],
-              "example": 5000,
-              "required": true,
-              "description": "The limit.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+      "rateLimited": {
+        "headers": {
+          "limit": {
+            "name": "limit",
+            "displayName": "limit",
+            "type": [
+              "integer"
+            ],
+            "example": 5000,
+            "required": true,
+            "description": "The limit.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
-              },
-              "structuredExample": {
-                "value": "5000",
-                "strict": true,
-                "name": null,
-                "structuredValue": 5000
               }
+            },
+            "structuredExample": {
+              "value": "5000",
+              "strict": true,
+              "name": null,
+              "structuredValue": 5000
             }
-          },
-          "description": "Some requests require rate limiting.",
-          "name": "rateLimited",
-          "usage": "Apply this to any method that needs to be rate limited"
-        }
+          }
+        },
+        "description": "Some requests require rate limiting.",
+        "name": "rateLimited",
+        "usage": "Apply this to any method that needs to be rate limited"
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "description": "A collection resource",
-          "name": "collection",
-          "usage": "Use this to describe a resource that lists items",
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "description": "Retrieve all items",
             "method": "get"
@@ -113,22 +104,27 @@
             "description": "Add an item",
             "method": "post"
           }
-        }
+        },
+        "description": "A collection resource",
+        "name": "collection",
+        "usage": "Use this to describe a resource that lists items"
       },
-      {
-        "member": {
-          "description": "A single <<resourcePathName | !singularize>>",
-          "name": "member",
-          "usage": "This resourceType should be used for any specific member of a collection",
+      "member": {
+        "methods": {
           "get": {
             "description": "Get a <<resourcePathName | !singularize>>",
             "method": "get"
           }
-        }
+        },
+        "description": "A single <<resourcePathName | !singularize>>",
+        "name": "member",
+        "usage": "This resourceType should be used for any specific member of a collection"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

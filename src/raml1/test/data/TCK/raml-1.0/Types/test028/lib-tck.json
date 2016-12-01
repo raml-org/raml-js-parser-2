@@ -1,29 +1,27 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "Foo": {
-          "name": "Foo",
-          "displayName": "Foo",
-          "type": [
-            "nil"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Foo": {
+        "name": "Foo",
+        "displayName": "Foo",
+        "type": [
+          "nil"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ]
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": []
 }

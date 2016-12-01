@@ -1,52 +1,50 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "a1": {
-          "name": "a1",
-          "displayName": "a1",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "allowedTargets": [
-            "API",
-            "DocumentationItem",
-            "Resource",
-            "Method",
-            "Response",
-            "RequestBody",
-            "ResponseBody",
-            "TypeDeclaration",
-            "Example",
-            "ResourceType",
-            "Trait",
-            "SecurityScheme",
-            "SecuritySchemeSettings",
-            "AnnotationType",
-            "Library",
-            "Overlay",
-            "Extension"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "a1": {
+        "name": "a1",
+        "displayName": "a1",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "allowedTargets": [
+          "API",
+          "DocumentationItem",
+          "Resource",
+          "Method",
+          "Response",
+          "RequestBody",
+          "ResponseBody",
+          "TypeDeclaration",
+          "Example",
+          "ResourceType",
+          "Trait",
+          "SecurityScheme",
+          "SecuritySchemeSettings",
+          "AnnotationType",
+          "Library",
+          "Overlay",
+          "Extension"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

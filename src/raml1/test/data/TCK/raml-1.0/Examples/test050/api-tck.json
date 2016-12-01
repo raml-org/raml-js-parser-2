@@ -1,144 +1,138 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "ObjectType1": {
-          "name": "ObjectType1",
-          "displayName": "ObjectType1",
-          "type": [
-            "object"
-          ],
-          "examples": [
-            {
-              "annotations": {
-                "NumberAnnotation": {
-                  "structuredValue": 5,
-                  "name": "NumberAnnotation"
-                },
-                "ObjectAnnotation": {
-                  "structuredValue": {
-                    "prop1": "value1"
-                  },
-                  "name": "ObjectAnnotation"
-                }
+    "types": {
+      "ObjectType1": {
+        "name": "ObjectType1",
+        "displayName": "ObjectType1",
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": "{\n  \"prop1\": \"value1\"\n}",
+            "strict": false,
+            "name": "example1",
+            "structuredValue": {
+              "prop1": "value1"
+            },
+            "annotations": {
+              "NumberAnnotation": {
+                "structuredValue": 5,
+                "name": "NumberAnnotation"
               },
-              "value": "{\n  \"prop1\": \"value1\"\n}",
-              "strict": false,
-              "name": "example1",
-              "displayName": "myExample1",
-              "description": "example 1 of ObjectType3",
-              "structuredValue": {
-                "prop1": "value1"
+              "ObjectAnnotation": {
+                "structuredValue": {
+                  "prop1": "value1"
+                },
+                "name": "ObjectAnnotation"
               }
             },
-            {
-              "annotations": {
-                "NumberAnnotation": {
-                  "structuredValue": 15,
-                  "name": "NumberAnnotation"
-                },
-                "ObjectAnnotation": {
-                  "structuredValue": {
-                    "prop1": "value2"
-                  },
-                  "name": "ObjectAnnotation"
-                }
-              },
-              "value": "{\n  \"prop1\": \"value2\"\n}",
-              "strict": false,
-              "name": "example2",
-              "displayName": "myExample2",
-              "description": "example 2 of ObjectType3",
-              "structuredValue": {
-                "prop1": "value2"
-              }
-            }
-          ],
-          "required": true,
-          "properties": {
-            "prop1": {
-              "name": "prop1",
-              "displayName": "prop1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
+            "displayName": "myExample1",
+            "description": "example 1 of ObjectType3"
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
+          {
+            "value": "{\n  \"prop1\": \"value2\"\n}",
+            "strict": false,
+            "name": "example2",
+            "structuredValue": {
+              "prop1": "value2"
+            },
+            "annotations": {
+              "NumberAnnotation": {
+                "structuredValue": 15,
+                "name": "NumberAnnotation"
               },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+              "ObjectAnnotation": {
+                "structuredValue": {
+                  "prop1": "value2"
+                },
+                "name": "ObjectAnnotation"
               }
+            },
+            "displayName": "myExample2",
+            "description": "example 2 of ObjectType3"
+          }
+        ],
+        "required": true,
+        "properties": {
+          "prop1": {
+            "name": "prop1",
+            "displayName": "prop1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "NumberAnnotation": {
-          "name": "NumberAnnotation",
-          "displayName": "NumberAnnotation",
-          "type": [
-            "number"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "NumberAnnotation": {
+        "name": "NumberAnnotation",
+        "displayName": "NumberAnnotation",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "ObjectAnnotation": {
-          "name": "ObjectAnnotation",
-          "displayName": "ObjectAnnotation",
-          "type": [
-            "ObjectType1"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "ObjectAnnotation": {
+        "name": "ObjectAnnotation",
+        "displayName": "ObjectAnnotation",
+        "type": [
+          "ObjectType1"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Example API test 05"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

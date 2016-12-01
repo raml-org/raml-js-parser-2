@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "API",
     "baseUri": "/some/base/uri",
@@ -9,8 +7,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -52,13 +50,13 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/someChildUri",
         "displayName": "/someChildUri",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "put": {
                 "body": {
                   "application/json": {
                     "name": "application/json",
@@ -95,7 +93,7 @@
                   }
                 }
               }
-            ],
+            },
             "relativeUri": "/anotherChild",
             "displayName": "/anotherChild",
             "__METADATA__": {
@@ -148,6 +146,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "RESOURCES_SHARE_SAME_URI",

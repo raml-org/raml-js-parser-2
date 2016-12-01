@@ -1,152 +1,140 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "myDate": {
-          "annotations": {
-            "reader": {
-              "structuredValue": "myReaader.ts",
-              "name": "reader"
-            },
-            "writer": {
-              "structuredValue": "myWiter.ts",
-              "name": "writer"
-            }
+    "types": {
+      "myDate": {
+        "annotations": {
+          "reader": {
+            "name": "reader",
+            "structuredValue": "myReaader.ts"
           },
-          "name": "myDate",
-          "displayName": "myDate",
-          "facets": {
-            "format": {
-              "name": "format",
-              "displayName": "format",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          "writer": {
+            "name": "writer",
+            "structuredValue": "myWiter.ts"
+          }
+        },
+        "name": "myDate",
+        "displayName": "myDate",
+        "facets": {
+          "format": {
+            "name": "format",
+            "displayName": "format",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "year": {
-          "name": "year",
-          "displayName": "year",
-          "type": [
-            "myDate"
-          ],
-          "required": true,
-          "fixedFacets": {
-            "format": "YYYY"
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "year": {
+        "name": "year",
+        "displayName": "year",
+        "type": [
+          "myDate"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "format": "YYYY"
+        }
+      },
+      "yee": {
+        "name": "yee",
+        "displayName": "yee",
+        "type": [
+          "year"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "format": 1332
+        }
+      }
+    },
+    "annotationTypes": {
+      "reader": {
+        "name": "reader",
+        "displayName": "reader",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "yee": {
-          "name": "yee",
-          "displayName": "yee",
-          "type": [
-            "year"
-          ],
-          "required": true,
-          "fixedFacets": {
-            "format": 1332
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "writer": {
+        "name": "writer",
+        "displayName": "writer",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "reader": {
-          "name": "reader",
-          "displayName": "reader",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "writer": {
-          "name": "writer",
-          "displayName": "writer",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      }
-    ],
+    },
     "title": "A",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "y": {
                 "name": "y",
@@ -169,7 +157,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/q",
         "displayName": "/q",
         "__METADATA__": {
@@ -186,6 +174,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

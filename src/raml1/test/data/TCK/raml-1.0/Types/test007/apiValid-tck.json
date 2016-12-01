@@ -1,36 +1,96 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SimpleUnion": {
-          "name": "SimpleUnion",
-          "displayName": "SimpleUnion",
-          "type": [
-            "string[] | number[]"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "SimpleUnion": {
+        "name": "SimpleUnion",
+        "displayName": "SimpleUnion",
+        "type": [
+          "string[] | number[]"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "TypeWithUnionProps": {
-          "name": "TypeWithUnionProps",
-          "displayName": "TypeWithUnionProps",
-          "type": [
-            "object"
+      "TypeWithUnionProps": {
+        "name": "TypeWithUnionProps",
+        "displayName": "TypeWithUnionProps",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "unionArray1": [
+            1,
+            2,
+            3
           ],
-          "example": {
+          "unionArray2": [
+            "blah",
+            "blah",
+            "blah"
+          ]
+        },
+        "required": true,
+        "properties": {
+          "unionArray1": {
+            "name": "unionArray1",
+            "displayName": "unionArray1",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "unionArray2": {
+            "name": "unionArray2",
+            "displayName": "unionArray2",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "unionArray1": [
               1,
               2,
@@ -41,77 +101,13 @@
               "blah",
               "blah"
             ]
-          },
-          "required": true,
-          "properties": {
-            "unionArray1": {
-              "name": "unionArray1",
-              "displayName": "unionArray1",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "unionArray2": {
-              "name": "unionArray2",
-              "displayName": "unionArray2",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "unionArray1": [
-                1,
-                2,
-                3
-              ],
-              "unionArray2": [
-                "blah",
-                "blah",
-                "blah"
-              ]
-            }
           }
         }
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

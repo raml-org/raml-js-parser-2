@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "raml-service",
     "mediaType": "application/json",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "responses": {
               "200": {
                 "code": "200",
@@ -80,7 +78,7 @@
             "description": "Parse the given RAML files",
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/parseFiles",
         "displayName": "/parseFiles",
         "__METADATA__": {
@@ -97,6 +95,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MEDIATYPE_EXCEPTION",

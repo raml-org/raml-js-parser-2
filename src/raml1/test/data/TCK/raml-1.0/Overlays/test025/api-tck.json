@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "uses": [
       {
@@ -13,15 +11,15 @@
       {
         "annotations": {
           "lib.TestAnnotationType": {
-            "structuredValue": "TestAnnotationType2",
-            "name": "lib.TestAnnotationType"
+            "name": "lib.TestAnnotationType",
+            "structuredValue": "TestAnnotationType2"
           },
           "lib.AnotherAnnotationType": {
+            "name": "lib.AnotherAnnotationType",
             "structuredValue": {
               "firstProp": "firstProp2",
               "secondProp": 101
-            },
-            "name": "lib.AnotherAnnotationType"
+            }
           }
         },
         "relativeUri": "/servers",
@@ -41,5 +39,7 @@
     ],
     "extends": "NewOverlay.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

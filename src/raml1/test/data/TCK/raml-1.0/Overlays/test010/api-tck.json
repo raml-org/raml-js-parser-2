@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Extension",
   "specification": {
     "title": "Extension",
     "resources": [
@@ -30,5 +28,7 @@
     ],
     "extends": "NewOverlay.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
   "errors": []
 }

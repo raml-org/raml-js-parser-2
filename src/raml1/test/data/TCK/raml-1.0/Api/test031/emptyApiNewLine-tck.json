@@ -1,7 +1,7 @@
 {
+  "specification": {},
   "ramlVersion": "RAML10",
   "type": "Api",
-  "specification": {},
   "errors": [
     {
       "code": "MISSING_REQUIRED_PROPERTY",

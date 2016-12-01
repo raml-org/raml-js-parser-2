@@ -1,67 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "ObjectType1": {
-          "name": "ObjectType1",
-          "displayName": "ObjectType1",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "prop1": "value1"
-          },
-          "required": true,
-          "properties": {
-            "prop1": {
-              "name": "prop1",
-              "displayName": "prop1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "ObjectType1": {
+        "name": "ObjectType1",
+        "displayName": "ObjectType1",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "prop1": "value1"
+        },
+        "required": true,
+        "properties": {
+          "prop1": {
+            "name": "prop1",
+            "displayName": "prop1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "{\n  \"prop1\": \"value1\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "prop1": "value1"
-            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"prop1\": \"value1\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "prop1": "value1"
           }
         }
       }
-    ],
+    },
     "title": "Example API test 03"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

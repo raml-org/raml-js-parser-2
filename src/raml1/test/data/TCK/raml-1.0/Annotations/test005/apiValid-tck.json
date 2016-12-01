@@ -1,112 +1,106 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Point": {
-          "name": "Point",
-          "displayName": "Point",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "x": {
-              "name": "x",
-              "displayName": "x",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Point": {
+        "name": "Point",
+        "displayName": "Point",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "x": {
+            "name": "x",
+            "displayName": "x",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            }
+          },
+          "y": {
+            "name": "y",
+            "displayName": "y",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "y": {
-              "name": "y",
-              "displayName": "y",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "Label": {
-          "name": "Label",
-          "displayName": "Label",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "point": {
-              "name": "point",
-              "displayName": "point",
-              "type": [
-                "Point"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "Label": {
+        "name": "Label",
+        "displayName": "Label",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "point": {
+            "name": "point",
+            "displayName": "point",
+            "type": [
+              "Point"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "New API",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -117,12 +111,12 @@
       {
         "annotations": {
           "Label": {
+            "name": "Label",
             "structuredValue": {
               "point": {
                 "x": 3
               }
-            },
-            "name": "Label"
+            }
           }
         },
         "relativeUri": "/resource",
@@ -148,5 +142,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

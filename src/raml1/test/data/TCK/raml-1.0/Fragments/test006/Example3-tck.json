@@ -1,7 +1,12 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "ExampleSpec",
   "specification": {
+    "value": "{\n  \"property1\": \"string value\",\n  \"property2\": 1\n}",
+    "strict": true,
+    "name": null,
+    "structuredValue": {
+      "property1": "string value",
+      "property2": 1
+    },
     "annotations": {
       "lib.StringAnnotation": {
         "structuredValue": "stringAnnotationValue",
@@ -15,19 +20,15 @@
         "name": "lib.ObjectAnnotation"
       }
     },
-    "value": "{\n  \"property1\": \"string value\",\n  \"property2\": 1\n}",
-    "strict": true,
     "displayName": "MyExample",
     "uses": [
       {
         "key": "lib",
         "value": "libs/lib.raml"
       }
-    ],
-    "structuredValue": {
-      "property1": "string value",
-      "property2": 1
-    }
+    ]
   },
+  "ramlVersion": "RAML10",
+  "type": "ExampleSpec",
   "errors": []
 }

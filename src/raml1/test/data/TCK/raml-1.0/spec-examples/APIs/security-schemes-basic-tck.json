@@ -1,16 +1,12 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "securitySchemes": [
-      {
-        "basic": {
-          "name": "basic",
-          "type": "Basic Authentication",
-          "description": "This API supports Basic Authentication.\n"
-        }
+    "securitySchemes": {
+      "basic": {
+        "name": "basic",
+        "type": "Basic Authentication",
+        "description": "This API supports Basic Authentication.\n"
       }
-    ],
+    },
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
@@ -55,5 +51,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,131 +1,123 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "helloNightmare": {
-          "queryParameters": {
-            "nightMare": {
-              "name": "nightMare",
-              "displayName": "nightMare",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "helloNightmare": {
+        "queryParameters": {
+          "nightMare": {
+            "name": "nightMare",
+            "displayName": "nightMare",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "<<isRequired>>": "<<value>>"
-            }
-          },
-          "name": "helloNightmare"
-        }
-      }
-    ],
-    "annotationTypes": [
-      {
-        "searchable": {
-          "name": "searchable",
-          "displayName": "searchable",
-          "type": [
-            "nil"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
+            },
+            "<<isRequired>>": "<<value>>"
+          }
+        },
+        "name": "helloNightmare"
+      }
+    },
+    "annotationTypes": {
+      "searchable": {
+        "name": "searchable",
+        "displayName": "searchable",
+        "type": [
+          "nil"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "sortable": {
-          "name": "sortable",
-          "displayName": "sortable",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "default": {
-              "name": "default",
-              "displayName": "default",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "low",
-                "medium",
-                "high"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+      "sortable": {
+        "name": "sortable",
+        "displayName": "sortable",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "default": {
+            "name": "default",
+            "displayName": "default",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "searchable": {
-                "structuredValue": "someValue",
-                "name": "searchable"
+                "name": "searchable",
+                "structuredValue": "someValue"
               }
             },
             "queryParameters": {
               "kind": {
                 "annotations": {
                   "sortable": {
+                    "name": "sortable",
                     "structuredValue": {
                       "default": "low"
-                    },
-                    "name": "sortable"
+                    }
                   },
                   "searchable": {
-                    "structuredValue": null,
-                    "name": "searchable"
+                    "name": "searchable",
+                    "structuredValue": null
                   }
                 },
                 "name": "kind",
@@ -179,7 +171,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/animals",
         "displayName": "/animals",
         "__METADATA__": {
@@ -196,6 +188,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "NULL_EXPECTED",

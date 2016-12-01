@@ -1,111 +1,107 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Method": {
-          "name": "Method",
-          "displayName": "Method",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Method": {
+        "name": "Method",
+        "displayName": "Method",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Resource": {
-          "name": "Resource",
-          "displayName": "Resource",
-          "type": [
-            "object"
-          ],
-          "example": {
+      "Resource": {
+        "name": "Resource",
+        "displayName": "Resource",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "put": {
+            "name": "update method"
+          },
+          "post": {
+            "name": "create method"
+          }
+        },
+        "required": true,
+        "properties": {
+          "/post|get|put/": {
+            "name": "/post|get|put/",
+            "displayName": "/post|get|put/",
+            "type": [
+              "Method"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"put\": {\n    \"name\": \"update method\"\n  },\n  \"post\": {\n    \"name\": \"create method\"\n  }\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "put": {
               "name": "update method"
             },
             "post": {
               "name": "create method"
             }
-          },
-          "required": true,
-          "properties": {
-            "/post|get|put/": {
-              "name": "/post|get|put/",
-              "displayName": "/post|get|put/",
-              "type": [
-                "Method"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"put\": {\n    \"name\": \"update method\"\n  },\n  \"post\": {\n    \"name\": \"create method\"\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "put": {
-                "name": "update method"
-              },
-              "post": {
-                "name": "create method"
-              }
-            }
           }
         }
       }
-    ],
+    },
     "title": "My API With Types"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

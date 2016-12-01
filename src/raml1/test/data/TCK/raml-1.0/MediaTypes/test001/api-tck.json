@@ -1,10 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Test Api",
     "mediaType": "someStringvalue"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MEDIATYPE_EXCEPTION",

@@ -1,92 +1,88 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "t1": {
-          "name": "t1",
-          "displayName": "t1",
-          "type": [
-            "array"
-          ],
-          "required": true,
-          "items": {
-            "annotations": {
-              "a": {
-                "structuredValue": "abcdefghijkl",
-                "name": "a"
-              }
-            },
-            "name": "items",
-            "displayName": "items",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "scalarsAnnotations": {
-              "type": [
-                [
-                  {
-                    "structuredValue": "abcdefghijkl",
-                    "name": "a"
-                  }
-                ]
-              ]
-            },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              }
+    "types": {
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "array"
+        ],
+        "required": true,
+        "items": {
+          "annotations": {
+            "a": {
+              "name": "a",
+              "structuredValue": "abcdefghijkl"
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      }
-    ],
-    "annotationTypes": [
-      {
-        "a": {
-          "name": "a",
-          "displayName": "a",
+          "name": "items",
+          "displayName": "items",
           "type": [
             "string"
           ],
           "required": true,
-          "minLength": 8,
-          "maxLength": 64,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
-              "type": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }
             }
+          },
+          "scalarsAnnotations": {
+            "type": [
+              [
+                {
+                  "name": "a",
+                  "structuredValue": "abcdefghijkl"
+                }
+              ]
+            ]
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
           }
         }
       }
-    ],
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    },
     "title": "testAPI",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

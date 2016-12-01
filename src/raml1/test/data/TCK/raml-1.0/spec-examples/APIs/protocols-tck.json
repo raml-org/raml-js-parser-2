@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Salesforce Chatter REST API",
     "version": "v28.0",
@@ -40,5 +38,7 @@
       "HTTPS"
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

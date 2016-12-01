@@ -1,97 +1,144 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "AnotherType": {
-          "name": "AnotherType",
-          "displayName": "AnotherType",
-          "type": [
-            "SomeType"
-          ],
-          "required": true,
-          "properties": {
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "AnotherType": {
+        "name": "AnotherType",
+        "displayName": "AnotherType",
+        "type": [
+          "SomeType"
+        ],
+        "required": true,
+        "properties": {
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "additionalProperties": false,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "additionalProperties": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "ComplexTypeWithArrayProperty": {
-          "name": "ComplexTypeWithArrayProperty",
-          "displayName": "ComplexTypeWithArrayProperty",
-          "type": [
-            "object"
-          ],
-          "example": {
+      "ComplexTypeWithArrayProperty": {
+        "name": "ComplexTypeWithArrayProperty",
+        "displayName": "ComplexTypeWithArrayProperty",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "users": [
+            {
+              "name": "John",
+              "age": "not number"
+            },
+            {
+              "name1": "Jane",
+              "age": 28
+            },
+            {
+              "name": "Alex"
+            }
+          ]
+        },
+        "required": true,
+        "properties": {
+          "users": {
+            "name": "users",
+            "displayName": "users",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "AnotherType"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": \"not number\"\n    },\n    {\n      \"name1\": \"Jane\",\n      \"age\": 28\n    },\n    {\n      \"name\": \"Alex\"\n    }\n  ]\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "users": [
               {
                 "name": "John",
@@ -105,67 +152,14 @@
                 "name": "Alex"
               }
             ]
-          },
-          "required": true,
-          "properties": {
-            "users": {
-              "name": "users",
-              "displayName": "users",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "AnotherType"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": \"not number\"\n    },\n    {\n      \"name1\": \"Jane\",\n      \"age\": 28\n    },\n    {\n      \"name\": \"Alex\"\n    }\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "users": [
-                {
-                  "name": "John",
-                  "age": "not number"
-                },
-                {
-                  "name1": "Jane",
-                  "age": 28
-                },
-                {
-                  "name": "Alex"
-                }
-              ]
-            }
           }
         }
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

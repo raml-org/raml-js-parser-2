@@ -1,82 +1,78 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "A",
-    "traits": [
-      {
-        "SomeTrait": {
-          "queryParameters": {
-            "<<propertyName1>>": {
-              "name": "<<propertyName1>>",
-              "displayName": "<<propertyName1>>",
-              "type": "number",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "<<propertyName2>>": {
-              "name": "<<propertyName2>>",
-              "displayName": "<<propertyName2>>",
-              "type": "boolean",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "<<propertyName3>>": {
-              "name": "<<propertyName3>>",
-              "displayName": "<<propertyName3>>",
-              "type": "string",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<propertyName1>>": {
+            "name": "<<propertyName1>>",
+            "displayName": "<<propertyName1>>",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "name": "SomeTrait"
-        }
+          "<<propertyName2>>": {
+            "name": "<<propertyName2>>",
+            "displayName": "<<propertyName2>>",
+            "type": "boolean",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "<<propertyName3>>": {
+            "name": "<<propertyName3>>",
+            "displayName": "<<propertyName3>>",
+            "type": "string",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "SomeTrait"
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -163,7 +159,7 @@
               }
             ]
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -179,6 +175,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

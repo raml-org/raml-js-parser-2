@@ -1,34 +1,30 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "trait1": {
-          "queryParameters": {
-            "param1": {
-              "name": "param1",
-              "displayName": "param1",
-              "type": [
-                "<<type1>>"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "trait1": {
+        "queryParameters": {
+          "param1": {
+            "name": "param1",
+            "displayName": "param1",
+            "type": [
+              "<<type1>>"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "trait1"
-        }
+          }
+        },
+        "name": "trait1"
       }
-    ],
+    },
     "title": "TCK test. Trait 002",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -37,8 +33,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "param1": {
                 "name": "param1",
@@ -117,7 +113,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -141,5 +137,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

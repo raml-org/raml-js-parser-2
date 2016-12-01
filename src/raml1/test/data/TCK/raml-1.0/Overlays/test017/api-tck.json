@@ -1,11 +1,11 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "title": "Pet shop",
     "version": "6",
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": [
     {
       "code": "INVALID_OVERRIDE_IN_OVERLAY",

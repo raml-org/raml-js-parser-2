@@ -1,16 +1,82 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "type": [
-            "object"
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "selfReference": [
+            {
+              "selfReference": [
+                {
+                  "selfReference": [],
+                  "someProperty1": "val1"
+                }
+              ],
+              "someProperty": "val2"
+            }
           ],
-          "example": {
+          "someProperty": "val3"
+        },
+        "required": true,
+        "properties": {
+          "selfReference": {
+            "name": "selfReference",
+            "displayName": "selfReference",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "SomeType"
+          },
+          "someProperty": {
+            "name": "someProperty",
+            "displayName": "someProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty1\": \"val1\"\n        }\n      ],\n      \"someProperty\": \"val2\"\n    }\n  ],\n  \"someProperty\": \"val3\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "selfReference": [
               {
                 "selfReference": [
@@ -23,82 +89,14 @@
               }
             ],
             "someProperty": "val3"
-          },
-          "required": true,
-          "properties": {
-            "selfReference": {
-              "name": "selfReference",
-              "displayName": "selfReference",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "SomeType"
-            },
-            "someProperty": {
-              "name": "someProperty",
-              "displayName": "someProperty",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": false,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty1\": \"val1\"\n        }\n      ],\n      \"someProperty\": \"val2\"\n    }\n  ],\n  \"someProperty\": \"val3\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "selfReference": [
-                {
-                  "selfReference": [
-                    {
-                      "selfReference": [],
-                      "someProperty1": "val1"
-                    }
-                  ],
-                  "someProperty": "val2"
-                }
-              ],
-              "someProperty": "val3"
-            }
           }
         }
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "REQUIRED_PROPERTY_MISSING",

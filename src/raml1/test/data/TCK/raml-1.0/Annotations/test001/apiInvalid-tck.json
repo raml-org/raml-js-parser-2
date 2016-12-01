@@ -1,85 +1,83 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "test": {
+        "name": "test",
         "structuredValue": {
           "q": true,
           "items": "E"
-        },
-        "name": "test"
+        }
       }
     },
-    "annotationTypes": [
-      {
-        "test": {
-          "name": "test",
-          "displayName": "test",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "q": {
-              "name": "q",
-              "displayName": "q",
-              "type": [
-                "boolean"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "W",
-                "A"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "annotationTypes": {
+      "test": {
+        "name": "test",
+        "displayName": "test",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "q": {
+            "name": "q",
+            "displayName": "q",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "W",
+              "A"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "H"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "ENUM_RESTRICTION",

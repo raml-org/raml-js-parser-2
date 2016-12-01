@@ -1,100 +1,92 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Type1": {
-          "name": "Type1",
-          "displayName": "Type1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "propertyFromType1": {
-              "name": "propertyFromType1",
-              "displayName": "propertyFromType1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Type1": {
+        "name": "Type1",
+        "displayName": "Type1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "propertyFromType1": {
+            "name": "propertyFromType1",
+            "displayName": "propertyFromType1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Type2": {
-          "name": "Type2",
-          "displayName": "Type2",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "propertyFromType2": {
-              "name": "propertyFromType2",
-              "displayName": "propertyFromType2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Type2": {
+        "name": "Type2",
+        "displayName": "Type2",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "propertyFromType2": {
+            "name": "propertyFromType2",
+            "displayName": "propertyFromType2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "ResourceTypeWithParams": {
-          "type": "<<resourceTypeParam>>",
-          "name": "ResourceTypeWithParams",
+    },
+    "resourceTypes": {
+      "ResourceTypeWithParams": {
+        "methods": {
           "get": {
             "body": {
               "application/json": {
@@ -153,11 +145,12 @@
             },
             "method": "get"
           }
-        }
+        },
+        "type": "<<resourceTypeParam>>",
+        "name": "ResourceTypeWithParams"
       },
-      {
-        "ResourceType1": {
-          "name": "ResourceType1",
+      "ResourceType1": {
+        "methods": {
           "get": {
             "body": {
               "application/json": {
@@ -204,11 +197,11 @@
             },
             "method": "get"
           }
-        }
+        },
+        "name": "ResourceType1"
       },
-      {
-        "ResourceType2": {
-          "name": "ResourceType2",
+      "ResourceType2": {
+        "methods": {
           "get": {
             "body": {
               "application/json": {
@@ -255,14 +248,15 @@
             },
             "method": "get"
           }
-        }
+        },
+        "name": "ResourceType2"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -338,7 +332,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "type": {
           "ResourceTypeWithParams": {
             "resourceTypeParam": "ResourceType1",
@@ -361,5 +355,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

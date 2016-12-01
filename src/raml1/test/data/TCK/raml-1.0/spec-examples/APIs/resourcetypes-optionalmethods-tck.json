@@ -1,11 +1,8 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "resourceTypes": [
-      {
-        "corpResource": {
-          "name": "corpResource",
+    "resourceTypes": {
+      "corpResource": {
+        "methods": {
           "post": {
             "headers": {
               "X-Chargeback": {
@@ -33,17 +30,18 @@
               "optional": true
             }
           }
-        }
+        },
+        "name": "corpResource"
       }
-    ],
+    },
     "title": "Example of Optional Properties",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "method": "get"
           },
-          {
+          "post": {
             "headers": {
               "X-Chargeback": {
                 "name": "X-Chargeback",
@@ -67,7 +65,7 @@
             "description": "Some info about post method.",
             "method": "post"
           }
-        ],
+        },
         "type": {
           "corpResource": {
             "TextAboutPost": "post method"
@@ -88,11 +86,11 @@
         "absoluteUri": "/servers"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "method": "get"
           }
-        ],
+        },
         "type": "corpResource",
         "relativeUri": "/queues",
         "displayName": "/queues",
@@ -110,5 +108,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

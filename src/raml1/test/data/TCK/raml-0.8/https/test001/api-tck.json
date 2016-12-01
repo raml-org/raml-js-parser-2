@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Test API",
-    "resourceTypes": [
-      {
-        "a": {
-          "name": "a",
+    "resourceTypes": {
+      "a": {
+        "name": "a",
+        "methods": {
           "delete": {
             "responses": {
               "503": {
@@ -45,7 +43,9 @@
           }
         }
       }
-    ]
+    }
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

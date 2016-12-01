@@ -1,139 +1,131 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "ParentType": {
-          "name": "ParentType",
-          "displayName": "ParentType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "stringProperty": {
-              "name": "stringProperty",
-              "displayName": "stringProperty",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "ParentType": {
+        "name": "ParentType",
+        "displayName": "ParentType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "stringProperty": {
+            "name": "stringProperty",
+            "displayName": "stringProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            }
+          },
+          "kind": {
+            "name": "kind",
+            "displayName": "kind",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "discriminator": "kind",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "kind": {
-              "name": "kind",
-              "displayName": "kind",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "discriminator": "kind",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "ChildType1": {
-          "name": "ChildType1",
-          "displayName": "ChildType1",
-          "type": [
-            "ParentType"
-          ],
-          "required": true,
-          "discriminatorValue": "k1",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "ChildType1": {
+        "name": "ChildType1",
+        "displayName": "ChildType1",
+        "type": [
+          "ParentType"
+        ],
+        "required": true,
+        "discriminatorValue": "k1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "ChildType2": {
-          "name": "ChildType2",
-          "displayName": "ChildType2",
-          "type": [
-            "ParentType"
-          ],
-          "required": true,
-          "properties": {
-            "stringProperty": {
-              "name": "stringProperty",
-              "displayName": "stringProperty",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "minLength": 3,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "ChildType2": {
+        "name": "ChildType2",
+        "displayName": "ChildType2",
+        "type": [
+          "ParentType"
+        ],
+        "required": true,
+        "properties": {
+          "stringProperty": {
+            "name": "stringProperty",
+            "displayName": "stringProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "minLength": 3,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "discriminatorValue": "k2",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "discriminatorValue": "k2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -181,7 +173,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -198,6 +190,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

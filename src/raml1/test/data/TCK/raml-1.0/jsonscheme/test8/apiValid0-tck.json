@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Api",
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -18,7 +16,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -34,5 +32,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

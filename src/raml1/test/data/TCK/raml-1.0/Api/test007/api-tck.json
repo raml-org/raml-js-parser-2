@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "baseUri": "api.example.com/{mediaType}",
     "baseUriParameters": {
@@ -33,6 +31,8 @@
     ],
     "mediaType": "application/json"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MISSING_REQUIRED_PROPERTY",

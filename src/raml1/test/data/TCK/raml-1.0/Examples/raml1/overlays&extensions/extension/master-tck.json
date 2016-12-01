@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Extension",
   "specification": {
     "uses": [
       {
@@ -15,12 +13,12 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "decls.important": {
-                "structuredValue": null,
-                "name": "decls.important"
+                "name": "decls.important",
+                "structuredValue": null
               }
             },
             "protocols": [
@@ -36,7 +34,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/items",
         "displayName": "/items",
         "__METADATA__": {
@@ -52,8 +50,8 @@
         "absoluteUri": "http://myItems.com/items"
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200"
@@ -61,7 +59,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {
@@ -86,5 +84,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
   "errors": []
 }

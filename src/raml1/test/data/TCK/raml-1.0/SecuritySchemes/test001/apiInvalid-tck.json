@@ -1,18 +1,16 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "securitySchemes": [
-      {
-        "auth": {
-          "name": "auth",
-          "type": "n-sls"
-        }
+    "securitySchemes": {
+      "auth": {
+        "name": "auth",
+        "type": "n-sls"
       }
-    ],
+    },
     "title": "New API",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "UNRECOGNIZED_SECURITY_SCHEME",

@@ -1,75 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "chargeable": {
-          "headers": {
-            "dept_code": {
-              "name": "dept_code",
-              "displayName": "dept_code",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "chargeable": {
+        "headers": {
+          "dept_code": {
+            "name": "dept_code",
+            "displayName": "dept_code",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "chargeable",
-          "__METADATA__": {
-            "calculated": true
           }
+        },
+        "name": "chargeable",
+        "__METADATA__": {
+          "calculated": true
         }
       },
-      {
-        "paged": {
-          "queryParameters": {
-            "start": {
-              "name": "start",
-              "displayName": "start",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "paged": {
+        "queryParameters": {
+          "start": {
+            "name": "start",
+            "displayName": "start",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "paged",
-          "__METADATA__": {
-            "calculated": true
           }
+        },
+        "name": "paged",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "name": "collection",
-          "__METADATA__": {
-            "calculated": true
-          },
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "is": [
               "paged"
@@ -79,14 +69,14 @@
           "post": {
             "method": "post"
           }
+        },
+        "name": "collection",
+        "__METADATA__": {
+          "calculated": true
         }
       },
-      {
-        "member": {
-          "name": "member",
-          "__METADATA__": {
-            "calculated": true
-          },
+      "member": {
+        "methods": {
           "get": {
             "method": "get"
           },
@@ -96,11 +86,17 @@
           "delete": {
             "method": "delete"
           }
+        },
+        "name": "member",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

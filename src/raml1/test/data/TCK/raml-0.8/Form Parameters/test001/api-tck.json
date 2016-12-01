@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Example API",
     "baseUri": "http://example.com",
@@ -39,8 +37,8 @@
                 }
               }
             },
-            "methods": [
-              {
+            "methods": {
+              "post": {
                 "body": {
                   "application/x-www-form-urlencoded": {
                     "name": "application/x-www-form-urlencoded",
@@ -128,7 +126,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/{resourceId}",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -165,5 +163,7 @@
       }
     }
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

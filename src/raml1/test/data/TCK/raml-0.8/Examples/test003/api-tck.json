@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "My API",
     "resources": [
@@ -15,8 +13,8 @@
             "repeat": false
           }
         },
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "queryParameters": {
               "query...": {
                 "name": "query...",
@@ -37,7 +35,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "displayName": "/single-query-record/{code}",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -54,6 +52,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

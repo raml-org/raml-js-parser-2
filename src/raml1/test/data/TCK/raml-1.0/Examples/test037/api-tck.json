@@ -1,97 +1,91 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "GeoPoint": {
-          "name": "GeoPoint",
-          "displayName": "GeoPoint",
-          "type": [
-            "number"
-          ],
-          "example": 100,
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "GeoPoint": {
+        "name": "GeoPoint",
+        "displayName": "GeoPoint",
+        "type": [
+          "number"
+        ],
+        "example": 100,
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "100",
-            "strict": true,
-            "name": null,
-            "structuredValue": 100
           }
+        },
+        "structuredExample": {
+          "value": "100",
+          "strict": true,
+          "name": null,
+          "structuredValue": 100
         }
       },
-      {
-        "GeoPoints": {
-          "name": "GeoPoints",
-          "displayName": "GeoPoints",
-          "type": [
-            "array"
-          ],
-          "example": [
+      "GeoPoints": {
+        "name": "GeoPoints",
+        "displayName": "GeoPoints",
+        "type": [
+          "array"
+        ],
+        "example": [
+          100,
+          10
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "[\n  100,\n  10\n]",
+          "strict": true,
+          "name": null,
+          "structuredValue": [
             100,
             10
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "[\n  100,\n  10\n]",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
-              100,
-              10
-            ]
-          },
-          "items": "number"
-        }
+          ]
+        },
+        "items": "number"
       },
-      {
-        "Bool": {
-          "name": "Bool",
-          "displayName": "Bool",
-          "type": [
-            "boolean"
-          ],
-          "example": true,
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "Bool": {
+        "name": "Bool",
+        "displayName": "Bool",
+        "type": [
+          "boolean"
+        ],
+        "example": true,
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "true",
-            "strict": true,
-            "name": null,
-            "structuredValue": true
           }
+        },
+        "structuredExample": {
+          "value": "true",
+          "strict": true,
+          "name": null,
+          "structuredValue": true
         }
       }
-    ]
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": []
 }

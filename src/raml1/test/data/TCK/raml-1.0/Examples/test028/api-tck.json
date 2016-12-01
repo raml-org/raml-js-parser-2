@@ -1,61 +1,57 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "x": {
-              "name": "x",
-              "displayName": "x",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "x": {
+            "name": "x",
+            "displayName": "x",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "hello",
     "mediaType": "application/json",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "method": "get"
           },
-          {
+          "post": {
             "responses": {
               "202": {
                 "code": "202",
@@ -78,9 +74,6 @@
                         "minimum": 0,
                         "maximum": 10,
                         "format": "int",
-                        "fixedFacets": {
-                          "format": "int"
-                        },
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
@@ -90,6 +83,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "fixedFacets": {
+                          "format": "int"
                         }
                       },
                       "key": {
@@ -176,7 +172,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {
@@ -208,6 +204,8 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "REQUIRED_PROPERTY_MISSING",

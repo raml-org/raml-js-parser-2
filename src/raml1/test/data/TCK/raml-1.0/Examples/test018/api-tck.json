@@ -1,73 +1,69 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType1": {
-          "name": "MyType1",
-          "displayName": "MyType1",
-          "type": [
-            "string"
-          ],
-          "example": "d",
-          "required": true,
-          "minLength": 5,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "string"
+        ],
+        "example": "d",
+        "required": true,
+        "minLength": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "d",
-            "strict": true,
-            "name": null,
-            "structuredValue": "d"
           }
+        },
+        "structuredExample": {
+          "value": "d",
+          "strict": true,
+          "name": null,
+          "structuredValue": "d"
         }
       },
-      {
-        "MyType2": {
-          "name": "MyType2",
-          "displayName": "MyType2",
-          "type": [
-            "string"
-          ],
-          "example": "d1111",
-          "required": true,
-          "maxLength": 3,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "string"
+        ],
+        "example": "d1111",
+        "required": true,
+        "maxLength": 3,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "d1111",
-            "strict": true,
-            "name": null,
-            "structuredValue": "d1111"
           }
+        },
+        "structuredExample": {
+          "value": "d1111",
+          "strict": true,
+          "name": null,
+          "structuredValue": "d1111"
         }
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

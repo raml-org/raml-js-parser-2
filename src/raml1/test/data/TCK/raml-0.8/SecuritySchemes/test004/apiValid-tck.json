@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Dropbox API",
     "version": "1",
@@ -40,22 +38,20 @@
     "protocols": [
       "HTTPS"
     ],
-    "securitySchemes": [
-      {
-        "oauth_2_0": {
-          "name": "oauth_2_0",
-          "type": "OAuth 2.0",
-          "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-          "settings": {
-            "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-            "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-            "authorizationGrants": [
-              "client_credentials"
-            ]
-          }
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "client_credentials"
+          ]
         }
       }
-    ],
+    },
     "__METADATA__": {
       "primitiveValuesMeta": {
         "protocols": {
@@ -64,5 +60,7 @@
       }
     }
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

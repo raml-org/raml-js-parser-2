@@ -1,184 +1,176 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "annotations": {
-            "simpleAnnotation": {
-              "structuredValue": "simpleAnnotation_value_on_type",
-              "name": "simpleAnnotation"
-            },
-            "objectAnnotation": {
-              "structuredValue": {
-                "property1": {
-                  "field1": "field1_value",
-                  "field2": 15
-                },
-                "property2": "baseProperty2_value"
-              },
-              "name": "objectAnnotation"
-            }
+    "types": {
+      "MyType": {
+        "annotations": {
+          "simpleAnnotation": {
+            "name": "simpleAnnotation",
+            "structuredValue": "simpleAnnotation_value_on_type"
           },
-          "name": "MyType",
-          "displayName": "MyType",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
+          "objectAnnotation": {
+            "name": "objectAnnotation",
+            "structuredValue": {
+              "property1": {
+                "field1": "field1_value",
+                "field2": 15
               },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+              "property2": "baseProperty2_value"
+            }
+          }
+        },
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "simpleAnnotation": {
-          "name": "simpleAnnotation",
-          "displayName": "simpleAnnotation",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "pattern": "[a-zA-Z0-9]{8,32}",
-          "minLength": 8,
-          "maxLength": 64,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "simpleAnnotation": {
+        "name": "simpleAnnotation",
+        "displayName": "simpleAnnotation",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "pattern": "[a-zA-Z0-9]{8,32}",
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "objectAnnotation": {
-          "name": "objectAnnotation",
-          "displayName": "objectAnnotation",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "property1": {
-              "name": "property1",
-              "displayName": "property1",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "field1": {
-                  "name": "field1",
-                  "displayName": "field1",
-                  "type": [
-                    "string"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "field2": {
-                  "name": "field2",
-                  "displayName": "field2",
-                  "type": [
-                    "number"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+      "objectAnnotation": {
+        "name": "objectAnnotation",
+        "displayName": "objectAnnotation",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "property1": {
+            "name": "property1",
+            "displayName": "property1",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "field1": {
+                "name": "field1",
+                "displayName": "field1",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+              "field2": {
+                "name": "field2",
+                "displayName": "field2",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
                   }
                 }
               }
             },
-            "property2": {
-              "name": "property2",
-              "displayName": "property2",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "property2": {
+            "name": "property2",
+            "displayName": "property2",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "TCK Sample. RAML 1.0 Annotations 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
@@ -217,20 +209,20 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "simpleAnnotation": {
-                "structuredValue": "simpleAnnotation_value_on_method",
-                "name": "simpleAnnotation"
+                "name": "simpleAnnotation",
+                "structuredValue": "simpleAnnotation_value_on_method"
               },
               "objectAnnotation": {
+                "name": "objectAnnotation",
                 "structuredValue": {
                   "property1": {
                     "field2": 19
                   }
-                },
-                "name": "objectAnnotation"
+                }
               }
             },
             "protocols": [
@@ -245,7 +237,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/helloWorld",
         "displayName": "/helloWorld",
         "__METADATA__": {
@@ -269,6 +261,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "PATTERN_VIOLATION",

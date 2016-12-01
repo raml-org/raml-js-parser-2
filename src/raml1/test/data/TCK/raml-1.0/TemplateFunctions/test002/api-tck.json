@@ -1,27 +1,25 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "resourceTypes": [
-      {
-        "collection": {
-          "name": "collection",
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "post": {
             "description": "Create a <<resourcePathName|!singularize|!uppercamelcase>>",
             "method": "post"
           }
-        }
+        },
+        "name": "collection"
       }
-    ],
+    },
     "title": "testAPI",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "description": "Create a User",
             "method": "post"
           }
-        ],
+        },
         "type": "collection",
         "relativeUri": "/users",
         "displayName": "/users",
@@ -39,5 +37,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

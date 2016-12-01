@@ -1,50 +1,43 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "secured": {
-          "headers": {
-            "access_token": {
-              "name": "access_token",
-              "displayName": "access_token",
-              "type": [
-                "string"
-              ],
-              "example": "5757gh76",
-              "required": true,
-              "description": "Access Token",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "secured": {
+        "headers": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "example": "5757gh76",
+            "required": true,
+            "description": "Access Token",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
-                "value": "5757gh76",
-                "strict": true,
-                "name": null,
-                "structuredValue": "5757gh76"
               }
+            },
+            "structuredExample": {
+              "value": "5757gh76",
+              "strict": true,
+              "name": null,
+              "structuredValue": "5757gh76"
             }
-          },
-          "description": "Some requests require authentication.",
-          "name": "secured",
-          "usage": "Apply this to any method that needs to be secured"
-        }
+          }
+        },
+        "description": "Some requests require authentication.",
+        "name": "secured",
+        "usage": "Apply this to any method that needs to be secured"
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "description": "The collection of <<resourcePathName>>",
-          "name": "collection",
-          "usage": "This resourceType should be used for any collection of items",
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "description": "Get all <<resourcePathName>>, optionally filtered",
             "method": "get"
@@ -53,11 +46,16 @@
             "description": "Create a new <<resourcePathName | !singularize>>",
             "method": "post"
           }
-        }
+        },
+        "description": "The collection of <<resourcePathName>>",
+        "name": "collection",
+        "usage": "This resourceType should be used for any collection of items"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

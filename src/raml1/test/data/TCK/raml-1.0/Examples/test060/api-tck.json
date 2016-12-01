@@ -1,111 +1,104 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyArrayType": {
-          "name": "MyArrayType",
-          "displayName": "MyArrayType",
-          "type": [
-            "array"
-          ],
-          "example": [
+    "types": {
+      "MyArrayType": {
+        "name": "MyArrayType",
+        "displayName": "MyArrayType",
+        "type": [
+          "array"
+        ],
+        "example": [
+          0,
+          1,
+          2
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "[ 0.0, 1.0, 2.0 ]\n",
+          "strict": true,
+          "name": null,
+          "structuredValue": [
             0,
             1,
             2
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          ]
+        },
+        "items": "number"
+      },
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "p": [
+            1,
+            0,
+            0
+          ]
+        },
+        "required": true,
+        "properties": {
+          "p": {
+            "name": "p",
+            "displayName": "p",
+            "type": [
+              "MyArrayType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
             }
-          },
-          "structuredExample": {
-            "value": "[ 0.0, 1.0, 2.0 ]\n",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
-              0,
-              1,
-              2
-            ]
-          },
-          "items": "number"
-        }
-      },
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "type": [
-            "object"
-          ],
-          "example": {
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"p\": [ 1.0, 0.0, 0.0 ]\n}\n",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
             "p": [
               1,
               0,
               0
             ]
-          },
-          "required": true,
-          "properties": {
-            "p": {
-              "name": "p",
-              "displayName": "p",
-              "type": [
-                "MyArrayType"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"p\": [ 1.0, 0.0, 0.0 ]\n}\n",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "p": [
-                1,
-                0,
-                0
-              ]
-            }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "rt1": {
-          "name": "rt1",
+    },
+    "resourceTypes": {
+      "rt1": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -134,14 +127,15 @@
             },
             "method": "get"
           }
-        }
+        },
+        "name": "rt1"
       }
-    ],
+    },
     "title": "Zero as array element 1",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -169,7 +163,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "type": "rt1",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -187,5 +181,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

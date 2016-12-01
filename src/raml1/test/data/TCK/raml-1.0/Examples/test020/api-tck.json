@@ -1,96 +1,92 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType1": {
-          "name": "MyType1",
-          "displayName": "MyType1",
-          "type": [
-            "string"
-          ],
-          "example": "ddddd",
-          "required": true,
-          "minLength": 5,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "string"
+        ],
+        "example": "ddddd",
+        "required": true,
+        "minLength": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "ddddd",
-            "strict": true,
-            "name": null,
-            "structuredValue": "ddddd"
           }
+        },
+        "structuredExample": {
+          "value": "ddddd",
+          "strict": true,
+          "name": null,
+          "structuredValue": "ddddd"
         }
       },
-      {
-        "MyType2": {
-          "name": "MyType2",
-          "displayName": "MyType2",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "z": "3"
-          },
-          "required": true,
-          "properties": {
-            "z": {
-              "name": "z",
-              "displayName": "z",
-              "type": [
-                "MyType1"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "object"
+        ],
+        "example": {
+          "z": "3"
+        },
+        "required": true,
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MyType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
-            "value": "{\n  \"z\": \"3\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "z": "3"
-            }
+          }
+        },
+        "structuredExample": {
+          "value": "{\n  \"z\": \"3\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "z": "3"
           }
         }
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

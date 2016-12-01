@@ -1,35 +1,32 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "Label": {
-          "name": "Label",
-          "displayName": "Label",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "Label": {
+        "name": "Label",
+        "displayName": "Label",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "New API",
     "version": "v1",
     "resources": [
       {
         "annotations": {
           "Label": {
+            "name": "Label",
             "structuredValue": {
               "field1": 7,
               "field2": true,
@@ -38,8 +35,7 @@
                 "p1": 2,
                 "p2": "str"
               }
-            },
-            "name": "Label"
+            }
           }
         },
         "relativeUri": "/resource",
@@ -58,5 +54,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -13,9 +11,17 @@
     "protocols": [
       "HTTPS"
     ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    },
     "scalarsAnnotations": {
       "baseUri": [
         {
+          "name": "lib.bindingDefinition",
           "structuredValue": [
             {
               "method": "GET",
@@ -27,18 +33,12 @@
               "input": "NONE",
               "output": "REQUIRED"
             }
-          ],
-          "name": "lib.bindingDefinition"
+          ]
         }
       ]
-    },
-    "__METADATA__": {
-      "primitiveValuesMeta": {
-        "protocols": {
-          "calculated": true
-        }
-      }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

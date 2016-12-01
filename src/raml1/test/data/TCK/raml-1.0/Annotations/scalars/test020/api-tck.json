@@ -1,94 +1,90 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "t1": {
-          "name": "t1",
-          "displayName": "t1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "iProp": {
-              "name": "iProp",
-              "displayName": "iProp",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "format": "int64",
-              "fixedFacets": {
-                "format": "int64"
-              },
-              "scalarsAnnotations": {
-                "format": [
-                  {
-                    "structuredValue": "abcdefg",
-                    "name": "a"
-                  }
-                ]
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "iProp": {
+            "name": "iProp",
+            "displayName": "iProp",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "format": "int64",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "scalarsAnnotations": {
+              "format": [
+                {
+                  "name": "a",
+                  "structuredValue": "abcdefg"
+                }
+              ]
+            },
+            "fixedFacets": {
+              "format": "int64"
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "a": {
-          "name": "a",
-          "displayName": "a",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "minLength": 8,
-          "maxLength": 64,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "testAPI",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

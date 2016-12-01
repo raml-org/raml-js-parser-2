@@ -1,64 +1,62 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "ItsComplicated": {
-          "name": "ItsComplicated",
-          "displayName": "ItsComplicated",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "prop1": "stringValue"
-          },
-          "required": true,
-          "properties": {
-            "/.*/": {
-              "name": "/.*/",
-              "displayName": "/.*/",
-              "type": [
-                "string[] | string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "ItsComplicated": {
+        "name": "ItsComplicated",
+        "displayName": "ItsComplicated",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "/.*/": {
+            "name": "/.*/",
+            "displayName": "/.*/",
+            "type": [
+              "string[] | string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"prop1\": \"stringValue\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "prop1": "stringValue"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
+        },
+        "structuredExample": {
+          "value": "{\n  \"prop1\": \"stringValue\"\n}",
+          "strict": true,
+          "name": null,
+          "structuredValue": {
+            "prop1": "stringValue"
+          }
+        },
+        "example": {
+          "prop1": "stringValue"
         }
       }
-    ],
+    },
     "title": "Api"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

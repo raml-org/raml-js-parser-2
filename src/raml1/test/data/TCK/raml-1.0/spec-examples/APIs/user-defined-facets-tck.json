@@ -1,91 +1,87 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "CustomDate": {
-          "name": "CustomDate",
-          "displayName": "CustomDate",
-          "facets": {
-            "onlyFutureDates": {
-              "name": "onlyFutureDates",
-              "displayName": "onlyFutureDates",
-              "type": [
-                "boolean"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "noHolidays": {
-              "name": "noHolidays",
-              "displayName": "noHolidays",
-              "type": [
-                "boolean"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "CustomDate": {
+        "name": "CustomDate",
+        "displayName": "CustomDate",
+        "facets": {
+          "onlyFutureDates": {
+            "name": "onlyFutureDates",
+            "displayName": "onlyFutureDates",
+            "type": [
+              "boolean"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "type": [
-            "date-only"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "noHolidays": {
+            "name": "noHolidays",
+            "displayName": "noHolidays",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "type": [
+          "date-only"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "PossibleMeetingDate": {
-          "name": "PossibleMeetingDate",
-          "displayName": "PossibleMeetingDate",
-          "type": [
-            "CustomDate"
-          ],
-          "required": true,
-          "fixedFacets": {
-            "noHolidays": true
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "PossibleMeetingDate": {
+        "name": "PossibleMeetingDate",
+        "displayName": "PossibleMeetingDate",
+        "type": [
+          "CustomDate"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
+        },
+        "fixedFacets": {
+          "noHolidays": true
         }
       }
-    ],
+    },
     "title": "API with Types"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

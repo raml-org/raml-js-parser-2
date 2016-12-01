@@ -1,33 +1,31 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "annotations": {
       "library.highLevelApiDescription": {
-        "structuredValue": null,
-        "name": "library.highLevelApiDescription"
+        "name": "library.highLevelApiDescription",
+        "structuredValue": null
       },
       "library.apiLogo": {
-        "structuredValue": null,
-        "name": "library.apiLogo"
+        "name": "library.apiLogo",
+        "structuredValue": null
       },
       "library.specAuthor": {
-        "structuredValue": "mulesoft.com",
-        "name": "library.specAuthor"
+        "name": "library.specAuthor",
+        "structuredValue": "mulesoft.com"
       },
       "library.devPortal": {
-        "structuredValue": null,
-        "name": "library.devPortal"
+        "name": "library.devPortal",
+        "structuredValue": null
       },
       "library.extraResources": {
+        "name": "library.extraResources",
         "structuredValue": [
           {
             "title": "API Notebook",
             "type": "notebook",
             "uri": "blah"
           }
-        ],
-        "name": "library.extraResources"
+        ]
       }
     },
     "uses": [
@@ -39,6 +37,8 @@
     "title": "Api",
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": [
     {
       "code": "NULL_NOT_ALLOWED",

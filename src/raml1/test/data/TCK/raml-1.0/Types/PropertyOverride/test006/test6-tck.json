@@ -1,135 +1,127 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "PropertyType1": {
-          "name": "PropertyType1",
-          "displayName": "PropertyType1",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "minLength": 0,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "PropertyType1": {
+        "name": "PropertyType1",
+        "displayName": "PropertyType1",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "minLength": 0,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "PropertyType2": {
-          "name": "PropertyType2",
-          "displayName": "PropertyType2",
-          "type": [
-            "PropertyType1"
-          ],
-          "required": true,
-          "maxLength": 5,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "PropertyType2": {
+        "name": "PropertyType2",
+        "displayName": "PropertyType2",
+        "type": [
+          "PropertyType1"
+        ],
+        "required": true,
+        "maxLength": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Type1": {
-          "name": "Type1",
-          "displayName": "Type1",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "testProperty": {
-              "name": "testProperty",
-              "displayName": "testProperty",
-              "type": [
-                "PropertyType1"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Type1": {
+        "name": "Type1",
+        "displayName": "Type1",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "testProperty": {
+            "name": "testProperty",
+            "displayName": "testProperty",
+            "type": [
+              "PropertyType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "Type2": {
-          "name": "Type2",
-          "displayName": "Type2",
-          "type": [
-            "Type1"
-          ],
-          "required": true,
-          "properties": {
-            "testProperty": {
-              "name": "testProperty",
-              "displayName": "testProperty",
-              "type": [
-                "PropertyType2"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Type2": {
+        "name": "Type2",
+        "displayName": "Type2",
+        "type": [
+          "Type1"
+        ],
+        "required": true,
+        "properties": {
+          "testProperty": {
+            "name": "testProperty",
+            "displayName": "testProperty",
+            "type": [
+              "PropertyType2"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "test"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "StringTypeDeclaration",
   "specification": {
     "displayName": "MyAnnotation",
     "type": [
@@ -18,5 +16,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "StringTypeDeclaration",
   "errors": []
 }
