@@ -31,7 +31,7 @@ export class BasicNodeImpl implements hl.BasicNode{
 
     private static CLASS_IDENTIFIER = "parserCore.BasicNodeImpl";
 
-    public static isInstance(instance : any) : instance is BasicNodeImpl {
+    public static isInstance(instance : any) : boolean {
         if(instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"){
 
@@ -69,8 +69,20 @@ export class BasicNodeImpl implements hl.BasicNode{
         return 'BasicNode';
     }
 
+    /**
+     * Returns all kinds of this node.
+     * @returns {string[]}
+     */
     allKinds():string[] {
         return ["BasicNode"]
+    }
+
+    /**
+     * Returns all of implementation class names of this node.
+     * @returns {string[]}
+     */
+    allWrapperClassNames():string[]{
+        return ["BasicNodeImpl"]
     }
 
     /**
@@ -428,7 +440,7 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 
     private static CLASS_IDENTIFIER = "parserCore.AttributeNodeImpl";
 
-    public static isInstance(instance : any) : instance is AttributeNodeImpl {
+    public static isInstance(instance : any) : boolean {
         if(instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"){
 
@@ -466,8 +478,20 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
         return 'AttributeNode';
     }
 
+    /**
+     * Returns all kinds of this node.
+     * @returns {string[]}
+     */
     allKinds():string[] {
         return ["AttributeNode"]
+    }
+
+    /**
+     * Returns all of implementation class names of this node.
+     * @returns {string[]}
+     */
+    allWrapperClassNames():string[]{
+        return ["AttributeNodeImpl"]
     }
 
     /**
@@ -525,7 +549,7 @@ export class TypeInstanceImpl{
 
     private static CLASS_IDENTIFIER = "parserCore.TypeInstanceImpl";
 
-    public static isInstance(instance : any) : instance is TypeInstanceImpl {
+    public static isInstance(instance : any) : boolean {
         if(instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"){
 
@@ -604,7 +628,7 @@ export class TypeInstancePropertyImpl{
 
     private static CLASS_IDENTIFIER = "parserCore.TypeInstancePropertyImpl";
 
-    public static isInstance(instance : any) : instance is TypeInstancePropertyImpl {
+    public static isInstance(instance : any) : boolean {
         if(instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"){
 
