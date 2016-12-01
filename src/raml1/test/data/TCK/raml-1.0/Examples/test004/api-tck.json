@@ -201,7 +201,9 @@
       }
     },
     "title": "Testing with Jonathan",
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

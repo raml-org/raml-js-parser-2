@@ -180,7 +180,9 @@
     },
     "title": "Example API",
     "version": "v1",
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

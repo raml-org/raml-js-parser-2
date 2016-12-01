@@ -1,7 +1,9 @@
 {
   "specification": {
     "title": "Test Api",
-    "mediaType": "someStringvalue"
+    "mediaType": [
+      "someStringvalue"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

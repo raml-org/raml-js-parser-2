@@ -51,7 +51,9 @@
     "protocols": [
       "HTTP"
     ],
-    "mediaType": "multipart/form-data",
+    "mediaType": [
+      "multipart/form-data"
+    ],
     "__METADATA__": {
       "primitiveValuesMeta": {
         "protocols": {

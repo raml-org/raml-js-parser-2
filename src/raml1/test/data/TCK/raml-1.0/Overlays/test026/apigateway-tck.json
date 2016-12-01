@@ -43,7 +43,9 @@
     "protocols": [
       "HTTPS"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "methods": {

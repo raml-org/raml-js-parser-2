@@ -1,7 +1,9 @@
 {
   "specification": {
     "title": "raml-service",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "methods": {

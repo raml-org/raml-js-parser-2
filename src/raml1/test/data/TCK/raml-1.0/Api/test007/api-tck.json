@@ -29,7 +29,9 @@
       "HTTP",
       "HTTPS"
     ],
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

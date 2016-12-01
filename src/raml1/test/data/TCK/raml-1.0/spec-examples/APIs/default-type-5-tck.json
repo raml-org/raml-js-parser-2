@@ -1,7 +1,9 @@
 {
   "specification": {
     "title": "Default Type 4",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "methods": {

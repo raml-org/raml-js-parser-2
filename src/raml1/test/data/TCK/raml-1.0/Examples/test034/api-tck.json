@@ -120,7 +120,9 @@
       }
     },
     "title": "WebOfMe",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "methods": {

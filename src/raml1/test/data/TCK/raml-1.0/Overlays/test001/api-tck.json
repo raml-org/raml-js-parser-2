@@ -43,7 +43,9 @@
     "protocols": [
       "HTTP"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "securedBy": [
       "x-ttt"
     ],

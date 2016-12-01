@@ -1106,7 +1106,9 @@
     "protocols": [
       "HTTPS"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "securedBy": [
       "oauth_2_0",
       "clientId"

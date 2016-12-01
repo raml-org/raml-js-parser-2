@@ -161,7 +161,9 @@
       }
     },
     "title": "Illustrating annotations",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "annotations": {

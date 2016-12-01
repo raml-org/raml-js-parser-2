@@ -104,7 +104,9 @@
       }
     },
     "title": "Illustrating allowed targets",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "annotations": {

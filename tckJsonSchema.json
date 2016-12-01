@@ -274,17 +274,10 @@
               }
             },
             "mediaType": {
-              "oneOf": [
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                {
-                  "type": "string"
-                }
-              ],
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
               "description": "The default media type to use for request and response bodies (payloads), e.g. \"application/json\""
             },
             "securedBy": {

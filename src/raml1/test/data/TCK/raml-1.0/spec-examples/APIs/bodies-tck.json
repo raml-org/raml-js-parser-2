@@ -68,7 +68,9 @@
       }
     },
     "title": "Example of request bodies",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "methods": {

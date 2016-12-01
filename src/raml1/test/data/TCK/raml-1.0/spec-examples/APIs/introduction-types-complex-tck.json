@@ -310,7 +310,9 @@
       }
     },
     "title": "My API with Types",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "methods": {

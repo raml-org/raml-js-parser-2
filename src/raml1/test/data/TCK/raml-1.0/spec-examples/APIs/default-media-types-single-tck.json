@@ -2,7 +2,9 @@
   "specification": {
     "title": "New API",
     "description": "This RAML illustrates a single value default media type.",
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

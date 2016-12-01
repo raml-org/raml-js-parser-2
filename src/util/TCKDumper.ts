@@ -93,7 +93,7 @@ export class TCKDumper {
         //new ProtocolsToUpperCaseTransformer(),
         //new ResourceTypeMethodsToMapTransformer(),
         //new ReferencesTransformer(),
-        new OneElementArrayTransformer()
+        //new OneElementArrayTransformer()
     ];
     
     nodeTransformersMap:TransformersMap = {};

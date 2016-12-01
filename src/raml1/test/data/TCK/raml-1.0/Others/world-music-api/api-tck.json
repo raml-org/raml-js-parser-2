@@ -603,7 +603,9 @@
       "HTTP",
       "HTTPS"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "securedBy": [
       "custom_scheme"
     ],

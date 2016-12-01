@@ -24,7 +24,9 @@
       }
     },
     "title": "Testing annotations",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "annotations": {
