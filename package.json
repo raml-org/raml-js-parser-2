@@ -16,7 +16,8 @@
     "testall": "dev-env-installer testall",
     "devInstall": "dev-env-installer install",
     "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
-    "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'"
+    "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
+    "validateTCKSchema": "node dist/raml1/test/schemaTCKValidator.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",

@@ -69,6 +69,10 @@
               "authorization_code",
               "implicit",
               "urn:ietf:params:oauth:grant-type:saml2-bearer"
+            ],
+            "scopes": [
+              "USER",
+              "ADMINISTRATOR"
             ]
           }
         }
@@ -89,13 +93,7 @@
             ],
             "securedBy": [
               null,
-              {
-                "oauth_2_0": {
-                  "scopes": [
-                    "ADMINISTRATOR"
-                  ]
-                }
-              }
+              "oauth_2_0"
             ],
             "method": "get",
             "__METADATA__": {

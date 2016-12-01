@@ -2,72 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Gist": {
-          "name": "Gist",
-          "displayName": "Gist",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "Gists": {
-          "name": "Gists",
-          "displayName": "Gists",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "description": "represents a collection",
-          "securedBy": [
-            "oauth_2_0"
-          ],
-          "name": "collection",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      }
-    ],
     "securitySchemes": [
       {
         "oauth_2_0": {
@@ -135,74 +69,96 @@
               "authorization_code",
               "implicit",
               "urn:ietf:params:oauth:grant-type:saml2-bearer"
+            ],
+            "scopes": [
+              "USER",
+              "ADMINISTRATOR"
+            ]
+          }
+        }
+      },
+      {
+        "oauth_1_0": {
+          "name": "oauth_1_0",
+          "type": "OAuth 1.0",
+          "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
+          "settings": {
+            "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
+            "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
+            "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+            "signatures": [
+              "HMAC-SHA1",
+              "PLAINTEXT"
             ]
           }
         }
       }
     ],
-    "title": "GitHub API",
-    "version": "v3",
-    "baseUri": "https://api.github.com",
+    "title": "Dropbox API",
+    "version": "1",
+    "baseUri": "https://api.dropbox.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
     "protocols": [
       "HTTPS"
     ],
-    "mediaType": "application/json",
     "securedBy": [
       "oauth_2_0"
     ],
     "resources": [
       {
+        "methods": [
+          {
+            "protocols": [
+              "HTTPS"
+            ],
+            "securedBy": [
+              "oauth_2_0",
+              "oauth_1_0"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
         "securedBy": [
           "oauth_2_0"
         ],
-        "relativeUri": "/search",
-        "displayName": "/search",
-        "resources": [
-          {
-            "methods": [
-              {
-                "protocols": [
-                  "HTTPS"
-                ],
-                "securedBy": [
-                  "oauth_2_0"
-                ],
-                "method": "get",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "protocols": {
-                      "calculated": true
-                    },
-                    "securedBy": {
-                      "calculated": true
-                    }
-                  }
-                }
-              }
-            ],
-            "type": "collection",
-            "description": "represents a collection",
-            "securedBy": [
-              "oauth_2_0"
-            ],
-            "relativeUri": "/code",
-            "displayName": "/code",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "securedBy": {
-                  "calculated": true
-                },
-                "displayName": {
-                  "calculated": true
-                }
-              }
-            },
-            "relativeUriPathSegments": [
-              "code"
-            ],
-            "absoluteUri": "https://api.github.com/search/code"
-          }
-        ],
+        "relativeUri": "/users",
+        "displayName": "/users",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "securedBy": {
@@ -214,9 +170,9 @@
           }
         },
         "relativeUriPathSegments": [
-          "search"
+          "users"
         ],
-        "absoluteUri": "https://api.github.com/search"
+        "absoluteUri": "https://api.dropbox.com/{version}/users"
       }
     ],
     "__METADATA__": {
