@@ -56,6 +56,7 @@ export class TCKDumper {
             new SchemasTransformer(),
             new ProtocolsToUpperCaseTransformer(),
             new ReferencesTransformer(),
+            new Api10SchemasTransformer()
             //new OneElementArrayTransformer()
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
@@ -1074,6 +1075,38 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
     }
 }
 
+class Api10SchemasTransformer extends MatcherBasedTransformation{
+
+    constructor(){
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,null,true,["RAML10"])
+        ]));
+    }
+
+    transform(value:any,node?:hl.IParseResult){
+
+        if(!value){
+            return value;
+        }
+        if(!value.hasOwnProperty("schemas")){
+            return value;
+        }
+        var schemasValue = value["schemas"];
+        if(!value.hasOwnProperty("types")){
+            value["types"] = schemasValue;
+        }
+        else{
+            var typesValue = value["types"];
+            Object.keys(schemasValue).forEach(x=>{
+                if(!typesValue.hasOwnProperty(x)){
+                    typesValue[x] = schemasValue[x];
+                }
+            });
+        }
+        delete value["schemas"];
+        return value;
+    }
+}
 
 class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformation{
 

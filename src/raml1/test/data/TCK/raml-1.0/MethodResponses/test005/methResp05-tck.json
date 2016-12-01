@@ -1,6 +1,85 @@
 {
   "specification": {
-    "schemas": {
+    "title": "test",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "TestType"
+                    ],
+                    "required": true,
+                    "properties": {
+                      "additionalField": {
+                        "name": "additionalField",
+                        "displayName": "additionalField",
+                        "type": [
+                          "string"
+                        ],
+                        "required": false,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": "{\n  \"username\": \"base\",\n  \"id\": \"any text\"\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "username": "base",
+                          "id": "any text"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test"
+      }
+    ],
+    "types": {
       "account": {
         "name": "account",
         "displayName": "account",
@@ -116,86 +195,7 @@
           }
         ]
       }
-    },
-    "title": "test",
-    "resources": [
-      {
-        "methods": {
-          "post": {
-            "responses": {
-              "201": {
-                "code": "201",
-                "body": {
-                  "application/json": {
-                    "name": "application/json",
-                    "displayName": "application/json",
-                    "type": [
-                      "TestType"
-                    ],
-                    "required": true,
-                    "properties": {
-                      "additionalField": {
-                        "name": "additionalField",
-                        "displayName": "additionalField",
-                        "type": [
-                          "string"
-                        ],
-                        "required": false,
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "examples": [
-                      {
-                        "value": "{\n  \"username\": \"base\",\n  \"id\": \"any text\"\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
-                          "username": "base",
-                          "id": "any text"
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "method": "post"
-          }
-        },
-        "relativeUri": "/test",
-        "displayName": "/test",
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
-        "relativeUriPathSegments": [
-          "test"
-        ],
-        "absoluteUri": "/test"
-      }
-    ]
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

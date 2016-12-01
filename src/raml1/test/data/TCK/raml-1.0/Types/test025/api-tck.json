@@ -1,9 +1,9 @@
 {
   "specification": {
-    "schemas": {
-      "Player2": {
-        "name": "Player2",
-        "displayName": "Player2",
+    "types": {
+      "Player1": {
+        "name": "Player1",
+        "displayName": "Player1",
         "type": [
           "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
         ],
@@ -18,12 +18,10 @@
             }
           }
         }
-      }
-    },
-    "types": {
-      "Player1": {
-        "name": "Player1",
-        "displayName": "Player1",
+      },
+      "Player2": {
+        "name": "Player2",
+        "displayName": "Player2",
         "type": [
           "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
         ],
