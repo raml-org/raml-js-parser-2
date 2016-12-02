@@ -191,7 +191,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
             return this._node;
         }
         try {
-            var result = <yaml.YAMLNode><any>yaml.load(this._content, {});
+            var result = <yaml.YAMLNode><any>yaml.load(this._content, {ignoreDuplicateKeys: true});
             this.errors=result.errors;
             this.errors.forEach(x=>{
                 if ((<any>x).mark) {
@@ -1906,7 +1906,7 @@ export class Project implements lowlevel.IProject{
         //console.log('New content:\n' + newNodeContent);
         //target.show('OLD TARGET');
 
-        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {});
+        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {ignoreDuplicateKeys: true});
 
         //console.log('new yaml: ' + yaml.Kind[newYamlNode.kind]);
         this.updatePositions(target.start(), newYamlNode);
@@ -2002,7 +2002,7 @@ export class Project implements lowlevel.IProject{
                     //we can just reparse new node content;
                     //console.log(newNodeContent)
                     try {
-                        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {});
+                        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {ignoreDuplicateKeys: true});
                         this.updatePositions(target.start(), newYamlNode);
                         //console.log("Positions updated")
                         //lets shift all after it
