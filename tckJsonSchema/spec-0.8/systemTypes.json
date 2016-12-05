@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "TypeInstance08":{
+      "type": "object",
+      "description": "Returns object representation of parametrized properties of the trait",
+      "properties":{
+        "properties":{
+          "type": "array",
+          "description": "Array of instance properties",
+          "items":{
+            "$ref": "#/definitions/TypeInstanceProperty08"
+          }
+        },
+        "isScalar":{
+          "type": "boolean",
+          "description": "Whether the type is scalar"
+        },
+        "value":{
+          "type": ["array", "boolean", "integer", "number", "null","object","string"],
+          "description": "For instances of scalar types returns scalar value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TypeInstanceProperty08":{
+      "type": "object",
+      "properties":{
+        "name":{
+          "type": "string",
+          "description": "Property name"
+        },
+        "value": {"$ref": "#/definitions/TypeInstance08"},
+        "values":{
+          "type": "array",
+          "description": "Array of values if property value is array",
+          "items":{
+            "$ref": "#/definitions/TypeInstance08"
+          }
+        },
+        "isArray":{
+          "type": "boolean",
+          "description": "Whether property has array as value"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

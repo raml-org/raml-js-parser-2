@@ -2,10 +2,19 @@
 import testUtil = require("./test-utils")
 
 var fs = require("fs");
-var ZSchema=require("z-schema");
+var path = require("path");
+var def = require("raml-definition-system");
+var projectClass = require("../jsyaml/jsyaml2lowLevel").Project;
+var ContentProvider = require("../../util/contentprovider").ContentProvider;
 
-var jsonSchemaPath: string = "../../../../tckJsonSchema.json";
-var jsonSchema:string;
+var jsonSchemaFile: string = "./tckJsonSchema.json";
+
+var project = new projectClass(testUtil.projectRoot() + "/tckJsonSchema");
+var unit = project.unit(jsonSchemaFile);
+var provider = new ContentProvider(unit);
+var content = fs.readFileSync(testUtil.projectRoot()+"/tckJsonSchema/"+jsonSchemaFile).toString();
+var schemaUtils = def.getSchemaUtils();
+var jsonSchemaObject = new schemaUtils.JSONSchemaObject(content, provider);
 
 validateDir(testUtil.data("TCK"));
 
@@ -22,19 +31,11 @@ function validateDir(path: string) {
 }
 
 function validateJSON(path: string){
-    var validator = new ZSchema();
-    var content = fs.readFileSync(path).toString();
 
-    if(!jsonSchema) {
-        jsonSchema = fs.readFileSync(testUtil.data(jsonSchemaPath)).toString();
-    }
-
-    var valid = validator.validate(JSON.parse(content), JSON.parse(jsonSchema));
-    var errors = validator.getLastErrors();
-
-    if(!valid) {
-        console.error("errors: " + path + "\n" + JSON.stringify(errors, null, 4));
-    } else {
+    try {
+        jsonSchemaObject.validate(fs.readFileSync(path).toString());
         console.log("ok: " + path);
+    } catch (err){
+        console.error("errors: " + path + "\n" + JSON.stringify(err, null, 4));
     }
 }
