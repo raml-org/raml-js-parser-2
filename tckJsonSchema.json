@@ -973,6 +973,10 @@
             "method": {
               "type": "string",
               "description": "Method that can be called"
+            },
+            "allUriParameters": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/TypeReference10"}
             }
           }
         }
@@ -1078,6 +1082,10 @@
               "patternProperties": {
                 "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
               }
+            },
+            "allUriParameters": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/TypeReference10"}
             },
             "resources": {
               "type": "array",
@@ -2138,6 +2146,10 @@
           },
           "additionalProperties": false
         },
+        "allUriParameters":{
+          "type": "array",
+          "items": {"$ref": "#/definitions/Parameter08"}
+        },
         "methods": {
           "description": "Methods that can be called on this resource",
           "patternProperties": {
@@ -2648,6 +2660,10 @@
               "items":{
                 "$ref": "#/definitions/Reference08"
               }
+            },
+            "allUriParameters":{
+              "type": "array",
+              "items": {"$ref": "#/definitions/Parameter08"}
             },
             "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
           }

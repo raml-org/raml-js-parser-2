@@ -56,7 +56,8 @@ export class TCKDumper {
             new SchemasTransformer(),
             new ProtocolsToUpperCaseTransformer(),
             new ReferencesTransformer(),
-            new Api10SchemasTransformer()
+            new Api10SchemasTransformer(),
+            new AllUriParametersTransformer(this.options.allUriParameters)
             //new OneElementArrayTransformer()
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
@@ -1115,6 +1116,64 @@ class Api10SchemasTransformer extends MatcherBasedTransformation{
     }
 }
 
+class AllUriParametersTransformer extends MatcherBasedTransformation{
+
+    constructor(private enabled:boolean=false){
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name,null,true)
+        ]));
+    }
+
+    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+        return this.enabled ? super.match(node,prop) : false;
+    }
+
+    registrationInfo():Object{
+        return this.enabled ? super.registrationInfo() : null;
+    }
+
+    private static uriParamsPropName
+        = universes.Universe10.ResourceBase.properties.uriParameters.name;
+
+    private static methodsPropName
+        = universes.Universe10.ResourceBase.properties.methods.name;
+
+    private static resourcesPropName
+        = universes.Universe10.Api.properties.resources.name;
+
+    transform(value:any,node?:hl.IParseResult,uriParams?:any){
+
+        var params:any[] = uriParams;
+        var ownParams = value[AllUriParametersTransformer.uriParamsPropName];
+        if(ownParams){
+            params = [].concat(uriParams||[]);
+            Object.keys(ownParams).forEach(x=>{
+                var obj = ownParams[x];
+                if(Array.isArray(obj)){
+                    obj.forEach(y=>params.push(y));
+                }
+                else{
+                    params.push(obj);
+                }
+            });            
+        }
+        if(params){
+            value["allUriParameters"] = params;
+            var methods = value[AllUriParametersTransformer.methodsPropName];
+            if(methods){
+                Object.keys(methods).forEach(x=>
+                    methods[x]["allUriParameters"] = params
+                );
+            }
+        }
+        var resources = value[AllUriParametersTransformer.resourcesPropName];
+        if(resources){
+            resources.forEach(x=>this.transform(x,null,params));
+        }
+        return value;
+    }
+}
+
 class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformation{
 
     constructor(){
@@ -1286,6 +1345,8 @@ export interface SerializeOptions{
     dumpXMLRepresentationOfExamples?:boolean
 
     dumpSchemaContents?:boolean
+
+    allUriParameters?:boolean
 }
 
 export function mergeRegInfos(arr:Object[]):Object{
@@ -1321,6 +1382,9 @@ function fillTransformersMap(tArr:Transformation[], map:TransformersMap){
     for(var t of tArr){
         
         var info = t.registrationInfo();
+        if(!info){
+            continue;
+        }
         for(var uName of Object.keys(info)){
             
             var uObject = info[uName];
