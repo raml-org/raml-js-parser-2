@@ -420,9 +420,9 @@
     "code" : "TEMPLATE_PARAMETER_NAME_MUST_CONTAIN_NONWHITESPACE_CHARACTERS",
     "message" : "Trait or resource type parameter name must contain non whitespace characters"
   },
-  "1103" : {
-    "code" : "1103",
-    "message" : ""
+  "INVALID_SECURITY_SCHEME_SCOPE" : {
+    "code" : "INVALID_SECURITY_SCHEME_SCOPE",
+    "message" : "The '{{invalidScope}}' scope is not allowed for the '{{securityScheme}}' security scheme. Allowed scopes are: {{allowedScopes}}."
   },
   "1104" : {
     "code" : "1104",

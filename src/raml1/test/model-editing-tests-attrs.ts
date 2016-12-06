@@ -25,7 +25,7 @@ import stubs = require("../stubs")
 import mod = require("../../parserMod")
 
 function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IProperty) : string | high.StructuredValue {
-  if (pr.range() instanceof def.ReferenceType){
+  if (def.ReferenceType.isInstance(pr.range())){
     var t=<def.ReferenceType>pr.range();
 
     var mockNode=jsyaml.createNode(name);

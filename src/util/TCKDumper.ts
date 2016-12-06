@@ -14,6 +14,7 @@ import nominals = typeSystem.nominalTypes;
 import universeHelpers = require("../raml1/tools/universeHelpers")
 import universes = require("../raml1/tools/universe")
 import util = require("../util/index")
+import _ = require("underscore");
 
 import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 
@@ -109,14 +110,14 @@ export class TCKDumper {
         return result;
     }
 
-    dumpInternal(node:any, rootNodeDetails:boolean = false):any {
+    dumpInternal(node:any, rootNodeDetails:boolean = false, nodeProperty?:hl.IProperty):any {
 
         if (node == null) {
             return null;
         }
 
 
-        if (node instanceof core.BasicNodeImpl) {
+        if (core.BasicNodeImpl.isInstance(node)) {
 
             var props:{[key:string]:nominals.IProperty} = {};
             var basicNode:coreApi.BasicNode = <coreApi.BasicNode>node;
@@ -156,7 +157,7 @@ export class TCKDumper {
                 }
             }
             this.nodeTransformers.forEach(x=> {
-                if (x.match(node, node.highLevel().property())) {
+                if (x.match(node, nodeProperty||node.highLevel().property())) {
                     obj = x.transform(obj, node);
                 }
             });
@@ -176,7 +177,7 @@ export class TCKDumper {
 
             return result;
         }
-        else if (node instanceof core.AttributeNodeImpl) {
+        else if (core.AttributeNodeImpl.isInstance(node)) {
 
             var props:{[key:string]:nominals.IProperty} = {};
             var attrNode:coreApi.AttributeNode = <coreApi.AttributeNode>node;
@@ -204,10 +205,10 @@ export class TCKDumper {
             this.serializeMeta(obj, attrNode);
             return obj;
         }
-        else if (node instanceof core.TypeInstanceImpl) {
+        else if (core.TypeInstanceImpl.isInstance(node)) {
             return this.serializeTypeInstance(<core.TypeInstanceImpl>node);
         }
-        else if (node instanceof core.TypeInstancePropertyImpl) {
+        else if (core.TypeInstancePropertyImpl.isInstance(node)) {
             return this.serializeTypeInstanceProperty(<core.TypeInstancePropertyImpl>node);
         }
         return node;
@@ -260,7 +261,19 @@ export class TCKDumper {
 
     private dumpProperties(props, node:coreApi.BasicNode|coreApi.AttributeNode):any {
         var obj = {};
+        var definition:hl.ITypeDefinition;
+        if(node.highLevel().isElement()){
+            definition = node.highLevel().definition();
+        }
         Object.keys(props).forEach(propName=> {
+
+            var nodeProperty:hl.IProperty;
+            if(definition) {
+                nodeProperty = definition.property(propName);
+                if(!nodeProperty){
+                    nodeProperty = _.find((<def.NodeClass>definition).allCustomProperties(),x=>x.nameId()==propName);
+                }
+            }
 
             if (!node[propName]) {
                 this.missingProperties.addProperty(props[propName], node.kind());
@@ -279,7 +292,7 @@ export class TCKDumper {
                         var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
                         var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
-                        value = dump(tNode.wrapperNode());
+                        value = this.dumpInternal(tNode.wrapperNode(),false,nodeProperty);
                         propName = x.key();
                     }
                 })
@@ -287,10 +300,10 @@ export class TCKDumper {
 
             if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
                 var schemaString = value[0].trim();
-                
+
                 var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
                 var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
-                
+
                 if(canBeJson || canBeXml) {
                     var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
 
@@ -359,7 +372,7 @@ export class TCKDumper {
 
                     propertyValue.push(dumped);
                 }
-                if (propertyValue.length == 0 && node instanceof core.BasicNodeImpl && !this.isDefined(node, propName)) {
+                if (propertyValue.length == 0 && core.BasicNodeImpl.isInstance(node) && !this.isDefined(node, propName)) {
                     return;
                 }
                 for (var x of this.nodePropertyTransformers) {
@@ -371,10 +384,10 @@ export class TCKDumper {
             }
             else {
                 var val = this.dumpInternal(value);
-                if (val == null && node instanceof core.BasicNodeImpl && !this.isDefined(node, propName)) {
+                if (val == null && core.BasicNodeImpl.isInstance(node) && !this.isDefined(node, propName)) {
                     return;
                 }
-                if (node instanceof core.BasicNodeImpl) {
+                if (core.BasicNodeImpl.isInstance(node)) {
                     this.nodePropertyTransformers.forEach(x=> {
                         if (x.match(node, property)) {
                             val = x.transform(val, node);
@@ -913,7 +926,7 @@ class SimpleNamesTransformer implements Transformation{
         var llNode = node.highLevel().lowLevel();
         var key = llNode.key();
         var original:ll.ILowLevelASTNode = llNode;
-        while(original instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(original)){
             original = (<proxy.LowLevelProxyNode>original).originalNode();
         }
         var oKey = original.key();
@@ -943,7 +956,7 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
             || universeHelpers.isTraitType(d)
             || universeHelpers.isMethodType(d)
             || universeHelpers.isTypeDeclarationSibling(d);
-        
+
     }
 
     transform(value:any){
@@ -1004,7 +1017,7 @@ class ReferencesTransformer implements Transformation{
 class ArrayExpressionTransformer implements Transformation{
 
     match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
-        if(!(node instanceof core.BasicNodeImpl)){
+        if(!(core.BasicNodeImpl.isInstance(node))){
             return false;
         }
         var hlNode = (<coreApi.BasicNode>node).highLevel();
