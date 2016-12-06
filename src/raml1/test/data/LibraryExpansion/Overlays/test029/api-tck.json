@@ -53,7 +53,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "type": {
             "name": "type",
@@ -71,7 +72,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "uri": {
             "name": "uri",
@@ -89,7 +91,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -104,7 +107,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -126,7 +130,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "library.apiLogo": {
         "name": "apiLogo",
@@ -146,7 +151,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "library.specAuthor": {
         "name": "specAuthor",
@@ -166,7 +172,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "library.devPortal": {
         "name": "devPortal",
@@ -186,7 +193,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "library.extraResources": {
         "name": "extraResources",
@@ -206,6 +214,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],

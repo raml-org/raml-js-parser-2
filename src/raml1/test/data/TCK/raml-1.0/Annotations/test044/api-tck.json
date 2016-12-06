@@ -24,7 +24,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "a2": {
         "name": "a2",
@@ -48,7 +49,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "test",
@@ -95,7 +97,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "get"

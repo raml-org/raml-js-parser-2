@@ -31,7 +31,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "type": [
@@ -47,7 +48,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "year": {
         "name": "year",
@@ -68,7 +70,8 @@
         },
         "fixedFacets": {
           "format": "YYYY"
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -88,7 +91,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "writer": {
         "name": "writer",
@@ -106,7 +110,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "A",
@@ -131,7 +136,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "get"

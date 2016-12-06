@@ -34,7 +34,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "age": {
                     "name": "age",
@@ -52,7 +53,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -74,7 +76,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -107,7 +110,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "relativeUri": "/someChildUri/{blah}",

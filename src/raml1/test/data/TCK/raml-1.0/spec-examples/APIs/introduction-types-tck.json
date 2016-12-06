@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "lastname": {
             "name": "lastname",
@@ -43,7 +44,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "age": {
             "name": "age",
@@ -61,7 +63,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -73,7 +76,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API with Types",
@@ -101,7 +105,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -130,7 +135,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "relativeUri": "/users/{id}",

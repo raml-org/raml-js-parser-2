@@ -34,7 +34,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -80,7 +81,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

@@ -23,6 +23,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -44,7 +45,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "additionalProperties": false,
@@ -77,7 +79,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API"

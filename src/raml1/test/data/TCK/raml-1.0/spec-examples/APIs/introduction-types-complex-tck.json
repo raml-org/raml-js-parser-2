@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "Head": {
             "name": "Head",
@@ -43,7 +44,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -55,7 +57,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Person": {
         "name": "Person",
@@ -81,7 +84,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "lastname": {
             "name": "lastname",
@@ -99,7 +103,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "title": {
             "name": "title",
@@ -117,7 +122,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -129,7 +135,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Phone": {
         "name": "Phone",
@@ -148,7 +155,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Manager": {
         "name": "Manager",
@@ -172,6 +180,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -193,7 +202,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -205,7 +215,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Admin": {
         "name": "Admin",
@@ -238,7 +249,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -250,7 +262,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "AlertableAdmin": {
         "name": "AlertableAdmin",
@@ -276,7 +289,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -288,7 +302,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Alertable": {
         "name": "Alertable",
@@ -304,6 +319,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "union"
         ],
@@ -341,7 +357,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -370,7 +387,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "relativeUri": "/orgs/{orgId}",

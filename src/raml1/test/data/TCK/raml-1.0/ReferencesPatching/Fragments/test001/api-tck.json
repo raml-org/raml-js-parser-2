@@ -27,7 +27,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "post"
@@ -58,7 +59,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "post"

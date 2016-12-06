@@ -29,7 +29,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "lib1.lib2.myTrait",
@@ -76,7 +77,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [

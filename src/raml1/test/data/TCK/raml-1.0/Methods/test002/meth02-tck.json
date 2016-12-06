@@ -30,7 +30,8 @@
                 },
                 "type": [
                   "TestSchema"
-                ]
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "post"
@@ -70,7 +71,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       }
     }
   },

@@ -27,7 +27,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "description": "Some requests require authentication.",

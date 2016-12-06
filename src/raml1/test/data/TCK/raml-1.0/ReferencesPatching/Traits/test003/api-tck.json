@@ -35,7 +35,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "tr"
@@ -84,7 +85,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [

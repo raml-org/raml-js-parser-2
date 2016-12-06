@@ -19,7 +19,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "trait1"
@@ -52,7 +53,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "body": {
@@ -84,7 +86,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [

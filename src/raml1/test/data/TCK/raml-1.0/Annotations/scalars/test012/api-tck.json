@@ -28,7 +28,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "discriminator": "prop",
@@ -44,7 +45,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "t2": {
         "name": "t2",
@@ -71,7 +73,8 @@
               "structuredValue": "abcdefg"
             }
           ]
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -96,7 +99,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "testAPI",

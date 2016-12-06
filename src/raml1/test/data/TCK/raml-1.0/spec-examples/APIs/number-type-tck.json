@@ -24,7 +24,8 @@
         },
         "fixedFacets": {
           "format": "int64"
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Number Type"

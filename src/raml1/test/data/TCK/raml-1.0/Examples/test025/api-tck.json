@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "value": {
             "name": "value",
@@ -43,7 +44,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -55,7 +57,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Message": {
         "name": "Message",
@@ -81,7 +84,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "payload": {
             "name": "payload",
@@ -107,7 +111,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "filename": {
                 "name": "filename",
@@ -125,7 +130,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "headers": {
                 "name": "headers",
@@ -141,6 +147,7 @@
                     }
                   }
                 },
+                "mediaType": "application/raml+yaml",
                 "type": [
                   "array"
                 ],
@@ -170,7 +177,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "data": {
                     "name": "data",
@@ -188,7 +196,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -200,7 +209,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "parts": {
                 "name": "parts",
@@ -216,6 +226,7 @@
                     }
                   }
                 },
+                "mediaType": "application/raml+yaml",
                 "type": [
                   "array"
                 ],
@@ -231,7 +242,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "sizeEstimate": {
             "name": "sizeEstimate",
@@ -249,7 +261,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -261,7 +274,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Thread": {
         "name": "Thread",
@@ -287,7 +301,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "historyId": {
             "name": "historyId",
@@ -305,7 +320,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "messages": {
             "name": "messages",
@@ -321,6 +337,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -378,7 +395,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "usage": "Gmail types"

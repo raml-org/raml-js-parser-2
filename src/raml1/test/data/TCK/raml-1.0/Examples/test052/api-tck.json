@@ -75,6 +75,7 @@
                         "name": null
                       }
                     ],
+                    "mediaType": "application/raml+yaml",
                     "type": [
                       "array"
                     ],

@@ -35,7 +35,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       },
       "AnotherEntry": {
         "name": "AnotherEntry",
@@ -54,7 +55,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       },
       "User": {
         "name": "User",
@@ -80,7 +82,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "lastname": {
             "name": "lastname",
@@ -102,7 +105,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -126,7 +130,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "traits": {
@@ -148,7 +153,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -192,7 +198,8 @@
                     },
                     "type": [
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -249,7 +256,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "deprecatedBy": {
             "name": "deprecatedBy",
@@ -267,7 +275,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "comment": {
             "name": "comment",
@@ -283,6 +292,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "union"
             ],
@@ -304,7 +314,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "monitoringInterval": {
         "name": "monitoringInterval",
@@ -330,7 +341,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "ready": {
         "name": "ready",
@@ -352,7 +364,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "info": {
         "name": "info",
@@ -385,7 +398,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -400,7 +414,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "rediractable": {
         "name": "rediractable",
@@ -418,7 +433,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "securitySchemes": {
@@ -459,7 +475,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "headers": {
@@ -480,7 +497,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "responses": [
@@ -527,7 +545,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "responses": [
@@ -569,7 +588,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "version": {
         "name": "version",
@@ -597,7 +617,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [
@@ -638,7 +659,8 @@
                         "insertedAsDefault": true
                       }
                     }
-                  }
+                  },
+                  "mediaType": "application/raml+yaml"
                 },
                 "page-size": {
                   "name": "page-size",
@@ -656,7 +678,8 @@
                         "insertedAsDefault": true
                       }
                     }
-                  }
+                  },
+                  "mediaType": "application/raml+yaml"
                 }
               },
               "__METADATA__": {
@@ -671,7 +694,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             "protocols": [
               "HTTP"
@@ -709,7 +733,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -776,7 +801,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/json"
                   }
                 }
               }
@@ -823,7 +849,8 @@
                     },
                     "type": [
                       "Entry"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }
@@ -907,7 +934,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "access_token": {
                 "name": "access_token",
@@ -925,7 +953,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -962,7 +991,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -1029,7 +1059,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "application/xml": {
                         "name": "application/xml",
@@ -1054,7 +1085,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/xml"
                       }
                     }
                   }
@@ -1102,7 +1134,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "relativeUri": "/{songId}",

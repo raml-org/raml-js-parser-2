@@ -34,7 +34,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "rootLibProperty": {
                         "name": "rootLibProperty",
@@ -52,7 +53,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "additionalProperties": false,
@@ -68,7 +70,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 ],
                 "required": true,
@@ -95,7 +98,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "post"

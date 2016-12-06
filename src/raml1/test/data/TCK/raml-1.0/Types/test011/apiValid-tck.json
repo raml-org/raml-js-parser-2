@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -37,7 +38,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "ArrayType": {
         "name": "ArrayType",
@@ -53,6 +55,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],
@@ -82,7 +85,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -106,7 +110,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API"

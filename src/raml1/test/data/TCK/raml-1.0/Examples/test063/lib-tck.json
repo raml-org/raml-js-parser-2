@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "p2": {
             "name": "p2",
@@ -43,7 +44,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -58,7 +60,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Customer API",
@@ -97,7 +100,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "post"

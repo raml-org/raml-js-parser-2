@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "minProperties": 5,
@@ -46,7 +47,8 @@
               "structuredValue": "abcdefg"
             }
           ]
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -71,7 +73,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "testAPI",

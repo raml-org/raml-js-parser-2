@@ -31,7 +31,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           }
         }
@@ -116,7 +117,8 @@
                 },
                 "fixedFacets": {
                   "format": "double"
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "longitude": {
                 "name": "longitude",
@@ -136,7 +138,8 @@
                 },
                 "fixedFacets": {
                   "format": "double"
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [

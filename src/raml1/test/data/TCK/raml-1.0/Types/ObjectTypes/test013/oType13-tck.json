@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -37,7 +38,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Resource": {
         "name": "Resource",
@@ -63,7 +65,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -89,7 +92,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "My API With Types"

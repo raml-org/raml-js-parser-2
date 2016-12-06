@@ -22,7 +22,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "initial_comments": {
             "name": "initial_comments",
@@ -40,7 +41,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "user": {
             "name": "user",
@@ -58,7 +60,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "time_stamp": {
             "name": "time_stamp",
@@ -76,7 +79,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "created": {
             "name": "created",
@@ -94,7 +98,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "minProperties": 2,
@@ -119,7 +124,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "My API With Types"

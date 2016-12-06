@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -49,7 +50,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "WebOfMe",
@@ -88,7 +90,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "__METADATA__": {
@@ -110,7 +113,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

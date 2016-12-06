@@ -36,7 +36,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "mediaType": {
         "name": "mediaType",
@@ -58,7 +59,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [

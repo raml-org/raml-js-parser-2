@@ -38,7 +38,8 @@
                   "strict": true,
                   "name": null
                 }
-              ]
+              ],
+              "mediaType": "application/raml+yaml"
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -49,7 +50,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "chargeable"
@@ -84,7 +86,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "traceable"
@@ -131,7 +134,8 @@
                       "strict": true,
                       "name": null
                     }
-                  ]
+                  ],
+                  "mediaType": "application/raml+yaml"
                 },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -152,7 +156,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               },
               "X-Tracker": {
                 "name": "X-Tracker",
@@ -182,7 +187,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "is": [

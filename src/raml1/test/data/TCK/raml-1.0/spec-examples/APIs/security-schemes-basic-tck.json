@@ -37,7 +37,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [

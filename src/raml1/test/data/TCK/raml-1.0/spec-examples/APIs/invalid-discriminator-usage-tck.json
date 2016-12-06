@@ -20,7 +20,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Dog": {
         "name": "Dog",
@@ -41,7 +42,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "PersonOrDog": {
         "name": "PersonOrDog",
@@ -57,6 +59,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "union"
         ],
@@ -100,7 +103,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "discriminator": "kind",
@@ -116,7 +120,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

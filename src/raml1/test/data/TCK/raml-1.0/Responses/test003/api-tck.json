@@ -28,7 +28,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "application/vnd.xara": {
                     "name": "application/vnd.xara",
@@ -49,7 +50,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "audio/EVRCB": {
                     "name": "audio/EVRCB",
@@ -70,7 +72,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "audio/vnd.dts": {
                     "name": "audio/vnd.dts",
@@ -91,7 +94,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "image/tiff": {
                     "name": "image/tiff",
@@ -112,7 +116,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "message/global": {
                     "name": "message/global",
@@ -133,7 +138,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "model/vnd.moml+xml": {
                     "name": "model/vnd.moml+xml",
@@ -154,7 +160,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "multipart/voice-message": {
                     "name": "multipart/voice-message",
@@ -175,7 +182,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "text/turtle": {
                     "name": "text/turtle",
@@ -196,7 +204,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "video/JPEG": {
                     "name": "video/JPEG",
@@ -217,7 +226,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "mime/type": {
                     "name": "mime/type",
@@ -238,7 +248,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

@@ -20,7 +20,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Gists": {
         "name": "Gists",
@@ -41,7 +42,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "resourceTypes": {
@@ -84,7 +86,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "headers": {
@@ -105,7 +108,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "responses": [

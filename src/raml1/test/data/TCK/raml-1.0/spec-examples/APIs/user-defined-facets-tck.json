@@ -21,7 +21,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "noHolidays": {
             "name": "noHolidays",
@@ -39,7 +40,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "type": [
@@ -55,7 +57,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "PossibleMeetingDate": {
         "name": "PossibleMeetingDate",
@@ -76,7 +79,8 @@
         },
         "fixedFacets": {
           "noHolidays": true
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API with Types"

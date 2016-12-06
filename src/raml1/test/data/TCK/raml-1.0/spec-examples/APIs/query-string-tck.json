@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "long": {
             "name": "long",
@@ -43,7 +44,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -58,7 +60,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "loc": {
         "name": "loc",
@@ -87,7 +90,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -102,7 +106,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "paging": {
         "name": "paging",
@@ -128,7 +133,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "page-size": {
             "name": "page-size",
@@ -146,7 +152,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -161,7 +168,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Illustrate query parameter variations",
@@ -181,7 +189,8 @@
                   "oneOf": [
                     "lat-long",
                     "loc"
-                  ]
+                  ],
+                  "mediaType": "text/plain"
                 }
               ],
               "examples": [
@@ -222,7 +231,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             "method": "get"
           }

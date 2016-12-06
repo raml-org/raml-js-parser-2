@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -40,7 +41,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "nt1": {
         "name": "nt1",
@@ -68,6 +70,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "union"
         ],
@@ -99,6 +102,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "union"
         ],

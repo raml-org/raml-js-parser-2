@@ -36,7 +36,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -62,7 +63,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "objectAnnotation": {
         "name": "objectAnnotation",
@@ -99,7 +101,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "field2": {
                 "name": "field2",
@@ -117,7 +120,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -132,7 +136,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "property2": {
             "name": "property2",
@@ -153,7 +158,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -168,7 +174,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "TCK Sample. RAML 1.0 Annotations 001.",
@@ -201,7 +208,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [

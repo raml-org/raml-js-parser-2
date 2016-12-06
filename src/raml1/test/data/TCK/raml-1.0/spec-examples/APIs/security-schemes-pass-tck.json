@@ -23,7 +23,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "headers": {
@@ -43,7 +44,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           }
         }
@@ -79,7 +81,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [

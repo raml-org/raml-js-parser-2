@@ -17,7 +17,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Persons": {
         "name": "Persons",
@@ -33,6 +34,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],
@@ -43,7 +45,8 @@
           "oneOf": [
             "Person",
             "string"
-          ]
+          ],
+          "mediaType": "text/plain"
         }
       }
     },

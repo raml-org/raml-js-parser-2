@@ -27,7 +27,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "description": "Some requests require authentication.",
@@ -57,7 +58,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "description": "Some responses require paging.",
@@ -87,7 +89,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "description": "Some requests require rate limiting.",
@@ -126,7 +129,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 ]
               }
@@ -179,7 +183,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               },
               "limit": {
                 "name": "limit",
@@ -202,7 +207,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               },
               "access_token": {
                 "name": "access_token",
@@ -228,7 +234,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "is": [
@@ -264,7 +271,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "responses": {
@@ -290,7 +298,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 ]
               }

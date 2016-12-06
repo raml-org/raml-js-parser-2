@@ -32,7 +32,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             }
           },
@@ -53,6 +54,7 @@
                     }
                   }
                 },
+                "mediaType": "application/raml+yaml",
                 "type": [
                   "union"
                 ],
@@ -123,7 +125,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -144,6 +147,7 @@
                             }
                           }
                         },
+                        "mediaType": "application/raml+yaml",
                         "type": [
                           "union"
                         ],

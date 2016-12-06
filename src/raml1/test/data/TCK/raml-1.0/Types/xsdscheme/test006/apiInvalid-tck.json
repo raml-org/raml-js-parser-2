@@ -24,7 +24,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/xml"
       }
     },
     "title": "Blah"

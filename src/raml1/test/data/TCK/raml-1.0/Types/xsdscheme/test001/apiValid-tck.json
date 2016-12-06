@@ -29,7 +29,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/xml"
               }
             },
             "method": "get"

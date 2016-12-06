@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "items": {
             "name": "items",
@@ -41,6 +42,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -56,7 +58,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "VV": {
         "name": "VV",
@@ -82,7 +85,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "b": {
             "name": "b",
@@ -103,7 +107,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "c1": {
             "name": "c1",
@@ -124,7 +129,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -136,7 +142,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -164,7 +171,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -179,7 +187,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "WebOfMe",
@@ -231,7 +240,8 @@
                     ],
                     "type": [
                       "MM"
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

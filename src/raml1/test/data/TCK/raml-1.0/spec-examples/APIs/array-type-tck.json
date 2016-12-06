@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "body": {
             "name": "body",
@@ -43,7 +44,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -55,7 +57,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Emails": {
         "name": "Emails",
@@ -89,6 +92,7 @@
             "name": null
           }
         ],
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],

@@ -23,6 +23,7 @@ import expressionParser = def.rt.typeExpressions;
 import referencePatcher = require("../raml1/ast.core/referencePatcher");
 
 var pathUtils = require("path");
+const RAML_MEDIATYPE = "application/raml+yaml";
 
 export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMeta:boolean = true):any{
     return new TCKDumper({
@@ -928,21 +929,23 @@ class TypeTransformer extends BasicTransformation{
                 this.refineTypeValue(value.items);
             }
             value.type = [ "array" ];
+            value.mediaType = RAML_MEDIATYPE;
         }
         else {
-            var isExternal = false;
+            var externalType = null;
             if(node) {
-                isExternal = node.localType().isExternal();
-                if (!isExternal) {
+                externalType = node.localType().isExternal() ? node.localType(): null;
+                if (!externalType) {
                     for (var st of node.localType().allSuperTypes()) {
-                        isExternal = st.isExternal();
-                        if (isExternal) {
-                            break;
+                        if (st.isExternal()) {
+                            externalType = st;
                         }
                     }
                 }
             }
-            if(!isExternal) {
+            if(!externalType) {
+
+                value.mediaType = RAML_MEDIATYPE;
                 var gotExp = false;
                 var parsedType = value.type.map(x=> {
                     if(!x){
@@ -960,10 +963,20 @@ class TypeTransformer extends BasicTransformation{
 
                     var singleType = parsedType[0];
                     delete value.type;
-                    Object.keys(singleType).forEach(k=>value[k] = singleType[k]);
+                    Object.keys(singleType).filter(x=>x!="mediaType")
+                        .forEach(k=>value[k] = singleType[k]);
                 }
                 else {
                     value.type = parsedType;
+                }
+            }
+            else{
+                var sch = externalType.external().schema().trim();
+                if(util.stringStartsWith(sch,"<")){
+                    value.mediaType = "application/xml";
+                }
+                else{
+                    value.mediaType = "application/json";
                 }
             }
         }
@@ -1059,7 +1072,8 @@ class TypeTransformer extends BasicTransformation{
             }
             return {
                 type: [ "union" ],
-                oneOf: components
+                oneOf: components,
+                mediaType : "text/plain"
             }
         }
         else if (node.type=="parens"){
@@ -1074,7 +1088,8 @@ class TypeTransformer extends BasicTransformation{
                 var name = lit.value.substring(0,lit.value.length-1);
                 result = {
                     type : [ "union" ],
-                    oneOf : [ name, "nil" ]
+                    oneOf : [ name, "nil" ],
+                    mediaType : "text/plain"
                 };
             }
             else {
@@ -1086,9 +1101,10 @@ class TypeTransformer extends BasicTransformation{
 
     private wrapArray(a:number, result:any):any {
         while (a-- > 0) {
-            result = {
+            result = {                
                 type: [ "array" ],
-                items: result
+                items: result,
+                mediaType : "text/plain"
             };
         }
         return result;

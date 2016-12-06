@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -40,7 +41,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "RTType2": {
         "name": "RTType2",
@@ -66,7 +68,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -81,7 +84,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Type1": {
         "name": "Type1",
@@ -107,7 +111,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -122,7 +127,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "Type2": {
         "name": "Type2",
@@ -148,7 +154,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -163,7 +170,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "traits": {
@@ -185,7 +193,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "RTTrait"
@@ -219,7 +228,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "traitProperty2": {
                     "name": "traitProperty2",
@@ -237,7 +247,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "traitProperty1_3": {
                     "name": "traitProperty1_3",
@@ -255,7 +266,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -270,7 +282,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             }
           }
@@ -306,7 +319,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "traitProperty2": {
                     "name": "traitProperty2",
@@ -324,7 +338,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "traitProperty2_3": {
                     "name": "traitProperty2_3",
@@ -342,7 +357,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -357,7 +373,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             }
           }
@@ -430,7 +447,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "traitProperty2": {
                         "name": "traitProperty2",
@@ -448,7 +466,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "traitProperty2_3": {
                         "name": "traitProperty2_3",
@@ -466,7 +485,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "traitProperty1_3": {
                         "name": "traitProperty1_3",
@@ -484,7 +504,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "__METADATA__": {
@@ -499,7 +520,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -530,7 +552,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "is": [
@@ -571,7 +594,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "traitProperty2": {
                         "name": "traitProperty2",
@@ -589,7 +613,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "traitProperty2_3": {
                         "name": "traitProperty2_3",
@@ -607,7 +632,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "traitProperty1_3": {
                         "name": "traitProperty1_3",
@@ -625,7 +651,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "__METADATA__": {
@@ -652,7 +679,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

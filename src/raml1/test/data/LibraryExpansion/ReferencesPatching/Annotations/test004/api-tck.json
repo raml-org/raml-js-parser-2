@@ -91,7 +91,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "lib.Monkey": {
         "name": "Monkey",
@@ -109,7 +110,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "lib.lib.Monkey": {
         "name": "Monkey",
@@ -127,7 +129,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Test API",

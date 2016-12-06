@@ -24,7 +24,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "lunchtime": {
         "name": "lunchtime",
@@ -49,7 +50,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "fireworks": {
         "name": "fireworks",
@@ -74,7 +76,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "created": {
         "name": "created",
@@ -103,7 +106,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "If-Modified-Since": {
         "name": "If-Modified-Since",
@@ -132,7 +136,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Date Types"

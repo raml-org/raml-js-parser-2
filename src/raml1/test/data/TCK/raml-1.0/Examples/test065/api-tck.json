@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -56,7 +57,8 @@
             "strict": true,
             "name": "ex2"
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "t2": {
         "name": "t2",
@@ -93,7 +95,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -108,7 +111,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "traits": {

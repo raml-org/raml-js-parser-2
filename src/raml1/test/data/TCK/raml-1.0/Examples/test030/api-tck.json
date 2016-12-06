@@ -23,7 +23,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-lambda": {
         "name": "amazon-apigateway-integration-lambda",
@@ -55,7 +56,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -70,7 +72,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-HTTP": {
         "name": "amazon-apigateway-integration-HTTP",
@@ -102,7 +105,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -117,7 +121,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-mock": {
         "name": "amazon-apigateway-integration-mock",
@@ -149,7 +154,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -164,7 +170,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-aws": {
         "name": "amazon-apigateway-integration-aws",
@@ -196,7 +203,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -211,7 +219,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration": {
         "name": "amazon-apigateway-integration",
@@ -227,6 +236,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "union"
         ],
@@ -263,7 +273,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -278,7 +289,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration": {
         "name": "amazon-apigateway-integration",
@@ -304,7 +316,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -319,7 +332,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "securitySchemes": {
@@ -347,7 +361,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           }
         }

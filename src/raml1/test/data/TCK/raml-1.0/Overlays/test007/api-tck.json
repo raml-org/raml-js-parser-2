@@ -19,7 +19,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       }
     }
   },

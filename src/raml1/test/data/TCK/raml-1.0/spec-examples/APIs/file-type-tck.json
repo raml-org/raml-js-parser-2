@@ -29,7 +29,8 @@
             "image/png"
           ],
           "maxLength": 307200
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "customFile": {
         "name": "customFile",
@@ -57,7 +58,8 @@
             "*/*"
           ],
           "maxLength": 1048576
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "File Type"

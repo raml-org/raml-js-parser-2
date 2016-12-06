@@ -21,7 +21,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "prop2": {
         "name": "prop2",
@@ -39,7 +40,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "uses": [
@@ -57,7 +59,8 @@
           "insertedAsDefault": true
         }
       }
-    }
+    },
+    "mediaType": "application/raml+yaml"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

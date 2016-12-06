@@ -28,7 +28,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -66,7 +67,8 @@
             "displayName": "myExample",
             "description": "example of ObjectType3"
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -86,7 +88,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "ObjectAnnotation": {
         "name": "ObjectAnnotation",
@@ -104,7 +107,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Example API test 04"

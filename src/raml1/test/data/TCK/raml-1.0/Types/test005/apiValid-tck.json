@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -37,7 +38,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "AnotherType": {
         "name": "AnotherType",
@@ -63,7 +65,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "additionalProperties": false,
@@ -76,7 +79,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "ComplexTypeWithArrayProperty": {
         "name": "ComplexTypeWithArrayProperty",
@@ -100,6 +104,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -136,7 +141,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API"

@@ -24,7 +24,8 @@
         },
         "fixedFacets": {
           "format": "int8"
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Integer Type"

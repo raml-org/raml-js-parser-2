@@ -24,7 +24,8 @@
 								"insertedAsDefault": true
 							}
 						}
-					}
+					},
+					"mediaType": "application/raml+yaml"
 				}
 			},
 			"__METADATA__": {
@@ -36,7 +37,8 @@
 						"insertedAsDefault": true
 					}
 				}
-			}
+			},
+			"mediaType": "application/raml+yaml"
 		}
 	},
 	"title": "Test",
@@ -73,7 +75,8 @@
 											"strict": true,
 											"name": null
 										}
-									]
+									],
+									"mediaType": "application/raml+yaml"
 								}
 							}
 						}

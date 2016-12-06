@@ -18,7 +18,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       }
     },
     "title": "External Types"

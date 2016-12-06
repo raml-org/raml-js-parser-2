@@ -26,7 +26,8 @@
               "structuredValue": "abcdefghijkl"
             }
           ]
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -51,7 +52,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "testAPI",

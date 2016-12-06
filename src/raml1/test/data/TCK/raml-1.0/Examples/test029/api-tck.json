@@ -32,7 +32,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-status": {
         "name": "amazon-apigateway-status",
@@ -54,7 +55,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-templates": {
         "name": "amazon-apigateway-templates",
@@ -83,7 +85,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -98,7 +101,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-auth-type": {
         "name": "amazon-apigateway-auth-type",
@@ -122,7 +126,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-lambda": {
         "name": "amazon-apigateway-integration-lambda",
@@ -154,7 +159,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -169,7 +175,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-HTTP": {
         "name": "amazon-apigateway-integration-HTTP",
@@ -201,7 +208,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -216,7 +224,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-mock": {
         "name": "amazon-apigateway-integration-mock",
@@ -248,7 +257,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -263,7 +273,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "amazon-apigateway-integration-aws": {
         "name": "amazon-apigateway-integration-aws",
@@ -295,7 +306,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "uri": {
             "name": "uri",
@@ -316,7 +328,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "httpMethod": {
             "name": "httpMethod",
@@ -334,7 +347,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "credentials": {
             "name": "credentials",
@@ -355,7 +369,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "requestTemplates": {
             "name": "requestTemplates",
@@ -373,7 +388,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "requestParameters": {
             "name": "requestParameters",
@@ -391,7 +407,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "cacheNamespace": {
             "name": "cacheNamespace",
@@ -412,7 +429,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "cacheKeyParameters": {
             "name": "cacheKeyParameters",
@@ -428,6 +446,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -465,7 +484,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "responseParameters": {
                     "name": "responseParameters",
@@ -483,7 +503,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "responseTemplates": {
                     "name": "responseTemplates",
@@ -501,7 +522,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -516,7 +538,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -531,7 +554,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -590,7 +614,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API Gateway Test API",

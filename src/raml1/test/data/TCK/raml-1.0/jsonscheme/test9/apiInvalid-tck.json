@@ -18,7 +18,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       }
     },
     "title": "Api",
@@ -58,7 +59,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "get"

@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -40,7 +41,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "hello",
@@ -88,7 +90,8 @@
                         },
                         "fixedFacets": {
                           "format": "int"
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "key": {
                         "name": "key",
@@ -114,7 +117,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         },
                         "__METADATA__": {
@@ -135,7 +139,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "__METADATA__": {
@@ -147,7 +152,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "application/xml": {
                     "name": "application/xml",
@@ -165,7 +171,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

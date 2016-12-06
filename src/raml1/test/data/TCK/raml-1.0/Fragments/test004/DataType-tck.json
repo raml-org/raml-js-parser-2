@@ -21,7 +21,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "second": {
         "name": "second",
@@ -39,7 +40,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "__METADATA__": {
@@ -51,7 +53,8 @@
           "insertedAsDefault": true
         }
       }
-    }
+    },
+    "mediaType": "application/raml+yaml"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

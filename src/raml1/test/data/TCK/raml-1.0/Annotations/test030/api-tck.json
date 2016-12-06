@@ -47,7 +47,8 @@
                     "calculated": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "__METADATA__": {
@@ -62,7 +63,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "mediaType": "application/raml+yaml"
         },
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -73,7 +75,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -113,7 +116,8 @@
                     "calculated": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             "input": {
               "name": "input",
@@ -134,7 +138,8 @@
                     "calculated": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             "output": {
               "name": "output",
@@ -155,7 +160,8 @@
                     "calculated": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "__METADATA__": {
@@ -170,7 +176,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "mediaType": "application/raml+yaml"
         },
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -178,7 +185,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Test API"

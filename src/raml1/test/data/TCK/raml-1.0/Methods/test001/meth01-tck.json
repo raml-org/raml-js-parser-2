@@ -28,7 +28,8 @@
                     },
                     "type": [
                       "TestSchema"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }
@@ -70,7 +71,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       }
     }
   },

@@ -20,7 +20,8 @@
         },
         "type": [
           null
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Types / Schema mutual exclusive",
@@ -52,7 +53,8 @@
                     },
                     "type": [
                       null
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

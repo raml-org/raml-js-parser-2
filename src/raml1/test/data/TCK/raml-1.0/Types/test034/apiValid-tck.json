@@ -20,7 +20,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_11": {
         "name": "StringType_11",
@@ -48,7 +49,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_12": {
         "name": "StringType_12",
@@ -76,7 +78,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_20": {
         "name": "StringType_20",
@@ -94,7 +97,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_21": {
         "name": "StringType_21",
@@ -119,7 +123,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_30": {
         "name": "StringType_30",
@@ -140,7 +145,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_31": {
         "name": "StringType_31",
@@ -168,7 +174,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_40": {
         "name": "StringType_40",
@@ -186,7 +193,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_41": {
         "name": "StringType_41",
@@ -211,7 +219,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_50": {
         "name": "StringType_50",
@@ -229,7 +238,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_51": {
         "name": "StringType_51",
@@ -254,7 +264,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_60": {
         "name": "StringType_60",
@@ -275,7 +286,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_61": {
         "name": "StringType_61",
@@ -303,7 +315,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "StringType_70": {
         "name": "StringType_70",
@@ -324,7 +337,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "StringType_71": {
         "name": "StringType_71",
@@ -352,7 +366,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "TypeWithStringProperties": {
         "name": "TypeWithStringProperties",
@@ -422,7 +437,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_11": {
             "name": "strProp_11",
@@ -440,7 +456,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_12": {
             "name": "strProp_12",
@@ -458,7 +475,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_20": {
             "name": "strProp_20",
@@ -476,7 +494,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_21": {
             "name": "strProp_21",
@@ -494,7 +513,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_30": {
             "name": "strProp_30",
@@ -512,7 +532,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_31": {
             "name": "strProp_31",
@@ -530,7 +551,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_40": {
             "name": "strProp_40",
@@ -548,7 +570,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_41": {
             "name": "strProp_41",
@@ -566,7 +589,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_50": {
             "name": "strProp_50",
@@ -584,7 +608,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_51": {
             "name": "strProp_51",
@@ -602,7 +627,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_60": {
             "name": "strProp_60",
@@ -620,7 +646,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_61": {
             "name": "strProp_61",
@@ -638,7 +665,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_70": {
             "name": "strProp_70",
@@ -656,7 +684,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "strProp_71": {
             "name": "strProp_71",
@@ -674,7 +703,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -689,7 +719,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API"

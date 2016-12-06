@@ -27,7 +27,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "description": "Some requests require authentication.",
@@ -57,7 +58,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "description": "Some requests require rate limiting.",
@@ -96,7 +98,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 ]
               }

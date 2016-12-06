@@ -21,7 +21,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "traits": {
@@ -51,6 +52,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -90,6 +92,7 @@
                     }
                   }
                 },
+                "mediaType": "application/raml+yaml",
                 "type": [
                   "array"
                 ],

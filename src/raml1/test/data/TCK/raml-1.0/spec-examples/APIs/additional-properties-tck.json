@@ -22,7 +22,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "age": {
             "name": "age",
@@ -37,7 +38,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "//": {
             "name": "//",
@@ -55,7 +57,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -70,7 +73,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "My API With Types",

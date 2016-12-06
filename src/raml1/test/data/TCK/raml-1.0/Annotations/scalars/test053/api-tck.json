@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -58,7 +59,8 @@
             },
             "displayName": "myExample"
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -83,7 +85,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "testAPI",

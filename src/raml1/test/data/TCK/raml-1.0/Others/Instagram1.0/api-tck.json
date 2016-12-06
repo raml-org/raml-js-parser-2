@@ -36,7 +36,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -71,7 +72,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "lng": {
             "name": "lng",
@@ -90,7 +92,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "distance": {
             "name": "distance",
@@ -111,7 +114,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -153,7 +157,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -188,7 +193,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "min_timestamp": {
             "name": "min_timestamp",
@@ -207,7 +213,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -242,7 +249,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "max_id": {
             "name": "max_id",
@@ -261,7 +269,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -333,7 +342,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -492,7 +502,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -561,6 +572,7 @@
                         "name": null
                       }
                     ],
+                    "mediaType": "application/raml+yaml",
                     "type": [
                       "union"
                     ],
@@ -617,6 +629,7 @@
                         "name": null
                       }
                     ],
+                    "mediaType": "application/raml+yaml",
                     "type": [
                       "union"
                     ],
@@ -952,7 +965,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -1013,7 +1027,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           }
         },
@@ -1064,7 +1079,8 @@
                   "strict": true,
                   "name": null
                 }
-              ]
+              ],
+              "mediaType": "application/raml+yaml"
             }
           }
         }
@@ -1100,7 +1116,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [
@@ -1150,7 +1167,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -1179,7 +1197,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -1202,7 +1221,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -1262,7 +1282,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "relativeUri": "/{mediaId}",
@@ -1296,7 +1317,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -1325,7 +1347,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -1348,7 +1371,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -1417,6 +1441,7 @@
                                 "name": null
                               }
                             ],
+                            "mediaType": "application/raml+yaml",
                             "type": [
                               "union"
                             ],
@@ -1458,7 +1483,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         },
                         "__METADATA__": {
@@ -1473,7 +1499,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "protocols": [
@@ -1552,6 +1579,7 @@
                                     "name": null
                                   }
                                 ],
+                                "mediaType": "application/raml+yaml",
                                 "type": [
                                   "union"
                                 ],
@@ -1623,7 +1651,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "relativeUri": "/{commentId}",
@@ -1685,7 +1714,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -1714,7 +1744,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -1737,7 +1768,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -1806,6 +1838,7 @@
                                 "name": null
                               }
                             ],
+                            "mediaType": "application/raml+yaml",
                             "type": [
                               "union"
                             ],
@@ -1878,6 +1911,7 @@
                                 "name": null
                               }
                             ],
+                            "mediaType": "application/raml+yaml",
                             "type": [
                               "union"
                             ],
@@ -1989,7 +2023,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "min_timestamp": {
                     "name": "min_timestamp",
@@ -2008,7 +2043,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "lat": {
                     "name": "lat",
@@ -2027,7 +2063,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "lng": {
                     "name": "lng",
@@ -2046,7 +2083,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "distance": {
                     "name": "distance",
@@ -2067,7 +2105,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "count": {
                     "name": "count",
@@ -2093,7 +2132,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -2122,7 +2162,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -2245,7 +2286,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -2333,7 +2375,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -2362,7 +2405,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -2485,7 +2529,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -2597,7 +2642,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -2626,7 +2672,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -2649,7 +2696,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -2709,7 +2757,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "relativeUri": "/{tagName}",
@@ -2736,7 +2785,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "max_id": {
                         "name": "max_id",
@@ -2755,7 +2805,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "count": {
                         "name": "count",
@@ -2781,7 +2832,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -2810,7 +2862,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -2833,7 +2886,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -2939,7 +2993,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "count": {
                     "name": "count",
@@ -2965,7 +3020,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -2994,7 +3050,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -3017,7 +3074,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -3129,7 +3187,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -3158,7 +3217,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -3181,7 +3241,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -3241,7 +3302,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "relativeUri": "/{userId}",
@@ -3275,7 +3337,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -3304,7 +3367,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -3358,7 +3422,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -3451,7 +3516,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -3480,7 +3546,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -3534,7 +3601,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -3620,7 +3688,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "max_id": {
                         "name": "max_id",
@@ -3639,7 +3708,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "max_timestamp": {
                         "name": "max_timestamp",
@@ -3658,7 +3728,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "min_timestamp": {
                         "name": "min_timestamp",
@@ -3677,7 +3748,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "count": {
                         "name": "count",
@@ -3703,7 +3775,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -3732,7 +3805,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -3946,7 +4020,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -4035,7 +4110,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -4064,7 +4140,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -4087,7 +4164,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -4158,7 +4236,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -4204,7 +4283,8 @@
                                   "insertedAsDefault": true
                                 }
                               }
-                            }
+                            },
+                            "mediaType": "application/raml+yaml"
                           }
                         },
                         "__METADATA__": {
@@ -4219,7 +4299,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "protocols": [
@@ -4321,7 +4402,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "count": {
                     "name": "count",
@@ -4347,7 +4429,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -4376,7 +4459,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -4430,7 +4514,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -4523,7 +4608,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -4552,7 +4638,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -4575,7 +4662,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -4652,7 +4740,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "max_id": {
                         "name": "max_id",
@@ -4671,7 +4760,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "count": {
                         "name": "count",
@@ -4697,7 +4787,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -4726,7 +4817,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -4940,7 +5032,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -5027,7 +5120,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -5056,7 +5150,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -5110,7 +5205,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -5203,7 +5299,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "count": {
                         "name": "count",
@@ -5229,7 +5326,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -5258,7 +5356,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -5472,7 +5571,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -5600,7 +5700,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -5629,7 +5730,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -5652,7 +5754,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -5708,7 +5811,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "relativeUri": "/{locId}",
@@ -5735,7 +5839,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "max_id": {
                         "name": "max_id",
@@ -5754,7 +5859,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "max_timestamp": {
                         "name": "max_timestamp",
@@ -5773,7 +5879,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "min_timestamp": {
                         "name": "min_timestamp",
@@ -5792,7 +5899,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "count": {
                         "name": "count",
@@ -5818,7 +5926,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       },
                       "callback": {
                         "name": "callback",
@@ -5847,7 +5956,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "responses": {
@@ -6061,7 +6171,8 @@
                                 "strict": true,
                                 "name": null
                               }
-                            ]
+                            ],
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -6164,7 +6275,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "foursquare_id": {
                     "name": "foursquare_id",
@@ -6186,7 +6298,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "lat": {
                     "name": "lat",
@@ -6205,7 +6318,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "lng": {
                     "name": "lng",
@@ -6224,7 +6338,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "distance": {
                     "name": "distance",
@@ -6245,7 +6360,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "count": {
                     "name": "count",
@@ -6271,7 +6387,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback": {
                     "name": "callback",
@@ -6300,7 +6417,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "responses": {
@@ -6323,7 +6441,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   },
@@ -6428,7 +6547,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               },
               "count": {
                 "name": "count",
@@ -6454,7 +6574,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               },
               "callback": {
                 "name": "callback",
@@ -6483,7 +6604,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "responses": {
@@ -6546,7 +6668,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "relativeUri": "/geographies/{geoId}/media/recent",
@@ -6592,7 +6715,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "client_secret": {
                 "name": "client_secret",
@@ -6611,7 +6735,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "count": {
                 "name": "count",
@@ -6637,7 +6762,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               },
               "callback": {
                 "name": "callback",
@@ -6666,7 +6792,8 @@
                     "strict": true,
                     "name": null
                   }
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "responses": {
@@ -6689,7 +6816,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               },
@@ -6739,7 +6867,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               },
@@ -6774,7 +6903,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "client_secret": {
                     "name": "client_secret",
@@ -6793,7 +6923,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "object": {
                     "name": "object",
@@ -6821,7 +6952,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "object_id": {
                     "name": "object_id",
@@ -6843,7 +6975,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "aspect": {
                     "name": "aspect",
@@ -6865,7 +6998,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "callback_url": {
                     "name": "callback_url",
@@ -6884,7 +7018,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "lat": {
                     "name": "lat",
@@ -6900,7 +7035,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "lng": {
                     "name": "lng",
@@ -6919,7 +7055,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   },
                   "radius": {
                     "name": "radius",
@@ -6938,7 +7075,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -6953,7 +7091,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -6995,7 +7134,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "client_secret": {
                 "name": "client_secret",
@@ -7014,7 +7154,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "id": {
                 "name": "id",
@@ -7036,7 +7177,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "object": {
                 "name": "object",
@@ -7065,7 +7207,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "responses": {
@@ -7088,7 +7231,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               },

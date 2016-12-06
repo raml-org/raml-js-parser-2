@@ -15,6 +15,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],
@@ -22,7 +23,8 @@
           "type": [
             "array"
           ],
-          "items": "string"
+          "items": "string",
+          "mediaType": "text/plain"
         }
       }
     },

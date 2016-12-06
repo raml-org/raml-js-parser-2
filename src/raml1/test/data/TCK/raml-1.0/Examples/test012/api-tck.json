@@ -25,7 +25,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -40,7 +41,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "WebOfMe",
@@ -84,7 +86,8 @@
                     ],
                     "type": [
                       "{\n  \"required\": \"message\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": true,\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }

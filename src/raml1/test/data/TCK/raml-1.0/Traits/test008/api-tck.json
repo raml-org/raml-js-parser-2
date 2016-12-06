@@ -19,7 +19,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "box"
@@ -42,7 +43,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "queryString": {
@@ -64,7 +66,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "mediaType": "application/raml+yaml"
         },
         "body": {
           "application/json": {
@@ -86,7 +89,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "is": [

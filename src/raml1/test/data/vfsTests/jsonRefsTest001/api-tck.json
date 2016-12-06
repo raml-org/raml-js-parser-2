@@ -31,7 +31,8 @@
                     },
                     "type": [
                       "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }
@@ -83,7 +84,8 @@
                     ],
                     "type": [
                       "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }

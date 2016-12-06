@@ -23,6 +23,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "union"
             ],
@@ -31,7 +32,8 @@
                 "type": [
                   "array"
                 ],
-                "items": "string"
+                "items": "string",
+                "mediaType": "text/plain"
               },
               "string"
             ]
@@ -58,7 +60,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Api"

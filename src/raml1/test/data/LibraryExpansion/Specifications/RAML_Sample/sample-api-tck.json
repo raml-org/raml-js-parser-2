@@ -29,7 +29,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "eTag": {
                 "name": "eTag",
@@ -47,7 +48,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -59,7 +61,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         ],
         "required": true,
@@ -80,7 +83,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "age": {
             "name": "age",
@@ -95,7 +99,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "email": {
             "name": "email",
@@ -113,7 +118,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "mobile": {
             "name": "mobile",
@@ -131,7 +137,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "addresses": {
             "name": "addresses",
@@ -164,7 +171,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "line1": {
                 "name": "line1",
@@ -182,7 +190,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "line2": {
                 "name": "line2",
@@ -200,7 +209,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "suburb": {
                 "name": "suburb",
@@ -218,7 +228,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "postcode": {
                 "name": "postcode",
@@ -236,7 +247,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -245,7 +257,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -257,7 +270,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "sample-api",
@@ -297,7 +311,8 @@
                             "insertedAsDefault": true
                           }
                         }
-                      }
+                      },
+                      "mediaType": "application/raml+yaml"
                     },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -328,7 +343,8 @@
                         "strict": true,
                         "name": null
                       }
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

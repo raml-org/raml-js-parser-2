@@ -24,7 +24,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "GeoPoints": {
         "name": "GeoPoints",
@@ -50,6 +51,7 @@
             "name": null
           }
         ],
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],
@@ -78,7 +80,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       }
     }
   },

@@ -20,7 +20,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "New API",
@@ -50,6 +51,7 @@
                         }
                       }
                     },
+                    "mediaType": "application/raml+yaml",
                     "type": [
                       "array"
                     ],
@@ -69,6 +71,7 @@
                         }
                       }
                     },
+                    "mediaType": "application/raml+yaml",
                     "type": [
                       "array"
                     ],
@@ -116,7 +119,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "application/xml": {
                 "name": "application/xml",
@@ -134,7 +138,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "post"

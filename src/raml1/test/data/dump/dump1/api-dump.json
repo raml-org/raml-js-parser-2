@@ -25,7 +25,8 @@
 								"insertedAsDefault": true
 							}
 						}
-					}
+					},
+					"mediaType": "application/raml+yaml"
 				},
 				"lastname": {
 					"name": "lastname",
@@ -40,7 +41,8 @@
 								"calculated": true
 							}
 						}
-					}
+					},
+					"mediaType": "application/raml+yaml"
 				},
 				"addresses": {
 					"name": "addresses",
@@ -56,6 +58,7 @@
 							}
 						}
 					},
+					"mediaType": "application/raml+yaml",
 					"type": [
 						"array"
 					],
@@ -77,7 +80,8 @@
 								"insertedAsDefault": true
 							}
 						}
-					}
+					},
+					"mediaType": "application/raml+yaml"
 				}
 			},
 			"__METADATA__": {
@@ -89,7 +93,8 @@
 						"insertedAsDefault": true
 					}
 				}
-			}
+			},
+			"mediaType": "application/raml+yaml"
 		}
 	},
 	"title": "API with Types",
@@ -129,7 +134,8 @@
 														"insertedAsDefault": true
 													}
 												}
-											}
+											},
+											"mediaType": "application/raml+yaml"
 										}
 									},
 									"__METADATA__": {
@@ -157,7 +163,8 @@
 											"name": null,
 											"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
 										}
-									]
+									],
+									"mediaType": "application/raml+yaml"
 								}
 							}
 						}
@@ -187,7 +194,8 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml"
 								},
 								"test": {
 									"name": "test",
@@ -205,7 +213,8 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml"
 								},
 								"animal": {
 									"name": "animal",
@@ -223,7 +232,8 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml"
 								},
 								"car": {
 									"name": "car",
@@ -241,7 +251,8 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml"
 								}
 							},
 							"__METADATA__": {
@@ -253,7 +264,8 @@
 										"insertedAsDefault": true
 									}
 								}
-							}
+							},
+							"mediaType": "application/raml+yaml"
 						}
 					},
 					"protocols": [

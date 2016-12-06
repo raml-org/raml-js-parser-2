@@ -30,7 +30,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [
@@ -69,7 +70,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "prop2": {
                         "name": "prop2",
@@ -87,7 +89,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       }
                     },
                     "__METADATA__": {
@@ -102,7 +105,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 ],
                 "required": true,
@@ -115,7 +119,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -168,7 +173,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -224,7 +230,8 @@
                 "type": [
                   "string",
                   "number"
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -279,7 +286,8 @@
                 },
                 "type": [
                   "string"
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -331,7 +339,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -383,7 +392,8 @@
                 },
                 "type": [
                   "number"
-                ]
+                ],
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [

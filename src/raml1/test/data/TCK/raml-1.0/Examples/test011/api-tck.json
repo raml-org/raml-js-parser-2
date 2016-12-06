@@ -33,6 +33,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "array"
         ],
@@ -64,7 +65,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -79,7 +81,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "MyAnnotationType2": {
         "name": "MyAnnotationType2",
@@ -100,7 +103,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Test API"

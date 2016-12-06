@@ -37,7 +37,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -49,7 +50,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {
@@ -76,7 +78,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "meta-data": {
         "name": "meta-data",
@@ -100,7 +103,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Illustrating allowed targets",
@@ -147,6 +151,7 @@
                         }
                       }
                     },
+                    "mediaType": "application/raml+yaml",
                     "type": [
                       "array"
                     ],

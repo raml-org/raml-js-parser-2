@@ -25,7 +25,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       },
       "AnotherEntry": {
         "name": "AnotherEntry",
@@ -44,7 +45,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/json"
       },
       "User": {
         "name": "User",
@@ -70,7 +72,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "lastname": {
             "name": "lastname",
@@ -92,7 +95,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -116,7 +120,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "ApiLib.RamlDataType": {
         "name": "RamlDataType",
@@ -142,7 +147,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "propStringArray1": {
             "name": "propStringArray1",
@@ -158,6 +164,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "array"
             ],
@@ -194,7 +201,8 @@
                         "insertedAsDefault": true
                       }
                     }
-                  }
+                  },
+                  "mediaType": "application/raml+yaml"
                 }
               },
               "__METADATA__": {
@@ -209,7 +217,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -220,7 +229,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "extIdeas": {
             "name": "extIdeas",
@@ -250,7 +260,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
                 },
                 "__METADATA__": {
@@ -265,7 +276,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             ],
             "required": true,
@@ -286,7 +298,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -298,7 +311,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "feedback": {
             "name": "feedback",
@@ -327,7 +341,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           },
           "propNumber": {
             "name": "propNumber",
@@ -352,7 +367,8 @@
             },
             "fixedFacets": {
               "format": "int32"
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "propInteger": {
             "name": "propInteger",
@@ -377,7 +393,8 @@
             },
             "fixedFacets": {
               "format": "int8"
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "propBoolean": {
             "name": "propBoolean",
@@ -395,7 +412,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "propDate": {
             "name": "propDate",
@@ -420,7 +438,8 @@
                 "strict": true,
                 "name": null
               }
-            ]
+            ],
+            "mediaType": "application/raml+yaml"
           },
           "userPicture": {
             "name": "userPicture",
@@ -450,7 +469,8 @@
                 "image/png"
               ],
               "maxLength": 307200
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "NilValue": {
             "name": "NilValue",
@@ -479,7 +499,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "comment": {
                 "name": "comment",
@@ -497,7 +518,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -509,7 +531,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "CatOrDog": {
             "name": "CatOrDog",
@@ -525,6 +548,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "union"
             ],
@@ -550,7 +574,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             {
               "name": "CatAndDog",
@@ -568,7 +593,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           ],
           "PossibleMeetingDate": {
@@ -590,7 +616,8 @@
             },
             "fixedFacets": {
               "noHolidays": true
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -602,7 +629,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "ApiLib.Cat": {
         "name": "Cat",
@@ -628,7 +656,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "color": {
             "name": "color",
@@ -646,7 +675,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -658,7 +688,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "ApiLib.Dog": {
         "name": "Dog",
@@ -684,7 +715,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "fangs": {
             "name": "fangs",
@@ -702,7 +734,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -714,7 +747,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "ApiLib.CustomDate": {
         "name": "CustomDate",
@@ -736,7 +770,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "noHolidays": {
             "name": "noHolidays",
@@ -754,7 +789,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "type": [
@@ -770,7 +806,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "SongsLib.Song": {
         "name": "Song",
@@ -814,7 +851,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "length": {
             "name": "length",
@@ -832,7 +870,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -847,7 +886,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "traits": {
@@ -869,7 +909,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "securedBy": [
@@ -913,7 +954,8 @@
                     },
                     "type": [
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
-                    ]
+                    ],
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -970,7 +1012,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "deprecatedBy": {
             "name": "deprecatedBy",
@@ -988,7 +1031,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           },
           "comment": {
             "name": "comment",
@@ -1004,6 +1048,7 @@
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
             "type": [
               "union"
             ],
@@ -1025,7 +1070,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "monitoringInterval": {
         "name": "monitoringInterval",
@@ -1051,7 +1097,8 @@
             "strict": true,
             "name": null
           }
-        ]
+        ],
+        "mediaType": "application/raml+yaml"
       },
       "ready": {
         "name": "ready",
@@ -1073,7 +1120,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "info": {
         "name": "info",
@@ -1106,7 +1154,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {
@@ -1121,7 +1170,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "rediractable": {
         "name": "rediractable",
@@ -1139,7 +1189,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "securitySchemes": {
@@ -1180,7 +1231,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "headers": {
@@ -1201,7 +1253,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "responses": [
@@ -1248,7 +1301,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             }
           },
           "responses": [
@@ -1290,7 +1344,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       },
       "version": {
         "name": "version",
@@ -1318,7 +1373,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "protocols": [
@@ -1359,7 +1415,8 @@
                         "insertedAsDefault": true
                       }
                     }
-                  }
+                  },
+                  "mediaType": "application/raml+yaml"
                 },
                 "page-size": {
                   "name": "page-size",
@@ -1377,7 +1434,8 @@
                         "insertedAsDefault": true
                       }
                     }
-                  }
+                  },
+                  "mediaType": "application/raml+yaml"
                 }
               },
               "__METADATA__": {
@@ -1392,7 +1450,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml"
             },
             "protocols": [
               "HTTP"
@@ -1430,7 +1489,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -1497,7 +1557,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/json"
                   }
                 }
               }
@@ -1544,7 +1605,8 @@
                     },
                     "type": [
                       "Entry"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }
@@ -1628,7 +1690,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "access_token": {
                 "name": "access_token",
@@ -1646,7 +1709,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -1683,7 +1747,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "protocols": [
@@ -1750,7 +1815,8 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml"
                       },
                       "application/xml": {
                         "name": "application/xml",
@@ -1775,7 +1841,8 @@
                             "strict": true,
                             "name": null
                           }
-                        ]
+                        ],
+                        "mediaType": "application/xml"
                       }
                     }
                   }
@@ -1823,7 +1890,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               }
             },
             "relativeUri": "/{songId}",

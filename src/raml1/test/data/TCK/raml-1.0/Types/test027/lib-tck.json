@@ -15,6 +15,7 @@
             }
           }
         },
+        "mediaType": "application/raml+yaml",
         "type": [
           "union"
         ],
@@ -43,7 +44,8 @@
         "fixedFacets": {
           "maximum": 2,
           "minimum": 1
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     }
   },

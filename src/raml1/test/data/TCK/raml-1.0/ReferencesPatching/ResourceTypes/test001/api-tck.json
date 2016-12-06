@@ -27,7 +27,8 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml"
       }
     },
     "resourceTypes": {
@@ -51,7 +52,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "application/xml": {
                 "name": "application/xml",
@@ -69,7 +71,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "text/plain": {
                 "name": "text/plain",
@@ -87,7 +90,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "atom/xml": {
                 "name": "atom/xml",
@@ -103,6 +107,7 @@
                     }
                   }
                 },
+                "mediaType": "application/raml+yaml",
                 "type": [
                   "union"
                 ],
@@ -156,7 +161,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "application/xml": {
                 "name": "application/xml",
@@ -174,7 +180,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "text/plain": {
                 "name": "text/plain",
@@ -192,7 +199,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml"
               },
               "atom/xml": {
                 "name": "atom/xml",
@@ -208,6 +216,7 @@
                     }
                   }
                 },
+                "mediaType": "application/raml+yaml",
                 "type": [
                   "union"
                 ],

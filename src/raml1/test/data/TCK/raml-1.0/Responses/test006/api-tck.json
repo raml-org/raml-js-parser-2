@@ -28,7 +28,8 @@
                     },
                     "type": [
                       "{\"name\": \"someName\"}\n"
-                    ]
+                    ],
+                    "mediaType": "application/json"
                   }
                 }
               }
