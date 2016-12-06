@@ -4,9 +4,6 @@
       "SimpleUnion": {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
-        "type": [
-          "string[] | number[]"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -17,7 +14,24 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          {
+            "type": [
+              "array"
+            ],
+            "items": "string"
+          },
+          {
+            "type": [
+              "array"
+            ],
+            "items": "number"
+          }
+        ]
       },
       "TypeWithUnionProps": {
         "name": "TypeWithUnionProps",

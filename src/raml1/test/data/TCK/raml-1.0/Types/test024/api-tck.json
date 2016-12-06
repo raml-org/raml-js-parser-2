@@ -595,27 +595,6 @@
           "admin": {
             "name": "admin",
             "displayName": "admin",
-            "type": [
-              "Admin|SuperAdmin"
-            ],
-            "required": true,
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              }
-            }
-          },
-          "members": {
-            "name": "members",
-            "displayName": "members",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -627,7 +606,40 @@
                 }
               }
             },
-            "items": "(User|Team)"
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "Admin",
+              "SuperAdmin"
+            ]
+          },
+          "members": {
+            "name": "members",
+            "displayName": "members",
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "type": [
+              "array"
+            ],
+            "items": {
+              "type": [
+                "union"
+              ],
+              "oneOf": [
+                "User",
+                "Team"
+              ]
+            }
           },
           "info": {
             "name": "info",
@@ -769,9 +781,6 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
-                    "type": [
-                      "array"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -783,6 +792,9 @@
                         }
                       }
                     },
+                    "type": [
+                      "array"
+                    ],
                     "items": "Team"
                   }
                 }
@@ -1025,9 +1037,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "type": [
-                      "array"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1039,6 +1048,9 @@
                         }
                       }
                     },
+                    "type": [
+                      "array"
+                    ],
                     "items": "User"
                   }
                 }

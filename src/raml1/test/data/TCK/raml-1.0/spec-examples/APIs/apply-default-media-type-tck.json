@@ -61,9 +61,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "type": [
-                      "array"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -75,14 +72,14 @@
                         }
                       }
                     },
+                    "type": [
+                      "array"
+                    ],
                     "items": "Person"
                   },
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
-                    "type": [
-                      "array"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -94,6 +91,9 @@
                         }
                       }
                     },
+                    "type": [
+                      "array"
+                    ],
                     "items": "Person"
                   }
                 }

@@ -216,9 +216,6 @@
       "amazon-apigateway-integration": {
         "name": "amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
-        "type": [
-          "amazon-apigateway-integration-lambda | amazon-apigateway-integration-HTTP | amazon-apigateway-integration-mock | amazon-apigateway-integration-aws"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -229,7 +226,16 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "amazon-apigateway-integration-lambda",
+          "amazon-apigateway-integration-HTTP",
+          "amazon-apigateway-integration-mock",
+          "amazon-apigateway-integration-aws"
+        ]
       }
     },
     "annotationTypes": {

@@ -130,9 +130,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "type": [
-                  "array"
-                ],
                 "examples": [
                   {
                     "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  }\n]",
@@ -168,6 +165,9 @@
                     }
                   }
                 },
+                "type": [
+                  "array"
+                ],
                 "items": "ParentType"
               }
             },

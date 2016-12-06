@@ -4,9 +4,6 @@
       "Foo": {
         "name": "Foo",
         "displayName": "Foo",
-        "type": [
-          "integer|number"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -17,7 +14,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "integer",
+          "number"
+        ]
       },
       "Bar": {
         "name": "Bar",

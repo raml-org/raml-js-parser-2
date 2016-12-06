@@ -4,9 +4,6 @@
       "CatOrDog": {
         "name": "CatOrDog",
         "displayName": "CatOrDog",
-        "type": [
-          "Cat | Dog"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -17,7 +14,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "Cat",
+          "Dog"
+        ]
       },
       "Cat": {
         "name": "Cat",

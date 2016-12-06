@@ -22,75 +22,77 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "type": {
-                  "name": "type",
-                  "displayName": "type",
-                  "type": [
-                    "object"
-                  ],
-                  "required": true,
-                  "properties": {
-                    "ownLibProperty": {
-                      "name": "ownLibProperty",
-                      "displayName": "ownLibProperty",
-                      "type": [
-                        "lib0.MyType"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
+                "type": [
+                  {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "object"
+                    ],
+                    "required": true,
+                    "properties": {
+                      "ownLibProperty": {
+                        "name": "ownLibProperty",
+                        "displayName": "ownLibProperty",
+                        "type": [
+                          "lib0.MyType"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      },
+                      "rootLibProperty": {
+                        "name": "rootLibProperty",
+                        "displayName": "rootLibProperty",
+                        "type": [
+                          "types2.MyObjectType"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
                           }
                         }
                       }
                     },
-                    "rootLibProperty": {
-                      "name": "rootLibProperty",
-                      "displayName": "rootLibProperty",
-                      "type": [
-                        "types2.MyObjectType"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      },
+                      {
+                        "key": "types2",
+                        "value": "../libs/types2.raml"
                       }
-                    }
-                  },
-                  "uses": [
-                    {
-                      "key": "lib",
-                      "value": "../libs/lib.raml"
-                    },
-                    {
-                      "key": "types2",
-                      "value": "../libs/types2.raml"
-                    }
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
                     }
                   }
-                },
+                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -134,75 +136,77 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "type": {
-                  "name": "type",
-                  "displayName": "type",
-                  "type": [
-                    "object"
-                  ],
-                  "required": true,
-                  "properties": {
-                    "ownLibProperty": {
-                      "name": "ownLibProperty",
-                      "displayName": "ownLibProperty",
-                      "type": [
-                        "lib0.MyType"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
+                "type": [
+                  {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "object"
+                    ],
+                    "required": true,
+                    "properties": {
+                      "ownLibProperty": {
+                        "name": "ownLibProperty",
+                        "displayName": "ownLibProperty",
+                        "type": [
+                          "lib0.MyType"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      },
+                      "rootLibProperty": {
+                        "name": "rootLibProperty",
+                        "displayName": "rootLibProperty",
+                        "type": [
+                          "types2.MyObjectType"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
                           }
                         }
                       }
                     },
-                    "rootLibProperty": {
-                      "name": "rootLibProperty",
-                      "displayName": "rootLibProperty",
-                      "type": [
-                        "types2.MyObjectType"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      },
+                      {
+                        "key": "types2",
+                        "value": "../libs/types2.raml"
                       }
-                    }
-                  },
-                  "uses": [
-                    {
-                      "key": "lib",
-                      "value": "../libs/lib.raml"
-                    },
-                    {
-                      "key": "types2",
-                      "value": "../libs/types2.raml"
-                    }
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
                     }
                   }
-                },
+                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

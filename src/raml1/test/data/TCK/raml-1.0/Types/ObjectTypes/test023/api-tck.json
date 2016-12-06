@@ -9,66 +9,68 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "type": {
-                  "name": "type",
-                  "displayName": "type",
-                  "type": [
-                    "object"
-                  ],
-                  "required": true,
-                  "properties": {
-                    "ownLibProperty": {
-                      "name": "ownLibProperty",
-                      "displayName": "ownLibProperty",
-                      "type": [
-                        "object"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
+                "type": [
+                  {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "object"
+                    ],
+                    "required": true,
+                    "properties": {
+                      "ownLibProperty": {
+                        "name": "ownLibProperty",
+                        "displayName": "ownLibProperty",
+                        "type": [
+                          "object"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      },
+                      "rootLibProperty": {
+                        "name": "rootLibProperty",
+                        "displayName": "rootLibProperty",
+                        "type": [
+                          "object"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
                           }
                         }
                       }
                     },
-                    "rootLibProperty": {
-                      "name": "rootLibProperty",
-                      "displayName": "rootLibProperty",
-                      "type": [
-                        "object"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
+                    "additionalProperties": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
                         }
                       }
                     }
-                  },
-                  "additionalProperties": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
                   }
-                },
+                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

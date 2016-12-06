@@ -23,9 +23,6 @@
           "v": {
             "name": "v",
             "displayName": "v",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -37,6 +34,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "boolean"
           }
         },

@@ -4,9 +4,6 @@
       "Persons": {
         "name": "Persons",
         "displayName": "Persons",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,6 +15,9 @@
             }
           }
         },
+        "type": [
+          "array"
+        ],
         "items": "string"
       }
     },

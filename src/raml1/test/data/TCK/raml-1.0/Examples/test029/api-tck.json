@@ -418,9 +418,6 @@
           "cacheKeyParameters": {
             "name": "cacheKeyParameters",
             "displayName": "cacheKeyParameters",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -432,6 +429,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "string"
           },
           "responses": {

@@ -30,9 +30,6 @@
       "GeoPoints": {
         "name": "GeoPoints",
         "displayName": "GeoPoints",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -54,6 +51,9 @@
               10
             ]
           }
+        ],
+        "type": [
+          "array"
         ],
         "items": "number"
       },

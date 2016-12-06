@@ -4,9 +4,6 @@
       "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -28,6 +25,9 @@
               "another string"
             ]
           }
+        ],
+        "type": [
+          "array"
         ],
         "items": "string"
       }

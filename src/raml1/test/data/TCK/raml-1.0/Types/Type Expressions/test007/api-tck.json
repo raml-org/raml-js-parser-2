@@ -124,9 +124,6 @@
           "devices": {
             "name": "devices",
             "displayName": "devices",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -138,14 +135,22 @@
                 }
               }
             },
-            "items": "( Phone | Notebook )"
+            "type": [
+              "array"
+            ],
+            "items": {
+              "type": [
+                "union"
+              ],
+              "oneOf": [
+                "Phone",
+                "Notebook"
+              ]
+            }
           },
           "reports": {
             "name": "reports",
             "displayName": "reports",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -157,6 +162,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Person"
           }
         },

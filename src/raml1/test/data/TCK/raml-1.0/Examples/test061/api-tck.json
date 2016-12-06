@@ -4,9 +4,6 @@
       "MyArrayType": {
         "name": "MyArrayType",
         "displayName": "MyArrayType",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,6 +15,9 @@
             }
           }
         },
+        "type": [
+          "array"
+        ],
         "items": "number"
       },
       "MyType": {

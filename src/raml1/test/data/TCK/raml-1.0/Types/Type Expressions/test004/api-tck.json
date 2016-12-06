@@ -4,9 +4,6 @@
       "PersonAccounts": {
         "name": "PersonAccounts",
         "displayName": "PersonAccounts",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,7 +15,15 @@
             }
           }
         },
-        "items": "string[]"
+        "type": [
+          "array"
+        ],
+        "items": {
+          "type": [
+            "array"
+          ],
+          "items": "string"
+        }
       }
     },
     "title": "Dropbox API"

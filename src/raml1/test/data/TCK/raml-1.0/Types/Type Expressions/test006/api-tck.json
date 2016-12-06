@@ -22,9 +22,6 @@
       "Persons": {
         "name": "Persons",
         "displayName": "Persons",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -36,7 +33,18 @@
             }
           }
         },
-        "items": "(Person | string)"
+        "type": [
+          "array"
+        ],
+        "items": {
+          "type": [
+            "union"
+          ],
+          "oneOf": [
+            "Person",
+            "string"
+          ]
+        }
       }
     },
     "title": "Dropbox API"

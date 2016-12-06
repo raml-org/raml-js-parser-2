@@ -12,9 +12,6 @@
           "items": {
             "name": "items",
             "displayName": "items",
-            "type": [
-              "array"
-            ],
             "required": true,
             "minItems": 5,
             "__METADATA__": {
@@ -27,14 +24,14 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "number"
           },
           "items2": {
             "name": "items2",
             "displayName": "items2",
-            "type": [
-              "array"
-            ],
             "required": true,
             "maxItems": 3,
             "__METADATA__": {
@@ -47,14 +44,14 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "number"
           },
           "items3": {
             "name": "items3",
             "displayName": "items3",
-            "type": [
-              "array"
-            ],
             "required": true,
             "uniqueItems": true,
             "__METADATA__": {
@@ -67,6 +64,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "number"
           }
         },

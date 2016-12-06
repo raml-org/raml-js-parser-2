@@ -22,9 +22,6 @@
       "Employee": {
         "name": "Employee",
         "displayName": "Employee",
-        "type": [
-          "Person | string"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -35,7 +32,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "Person",
+          "string"
+        ]
       }
     },
     "title": "Dropbox API"

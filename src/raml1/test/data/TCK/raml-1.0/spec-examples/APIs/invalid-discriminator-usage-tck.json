@@ -46,9 +46,6 @@
       "PersonOrDog": {
         "name": "PersonOrDog",
         "displayName": "PersonOrDog",
-        "type": [
-          "Person | Dog"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -59,7 +56,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "Person",
+          "Dog"
+        ]
       }
     },
     "title": "Invalid Discriminator Usage",

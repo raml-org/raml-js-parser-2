@@ -130,9 +130,6 @@
               "headers": {
                 "name": "headers",
                 "displayName": "headers",
-                "type": [
-                  "array"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -144,6 +141,9 @@
                     }
                   }
                 },
+                "type": [
+                  "array"
+                ],
                 "items": "Header"
               },
               "body": {
@@ -205,9 +205,6 @@
               "parts": {
                 "name": "parts",
                 "displayName": "parts",
-                "type": [
-                  "array"
-                ],
                 "required": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -219,6 +216,9 @@
                     }
                   }
                 },
+                "type": [
+                  "array"
+                ],
                 "items": "Message"
               }
             },
@@ -310,9 +310,6 @@
           "messages": {
             "name": "messages",
             "displayName": "messages",
-            "type": [
-              "array"
-            ],
             "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -324,6 +321,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Message"
           }
         },

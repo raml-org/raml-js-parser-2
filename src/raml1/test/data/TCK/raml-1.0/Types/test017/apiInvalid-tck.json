@@ -4,9 +4,6 @@
       "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
-        "type": [
-          "object | SomeUnion"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -17,14 +14,18 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "object",
+          "SomeUnion"
+        ]
       },
       "SomeUnion": {
         "name": "SomeUnion",
         "displayName": "SomeUnion",
-        "type": [
-          "AnotherType[] | OneMoreType[]"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -35,7 +36,24 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          {
+            "type": [
+              "array"
+            ],
+            "items": "AnotherType"
+          },
+          {
+            "type": [
+              "array"
+            ],
+            "items": "OneMoreType"
+          }
+        ]
       },
       "AnotherType": {
         "name": "AnotherType",

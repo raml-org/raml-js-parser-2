@@ -133,9 +133,6 @@
                     },
                     "name": "application/json",
                     "displayName": "application/json",
-                    "type": [
-                      "array"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -147,6 +144,9 @@
                         }
                       }
                     },
+                    "type": [
+                      "array"
+                    ],
                     "items": "User"
                   }
                 }

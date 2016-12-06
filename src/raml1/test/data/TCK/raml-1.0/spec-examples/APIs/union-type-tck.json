@@ -152,9 +152,6 @@
       "Device": {
         "name": "Device",
         "displayName": "Device",
-        "type": [
-          "Phone | Notebook"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -165,7 +162,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "Phone",
+          "Notebook"
+        ]
       }
     },
     "title": "My API With Types"

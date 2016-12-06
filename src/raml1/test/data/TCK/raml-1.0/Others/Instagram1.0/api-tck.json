@@ -567,7 +567,11 @@
                       }
                     ],
                     "type": [
-                      "types.OkStatus | string"
+                      "union"
+                    ],
+                    "oneOf": [
+                      "types.OkStatus",
+                      "string"
                     ]
                   }
                 }
@@ -595,9 +599,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "type": [
-                      "types.OkStatus | string"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -621,6 +622,13 @@
                           "data": null
                         }
                       }
+                    ],
+                    "type": [
+                      "union"
+                    ],
+                    "oneOf": [
+                      "types.OkStatus",
+                      "string"
                     ]
                   }
                 }
@@ -1398,9 +1406,6 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
-                            "type": [
-                              "types.OkStatus | string"
-                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -1424,6 +1429,13 @@
                                   "data": null
                                 }
                               }
+                            ],
+                            "type": [
+                              "union"
+                            ],
+                            "oneOf": [
+                              "types.OkStatus",
+                              "string"
                             ]
                           }
                         }
@@ -1555,7 +1567,11 @@
                                   }
                                 ],
                                 "type": [
-                                  "types.OkStatus | string"
+                                  "union"
+                                ],
+                                "oneOf": [
+                                  "types.OkStatus",
+                                  "string"
                                 ]
                               }
                             },
@@ -1783,9 +1799,6 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
-                            "type": [
-                              "types.OkStatus | string"
-                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -1809,6 +1822,13 @@
                                   "data": null
                                 }
                               }
+                            ],
+                            "type": [
+                              "union"
+                            ],
+                            "oneOf": [
+                              "types.OkStatus",
+                              "string"
                             ]
                           }
                         },
@@ -1877,7 +1897,11 @@
                               }
                             ],
                             "type": [
-                              "types.OkStatus | string"
+                              "union"
+                            ],
+                            "oneOf": [
+                              "types.OkStatus",
+                              "string"
                             ]
                           }
                         }

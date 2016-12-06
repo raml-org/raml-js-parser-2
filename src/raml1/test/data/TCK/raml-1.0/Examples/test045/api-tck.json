@@ -30,9 +30,6 @@
           "X-Dept": {
             "name": "X-Dept",
             "displayName": "X-Dept",
-            "type": [
-              "array"
-            ],
             "examples": [
               {
                 "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
@@ -55,6 +52,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "dept_code"
           }
         },
@@ -70,9 +70,6 @@
               "X-Dept": {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
-                "type": [
-                  "array"
-                ],
                 "examples": [
                   {
                     "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
@@ -95,6 +92,9 @@
                     }
                   }
                 },
+                "type": [
+                  "array"
+                ],
                 "items": "dept_code"
               }
             },

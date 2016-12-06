@@ -12,9 +12,6 @@
           "name": {
             "name": "name",
             "displayName": "name",
-            "type": [
-              "nil | string"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -25,14 +22,18 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "nil",
+              "string"
+            ]
           },
           "data": {
             "name": "data",
             "displayName": "data",
-            "type": [
-              "nil | Data"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -43,7 +44,14 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "nil",
+              "Data"
+            ]
           }
         },
         "__METADATA__": {

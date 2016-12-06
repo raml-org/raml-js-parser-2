@@ -89,9 +89,6 @@
           "_embeds": {
             "name": "_embeds",
             "displayName": "_embeds",
-            "type": [
-              "array"
-            ],
             "required": false,
             "description": "Optional embedded, related resources if requested.",
             "__METADATA__": {
@@ -104,6 +101,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "object"
           },
           "_links": {
@@ -413,9 +413,6 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
-                            "type": [
-                              "array"
-                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -448,6 +445,9 @@
                                   }
                                 ]
                               }
+                            ],
+                            "type": [
+                              "array"
                             ],
                             "items": "PlanetScene"
                           }

@@ -30,9 +30,6 @@
           "reports": {
             "name": "reports",
             "displayName": "reports",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -44,6 +41,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Person"
           }
         },

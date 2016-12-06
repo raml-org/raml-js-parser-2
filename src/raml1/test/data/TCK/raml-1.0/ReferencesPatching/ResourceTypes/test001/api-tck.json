@@ -92,9 +92,6 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
-                "type": [
-                  "<<param1>> | <<param2>> | lib.lib.Monkey"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -105,7 +102,15 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "union"
+                ],
+                "oneOf": [
+                  "<<param1>>",
+                  "<<param2>>",
+                  "lib.lib.Monkey"
+                ]
               }
             },
             "method": "post"
@@ -192,9 +197,6 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
-                "type": [
-                  "Monkey | lib.Monkey | lib.lib.Monkey"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -205,7 +207,15 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "union"
+                ],
+                "oneOf": [
+                  "Monkey",
+                  "lib.Monkey",
+                  "lib.lib.Monkey"
+                ]
               }
             },
             "method": "post"

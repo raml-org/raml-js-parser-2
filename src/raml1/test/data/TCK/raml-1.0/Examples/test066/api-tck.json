@@ -45,9 +45,6 @@
       "nt1": {
         "name": "nt1",
         "displayName": "nt1",
-        "type": [
-          "t | nil"
-        ],
         "examples": [
           {
             "value": "null\n",
@@ -72,14 +69,18 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "t",
+          "nil"
+        ]
       },
       "tn2": {
         "name": "tn2",
         "displayName": "tn2",
-        "type": [
-          "nil | t"
-        ],
         "examples": [
           {
             "value": "null\n",
@@ -100,7 +101,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "nil",
+          "t"
+        ]
       }
     },
     "traits": {

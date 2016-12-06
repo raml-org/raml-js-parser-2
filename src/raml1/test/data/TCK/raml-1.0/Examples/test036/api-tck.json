@@ -12,9 +12,6 @@
           "/.*/": {
             "name": "/.*/",
             "displayName": "/.*/",
-            "type": [
-              "string[] | string"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -25,7 +22,19 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": "string"
+              },
+              "string"
+            ]
           }
         },
         "__METADATA__": {

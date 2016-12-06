@@ -30,9 +30,6 @@
           "items": {
             "name": "items",
             "displayName": "items",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -44,6 +41,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "VV"
           }
         },

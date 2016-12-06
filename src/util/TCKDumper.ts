@@ -19,6 +19,8 @@ import _ = require("underscore");
 
 import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 import helpersHL = require("../raml1/wrapped-ast/helpersHL");
+import expressionParser = def.rt.typeExpressions;
+import referencePatcher = require("../raml1/ast.core/referencePatcher");
 
 var pathUtils = require("path");
 
@@ -43,7 +45,7 @@ export class TCKDumper {
             //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
             new TypeTransformer(this.options.dumpXMLRepresentationOfExamples),
             //new ParametersTransformer(),
-            new ArrayExpressionTransformer(),
+            //new ArrayExpressionTransformer(),
             //new UsesTransformer(),
             //new PropertiesTransformer(),
             //new ResponsesTransformer(),
@@ -913,7 +915,186 @@ class TypeTransformer extends BasicTransformation{
             }
             delete value["schema"];
         }
+        this.refineTypeValue(value,node.asElement());
         return _value;
+    }
+    
+    private refineTypeValue(value:any,node?:hl.IHighLevelNode){
+        if(!Array.isArray(value.type)){
+            value.type = [value.type];
+        }
+        if(value.items){
+            if(typeof(value.items)=="string"){
+                value.items = this.parseExpression(value.items);                
+            }
+            else{
+                this.refineTypeValue(value.items);
+            }
+            value.type = [ "array" ];
+        }
+        else {
+            var isExternal = false;
+            if(node) {
+                isExternal = node.localType().isExternal();
+                if (!isExternal) {
+                    for (var st of node.localType().allSuperTypes()) {
+                        isExternal = st.isExternal();
+                        if (isExternal) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if(!isExternal) {
+                var gotExp = false;
+                var parsedType = value.type.map(x=> {
+                    if(!x){
+                        return x;
+                    }
+                    if (typeof(x) == "object") {
+                        this.refineTypeValue(x);
+                        return x;
+                    }
+                    gotExp = true;
+                    return this.parseExpression(x);
+                });
+                if (gotExp && parsedType.length == 1
+                    && parsedType[0] && typeof(parsedType[0]) == "object") {
+
+                    var singleType = parsedType[0];
+                    delete value.type;
+                    Object.keys(singleType).forEach(k=>value[k] = singleType[k]);
+                }
+                else {
+                    value.type = parsedType;
+                }
+            }
+        }
+        if(value.properties){
+            Object.keys(value.properties).forEach(pName=>{
+                this.refineTypeValue(value.properties[pName]);
+            });
+        }
+    }
+
+    private parseExpression(exp:string):any{
+        var gotExpression = false;
+
+        var eData:referencePatcher.EscapeData
+            = { status: referencePatcher.ParametersEscapingStatus.NOT_REQUIRED };
+
+        var str = exp;
+        if(exp.indexOf("<<")>=0){
+            eData = referencePatcher.escapeTemplateParameters(exp);
+            str = eData.resultingString;
+        }
+        for(var i = 0 ; i < str.length ; i++){
+            var ch = str.charAt(i);
+            if(ch=="("||ch=="|"||ch=="["){
+                gotExpression = true;
+            }
+        }
+        if(!gotExpression){
+            return exp;
+        }
+        var model = expressionParser.parse(str);
+        var result = this.serialize(model);
+        if(eData.status==referencePatcher.ParametersEscapingStatus.OK){
+            this.unescape(result,eData.substitutions);
+        }
+        return result;
+    }
+
+    private unescape(model,substitutions) {
+        
+        this.unescapeArray(model.type, substitutions);
+        this.unescapeArray(model.oneOf, substitutions);
+        var itemsValue = model.items;
+        if(itemsValue){
+            if(typeof(itemsValue)=="string"){
+                var ueData = referencePatcher.unescapeTemplateParameters(
+                    itemsValue, substitutions);
+                if(ueData.status == referencePatcher.ParametersEscapingStatus.OK) {
+                    model.items = ueData.resultingString;
+                }
+            }
+            else{
+                this.unescape(itemsValue,substitutions);
+            }
+        }
+    }
+
+    private unescapeArray(arr:any, substitutions) {
+        if (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                var tVal = arr[i];
+                if (typeof(tVal) == "string") {
+                    var ueData = referencePatcher.unescapeTemplateParameters(
+                        tVal, substitutions);
+                    if(ueData.status == referencePatcher.ParametersEscapingStatus.OK) {
+                        arr[i] = ueData.resultingString;
+                    }
+                }
+                else {
+                    this.unescape(tVal, substitutions);
+                }
+            }
+        }
+    }
+
+    private serialize(node:expressionParser.BaseNode):any{
+        if (node.type=="union"){
+            var ut=<expressionParser.Union>node;
+            var serialized1 = this.serialize(ut.first);
+            var serialized2 = this.serialize(ut.rest);
+            var components = [];
+            if(ut.first && ut.first.type=="union"){
+                serialized1.oneOf.forEach(c=>components.push(c));
+            }
+            else{
+                components.push(serialized1);
+            }
+            if(ut.rest && ut.rest.type=="union"){
+                serialized2.oneOf.forEach(c=>components.push(c));
+            }
+            else{
+                components.push(serialized2);
+            }
+            return {
+                type: [ "union" ],
+                oneOf: components
+            }
+        }
+        else if (node.type=="parens"){
+            var ps=<expressionParser.Parens>node;
+            var rs=this.serialize(ps.expr);
+            return this.wrapArray(ps.arr,rs);
+        }
+        else{
+            var lit=(<expressionParser.Literal>node);
+            var result:any;
+            if (lit.value.charAt(lit.value.length-1)=='?'){
+                var name = lit.value.substring(0,lit.value.length-1);
+                result = {
+                    type : [ "union" ],
+                    oneOf : [ name, "nil" ]
+                };
+            }
+            else {
+                result = lit.value;
+            }
+            return this.wrapArray(lit.arr, result);
+        }
+    }
+
+    private wrapArray(a:number, result:any):any {
+        while (a-- > 0) {
+            result = {
+                type: [ "array" ],
+                items: result
+            };
+        }
+        return result;
     }
 
 }

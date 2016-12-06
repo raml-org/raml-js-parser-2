@@ -60,9 +60,6 @@
       "Emails": {
         "name": "Emails",
         "displayName": "Emails",
-        "type": [
-          "array"
-        ],
         "required": true,
         "uniqueItems": true,
         "minItems": 1,
@@ -92,6 +89,9 @@
               }
             ]
           }
+        ],
+        "type": [
+          "array"
         ],
         "items": "Email"
       }

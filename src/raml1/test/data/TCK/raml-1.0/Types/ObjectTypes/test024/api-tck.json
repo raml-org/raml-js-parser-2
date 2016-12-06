@@ -180,9 +180,6 @@
           "reports": {
             "name": "reports",
             "displayName": "reports",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -194,6 +191,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Person"
           },
           "phone": {
@@ -312,9 +312,6 @@
       "Alertable": {
         "name": "Alertable",
         "displayName": "Alertable",
-        "type": [
-          "Manager | AlertableAdmin"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -325,7 +322,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "Manager",
+          "AlertableAdmin"
+        ]
       }
     },
     "title": "My API with Types",

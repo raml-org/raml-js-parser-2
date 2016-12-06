@@ -4,9 +4,6 @@
       "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,6 +15,9 @@
             }
           }
         },
+        "type": [
+          "array"
+        ],
         "items": "SomeType"
       }
     },

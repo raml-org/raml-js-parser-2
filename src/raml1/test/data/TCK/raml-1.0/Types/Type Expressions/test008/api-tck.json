@@ -116,9 +116,6 @@
       "Devices": {
         "name": "Devices",
         "displayName": "Devices",
-        "type": [
-          "array"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -130,7 +127,18 @@
             }
           }
         },
-        "items": "( Phone | Notebook )"
+        "type": [
+          "array"
+        ],
+        "items": {
+          "type": [
+            "union"
+          ],
+          "oneOf": [
+            "Phone",
+            "Notebook"
+          ]
+        }
       }
     },
     "title": "My API With Types"

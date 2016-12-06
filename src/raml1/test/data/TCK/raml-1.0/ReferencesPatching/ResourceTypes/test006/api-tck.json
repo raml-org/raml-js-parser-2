@@ -42,9 +42,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "type": [
-                  "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -55,7 +52,14 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "union"
+                ],
+                "oneOf": [
+                  "<<parentType>><<resourcePathName>>-errors",
+                  "string"
+                ]
               }
             }
           }
@@ -129,9 +133,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "type": [
-                          "error-types.alpha-letters-errors | string"
-                        ],
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -142,7 +143,14 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "type": [
+                          "union"
+                        ],
+                        "oneOf": [
+                          "error-types.alpha-letters-errors",
+                          "string"
+                        ]
                       }
                     }
                   }

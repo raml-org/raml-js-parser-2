@@ -34,9 +34,6 @@
           "addresses": {
             "name": "addresses",
             "displayName": "addresses",
-            "type": [
-              "array"
-            ],
             "required": true,
             "xml": {
               "wrapped": true
@@ -51,6 +48,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Address"
           }
         },

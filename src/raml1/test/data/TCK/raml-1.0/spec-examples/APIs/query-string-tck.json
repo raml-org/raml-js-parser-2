@@ -174,7 +174,15 @@
               "displayName": "queryString",
               "type": [
                 "paging",
-                "lat-long | loc"
+                {
+                  "type": [
+                    "union"
+                  ],
+                  "oneOf": [
+                    "lat-long",
+                    "loc"
+                  ]
+                }
               ],
               "examples": [
                 {

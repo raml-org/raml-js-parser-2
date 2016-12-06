@@ -31,9 +31,6 @@
           "members": {
             "name": "members",
             "displayName": "members",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -45,6 +42,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Person"
           }
         },

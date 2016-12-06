@@ -122,9 +122,6 @@
       "SimpleUnion": {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
-        "type": [
-          "SimpleType1 | SimpleType2"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -135,7 +132,14 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "union"
+        ],
+        "oneOf": [
+          "SimpleType1",
+          "SimpleType2"
+        ]
       },
       "TypeWithUnionProps": {
         "name": "TypeWithUnionProps",
@@ -148,9 +152,6 @@
           "unionArray": {
             "name": "unionArray",
             "displayName": "unionArray",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -162,6 +163,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "SimpleUnion"
           }
         },

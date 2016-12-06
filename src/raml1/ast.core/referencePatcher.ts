@@ -780,11 +780,11 @@ export class ReferencePatcher{
     }
 }
 
-enum ParametersEscapingStatus{
+export enum ParametersEscapingStatus{
     OK, NOT_REQUIRED, ERROR
 }
 
-interface EscapeData{
+export interface EscapeData{
     resultingString?: string,
     substitutions?: {[key:string]:string},
     status: ParametersEscapingStatus
@@ -792,7 +792,7 @@ interface EscapeData{
 
 var PARAM_OCCURENCE_STR = "__P_A_R_A_M_E_T_E_R__";
 
-function escapeTemplateParameters(str:string):EscapeData{
+export function escapeTemplateParameters(str:string):EscapeData{
     if(str==null||typeof str != "string"){
         return { status: ParametersEscapingStatus.NOT_REQUIRED }
     }
@@ -822,7 +822,7 @@ function escapeTemplateParameters(str:string):EscapeData{
     };
 }
 
-function unescapeTemplateParameters(str:string,substitutions:{[key:string]:string}):EscapeData{
+export function unescapeTemplateParameters(str:string,substitutions:{[key:string]:string}):EscapeData{
     if(str==null){
         return { status: ParametersEscapingStatus.NOT_REQUIRED };
     }

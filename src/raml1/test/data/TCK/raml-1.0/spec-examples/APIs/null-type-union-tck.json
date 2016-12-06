@@ -33,9 +33,6 @@
           "comment": {
             "name": "comment",
             "displayName": "comment",
-            "type": [
-              "nil | string"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -46,7 +43,14 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "nil",
+              "string"
+            ]
           }
         },
         "__METADATA__": {

@@ -71,9 +71,6 @@
           "point": {
             "name": "point",
             "displayName": "point",
-            "type": [
-              "array"
-            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -85,6 +82,9 @@
                 }
               }
             },
+            "type": [
+              "array"
+            ],
             "items": "Point"
           }
         },

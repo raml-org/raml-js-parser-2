@@ -15,72 +15,74 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "type": {
-                  "name": "type",
-                  "displayName": "type",
-                  "type": [
-                    "object"
-                  ],
-                  "required": true,
-                  "properties": {
-                    "objectProperty": {
-                      "name": "objectProperty",
-                      "displayName": "objectProperty",
-                      "type": [
-                        "lib.MyType"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
+                "type": [
+                  {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "object"
+                    ],
+                    "required": true,
+                    "properties": {
+                      "objectProperty": {
+                        "name": "objectProperty",
+                        "displayName": "objectProperty",
+                        "type": [
+                          "lib.MyType"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      },
+                      "stringProperty": {
+                        "name": "stringProperty",
+                        "displayName": "stringProperty",
+                        "type": [
+                          "lib.MyStringType"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
                           }
                         }
                       }
                     },
-                    "stringProperty": {
-                      "name": "stringProperty",
-                      "displayName": "stringProperty",
-                      "type": [
-                        "lib.MyStringType"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
+                    "additionalProperties": false,
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
                         }
                       }
                     }
-                  },
-                  "additionalProperties": false,
-                  "uses": [
-                    {
-                      "key": "lib",
-                      "value": "../libs/lib.raml"
-                    }
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
                   }
-                },
+                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
