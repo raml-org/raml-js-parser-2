@@ -29,6 +29,25 @@ export class BasicNodeImpl implements hl.BasicNode{
     _meta:NodeMetadataImpl = new NodeMetadataImpl(false,false,
         universeHelpers.isMethodType(this.highLevel().definition())&&this.optional());
 
+    private static CLASS_IDENTIFIER = "parserCore.BasicNodeImpl";
+
+    public static isInstance(instance : any) : boolean {
+        if(instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"){
+
+            for (let currentIdentifier of instance.getClassIdentifier()){
+                if(currentIdentifier == BasicNodeImpl.CLASS_IDENTIFIER) return true;
+            }
+        }
+
+        return false;
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(BasicNodeImpl.CLASS_IDENTIFIER);
+    }
 
     /**
      * @hidden
@@ -48,6 +67,22 @@ export class BasicNodeImpl implements hl.BasicNode{
 
     kind():string{
         return 'BasicNode';
+    }
+
+    /**
+     * Returns all kinds of this node.
+     * @returns {string[]}
+     */
+    allKinds():string[] {
+        return ["BasicNode"]
+    }
+
+    /**
+     * Returns all of implementation class names of this node.
+     * @returns {string[]}
+     */
+    allWrapperClassNames():string[]{
+        return ["BasicNodeImpl"]
     }
 
     /**
@@ -403,6 +438,26 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 
     protected _meta:ValueMetadataImpl = new ValueMetadataImpl();
 
+    private static CLASS_IDENTIFIER = "parserCore.AttributeNodeImpl";
+
+    public static isInstance(instance : any) : boolean {
+        if(instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"){
+
+            for (let currentIdentifier of instance.getClassIdentifier()){
+                if(currentIdentifier == AttributeNodeImpl.CLASS_IDENTIFIER) return true;
+            }
+        }
+
+        return false;
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(AttributeNodeImpl.CLASS_IDENTIFIER);
+    }
+
     constructor(attr:hl.IAttribute ){
         this.attr = attr;
     }
@@ -421,6 +476,22 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 
     kind():string{
         return 'AttributeNode';
+    }
+
+    /**
+     * Returns all kinds of this node.
+     * @returns {string[]}
+     */
+    allKinds():string[] {
+        return ["AttributeNode"]
+    }
+
+    /**
+     * Returns all of implementation class names of this node.
+     * @returns {string[]}
+     */
+    allWrapperClassNames():string[]{
+        return ["AttributeNodeImpl"]
     }
 
     /**
@@ -475,6 +546,26 @@ export interface ApiLoadingError extends Error{
 }
 
 export class TypeInstanceImpl{
+
+    private static CLASS_IDENTIFIER = "parserCore.TypeInstanceImpl";
+
+    public static isInstance(instance : any) : boolean {
+        if(instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"){
+
+            for (let currentIdentifier of instance.getClassIdentifier()){
+                if(currentIdentifier == TypeInstanceImpl.CLASS_IDENTIFIER) return true;
+            }
+        }
+
+        return false;
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(TypeInstanceImpl.CLASS_IDENTIFIER);
+    }
 
     constructor(nodes:ll.ILowLevelASTNode|ll.ILowLevelASTNode[],protected type?:rt.IParsedType){
         if(!Array.isArray(nodes)){
@@ -534,6 +625,26 @@ export class TypeInstanceImpl{
 }
 
 export class TypeInstancePropertyImpl{
+
+    private static CLASS_IDENTIFIER = "parserCore.TypeInstancePropertyImpl";
+
+    public static isInstance(instance : any) : boolean {
+        if(instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"){
+
+            for (let currentIdentifier of instance.getClassIdentifier()){
+                if(currentIdentifier == TypeInstancePropertyImpl.CLASS_IDENTIFIER) return true;
+            }
+        }
+
+        return false;
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(TypeInstancePropertyImpl.CLASS_IDENTIFIER);
+    }
 
     constructor(protected node:ll.ILowLevelASTNode){}
 

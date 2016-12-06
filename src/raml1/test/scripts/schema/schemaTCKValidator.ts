@@ -1,7 +1,7 @@
 /// <reference path="../../../../../typings/main.d.ts" />
 import testUtil = require("../../test-utils");
 
-var schema = require("../../../../../tckJsonSchema.json");
+var schema = require("../../../../../tckJsonSchema/tckJsonSchema.json");
 
 var ZSchema=require("z-schema");
 

@@ -60,6 +60,20 @@ export class MarkupIndentingBuffer {
 
 export class CompilationUnit implements lowlevel.ICompilationUnit{
 
+    private static CLASS_IDENTIFIER = "jsyaml2lowLevel.CompilationUnit";
+
+    public static isInstance(instance : any) : instance is CompilationUnit {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),CompilationUnit.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(CompilationUnit.CLASS_IDENTIFIER);
+    }
+
     constructor(private _path,private _content,private _tl,private _project:Project, private _apath:string){
         this._path = this._path != null ? this._path.replace(/\\/g,"/") : null;
     }
@@ -177,7 +191,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
             return this._node;
         }
         try {
-            var result = <yaml.YAMLNode><any>yaml.load(this._content, {});
+            var result = <yaml.YAMLNode><any>yaml.load(this._content, {ignoreDuplicateKeys: true});
             this.errors=result.errors;
             this.errors.forEach(x=>{
                 if ((<any>x).mark) {
@@ -1211,11 +1225,11 @@ export class Project implements lowlevel.IProject{
         //console.log('api: ' + api);
         var point = null;
         if(ipoint) {
-            if (ipoint instanceof ASTNode) {
+            if (ASTNode.isInstance(ipoint)) {
                 //console.log('insertion: ast node');
                 point = <ASTNode>ipoint;
             }
-            if (ipoint instanceof InsertionPoint) {
+            if (InsertionPoint.isInstance(ipoint)) {
                 //console.log('insertion: ip');
                 point = (<InsertionPoint>ipoint).point;
             }
@@ -1347,7 +1361,7 @@ export class Project implements lowlevel.IProject{
                     }
                 }
             } else {
-                if(ipoint && (ipoint instanceof InsertionPoint)) {
+                if(ipoint && (InsertionPoint.isInstance(ipoint))) {
                     //ipoint.show('insertion point provided');
                     var ip = <InsertionPoint>ipoint;
                     if(ip.type == InsertionPointType.START) {
@@ -1892,7 +1906,7 @@ export class Project implements lowlevel.IProject{
         //console.log('New content:\n' + newNodeContent);
         //target.show('OLD TARGET');
 
-        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {});
+        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {ignoreDuplicateKeys: true});
 
         //console.log('new yaml: ' + yaml.Kind[newYamlNode.kind]);
         this.updatePositions(target.start(), newYamlNode);
@@ -1988,7 +2002,7 @@ export class Project implements lowlevel.IProject{
                     //we can just reparse new node content;
                     //console.log(newNodeContent)
                     try {
-                        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {});
+                        var newYamlNode = <yaml.YAMLNode>yaml.load(newNodeContent, {ignoreDuplicateKeys: true});
                         this.updatePositions(target.start(), newYamlNode);
                         //console.log("Positions updated")
                         //lets shift all after it
@@ -2187,6 +2201,20 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
     _errors:Error[]=[]
 
+    private static CLASS_IDENTIFIER = "jsyaml2lowLevel.ASTNode";
+
+    public static isInstance(instance : any) : instance is ASTNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ASTNode.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(ASTNode.CLASS_IDENTIFIER);
+    }
+
     constructor (
         private _node: yaml.YAMLNode,
         private _unit: lowlevel.ICompilationUnit,
@@ -2195,9 +2223,6 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         private _include: ASTNode,
         private cacheChildren:boolean = false,
         private _includesContents = false) {
-        if (_node==null){
-            console.log("null")
-        }
     }
     actual(): any{
         return this._node;
@@ -2406,6 +2431,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if (mapping.value) return mapping.value.startPosition;
             else return mapping.endPosition;
         }
+        else if(this._node.kind==yaml.Kind.SCALAR){
+            return this.start();
+        }
 
         return -1;
     }
@@ -2415,6 +2443,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             var mapping = this.asMapping();
 
             return mapping.value ? mapping.value.endPosition : mapping.endPosition;
+        }
+        else if(this._node.kind==yaml.Kind.SCALAR){
+            return this.end();
         }
 
         return -1;
@@ -3690,6 +3721,20 @@ export enum InsertionPointType {
 
 export class InsertionPoint {
 
+    private static CLASS_IDENTIFIER = "jsyaml2lowLevel.InsertionPoint";
+
+    public static isInstance(instance : any) : instance is InsertionPoint {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),InsertionPoint.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(InsertionPoint.CLASS_IDENTIFIER);
+    }
+
     type: InsertionPointType;
     point: ASTNode;
 
@@ -3779,7 +3824,7 @@ export function createMapping(key:string,v:string){
 }
 
 export function toChildCachingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILowLevelASTNode{
-    if(!(node instanceof ASTNode)){
+    if(!(ASTNode.isInstance(node))){
         return null;
     }
     var astNode:ASTNode = <ASTNode>node;
@@ -3789,7 +3834,7 @@ export function toChildCachingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILow
 }
 
 export function toIncludingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILowLevelASTNode{
-    if(!(node instanceof ASTNode)){
+    if(!(ASTNode.isInstance(node))){
         return null;
     }
     var astNode:ASTNode = <ASTNode>node;

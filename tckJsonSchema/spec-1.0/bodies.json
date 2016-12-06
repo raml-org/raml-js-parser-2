@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "Response10": {
+      "type": "object",
+      "description": "Information about the expected responses to a request",
+      "allOf":[
+        {"$ref": "common.json#/definitions/Annotable"},
+        {
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "A longer, human-friendly description of the response"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Detailed information about any response headers returned by this method",
+              "items": {"$ref": "datamodel.json#/definitions/Type"}
+            },
+            "body": {
+              "type": "object",
+              "description": "The body of the response: a body declaration",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+              }
+            },
+            "code": {
+              "type": "string",
+              "description": "Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code."
+            }
+          }
+        }
+      ],
+      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+    }
+  }
+}

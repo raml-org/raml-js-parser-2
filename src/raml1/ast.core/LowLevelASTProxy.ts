@@ -15,6 +15,20 @@ var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
+    private static CLASS_IDENTIFIER = "LowLevelASTProxy.LowLevelProxyNode";
+
+    public static isInstance(instance : any) : instance is LowLevelProxyNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelProxyNode.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(LowLevelProxyNode.CLASS_IDENTIFIER);
+    }
+
     constructor(
         protected _parent:ll.ILowLevelASTNode,
         protected _transformer:ValueTransformer,
@@ -197,6 +211,20 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
 export class LowLevelCompositeNode extends LowLevelProxyNode{
 
+    private static CLASS_IDENTIFIER_LowLevelCompositeNode = "LowLevelASTProxy.LowLevelCompositeNode";
+
+    public static isInstance(instance : any) : instance is LowLevelCompositeNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelCompositeNode.CLASS_IDENTIFIER_LowLevelCompositeNode);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(LowLevelCompositeNode.CLASS_IDENTIFIER_LowLevelCompositeNode);
+    }
+
     constructor(
         node:ll.ILowLevelASTNode,
         parent:LowLevelCompositeNode,
@@ -206,7 +234,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         super(parent,transformer,ramlVersion);
 
         var originalParent = this.parent() ? this.parent().originalNode() : null;
-        if(node instanceof LowLevelValueTransformingNode){
+        if(LowLevelValueTransformingNode.isInstance(node)){
             this._originalNode = node;
         }
         else {
@@ -264,7 +292,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         else {
             val = this._originalNode.value(toString);
         }
-        if(val instanceof LowLevelValueTransformingNode){
+        if(LowLevelValueTransformingNode.isInstance(val)){
             this._valueOverride = val;
         }
         return val;
@@ -308,7 +336,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 }
                 map[key] = true;
                 var transformer = x.transformer() ? x.transformer() : this.transformer();
-                var ch = (y instanceof  LowLevelValueTransformingNode)
+                var ch = (LowLevelValueTransformingNode.isInstance(y))
                     ? (<LowLevelValueTransformingNode>y).originalNode() : y;
                 result.push(new LowLevelCompositeNode(ch,this,transformer,this.ramlVersion,isPrimary));
             }));
@@ -363,7 +391,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 if(!key){
                     continue;
                 }
-                var arr:ChildEntry[] = m[key];
+                var arr:ChildEntry[] = m.hasOwnProperty(key) && m[key];
                 if (!arr) {
                     arr = [];
                     m[key] = arr;
@@ -538,8 +566,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return;
         }
         this._children = nodes.map(x=>{
-            if(x instanceof LowLevelCompositeNode){
-                return x;
+            if(LowLevelCompositeNode.isInstance(x)){
+                return <LowLevelCompositeNode>x;
             }
             return new LowLevelCompositeNode(x,this,null,this.ramlVersion);
         });
@@ -594,6 +622,20 @@ interface ChildEntry {
 }
 
 export class LowLevelValueTransformingNode extends LowLevelProxyNode{
+
+    private static CLASS_IDENTIFIER_LowLevelValueTransformingNode = "LowLevelASTProxy.LowLevelValueTransformingNode";
+
+    public static isInstance(instance : any) : instance is LowLevelValueTransformingNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelValueTransformingNode.CLASS_IDENTIFIER_LowLevelValueTransformingNode);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(LowLevelValueTransformingNode.CLASS_IDENTIFIER_LowLevelValueTransformingNode);
+    }
 
     constructor(
         node:ll.ILowLevelASTNode,

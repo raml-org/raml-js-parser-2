@@ -1,0 +1,10 @@
+#%RAML 1.0 DataType
+type: !include commonBase.raml
+properties:
+  name: string
+  age:
+    type: number
+    required: false
+  email?: string
+  mobile?: string
+  addresses: !include address.raml

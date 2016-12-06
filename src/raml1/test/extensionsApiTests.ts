@@ -16,7 +16,7 @@ describe('Extension API', function () {
 
         // var opt = apiLoader.loadApi1(path.resolve(__dirname,"./data/helperTestApi.raml"));
         assert(opt.isDefined());
-        assert(opt.getOrThrow() instanceof RamlWrapperImpl.ApiImpl);
+        assert(RamlWrapperImpl.ApiImpl.isInstance(opt.getOrThrow()));
         var api:RamlWrapper.Api = <RamlWrapper.Api>opt.getOrThrow();
 
         assert(api != null);
@@ -30,7 +30,7 @@ describe('Extension API', function () {
 
         var opt2 = apiLoader.loadApi(newPath, { expandTraitsAndResourceTypes: false });
         assert(opt2.isDefined());
-        assert(opt2.getOrThrow() instanceof RamlWrapperImpl.ApiImpl);
+        assert(RamlWrapperImpl.ApiImpl.isInstance(opt2.getOrThrow()));
         var api2 = <RamlWrapper.Api>opt2.getOrThrow();
 
         assert(api2 != null);
