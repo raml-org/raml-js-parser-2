@@ -213,10 +213,7 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"a\": 3,\n  \"items\": [\n    {\n      \"c\": 3\n    },\n    {\n      \"b\": \"4\",\n      \"c1\": \"3\"\n    }\n  ]\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "a": 3,
                           "items": [
                             {
@@ -227,7 +224,9 @@
                               "c1": "3"
                             }
                           ]
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ],
                     "type": [

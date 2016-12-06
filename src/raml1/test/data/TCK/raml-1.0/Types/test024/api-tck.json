@@ -20,10 +20,9 @@
         },
         "examples": [
           {
-            "value": "630128",
+            "value": 630128,
             "strict": true,
-            "name": null,
-            "structuredValue": 630128
+            "name": null
           }
         ]
       },
@@ -159,16 +158,15 @@
         },
         "examples": [
           {
-            "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "country": "US",
               "city": "SF",
               "street": "Geary Street",
               "house": "77, Suite 400",
               "zip": 94108
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       },
@@ -199,8 +197,7 @@
           {
             "value": "press@mulesoft.com",
             "strict": true,
-            "name": null,
-            "structuredValue": "press@mulesoft.com"
+            "name": null
           }
         ]
       },
@@ -242,10 +239,7 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
-            "strict": true,
-            "name": "value1",
-            "structuredValue": {
+            "value": {
               "id": 11,
               "name": "John Johnson",
               "email": "press@mulesoft.com",
@@ -255,13 +249,12 @@
                 "city": "Novosibirsk",
                 "zip": 630090
               }
-            }
+            },
+            "strict": true,
+            "name": "value1"
           },
           {
-            "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
-            "strict": true,
-            "name": "value2",
-            "structuredValue": {
+            "value": {
               "id": 12,
               "name": "John Johnson",
               "email": "press1@mulesoft.com",
@@ -271,7 +264,9 @@
                 "city": "SF",
                 "zip": 123456
               }
-            }
+            },
+            "strict": true,
+            "name": "value2"
           }
         ],
         "required": true,
@@ -398,10 +393,7 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  },\n  \"managerId\": 77\n}",
-            "strict": true,
-            "name": "manager1",
-            "structuredValue": {
+            "value": {
               "id": 11,
               "name": "John Johnson",
               "email": "press@mulesoft.com",
@@ -412,13 +404,12 @@
                 "zip": 630090
               },
               "managerId": 77
-            }
+            },
+            "strict": true,
+            "name": "manager1"
           },
           {
-            "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  },\n  \"managerId\": 88\n}",
-            "strict": true,
-            "name": "manager2",
-            "structuredValue": {
+            "value": {
               "id": 12,
               "name": "John Johnson",
               "email": "press1@mulesoft.com",
@@ -429,7 +420,9 @@
                 "zip": 123456
               },
               "managerId": 88
-            }
+            },
+            "strict": true,
+            "name": "manager2"
           }
         ],
         "required": true,

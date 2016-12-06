@@ -79,17 +79,16 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "ownLibProperty": {
                         "prop": "stringValue"
                       },
                       "rootLibProperty": {
                         "integerProperty": 5
                       }
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }
@@ -127,8 +126,7 @@
                   {
                     "value": "stringValue",
                     "strict": true,
-                    "name": null,
-                    "structuredValue": "stringValue"
+                    "name": null
                   }
                 ]
               }
@@ -197,17 +195,16 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "ownLibProperty": {
                         "prop": "stringValue"
                       },
                       "rootLibProperty": {
                         "integerProperty": 5
                       }
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

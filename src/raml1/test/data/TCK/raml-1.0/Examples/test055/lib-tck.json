@@ -61,13 +61,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"Fred\",\n  \"size\": 0\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "Fred",
               "size": 0
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

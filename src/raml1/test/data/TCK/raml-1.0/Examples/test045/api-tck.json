@@ -32,13 +32,12 @@
             "displayName": "X-Dept",
             "examples": [
               {
-                "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
-                "strict": true,
-                "name": "one_dept",
-                "structuredValue": [
+                "value": [
                   "230-OCTO",
                   "InvalidHere"
-                ]
+                ],
+                "strict": true,
+                "name": "one_dept"
               }
             ],
             "required": true,
@@ -72,13 +71,12 @@
                 "displayName": "X-Dept",
                 "examples": [
                   {
-                    "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
-                    "strict": true,
-                    "name": "one_dept",
-                    "structuredValue": [
+                    "value": [
                       "230-OCTO",
                       "InvalidHere"
-                    ]
+                    ],
+                    "strict": true,
+                    "name": "one_dept"
                   }
                 ],
                 "required": true,

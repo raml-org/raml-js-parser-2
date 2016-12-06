@@ -90,10 +90,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "unionArray1": [
                 1,
                 2,
@@ -104,7 +101,9 @@
                 "blah",
                 "blah"
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

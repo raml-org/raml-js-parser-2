@@ -17,20 +17,18 @@
                     ],
                     "examples": [
                       {
-                        "value": "{\n  \"name\": 7\n}",
-                        "strict": true,
-                        "name": "test",
-                        "structuredValue": {
+                        "value": {
                           "name": 7
-                        }
+                        },
+                        "strict": true,
+                        "name": "test"
                       },
                       {
-                        "value": "{\n  \"name\": 8\n}",
-                        "strict": true,
-                        "name": "test2",
-                        "structuredValue": {
+                        "value": {
                           "name": 8
-                        }
+                        },
+                        "strict": true,
+                        "name": "test2"
                       }
                     ],
                     "required": true,

@@ -30,8 +30,7 @@
           {
             "value": "POST",
             "strict": true,
-            "name": null,
-            "structuredValue": "POST"
+            "name": null
           }
         ]
       },
@@ -550,10 +549,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"type\": \"aws\",\n  \"uri\": \"arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations\",\n  \"httpMethod\": \"POST\",\n  \"credentials\": \"arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role\",\n  \"requestTemplates\": {\n    \"application/json\": \"json request template 2\",\n    \"application/xml\": \"xml request template 2\"\n  },\n  \"requestParameters\": {\n    \"integration.request.path.integrationPathParam\": \"method.request.querystring.latitude\",\n    \"integration.request.querystring.integrationQueryParam\": \"method.request.querystring.longitude\"\n  },\n  \"cacheNamespace\": \"cache namespace\",\n  \"cacheKeyParameters\": [],\n  \"responses\": {\n    \"2\\\\d{2}\": {\n      \"statusCode\": \"200\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"integration.response.header.integrationResponseHeaderParam1\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 200 response template\",\n        \"application/xml\": \"xml 200 response template\"\n      }\n    },\n    \"default\": {\n      \"statusCode\": \"400\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"'static value'\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 400 response template\",\n        \"application/xml\": \"xml 400 response template\"\n      }\n    }\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "type": "aws",
               "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
               "httpMethod": "POST",
@@ -590,7 +586,9 @@
                   }
                 }
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

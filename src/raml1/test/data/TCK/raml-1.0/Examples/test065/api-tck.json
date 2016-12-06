@@ -43,20 +43,18 @@
         },
         "examples": [
           {
-            "value": "{\n  \"p\" : \"stringValue1\"\n}\n",
-            "strict": true,
-            "name": "ex1",
-            "structuredValue": {
+            "value": {
               "p": "stringValue1"
-            }
+            },
+            "strict": true,
+            "name": "ex1"
           },
           {
-            "value": "{\n  \"p\" : \"stringValue2\"\n}",
-            "strict": true,
-            "name": "ex2",
-            "structuredValue": {
+            "value": {
               "p": "stringValue2"
-            }
+            },
+            "strict": true,
+            "name": "ex2"
           }
         ]
       },
@@ -68,12 +66,11 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"p\" : \"stringValue1\"\n}\n",
-            "strict": true,
-            "name": "ex3",
-            "structuredValue": {
+            "value": {
               "p": "stringValue1"
             },
+            "strict": true,
+            "name": "ex3",
             "displayName": "T2 Example",
             "description": "Example for the 'T2' type"
           }

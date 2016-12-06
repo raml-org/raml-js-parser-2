@@ -64,13 +64,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": \"\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "Fred",
               "comment": ""
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

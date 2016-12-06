@@ -262,13 +262,12 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"propertyFromType1\": \"stringValue1\",\n  \"extraProperty\": \"stringValue2\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "propertyFromType1": "stringValue1",
                       "extraProperty": "stringValue2"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }
@@ -348,14 +347,13 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"propertyFromResourceType2\": \"stringValue3\",\n  \"propertyFromType1\": \"stringValue1\",\n  \"extraProperty\": \"stringValue2\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "propertyFromResourceType2": "stringValue3",
                       "propertyFromType1": "stringValue1",
                       "extraProperty": "stringValue2"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

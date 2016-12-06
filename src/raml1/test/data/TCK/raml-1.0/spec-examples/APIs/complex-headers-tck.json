@@ -36,8 +36,7 @@
                 {
                   "value": "230-OCTO",
                   "strict": true,
-                  "name": null,
-                  "structuredValue": "230-OCTO"
+                  "name": null
                 }
               ]
             },
@@ -83,8 +82,7 @@
               {
                 "value": "abcdefghijklmnop",
                 "strict": true,
-                "name": null,
-                "structuredValue": "abcdefghijklmnop"
+                "name": null
               }
             ]
           }
@@ -131,8 +129,7 @@
                     {
                       "value": "230-OCTO",
                       "strict": true,
-                      "name": null,
-                      "structuredValue": "230-OCTO"
+                      "name": null
                     }
                   ]
                 },
@@ -148,13 +145,12 @@
                 },
                 "examples": [
                   {
-                    "value": "[\n  \"18-FINANCE\",\n  \"200-MISC\"\n]",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": [
+                    "value": [
                       "18-FINANCE",
                       "200-MISC"
-                    ]
+                    ],
+                    "strict": true,
+                    "name": null
                   }
                 ]
               },
@@ -184,8 +180,7 @@
                   {
                     "value": "gfr456d03ygh38s2",
                     "strict": true,
-                    "name": null,
-                    "structuredValue": "gfr456d03ygh38s2"
+                    "name": null
                   }
                 ]
               }

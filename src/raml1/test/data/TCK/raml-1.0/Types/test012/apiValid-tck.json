@@ -60,10 +60,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty\": \"stringValue\"\n        }\n      ],\n      \"someProperty\": \"stringValue\"\n    }\n  ],\n  \"someProperty\": \"stringValue\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "selfReference": [
                 {
                   "selfReference": [
@@ -76,7 +73,9 @@
                 }
               ],
               "someProperty": "stringValue"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

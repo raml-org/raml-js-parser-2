@@ -52,12 +52,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"prop1\": \"stringValue\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "prop1": "stringValue"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

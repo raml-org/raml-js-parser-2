@@ -43,12 +43,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"a\": 5\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "a": 5
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }
@@ -107,10 +106,9 @@
                     },
                     "examples": [
                       {
-                        "value": "{ d\":5 ,\"r\":2 }\n",
+                        "value": null,
                         "strict": true,
-                        "name": null,
-                        "structuredValue": null
+                        "name": null
                       }
                     ]
                   }

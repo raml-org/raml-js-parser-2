@@ -17,13 +17,12 @@
         },
         "examples": [
           {
-            "value": "[\n  100500,\n  \"not number\"\n]",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
+            "value": [
               100500,
               "not number"
-            ]
+            ],
+            "strict": true,
+            "name": null
           }
         ],
         "type": [

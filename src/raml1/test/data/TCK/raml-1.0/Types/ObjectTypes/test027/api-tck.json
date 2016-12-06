@@ -163,10 +163,7 @@
         "displayName": "ArrayType",
         "examples": [
           {
-            "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  },\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  }\n]",
-            "strict": true,
-            "name": "ex1",
-            "structuredValue": [
+            "value": [
               {
                 "stringProperty": "ab",
                 "kind": "k1"
@@ -175,13 +172,12 @@
                 "stringProperty": "ab",
                 "kind": "k1"
               }
-            ]
+            ],
+            "strict": true,
+            "name": "ex1"
           },
           {
-            "value": "[\n  {\n    \"stringProperty\": \"abс\",\n    \"kind\": \"k2\"\n  },\n  {\n    \"stringProperty\": \"abс\",\n    \"kind\": \"k2\"\n  }\n]",
-            "strict": true,
-            "name": "ex2",
-            "structuredValue": [
+            "value": [
               {
                 "stringProperty": "abс",
                 "kind": "k2"
@@ -190,7 +186,9 @@
                 "stringProperty": "abс",
                 "kind": "k2"
               }
-            ]
+            ],
+            "strict": true,
+            "name": "ex2"
           }
         ],
         "required": true,

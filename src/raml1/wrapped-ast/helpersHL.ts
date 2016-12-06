@@ -200,10 +200,9 @@ export function dumpExpandableExample(ex,dumpXMLRepresentationOfExamples=false):
         obj = ex.original();
     }
     var sObj:any = {
-        value: ex.asString(),
+        value: obj,
         strict: ex.strict(),
-        name: ex.name(),
-        structuredValue: obj
+        name: ex.name()
     };
     var annotations = ex.annotations();
     var aObj = toAnnotations(annotations);

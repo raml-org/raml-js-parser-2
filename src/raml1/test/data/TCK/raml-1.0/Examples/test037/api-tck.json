@@ -20,10 +20,9 @@
         },
         "examples": [
           {
-            "value": "100",
+            "value": 100,
             "strict": true,
-            "name": null,
-            "structuredValue": 100
+            "name": null
           }
         ]
       },
@@ -43,13 +42,12 @@
         },
         "examples": [
           {
-            "value": "[\n  100,\n  10\n]",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
+            "value": [
               100,
               10
-            ]
+            ],
+            "strict": true,
+            "name": null
           }
         ],
         "type": [
@@ -76,10 +74,9 @@
         },
         "examples": [
           {
-            "value": "true",
+            "value": true,
             "strict": true,
-            "name": null,
-            "structuredValue": true
+            "name": null
           }
         ]
       }

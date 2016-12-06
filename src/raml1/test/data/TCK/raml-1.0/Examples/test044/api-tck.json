@@ -25,10 +25,9 @@
                 },
                 "examples": [
                   {
-                    "value": "true",
+                    "value": true,
                     "strict": true,
-                    "name": null,
-                    "structuredValue": true
+                    "name": null
                   }
                 ]
               },
@@ -53,8 +52,7 @@
                   {
                     "value": "stringValue",
                     "strict": true,
-                    "name": null,
-                    "structuredValue": "stringValue"
+                    "name": null
                   }
                 ]
               }

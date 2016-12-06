@@ -9,12 +9,11 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"prop1\": \"value1\"\n}",
-            "strict": false,
-            "name": "example1",
-            "structuredValue": {
+            "value": {
               "prop1": "value1"
             },
+            "strict": false,
+            "name": "example1",
             "annotations": {
               "NumberAnnotation": {
                 "structuredValue": 5,
@@ -31,12 +30,11 @@
             "description": "example 1 of ObjectType3"
           },
           {
-            "value": "{\n  \"prop1\": \"value2\"\n}",
-            "strict": false,
-            "name": "example2",
-            "structuredValue": {
+            "value": {
               "prop1": "value2"
             },
+            "strict": false,
+            "name": "example2",
             "annotations": {
               "NumberAnnotation": {
                 "structuredValue": 15,

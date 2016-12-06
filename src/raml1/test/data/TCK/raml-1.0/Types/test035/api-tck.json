@@ -59,14 +59,13 @@
         },
         "examples": [
           {
-            "value": "{\n  \"reports\": [\n    null\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "reports": [
                 null
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

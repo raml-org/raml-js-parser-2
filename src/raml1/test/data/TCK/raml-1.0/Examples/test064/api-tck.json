@@ -51,14 +51,13 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"body\": {\n    \"id\": 7\n  }\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "body": {
                             "id": 7
                           }
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ]
                   }

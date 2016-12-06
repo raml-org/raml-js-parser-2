@@ -150,12 +150,11 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"a\": 3\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "a": 3
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ],
                     "type": [

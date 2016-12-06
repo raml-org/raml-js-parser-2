@@ -44,12 +44,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"d\": \"a\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "d": "a"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

@@ -25,8 +25,7 @@
               {
                 "value": "5757gh76",
                 "strict": true,
-                "name": null,
-                "structuredValue": "5757gh76"
+                "name": null
               }
             ]
           }
@@ -54,10 +53,9 @@
             },
             "examples": [
               {
-                "value": "5000",
+                "value": 5000,
                 "strict": true,
-                "name": null,
-                "structuredValue": 5000
+                "name": null
               }
             ]
           }

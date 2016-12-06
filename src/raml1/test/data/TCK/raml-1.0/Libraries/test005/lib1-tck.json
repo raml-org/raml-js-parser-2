@@ -49,10 +49,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"p1\": {\n    \"p2\": {\n      \"p1\": {\n        \"p2\": {\n          \"p1\": {\n            \"p2\": {\n              \"p1\": null\n            }\n          }\n        }\n      }\n    }\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "p1": {
                 "p2": {
                   "p1": {
@@ -66,7 +63,9 @@
                   }
                 }
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

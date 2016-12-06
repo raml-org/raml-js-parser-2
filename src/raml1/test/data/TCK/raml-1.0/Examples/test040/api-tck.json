@@ -25,12 +25,11 @@
                 },
                 "examples": [
                   {
-                    "value": "[\n  2\n]",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": [
+                    "value": [
                       2
-                    ]
+                    ],
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

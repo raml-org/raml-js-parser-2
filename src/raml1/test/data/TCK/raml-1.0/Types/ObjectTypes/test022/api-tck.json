@@ -55,13 +55,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"eleo\",\n  \"title??\": \"Yes, I have a title\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "eleo",
               "title??": "Yes, I have a title"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

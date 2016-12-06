@@ -78,17 +78,16 @@
         },
         "examples": [
           {
-            "value": "{\n  \"put\": {\n    \"name\": \"update method\"\n  },\n  \"post\": {\n    \"name\": \"create method\"\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "put": {
                 "name": "update method"
               },
               "post": {
                 "name": "create method"
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

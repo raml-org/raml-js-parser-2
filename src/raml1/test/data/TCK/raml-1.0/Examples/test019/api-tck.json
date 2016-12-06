@@ -26,8 +26,7 @@
           {
             "value": "ddddd",
             "strict": true,
-            "name": null,
-            "structuredValue": "ddddd"
+            "name": null
           }
         ]
       },
@@ -56,8 +55,7 @@
           {
             "value": "111",
             "strict": true,
-            "name": null,
-            "structuredValue": "111"
+            "name": null
           }
         ]
       }

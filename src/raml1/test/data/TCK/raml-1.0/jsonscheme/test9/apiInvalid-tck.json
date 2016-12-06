@@ -46,10 +46,7 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"rootName\": \"rootname\",\n  \"parent\": {\n    \"parentName\": \"somename\",\n    \"child\": {\n      \"childName1\": \"anothername\"\n    }\n  }\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "rootName": "rootname",
                       "parent": {
                         "parentName": "somename",
@@ -57,7 +54,9 @@
                           "childName1": "anothername"
                         }
                       }
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

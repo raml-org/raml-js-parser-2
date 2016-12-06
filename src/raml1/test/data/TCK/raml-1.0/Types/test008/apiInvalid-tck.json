@@ -181,10 +181,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"unionArray\": [\n    {\n      \"property1\": \"val1\",\n      \"property4\": \"val2\"\n    },\n    {\n      \"property3\": \"val3\",\n      \"property4\": \"val4\"\n    }\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "unionArray": [
                 {
                   "property1": "val1",
@@ -195,7 +192,9 @@
                   "property4": "val4"
                 }
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

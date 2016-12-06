@@ -96,15 +96,14 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "objectProperty": {
                         "prop": "string"
                       },
                       "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

@@ -58,10 +58,9 @@
                 },
                 "examples": [
                   {
-                    "value": "1",
+                    "value": 1,
                     "strict": true,
-                    "name": null,
-                    "structuredValue": 1
+                    "name": null
                   }
                 ]
               },
@@ -88,10 +87,9 @@
                 },
                 "examples": [
                   {
-                    "value": "50",
+                    "value": 50,
                     "strict": true,
-                    "name": null,
-                    "structuredValue": 50
+                    "name": null
                   }
                 ]
               }

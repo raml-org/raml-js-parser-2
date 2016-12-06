@@ -87,13 +87,12 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"name\": \"john\",\n  \"age\": \"34s\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "name": "john",
                       "age": "34s"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

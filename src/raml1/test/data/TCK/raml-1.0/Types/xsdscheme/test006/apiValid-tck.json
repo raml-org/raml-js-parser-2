@@ -22,8 +22,7 @@
           {
             "value": "<city><country_name>France</country_name>\n<population>59.7</population></city>\n",
             "strict": true,
-            "name": null,
-            "structuredValue": "<city><country_name>France</country_name>\n<population>59.7</population></city>\n"
+            "name": null
           }
         ]
       }

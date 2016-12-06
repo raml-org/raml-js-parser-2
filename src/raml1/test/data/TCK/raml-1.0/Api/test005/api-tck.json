@@ -34,8 +34,7 @@
           {
             "value": "example.com",
             "strict": true,
-            "name": null,
-            "structuredValue": "example.com"
+            "name": null
           }
         ]
       },

@@ -44,13 +44,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"d\": \"a\",\n  \"dd\": \"2\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "d": "a",
               "dd": "2"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       },
@@ -73,12 +72,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"x\": \"3\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "x": "3"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

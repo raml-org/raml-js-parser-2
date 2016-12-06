@@ -58,13 +58,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"Bob\",\n  \"lastname\": \"Marley\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "Bob",
               "lastname": "Marley"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       },
@@ -171,8 +170,7 @@
                   {
                     "value": "SWED-123",
                     "strict": true,
-                    "name": null,
-                    "structuredValue": "SWED-123"
+                    "name": null
                   }
                 ]
               }
@@ -197,13 +195,12 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"name\": \"Doe Enterprise\",\n  \"value\": \"Silver\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "name": "Doe Enterprise",
                       "value": "Silver"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }
@@ -223,22 +220,20 @@
                     ],
                     "examples": [
                       {
-                        "value": "{\n  \"name\": \"Acme\"\n}",
-                        "strict": true,
-                        "name": "acme",
-                        "structuredValue": {
+                        "value": {
                           "name": "Acme"
-                        }
+                        },
+                        "strict": true,
+                        "name": "acme"
                       },
                       {
-                        "value": "{\n  \"name\": \"Software Corp\",\n  \"address\": \"35 Central Street\",\n  \"value\": \"Gold\"\n}",
-                        "strict": true,
-                        "name": "softwareCorp",
-                        "structuredValue": {
+                        "value": {
                           "name": "Software Corp",
                           "address": "35 Central Street",
                           "value": "Gold"
-                        }
+                        },
+                        "strict": true,
+                        "name": "softwareCorp"
                       }
                     ],
                     "required": true,

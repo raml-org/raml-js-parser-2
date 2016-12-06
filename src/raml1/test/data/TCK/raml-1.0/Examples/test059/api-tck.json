@@ -167,13 +167,12 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"name\": \"Rex\",\n  \"fangs-INCORRECT\": \"big ones\"\n}\n",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "name": "Rex",
                           "fangs-INCORRECT": "big ones"
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ]
                   }

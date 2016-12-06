@@ -17,14 +17,13 @@
                     ],
                     "examples": [
                       {
-                        "value": "{\n  \"content\": {\n    \"name\": 7\n  }\n}",
-                        "strict": true,
-                        "name": "test",
-                        "structuredValue": {
+                        "value": {
                           "content": {
                             "name": 7
                           }
-                        }
+                        },
+                        "strict": true,
+                        "name": "test"
                       }
                     ],
                     "required": true,

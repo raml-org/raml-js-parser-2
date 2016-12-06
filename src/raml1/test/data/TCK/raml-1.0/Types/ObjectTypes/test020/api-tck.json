@@ -76,13 +76,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"firstname\": \"eleo\",\n  \"lastname\": \"ortega\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "firstname": "eleo",
               "lastname": "ortega"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

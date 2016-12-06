@@ -48,12 +48,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"y\": \"aaa2\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "y": "aaa2"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

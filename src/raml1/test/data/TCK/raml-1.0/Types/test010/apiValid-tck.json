@@ -97,10 +97,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"prop\": [\n    {\n      \"name\": \"stringValue1\"\n    },\n    {\n      \"name\": \"stringValue2\"\n    }\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "prop": [
                 {
                   "name": "stringValue1"
@@ -109,7 +106,9 @@
                   "name": "stringValue2"
                 }
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

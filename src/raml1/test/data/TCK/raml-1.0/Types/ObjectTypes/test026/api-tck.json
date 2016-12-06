@@ -132,26 +132,24 @@
                 "displayName": "application/json",
                 "examples": [
                   {
-                    "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  }\n]",
-                    "strict": true,
-                    "name": "ex1",
-                    "structuredValue": [
+                    "value": [
                       {
                         "stringProperty": "ab",
                         "kind": "k1"
                       }
-                    ]
+                    ],
+                    "strict": true,
+                    "name": "ex1"
                   },
                   {
-                    "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k2\"\n  }\n]",
-                    "strict": true,
-                    "name": "ex2",
-                    "structuredValue": [
+                    "value": [
                       {
                         "stringProperty": "ab",
                         "kind": "k2"
                       }
-                    ]
+                    ],
+                    "strict": true,
+                    "name": "ex2"
                   }
                 ],
                 "required": true,

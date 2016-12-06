@@ -74,13 +74,12 @@
                     },
                     "examples": [
                       {
-                        "value": "{ \"message\":\"s\" ,\"r\":2 }\n",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "message": "s",
                           "r": 2
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ],
                     "type": [

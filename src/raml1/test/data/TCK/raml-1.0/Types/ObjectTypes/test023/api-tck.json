@@ -84,17 +84,16 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue2\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 8\n  }\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "ownLibProperty": {
                         "prop": "stringValue2"
                       },
                       "rootLibProperty": {
                         "integerProperty": 8
                       }
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

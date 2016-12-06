@@ -363,10 +363,7 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"onCall\": {\n    \"firstname\": \"nico\",\n    \"lastname\": \"ark\",\n    \"kind\": \"admin\",\n    \"clearanceLevel\": \"low\",\n    \"phone\": \"12321\"\n  },\n  \"Head\": {\n    \"firstname\": \"nico\",\n    \"lastname\": \"ark\",\n    \"kind\": \"Manager\",\n    \"reports\": [\n      {\n        \"firstname\": \"nico\",\n        \"lastname\": \"ark\",\n        \"kind\": \"Person\"\n      }\n    ],\n    \"phone\": \"123-23\"\n  }\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "onCall": {
                             "firstname": "nico",
                             "lastname": "ark",
@@ -387,7 +384,9 @@
                             ],
                             "phone": "123-23"
                           }
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ]
                   }

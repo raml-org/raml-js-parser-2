@@ -26,8 +26,7 @@
           {
             "value": "ddddd",
             "strict": true,
-            "name": null,
-            "structuredValue": "ddddd"
+            "name": null
           }
         ]
       },
@@ -73,12 +72,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"z\": \"3\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "z": "3"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

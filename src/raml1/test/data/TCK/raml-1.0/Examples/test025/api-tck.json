@@ -339,10 +339,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"id\": \"146df5d64e5cb7dc\",\n  \"historyId\": \"535370\",\n  \"messages\": [\n    {\n      \"id\": \"146df5d64e5cb7dc\",\n      \"payload\": {\n        \"mimeType\": \"text/plain\",\n        \"filename\": \"\",\n        \"headers\": [\n          {\n            \"name\": \"Received\",\n            \"value\": \"from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700\"\n          },\n          {\n            \"name\": \"Date\",\n            \"value\": \"Fri, 27 Jun 2014 15:06:18 -0700\"\n          },\n          {\n            \"name\": \"Message-Id\",\n            \"value\": \"<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>\"\n          },\n          {\n            \"name\": \"From\",\n            \"value\": \"someaccount@gmail.com\"\n          }\n        ],\n        \"body\": {\n          \"size\": 1,\n          \"data\": \"\"\n        }\n      },\n      \"sizeEstimate\": 331\n    }\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "id": "146df5d64e5cb7dc",
               "historyId": "535370",
               "messages": [
@@ -377,7 +374,9 @@
                   "sizeEstimate": 331
                 }
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

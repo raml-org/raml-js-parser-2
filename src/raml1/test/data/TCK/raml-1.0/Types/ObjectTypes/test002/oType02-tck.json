@@ -59,12 +59,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"initial_comments\": \"oo\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "initial_comments": "oo"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

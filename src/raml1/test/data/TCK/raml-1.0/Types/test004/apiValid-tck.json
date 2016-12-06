@@ -17,13 +17,12 @@
         },
         "examples": [
           {
-            "value": "[\n  \"some string\",\n  \"another string\"\n]",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
+            "value": [
               "some string",
               "another string"
-            ]
+            ],
+            "strict": true,
+            "name": null
           }
         ],
         "type": [

@@ -43,12 +43,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"a\": 5\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "a": 5
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }
@@ -84,13 +83,12 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"message\": 4,\n  \"vlue\": 3\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "message": 4,
                           "vlue": 3
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ],
                     "type": [

@@ -64,13 +64,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": null,\n  \"data\": null\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": null,
               "data": null
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       },

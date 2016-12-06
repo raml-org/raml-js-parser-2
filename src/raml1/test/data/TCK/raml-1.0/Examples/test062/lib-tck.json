@@ -20,10 +20,9 @@
         },
         "examples": [
           {
-            "value": "false",
+            "value": false,
             "strict": true,
-            "name": null,
-            "structuredValue": false
+            "name": null
           }
         ]
       }

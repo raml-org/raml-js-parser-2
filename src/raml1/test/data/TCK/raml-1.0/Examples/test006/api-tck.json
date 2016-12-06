@@ -61,14 +61,13 @@
         },
         "examples": [
           {
-            "value": "{\n  \"x\": 1,\n  \"y\": 3,\n  \"z\": \"5 2\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "x": 1,
               "y": 3,
               "z": "5 2"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

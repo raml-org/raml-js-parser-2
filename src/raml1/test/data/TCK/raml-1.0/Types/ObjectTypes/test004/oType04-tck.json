@@ -111,14 +111,13 @@
         },
         "examples": [
           {
-            "value": "{\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "initial_comments": "oo",
               "user": "Raml",
               "time_stamp": 1422378528
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

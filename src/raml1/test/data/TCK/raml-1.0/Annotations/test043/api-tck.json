@@ -79,12 +79,11 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"prop\": \"stringValue\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "prop": "stringValue"
                     },
+                    "strict": true,
+                    "name": null,
                     "annotations": {
                       "a1": {
                         "structuredValue": "stringValue",

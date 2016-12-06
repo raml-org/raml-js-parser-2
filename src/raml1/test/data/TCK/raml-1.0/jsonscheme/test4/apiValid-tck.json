@@ -45,14 +45,13 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"child\": {\n    \"name\": \"somename\"\n  }\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "child": {
                         "name": "somename"
                       }
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

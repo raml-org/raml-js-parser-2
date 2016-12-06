@@ -77,13 +77,12 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "p1": "stringValue",
                       "p2": 10
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

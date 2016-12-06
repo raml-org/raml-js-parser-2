@@ -40,12 +40,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"somestring\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "somestring"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       },
@@ -88,13 +87,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"somestring\",\n  \"age\": 11\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "somestring",
               "age": 11
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

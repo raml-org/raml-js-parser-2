@@ -163,15 +163,14 @@
         "displayName": "ArrayType",
         "examples": [
           {
-            "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k2\"\n  }\n]",
-            "strict": true,
-            "name": "ex1",
-            "structuredValue": [
+            "value": [
               {
                 "stringProperty": "ab",
                 "kind": "k2"
               }
-            ]
+            ],
+            "strict": true,
+            "name": "ex1"
           }
         ],
         "required": true,

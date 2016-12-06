@@ -87,8 +87,7 @@
                   {
                     "value": "FOO",
                     "strict": true,
-                    "name": null,
-                    "structuredValue": "FOO"
+                    "name": null
                   }
                 ]
               }

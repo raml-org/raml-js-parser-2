@@ -43,12 +43,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"prop\": \"stringValue\"\n}",
-            "strict": true,
-            "name": "e1",
-            "structuredValue": {
+            "value": {
               "prop": "stringValue"
             },
+            "strict": true,
+            "name": "e1",
             "scalarsAnnotations": {
               "displayName": [
                 {

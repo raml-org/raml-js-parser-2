@@ -37,14 +37,12 @@
                       {
                         "value": "<doc><property1>value1</property1></doc>\n",
                         "strict": true,
-                        "name": "one",
-                        "structuredValue": "<doc><property1>value1</property1></doc>\n"
+                        "name": "one"
                       },
                       {
                         "value": "<doc><property2>value2</property2></doc>\n",
                         "strict": true,
-                        "name": "two",
-                        "structuredValue": "<doc><property2>value2</property2></doc>\n"
+                        "name": "two"
                       }
                     ],
                     "required": true,

@@ -1232,8 +1232,8 @@
         {
           "properties": {
             "value": {
-              "type": "string",
-              "description": "String representation of example"
+              "type": ["object", "boolean", "string", "number", "array", "null"],
+              "description": "Actual example value"
             },
             "strict": {
               "type": "boolean",
@@ -1250,9 +1250,6 @@
             "displayName": {
               "type": "string",
               "description": "An alternate, human-friendly name for the example"
-            },
-            "structuredValue": {
-              "type": ["object", "boolean", "string", "number", "array", "null"]
             }
           }
         }

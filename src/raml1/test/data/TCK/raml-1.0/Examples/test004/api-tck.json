@@ -178,10 +178,7 @@
         },
         "examples": [
           {
-            "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ],\n  \"X\": \"x\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "name": "Brandicted",
               "logo": "http://www.domain.com/logo.gif",
               "followers": [
@@ -195,7 +192,9 @@
                 }
               ],
               "X": "x"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

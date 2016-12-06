@@ -62,16 +62,15 @@
         },
         "examples": [
           {
-            "value": "{\n  \"p\": [\n    1,\n    0,\n    0\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "p": [
                 1,
                 0,
                 0
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

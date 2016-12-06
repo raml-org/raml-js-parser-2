@@ -9,10 +9,7 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"a\": 3,\n  \"items\": [\n    {\n      \"c\": 4,\n      \"r1\": 3\n    },\n    {\n      \"r2\": 3\n    }\n  ]\n}",
-            "strict": true,
-            "name": "f1",
-            "structuredValue": {
+            "value": {
               "a": 3,
               "items": [
                 {
@@ -23,7 +20,9 @@
                   "r2": 3
                 }
               ]
-            }
+            },
+            "strict": true,
+            "name": "f1"
           }
         ],
         "required": true,

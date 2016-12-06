@@ -31,12 +31,11 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"content\": 9\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "content": 9
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ]
                   }

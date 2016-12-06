@@ -45,40 +45,36 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"nilProp_1\": null,\n  \"nilProp_2\": null\n}",
-            "strict": true,
-            "name": "exampleWithEmptyValues",
-            "structuredValue": {
+            "value": {
               "nilProp_1": null,
               "nilProp_2": null
-            }
+            },
+            "strict": true,
+            "name": "exampleWithEmptyValues"
           },
           {
-            "value": "{\n  \"nilProp_1\": null,\n  \"nilProp_2\": null\n}",
-            "strict": true,
-            "name": "exampleWithImplicitNull",
-            "structuredValue": {
+            "value": {
               "nilProp_1": null,
               "nilProp_2": null
-            }
+            },
+            "strict": true,
+            "name": "exampleWithImplicitNull"
           },
           {
-            "value": "{\n  \"nilProp_1\": null,\n  \"nilProp_2\": null\n}",
-            "strict": true,
-            "name": "exampleWithTilde",
-            "structuredValue": {
+            "value": {
               "nilProp_1": null,
               "nilProp_2": null
-            }
+            },
+            "strict": true,
+            "name": "exampleWithTilde"
           },
           {
-            "value": "{\n  \"nilProp_1\": null,\n  \"nilProp_2\": null\n}",
-            "strict": true,
-            "name": "exampleWithNullTag",
-            "structuredValue": {
+            "value": {
               "nilProp_1": null,
               "nilProp_2": null
-            }
+            },
+            "strict": true,
+            "name": "exampleWithNullTag"
           }
         ],
         "required": true,

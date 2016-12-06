@@ -58,13 +58,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"c\": \"A\",\n  \"y\": 3\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "c": "A",
               "y": 3
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

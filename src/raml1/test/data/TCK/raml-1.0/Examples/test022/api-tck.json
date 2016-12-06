@@ -21,10 +21,9 @@
         },
         "examples": [
           {
-            "value": "4",
+            "value": 4,
             "strict": true,
-            "name": null,
-            "structuredValue": 4
+            "name": null
           }
         ]
       },
@@ -70,12 +69,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"z\": 3\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "z": 3
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

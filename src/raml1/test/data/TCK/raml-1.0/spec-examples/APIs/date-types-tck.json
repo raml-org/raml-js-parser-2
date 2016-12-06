@@ -22,8 +22,7 @@
           {
             "value": "2015-05-23",
             "strict": true,
-            "name": null,
-            "structuredValue": "2015-05-23"
+            "name": null
           }
         ]
       },
@@ -48,8 +47,7 @@
           {
             "value": "12:30:00",
             "strict": true,
-            "name": null,
-            "structuredValue": "12:30:00"
+            "name": null
           }
         ]
       },
@@ -74,8 +72,7 @@
           {
             "value": "2015-07-04T21:00:00",
             "strict": true,
-            "name": null,
-            "structuredValue": "2015-07-04T21:00:00"
+            "name": null
           }
         ]
       },
@@ -104,8 +101,7 @@
           {
             "value": "2016-02-28T16:41:41.090Z",
             "strict": true,
-            "name": null,
-            "structuredValue": "2016-02-28T16:41:41.090Z"
+            "name": null
           }
         ]
       },
@@ -134,8 +130,7 @@
           {
             "value": "Sun, 28 Feb 2016 16:41:41 GMT",
             "strict": true,
-            "name": null,
-            "structuredValue": "Sun, 28 Feb 2016 16:41:41 GMT"
+            "name": null
           }
         ]
       }

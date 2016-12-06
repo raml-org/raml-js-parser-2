@@ -34,12 +34,11 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"prop\": \"stringValue\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "prop": "stringValue"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }
@@ -77,8 +76,7 @@
                   {
                     "value": "stringValue",
                     "strict": true,
-                    "name": null,
-                    "structuredValue": "stringValue"
+                    "name": null
                   }
                 ]
               }
@@ -106,12 +104,11 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"prop\": \"stringValue\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "prop": "stringValue"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

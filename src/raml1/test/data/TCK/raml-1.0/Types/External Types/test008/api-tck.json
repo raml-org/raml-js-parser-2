@@ -61,14 +61,13 @@
         },
         "examples": [
           {
-            "value": "{\n  \"c\": {\n    \"i\": 2\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "c": {
                 "i": 2
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

@@ -100,8 +100,7 @@
               {
                 "value": "Doe",
                 "strict": true,
-                "name": null,
-                "structuredValue": "Doe"
+                "name": null
               }
             ]
           }
@@ -121,12 +120,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"firstname\": \"John\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "firstname": "John"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }
@@ -328,10 +326,9 @@
         },
         "examples": [
           {
-            "value": "2",
+            "value": 2,
             "strict": true,
-            "name": null,
-            "structuredValue": 2
+            "name": null
           }
         ]
       },
@@ -1054,8 +1051,7 @@
                           {
                             "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
                             "strict": true,
-                            "name": null,
-                            "structuredValue": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
+                            "name": null
                           }
                         ]
                       }

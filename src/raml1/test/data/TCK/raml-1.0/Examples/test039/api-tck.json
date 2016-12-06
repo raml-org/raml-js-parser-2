@@ -25,10 +25,9 @@
                 },
                 "examples": [
                   {
-                    "value": "2",
+                    "value": 2,
                     "strict": true,
-                    "name": null,
-                    "structuredValue": 2
+                    "name": null
                   }
                 ]
               }

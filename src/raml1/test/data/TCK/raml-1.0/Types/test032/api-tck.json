@@ -14,20 +14,18 @@
                 ],
                 "examples": [
                   {
-                    "value": "{\n  \"p1\": 5\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "p1": 5
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   },
                   {
-                    "value": "{\n  \"p1\": 8\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "p1": 8
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ],
                 "required": true,

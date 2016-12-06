@@ -126,14 +126,13 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"additionalField\": \"asd\",\n  \"baseField\": \"asdasd\",\n  \"field\": \"asdds\"\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "additionalField": "asd",
                           "baseField": "asdasd",
                           "field": "asdds"
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ]
                   }

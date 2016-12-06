@@ -46,8 +46,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -75,8 +74,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -119,8 +117,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -169,8 +166,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -213,8 +209,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -257,8 +252,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -307,8 +301,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -357,8 +350,7 @@
           {
             "value": "stringValue",
             "strict": true,
-            "name": null,
-            "structuredValue": "stringValue"
+            "name": null
           }
         ]
       },
@@ -370,10 +362,7 @@
         ],
         "examples": [
           {
-            "value": "{\n  \"strProp_10\": \"stringValue_StringType_10\",\n  \"strProp_11\": \"stringValue_StringType_11\",\n  \"strProp_12\": \"stringValue_StringType_12\",\n  \"strProp_20\": \"stringValue_StringType_20\",\n  \"strProp_21\": \"stringValue_StringType_21\",\n  \"strProp_30\": \"stringValue_StringType_30\",\n  \"strProp_31\": \"stringValue_StringType_31\",\n  \"strProp_40\": \"stringValue_StringType_40\",\n  \"strProp_41\": \"stringValue_StringType_41\",\n  \"strProp_50\": \"stringValue_StringType_50\",\n  \"strProp_51\": \"stringValue_StringType_51\",\n  \"strProp_60\": \"stringValue_StringType_60\",\n  \"strProp_61\": \"stringValue_StringType_61\",\n  \"strProp_70\": \"stringValue_StringType_70\",\n  \"strProp_71\": \"stringValue_StringType_71\"\n}",
-            "strict": true,
-            "name": "exampleWithNonEmptyStrings",
-            "structuredValue": {
+            "value": {
               "strProp_10": "stringValue_StringType_10",
               "strProp_11": "stringValue_StringType_11",
               "strProp_12": "stringValue_StringType_12",
@@ -389,13 +378,12 @@
               "strProp_61": "stringValue_StringType_61",
               "strProp_70": "stringValue_StringType_70",
               "strProp_71": "stringValue_StringType_71"
-            }
+            },
+            "strict": true,
+            "name": "exampleWithNonEmptyStrings"
           },
           {
-            "value": "{\n  \"strProp_10\": \"\",\n  \"strProp_11\": \"\",\n  \"strProp_12\": \"\",\n  \"strProp_20\": \"\",\n  \"strProp_21\": \"\",\n  \"strProp_30\": \"\",\n  \"strProp_31\": \"\",\n  \"strProp_40\": \"\",\n  \"strProp_41\": \"\",\n  \"strProp_50\": \"\",\n  \"strProp_51\": \"\",\n  \"strProp_60\": \"\",\n  \"strProp_61\": \"\",\n  \"strProp_70\": \"\",\n  \"strProp_71\": \"\"\n}",
-            "strict": true,
-            "name": "exampleWithEmptyStrings",
-            "structuredValue": {
+            "value": {
               "strProp_10": "",
               "strProp_11": "",
               "strProp_12": "",
@@ -411,7 +399,9 @@
               "strProp_61": "",
               "strProp_70": "",
               "strProp_71": ""
-            }
+            },
+            "strict": true,
+            "name": "exampleWithEmptyStrings"
           }
         ],
         "required": true,

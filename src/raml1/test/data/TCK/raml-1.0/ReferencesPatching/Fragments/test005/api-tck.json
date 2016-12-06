@@ -96,15 +96,14 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"stringValue\"\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "objectProperty": {
                         "prop": "string"
                       },
                       "stringProperty": "stringValue"
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

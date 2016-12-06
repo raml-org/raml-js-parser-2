@@ -352,10 +352,9 @@
                         },
                         "examples": [
                           {
-                            "value": "{\n  \"name\" : \"blah\",\n  \"name2\" : \"blah\",\n  \"name3\" : {\n      proppp: \"123245\"\n  }\n}\n",
+                            "value": null,
                             "strict": true,
-                            "name": null,
-                            "structuredValue": null
+                            "name": null
                           }
                         ]
                       }

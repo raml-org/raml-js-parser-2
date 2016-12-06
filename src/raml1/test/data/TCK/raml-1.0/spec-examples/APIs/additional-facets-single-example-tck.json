@@ -97,13 +97,12 @@
         },
         "examples": [
           {
-            "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
-            "strict": false,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "title": "Attention needed",
               "body": "You have been added to group 274"
             },
+            "strict": false,
+            "name": null,
             "annotations": {
               "pii": {
                 "structuredValue": true,

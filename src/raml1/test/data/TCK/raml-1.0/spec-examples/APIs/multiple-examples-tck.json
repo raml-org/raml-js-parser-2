@@ -97,22 +97,20 @@
         },
         "examples": [
           {
-            "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
-            "strict": true,
-            "name": "message",
-            "structuredValue": {
+            "value": {
               "title": "Attention needed",
               "body": "You have been added to group 274"
-            }
+            },
+            "strict": true,
+            "name": "message"
           },
           {
-            "value": "{\n  \"name\": \"log item\",\n  \"comment\": \"permission check\"\n}",
-            "strict": true,
-            "name": "record",
-            "structuredValue": {
+            "value": {
               "name": "log item",
               "comment": "permission check"
-            }
+            },
+            "strict": true,
+            "name": "record"
           }
         ]
       }

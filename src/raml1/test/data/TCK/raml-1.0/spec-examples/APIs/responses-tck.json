@@ -149,8 +149,7 @@
                       {
                         "value": "/invoices/45612",
                         "strict": true,
-                        "name": null,
-                        "structuredValue": "/invoices/45612"
+                        "name": null
                       }
                     ]
                   }
@@ -242,12 +241,11 @@
                     },
                     "examples": [
                       {
-                        "value": "{\n  \"error\": \"Amount cannot be negative\"\n}",
-                        "strict": true,
-                        "name": null,
-                        "structuredValue": {
+                        "value": {
                           "error": "Amount cannot be negative"
-                        }
+                        },
+                        "strict": true,
+                        "name": null
                       }
                     ]
                   }

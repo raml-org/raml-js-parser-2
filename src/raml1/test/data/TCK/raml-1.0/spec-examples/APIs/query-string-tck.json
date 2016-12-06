@@ -186,33 +186,30 @@
               ],
               "examples": [
                 {
-                  "value": "{\n  \"start\": 2,\n  \"lat\": 12,\n  \"long\": 13\n}",
-                  "strict": true,
-                  "name": "first",
-                  "structuredValue": {
+                  "value": {
                     "start": 2,
                     "lat": 12,
                     "long": 13
-                  }
+                  },
+                  "strict": true,
+                  "name": "first"
                 },
                 {
-                  "value": "{\n  \"start\": 2,\n  \"page-size\": 20,\n  \"location\": \"1,2\"\n}",
-                  "strict": true,
-                  "name": "second",
-                  "structuredValue": {
+                  "value": {
                     "start": 2,
                     "page-size": 20,
                     "location": "1,2"
-                  }
+                  },
+                  "strict": true,
+                  "name": "second"
                 },
                 {
-                  "value": "{\n  \"lat\": 12,\n  \"location\": 2\n}",
-                  "strict": false,
-                  "name": "third",
-                  "structuredValue": {
+                  "value": {
                     "lat": 12,
                     "location": 2
-                  }
+                  },
+                  "strict": false,
+                  "name": "third"
                 }
               ],
               "required": true,

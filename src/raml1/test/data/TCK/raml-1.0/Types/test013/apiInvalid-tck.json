@@ -43,16 +43,15 @@
         },
         "examples": [
           {
-            "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": null\n    }\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "someProperty": {
                 "someProperty": {
                   "someProperty": null
                 }
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }

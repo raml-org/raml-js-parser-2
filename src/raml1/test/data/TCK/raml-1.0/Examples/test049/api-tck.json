@@ -46,12 +46,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"prop1\": \"value1\"\n}",
-            "strict": false,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "prop1": "value1"
             },
+            "strict": false,
+            "name": null,
             "annotations": {
               "NumberAnnotation": {
                 "structuredValue": 5,

@@ -46,15 +46,14 @@
                 },
                 "examples": [
                   {
-                    "value": "{\n  \"name\": \"somename\",\n  \"child\": {\n    \"innerTypeName\": \"anothername\"\n  }\n}",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": {
+                    "value": {
                       "name": "somename",
                       "child": {
                         "innerTypeName": "anothername"
                       }
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ]
               }

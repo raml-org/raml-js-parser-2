@@ -49,14 +49,12 @@
           {
             "value": "null\n",
             "strict": true,
-            "name": "ex1",
-            "structuredValue": "null\n"
+            "name": "ex1"
           },
           {
             "value": "null\n",
             "strict": true,
-            "name": "ex2",
-            "structuredValue": "null\n"
+            "name": "ex2"
           }
         ],
         "required": true,
@@ -86,7 +84,6 @@
             "value": "null\n",
             "strict": true,
             "name": "ex3",
-            "structuredValue": "null\n",
             "displayName": "Nilable Type Example",
             "description": "Example for the nilable type"
           }

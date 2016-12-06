@@ -38,12 +38,11 @@
         },
         "examples": [
           {
-            "value": "{\n  \"id\": \"4\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+            "value": {
               "id": "4"
-            }
+            },
+            "strict": true,
+            "name": null
           }
         ]
       }
