@@ -19,7 +19,7 @@ import universeDef=require("../raml1/tools/universe")
 import parserCore=require('../raml1/wrapped-ast/parserCore')
 import parserCoreApi=require('../raml1/wrapped-ast/parserCoreApi')
 import ramlServices = require("../raml1/definition-system/ramlServices")
-import tckDumperHL = require("../util/tckDumperHL")
+import tckDumperHL = require("../util/TCKDumperHL")
 
 export type IHighLevelNode=hl.IHighLevelNode;
 export type IParseResult=hl.IParseResult;
