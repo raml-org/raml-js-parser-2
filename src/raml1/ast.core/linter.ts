@@ -1492,8 +1492,20 @@ class NormalValidator implements PropertyValidator{
         }
         var values=pr.enumOptions();
         if (values) {
+            var apiDef = node.parent() && node.parent().definition();
+
+            var isApi10 = apiDef && apiDef.isAssignableFrom(universes.Universe10.Api.name);
+            var isApi08 = apiDef && apiDef.isAssignableFrom(universes.Universe08.Api.name);
+
+            var isProtocols08 = pr.nameId() === universes.Universe08.Api.properties.protocols.name;
+            var isProtocols10 = pr.nameId() === universes.Universe10.Api.properties.protocols.name;
+
             if(typeof vl !== 'string') {
                 return;
+            }
+
+            if(((isApi08 || isApi10) && (isProtocols08 || isProtocols10)) && !isMixedCase(vl)) {
+                vl = vl.toUpperCase();
             }
             if (typeof values == 'string') {
                 if (values != vl) {
@@ -1519,6 +1531,21 @@ class NormalValidator implements PropertyValidator{
             }
         }
     }
+}
+
+function isMixedCase(input: string): boolean {
+    if(!input) {
+        return false;
+    }
+    
+    var lowerCase = input.toLowerCase();
+    var upperCase = input.toUpperCase();
+    
+    if(!(input === lowerCase || input === upperCase)) {
+        return true;
+    }
+    
+    return false;
 }
 
 class UriValidator{

@@ -47,9 +47,13 @@ function webPackForBrowserLib() {
                 { test: /\.json$/, loader: "json" }
             ]
         },
+        resolve: {
+            alias: {
+                fs: path.resolve(__dirname, "./web-tools/modules/emptyFS.js")
+            }
+        },
         externals: [
             {
-                "fs": true,
                 "libxml-xsd": true,
                 "ws": true,
                 "typescript": true,

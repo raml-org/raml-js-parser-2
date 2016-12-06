@@ -1,0 +1,31 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Api",
+    "version": "v1",
+    "protocols": [
+      "HTTP",
+      "https1"
+    ]
+  },
+  "errors": [
+    {
+      "code": "INVALID_VALUE",
+      "message": "Invalid value: 'HTTPS1'. Allowed values are: 'HTTP', 'HTTPS'",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 18,
+          "position": 54
+        },
+        "end": {
+          "line": 5,
+          "column": 24,
+          "position": 60
+        }
+      }
+    }
+  ]
+}
