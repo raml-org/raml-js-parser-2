@@ -1,78 +1,74 @@
 {
-	"types": [
-		{
-			"SomeType": {
-				"name": "SomeType",
-				"displayName": "SomeType",
-				"type": [
-					"object"
-				],
-				"required": true,
-				"properties": {
-					"prop": {
-						"name": "prop",
-						"displayName": "prop",
-						"type": [
-							"string"
-						],
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
+	"types": {
+		"SomeType": {
+			"name": "SomeType",
+			"displayName": "SomeType",
+			"type": [
+				"object"
+			],
+			"required": true,
+			"properties": {
+				"prop": {
+					"name": "prop",
+					"displayName": "prop",
+					"type": [
+						"string"
+					],
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
 							}
 						}
 					}
-				},
-				"__METADATA__": {
-					"primitiveValuesMeta": {
-						"displayName": {
-							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
-						}
+				}
+			},
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
+					},
+					"required": {
+						"insertedAsDefault": true
 					}
 				}
 			}
 		}
-	],
-	"traits": [
-		{
-			"SomeTrait": {
-				"body": {
-					"application/json": {
-						"name": "application/json",
-						"displayName": "application/json",
-						"type": [
-							"SomeType"
-						],
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
+	},
+	"traits": {
+		"SomeTrait": {
+			"body": {
+				"application/json": {
+					"name": "application/json",
+					"displayName": "application/json",
+					"type": [
+						"SomeType"
+					],
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
 							}
 						}
 					}
-				},
-				"name": "SomeTrait"
-			}
+				}
+			},
+			"name": "SomeTrait"
 		}
-	],
+	},
 	"title": "Test",
 	"resources": [
 		{
-			"methods": [
-				{
+			"methods": {
+				"get": {
 					"responses": {
 						"200": {
 							"code": "200",
@@ -83,9 +79,6 @@
 									"type": [
 										"SomeType"
 									],
-									"example": {
-										"prop": "aaa"
-									},
 									"required": true,
 									"__METADATA__": {
 										"primitiveValuesMeta": {
@@ -97,21 +90,22 @@
 											}
 										}
 									},
-									"structuredExample": {
-										"value": "{\n  \"prop\": \"aaa\"\n}",
-										"strict": true,
-										"name": null,
-										"structuredValue": {
-											"prop": "aaa"
+									"examples": [
+										{
+											"value": {
+												"prop": "aaa"
+											},
+											"strict": true,
+											"name": null
 										}
-									}
+									]
 								}
 							}
 						}
 					},
 					"method": "get"
 				}
-			],
+			},
 			"is": [
 				"SomeTrait"
 			],
@@ -127,7 +121,9 @@
 			"relativeUriPathSegments": [
 				"res"
 			],
-			"absoluteUri": "/res"
+			"absoluteUri": "/res",
+			"completeRelativeUri": "/res",
+			"parentUri": ""
 		}
 	]
 }

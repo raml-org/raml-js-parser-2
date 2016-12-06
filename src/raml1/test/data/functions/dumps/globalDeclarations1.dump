@@ -1,25 +1,24 @@
 {
-	"SomeTrait": {
-		"body": {
-			"application/json": {
-				"name": "application/json",
-				"displayName": "application/json",
-				"type": [
-					"SomeType"
-				],
-				"required": true,
-				"__METADATA__": {
-					"primitiveValuesMeta": {
-						"displayName": {
-							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
-						}
+	"body": {
+		"application/json": {
+			"name": "application/json",
+			"displayName": "application/json",
+			"type": [
+				"SomeType"
+			],
+			"required": true,
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
+					},
+					"required": {
+						"insertedAsDefault": true
 					}
 				}
 			}
-		},
-		"name": "SomeTrait"
-	}
+		}
+	},
+	"name": "SomeTrait",
+	"$$name": "SomeTrait"
 }

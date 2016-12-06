@@ -1,39 +1,37 @@
 {
-	"SomeType": {
-		"name": "SomeType",
-		"displayName": "SomeType",
-		"type": [
-			"lib.TypeFromLibrary"
-		],
-		"required": true,
-		"properties": {
-			"prop": {
-				"name": "prop",
-				"displayName": "prop",
-				"type": [
-					"string"
-				],
-				"required": true,
-				"__METADATA__": {
-					"primitiveValuesMeta": {
-						"displayName": {
-							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
-						}
+	"name": "SomeType",
+	"displayName": "SomeType",
+	"type": [
+		"lib.TypeFromLibrary"
+	],
+	"required": true,
+	"properties": {
+		"prop": {
+			"name": "prop",
+			"displayName": "prop",
+			"type": [
+				"string"
+			],
+			"required": true,
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
+					},
+					"required": {
+						"insertedAsDefault": true
 					}
 				}
 			}
-		},
-		"__METADATA__": {
-			"primitiveValuesMeta": {
-				"displayName": {
-					"calculated": true
-				},
-				"required": {
-					"insertedAsDefault": true
-				}
+		}
+	},
+	"__METADATA__": {
+		"primitiveValuesMeta": {
+			"displayName": {
+				"calculated": true
+			},
+			"required": {
+				"insertedAsDefault": true
 			}
 		}
 	}

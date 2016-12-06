@@ -1,99 +1,97 @@
 {
-	"types": [
-		{
-			"Person": {
-				"name": "Person",
-				"displayName": "Person",
-				"type": [
-					"object"
-				],
-				"required": true,
-				"properties": {
-					"firstname": {
-						"name": "firstname",
-						"displayName": "firstname",
-						"type": [
-							"string"
-						],
-						"required": true,
-						"description": "example description",
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
-							}
-						}
-					},
-					"lastname": {
-						"name": "lastname",
-						"displayName": "lastname",
-						"type": [
-							"string"
-						],
-						"required": false,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								}
-							}
-						}
-					},
-					"addresses": {
-						"name": "addresses",
-						"displayName": "addresses",
-						"type": [
-							"array"
-						],
-						"items": "string",
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
-							}
-						}
-					},
-					"age": {
-						"name": "age",
-						"displayName": "age",
-						"type": [
-							"number"
-						],
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
+	"types": {
+		"Person": {
+			"name": "Person",
+			"displayName": "Person",
+			"type": [
+				"object"
+			],
+			"required": true,
+			"properties": {
+				"firstname": {
+					"name": "firstname",
+					"displayName": "firstname",
+					"type": [
+						"string"
+					],
+					"required": true,
+					"description": "example description",
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
 							}
 						}
 					}
 				},
-				"__METADATA__": {
-					"primitiveValuesMeta": {
-						"displayName": {
-							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
+				"lastname": {
+					"name": "lastname",
+					"displayName": "lastname",
+					"type": [
+						"string"
+					],
+					"required": false,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							}
 						}
+					}
+				},
+				"addresses": {
+					"name": "addresses",
+					"displayName": "addresses",
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
+							}
+						}
+					},
+					"type": [
+						"array"
+					],
+					"items": "string"
+				},
+				"age": {
+					"name": "age",
+					"displayName": "age",
+					"type": [
+						"number"
+					],
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
+							}
+						}
+					}
+				}
+			},
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
+					},
+					"required": {
+						"insertedAsDefault": true
 					}
 				}
 			}
 		}
-	],
+	},
 	"title": "API with Types",
 	"baseUri": "/media",
 	"protocols": [
@@ -101,8 +99,8 @@
 	],
 	"resources": [
 		{
-			"methods": [
-				{
+			"methods": {
+				"get": {
 					"responses": {
 						"200": {
 							"code": "200",
@@ -113,15 +111,6 @@
 									"type": [
 										"Person"
 									],
-									"example": {
-										"lastname": "arkhipenko",
-										"firstname": "nicolas",
-										"juan": "juan",
-										"addresses": [
-											"myadress"
-										],
-										"age": 123
-									},
 									"required": true,
 									"properties": {
 										"juan": {
@@ -153,21 +142,22 @@
 											}
 										}
 									},
-									"structuredExample": {
-										"value": "{\n  \"lastname\": \"arkhipenko\",\n  \"firstname\": \"nicolas\",\n  \"juan\": \"juan\",\n  \"addresses\": [\n    \"myadress\"\n  ],\n  \"age\": 123\n}",
-										"strict": true,
-										"name": null,
-										"structuredValue": {
-											"lastname": "arkhipenko",
-											"firstname": "nicolas",
-											"juan": "juan",
-											"addresses": [
-												"myadress"
-											],
-											"age": 123
-										},
-										"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
-									}
+									"examples": [
+										{
+											"value": {
+												"lastname": "arkhipenko",
+												"firstname": "nicolas",
+												"juan": "juan",
+												"addresses": [
+													"myadress"
+												],
+												"age": 123
+											},
+											"strict": true,
+											"name": null,
+											"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
+										}
+									]
 								}
 							}
 						}
@@ -278,9 +268,8 @@
 						}
 					}
 				}
-			],
+			},
 			"relativeUri": "/users",
-			"absoluteUri": "/media/users",
 			"displayName": "/users",
 			"__METADATA__": {
 				"primitiveValuesMeta": {
@@ -291,7 +280,10 @@
 			},
 			"relativeUriPathSegments": [
 				"users"
-			]
+			],
+			"absoluteUri": "/media/users",
+			"completeRelativeUri": "/users",
+			"parentUri": ""
 		}
 	],
 	"__METADATA__": {
