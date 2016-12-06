@@ -2,13 +2,16 @@
   "specification": {
     "annotations": {
       "lib2.a2": {
-        "name": "lib2.a2"
+        "name": "lib2.a2",
+        "structuredValue": null
       },
       "lib1.a1": {
-        "name": "lib1.a1"
+        "name": "lib1.a1",
+        "structuredValue": null
       },
       "lib0.a0": {
-        "name": "lib0.a0"
+        "name": "lib0.a0",
+        "structuredValue": null
       }
     },
     "annotationTypes": {

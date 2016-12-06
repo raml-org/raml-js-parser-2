@@ -2,17 +2,20 @@
   "specification": {
     "annotations": {
       "library.highLevelApiDescription": {
-        "name": "library.highLevelApiDescription"
+        "name": "library.highLevelApiDescription",
+        "structuredValue": null
       },
       "library.apiLogo": {
-        "name": "library.apiLogo"
+        "name": "library.apiLogo",
+        "structuredValue": null
       },
       "library.specAuthor": {
         "name": "library.specAuthor",
         "structuredValue": "mulesoft.com"
       },
       "library.devPortal": {
-        "name": "library.devPortal"
+        "name": "library.devPortal",
+        "structuredValue": null
       },
       "library.extraResources": {
         "name": "library.extraResources",

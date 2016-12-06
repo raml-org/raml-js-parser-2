@@ -27,7 +27,8 @@
           "get": {
             "annotations": {
               "decls.important": {
-                "name": "decls.important"
+                "name": "decls.important",
+                "structuredValue": null
               }
             },
             "responses": {

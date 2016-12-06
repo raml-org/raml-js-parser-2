@@ -290,9 +290,13 @@ export class TCKDumper {
                     //TODO implement as transformer
                     var key = Object.keys(val)[0];
                     var name = sVal.valueName();
+                    var refVal = val[key];
+                    if(refVal===undefined){
+                        refVal = null;
+                    }
                     val = {
                         name: name,
-                        structuredValue: val[key]
+                        structuredValue: refVal
                     }
                 }
                 else if(prop.nameId() == "type") {
