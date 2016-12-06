@@ -313,9 +313,23 @@ class XMLResolver implements IncludeReferenceResolver {
             element.setAttribute('extraelement', 'true');
 
             schema.appendChild(element);
-            
+
+            var serialized = doc.toString();
+            var resultContents = serialized;
+
+            //Enforcing new line in the end of xml header as different implementations of
+            //XMLSerializer behave differently regarding this char, which makes tests to fail.
+            var headerEndIndex = serialized.indexOf("?>");
+            if (headerEndIndex > 0 && serialized.length > headerEndIndex + 2) {
+                var potentialNewLineChar = serialized.charAt(headerEndIndex+2);
+                if (potentialNewLineChar != '\n') {
+                    resultContents = serialized.slice(0, headerEndIndex + 2) + '\n' +
+                        serialized.slice(headerEndIndex + 2);
+                }
+            }
+
             return {
-                content: doc.toString(),
+                content: resultContents,
                 validation: []
             };
         } catch(throwable) {

@@ -103,6 +103,11 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
         },
 
         plugins: plugins,
+        resolve: {
+            alias: {
+                fs: path.resolve(__dirname, "../../web-tools/modules/emptyFS1.js")
+            }
+        },
 
         module: {
             loaders: [
@@ -114,7 +119,6 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
                 // "buffer" : true,
                 // "concat-stream" : true,
                 // "esprima" : true,
-                "fs" : true,
                 "libxml-xsd" : true,
                 "ws" : true,
                 // "http-response-object" : true,

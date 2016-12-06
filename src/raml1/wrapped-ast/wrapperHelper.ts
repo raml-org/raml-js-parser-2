@@ -82,7 +82,7 @@ export function expandSpec(api:RamlWrapper.Api,expLib:boolean=false):RamlWrapper
  */
 export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api{
     var lowLevelNode = api.highLevel().lowLevel();
-    if(lowLevelNode instanceof proxy.LowLevelProxyNode){
+    if(proxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
     return expander.expandTraitsAndResourceTypes(api);
@@ -163,7 +163,7 @@ function findTemplates(a:core.BasicNode,filter) {
         var topLevelNode:core.BasicNode;
         var p = x.lowLevel().unit().path();
         if(isProxy){
-            if(!(x.lowLevel() instanceof proxy.LowLevelProxyNode)) {
+            if(!(proxy.LowLevelProxyNode.isInstance(x.lowLevel()))) {
                 x = exp.createHighLevelNode(x, false);
             }
             new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
@@ -194,8 +194,8 @@ export function relativeUriSegments(res:RamlWrapper.Resource):string[]{
 
 //__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
 export function parentResource(method:RamlWrapper.Method):RamlWrapper.Resource{
-    if(method.parent() instanceof RamlWrapperImpl.ResourceImpl) {
-        return <RamlWrapper.Resource>method.parent();
+    if(RamlWrapperImpl.ResourceImpl.isInstance(method.parent())) {
+        return <RamlWrapper.Resource><any>method.parent();
     }
     return null;
 }
@@ -286,10 +286,10 @@ export function ownerApi(method:RamlWrapper.Method|RamlWrapper.Resource):RamlWra
 export function methodId(method:RamlWrapper.Method):string{
 
     var parent = method.parent();
-    if(parent instanceof RamlWrapperImpl.ResourceImpl){
+    if(RamlWrapperImpl.ResourceImpl.isInstance(parent)){
         return completeRelativeUri(<RamlWrapper.Resource>parent) + ' ' + method.method().toLowerCase();
     }
-    else if(parent instanceof RamlWrapperImpl.ResourceTypeImpl){
+    else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
     throw new Error(`Method is supposed to be owned by Resource or ResourceType.
@@ -569,7 +569,7 @@ export function securityScheme(schemeReference : RamlWrapper.SecuritySchemeRef) 
     }
 
     var result = (<hl.IHighLevelNode> declaration).wrapperNode();
-    if (!(result instanceof RamlWrapperImpl.AbstractSecuritySchemeImpl)) {
+    if (!(RamlWrapperImpl.AbstractSecuritySchemeImpl.isInstance(result))) {
         //I do not see how to avoid instanceof here
         return null;
     }
@@ -774,7 +774,7 @@ export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
     var attrs
         =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.type.name);
 
-    var structuredAttrs = attrs.filter(x=>x.value() instanceof hlimpl.StructuredValue);
+    var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
     if(structuredAttrs.length==0){
         return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original().map(x=>{
             if(x===null||x==="NULL"||x==="Null"){
@@ -792,7 +792,7 @@ export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
         if(typeof(val)=="string"){
             return val;
         }
-        else if(val instanceof hlimpl.StructuredValue){
+        else if(hlimpl.StructuredValue.isInstance(val)){
             nullify=true;
         }
         return val.toString();
@@ -813,7 +813,7 @@ export function schemaValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[
     if (nullify){
         return null;
     }
-    var structuredAttrs = attrs.filter(x=>x.value() instanceof hlimpl.StructuredValue);
+    var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
     if(structuredAttrs.length==0){
         return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).schema_original();
     }
@@ -822,7 +822,7 @@ export function schemaValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[
         if(typeof(val)=="string"){
             return val;
         }
-        else if(val instanceof hlimpl.StructuredValue){
+        else if(hlimpl.StructuredValue.isInstance(val)){
             nullify=true;
         }
         return val.toString();
@@ -845,7 +845,7 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
     var values = attrs.map(x=>x.value());
 
     for(var val of values){
-        if(val instanceof hlimpl.StructuredValue){
+        if(hlimpl.StructuredValue.isInstance(val)){
             var typeInstance = new core.TypeInstanceImpl((<hlimpl.StructuredValue><any>val).lowLevel());
             return typeInstance;
         }

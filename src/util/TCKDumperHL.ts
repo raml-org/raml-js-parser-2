@@ -123,7 +123,7 @@ export class TCKDumper {
             for(var p of definition.allProperties()
                 .concat((<def.NodeClass>definition).allCustomProperties())){
                 
-                if(def.isUserDefinedProp(p)){
+                if(def.UserDefinedProp.isInstance(p)){
                     continue;
                 }
                 if(universeHelpers.isTypeProperty(p)){
