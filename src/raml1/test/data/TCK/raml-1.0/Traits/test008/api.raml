@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Traits
+
+traits:
+  box:
+    queryParameters:
+      param: string
+  container:
+    is: [box]
+    body:
+      application/json:
+    headers:
+      auth: string
+    queryString:
+      properties:

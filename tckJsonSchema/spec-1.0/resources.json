@@ -1,0 +1,134 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "definitions": {
+        "ResourceRef10": {
+            "oneOf": [
+                {
+                    "type": "string"
+                }, {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-zA-Z0-9]+": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "Resource10": {
+            "allOf":[
+                {"$ref": "#/definitions/ResourceBase10"},
+                {
+                    "properties": {
+                        "displayName": {
+                            "type": "string",
+                            "description": "Resource name"
+                        },
+                        "uriParameters": {
+                            "type": "object",
+                            "description": "Detailed information about any URI parameters of this resource",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+                            }
+                        },
+                        "resources": {
+                            "type": "array",
+                            "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
+                            "items": {"$ref": "#/definitions/Resource10"}
+                        },
+                        "methods": {
+                            "type": "array",
+                            "description": "Methods that are part of this resource type definition",
+                            "items": {"$ref": "methods.json#/definitions/Method10"}
+                        },
+                        "relativeUri": {
+                            "type": "string",
+                            "description": "Relative URL of this resource from the parent resource"
+                        },
+                        "relativeUriPathSegments": {
+                            "type": "array",
+                            "description": "URI Segments",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "absoluteUri": {"type": "string"},
+                        "__METADATA__": {"$ref": "#/definitions/ResourceBase10/properties/__METADATA__"}
+                    }
+                }
+            ]
+        },
+        "ResourceTypeFragment": {
+            "type": "object",
+            "properties": {
+                "undefined": {
+                    "anyOf":[
+                        {
+                            "properties": {
+                                "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+                            }
+                        },
+                        {"$ref": "#/definitions/ResourceType10"}
+                    ],
+                    "patternProperties": {
+                        "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
+                    },
+                    "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+                }
+            },
+            "additionalProperties": false
+        },
+        "ResourceType10": {
+            "allOf":[
+                {"$ref": "#/definitions/ResourceBase10"},
+                {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Resource name"
+                        },
+                        "usage": {
+                            "type": "string",
+                            "description": "Instructions on how and when the resource type should be used."
+                        }
+                    }
+                }
+            ],
+            "patternProperties": {
+                "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
+            },
+            "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+        },
+        "ResourceBase10": {
+            "type": "object",
+            "properties": {
+                "annotations": {"$ref": "common.json#/definitions/Annotable/properties/annotations"},
+                "scalarsAnnotations": {"$ref": "common.json#/definitions/Annotable/properties/scalarsAnnotations"},
+                "description": {
+                    "type": "string",
+                    "description": "Resource description"
+                },
+                "is": {
+                    "type": "array",
+                    "description": "A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration",
+                    "items":{"$ref": "methods.json#/definitions/TraitRef10"}
+                },
+                "type": {"$ref": "#/definitions/ResourceRef10"},
+                "securedBy": {
+                    "type": "array",
+                    "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
+                    "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
+                },
+                "__METADATA__": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

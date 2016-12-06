@@ -59,7 +59,7 @@ export class ReferencePatcher{
         var isNode:proxy.LowLevelCompositeNode;
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
-            if(!(cNode instanceof proxy.LowLevelCompositeNode)){
+            if(!(proxy.LowLevelCompositeNode.isInstance(cNode))){
                 return;
             }
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
@@ -117,7 +117,7 @@ export class ReferencePatcher{
         }
 
         var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
-        if(!(llNode instanceof proxy.LowLevelProxyNode)){
+        if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
             return;
         }
         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
@@ -194,7 +194,7 @@ export class ReferencePatcher{
                 }
                 for( var typeAttr of typeAttributes) {
                     var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
-                    if(!(llNode instanceof proxy.LowLevelProxyNode)){
+                    if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
                         continue;
                     }
                     var localUnit = typeAttr.lowLevel().unit();
@@ -461,7 +461,7 @@ export class ReferencePatcher{
     }
 
     patchUses(node:ll.ILowLevelASTNode,resolver:namespaceResolver.NamespaceResolver){
-        if(!(node instanceof proxy.LowLevelCompositeNode)){
+        if(!(proxy.LowLevelCompositeNode.isInstance(node))){
             return;
         }
         var unit = node.unit();
@@ -481,7 +481,7 @@ export class ReferencePatcher{
 
         var oNode = toOriginal(node);
         var yamlNode = oNode;
-        while(yamlNode instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(yamlNode)){
             yamlNode = (<proxy.LowLevelProxyNode>yamlNode).originalNode();
         }
 
@@ -518,7 +518,7 @@ export class ReferencePatcher{
     }
 
     removeUses(node:ll.ILowLevelASTNode){
-        if(!(node instanceof proxy.LowLevelCompositeNode)){
+        if(!(proxy.LowLevelCompositeNode.isInstance(node))){
             return;
         }
         var cNode = <proxy.LowLevelCompositeNode>node;
@@ -541,7 +541,7 @@ export class ReferencePatcher{
     };
 
     appendUnitIfNeeded(node:hl.IParseResult|ll.ICompilationUnit,units:ll.ICompilationUnit[]):boolean{
-        if(node instanceof jsyaml.CompilationUnit){
+        if(jsyaml.CompilationUnit.isInstance(node)){
             var unit = <ll.ICompilationUnit>node;
             if (unit.absolutePath() != units[units.length - 1].absolutePath()) {
                 units.push(unit);
@@ -642,7 +642,7 @@ export class ReferencePatcher{
             for (var libModel of libModels) {
                 for (var cName of Object.keys(libModel)) {
                     var collection:ElementsCollection = <ElementsCollection>libModel[cName];
-                    if (collection instanceof ElementsCollection) {
+                    if (ElementsCollection.isInstance(collection)) {
                         gotContribution = this.contributeCollection(
                                 <proxy.LowLevelCompositeNode>api.lowLevel(),
                                 collection) || gotContribution;
@@ -926,7 +926,7 @@ export function prepareTraitRefNode(llNode:ll.ILowLevelASTNode,llParent:ll.ILowL
 }
 
 function toOriginal(node:ll.ILowLevelASTNode){
-    for(var i = 0; i<2 && node instanceof proxy.LowLevelProxyNode; i++){
+    for(var i = 0; i<2 && proxy.LowLevelProxyNode.isInstance(node); i++){
         node = (<proxy.LowLevelProxyNode>node).originalNode();
     }
     return node;
@@ -973,6 +973,20 @@ export function instanceOfPatchedReference(instance : any) : instance is Patched
 }
 
 class ElementsCollection{
+    private static CLASS_IDENTIFIER = "referencePatcher.ElementsCollection";
+
+    public static isInstance(instance : any) : instance is ElementsCollection {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ElementsCollection.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(ElementsCollection.CLASS_IDENTIFIER);
+    }
+
     constructor(public name:string){}
 
     array:hl.IHighLevelNode[] = [];

@@ -33,7 +33,7 @@ export function getFragmentDefenitionName(node:hl.IHighLevelNode):string{
     return hlimpl.getFragmentDefenitionName(node);
 }
 export function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IProperty) : string | hl.IStructuredValue {
-    if (pr.range() instanceof defs.ReferenceType){
+    if (defs.ReferenceType.isInstance(pr.range())){
         var t=<defs.ReferenceType>pr.range();
 
         var mockNode=jsyaml.createNode(name);

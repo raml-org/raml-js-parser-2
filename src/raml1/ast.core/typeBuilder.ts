@@ -34,7 +34,7 @@ function templateFields(node:hl.IParseResult,d:TemplateData){
         handleValue(key, d, null,true,u);
     }
     node.children().forEach(x=>templateFields(x,d));
-    if (node instanceof hlimpl.ASTPropImpl){
+    if (hlimpl.ASTPropImpl.isInstance(node)){
         var prop=<ASTPropImpl>node;
         //TODO RECURSIVE PARAMETERS
         var v=prop.value();
@@ -53,7 +53,7 @@ function templateFields(node:hl.IParseResult,d:TemplateData){
             })
         }
     }
-    else if (node instanceof hlimpl.BasicASTNode){
+    else if (hlimpl.BasicASTNode.isInstance(node)){
         var v=node.lowLevel().value();
         if (typeof v=='string'){
             var strV=<string>v;

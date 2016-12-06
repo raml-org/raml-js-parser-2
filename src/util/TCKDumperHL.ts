@@ -1,6 +1,4 @@
 /// <reference path="../../typings/main.d.ts" />
-import {IParseResult, IHighLevelNode} from "../raml1/highLevelAST";
-var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
 import proxy = require("../raml1/ast.core/LowLevelASTProxy");
@@ -123,7 +121,7 @@ export class TCKDumper {
             for(var p of definition.allProperties()
                 .concat((<def.NodeClass>definition).allCustomProperties())){
                 
-                if(def.isUserDefinedProp(p)){
+                if(def.UserDefinedProp.isInstance(p)){
                     continue;
                 }
                 if(universeHelpers.isTypeProperty(p)){
@@ -302,9 +300,9 @@ export class TCKDumper {
                 else if(prop.nameId() == "type") {
                     var llNode = aNode.lowLevel();
                     var tdl = null;
-                    var td = def.getUniverse("RAML10").type(universe.Universe10.TypeDeclaration.name);
-                    var hasType = def.getUniverse("RAML10").type(universe.Universe10.LibraryBase.name);
-                    var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
+                    var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                    var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                    var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
                     tNode.patchType(builder.doDescrimination(tNode));
                     val = this.dumpInternal(tNode,nodeProperty||aNode.property(),true);
                 }

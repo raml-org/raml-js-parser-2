@@ -1,0 +1,138 @@
+{
+  "specification": {
+    "traits": {
+      "box": {
+        "queryParameters": {
+          "param": {
+            "name": "param",
+            "displayName": "param",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "box"
+      },
+      "container": {
+        "headers": {
+          "auth": {
+            "name": "auth",
+            "displayName": "auth",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "queryString": {
+          "name": "queryString",
+          "displayName": "queryString",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        },
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "is": [
+          "box"
+        ],
+        "name": "container"
+      }
+    },
+    "title": "Traits"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "PROPERTY_ALREADY_SPECIFIED",
+      "message": "'queryString' is already specified.`",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 9,
+          "position": 104
+        },
+        "end": {
+          "line": 8,
+          "column": 12,
+          "position": 107
+        }
+      }
+    },
+    {
+      "code": "PROPERTY_ALREADY_SPECIFIED",
+      "message": "'queryParameters' is already specified.`",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 4,
+          "position": 179
+        },
+        "end": {
+          "line": 13,
+          "column": 15,
+          "position": 190
+        }
+      }
+    }
+  ]
+}

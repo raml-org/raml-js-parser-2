@@ -8,17 +8,14 @@ var path = require("path");
 
 var fs = require("fs");
 
-rimraf.sync('browser_version');
-
 var isNpm = process.argv[process.argv.indexOf("--type") + 1] === 'npm';
 
-if(isNpm) {
-    childProcess.execSync('mkdir browser_version');
-} else {
-    childProcess.execSync('mkdir browser_version && cd browser_version && git clone https://github.com/raml-org/raml-js-parser-2.git --branch browser_version --single-branch .');
-}
+rimraf.sync(isNpm ? "browser_version" : "browser_version_bower");
 
-console.log("is npm:" + isNpm);
+var bowerJsonDist = path.resolve(__dirname, "./bower.json");
+var packageJsonDist = path.resolve(__dirname, "./browser_version/package.json");
+
+childProcess.execSync(isNpm ? "mkdir browser_version" : "mkdir browser_version_bower");
 
 function webPackForBrowserLib() {
     var plugins = [];
@@ -34,7 +31,7 @@ function webPackForBrowserLib() {
         plugins: plugins,
 
         output: {
-            path: path.resolve(__dirname, "./browser_version"),
+            path: path.resolve(__dirname, isNpm ? "./browser_version" : "./browser_version_bower"),
 
             library: ['RAML', 'Parser'],
 
@@ -47,9 +44,13 @@ function webPackForBrowserLib() {
                 { test: /\.json$/, loader: "json" }
             ]
         },
+        resolve: {
+            alias: {
+                fs: path.resolve(__dirname, "./web-tools/modules/emptyFS.js")
+            }
+        },
         externals: [
             {
-                "fs": true,
                 "libxml-xsd": true,
                 "ws": true,
                 "typescript": true,
@@ -83,24 +84,30 @@ function webPackForBrowserLib() {
         
         if(isNpm) {
             childProcess.execSync('cd browser_version && npm publish');
-        } else {
-            //childProcess.execSync('VERSION=`node -p "require(\'./package.json\').version"` && cd browser_version && git add -A && git commit -m "Prepare v$VERSION" && git tag -a "v$VERSION" -m "v$VERSION" && git push && git push --tags');
         }
     });
 }
 
 function updateVersion() {
-    var targetJsonPath = path.resolve(__dirname, "./browser_version/" + (isNpm ? "package.json" : "bower.json"));
+    var targetJsonPath = isNpm ? packageJsonDist : bowerJsonDist;
+
     var packageJsonPath = path.resolve(__dirname, "./package.json");
 
     var targetJson = {};
-    
-    //var targetJson = JSON.parse(fs.readFileSync(targetJsonPath).toString());
+
     var packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
     targetJson.version = packageJson.version;
-    targetJson.name = packageJson.name + (isNpm ? "-browser" : "");
-    targetJson.main = "index.js"
+    targetJson.name = packageJson.name + '-browser';
+    targetJson.main = isNpm ? "index.js" : "browser_version_bower/index.js";
+
+    if(!isNpm) {
+        targetJson.ignore = [
+            "*",
+            "!browser_version_bower/",
+            "!browser_version_bower/*"
+        ]
+    }
 
     fs.writeFileSync(targetJsonPath, JSON.stringify(targetJson, null, '\t'));
 }

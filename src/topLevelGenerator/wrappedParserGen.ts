@@ -63,7 +63,7 @@ export class ParserGenerator{
                 _constructor._body = '';
             }
         }
-        else if (u instanceof def.NodeClass) {
+        else if (def.NodeClass.isInstance(u)) {
             var _constructor = new td.TSConstructor(dcl);
             _constructor.parameters = [
                 new td.Param(
@@ -85,9 +85,14 @@ export class ParserGenerator{
         dcl.implements.push(new td.TSSimpleTypeReference(td.Universe,idcl.name));
 
         var implementaionQueue:def.IType[] = [u].concat(this.extractSecondarySupertypes(u));
+
+        var implementationHasSupertypes = false;
+
         if(typeName=='Reference'||typeName=='ValueType') {
             idcl.extends.push(new td.TSSimpleTypeReference(td.Universe, 'core.AttributeNode'));
             dcl.extends.push(new td.TSSimpleTypeReference(td.Universe, 'core.AttributeNodeImpl'));
+
+            implementationHasSupertypes = true;
         }
         else{
             u.superTypes().forEach(x=> {
@@ -95,6 +100,8 @@ export class ParserGenerator{
             });
             if(u.superTypes().length>0){
                 dcl.extends.push(new td.TSSimpleTypeReference(td.Universe, u.superTypes()[0].nameId() + "Impl"));
+
+                implementationHasSupertypes = true;
             }
         }
         u.properties().forEach(x=>this.createMethodDecl(idcl, x));
@@ -120,12 +127,36 @@ export class ParserGenerator{
                 else {
                     idcl.extends.push(new td.TSSimpleTypeReference(td.Universe, "core.BasicNode"));
                     dcl.extends.push(new td.TSSimpleTypeReference(td.Universe, "core.BasicNodeImpl"));
+
+                    implementationHasSupertypes = true;
                 }
             }
         }
 
         this.addImplementationMethod(dcl,'wrapperClassName', 'string',`return "${typeName}Impl";`,'@hidden\n@return Actual name of instance class');
         this.addImplementationMethod(dcl,'kind', 'string',`return "${typeName}";`,'@return Actual name of instance interface');
+
+        if (implementationHasSupertypes) {
+            this.addImplementationMethod(dcl,'allKinds', 'string[]',`return super.allKinds().concat("${typeName}");`,'@return Actual name of instance interface and all of its superinterfaces');
+        } else {
+            this.addImplementationMethod(dcl,'allKinds', 'string[]',`return ["${typeName}"];`,'@return Actual name of instance interface and all of its superinterfaces');
+        }
+
+        var classIdentifider = `${this.ramlVersion}.${typeName}Impl`
+        if (implementationHasSupertypes) {
+            this.addImplementationMethod(dcl,'allWrapperClassNames', 'string[]',`return super.allWrapperClassNames().concat("${classIdentifider}");`,'@return Actual name of instance class and all of its superclasses');
+        } else {
+            this.addImplementationMethod(dcl,'allWrapperClassNames', 'string[]',`return ["${classIdentifider}"];`,'@return Actual name of instance class and all of its superclasses');
+        }
+
+        // this.addImplementationSingleparamMethod(dcl,'isInstance', `instance is ${typeName}Impl`,
+        //     'instance', 'any',
+        //     this.generateIsInstanceBody(classIdentifider),'@return Whether specified object is an instance of this class', true);
+
+        this.addImplementationSingleparamMethod(dcl,'isInstance', `boolean`,
+            'instance', 'any',
+            this.generateIsInstanceBody(classIdentifider),'@return Whether specified object is an instance of this class', true);
+
         this.addImplementationMethod(dcl,'RAMLVersion', 'string',`return "${this.ramlVersion}";`,'@return RAML version of the node');
 
         if(typeName=='ValueType'){
@@ -162,6 +193,20 @@ export class ParserGenerator{
             this.implementationModule.removeChild(dcl);
         }
         this.generatePrimitivesAnnotations(u,idcl,dcl);
+    }
+
+    private generateIsInstanceBody(classIdentifier: string) {
+        return `
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "${classIdentifier}") return true;
+            }
+        }
+
+        return false;
+`
     }
 
     private generatePrimitivesAnnotations(u:def.IType,interfaceModel:td.TSInterface,classModel:td.TSClassDecl){
@@ -331,6 +376,34 @@ export class ParserGenerator{
         else if(existing.length>0){
             method._comment = existing[0]._comment;
         }
+        return method;
+    }
+
+    private addImplementationSingleparamMethod(
+        dcl:td.TSInterface,
+        methodName:string,
+        returnTypeName:string,
+        paramName:string,
+        paramType:string,
+        body:string,
+        comment?:string, isStatic=false):td.TSAPIElementDeclaration {
+
+        var existing = this.getExistingMethods(dcl, methodName);
+        existing.forEach(x=>dcl.removeChild(x));
+        var method = this.addInterfaceMethod(dcl, methodName, returnTypeName);
+        method._body = body;
+        if(comment && comment.trim().length>0) {
+            method._comment = comment;
+        }
+        else if(existing.length>0){
+            method._comment = existing[0]._comment;
+        }
+
+        method.parameters.push(new td.Param(method,paramName,td.ParamLocation.OTHER,
+            new td.TSSimpleTypeReference(method, paramType)));
+
+        method.isStatic = isStatic;
+
         return method;
     }
 
@@ -774,7 +847,7 @@ export function getLanguageElementByRuntimeType(runtimeType : hl.ITypeDefinition
         var res="";
         for (var p in this.processed){
             var q=<def.IType>this.processed[p];
-            if (q instanceof def.NodeClass){
+            if (def.NodeClass.isInstance(q)){
                 res+=
 `
 /**
@@ -946,7 +1019,7 @@ class ImplementationGenerator {
 
 export function checkIfReference(u:nominals.ITypeDefinition):boolean{
 
-    if(u instanceof def.ReferenceType){
+    if(def.ReferenceType.isInstance(u)){
         return true;
     }
     //var superTypes = u.superTypes();

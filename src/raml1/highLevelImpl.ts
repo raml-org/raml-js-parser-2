@@ -36,8 +36,8 @@ type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
     //var dr=search.declRoot(context);
     var nm=x.name();
-    if(context.lowLevel() instanceof proxy.LowLevelProxyNode){
-        if(x.lowLevel() instanceof proxy.LowLevelProxyNode){
+    if(proxy.LowLevelProxyNode.isInstance(context.lowLevel())){
+        if(proxy.LowLevelProxyNode.isInstance(x.lowLevel())){
             return nm;
         }
         var rootUnit = context.root().lowLevel().unit();
@@ -90,7 +90,19 @@ export class BasicASTNode implements hl.IParseResult {
 
     unitMap:{ [path:string]:string };
 
+    private static CLASS_IDENTIFIER = "highLevelImpl.BasicASTNode";
 
+    public static isInstance(instance : any) : instance is BasicASTNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),BasicASTNode.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(BasicASTNode.CLASS_IDENTIFIER);
+    }
 
     getKind() : hl.NodeKind {
         return hl.NodeKind.BASIC
@@ -190,7 +202,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     markCh() {
         var n:any = this.lowLevel();
-        while(n instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(n)){
             n = (<proxy.LowLevelProxyNode>n).originalNode();
         }
         n = n._node ? n._node : n;
@@ -202,7 +214,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     unmarkCh(){
         var n:any=this.lowLevel();
-        while(n instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(n)){
             n = (<proxy.LowLevelProxyNode>n).originalNode();
         }
         n=n._node?n._node:n;
@@ -362,6 +374,21 @@ export class BasicASTNode implements hl.IParseResult {
 export class StructuredValue implements hl.IStructuredValue{
 
     private _pr:def.Property
+
+    private static CLASS_IDENTIFIER = "highLevelImpl.StructuredValue";
+
+    public static isInstance(instance : any) : instance is StructuredValue {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),StructuredValue.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(StructuredValue.CLASS_IDENTIFIER);
+    }
+
     constructor(private node:ll.ILowLevelASTNode,private _parent:hl.IHighLevelNode,_pr:hl.IProperty,private kv=null){
         this._pr=<def.Property>_pr;
     }
@@ -449,8 +476,6 @@ export class StructuredValue implements hl.IStructuredValue{
     }
 }
 
-
-
 /**
  * Instanceof for StructuredValue class
  * @param node
@@ -463,6 +488,19 @@ export function isStructuredValue(node : any) : node is StructuredValue {
 
 export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
+    private static CLASS_IDENTIFIER_ASTPropImpl = "highLevelImpl.ASTPropImpl";
+
+    public static isInstance(instance : any) : instance is ASTPropImpl {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ASTPropImpl.CLASS_IDENTIFIER_ASTPropImpl);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(ASTPropImpl.CLASS_IDENTIFIER_ASTPropImpl);
+    }
 
     definition():hl.IValueTypeDefinition {
         return this._def;
@@ -537,7 +575,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     findReferenceDeclaration():hl.IHighLevelNode{
         var targets=search.referenceTargets(this.property(),this.parent());
         var vl=this.value();
-        if (vl instanceof StructuredValue){
+        if (StructuredValue.isInstance(vl)){
             var st=<StructuredValue>vl;
             var nm=st.valueName();
         }
@@ -636,14 +674,14 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
         var actualValue = this._node.value(isString); //TODO FIXME
         if (this.property().isSelfNode()){
-            if (!actualValue||actualValue instanceof jsyaml.ASTNode){
+            if (!actualValue||jsyaml.ASTNode.isInstance(actualValue)){
                 actualValue=this._node;
                 if (actualValue.children().length==0){
                     actualValue=null;
                 }
             }
         }
-        if (actualValue instanceof jsyaml.ASTNode||actualValue instanceof proxy.LowLevelProxyNode) {
+        if (jsyaml.ASTNode.isInstance(actualValue)||proxy.LowLevelProxyNode.isInstance(actualValue)) {
             var isAnnotatedScalar=false;
             if (!this.property().range().hasStructure()){
                 if (this._node.isAnnotatedScalar()){
@@ -690,7 +728,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             + "  =  " + this.value()) + (this.property().isKey()&&this.optional()?"?":"")
             + "\n";
 
-        if (this.value() instanceof StructuredValue){
+        if (StructuredValue.isInstance(this.value())){
             var structuredHighLevel : any = (<StructuredValue>this.value()).toHighLevel();
             if (structuredHighLevel && structuredHighLevel.printDetails) {
                 result += structuredHighLevel.printDetails(indent + "\t");
@@ -713,7 +751,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             + "  =  " + this.value()) +
             "\n";
 
-        if (this.value() instanceof StructuredValue){
+        if (StructuredValue.isInstance(this.value())){
             var structuredHighLevel : any = (<StructuredValue>this.value()).toHighLevel();
             if (structuredHighLevel && structuredHighLevel.testSerialize) {
                 result += structuredHighLevel.testSerialize((indent?indent:"") + "  ");
@@ -860,6 +898,20 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 
     private _toMerge:LowLevelWrapperForTypeSystem;
 
+    private static CLASS_IDENTIFIER_LowLevelWrapperForTypeSystem = "highLevelImpl.LowLevelWrapperForTypeSystem";
+
+    public static isInstance(instance : any) : instance is LowLevelWrapperForTypeSystem {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelWrapperForTypeSystem.CLASS_IDENTIFIER_LowLevelWrapperForTypeSystem);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(LowLevelWrapperForTypeSystem.CLASS_IDENTIFIER_LowLevelWrapperForTypeSystem);
+    }
+
     constructor(protected _node:ll.ILowLevelASTNode, protected _highLevelRoot:hl.IHighLevelNode){
         super()
 
@@ -1001,7 +1053,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 
             if (result) {
                 this._node.setHighLevelParseResult(result);
-                if (result instanceof ASTNodeImpl) {
+                if (ASTNodeImpl.isInstance(result)) {
                     this._node.setHighLevelNode(<ASTNodeImpl>result)
                 }
             }
@@ -1054,6 +1106,20 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     private _types:rTypes.IParsedTypeCollection;
     private _ptype:rTypes.IParsedType;
+
+    private static CLASS_IDENTIFIER_ASTNodeImpl = "highLevelImpl.ASTNodeImpl";
+
+    public static isInstance(instance : any) : instance is ASTNodeImpl {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ASTNodeImpl.CLASS_IDENTIFIER_ASTNodeImpl);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(ASTNodeImpl.CLASS_IDENTIFIER_ASTNodeImpl);
+    }
 
     createIssue(error: any): hl.ValidationIssue {
         return linter.toIssue(error, this);
@@ -1219,7 +1285,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if(node) {
             node.setHighLevelNode(this);
         }
-        if (node instanceof proxy.LowLevelProxyNode){
+        if (proxy.LowLevelProxyNode.isInstance(node)){
             this._expanded=true;
         }
     }
@@ -1570,7 +1636,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             return this._patchedName
         }
         var ka=_.find(this.directChildren(),x=>x.property()&&x.property().getAdapter(services.RAMLPropertyService).isKey());
-        if (ka&&ka instanceof ASTPropImpl){
+        if (ka&&ASTPropImpl.isInstance(ka)){
             var c = null;
             var defClass = this.definition();
             var ramlVersion = defClass.universe().version();
@@ -1999,16 +2065,6 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     return { ptype: ptype, localUniverse: localUniverse };
 };
 
-/**
- * Instanceof for ASTNodeImpl type.
- * @param node
- * @returns
- */
-export function isASTNodeImpl(node : any) : node is ASTNodeImpl {
-    var anyNode = <any>node;
-    return anyNode.setTypes && anyNode.patchProp && anyNode.clearChildrenCache;
-}
-
 export function ramlFirstLine(content:string):RegExpMatchArray{
     return content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
 }
@@ -2151,7 +2207,7 @@ export class AnnotatedNode implements def.rt.tsInterfaces.IAnnotatedElement{
         }
         else if(this._node.isAttr()){
             var val = this._node.asAttr().value();
-            if(val instanceof StructuredValue){
+            if(StructuredValue.isInstance(val)){
                 return (<StructuredValue>val).lowLevel().dump();
             }
             return val;
@@ -2177,7 +2233,7 @@ export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstan
      */
     value(): any{
         var val = this.attr.value();
-        if(val instanceof  StructuredValue){
+        if(StructuredValue.isInstance(val)){
             var obj = (<StructuredValue>val).lowLevel().dumpToObject();
             var key = Object.keys(obj)[0];
             return obj[key];

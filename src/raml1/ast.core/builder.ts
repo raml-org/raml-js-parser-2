@@ -551,7 +551,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                             else {
                                 var filter:any = {}
                                 var inherited:hlimpl.ASTNodeImpl[] = []
-                                if (range instanceof defs.NodeClass) {
+                                if (defs.NodeClass.isInstance(range)) {
                                     var nc = <defs.NodeClass>range;
 
                                     if (nc.getAdapter(services.RAMLService).getCanInherit().length > 0) {
@@ -618,7 +618,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                                                 var atr = <ASTPropImpl>x;
                                                                 var vl = atr.value();
                                                                 var strVal = "";
-                                                                if (vl instanceof hlimpl.StructuredValue) {
+                                                                if (hlimpl.StructuredValue.isInstance(vl)) {
                                                                     strVal = (<hlimpl.StructuredValue>vl).valueName();
                                                                 }
                                                                 else {
@@ -757,7 +757,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
             }
             else {
-                if(!(x instanceof proxy.LowLevelCompositeNode)
+                if(!(proxy.LowLevelCompositeNode.isInstance(x))
                     ||(<proxy.LowLevelCompositeNode>x).primaryNode()!=null) {
 
                     res.push(new hlimpl.BasicASTNode(x, aNode));
@@ -867,6 +867,9 @@ function findFacetDeclaration(facet : ramlTypes.ITypeFacet) : def.SourceProvider
             }
 
             return null;
+        },
+        getClassIdentifier() : string[] {
+            return [defs.SourceProvider.CLASS_IDENTIFIER];
         }
     }
 }

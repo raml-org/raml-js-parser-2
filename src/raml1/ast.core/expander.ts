@@ -21,7 +21,10 @@ import universeHelpers = require("../tools/universeHelpers");
 var changeCase = require('change-case');
 
 export function expandTraitsAndResourceTypes<T>(api:T):T{
-    if(!(api instanceof core.BasicNodeImpl)){
+
+    if(!core.BasicNodeImpl.isInstance(api)){
+    // if(!((<any>api).kind
+    //     && ((<any>api).kind() == "Api" || (<any>api).kind() == "Overlay" || (<any>api).kind() == "Extension"))){
         return null;
     }
     var apiNode = <core.BasicNodeImpl><any>api;
@@ -98,7 +101,7 @@ function mergeHighLevelNodes(
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
 
-        if(expand&&(currentMaster.lowLevel() instanceof proxy.LowLevelProxyNode)) {
+        if(expand&&(proxy.LowLevelProxyNode.isInstance(currentMaster.lowLevel()))) {
             if(!expander){
                 expander = new TraitsAndResourceTypesExpander();
             }
@@ -389,7 +392,7 @@ export class TraitsAndResourceTypesExpander {
         if (typeof(value) == 'string') {
             name = value;
         }
-        else if (value instanceof hlimpl.StructuredValue) {
+        else if (hlimpl.StructuredValue.isInstance(value)) {
             sv = <hlimpl.StructuredValue>value;
             name = sv.valueName();
         }
@@ -482,7 +485,7 @@ export class LibraryExpander{
         if(api==null){
             return null;
         }
-        if(api.lowLevel() instanceof proxy.LowLevelCompositeNode){
+        if(proxy.LowLevelCompositeNode.isInstance(api.lowLevel())){
             api = api.lowLevel().unit().highLevel().asElement();
         }
         var expander = new TraitsAndResourceTypesExpander();

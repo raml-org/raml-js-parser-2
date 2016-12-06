@@ -164,6 +164,34 @@ kind(  ):string{return "Annotable";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Annotable");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.AnnotableImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.AnnotableImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -182,6 +210,34 @@ wrapperClassName(  ):string{return "ValueTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ValueType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ValueType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("undefined.ValueTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "undefined.ValueTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -209,6 +265,34 @@ wrapperClassName(  ):string{return "StringTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StringType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("StringType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.StringTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.StringTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -243,6 +327,34 @@ kind(  ):string{return "UriTemplate";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("UriTemplate");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.UriTemplateImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.UriTemplateImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -265,6 +377,34 @@ wrapperClassName(  ):string{return "RelativeUriStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "RelativeUriString";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("RelativeUriString");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.RelativeUriStringImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.RelativeUriStringImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -293,6 +433,34 @@ kind(  ):string{return "FullUriTemplateString";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FullUriTemplateString");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.FullUriTemplateStringImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.FullUriTemplateStringImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -311,6 +479,34 @@ wrapperClassName(  ):string{return "StatusCodeStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StatusCodeString";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("StatusCodeString");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.StatusCodeStringImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.StatusCodeStringImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -339,6 +535,34 @@ kind(  ):string{return "FixedUriString";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FixedUriString");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.FixedUriStringImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.FixedUriStringImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -357,6 +581,34 @@ wrapperClassName(  ):string{return "ContentTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ContentType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ContentType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ContentTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ContentTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -385,6 +637,34 @@ kind(  ):string{return "MarkdownString";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("MarkdownString");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.MarkdownStringImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.MarkdownStringImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -407,6 +687,34 @@ wrapperClassName(  ):string{return "SchemaStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SchemaString";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SchemaString");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.SchemaStringImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.SchemaStringImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -435,6 +743,34 @@ kind(  ):string{return "MimeType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("MimeType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.MimeTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.MimeTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -456,6 +792,34 @@ kind(  ):string{return "AnyType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AnyType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.AnyTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.AnyTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -474,6 +838,34 @@ wrapperClassName(  ):string{return "NumberTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NumberType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("NumberType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.NumberTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.NumberTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -504,6 +896,34 @@ kind(  ):string{return "IntegerType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("IntegerType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.IntegerTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.IntegerTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -522,6 +942,34 @@ wrapperClassName(  ):string{return "NullTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NullType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("NullType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.NullTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.NullTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -546,6 +994,34 @@ kind(  ):string{return "TimeOnlyType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TimeOnlyType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.TimeOnlyTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.TimeOnlyTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -564,6 +1040,34 @@ wrapperClassName(  ):string{return "DateOnlyTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateOnlyType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateOnlyType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DateOnlyTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DateOnlyTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -588,6 +1092,34 @@ kind(  ):string{return "DateTimeOnlyType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeOnlyType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DateTimeOnlyTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DateTimeOnlyTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -606,6 +1138,34 @@ wrapperClassName(  ):string{return "DateTimeTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTimeType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DateTimeTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DateTimeTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -630,6 +1190,34 @@ kind(  ):string{return "FileType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FileType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.FileTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.FileTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -648,6 +1236,34 @@ wrapperClassName(  ):string{return "BooleanTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BooleanType";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("BooleanType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.BooleanTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.BooleanTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -682,6 +1298,34 @@ kind(  ):string{return "AnnotationTarget";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AnnotationTarget");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.AnnotationTargetImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.AnnotationTargetImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -700,6 +1344,34 @@ wrapperClassName(  ):string{return "ReferenceImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Reference";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Reference");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ReferenceImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ReferenceImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -735,6 +1407,34 @@ wrapperClassName(  ):string{return "TraitRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "TraitRef";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TraitRef");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.TraitRefImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.TraitRefImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -794,6 +1494,34 @@ wrapperClassName(  ):string{return "OperationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Operation";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Operation");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.OperationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.OperationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -1022,6 +1750,34 @@ kind(  ):string{return "TypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.TypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.TypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -1123,6 +1879,34 @@ kind(  ):string{return "ModelLocation";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return ["ModelLocation"];}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return ["RAML10.ModelLocationImpl"];}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ModelLocationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -1143,6 +1927,34 @@ wrapperClassName(  ):string{return "LocationKindImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LocationKind";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return ["LocationKind"];}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return ["RAML10.LocationKindImpl"];}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.LocationKindImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -1202,6 +2014,34 @@ wrapperClassName(  ):string{return "UsesDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "UsesDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("UsesDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.UsesDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.UsesDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -1351,6 +2191,34 @@ wrapperClassName(  ):string{return "XMLFacetInfoImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "XMLFacetInfo";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("XMLFacetInfo");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.XMLFacetInfoImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.XMLFacetInfoImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -1521,6 +2389,34 @@ wrapperClassName(  ):string{return "ArrayTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ArrayTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ArrayTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ArrayTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ArrayTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -1764,6 +2660,34 @@ kind(  ):string{return "UnionTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("UnionTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.UnionTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.UnionTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -1882,6 +2806,34 @@ wrapperClassName(  ):string{return "ObjectTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ObjectTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ObjectTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ObjectTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ObjectTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2066,6 +3018,34 @@ kind(  ):string{return "StringTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("StringTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.StringTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.StringTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2157,6 +3137,34 @@ wrapperClassName(  ):string{return "BooleanTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BooleanTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("BooleanTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.BooleanTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.BooleanTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2277,6 +3285,34 @@ kind(  ):string{return "NumberTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("NumberTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.NumberTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.NumberTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2325,6 +3361,34 @@ wrapperClassName(  ):string{return "IntegerTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "IntegerTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("IntegerTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.IntegerTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.IntegerTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2456,6 +3520,34 @@ kind(  ):string{return "DateOnlyTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateOnlyTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DateOnlyTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DateOnlyTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2483,6 +3575,34 @@ kind(  ):string{return "TimeOnlyTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TimeOnlyTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.TimeOnlyTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.TimeOnlyTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2507,6 +3627,34 @@ wrapperClassName(  ):string{return "DateTimeOnlyTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTimeOnlyTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeOnlyTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DateTimeOnlyTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DateTimeOnlyTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2552,6 +3700,34 @@ wrapperClassName(  ):string{return "DateTimeTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTimeTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DateTimeTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DateTimeTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2649,6 +3825,34 @@ wrapperClassName(  ):string{return "FileTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FileTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FileTypeDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.FileTypeDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.FileTypeDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2768,6 +3972,34 @@ kind(  ):string{return "Response";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Response");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ResponseImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ResponseImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2832,6 +4064,34 @@ wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemePart";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SecuritySchemePart");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.SecuritySchemePartImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.SecuritySchemePartImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -2918,6 +4178,34 @@ kind(  ):string{return "MethodBase";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("MethodBase");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.MethodBaseImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.MethodBaseImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2942,6 +4230,34 @@ wrapperClassName(  ):string{return "SecuritySchemeRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemeRef";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SecuritySchemeRef");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.SecuritySchemeRefImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.SecuritySchemeRefImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3058,6 +4374,34 @@ kind(  ):string{return "AbstractSecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AbstractSecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.AbstractSecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.AbstractSecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3084,6 +4428,34 @@ wrapperClassName(  ):string{return "SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemeSettings";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SecuritySchemeSettings");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.SecuritySchemeSettingsImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.SecuritySchemeSettingsImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3149,6 +4521,34 @@ wrapperClassName(  ):string{return "OAuth1SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth1SecuritySchemeSettings";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth1SecuritySchemeSettings");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.OAuth1SecuritySchemeSettingsImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.OAuth1SecuritySchemeSettingsImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3296,6 +4696,34 @@ kind(  ):string{return "OAuth2SecuritySchemeSettings";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth2SecuritySchemeSettings");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.OAuth2SecuritySchemeSettingsImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.OAuth2SecuritySchemeSettingsImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3395,6 +4823,34 @@ kind(  ):string{return "OAuth2SecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth2SecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.OAuth2SecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.OAuth2SecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3423,6 +4879,34 @@ wrapperClassName(  ):string{return "OAuth1SecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth1SecurityScheme";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth1SecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.OAuth1SecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.OAuth1SecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3457,6 +4941,34 @@ kind(  ):string{return "PassThroughSecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("PassThroughSecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.PassThroughSecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.PassThroughSecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3481,6 +4993,34 @@ wrapperClassName(  ):string{return "BasicSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BasicSecurityScheme";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("BasicSecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.BasicSecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.BasicSecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3511,6 +5051,34 @@ kind(  ):string{return "DigestSecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DigestSecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DigestSecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DigestSecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3535,6 +5103,34 @@ wrapperClassName(  ):string{return "CustomSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "CustomSecurityScheme";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("CustomSecurityScheme");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.CustomSecuritySchemeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.CustomSecuritySchemeImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3644,6 +5240,34 @@ wrapperClassName(  ):string{return "MethodImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Method";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Method");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.MethodImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.MethodImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -3869,6 +5493,34 @@ kind(  ):string{return "Trait";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Trait");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.TraitImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.TraitImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3931,6 +5583,34 @@ wrapperClassName(  ):string{return "ResourceTypeRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ResourceTypeRef";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ResourceTypeRef");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ResourceTypeRefImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ResourceTypeRefImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4003,6 +5683,34 @@ wrapperClassName(  ):string{return "ResourceBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ResourceBase";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ResourceBase");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ResourceBaseImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ResourceBaseImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4117,6 +5825,34 @@ wrapperClassName(  ):string{return "ResourceImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Resource";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Resource");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ResourceImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ResourceImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4360,6 +6096,34 @@ kind(  ):string{return "ResourceType";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ResourceType");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ResourceTypeImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ResourceTypeImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -4429,6 +6193,34 @@ kind(  ):string{return "AnnotationRef";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AnnotationRef");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.AnnotationRefImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.AnnotationRefImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -4483,6 +6275,34 @@ wrapperClassName(  ):string{return "DocumentationItemImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DocumentationItem";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DocumentationItem");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.DocumentationItemImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.DocumentationItemImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4552,6 +6372,34 @@ wrapperClassName(  ):string{return "FragmentDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FragmentDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FragmentDeclaration");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.FragmentDeclarationImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.FragmentDeclarationImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4625,6 +6473,34 @@ wrapperClassName(  ):string{return "LibraryBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LibraryBase";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("LibraryBase");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.LibraryBaseImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.LibraryBaseImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4718,6 +6594,34 @@ wrapperClassName(  ):string{return "LibraryImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Library";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Library");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.LibraryImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.LibraryImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -4891,6 +6795,34 @@ kind(  ):string{return "Api";}
 
 
         /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Api");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ApiImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ApiImpl") return true;
+            }
+        }
+
+        return false;
+}
+
+
+        /**
          * @return RAML version of the node
          * @hidden
          **/
@@ -5041,6 +6973,34 @@ wrapperClassName(  ):string{return "OverlayImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Overlay";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Overlay");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.OverlayImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.OverlayImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
@@ -5275,6 +7235,34 @@ wrapperClassName(  ):string{return "ExtensionImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Extension";}
+
+
+        /**
+         * @return Actual name of instance interface and all of its superinterfaces
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Extension");}
+
+
+        /**
+         * @return Actual name of instance class and all of its superclasses
+         **/
+allWrapperClassNames(  ):string[]{return super.allWrapperClassNames().concat("RAML10.ExtensionImpl");}
+
+
+        /**
+         * @return Whether specified object is an instance of this class
+         **/
+static isInstance( instance:any ):boolean{
+        if(instance != null && instance.allWrapperClassNames
+            && typeof(instance.allWrapperClassNames) == "function"){
+
+            for (let currentIdentifier of instance.allWrapperClassNames()){
+                if(currentIdentifier == "RAML10.ExtensionImpl") return true;
+            }
+        }
+
+        return false;
+}
 
 
         /**
