@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": [
-      {
-        "dataTypes.Customer": {
-          "name": "Customer",
-          "displayName": "Customer",
-          "type": {
+    "types": {
+      "dataTypes.Customer": {
+        "name": "Customer",
+        "displayName": "Customer",
+        "type": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -60,206 +60,206 @@
                 }
               }
             }
-          },
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              }
-            },
-            "email": {
-              "name": "email",
-              "displayName": "email",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "mobile": {
-              "name": "mobile",
-              "displayName": "mobile",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "addresses": {
-              "name": "addresses",
-              "displayName": "addresses",
-              "type": [
-                "object"
-              ],
-              "required": false,
-              "properties": {
-                "addressType": {
-                  "name": "addressType",
-                  "displayName": "addressType",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "enum": [
-                    "postal",
-                    "business"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
+          }
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 },
-                "line1": {
-                  "name": "line1",
-                  "displayName": "line1",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "line2": {
-                  "name": "line2",
-                  "displayName": "line2",
-                  "type": [
-                    "string"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "suburb": {
-                  "name": "suburb",
-                  "displayName": "suburb",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "postcode": {
-                  "name": "postcode",
-                  "displayName": "postcode",
-                  "type": [
-                    "number"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
               }
+            }
+          },
+          "email": {
+            "name": "email",
+            "displayName": "email",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "mobile": {
+            "name": "mobile",
+            "displayName": "mobile",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "addresses": {
+            "name": "addresses",
+            "displayName": "addresses",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "addressType": {
+                "name": "addressType",
+                "displayName": "addressType",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "postal",
+                  "business"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "line1": {
+                "name": "line1",
+                "displayName": "line1",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "line2": {
+                "name": "line2",
+                "displayName": "line2",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "suburb": {
+                "name": "suburb",
+                "displayName": "suburb",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "postcode": {
+                "name": "postcode",
+                "displayName": "postcode",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "sample-api",
     "version": "v0.1",
     "baseUri": "http://api.samplehost.com",
@@ -268,8 +268,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -279,20 +279,6 @@
                     "displayName": "application/json",
                     "type": [
                       "array"
-                    ],
-                    "example": [
-                      {
-                        "id": "ID124",
-                        "eTag": "13298308323",
-                        "name": "Smith",
-                        "age": 30,
-                        "addresses": {
-                          "addressType": "postal",
-                          "line1": "Walker Street",
-                          "suburb": "Sydney",
-                          "postcode": 1234
-                        }
-                      }
                     ],
                     "required": true,
                     "items": {
@@ -323,25 +309,26 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "[{\n  \"id\": \"ID124\",\n  \"eTag\": \"13298308323\",\n  \"name\" : \"Smith\",\n  \"age\" : 30,\n  \"addresses\" : {\n    \"addressType\" : \"postal\",\n    \"line1\" : \"Walker Street\",\n    \"suburb\" : \"Sydney\",\n    \"postcode\" : 1234\n    }\n}]\n",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": [
-                        {
-                          "id": "ID124",
-                          "eTag": "13298308323",
-                          "name": "Smith",
-                          "age": 30,
-                          "addresses": {
-                            "addressType": "postal",
-                            "line1": "Walker Street",
-                            "suburb": "Sydney",
-                            "postcode": 1234
+                    "examples": [
+                      {
+                        "value": [
+                          {
+                            "id": "ID124",
+                            "eTag": "13298308323",
+                            "name": "Smith",
+                            "age": 30,
+                            "addresses": {
+                              "addressType": "postal",
+                              "line1": "Walker Street",
+                              "suburb": "Sydney",
+                              "postcode": 1234
+                            }
                           }
-                        }
-                      ]
-                    }
+                        ],
+                        "strict": true,
+                        "name": null
+                      }
+                    ]
                   }
                 }
               }
@@ -358,7 +345,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {
@@ -371,7 +358,9 @@
         "relativeUriPathSegments": [
           "customers"
         ],
-        "absoluteUri": "http://api.samplehost.com/customers"
+        "absoluteUri": "http://api.samplehost.com/customers",
+        "completeRelativeUri": "/customers",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

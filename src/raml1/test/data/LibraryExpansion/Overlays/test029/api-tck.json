@@ -1,233 +1,219 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "annotations": {
       "library.highLevelApiDescription": {
-        "structuredValue": null,
         "name": "library.highLevelApiDescription"
       },
       "library.apiLogo": {
-        "structuredValue": null,
         "name": "library.apiLogo"
       },
       "library.specAuthor": {
-        "structuredValue": "mulesoft.com",
-        "name": "library.specAuthor"
+        "name": "library.specAuthor",
+        "structuredValue": "mulesoft.com"
       },
       "library.devPortal": {
-        "structuredValue": null,
         "name": "library.devPortal"
       },
       "library.extraResources": {
+        "name": "library.extraResources",
         "structuredValue": [
           {
             "title": "API Notebook",
             "type": "notebook",
             "uri": "blah"
           }
-        ],
-        "name": "library.extraResources"
+        ]
       }
     },
-    "types": [
-      {
-        "library.apiResource": {
-          "name": "apiResource",
-          "displayName": "apiResource",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "type": {
-              "name": "type",
-              "displayName": "type",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "title": {
-              "name": "title",
-              "displayName": "title",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "uri": {
-              "name": "uri",
-              "displayName": "uri",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "library.apiResource": {
+        "name": "apiResource",
+        "displayName": "apiResource",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          },
+          "uri": {
+            "name": "uri",
+            "displayName": "uri",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "library.highLevelApiDescription": {
-          "name": "highLevelApiDescription",
-          "displayName": "Api Description",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "description": "Description of the RAML API spec.",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "library.highLevelApiDescription": {
+        "name": "highLevelApiDescription",
+        "displayName": "Api Description",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "description": "Description of the RAML API spec.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "library.apiLogo": {
-          "name": "apiLogo",
-          "displayName": "Logo",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "description": "Service logo.",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
+      "library.apiLogo": {
+        "name": "apiLogo",
+        "displayName": "Logo",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "description": "Service logo.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "library.specAuthor": {
-          "name": "specAuthor",
-          "displayName": "Spec Author",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "description": "Author of the RAML spec.",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
+      "library.specAuthor": {
+        "name": "specAuthor",
+        "displayName": "Spec Author",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "description": "Author of the RAML spec.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "library.devPortal": {
-          "name": "devPortal",
-          "displayName": "Developer Portal",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "description": "URL to the developer portal",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
+      "library.devPortal": {
+        "name": "devPortal",
+        "displayName": "Developer Portal",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "description": "URL to the developer portal",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "library.extraResources": {
-          "name": "extraResources",
-          "displayName": "extraResources",
-          "type": [
-            "library.apiResource[]"
-          ],
-          "required": true,
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "library.extraResources": {
+        "name": "extraResources",
+        "displayName": "extraResources",
+        "required": true,
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          "array"
+        ],
+        "items": "library.apiResource"
       }
-    ],
+    },
     "title": "Api",
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": [
     {
       "code": "NULL_NOT_ALLOWED",

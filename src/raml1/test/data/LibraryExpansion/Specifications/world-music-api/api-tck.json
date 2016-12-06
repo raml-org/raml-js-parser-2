@@ -1,246 +1,186 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "info": {
+        "name": "info",
         "structuredValue": {
           "license": "MIT"
-        },
-        "name": "info"
+        }
       }
     },
-    "types": [
-      {
-        "Entry": {
-          "name": "Entry",
-          "displayName": "Entry",
-          "type": [
-            "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Entry": {
+        "name": "Entry",
+        "displayName": "Entry",
+        "type": [
+          "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "AnotherEntry": {
-          "name": "AnotherEntry",
-          "displayName": "AnotherEntry",
-          "type": [
-            "Entry"
-          ],
-          "required": true,
-          "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "AnotherEntry": {
+        "name": "AnotherEntry",
+        "displayName": "AnotherEntry",
+        "type": [
+          "Entry"
+        ],
+        "required": true,
+        "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "firstname": "John"
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "firstname": {
+            "name": "firstname",
+            "displayName": "firstname",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
           },
-          "required": true,
-          "properties": {
-            "firstname": {
-              "name": "firstname",
-              "displayName": "firstname",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          "lastname": {
+            "name": "lastname",
+            "displayName": "lastname",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
               }
             },
-            "lastname": {
-              "name": "lastname",
-              "displayName": "lastname",
-              "type": [
-                "string"
-              ],
-              "example": "Doe",
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              },
-              "structuredExample": {
+            "examples": [
+              {
                 "value": "Doe",
                 "strict": true,
-                "name": null,
-                "structuredValue": "Doe"
+                "name": null
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"firstname\": \"John\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "firstname": "John"
+            ]
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "firstname": "John"
+            },
+            "strict": true,
+            "name": null
+          }
+        ]
       },
-      {
-        "ApiLib.RamlDataType": {
-          "name": "RamlDataType",
-          "displayName": "RamlDataType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "propString": {
-              "name": "propString",
-              "displayName": "propString",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "propStringArray1": {
-              "name": "propStringArray1",
-              "displayName": "propStringArray1",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "string"
-            },
-            "ideas": {
-              "name": "ideas",
-              "displayName": "ideas",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "items": {
-                "name": "items",
-                "displayName": "items",
-                "type": [
-                  "object"
-                ],
-                "required": true,
-                "properties": {
-                  "comment": {
-                    "name": "comment",
-                    "displayName": "comment",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    }
-                  }
+      "ApiLib.RamlDataType": {
+        "name": "RamlDataType",
+        "displayName": "RamlDataType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "propString": {
+            "name": "propString",
+            "displayName": "propString",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 },
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+              }
+            }
+          },
+          "propStringArray1": {
+            "name": "propStringArray1",
+            "displayName": "propStringArray1",
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "extIdeas": {
-              "name": "extIdeas",
-              "displayName": "extIdeas",
+            "type": [
+              "array"
+            ],
+            "items": "string"
+          },
+          "ideas": {
+            "name": "ideas",
+            "displayName": "ideas",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "items": {
+              "name": "items",
+              "displayName": "items",
+              "type": [
+                "object"
+              ],
               "required": true,
               "properties": {
-                "createdBy": {
-                  "name": "createdBy",
-                  "displayName": "createdBy",
+                "comment": {
+                  "name": "comment",
+                  "displayName": "comment",
                   "type": [
                     "string"
                   ],
@@ -257,7 +197,36 @@
                   }
                 }
               },
-              "type": {
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "extIdeas": {
+            "name": "extIdeas",
+            "displayName": "extIdeas",
+            "type": [
+              {
                 "name": "type",
                 "displayName": "type",
                 "type": [
@@ -297,527 +266,297 @@
                     }
                   }
                 }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+              }
+            ],
+            "required": true,
+            "properties": {
+              "createdBy": {
+                "name": "createdBy",
+                "displayName": "createdBy",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
                   }
                 }
               }
             },
-            "feedback": {
-              "name": "feedback",
-              "displayName": "feedback",
-              "type": [
-                "string"
-              ],
-              "default": "very nice",
-              "example": "very well made",
-              "required": true,
-              "pattern": "[a-zA-Z\\s]*",
-              "minLength": 1,
-              "maxLength": 255,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
+              }
+            }
+          },
+          "feedback": {
+            "name": "feedback",
+            "displayName": "feedback",
+            "type": [
+              "string"
+            ],
+            "default": "very nice",
+            "required": true,
+            "pattern": "[a-zA-Z\\s]*",
+            "minLength": 1,
+            "maxLength": 255,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "examples": [
+              {
                 "value": "very well made",
                 "strict": true,
-                "name": null,
-                "structuredValue": "very well made"
+                "name": null
               }
-            },
-            "propNumber": {
-              "name": "propNumber",
-              "displayName": "propNumber",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "minimum": 0,
-              "maximum": 32,
-              "format": "int32",
-              "multipleOf": 2,
-              "fixedFacets": {
-                "format": "int32"
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            ]
+          },
+          "propNumber": {
+            "name": "propNumber",
+            "displayName": "propNumber",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "minimum": 0,
+            "maximum": 32,
+            "format": "int32",
+            "multipleOf": 2,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "propInteger": {
-              "name": "propInteger",
-              "displayName": "propInteger",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "minimum": 3,
-              "maximum": 5,
-              "format": "int8",
-              "multipleOf": 1,
-              "fixedFacets": {
-                "format": "int8"
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "fixedFacets": {
+              "format": "int32"
+            }
+          },
+          "propInteger": {
+            "name": "propInteger",
+            "displayName": "propInteger",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "minimum": 3,
+            "maximum": 5,
+            "format": "int8",
+            "multipleOf": 1,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "propBoolean": {
-              "name": "propBoolean",
-              "displayName": "propBoolean",
-              "type": [
-                "boolean"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "fixedFacets": {
+              "format": "int8"
+            }
+          },
+          "propBoolean": {
+            "name": "propBoolean",
+            "displayName": "propBoolean",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "propDate": {
+            "name": "propDate",
+            "displayName": "propDate",
+            "type": [
+              "date-only"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "propDate": {
-              "name": "propDate",
-              "displayName": "propDate",
-              "type": [
-                "date-only"
-              ],
-              "example": "2015-05-23",
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "structuredExample": {
+            "examples": [
+              {
                 "value": "2015-05-23",
                 "strict": true,
-                "name": null,
-                "structuredValue": "2015-05-23"
+                "name": null
+              }
+            ]
+          },
+          "userPicture": {
+            "name": "userPicture",
+            "displayName": "userPicture",
+            "type": [
+              "file"
+            ],
+            "required": true,
+            "fileTypes": [
+              "image/jpeg",
+              "image/png"
+            ],
+            "maxLength": 307200,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
             },
-            "userPicture": {
-              "name": "userPicture",
-              "displayName": "userPicture",
-              "type": [
-                "file"
-              ],
-              "required": true,
+            "fixedFacets": {
               "fileTypes": [
                 "image/jpeg",
                 "image/png"
               ],
-              "maxLength": 307200,
-              "fixedFacets": {
-                "fileTypes": [
-                  "image/jpeg",
-                  "image/png"
-                ],
-                "maxLength": 307200
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "NilValue": {
-              "name": "NilValue",
-              "displayName": "NilValue",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "name": {
-                  "name": "name",
-                  "displayName": "name",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "comment": {
-                  "name": "comment",
-                  "displayName": "comment",
-                  "type": [
-                    "string?"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "CatOrDog": {
-              "name": "CatOrDog",
-              "displayName": "CatOrDog",
-              "type": [
-                "ApiLib.Cat | ApiLib.Dog"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "CatAndDog": [
-              {
-                "name": "CatAndDog",
-                "displayName": "CatAndDog",
-                "type": [
-                  "ApiLib.Cat"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              {
-                "name": "CatAndDog",
-                "displayName": "CatAndDog",
-                "type": [
-                  "ApiLib.Dog"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
+              "maxLength": 307200
+            }
+          },
+          "NilValue": {
+            "name": "NilValue",
+            "displayName": "NilValue",
+            "type": [
+              "object"
             ],
-            "PossibleMeetingDate": {
-              "name": "PossibleMeetingDate",
-              "displayName": "PossibleMeetingDate",
-              "type": [
-                "ApiLib.CustomDate"
-              ],
-              "required": true,
-              "fixedFacets": {
-                "noHolidays": true
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+            "required": true,
+            "properties": {
+              "name": {
+                "name": "name",
+                "displayName": "name",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
                   }
                 }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
               },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "ApiLib.Cat": {
-          "name": "Cat",
-          "displayName": "Cat",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+              "comment": {
+                "name": "comment",
+                "displayName": "comment",
+                "type": [
+                  "string?"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
                   }
                 }
               }
             },
-            "color": {
-              "name": "color",
-              "displayName": "color",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "ApiLib.Dog": {
-          "name": "Dog",
-          "displayName": "Dog",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          "CatOrDog": {
+            "name": "CatOrDog",
+            "displayName": "CatOrDog",
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "fangs": {
-              "name": "fangs",
-              "displayName": "fangs",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "ApiLib.Cat",
+              "ApiLib.Dog"
+            ]
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "ApiLib.CustomDate": {
-          "name": "CustomDate",
-          "displayName": "CustomDate",
-          "facets": {
-            "onlyFutureDates": {
-              "name": "onlyFutureDates",
-              "displayName": "onlyFutureDates",
-              "type": [
-                "boolean"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "noHolidays": {
-              "name": "noHolidays",
-              "displayName": "noHolidays",
-              "type": [
-                "boolean"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "type": [
-            "date-only"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "SongsLib.Song": {
-          "name": "Song",
-          "displayName": "Song",
-          "type": [
-            "object"
-          ],
-          "examples": [
+          "CatAndDog": [
             {
-              "value": "{\n  \"title\": \"My Song\",\n  \"length\": 12\n}",
-              "strict": false,
-              "name": "song1",
-              "structuredValue": {
-                "title": "My Song",
-                "length": 12
+              "name": "CatAndDog",
+              "displayName": "CatAndDog",
+              "type": [
+                "ApiLib.Cat"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
               }
             },
             {
-              "value": "{\n  \"title\": \"Last\",\n  \"length\": 3\n}",
-              "strict": true,
-              "name": "song2",
-              "structuredValue": {
-                "title": "Last",
-                "length": 3
-              }
-            }
-          ],
-          "required": true,
-          "properties": {
-            "title": {
-              "name": "title",
-              "displayName": "title",
+              "name": "CatAndDog",
+              "displayName": "CatAndDog",
               "type": [
-                "string"
+                "ApiLib.Dog"
               ],
               "required": true,
               "__METADATA__": {
@@ -830,94 +569,326 @@
                   }
                 }
               }
+            }
+          ],
+          "PossibleMeetingDate": {
+            "name": "PossibleMeetingDate",
+            "displayName": "PossibleMeetingDate",
+            "type": [
+              "ApiLib.CustomDate"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
             },
-            "length": {
-              "name": "length",
-              "displayName": "length",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "fixedFacets": {
+              "noHolidays": true
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "ApiLib.Cat": {
+        "name": "Cat",
+        "displayName": "Cat",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "color": {
+            "name": "color",
+            "displayName": "color",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "ApiLib.Dog": {
+        "name": "Dog",
+        "displayName": "Dog",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "fangs": {
+            "name": "fangs",
+            "displayName": "fangs",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "ApiLib.CustomDate": {
+        "name": "CustomDate",
+        "displayName": "CustomDate",
+        "facets": {
+          "onlyFutureDates": {
+            "name": "onlyFutureDates",
+            "displayName": "onlyFutureDates",
+            "type": [
+              "boolean"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "noHolidays": {
+            "name": "noHolidays",
+            "displayName": "noHolidays",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "type": [
+          "date-only"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "SongsLib.Song": {
+        "name": "Song",
+        "displayName": "Song",
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": {
+              "title": "My Song",
+              "length": 12
+            },
+            "strict": false,
+            "name": "song1"
+          },
+          {
+            "value": {
+              "title": "Last",
+              "length": 3
+            },
+            "strict": true,
+            "name": "song2"
+          }
+        ],
+        "required": true,
+        "properties": {
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "length": {
+            "name": "length",
+            "displayName": "length",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "secured": {
-          "queryParameters": {
-            "access_token": {
-              "name": "access_token",
-              "displayName": "access_token",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "securedBy": [
-            "custom_scheme"
-          ],
-          "name": "secured",
-          "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+          }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "name": "secured",
+        "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
             }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "securedBy": [
-            "custom_scheme"
-          ],
-          "name": "collection",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          },
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -926,9 +897,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "<<resourcePathName|!singularize|!uppercamelcase>>"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -942,7 +910,10 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "<<resourcePathName|!singularize|!uppercamelcase>>"
+                    ]
                   }
                 }
               }
@@ -960,164 +931,246 @@
               }
             }
           }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "name": "collection",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       }
-    ],
-    "annotationTypes": [
-      {
-        "deprecated": {
-          "name": "deprecated",
-          "displayName": "deprecated",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "date": {
-              "name": "date",
-              "displayName": "date",
-              "type": [
-                "datetime"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "deprecatedBy": {
-              "name": "deprecatedBy",
-              "displayName": "deprecatedBy",
-              "type": [
-                "User"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "comment": {
-              "name": "comment",
-              "displayName": "comment",
-              "type": [
-                "nil | string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "date": {
+            "name": "date",
+            "displayName": "date",
+            "type": [
+              "datetime"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+          "deprecatedBy": {
+            "name": "deprecatedBy",
+            "displayName": "deprecatedBy",
+            "type": [
+              "User"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          },
+          "comment": {
+            "name": "comment",
+            "displayName": "comment",
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "nil",
+              "string"
+            ]
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "monitoringInterval": {
-          "name": "monitoringInterval",
-          "displayName": "monitoringInterval",
-          "type": [
-            "integer"
-          ],
-          "example": 2,
-          "structuredExample": {
-            "value": "2",
+      "monitoringInterval": {
+        "name": "monitoringInterval",
+        "displayName": "monitoringInterval",
+        "type": [
+          "integer"
+        ],
+        "required": true,
+        "description": "interval in seconds",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": 2,
             "strict": true,
-            "name": null,
-            "structuredValue": 2
-          },
-          "required": true,
-          "description": "interval in seconds",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+            "name": null
+          }
+        ]
+      },
+      "ready": {
+        "name": "ready",
+        "displayName": "ready",
+        "type": [
+          "nil"
+        ],
+        "required": true,
+        "description": "markes a resource as ready",
+        "allowedTargets": [
+          "Resource"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "ready": {
-          "name": "ready",
-          "displayName": "ready",
-          "type": [
-            "nil"
-          ],
-          "required": true,
-          "description": "markes a resource as ready",
-          "allowedTargets": [
-            "Resource"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
+      "info": {
+        "name": "info",
+        "displayName": "info",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "allowedTargets": [
+          "API"
+        ],
+        "properties": {
+          "license": {
+            "name": "license",
+            "displayName": "license",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "MIT",
+              "Apache 2.0"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            }
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "info": {
-          "name": "info",
-          "displayName": "info",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "allowedTargets": [
-            "API"
-          ],
-          "properties": {
-            "license": {
-              "name": "license",
-              "displayName": "license",
+      "rediractable": {
+        "name": "rediractable",
+        "displayName": "rediractable",
+        "type": [
+          "boolean"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth_1_0": {
+        "name": "oauth_1_0",
+        "type": "OAuth 1.0",
+        "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
+        "settings": {
+          "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
+          "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
+          "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+          "signatures": [
+            "HMAC-SHA1",
+            "PLAINTEXT"
+          ]
+        }
+      },
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "describedBy": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
               "type": [
                 "string"
               ],
               "required": true,
-              "enum": [
-                "MIT",
-                "Apache 2.0"
-              ],
+              "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -1130,169 +1183,86 @@
               }
             }
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "rediractable": {
-          "name": "rediractable",
-          "displayName": "rediractable",
-          "type": [
-            "boolean"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      }
-    ],
-    "securitySchemes": [
-      {
-        "oauth_1_0": {
-          "name": "oauth_1_0",
-          "type": "OAuth 1.0",
-          "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
-          "settings": {
-            "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
-            "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
-            "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
-            "signatures": [
-              "HMAC-SHA1",
-              "PLAINTEXT"
-            ]
-          }
-        }
-      },
-      {
-        "oauth_2_0": {
-          "name": "oauth_2_0",
-          "type": "OAuth 2.0",
-          "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-          "describedBy": {
-            "queryParameters": {
-              "access_token": {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+          "headers": {
+            "Authorization": {
+              "name": "Authorization",
+              "displayName": "Authorization",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
-            },
-            "headers": {
-              "Authorization": {
-                "name": "Authorization",
-                "displayName": "Authorization",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
-              },
-              {
-                "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
-              }
-            ]
+            }
           },
-          "settings": {
-            "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-            "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-            "authorizationGrants": [
-              "authorization_code",
-              "implicit",
-              "urn:ietf:params:oauth:grant-type:saml2-bearer"
-            ]
-          }
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+            },
+            {
+              "code": "403",
+              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+            }
+          ]
+        },
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "authorization_code",
+            "implicit",
+            "urn:ietf:params:oauth:grant-type:saml2-bearer"
+          ]
         }
       },
-      {
-        "custom_scheme": {
-          "name": "custom_scheme",
-          "type": "x-custom",
-          "description": "A custom security scheme for authenticating requests.\n",
-          "describedBy": {
-            "headers": {
-              "SpecialToken": {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+      "custom_scheme": {
+        "name": "custom_scheme",
+        "type": "x-custom",
+        "description": "A custom security scheme for authenticating requests.\n",
+        "describedBy": {
+          "headers": {
+            "SpecialToken": {
+              "name": "SpecialToken",
+              "displayName": "SpecialToken",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a custom token.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
+            }
+          },
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad token.\n"
             },
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n"
-              },
-              {
-                "code": "403"
-              }
-            ]
-          }
+            {
+              "code": "403"
+            }
+          ]
         }
       }
-    ],
+    },
     "title": "World Music API",
     "description": "This is an example of a music API.",
     "version": "v1",
@@ -1355,14 +1325,16 @@
       "HTTP",
       "HTTPS"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "securedBy": [
       "custom_scheme"
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
@@ -1440,7 +1412,7 @@
               }
             }
           },
-          {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -1479,7 +1451,7 @@
               }
             }
           }
-        ],
+        },
         "securedBy": [
           "custom_scheme"
         ],
@@ -1498,11 +1470,13 @@
         "relativeUriPathSegments": [
           "api"
         ],
-        "absoluteUri": "http://{environment}.musicapi.com/{version}/api"
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/api",
+        "completeRelativeUri": "/api",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "responses": {
               "200": {
                 "code": "200",
@@ -1546,7 +1520,7 @@
               }
             }
           },
-          {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -1554,9 +1528,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "Entry"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1570,7 +1541,10 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "Entry"
+                    ]
                   }
                 }
               }
@@ -1594,7 +1568,7 @@
               }
             }
           }
-        ],
+        },
         "type": "collection",
         "securedBy": [
           "custom_scheme"
@@ -1614,21 +1588,22 @@
         "relativeUriPathSegments": [
           "entry"
         ],
-        "absoluteUri": "http://{environment}.musicapi.com/{version}/entry"
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/entry",
+        "completeRelativeUri": "/entry",
+        "parentUri": ""
       },
       {
         "annotations": {
           "ready": {
-            "structuredValue": null,
             "name": "ready"
           }
         },
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "monitoringInterval": {
-                "structuredValue": 30,
-                "name": "monitoringInterval"
+                "name": "monitoringInterval",
+                "structuredValue": 30
               }
             },
             "queryParameters": {
@@ -1689,7 +1664,7 @@
               }
             }
           },
-          {
+          "post": {
             "queryParameters": {
               "access_token": {
                 "name": "access_token",
@@ -1728,7 +1703,7 @@
               }
             }
           }
-        ],
+        },
         "is": [
           "secured"
         ],
@@ -1740,18 +1715,18 @@
         "displayName": "Songs",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "annotations": {
                   "deprecated": {
+                    "name": "deprecated",
                     "structuredValue": {
                       "date": "2016-02-28T16:41:41.090Z",
                       "deprecatedBy": {
                         "firstname": "Christian"
                       },
                       "comment": "no comment"
-                    },
-                    "name": "deprecated"
+                    }
                   }
                 },
                 "responses": {
@@ -1782,7 +1757,6 @@
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
-                        "example": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -1794,12 +1768,13 @@
                             }
                           }
                         },
-                        "structuredExample": {
-                          "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
-                          "strict": true,
-                          "name": null,
-                          "structuredValue": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
-                        }
+                        "examples": [
+                          {
+                            "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
+                            "strict": true,
+                            "name": null
+                          }
+                        ]
                       }
                     }
                   }
@@ -1822,7 +1797,7 @@
                   }
                 }
               }
-            ],
+            },
             "securedBy": [
               "custom_scheme"
             ],
@@ -1865,7 +1840,9 @@
             "relativeUriPathSegments": [
               "{songId}"
             ],
-            "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}"
+            "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
+            "completeRelativeUri": "/songs/{songId}",
+            "parentUri": "/songs"
           }
         ],
         "__METADATA__": {
@@ -1878,7 +1855,9 @@
         "relativeUriPathSegments": [
           "songs"
         ],
-        "absoluteUri": "http://{environment}.musicapi.com/{version}/songs"
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/songs",
+        "completeRelativeUri": "/songs",
+        "parentUri": ""
       }
     ],
     "documentation": [
@@ -1894,11 +1873,13 @@
     "scalarsAnnotations": {
       "baseUri": [
         {
-          "structuredValue": true,
-          "name": "rediractable"
+          "name": "rediractable",
+          "structuredValue": true
         }
       ]
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

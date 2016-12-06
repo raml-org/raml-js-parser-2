@@ -71,7 +71,6 @@ export class TCKDumper {
     nodePropertyTransformers:Transformation[] = [
         new MethodsToMapTransformer(),
         new TypesTransformer(),
-        new AnnotationTypesTransformer(),
         new TraitsTransformer(),
         new SecuritySchemesTransformer(),
         new ResourceTypesTransformer(),
@@ -678,7 +677,13 @@ class ArrayToMapTransformer implements Transformation{
         if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
             var obj = {};
             value.forEach(x=>{
-                var key = x[this.propName];
+                var key = x["$$"+this.propName];
+                if(key!=null){
+                    delete x["$$"+this.propName];
+                }
+                else{
+                    key = x[this.propName];
+                }
                 var previous = obj[key];
                 if(previous){
                     if(Array.isArray(previous)){
@@ -749,7 +754,8 @@ class TypesTransformer extends ArrayToMapTransformer{
     constructor(){
         super(new CompositeObjectPropertyMatcher([
             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
         ]),"name");
     }
 }
@@ -841,15 +847,6 @@ class SecuritySchemesTransformer extends ArrayToMapTransformer{
         super(new CompositeObjectPropertyMatcher([
             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class AnnotationTypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
         ]),"name");
     }
 }
@@ -1250,6 +1247,7 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
 
         var llNode = node.lowLevel();
         var key = llNode.key();
+        value["$$name"] = key;
         var original:ll.ILowLevelASTNode = llNode;
         while(original instanceof proxy.LowLevelProxyNode){
             original = (<proxy.LowLevelProxyNode>original).originalNode();

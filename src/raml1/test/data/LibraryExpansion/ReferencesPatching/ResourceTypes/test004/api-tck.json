@@ -1,90 +1,82 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "lib1.lib2.MyLibType": {
-          "name": "MyLibType",
-          "displayName": "MyLibType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "lib1.lib2.MyLibType": {
+        "name": "MyLibType",
+        "displayName": "MyLibType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "lib1.lib2.myTrait": {
-          "queryParameters": {
-            "q": {
-              "name": "q",
-              "displayName": "<<paramName>>",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "traits": {
+      "lib1.lib2.myTrait": {
+        "queryParameters": {
+          "q": {
+            "name": "q",
+            "displayName": "<<paramName>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "type": [
-                "lib1.lib2.MyLibType"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          }
+        },
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "lib1.lib2.MyLibType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "myTrait"
-        }
+          }
+        },
+        "name": "myTrait"
       }
-    ],
-    "resourceTypes": [
-      {
-        "lib1.rt": {
-          "is": [
-            {
-              "lib1.lib2.myTrait": {
-                "paramName": "QParam"
-              }
+    },
+    "resourceTypes": {
+      "lib1.rt": {
+        "is": [
+          {
+            "lib1.lib2.myTrait": {
+              "paramName": "QParam"
             }
-          ],
-          "name": "rt"
-        }
+          }
+        ],
+        "name": "rt"
       }
-    ],
+    },
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -93,8 +85,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "queryParameters": {
               "q": {
                 "name": "q",
@@ -147,7 +139,7 @@
               }
             }
           }
-        ],
+        },
         "is": [
           {
             "lib1.lib2.myTrait": {
@@ -168,7 +160,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "https://example.com/raml/resource"
+        "absoluteUri": "https://example.com/raml/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -179,5 +173,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

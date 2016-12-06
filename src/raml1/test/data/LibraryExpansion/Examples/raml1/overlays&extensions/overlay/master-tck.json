@@ -1,37 +1,32 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
-    "annotationTypes": [
-      {
-        "decls.important": {
-          "name": "important",
-          "displayName": "important",
-          "type": [
-            "nil"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "decls.important": {
+        "name": "important",
+        "displayName": "important",
+        "type": [
+          "nil"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
+    },
     "title": "Slave RAML",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "decls.important": {
-                "structuredValue": null,
                 "name": "decls.important"
               }
             },
@@ -43,7 +38,7 @@
             "description": "describing your method here\n",
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {
@@ -56,10 +51,14 @@
         "relativeUriPathSegments": [
           "elements"
         ],
-        "absoluteUri": "/elements"
+        "absoluteUri": "/elements",
+        "completeRelativeUri": "/elements",
+        "parentUri": ""
       }
     ],
     "extends": "master.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

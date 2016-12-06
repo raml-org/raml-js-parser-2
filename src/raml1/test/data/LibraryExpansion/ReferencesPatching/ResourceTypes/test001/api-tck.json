@@ -1,84 +1,73 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "type": [
-            "number"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "lib.Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "number"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       },
-      {
-        "lib.lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "type": [
-            "boolean"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+      "lib.lib.Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "boolean"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "lib.rt": {
-          "type": {
-            "lib.lib.rt": {
-              "param1": "<<param1>>",
-              "param2": "Monkey"
-            }
-          },
-          "name": "rt"
-        }
+    },
+    "resourceTypes": {
+      "lib.rt": {
+        "type": {
+          "lib.lib.rt": {
+            "param1": "<<param1>>",
+            "param2": "Monkey"
+          }
+        },
+        "name": "rt"
       },
-      {
-        "lib.lib.rt": {
-          "name": "rt",
+      "lib.lib.rt": {
+        "methods": {
           "post": {
             "body": {
               "application/json": {
@@ -138,9 +127,6 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
-                "type": [
-                  "<<param1>> | <<param2>> | lib.lib.Monkey"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -151,19 +137,28 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "union"
+                ],
+                "oneOf": [
+                  "<<param1>>",
+                  "<<param2>>",
+                  "lib.lib.Monkey"
+                ]
               }
             },
             "method": "post"
           }
-        }
+        },
+        "name": "rt"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -222,9 +217,6 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
-                "type": [
-                  "Monkey | lib.Monkey | lib.lib.Monkey"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -235,12 +227,20 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "union"
+                ],
+                "oneOf": [
+                  "Monkey",
+                  "lib.Monkey",
+                  "lib.lib.Monkey"
+                ]
               }
             },
             "method": "post"
           }
-        ],
+        },
         "type": {
           "lib.rt": {
             "param1": "Monkey"
@@ -258,9 +258,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

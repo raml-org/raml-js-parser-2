@@ -1,61 +1,55 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "lib.LibType": {
-          "name": "LibType",
-          "displayName": "LibType",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "lib.LibType": {
+        "name": "LibType",
+        "displayName": "LibType",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
             }
           }
         }
       }
-    ],
-    "traits": [
-      {
-        "lib.libTrait1": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "lib.LibType"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+    },
+    "traits": {
+      "lib.libTrait1": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib.LibType"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 }
               }
             }
-          },
-          "name": "libTrait1"
-        }
+          }
+        },
+        "name": "libTrait1"
       }
-    ],
+    },
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -64,8 +58,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -106,7 +100,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -119,7 +113,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "https://example.com/raml/resource"
+        "absoluteUri": "https://example.com/raml/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -130,5 +126,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }
