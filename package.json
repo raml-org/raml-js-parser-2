@@ -17,6 +17,7 @@
     "devInstall": "dev-env-installer install",
     "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
     "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
+    "buildBrowserPublishBower": "node generateBrowserVersion.js --type 'bower'",
     "validateTCKSchema": "node dist/raml1/test/schemaTCKValidator.js"
   },
   "dependencies": {
