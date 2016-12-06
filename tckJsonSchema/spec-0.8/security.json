@@ -1,0 +1,211 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "definitions": {
+
+        "AbstractSecurityScheme08": {
+            "description": "Declares globally referable security schema definition",
+            "anyOf": [
+                {
+                    "oneOf":[
+                        {"$ref": "#/definitions/OAuth2SecurityScheme08"},
+                        {"$ref": "#/definitions/OAuth1SecurityScheme08"},
+                        {"$ref": "#/definitions/BasicSecurityScheme08"},
+                        {"$ref": "#/definitions/DigestSecurityScheme08"}
+                    ]
+                },
+                {"$ref": "#/definitions/CustomSecurityScheme08"}
+            ]
+        },
+        "SecuritySchemeBase08":{
+            "type": "object",
+            "properties": {
+                "name":{
+                    "type": "string",
+                    "description": "Name of the security scheme"
+                },
+                "type":{
+                    "type": "string",
+                    "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
+                },
+                "description":{
+                    "type": "string",
+                    "description": "The description attribute MAY be used to describe a security schemes property."
+                },
+                "describedBy":{"$ref": "#/definitions/SecuritySchemePart08"},
+                "settings":{
+                    "type": "object",
+                    "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
+                }
+            },
+            "additionalProperties": false
+        },
+        "SecuritySchemePart08": {
+            "description": "A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.",
+            "allOf":[
+                {"$ref": "methods.json#/definitions/MethodBase08"},
+                {
+                    "properties":{
+                        "method":{
+                            "type": "string"
+                        },
+                        "is":{
+                            "type": "array",
+                            "description": "Instantiation of applyed traits",
+                            "items":{
+                                "$ref": "methods.json#/definitions/Reference08"
+                            }
+                        },
+                        "__METADATA__": {"type": "object"}
+                    }
+                }
+            ]
+        },
+        "OAuth2SecurityScheme08":{
+            "type": "object",
+            "description": "Declares globally referable security schema definition",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+":{
+                    "type": "object",
+                    "properties": {
+                        "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
+                        "type":{
+                            "type": "string",
+                            "pattern": "OAuth 2.0"
+                        },
+                        "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
+                        "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
+                        "settings":{
+                            "type": "object",
+                            "properties":{
+                                "accessTokenUri":{
+                                    "type":"string",
+                                    "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+                                },
+                                "authorizationUri":{
+                                    "type":"string",
+                                    "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
+                                },
+                                "authorizationGrants":{
+                                    "type":"array",
+                                    "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
+                                    "items":{
+                                        "type":"string"
+                                    }
+                                },
+                                "scopes":{
+                                    "type":"array",
+                                    "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
+                                    "items":{
+                                        "type":"string"
+                                    }
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "OAuth1SecurityScheme08":{
+            "type": "object",
+            "description": "Declares globally referable security schema definition",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+":{
+                    "type": "object",
+                    "properties": {
+                        "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
+                        "type":{
+                            "type": "string",
+                            "pattern": "OAuth 1.0"
+                        },
+                        "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
+                        "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
+                        "settings":{
+                            "type": "object",
+                            "properties":{
+                                "requestTokenUri":{
+                                    "type":"string",
+                                    "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+                                },
+                                "authorizationUri":{
+                                    "type":"string",
+                                    "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
+                                },
+                                "tokenCredentialsUri":{
+                                    "type":"string",
+                                    "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "BasicSecurityScheme08":{
+            "type": "object",
+            "description": "Declares globally referable security schema definition",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+":{
+                    "allOf":[
+                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {
+                            "properties": {
+                                "type":{
+                                    "type": "string",
+                                    "pattern": "Basic Authentication"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "DigestSecurityScheme08":{
+            "type": "object",
+            "description": "Declares globally referable security schema definition",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+":{
+                    "allOf":[
+                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {
+                            "properties": {
+                                "type":{
+                                    "type": "string",
+                                    "pattern": "Digest Authentication"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "CustomSecurityScheme08":{
+            "type": "object",
+            "description": "Declares globally referable security schema definition",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+":{
+                    "allOf":[
+                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {
+                            "properties": {
+                                "type":{
+                                    "type": "string",
+                                    "pattern": "[a-zA-Z0-9<>]-[a-zA-Z0-9<>]+"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}

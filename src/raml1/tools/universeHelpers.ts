@@ -245,7 +245,7 @@ export function isMethodsProperty(p:hl.IProperty) : boolean {
 }
 
 export function isTypesProperty(p:hl.IProperty) : boolean {
-    return p.nameId() === universe.Universe10.LibraryBase.properties.types.name;
+    return p && p.nameId() === universe.Universe10.LibraryBase.properties.types.name;
 }
 
 export function isExampleProperty(p:hl.IProperty) : boolean {

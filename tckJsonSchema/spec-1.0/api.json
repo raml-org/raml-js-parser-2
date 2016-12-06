@@ -1,0 +1,280 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "RAML10": {
+      "properties": {
+        "ramlVersion": {
+          "type": "string",
+          "pattern": "RAML10"
+        },
+        "errors": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/Error"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "Api10": {
+      "allOf":[
+        {"$ref": "#/definitions/LibraryBase10"},
+        {
+          "properties": {
+            "documentation": {"$ref": "#/definitions/Documentation"},
+            "title": {
+              "type": ["string", "null"],
+              "description": "Short plain-text label for the API"
+            },
+            "description": {
+              "type": "string",
+              "description": "A substantial, human-friendly description of the API. Its value is a string and MAY be formatted using markdown."
+            },
+            "version": {
+              "type": "string",
+              "description": "The version of the API, e.g. 'v1'"
+            },
+            "baseUri": {
+              "type": "string",
+              "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
+            },
+            "baseUriParameters": {
+              "type": "object",
+              "description": "Named parameters used in the baseUri (template)",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+              }
+            },
+            "__METADATA__": {
+              "type": "object"
+            },
+            "resources": {
+              "type": "array",
+              "description": "The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc",
+              "items": {"$ref": "resources.json#/definitions/Resource10"}
+            },
+            "protocols": {
+              "type": "array",
+              "description": "The protocols supported by the API",
+              "items": {
+                "type": "string"
+              }
+            },
+            "mediaType": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "description": "The default media type to use for request and response bodies (payloads), e.g. \"application/json\""
+            },
+            "securedBy": {
+              "type": "array",
+              "description": "The security schemes that apply to every resource and method in the API",
+              "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
+            }
+          }
+        }
+      ]
+    },
+    "Library": {
+      "allOf":[
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Namespace which the library is imported under"
+            },
+            "usage": {
+              "type": "string",
+              "description": "contains description of why library exist"
+            }
+          }
+        },
+        {"$ref": "#/definitions/LibraryBase10"}
+      ]
+    },
+    "Extension": {
+      "allOf":[
+        {
+          "properties": {
+            "extends": {
+              "type": "string",
+              "description": "Location of a valid RAML API definition (or overlay or extension), the extension is applied to"
+            },
+            "usage": {
+              "type": "string",
+              "description": "contains description of why extension exist"
+            }
+          }
+        },
+        {"$ref": "#/definitions/Api10"}
+      ]
+    },
+    "Overlay": {
+      "allOf":[
+        {
+          "properties": {
+            "extends": {
+              "type": "string",
+              "description": "Location of a valid RAML API definition (or overlay or extension), the overlay is applied to."
+            },
+            "usage": {
+              "type": "string",
+              "description": "contains description of why overlay exist"
+            }
+          }
+        },
+        {"$ref": "#/definitions/Api10"}
+      ]
+    },
+    "LibraryBase10": {
+      "allOf":[
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {
+          "properties": {
+            "schemas": {
+              "type": "array",
+              "description": "Alias for the equivalent \"types\" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the \"types\" property, as the \"schemas\" alias for that property name may be removed in a future RAML version. The \"types\" property allows for XML and JSON schemas.",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
+                }
+              }
+            },
+            "types": {
+              "type": "array",
+              "description": "Declarations of (data) types for use within this API",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
+                }
+              }
+            },
+            "resourceTypes": {
+              "type": "array",
+              "description": "Declarations of resource types for use within this API",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "resources.json#/definitions/ResourceType10"}
+                }
+              }
+            },
+            "traits": {
+              "type": "array",
+              "description": "Declarations of traits for use within this API",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "methods.json#/definitions/Trait10"}
+                }
+              }
+            },
+            "securitySchemes": {
+              "type": "array",
+              "description": "Declarations of security schemes for use within this API.",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "security.json#/definitions/SecuritySchemeDeclaration"}
+                }
+              }
+            },
+            "annotationTypes": {
+              "type": "array",
+              "description": "Declarations of annotation types for use by annotations",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Documentation": {
+      "type": "array",
+      "description": "Additional overall documentation for the API",
+      "items": {"$ref": "#/definitions/DocumentationItem"}
+    },
+    "DocumentationItem": {
+      "type" : "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of documentation section"
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of documentation section"
+        }
+      },
+      "additionalProperties": false
+    },
+
+
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "IssueCode"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message text"
+        },
+        "path": {
+          "type": "string",
+          "description": "File path"
+        },
+        "isWarning": {
+          "type": "boolean",
+          "description": "Whether the message is warning or not"
+        },
+        "trace": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/Error"}
+        },
+        "range": {"$ref": "#/definitions/ErrorRange"}
+      },
+      "additionalProperties": false
+    },
+
+    "ErrorRange": {
+      "type": "object",
+      "description": "RangeObject describing start and end of error location",
+      "properties": {
+        "start": {"$ref": "#/definitions/ErrorPosition"},
+        "end": {"$ref": "#/definitions/ErrorPosition"}
+      },
+      "additionalProperties": false
+    },
+
+    "ErrorPosition": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "number"
+        },
+        "column": {
+          "type": "number"
+        },
+        "position": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,28 @@
+#%RAML 1.0
+title: sample-api
+version: v0.1
+baseUri: http://api.samplehost.com
+uses:
+  dataTypes : libraries/type.raml
+/customers:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items:
+              type: dataTypes.Customer
+            example: |
+              [{
+                "id": "ID124",
+                "eTag": "13298308323",
+                "name" : "Smith",
+                "age" : 30,
+                "addresses" : {
+                  "addressType" : "postal",
+                  "line1" : "Walker Street",
+                  "suburb" : "Sydney",
+                  "postcode" : 1234
+                  }
+              }]

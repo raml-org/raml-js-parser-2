@@ -44,7 +44,7 @@ export function load(pth: string):core.BasicNode{
  **/
 export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api{
     var lowLevelNode = api.highLevel().lowLevel();
-    if(lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode){
+    if(lowLevelProxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
     return expander.expandTraitsAndResourceTypes(api);
@@ -161,7 +161,7 @@ export function relativeUriSegments(res:RamlWrapper.Resource):string[]{
 
 //__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
 export function parentResource(method:RamlWrapper.Method):RamlWrapper.Resource{
-    if(method.parent() instanceof RamlWrapperImpl.ResourceImpl) {
+    if(RamlWrapperImpl.ResourceImpl.isInstance(method.parent())) {
         return <RamlWrapper.Resource>method.parent();
     }
     return null;
@@ -250,10 +250,10 @@ export function ownerApi(method:RamlWrapper.Method|RamlWrapper.Resource):RamlWra
 export function methodId(method:RamlWrapper.Method):string{
 
     var parent = method.parent();
-    if(parent instanceof RamlWrapperImpl.ResourceImpl){
+    if(RamlWrapperImpl.ResourceImpl.isInstance(parent)){
         return completeRelativeUri(<RamlWrapper.Resource>parent) + ' ' + method.method().toLowerCase();
     }
-    else if(parent instanceof RamlWrapperImpl.ResourceTypeImpl){
+    else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
     throw new Error(`Method is supposed to be owned by Resource or ResourceType.
@@ -537,7 +537,7 @@ export function securityScheme(schemeReference : RamlWrapper.SecuritySchemeRef) 
     }
 
     var result = (<hl.IHighLevelNode> declaration).wrapperNode();
-    if (!(result instanceof RamlWrapperImpl.AbstractSecuritySchemeImpl)) {
+    if (!(RamlWrapperImpl.AbstractSecuritySchemeImpl.isInstance(result))) {
         //I do not see how to avoid instanceof here
         return null;
     }

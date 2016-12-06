@@ -1,0 +1,57 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Blah",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n  <xs:complexType name=\"City\">\n    <xs:sequence>\n      <xs:element name=\"country_name\" type=\"xs:string\"/>\n      <xs:element name=\"population\" type=\"xs:decimal\"/>\n    </xs:sequence>\n  </xs:complexType>\n  <xs:element name=\"city\" type=\"City\"/>\n<xs:element name=\"c2NoZW1hLnhzZC9jaXR5\" type=\"City\" originalname=\"city\" requestedname=\"city\" extraelement=\"true\"/></xs:schema>"
+                ],
+                "example": "<city><country_name>France</country_name>\n<population>59.7</population></city>\n",
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "<city><country_name>France</country_name>\n<population>59.7</population></city>\n",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "<city><country_name>France</country_name>\n<population>59.7</population></city>\n"
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}
