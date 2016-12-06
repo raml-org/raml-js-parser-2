@@ -1504,7 +1504,7 @@ class NormalValidator implements PropertyValidator{
                 return;
             }
 
-            if((isApi08 || isApi10) && (isProtocols08 || isProtocols10)) {
+            if(((isApi08 || isApi10) && (isProtocols08 || isProtocols10)) && !isMixedCase(vl)) {
                 vl = vl.toUpperCase();
             }
             if (typeof values == 'string') {
@@ -1531,6 +1531,21 @@ class NormalValidator implements PropertyValidator{
             }
         }
     }
+}
+
+function isMixedCase(input: string): boolean {
+    if(!input) {
+        return false;
+    }
+    
+    var lowerCase = input.toLowerCase();
+    var upperCase = input.toUpperCase();
+    
+    if(!(input === lowerCase || input === upperCase)) {
+        return true;
+    }
+    
+    return false;
 }
 
 class UriValidator{
