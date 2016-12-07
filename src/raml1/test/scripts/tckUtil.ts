@@ -8,8 +8,6 @@ import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
 
-import jsonValidation = require("./schema/schemaTCKValidator");
-
 class MessageMapping{
 
     constructor(patterns:string[]){
@@ -469,12 +467,6 @@ export function testAPI(
     var diffArr = [];
     if(diff.length==0){
         success = true;
-
-        if(doAssert) {
-            // var jsonErrors = jsonValidation.validateJSON(tckJson);
-            //
-            // assert(jsonErrors.length === 0, printErrors(jsonErrors));
-        }
     }
     else{
         console.warn("DIFFERENCE DETECTED FOR " + tckJsonPath);
