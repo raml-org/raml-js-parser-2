@@ -29,3 +29,8 @@ coverage.zip
 raml-1-parser.zip
 
 /TCK
+
+/documentation/*
+!/documentation/GettingStarted.md
+
+/examples/validationPlugins
