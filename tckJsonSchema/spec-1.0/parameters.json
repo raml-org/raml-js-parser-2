@@ -3,18 +3,17 @@
   "type": "object",
   "definitions": {
     "FragmentDeclaration": {
-      "type": "object",
-      "properties": {
-        "uses": {
-          "type": "array",
-          "items": {"$ref": "#/definitions/UsesDeclaration"}
-        },
-        "annotations": {"$ref": "common.json#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "common.json#/definitions/Annotable/properties/scalarsAnnotations"}
-      }
-    },
-    "PatternProperties": {
-      "description": "Template property."
+      "allOf":[
+        {"$ref": "common.json#/definitions/Annotable"},
+        {
+          "properties": {
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/UsesDeclaration"}
+            }
+          }
+        }
+      ]
     },
     "UsesDeclaration": {
       "type": "object",

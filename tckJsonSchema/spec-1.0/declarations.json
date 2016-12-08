@@ -23,7 +23,10 @@
         {"$ref": "datamodel.json#/definitions/ArrayTypeDeclaration"},
         {
           "properties": {
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],
@@ -35,7 +38,10 @@
         {"$ref": "datamodel.json#/definitions/StringTypeDeclaration"},
         {
           "properties": {
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],
@@ -47,7 +53,10 @@
         {"$ref": "datamodel.json#/definitions/FileTypeDeclaration"},
         {
           "properties": {
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],
@@ -59,7 +68,10 @@
         {"$ref": "datamodel.json#/definitions/NumberTypeDeclaration"},
         {
           "properties": {
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],
@@ -71,7 +83,10 @@
         {"$ref": "datamodel.json#/definitions/DateTypeDeclaration"},
         {
           "properties": {
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],
@@ -84,7 +99,10 @@
         {
           "properties": {
             "schema": {"$ref": "datamodel.json#/definitions/TypeReference10"},
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],
@@ -97,7 +115,10 @@
         {
           "properties": {
             "type": {"$ref": "datamodel.json#/definitions/TypeReference10"},
-            "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+            }
           }
         }
       ],

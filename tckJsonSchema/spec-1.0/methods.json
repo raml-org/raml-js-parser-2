@@ -52,7 +52,10 @@
                     "anyOf":[
                         {
                             "properties": {
-                                "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
+                                "uses": {
+                                    "type": "array",
+                                    "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
+                                }
                             }
                         },
                         {"$ref": "#/definitions/Trait10"}
