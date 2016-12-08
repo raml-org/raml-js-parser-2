@@ -135,7 +135,7 @@
     },
     "LibraryBase10": {
       "allOf":[
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {
           "properties": {
             "schemas": {

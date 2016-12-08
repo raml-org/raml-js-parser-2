@@ -3,21 +3,17 @@
     "type": "object",
     "definitions": {
 
-        "AbstractSecurityScheme08": {
+        "SecurityScheme08": {
             "description": "Declares globally referable security schema definition",
             "anyOf": [
-                {
-                    "oneOf":[
-                        {"$ref": "#/definitions/OAuth2SecurityScheme08"},
-                        {"$ref": "#/definitions/OAuth1SecurityScheme08"},
-                        {"$ref": "#/definitions/BasicSecurityScheme08"},
-                        {"$ref": "#/definitions/DigestSecurityScheme08"}
-                    ]
-                },
+                {"$ref": "#/definitions/OAuth2SecurityScheme08"},
+                {"$ref": "#/definitions/OAuth1SecurityScheme08"},
+                {"$ref": "#/definitions/BasicSecurityScheme08"},
+                {"$ref": "#/definitions/DigestSecurityScheme08"},
                 {"$ref": "#/definitions/CustomSecurityScheme08"}
             ]
         },
-        "SecuritySchemeBase08":{
+        "AbstractSecurityScheme08":{
             "type": "object",
             "properties": {
                 "name":{
@@ -66,45 +62,45 @@
             "description": "Declares globally referable security schema definition",
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
-                    "type": "object",
-                    "properties": {
-                        "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-                        "type":{
-                            "type": "string",
-                            "pattern": "OAuth 2.0"
-                        },
-                        "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-                        "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-                        "settings":{
-                            "type": "object",
-                            "properties":{
-                                "accessTokenUri":{
-                                    "type":"string",
-                                    "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+                    "allOf":[
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
+                        {
+                            "properties": {
+                                "type":{
+                                    "type": "string",
+                                    "pattern": "OAuth 2.0"
                                 },
-                                "authorizationUri":{
-                                    "type":"string",
-                                    "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
-                                },
-                                "authorizationGrants":{
-                                    "type":"array",
-                                    "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
-                                    "items":{
-                                        "type":"string"
-                                    }
-                                },
-                                "scopes":{
-                                    "type":"array",
-                                    "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
-                                    "items":{
-                                        "type":"string"
-                                    }
+                                "settings":{
+                                    "type": "object",
+                                    "properties":{
+                                        "accessTokenUri":{
+                                            "type":"string",
+                                            "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+                                        },
+                                        "authorizationUri":{
+                                            "type":"string",
+                                            "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
+                                        },
+                                        "authorizationGrants":{
+                                            "type":"array",
+                                            "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
+                                            "items":{
+                                                "type":"string"
+                                            }
+                                        },
+                                        "scopes":{
+                                            "type":"array",
+                                            "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
+                                            "items":{
+                                                "type":"string"
+                                            }
+                                        }
+                                    },
+                                    "additionalProperties": false
                                 }
-                            },
-                            "additionalProperties": false
+                            }
                         }
-                    },
-                    "additionalProperties": false
+                    ]
                 }
             },
             "additionalProperties": false
@@ -114,35 +110,35 @@
             "description": "Declares globally referable security schema definition",
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
-                    "type": "object",
-                    "properties": {
-                        "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-                        "type":{
-                            "type": "string",
-                            "pattern": "OAuth 1.0"
-                        },
-                        "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-                        "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-                        "settings":{
-                            "type": "object",
-                            "properties":{
-                                "requestTokenUri":{
-                                    "type":"string",
-                                    "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+                    "allOf": [
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
+                        {
+                            "properties": {
+                                "type":{
+                                    "type": "string",
+                                    "pattern": "OAuth 1.0"
                                 },
-                                "authorizationUri":{
-                                    "type":"string",
-                                    "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
-                                },
-                                "tokenCredentialsUri":{
-                                    "type":"string",
-                                    "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+                                "settings":{
+                                    "type": "object",
+                                    "properties":{
+                                        "requestTokenUri":{
+                                            "type":"string",
+                                            "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+                                        },
+                                        "authorizationUri":{
+                                            "type":"string",
+                                            "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
+                                        },
+                                        "tokenCredentialsUri":{
+                                            "type":"string",
+                                            "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+                                        }
+                                    },
+                                    "additionalProperties": false
                                 }
-                            },
-                            "additionalProperties": false
+                            }
                         }
-                    },
-                    "additionalProperties": false
+                    ]
                 }
             },
             "additionalProperties": false
@@ -153,7 +149,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
@@ -173,7 +169,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
@@ -193,7 +189,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{

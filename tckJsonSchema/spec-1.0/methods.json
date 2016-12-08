@@ -41,22 +41,17 @@
                         }
                     }
                 }
-            ],
-            "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+            ]
         },
         "TraitFragment": {
             "type": "object",
             "properties": {
                 "undefined": {
-                    "anyOf":[
-                        {
-                            "properties": {
-                                "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
-                            }
-                        },
+                    "allOf":[
+                        {"$ref": "common.json#/definitions/FragmentDeclaration"},
                         {"$ref": "#/definitions/Trait10"}
                     ],
-                    "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
                 }
             },
             "additionalProperties": false
@@ -73,7 +68,6 @@
                     }
                 }
             ],
-            "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"},
             "require": ["method"]
         },
         "MethodBase10": {
@@ -122,7 +116,8 @@
                         }
                     }
                 }
-            ]
+            ],
+            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
         }
     }
 }

@@ -23,8 +23,10 @@
                                   "type": "string",
                                   "description": "An alternate, human-friendly name for the trait"
                               },
-                              "isScalar": {"$ref": "systemTypes.json#/definitions/TypeInstance08/properties/isScalar"},
-                              "properties": {"$ref": "systemTypes.json#/definitions/TypeInstance08/properties/properties"},
+                              "isScalar": {
+                                  "type": "boolean",
+                                  "description": "Whether the type is scalar"
+                              },
                               "__METADATA__": {
                                   "type": "object"
                               }
@@ -32,7 +34,10 @@
                       }
                   ],
                   "patternProperties":{
-                      "^[a-zA-Z0-9<>]+": {"$ref": "systemTypes.json#/definitions/TypeInstance08/properties/value"}
+                      "^[a-zA-Z0-9<>]+": {
+                          "type": ["array", "boolean", "integer", "number", "null","object","string"],
+                          "description": "For instances of scalar types returns scalar value"
+                      }
                   }
               }
           },
