@@ -18,7 +18,7 @@
     "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
     "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
     "buildBrowserPublishBower": "node generateBrowserVersion.js --type 'bower'",
-    "validateTCKSchema": "node dist/raml1/test/schemaTCKValidator.js"
+    "validateTCKSchema": "node dist/raml1/test/scripts/schema/schemaTCKValidator.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",

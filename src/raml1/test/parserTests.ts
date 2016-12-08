@@ -1065,6 +1065,11 @@ describe("Include tests + typesystem",function (){
         this.timeout(15000);
         testErrorsByNumber(util.data("parser/include/includeTypes.raml"));
     })
+
+    it("Combination of empty include with expansion" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/include/emptyInclude.raml"),["JS-YAML: !include without value", "Can not resolve null"]);
+    })
 })
 
 
