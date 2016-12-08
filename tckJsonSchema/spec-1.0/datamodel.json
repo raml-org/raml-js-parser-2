@@ -51,13 +51,13 @@
     "Type": {
       "description": "Declaration of (data) type for use within API",
       "anyOf": [
-        {"$ref": "#/definitions/TypeDeclaration"},
         {"$ref": "#/definitions/TypeSchemaDeclaration"},
         {"$ref": "#/definitions/StringTypeDeclaration"},
         {"$ref": "#/definitions/NumberTypeDeclaration"},
         {"$ref": "#/definitions/DateTypeDeclaration"},
         {"$ref": "#/definitions/FileTypeDeclaration"},
         {"$ref": "#/definitions/ArrayTypeDeclaration"},
+        {"$ref": "#/definitions/ObjectDeclaration"},
         {"$ref": "#/definitions/BrokenTypeDeclaration"}
       ]
     },
@@ -305,20 +305,9 @@
     "TypeDeclaration": {
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/TypeDeclarationBase10"},
         {
           "properties": {
             "type": {"$ref": "#/definitions/TypeReference10"},
-            "schemaPath": {
-              "type": "string",
-              "description": "relative path to schema for types that loaded from json schemas"
-            },
-            "discriminator": {
-              "type": "string"
-            },
-            "discriminatorValue": {
-              "type": "string"
-            },
             "example": {
               "type": ["object", "string", "boolean", "number", "array", "null"],
               "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
@@ -340,13 +329,6 @@
             "description": {
               "type": "string",
               "description": "A longer, human-friendly description of the type"
-            },
-            "properties": {
-              "type": "object",
-              "description": "For types defined in traits or resource types returns object representation of parametrized properties",
-              "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
-              }
             },
             "allowedTargets": {
               "type": "array",
@@ -381,18 +363,6 @@
               },
               "additionalProperties": false
             },
-            "minProperties": {
-              "type": "number",
-              "description": "The minimum number of properties allowed for instances of this type."
-            },
-            "maxProperties": {
-              "type": "number",
-              "description": "The maximum number of properties allowed for instances of this type."
-            },
-            "additionalProperties": {
-              "type": "boolean",
-              "description": "A Boolean that indicates if an object instance has additional properties."
-            },
             "required": {
               "type": "boolean",
               "description": "Sets if property is optional or not"
@@ -414,6 +384,41 @@
             },
             "__METADATA__": {
               "type": "object"
+            }
+          }
+        }
+      ],
+      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+    },
+    "ObjectDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "discriminator": {
+              "type": "string"
+            },
+            "discriminatorValue": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "object",
+              "description": "For types defined in traits or resource types returns object representation of parametrized properties",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+              }
+            },
+            "minProperties": {
+              "type": "number",
+              "description": "The minimum number of properties allowed for instances of this type."
+            },
+            "maxProperties": {
+              "type": "number",
+              "description": "The maximum number of properties allowed for instances of this type."
+            },
+            "additionalProperties": {
+              "type": "boolean",
+              "description": "A Boolean that indicates if an object instance has additional properties."
             }
           }
         }

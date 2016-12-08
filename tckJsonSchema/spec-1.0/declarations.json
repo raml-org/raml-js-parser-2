@@ -95,7 +95,7 @@
     "TypeSchemaDeclarationFragment": {
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/TypeDeclarationBase10"},
+        {"$ref": "datamodel.json#/definitions/TypeDeclaration"},
         {
           "properties": {
             "schema": {"$ref": "datamodel.json#/definitions/TypeReference10"},
@@ -111,7 +111,7 @@
     "TypeDeclarationFragment": {
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/TypeDeclarationBase10"},
+        {"$ref": "datamodel.json#/definitions/TypeDeclaration"},
         {
           "properties": {
             "type": {"$ref": "datamodel.json#/definitions/TypeReference10"},
