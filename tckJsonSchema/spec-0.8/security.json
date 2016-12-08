@@ -3,21 +3,17 @@
     "type": "object",
     "definitions": {
 
-        "AbstractSecurityScheme08": {
+        "SecurityScheme08": {
             "description": "Declares globally referable security schema definition",
             "anyOf": [
-                {
-                    "oneOf":[
-                        {"$ref": "#/definitions/OAuth2SecurityScheme08"},
-                        {"$ref": "#/definitions/OAuth1SecurityScheme08"},
-                        {"$ref": "#/definitions/BasicSecurityScheme08"},
-                        {"$ref": "#/definitions/DigestSecurityScheme08"}
-                    ]
-                },
+                {"$ref": "#/definitions/OAuth2SecurityScheme08"},
+                {"$ref": "#/definitions/OAuth1SecurityScheme08"},
+                {"$ref": "#/definitions/BasicSecurityScheme08"},
+                {"$ref": "#/definitions/DigestSecurityScheme08"},
                 {"$ref": "#/definitions/CustomSecurityScheme08"}
             ]
         },
-        "SecuritySchemeBase08":{
+        "AbstractSecurityScheme08":{
             "type": "object",
             "properties": {
                 "name":{
@@ -67,7 +63,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
@@ -115,7 +111,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf": [
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
@@ -153,7 +149,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
@@ -173,7 +169,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
@@ -193,7 +189,7 @@
             "patternProperties": {
                 "^[a-zA-Z0-9]+":{
                     "allOf":[
-                        {"$ref": "#/definitions/SecuritySchemeBase08"},
+                        {"$ref": "#/definitions/AbstractSecurityScheme08"},
                         {
                             "properties": {
                                 "type":{
