@@ -47,8 +47,8 @@
             "type": "object",
             "properties": {
                 "undefined": {
-                    "anyOf":[
-                        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+                    "allOf":[
+                        {"$ref": "common.json#/definitions/FragmentDeclaration"},
                         {"$ref": "#/definitions/Trait10"}
                     ],
                     "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}

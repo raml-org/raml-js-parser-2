@@ -4,14 +4,14 @@
   "definitions": {
     "TypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/Type"}
       ],
       "required": ["type", "__METADATA__", "required"]
     },
     "ExampleFragment": {
       "allOf":[
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/ExampleSpec10"}
       ]
     },

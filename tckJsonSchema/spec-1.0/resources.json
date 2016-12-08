@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "definitions": {
-        "ResourceRef10": {
+        "ResourceTypeRef10": {
             "oneOf": [
                 {
                     "type": "string"
@@ -68,8 +68,8 @@
             "type": "object",
             "properties": {
                 "undefined": {
-                    "anyOf":[
-                        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+                    "allOf":[
+                        {"$ref": "common.json#/definitions/FragmentDeclaration"},
                         {"$ref": "#/definitions/ResourceType10"}
                     ],
                     "patternProperties": {
@@ -115,7 +115,7 @@
                             "description": "A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration",
                             "items":{"$ref": "methods.json#/definitions/TraitRef10"}
                         },
-                        "type": {"$ref": "#/definitions/ResourceRef10"},
+                        "type": {"$ref": "#/definitions/ResourceTypeRef10"},
                         "securedBy": {
                             "type": "array",
                             "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
