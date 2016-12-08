@@ -169,13 +169,6 @@
                             "type": "boolean",
                             "description": "Whether the type is scalar"
                         },
-                        "properties+": {
-                            "type": "array",
-                            "description": "Array of instance properties",
-                            "items":{
-                                "$ref": "systemTypes.json#/definitions/TypeInstanceProperty08"
-                            }
-                        },
                         "__METADATA__": {"type": "object"}
                     },
                     "patternProperties":{
