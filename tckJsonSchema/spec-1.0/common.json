@@ -54,7 +54,35 @@
           "type": ["object", "string", "boolean", "number", "array", "null"]
         }
       },
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
+    },
+    "FragmentDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "uses": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/UsesDeclaration"}
+            }
+          }
+        }
+      ]
+    },
+    "UsesDeclaration": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PatternProperties": {
+      "description": "Template property."
     }
   }
 }
