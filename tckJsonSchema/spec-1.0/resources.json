@@ -69,14 +69,7 @@
             "properties": {
                 "undefined": {
                     "anyOf":[
-                        {
-                            "properties": {
-                                "uses": {
-                                    "type": "array",
-                                    "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-                                }
-                            }
-                        },
+                        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
                         {"$ref": "#/definitions/ResourceType10"}
                     ],
                     "patternProperties": {

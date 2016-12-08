@@ -165,9 +165,16 @@
                             "type": "string",
                             "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
                         },
-                        "isScalar": {"$ref": "systemTypes.json#/definitions/TypeInstance08/properties/isScalar"},
+                        "isScalar": {
+                            "type": "boolean",
+                            "description": "Whether the type is scalar"
+                        },
                         "properties+": {
-                            "$ref": "systemTypes.json#/definitions/TypeInstance08/properties/properties"
+                            "type": "array",
+                            "description": "Array of instance properties",
+                            "items":{
+                                "$ref": "systemTypes.json#/definitions/TypeInstanceProperty08"
+                            }
                         },
                         "__METADATA__": {"type": "object"}
                     },

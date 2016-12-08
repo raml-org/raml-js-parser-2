@@ -273,86 +273,38 @@
     },
     "OAuth10SecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"}
       ]
     },
     "OAuth20SecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"}
       ]
     },
     "PassThroughSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/PassThroughSecurityScheme10"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/PassThroughSecurityScheme10"}
       ]
     },
     "BasicSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/BasicSecurityScheme10"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/BasicSecurityScheme10"}
       ]
     },
     "DigestSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/DigestSecurityScheme10"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/DigestSecurityScheme10"}
       ]
     },
     "CustomSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/CustomSecurityScheme10"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/CustomSecurityScheme10"}
       ]
     },
     "SecuritySchemeRef10": {

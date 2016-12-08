@@ -4,20 +4,12 @@
   "definitions": {
     "ExampleFragment": {
       "allOf":[
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        },
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/ExampleSpec10"}
       ]
     },
     "ExampleSpec10": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
         {
           "properties": {
             "value": {

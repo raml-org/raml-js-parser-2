@@ -19,108 +19,50 @@
     },
     "ArrayTypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/ArrayTypeDeclaration"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/ArrayTypeDeclaration"}
       ],
       "required": ["type", "__METADATA__", "required", "items"]
     },
     "StringTypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/StringTypeDeclaration"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/StringTypeDeclaration"}
       ],
       "required": ["type", "__METADATA__", "required"]
     },
     "FileTypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/FileTypeDeclaration"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/FileTypeDeclaration"}
       ],
       "required": ["type", "__METADATA__", "required"]
     },
     "NumberTypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/NumberTypeDeclaration"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/NumberTypeDeclaration"}
       ],
       "required": ["type", "__METADATA__", "required"]
     },
     "DateTypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/DateTypeDeclaration"},
-        {
-          "properties": {
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/DateTypeDeclaration"}
       ],
       "required": ["type", "__METADATA__", "required"]
     },
     "TypeSchemaDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/TypeDeclaration"},
-        {
-          "properties": {
-            "schema": {"$ref": "datamodel.json#/definitions/TypeReference10"},
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/TypeDeclaration"}
       ],
       "required": ["schema", "__METADATA__", "required"]
     },
     "TypeDeclarationFragment": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "datamodel.json#/definitions/TypeDeclaration"},
-        {
-          "properties": {
-            "type": {"$ref": "datamodel.json#/definitions/TypeReference10"},
-            "uses": {
-              "type": "array",
-              "items": {"$ref": "parameters.json#/definitions/UsesDeclaration"}
-            }
-          }
-        }
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "datamodel.json#/definitions/TypeDeclaration"}
       ],
       "required": ["type", "__METADATA__", "required"]
     }
