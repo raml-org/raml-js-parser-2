@@ -29,7 +29,7 @@
           }
         }
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "OAuth20SecuritySettings10": {
       "allOf":[
@@ -68,14 +68,14 @@
           }
         }
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "PassThroughSecuritySettings10": {
       "description": "Declares globally referable security scheme definition",
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "BasicSecuritySettings10": {
       "type": "object",
@@ -83,7 +83,7 @@
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "DigestSecuritySettings10": {
       "type": "object",
@@ -91,7 +91,7 @@
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "CustomSecuritySettings10": {
       "type": "object",
@@ -99,7 +99,7 @@
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "SecuritySchemeDeclaration": {
       "anyOf": [
@@ -273,37 +273,37 @@
     },
     "OAuth10SecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"}
       ]
     },
     "OAuth20SecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"}
       ]
     },
     "PassThroughSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/PassThroughSecurityScheme10"}
       ]
     },
     "BasicSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/BasicSecurityScheme10"}
       ]
     },
     "DigestSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/DigestSecurityScheme10"}
       ]
     },
     "CustomSecuritySchemeFragment10": {
       "allOf": [
-        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {"$ref": "#/definitions/CustomSecurityScheme10"}
       ]
     },

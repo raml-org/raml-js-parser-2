@@ -2,6 +2,13 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "definitions": {
+    "TypeDeclarationFragment": {
+      "allOf":[
+        {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/Type"}
+      ],
+      "required": ["type", "__METADATA__", "required"]
+    },
     "ExampleFragment": {
       "allOf":[
         {"$ref": "parameters.json#/definitions/FragmentDeclaration"},
@@ -39,7 +46,7 @@
           }
         }
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "Type": {
       "description": "Declaration of (data) type for use within API",
@@ -374,7 +381,7 @@
           }
         }
       ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     },
     "ObjectDeclaration": {
       "allOf":[
@@ -429,7 +436,7 @@
           "type": "object"
         }
       },
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
     }
   }
 }

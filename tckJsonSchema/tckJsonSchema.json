@@ -89,7 +89,7 @@
           "enum": ["StringTypeDeclaration", "ObjectTypeDeclaration", "TypeDeclaration"]
         },
         "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
-        "specification": {"$ref": "spec-1.0/declarations.json#/definitions/TypeFragment"}
+        "specification": {"$ref": "spec-1.0/datamodel.json#/definitions/TypeDeclarationFragment"}
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false

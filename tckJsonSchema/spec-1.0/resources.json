@@ -75,7 +75,7 @@
                     "patternProperties": {
                         "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
                     },
-                    "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
                 }
             },
             "additionalProperties": false
@@ -99,7 +99,7 @@
             "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
             },
-            "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
         },
         "ResourceBase10": {
             "allOf":[
