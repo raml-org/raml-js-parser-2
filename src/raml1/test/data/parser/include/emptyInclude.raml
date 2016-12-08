@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: test API
+
+traits:
+  tr:
+    body:
+      application/json:
+        type: string
+
+/folders:
+  post:
+    is: [ tr ]
+    body:
+      application/json: !include

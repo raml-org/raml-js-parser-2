@@ -103,7 +103,7 @@
           "type": "array",
           "description": "Security schemes that can be applied using securedBy",
           "items":{
-            "$ref": "security.json#/definitions/AbstractSecurityScheme08"
+            "$ref": "security.json#/definitions/SecurityScheme08"
           }
         },
         "resourceTypes":{

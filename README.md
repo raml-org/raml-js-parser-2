@@ -26,6 +26,10 @@ Parser documentation: https://raml-org.github.io/raml-js-parser-2/
 
 Getting started guide: https://github.com/raml-org/raml-js-parser-2/blob/master/documentation/GettingStarted.md
 
+High-level usage example: https://github.com/raml-org/raml-js-parser-2/blob/master/examples/highlevel-AST-usage/tutorial.md
+
+Validation plugins usage example: https://github.com/raml-org/raml-js-parser-2/blob/master/examples/validationPlugins
+
 ## Creating standalone browser package
 
 Clone repository: `git clone https://github.com/raml-org/raml-js-parser-2.git`

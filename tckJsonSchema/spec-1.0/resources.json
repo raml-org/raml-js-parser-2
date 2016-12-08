@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "definitions": {
-        "ResourceRef10": {
+        "ResourceTypeRef10": {
             "oneOf": [
                 {
                     "type": "string"
@@ -59,7 +59,7 @@
                             }
                         },
                         "absoluteUri": {"type": "string"},
-                        "__METADATA__": {"$ref": "#/definitions/ResourceBase10/properties/__METADATA__"}
+                        "__METADATA__": {"type": "object"}
                     }
                 }
             ]
@@ -68,18 +68,14 @@
             "type": "object",
             "properties": {
                 "undefined": {
-                    "anyOf":[
-                        {
-                            "properties": {
-                                "uses": {"$ref": "parameters.json#/definitions/FragmentDeclaration/properties/uses"}
-                            }
-                        },
+                    "allOf":[
+                        {"$ref": "common.json#/definitions/FragmentDeclaration"},
                         {"$ref": "#/definitions/ResourceType10"}
                     ],
                     "patternProperties": {
                         "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
                     },
-                    "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
                 }
             },
             "additionalProperties": false
@@ -103,32 +99,34 @@
             "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
             },
-            "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
         },
         "ResourceBase10": {
-            "type": "object",
-            "properties": {
-                "annotations": {"$ref": "common.json#/definitions/Annotable/properties/annotations"},
-                "scalarsAnnotations": {"$ref": "common.json#/definitions/Annotable/properties/scalarsAnnotations"},
-                "description": {
-                    "type": "string",
-                    "description": "Resource description"
-                },
-                "is": {
-                    "type": "array",
-                    "description": "A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration",
-                    "items":{"$ref": "methods.json#/definitions/TraitRef10"}
-                },
-                "type": {"$ref": "#/definitions/ResourceRef10"},
-                "securedBy": {
-                    "type": "array",
-                    "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
-                    "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
-                },
-                "__METADATA__": {
-                    "type": "object"
+            "allOf":[
+                {"$ref": "common.json#/definitions/Annotable"},
+                {
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "description": "Resource description"
+                        },
+                        "is": {
+                            "type": "array",
+                            "description": "A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration",
+                            "items":{"$ref": "methods.json#/definitions/TraitRef10"}
+                        },
+                        "type": {"$ref": "#/definitions/ResourceTypeRef10"},
+                        "securedBy": {
+                            "type": "array",
+                            "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
+                            "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
+                        },
+                        "__METADATA__": {
+                            "type": "object"
+                        }
+                    }
                 }
-            }
+            ]
         }
     }
 }
