@@ -10,6 +10,7 @@
     },
     "ExampleSpec10": {
       "allOf":[
+        {"$ref": "common.json#/definitions/Annotable"},
         {
           "properties": {
             "value": {
@@ -87,8 +88,7 @@
             "items": {"$ref": "#/definitions/TypeReference10"}
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "FileTypeDeclaration": {
       "allOf":[
@@ -124,8 +124,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "StringTypeDeclaration": {
       "description": "Value must be a string",
@@ -156,8 +155,7 @@
             "structuredExample": {"$ref": "#/definitions/ExampleSpec10"}
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "NumberTypeDeclaration": {
       "description": "Value MUST be a number. Indicate floating point numbers as defined by YAML.",
@@ -219,8 +217,7 @@
             "structuredExample": {"$ref": "#/definitions/ExampleSpec10"}
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "DateTypeDeclaration": {
       "description": "the \"full-date\" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)",
@@ -258,8 +255,7 @@
             "structuredExample": {"$ref": "#/definitions/ExampleSpec10"}
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "TypeReference10": {
       "oneOf": [
@@ -280,7 +276,6 @@
     },
     "TypeSchemaDeclaration": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
         {"$ref": "#/definitions/TypeDeclaration"},
         {
           "properties": {
@@ -291,8 +286,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "TypeDeclaration": {
       "allOf":[
@@ -414,8 +408,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": {"$ref": "properties.json#/definitions/PatternProperties"}
+      ]
     },
     "BrokenTypeDeclaration": {
       "type": "object",
