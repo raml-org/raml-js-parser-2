@@ -554,8 +554,11 @@ export class ReferencePatcher{
         if(originalNode.valueKind()==yaml.Kind.INCLUDE_REF){
             var ref = originalNode.includePath();
             var includedUnit = originalUnit.resolve(ref);
-            units.push(includedUnit);
-            return true;
+            if(includedUnit) {
+                units.push(includedUnit);
+                return true;
+            }
+            return false;
         }
         else {
             if (originalUnit.absolutePath() != units[units.length - 1].absolutePath()) {
