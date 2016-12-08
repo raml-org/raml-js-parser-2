@@ -148,6 +148,7 @@ Following are the differences:
 | `schemas` | Is serialized under the `schemas` key | serialize under the `types` key|1.0|
 |`schema`| Is serialized under the `schema` key | serialize under the `type` key|1.0|
 |`example` | Is serialized under the `example` key | serialize as one element array under the `examples` key|1.0|
+|`value` (ExampleSpec) | string representation of example | actual example value: `string`, `object`, `array`, 'number', `boolean` or `null`|1.0|
 
 **New**
 
@@ -161,3 +162,4 @@ Following are the differences:
 
 **Remove**
 * `structuredExample`
+* `structuredValue` (ExampleSpec)
