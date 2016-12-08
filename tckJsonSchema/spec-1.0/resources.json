@@ -37,15 +37,14 @@
                                 "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
                             }
                         },
+                        "allUriParameters": {
+                            "type": "array",
+                            "items": {"$ref": "datamodel.json#/definitions/Type"}
+                        },
                         "resources": {
                             "type": "array",
                             "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
                             "items": {"$ref": "#/definitions/Resource10"}
-                        },
-                        "methods": {
-                            "type": "array",
-                            "description": "Methods that are part of this resource type definition",
-                            "items": {"$ref": "methods.json#/definitions/Method10"}
                         },
                         "relativeUri": {
                             "type": "string",
@@ -59,6 +58,8 @@
                             }
                         },
                         "absoluteUri": {"type": "string"},
+                        "completeRelativeUri": {"type": "string"},
+                        "parentUri": {"type": "string"},
                         "__METADATA__": {"type": "object"}
                     }
                 }
@@ -66,19 +67,14 @@
         },
         "ResourceTypeFragment": {
             "type": "object",
-            "properties": {
-                "undefined": {
-                    "allOf":[
-                        {"$ref": "common.json#/definitions/FragmentDeclaration"},
-                        {"$ref": "#/definitions/ResourceType10"}
-                    ],
-                    "patternProperties": {
-                        "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
-                    },
-                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
-                }
+            "allOf":[
+                {"$ref": "common.json#/definitions/FragmentDeclaration"},
+                {"$ref": "#/definitions/ResourceType10"}
+            ],
+            "patternProperties": {
+                "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
             },
-            "additionalProperties": false
+            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
         },
         "ResourceType10": {
             "allOf":[
@@ -120,6 +116,16 @@
                             "type": "array",
                             "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
                             "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
+                        },
+                        "methods": {
+                            "type": "object",
+                            "description": "Methods that are part of this resource definition",
+                            "patternProperties": {
+                                "^(get|post|delete|put|patch|options|head)$": {
+                                    "$ref": "methods.json#/definitions/Method10"
+                                }
+                            },
+                            "additionalProperties": false
                         },
                         "__METADATA__": {
                             "type": "object"

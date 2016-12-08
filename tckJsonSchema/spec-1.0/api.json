@@ -60,17 +60,10 @@
               }
             },
             "mediaType": {
-              "oneOf": [
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                {
-                  "type": "string"
-                }
-              ],
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
               "description": "The default media type to use for request and response bodies (payloads), e.g. \"application/json\""
             },
             "securedBy": {
@@ -138,64 +131,39 @@
         {"$ref": "common.json#/definitions/FragmentDeclaration"},
         {
           "properties": {
-            "schemas": {
-              "type": "array",
-              "description": "Alias for the equivalent \"types\" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the \"types\" property, as the \"schemas\" alias for that property name may be removed in a future RAML version. The \"types\" property allows for XML and JSON schemas.",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
-                }
-              }
-            },
             "types": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of (data) types for use within this API",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
               }
             },
             "resourceTypes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of resource types for use within this API",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "resources.json#/definitions/ResourceType10"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "resources.json#/definitions/ResourceType10"}
               }
             },
             "traits": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of traits for use within this API",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "methods.json#/definitions/Trait10"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "methods.json#/definitions/Trait10"}
               }
             },
             "securitySchemes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of security schemes for use within this API.",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "security.json#/definitions/SecuritySchemeDeclaration"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "security.json#/definitions/SecuritySchemeDeclaration"}
               }
             },
             "annotationTypes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of annotation types for use by annotations",
-              "items": {
-                "type": "object",
-                "patternProperties": {
-                  "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
-                }
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
               }
             }
           }

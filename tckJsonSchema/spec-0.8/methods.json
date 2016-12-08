@@ -5,43 +5,48 @@
       "Trait": {
           "type": "object",
           "description": "A partial method definition that, like a method, can provide method-level properties such as description, headers, query string parameters, and responses. Methods that use one or more traits inherit those traits' properties.",
-          "patternProperties": {
-              "^[a-zA-Z0-9]+":{
-                  "allOf":[
-                      {"$ref": "#/definitions/MethodBase08"},
-                      {
-                          "properties": {
-                              "name":{
-                                  "type": "string",
-                                  "description": "Name of the trait"
-                              },
-                              "usage":{
-                                  "type": "string",
-                                  "description": "Instructions on how and when the trait should be used."
-                              },
-                              "displayName":{
-                                  "type": "string",
-                                  "description": "An alternate, human-friendly name for the trait"
-                              },
-                              "isScalar": {
-                                  "type": "boolean",
-                                  "description": "Whether the type is scalar"
-                              },
-                              "__METADATA__": {
-                                  "type": "object"
-                              }
-                          }
-                      }
-                  ],
-                  "patternProperties":{
-                      "^[a-zA-Z0-9<>]+": {
-                          "type": ["array", "boolean", "integer", "number", "null","object","string"],
-                          "description": "For instances of scalar types returns scalar value"
+          "allOf": [
+              {
+                  "$ref": "#/definitions/MethodBase08"
+              },
+              {
+                  "properties": {
+                      "name": {
+                          "type": "string",
+                          "description": "Name of the trait"
+                      },
+                      "usage": {
+                          "type": "string",
+                          "description": "Instructions on how and when the trait should be used."
+                      },
+                      "displayName": {
+                          "type": "string",
+                          "description": "An alternate, human-friendly name for the trait"
+                      },
+                      "isScalar": {
+                          "type": "boolean",
+                          "description": "Whether the type is scalar"
+                      },
+                      "__METADATA__": {
+                          "type": "object"
                       }
                   }
               }
-          },
-          "additionalProperties": false
+          ],
+          "patternProperties": {
+              "^[a-zA-Z0-9<>]+": {
+                  "type": [
+                      "array",
+                      "boolean",
+                      "integer",
+                      "number",
+                      "null",
+                      "object",
+                      "string"
+                  ],
+                  "description": "For instances of scalar types returns scalar value"
+              }
+          }
       },
       "Reference08":{
           "oneOf": [
@@ -174,6 +179,10 @@
                           "items": {
                               "$ref": "#/definitions/Reference08"
                           }
+                      },
+                      "allUriParameters":{
+                          "type": "array",
+                          "items": {"$ref": "parameters.json#/definitions/Parameter08"}
                       },
                       "__METADATA__": {
                         "type": "object"
