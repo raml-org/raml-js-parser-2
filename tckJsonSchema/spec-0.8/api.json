@@ -106,7 +106,7 @@
           "description": "Security schemes that can be applied using securedBy",
           "patternProperties": {
             "^[a-zA-Z0-9_]+": {
-              "$ref": "security.json#/definitions/AbstractSecurityScheme08"
+              "$ref": "security.json#/definitions/SecurityScheme08"
             }
           }
         },
