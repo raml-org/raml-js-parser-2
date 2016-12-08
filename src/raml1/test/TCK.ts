@@ -98,15 +98,15 @@ describe('TCK tests',function() {
 
     it("Extension example", function () {
         this.timeout(15000);
-        tckUtil.testAPI("TCK/raml-1.0/Examples/raml1/overlays&extensions/extension/master.raml", [
-            "TCK/raml-1.0/Examples/raml1/overlays&extensions/extension/extension.raml"
-        ],"TCK/raml-1.0/Examples/raml1/overlays&extensions/extension/master-tck.json");
+        tckUtil.testAPI("TCK/raml-1.0/Others/overlays&extensions/extension/master.raml", [
+            "TCK/raml-1.0/Others/overlays&extensions/extension/extension.raml"
+        ],"TCK/raml-1.0/Others/overlays&extensions/extension/master-tck.json");
     });
 
     it("Overlay example", function () {
         this.timeout(15000);
-        tckUtil.testAPI("TCK/raml-1.0/Examples/raml1/overlays&extensions/overlay/master.raml", [
-            "TCK/raml-1.0/Examples/raml1/overlays&extensions/overlay/slave.raml"
-        ],"TCK/raml-1.0/Examples/raml1/overlays&extensions/overlay/master-tck.json");
+        tckUtil.testAPI("TCK/raml-1.0/Others/overlays&extensions/overlay/master.raml", [
+            "TCK/raml-1.0/Others/overlays&extensions/overlay/slave.raml"
+        ],"TCK/raml-1.0/Others/overlays&extensions/overlay/master-tck.json");
     })
 });
