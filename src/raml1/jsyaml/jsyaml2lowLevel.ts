@@ -159,7 +159,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
 
     isRAMLUnit():boolean{
-        var p = this._path;
+        var p = this.absolutePath();
         if(lowlevel.isWebPath(p)){
             try {
                 p = url.parse(p).pathname;
