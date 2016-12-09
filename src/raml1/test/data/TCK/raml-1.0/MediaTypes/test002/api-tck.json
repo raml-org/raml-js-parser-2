@@ -40,6 +40,9 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "type": [
+                      "array"
+                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -51,15 +54,15 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "type": [
-                      "array"
-                    ],
-                    "items": "Person"
+                    "items": "Person",
+                    "mediaType": "application/raml+yaml"
                   },
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "type": [
+                      "array"
+                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -71,11 +74,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "type": [
-                      "array"
-                    ],
-                    "items": "Person"
+                    "items": "Person",
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

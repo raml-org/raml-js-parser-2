@@ -31,6 +31,9 @@
           "X-Dept": {
             "name": "X-Dept",
             "displayName": "X-Dept",
+            "type": [
+              "array"
+            ],
             "examples": [
               {
                 "value": [
@@ -52,11 +55,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "dept_code"
+            "items": "dept_code",
+            "mediaType": "application/raml+yaml"
           }
         },
         "name": "chargeable"
@@ -71,6 +71,9 @@
               "X-Dept": {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
+                "type": [
+                  "array"
+                ],
                 "examples": [
                   {
                     "value": [
@@ -92,11 +95,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "type": [
-                  "array"
-                ],
-                "items": "dept_code"
+                "items": "dept_code",
+                "mediaType": "application/raml+yaml"
               }
             },
             "is": [

@@ -136,6 +136,9 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "type": [
+                  "array"
+                ],
                 "examples": [
                   {
                     "value": [
@@ -169,11 +172,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "type": [
-                  "array"
-                ],
-                "items": "ParentType"
+                "items": "ParentType",
+                "mediaType": "application/raml+yaml"
               }
             },
             "method": "post"

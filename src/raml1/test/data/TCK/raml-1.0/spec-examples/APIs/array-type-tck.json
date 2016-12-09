@@ -63,6 +63,9 @@
       "Emails": {
         "name": "Emails",
         "displayName": "Emails",
+        "type": [
+          "array"
+        ],
         "required": true,
         "uniqueItems": true,
         "minItems": 1,
@@ -92,11 +95,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "Email"
+        "items": "Email",
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Simple Array Type with Example"

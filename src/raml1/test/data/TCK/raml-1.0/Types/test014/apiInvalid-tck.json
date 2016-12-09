@@ -4,6 +4,9 @@
       "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,11 +18,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "SomeType"
+        "items": "SomeType",
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "API"

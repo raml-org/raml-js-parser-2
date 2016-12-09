@@ -31,6 +31,9 @@
           "items": {
             "name": "items",
             "displayName": "items",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -42,11 +45,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "VV"
+            "items": "VV",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

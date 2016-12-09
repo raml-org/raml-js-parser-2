@@ -35,6 +35,9 @@
           "addresses": {
             "name": "addresses",
             "displayName": "addresses",
+            "type": [
+              "array"
+            ],
             "required": true,
             "xml": {
               "wrapped": true
@@ -49,11 +52,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "Address"
+            "items": "Address",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

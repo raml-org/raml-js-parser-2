@@ -21,6 +21,9 @@
       "SmallArray": {
         "name": "SmallArray",
         "displayName": "SmallArray",
+        "type": [
+          "array"
+        ],
         "required": true,
         "minItems": 5,
         "__METADATA__": {
@@ -33,11 +36,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "number"
+        "items": "number",
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {

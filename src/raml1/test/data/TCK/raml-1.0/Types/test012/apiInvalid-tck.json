@@ -12,6 +12,9 @@
           "selfReference": {
             "name": "selfReference",
             "displayName": "selfReference",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -23,11 +26,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "SomeType"
+            "items": "SomeType",
+            "mediaType": "application/raml+yaml"
           },
           "someProperty": {
             "name": "someProperty",

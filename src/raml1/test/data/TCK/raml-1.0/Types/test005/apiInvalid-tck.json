@@ -93,6 +93,9 @@
           "users": {
             "name": "users",
             "displayName": "users",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -104,11 +107,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "AnotherType"
+            "items": "AnotherType",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

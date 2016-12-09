@@ -4,6 +4,9 @@
       "MyArrayType": {
         "name": "MyArrayType",
         "displayName": "MyArrayType",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -26,11 +29,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "number"
+        "items": "number",
+        "mediaType": "application/raml+yaml"
       },
       "MyType": {
         "name": "MyType",

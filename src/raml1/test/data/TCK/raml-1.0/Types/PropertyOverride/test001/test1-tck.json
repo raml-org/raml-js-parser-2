@@ -93,6 +93,9 @@
           "_embeds": {
             "name": "_embeds",
             "displayName": "_embeds",
+            "type": [
+              "array"
+            ],
             "required": false,
             "description": "Optional embedded, related resources if requested.",
             "__METADATA__": {
@@ -105,11 +108,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "object"
+            "items": "object",
+            "mediaType": "application/raml+yaml"
           },
           "_links": {
             "name": "_links",
@@ -431,6 +431,9 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "type": [
+                              "array"
+                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -463,11 +466,8 @@
                                 "name": null
                               }
                             ],
-                            "mediaType": "application/raml+yaml",
-                            "type": [
-                              "array"
-                            ],
-                            "items": "PlanetScene"
+                            "items": "PlanetScene",
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       }

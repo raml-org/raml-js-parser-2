@@ -23,6 +23,9 @@
           "v": {
             "name": "v",
             "displayName": "v",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -34,11 +37,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "boolean"
+            "items": "boolean",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

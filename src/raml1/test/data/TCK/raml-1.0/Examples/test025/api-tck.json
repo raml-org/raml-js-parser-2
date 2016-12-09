@@ -136,6 +136,9 @@
               "headers": {
                 "name": "headers",
                 "displayName": "headers",
+                "type": [
+                  "array"
+                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -147,11 +150,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "type": [
-                  "array"
-                ],
-                "items": "Header"
+                "items": "Header",
+                "mediaType": "application/raml+yaml"
               },
               "body": {
                 "name": "body",
@@ -215,6 +215,9 @@
               "parts": {
                 "name": "parts",
                 "displayName": "parts",
+                "type": [
+                  "array"
+                ],
                 "required": false,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -226,11 +229,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "type": [
-                  "array"
-                ],
-                "items": "Message"
+                "items": "Message",
+                "mediaType": "application/raml+yaml"
               }
             },
             "__METADATA__": {
@@ -326,6 +326,9 @@
           "messages": {
             "name": "messages",
             "displayName": "messages",
+            "type": [
+              "array"
+            ],
             "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -337,11 +340,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "Message"
+            "items": "Message",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

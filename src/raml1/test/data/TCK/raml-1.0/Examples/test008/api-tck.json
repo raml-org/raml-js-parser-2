@@ -12,6 +12,9 @@
           "items": {
             "name": "items",
             "displayName": "items",
+            "type": [
+              "array"
+            ],
             "required": true,
             "minItems": 5,
             "__METADATA__": {
@@ -24,15 +27,15 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "number"
+            "items": "number",
+            "mediaType": "application/raml+yaml"
           },
           "items2": {
             "name": "items2",
             "displayName": "items2",
+            "type": [
+              "array"
+            ],
             "required": true,
             "maxItems": 3,
             "__METADATA__": {
@@ -45,15 +48,15 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "number"
+            "items": "number",
+            "mediaType": "application/raml+yaml"
           },
           "items3": {
             "name": "items3",
             "displayName": "items3",
+            "type": [
+              "array"
+            ],
             "required": true,
             "uniqueItems": true,
             "__METADATA__": {
@@ -66,11 +69,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "number"
+            "items": "number",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

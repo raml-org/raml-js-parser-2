@@ -74,6 +74,9 @@
           "point": {
             "name": "point",
             "displayName": "point",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -85,11 +88,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "Point"
+            "items": "Point",
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

@@ -44,6 +44,9 @@
       "ArrayType": {
         "name": "ArrayType",
         "displayName": "ArrayType",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -55,11 +58,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "SomeType"
+        "items": "SomeType",
+        "mediaType": "application/raml+yaml"
       },
       "AnotherType": {
         "name": "AnotherType",

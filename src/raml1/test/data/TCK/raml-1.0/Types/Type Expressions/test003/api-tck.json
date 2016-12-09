@@ -4,6 +4,9 @@
       "Persons": {
         "name": "Persons",
         "displayName": "Persons",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,11 +18,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "string"
+        "items": "string",
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Dropbox API"
