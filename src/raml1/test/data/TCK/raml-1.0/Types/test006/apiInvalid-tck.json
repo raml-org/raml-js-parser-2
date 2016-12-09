@@ -128,6 +128,9 @@
       "SimpleUnion": {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
+        "type": [
+          "SimpleType1 | SimpleType2"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -139,14 +142,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "SimpleType1",
-          "SimpleType2"
-        ]
+        "mediaType": "application/raml+yaml"
       },
       "TypeWithUnionProps": {
         "name": "TypeWithUnionProps",

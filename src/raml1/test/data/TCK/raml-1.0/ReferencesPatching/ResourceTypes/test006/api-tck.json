@@ -43,6 +43,9 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "type": [
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
+                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -54,14 +57,7 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml",
-                "type": [
-                  "union"
-                ],
-                "oneOf": [
-                  "<<parentType>><<resourcePathName>>-errors",
-                  "string"
-                ]
+                "mediaType": "application/raml+yaml"
               }
             }
           }
@@ -136,6 +132,9 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "type": [
+                          "error-types.alpha-letters-errors | string"
+                        ],
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -147,14 +146,7 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml",
-                        "type": [
-                          "union"
-                        ],
-                        "oneOf": [
-                          "error-types.alpha-letters-errors",
-                          "string"
-                        ]
+                        "mediaType": "application/raml+yaml"
                       }
                     }
                   }

@@ -160,6 +160,9 @@
       "Device": {
         "name": "Device",
         "displayName": "Device",
+        "type": [
+          "Phone | Notebook"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -171,14 +174,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "Phone",
-          "Notebook"
-        ]
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "My API With Types"

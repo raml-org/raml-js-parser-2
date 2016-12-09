@@ -129,6 +129,9 @@
       "ArrayType1": {
         "name": "ArrayType1",
         "displayName": "ArrayType1",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -140,15 +143,15 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "ChildType1"
+        "items": "ChildType1",
+        "mediaType": "application/raml+yaml"
       },
       "ArrayType2": {
         "name": "ArrayType2",
         "displayName": "ArrayType2",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -160,15 +163,15 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "array"
-        ],
-        "items": "ChildType2"
+        "items": "ChildType2",
+        "mediaType": "application/raml+yaml"
       },
       "ArrayType": {
         "name": "ArrayType",
         "displayName": "ArrayType",
+        "type": [
+          "ArrayType1|ArrayType2"
+        ],
         "examples": [
           {
             "value": [
@@ -192,14 +195,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "ArrayType1",
-          "ArrayType2"
-        ]
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "test API"

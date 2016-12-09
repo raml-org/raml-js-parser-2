@@ -12,6 +12,9 @@
           "name": {
             "name": "name",
             "displayName": "name",
+            "type": [
+              "nil | string"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -23,18 +26,14 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              "nil",
-              "string"
-            ]
+            "mediaType": "application/raml+yaml"
           },
           "data": {
             "name": "data",
             "displayName": "data",
+            "type": [
+              "nil | Data"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -46,14 +45,7 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              "nil",
-              "Data"
-            ]
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

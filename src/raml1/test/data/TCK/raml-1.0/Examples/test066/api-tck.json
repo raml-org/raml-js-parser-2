@@ -47,6 +47,9 @@
       "nt1": {
         "name": "nt1",
         "displayName": "nt1",
+        "type": [
+          "t | nil"
+        ],
         "examples": [
           {
             "value": "null\n",
@@ -70,18 +73,14 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "t",
-          "nil"
-        ]
+        "mediaType": "application/raml+yaml"
       },
       "tn2": {
         "name": "tn2",
         "displayName": "tn2",
+        "type": [
+          "nil | t"
+        ],
         "examples": [
           {
             "value": "null\n",
@@ -102,14 +101,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "nil",
-          "t"
-        ]
+        "mediaType": "application/raml+yaml"
       }
     },
     "traits": {

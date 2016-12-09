@@ -45,7 +45,7 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/json"
           }
         },
         "__METADATA__": {

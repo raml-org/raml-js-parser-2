@@ -23,6 +23,9 @@
       "Employee": {
         "name": "Employee",
         "displayName": "Employee",
+        "type": [
+          "Person | string"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -34,14 +37,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "Person",
-          "string"
-        ]
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "Dropbox API"

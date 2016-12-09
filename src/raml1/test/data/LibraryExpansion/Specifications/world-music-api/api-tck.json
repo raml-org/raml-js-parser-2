@@ -153,6 +153,9 @@
           "propStringArray1": {
             "name": "propStringArray1",
             "displayName": "propStringArray1",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -164,11 +167,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "string"
+            "items": "string",
+            "mediaType": "application/raml+yaml"
           },
           "ideas": {
             "name": "ideas",
@@ -537,6 +537,9 @@
           "CatOrDog": {
             "name": "CatOrDog",
             "displayName": "CatOrDog",
+            "type": [
+              "ApiLib.Cat | ApiLib.Dog"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -548,14 +551,7 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              "ApiLib.Cat",
-              "ApiLib.Dog"
-            ]
+            "mediaType": "application/raml+yaml"
           },
           "CatAndDog": [
             {
@@ -1037,6 +1033,9 @@
           "comment": {
             "name": "comment",
             "displayName": "comment",
+            "type": [
+              "nil | string"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -1048,14 +1047,7 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              "nil",
-              "string"
-            ]
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

@@ -23,6 +23,9 @@
       "experimental": {
         "name": "experimental",
         "displayName": "experimental",
+        "type": [
+          "nil | string"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -34,14 +37,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "nil",
-          "string"
-        ]
+        "mediaType": "application/raml+yaml"
       },
       "feedbackRequested": {
         "name": "feedbackRequested",

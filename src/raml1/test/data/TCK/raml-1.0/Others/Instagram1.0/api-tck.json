@@ -572,14 +572,10 @@
                         "name": null
                       }
                     ],
-                    "mediaType": "application/raml+yaml",
                     "type": [
-                      "union"
+                      "types.OkStatus | string"
                     ],
-                    "oneOf": [
-                      "types.OkStatus",
-                      "string"
-                    ]
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -606,6 +602,9 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "type": [
+                      "types.OkStatus | string"
+                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -629,14 +628,7 @@
                         "name": null
                       }
                     ],
-                    "mediaType": "application/raml+yaml",
-                    "type": [
-                      "union"
-                    ],
-                    "oneOf": [
-                      "types.OkStatus",
-                      "string"
-                    ]
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -1418,6 +1410,9 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "type": [
+                              "types.OkStatus | string"
+                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -1441,14 +1436,7 @@
                                 "name": null
                               }
                             ],
-                            "mediaType": "application/raml+yaml",
-                            "type": [
-                              "union"
-                            ],
-                            "oneOf": [
-                              "types.OkStatus",
-                              "string"
-                            ]
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },
@@ -1579,14 +1567,10 @@
                                     "name": null
                                   }
                                 ],
-                                "mediaType": "application/raml+yaml",
                                 "type": [
-                                  "union"
+                                  "types.OkStatus | string"
                                 ],
-                                "oneOf": [
-                                  "types.OkStatus",
-                                  "string"
-                                ]
+                                "mediaType": "application/raml+yaml"
                               }
                             },
                             "description": "Comment removed."
@@ -1815,6 +1799,9 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "type": [
+                              "types.OkStatus | string"
+                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -1838,14 +1825,7 @@
                                 "name": null
                               }
                             ],
-                            "mediaType": "application/raml+yaml",
-                            "type": [
-                              "union"
-                            ],
-                            "oneOf": [
-                              "types.OkStatus",
-                              "string"
-                            ]
+                            "mediaType": "application/raml+yaml"
                           }
                         },
                         "description": "Successfully liked a media object\n"
@@ -1911,14 +1891,10 @@
                                 "name": null
                               }
                             ],
-                            "mediaType": "application/raml+yaml",
                             "type": [
-                              "union"
+                              "types.OkStatus | string"
                             ],
-                            "oneOf": [
-                              "types.OkStatus",
-                              "string"
-                            ]
+                            "mediaType": "application/raml+yaml"
                           }
                         }
                       },

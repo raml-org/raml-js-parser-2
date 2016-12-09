@@ -4,6 +4,9 @@
       "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
+        "type": [
+          "object | SomeUnion"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,18 +18,14 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "object",
-          "SomeUnion"
-        ]
+        "mediaType": "application/raml+yaml"
       },
       "SomeUnion": {
         "name": "SomeUnion",
         "displayName": "SomeUnion",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -38,26 +37,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          {
-            "type": [
-              "array"
-            ],
-            "items": "AnotherType",
-            "mediaType": "text/plain"
-          },
-          {
-            "type": [
-              "array"
-            ],
-            "items": "OneMoreType",
-            "mediaType": "text/plain"
-          }
-        ]
+        "items": "AnotherType[] | OneMoreType",
+        "mediaType": "application/raml+yaml"
       },
       "AnotherType": {
         "name": "AnotherType",

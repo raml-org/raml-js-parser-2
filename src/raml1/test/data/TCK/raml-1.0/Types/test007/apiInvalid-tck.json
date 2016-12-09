@@ -4,6 +4,9 @@
       "SimpleUnion": {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
+        "type": [
+          "array"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,26 +18,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          {
-            "type": [
-              "array"
-            ],
-            "items": "string",
-            "mediaType": "text/plain"
-          },
-          {
-            "type": [
-              "array"
-            ],
-            "items": "number",
-            "mediaType": "text/plain"
-          }
-        ]
+        "items": "string[] | number",
+        "mediaType": "application/raml+yaml"
       },
       "TypeWithUnionProps": {
         "name": "TypeWithUnionProps",

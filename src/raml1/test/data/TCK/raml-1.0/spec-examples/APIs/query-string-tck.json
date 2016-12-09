@@ -182,16 +182,7 @@
               "displayName": "queryString",
               "type": [
                 "paging",
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "oneOf": [
-                    "lat-long",
-                    "loc"
-                  ],
-                  "mediaType": "text/plain"
-                }
+                "lat-long | loc"
               ],
               "examples": [
                 {

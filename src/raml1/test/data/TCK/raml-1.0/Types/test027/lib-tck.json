@@ -4,6 +4,9 @@
       "Foo": {
         "name": "Foo",
         "displayName": "Foo",
+        "type": [
+          "integer|number"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,14 +18,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "integer",
-          "number"
-        ]
+        "mediaType": "application/raml+yaml"
       },
       "Bar": {
         "name": "Bar",

@@ -437,6 +437,9 @@
           "cacheKeyParameters": {
             "name": "cacheKeyParameters",
             "displayName": "cacheKeyParameters",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -448,11 +451,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "string"
+            "items": "string",
+            "mediaType": "application/raml+yaml"
           },
           "responses": {
             "name": "responses",
@@ -622,6 +622,9 @@
       "AWS.amazon-apigateway-integration": {
         "name": "amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
+        "type": [
+          "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -633,16 +636,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "AWS.amazon-apigateway-integration-lambda",
-          "AWS.amazon-apigateway-integration-HTTP",
-          "AWS.amazon-apigateway-integration-mock",
-          "AWS.amazon-apigateway-integration-aws"
-        ]
+        "mediaType": "application/raml+yaml"
       }
     },
     "annotationTypes": {

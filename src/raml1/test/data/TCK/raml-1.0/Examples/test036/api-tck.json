@@ -12,6 +12,9 @@
           "/.*/": {
             "name": "/.*/",
             "displayName": "/.*/",
+            "type": [
+              "string[] | string"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -23,20 +26,7 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              {
-                "type": [
-                  "array"
-                ],
-                "items": "string",
-                "mediaType": "text/plain"
-              },
-              "string"
-            ]
+            "mediaType": "application/raml+yaml"
           }
         },
         "__METADATA__": {

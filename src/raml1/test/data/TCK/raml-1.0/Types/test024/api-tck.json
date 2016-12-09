@@ -611,6 +611,9 @@
           "admin": {
             "name": "admin",
             "displayName": "admin",
+            "type": [
+              "Admin|SuperAdmin"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -622,18 +625,14 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              "Admin",
-              "SuperAdmin"
-            ]
+            "mediaType": "application/raml+yaml"
           },
           "members": {
             "name": "members",
             "displayName": "members",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -645,20 +644,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": {
-              "type": [
-                "union"
-              ],
-              "oneOf": [
-                "User",
-                "Team"
-              ],
-              "mediaType": "application/raml+yaml"
-            }
+            "items": "User|Team",
+            "mediaType": "application/raml+yaml"
           },
           "info": {
             "name": "info",
@@ -806,6 +793,9 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "type": [
+                      "array"
+                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -817,11 +807,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "type": [
-                      "array"
-                    ],
-                    "items": "Team"
+                    "items": "Team",
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }
@@ -1069,6 +1056,9 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "type": [
+                      "array"
+                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1080,11 +1070,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml",
-                    "type": [
-                      "array"
-                    ],
-                    "items": "User"
+                    "items": "User",
+                    "mediaType": "application/raml+yaml"
                   }
                 }
               }

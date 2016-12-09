@@ -189,6 +189,9 @@
           "reports": {
             "name": "reports",
             "displayName": "reports",
+            "type": [
+              "array"
+            ],
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -200,11 +203,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml",
-            "type": [
-              "array"
-            ],
-            "items": "Person"
+            "items": "Person",
+            "mediaType": "application/raml+yaml"
           },
           "phone": {
             "name": "phone",
@@ -328,6 +328,9 @@
       "Alertable": {
         "name": "Alertable",
         "displayName": "Alertable",
+        "type": [
+          "Manager | AlertableAdmin"
+        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -339,14 +342,7 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml",
-        "type": [
-          "union"
-        ],
-        "oneOf": [
-          "Manager",
-          "AlertableAdmin"
-        ]
+        "mediaType": "application/raml+yaml"
       }
     },
     "title": "My API with Types",
