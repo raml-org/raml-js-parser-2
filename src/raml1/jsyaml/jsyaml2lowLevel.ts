@@ -2,6 +2,7 @@
 import lowlevel=require("../lowLevelAST")
 import highlevel=require("../highLevelAST")
 import path=require("path")
+import url=require("url")
 import fs=require("fs")
 import yaml=require("yaml-ast-parser")
 import _=require("underscore")
@@ -158,7 +159,16 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
 
     isRAMLUnit():boolean{
-        var en=path.extname(this._path);
+        var p = this._path;
+        if(lowlevel.isWebPath(p)){
+            try {
+                p = url.parse(p).pathname;
+            }
+            catch(e){
+                p = this._path;
+            }
+        }
+        var en=path.extname(p);
         return en=='.raml'||en=='.yaml'||en=='.yml'
     }
 
