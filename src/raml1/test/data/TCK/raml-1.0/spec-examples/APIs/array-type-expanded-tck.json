@@ -49,25 +49,9 @@
         ],
         "required": true,
         "uniqueItems": true,
-        "items": {
-          "name": "items",
-          "displayName": "items",
-          "type": [
-            "Email"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml"
-        },
+        "items": [
+          "Email"
+        ],
         "minItems": 1,
         "__METADATA__": {
           "primitiveValuesMeta": {

@@ -8,41 +8,9 @@
           "array"
         ],
         "required": true,
-        "items": {
-          "annotations": {
-            "a": {
-              "name": "a",
-              "structuredValue": "abcdefg"
-            }
-          },
-          "name": "items",
-          "displayName": "items",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "scalarsAnnotations": {
-            "type": [
-              [
-                {
-                  "name": "a",
-                  "structuredValue": "abcdefg"
-                }
-              ]
-            ]
-          },
-          "mediaType": "application/raml+yaml"
-        },
+        "items": [
+          "string"
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -52,6 +20,16 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "scalarsAnnotations": {
+          "items": [
+            [
+              {
+                "name": "a",
+                "structuredValue": "abcdefg"
+              }
+            ]
+          ]
         },
         "mediaType": "application/raml+yaml"
       }

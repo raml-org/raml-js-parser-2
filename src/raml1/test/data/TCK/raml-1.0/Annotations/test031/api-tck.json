@@ -14,64 +14,66 @@
           "array"
         ],
         "required": true,
-        "items": {
-          "name": "items",
-          "displayName": "items",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "cardId": {
-              "annotations": {
-                "lib.bindingDefinition": {
-                  "name": "lib.bindingDefinition",
-                  "structuredValue": [
-                    {
-                      "method": "GET",
-                      "input": "NONE",
-                      "output": "REQUIRED"
-                    },
-                    {
-                      "method": "POST",
-                      "input": "NONE",
-                      "output": "REQUIRED"
-                    }
-                  ]
-                }
-              },
-              "name": "cardId",
-              "displayName": "cardId",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "description": "Card identifier.\n",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
+        "items": [
+          {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "cardId": {
+                "annotations": {
+                  "lib.bindingDefinition": {
+                    "name": "lib.bindingDefinition",
+                    "structuredValue": [
+                      {
+                        "method": "GET",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      },
+                      {
+                        "method": "POST",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      }
+                    ]
                   }
-                }
-              },
-              "mediaType": "application/raml+yaml"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
+                },
+                "name": "cardId",
+                "displayName": "cardId",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "description": "Card identifier.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml"
               }
-            }
-          },
-          "mediaType": "application/raml+yaml"
-        },
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml"
+          }
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

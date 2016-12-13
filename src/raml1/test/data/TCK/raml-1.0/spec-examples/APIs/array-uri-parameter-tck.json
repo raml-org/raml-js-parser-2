@@ -19,26 +19,28 @@
                 "required": true,
                 "description": "A list of userIds",
                 "uniqueItems": true,
-                "items": {
-                  "name": "items",
-                  "displayName": "items",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "minLength": 1,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                "items": [
+                  {
+                    "name": "items",
+                    "displayName": "items",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml"
-                },
+                    },
+                    "mediaType": "application/raml+yaml"
+                  }
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

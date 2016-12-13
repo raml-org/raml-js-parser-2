@@ -11,36 +11,38 @@
             ],
             "required": true,
             "description": "A department code to be charged.\nMultiple of such headers are allowed.\n",
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "pattern": "^\\d+\\-\\w+$",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+            "items": [
+              {
+                "name": "items",
+                "displayName": "items",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "pattern": "^\\d+\\-\\w+$",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
                   }
-                }
-              },
-              "examples": [
-                {
-                  "value": "230-OCTO",
-                  "strict": true,
-                  "name": null
-                }
-              ],
-              "mediaType": "application/raml+yaml"
-            },
+                },
+                "examples": [
+                  {
+                    "value": "230-OCTO",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml"
+              }
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -107,36 +109,38 @@
                 ],
                 "required": true,
                 "description": "A department code to be charged.\nMultiple of such headers are allowed.\n",
-                "items": {
-                  "name": "items",
-                  "displayName": "items",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "pattern": "^\\d+\\-\\w+$",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                "items": [
+                  {
+                    "name": "items",
+                    "displayName": "items",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "pattern": "^\\d+\\-\\w+$",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
-                    }
-                  },
-                  "examples": [
-                    {
-                      "value": "230-OCTO",
-                      "strict": true,
-                      "name": null
-                    }
-                  ],
-                  "mediaType": "application/raml+yaml"
-                },
+                    },
+                    "examples": [
+                      {
+                        "value": "230-OCTO",
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml"
+                  }
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

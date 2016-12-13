@@ -177,49 +177,51 @@
               "array"
             ],
             "required": true,
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "comment": {
-                  "name": "comment",
-                  "displayName": "comment",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+            "items": [
+              {
+                "name": "items",
+                "displayName": "items",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "properties": {
+                  "comment": {
+                    "name": "comment",
+                    "displayName": "comment",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml"
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
+                    },
+                    "mediaType": "application/raml+yaml"
                   }
-                }
-              },
-              "mediaType": "application/raml+yaml"
-            },
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml"
+              }
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {

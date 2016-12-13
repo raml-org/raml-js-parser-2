@@ -4,6 +4,7 @@ import resolverApi = require("../../jsyaml/resolversApi");
 import fs = require("fs");
 import path = require("path");
 import Q = require("q");
+import querystring = require("querystring");
 
 export var DOMAIN = "WWW.__TESTDATA__.com";
 
@@ -25,7 +26,7 @@ export class Http2FSResolverAsync implements resolverApi.HTTPResolver{
         if(ind<0){
             return Promise.reject(new Error("Url supposed to belong to the \""+DOMAIN+"\" domain."));
         }
-        var subPath = url.substring(ind+DOMAIN.length+1);
+        var subPath = global.escape(url.substring(ind+DOMAIN.length+1));
         return this.getRootDir().then(dataDir=>{
             
             var absPath = path.resolve(dataDir,subPath);

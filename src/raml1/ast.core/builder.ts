@@ -315,8 +315,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         var typeDeclarationName = universes.Universe10.TypeDeclaration.name;
 
         var typePropertyName = universes.Universe10.TypeDeclaration.properties.type.name;
+        var itemsPropertyName = universes.Universe10.ArrayTypeDeclaration.properties.items.name;
 
-        if(aNode.definition() && aNode.definition().isAssignableFrom(typeDeclarationName) && aNode.lowLevel() && (km.canBeValue&&km.canBeValue.nameId() === typePropertyName) && (<any>aNode).lowLevel()._node && (<any>aNode).lowLevel()._node.value && (<any>aNode).lowLevel()._node.value.kind === yaml.Kind.SEQ) {
+        if(aNode.definition() && aNode.definition().isAssignableFrom(typeDeclarationName) && aNode.lowLevel() && (km.canBeValue&&(km.canBeValue.nameId() === typePropertyName||km.canBeValue.nameId() === itemsPropertyName)) && (<any>aNode).lowLevel()._node && (<any>aNode).lowLevel()._node.value && (<any>aNode).lowLevel()._node.value.kind === yaml.Kind.SEQ) {
             childrenToAdopt.forEach(child => {
                 var property = new hlimpl.ASTPropImpl(child, aNode, km.canBeValue.range(), km.canBeValue);
                 res.push(property);
@@ -364,7 +365,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var seq = (x.valueKind() == yaml.Kind.SEQ);
                     if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
                         if(ch.length > 1 && universeHelpers.isTypeDeclarationSibling(aNode.definition())
-                            &&universeHelpers.isTypeProperty(p) && x.valueKind() != yaml.Kind.SEQ){
+                            &&(universeHelpers.isTypeProperty(p)||universeHelpers.isItemsProperty(p)) && x.valueKind() != yaml.Kind.SEQ){
                             var pi = new hlimpl.ASTPropImpl(x, aNode, range, p)
                             res.push(pi);
                             aNode.setComputed(p.nameId(), pi);
@@ -1002,6 +1003,7 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
             var res = desc1(p, parent, x);
             if (p || (!p && !parent && x.lowLevel())) {
                 if (p && res != null && ((p.nameId() ==universes.Universe10.MethodBase.properties.body.name
+                    || p.nameId() ==universes.Universe10.ArrayTypeDeclaration.properties.items.name
                     || p.nameId() ==universes.Universe10.Response.properties.headers.name) ||
                     p.nameId() ==universes.Universe10.MethodBase.properties.queryParameters.name)) {
                     var ares = new defs.UserDefinedClass(x.lowLevel().key(), <defs.Universe>res.universe(), x, x.lowLevel().unit() ? x.lowLevel().unit().path() : "", "");

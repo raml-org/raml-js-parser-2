@@ -192,6 +192,9 @@ export class ReferencePatcher{
                 if(typeAttributes.length==0){
                     typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.schema.name);
                 }
+            var itemsAttrs = node.attributes(universeDef.Universe10.ArrayTypeDeclaration.properties.items.name);
+            typeAttributes = typeAttributes.concat(itemsAttrs);
+            
                 for( var typeAttr of typeAttributes) {
                     var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
                     if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
@@ -308,7 +311,10 @@ export class ReferencePatcher{
                         }
                     }
                     else{
-                        var llTypeNode = _.find(node.lowLevel().children(),x=>x.key()=="type");
+                        var llTypeNode = typeAttr.lowLevel();
+                        if(llTypeNode.key()!=typeAttr.property().nameId()){
+                            llTypeNode = _.find(node.lowLevel().children(),x=>x.key()==typeAttr.property().nameId());
+                        }
                         if(llTypeNode){
                             var def = node.definition().universe().type(universeDef.Universe10.TypeDeclaration.name);
                             var newNode = new hlimpl.ASTNodeImpl(llTypeNode,null,def,null);
