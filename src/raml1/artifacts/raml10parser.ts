@@ -2337,9 +2337,19 @@ setUniqueItems( param:boolean ){
          * Array component type.
          * @hidden
          **/
-items_original(  ):TypeDeclaration{
-             return <TypeDeclaration>super.element('items');
+items_original(  ):string[]{
+             return <string[]>super.attributes('items', this.toString);
          }
+
+
+        /**
+         * @hidden
+         * Set items value
+         **/
+setItems( param:string ){
+            this.highLevel().attrOrCreate("items").setValue(""+param);
+            return this;
+        }
 
 
         /**
@@ -2428,7 +2438,7 @@ RAMLVersion(  ):string{return "RAML10";}
         /**
          * Array component type.
          **/
-items(  ):TypeDeclaration{
+items(  ):string[]{
             return helper.getItems(this);
         }
 
@@ -2611,6 +2621,19 @@ uniqueItems(  ):AnnotationRef[]{
         var annotationAttrs = attr.annotations();
         var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ArrayTypeDeclaration.items annotations
+         **/
+items(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("items");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 

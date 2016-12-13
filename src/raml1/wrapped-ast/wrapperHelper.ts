@@ -27,6 +27,7 @@ import ramlservices=defs
 import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
+import builder = require("../ast.core/builder");
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
     return p.highLevel().localType();
@@ -909,8 +910,39 @@ export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrappe
  * If no "items" is defined explicitly, this one is null.
  * __$meta__={"name":"items"}
  */
-export function getItems(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
-    return (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
+export function getItems(typeDeclaration:RamlWrapper.ArrayTypeDeclaration):string[] {
+
+    var attrs = typeDeclaration.highLevel().attributes(
+        defs.universesInfo.Universe10.ArrayTypeDeclaration.properties.items.name);
+
+    var structuredAttrs = attrs.filter(x=>hlimpl.StructuredValue.isInstance(x.value()));
+    if (structuredAttrs.length == 0) {
+        return (<RamlWrapperImpl.ArrayTypeDeclarationImpl>typeDeclaration).items_original().map(x=> {
+            if (x === null || x === "NULL" || x === "Null") {
+                return "string";
+            }
+            return x;
+        });
+    }
+    var nullify = false;
+    var values:string[] = attrs.map(x=> {
+        var val = x.value();
+        if (val == null) {
+            return null;
+        }
+        if (typeof(val) == "string") {
+            return val;
+        }
+        else if (hlimpl.StructuredValue.isInstance(val)) {
+            nullify = true;
+        }
+        return val.toString();
+    });
+    if (nullify) {
+        return null;
+    }
+    return values;
+
 }
 
 function findComponentTypeDeclBySearch(
@@ -980,8 +1012,15 @@ function findComponentTypeDeclByRuntimeType(
  */
 export function findComponentTypeDeclaration(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
     var original = (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
-    if (original) {
-        return original;
+    if (original && typeof(original)!="string" && (!Array.isArray(original)||original.length!=0)){
+
+        var highLevelNode = arrayTypeDecl.highLevel();
+        var itemsPropName = universeDef.Universe10.ArrayTypeDeclaration.properties.items.name;
+        var attr = highLevelNode.attr(itemsPropName);
+        var td = highLevelNode.definition().universe().type(universeDef.Universe10.TypeDeclaration.name);
+        var hasType = highLevelNode.definition().universe().type(universeDef.Universe10.ArrayTypeDeclaration.name);
+        var tNode = new hlimpl.ASTNodeImpl(attr.lowLevel(), highLevelNode, td, hasType.property(itemsPropName));
+        tNode.patchType(builder.doDescrimination(tNode));
     }
 
     var foundByRuntimeType = findComponentTypeDeclByRuntimeType(arrayTypeDecl);

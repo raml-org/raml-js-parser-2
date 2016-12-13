@@ -152,6 +152,11 @@ export function isTypeProperty(p:hl.IProperty) : boolean {
     p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
 }
 
+export function isItemsProperty(p:hl.IProperty) : boolean {
+    return p.nameId() === universe.Universe10.ArrayTypeDeclaration.properties.items.name;
+}
+
+
 export function isPropertiesProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe10.ObjectTypeDeclaration.properties.properties.name;
 }

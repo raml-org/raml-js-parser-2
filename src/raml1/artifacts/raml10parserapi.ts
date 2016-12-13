@@ -600,7 +600,7 @@ maxItems(  ):number
          * Anonymous type declaration defined by "items" keyword.
          * If no "items" is defined explicitly, this one is null.
          **/
-items(  ):TypeDeclaration
+items(  ):string[]
 
 
         /**
@@ -693,6 +693,12 @@ export interface ArrayTypeDeclarationScalarsAnnotations extends TypeDeclarationS
          * ArrayTypeDeclaration.uniqueItems annotations
          **/
 uniqueItems(  ):AnnotationRef[]
+
+
+        /**
+         * ArrayTypeDeclaration.items annotations
+         **/
+items(  ):AnnotationRef[][]
 
 
         /**

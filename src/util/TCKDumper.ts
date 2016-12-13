@@ -297,6 +297,29 @@ export class TCKDumper {
                     }
                 })
             }
+            else if (propName == "items"&& typeof value === "object") {
+                var isArr = Array.isArray(value);
+                var isObj = !isArr;
+                if(isArr){
+                    isObj = _.find(value,x=>typeof(x)=="object")!=null;
+                }
+                if(isObj) {
+                    value = null;
+                    var highLevelNode = (<hl.IHighLevelNode>node.highLevel());
+                    var a = (<hl.IHighLevelNode>highLevelNode).lowLevel();
+                    var tdl = null;
+                    a.children().forEach(x=> {
+                        if (x.key() == "items") {
+                            var td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
+                            var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+                            var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name));
+                            tNode.patchType(builder.doDescrimination(tNode));
+                            value = this.dumpInternal(tNode.wrapperNode(), false, nodeProperty);
+                            propName = x.key();
+                        }
+                    })
+                }
+            }
 
             if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
                 var schemaString = value[0].trim();
@@ -330,6 +353,10 @@ export class TCKDumper {
                 //we should not use
             }
             if (!value && propName == "schema") {
+                return;
+                //we should not use
+            }
+            if (!value && propName == "items") {
                 return;
                 //we should not use
             }

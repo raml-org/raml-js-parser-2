@@ -11,39 +11,18 @@
             "array"
           ],
           "required": true,
-          "items": {
-            "annotations": {
-              "a": {
-                "structuredValue": "abcdefg",
-                "name": "a"
-              }
-            },
-            "name": "items",
-            "displayName": "items",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "scalarsAnnotations": {
-              "type": [
-                [
-                  {
-                    "structuredValue": "abcdefg",
-                    "name": "a"
-                  }
-                ]
-              ]
-            },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
+          "items": [
+            "string"
+          ],
+          "scalarsAnnotations": {
+            "items": [
+              [
+                {
+                  "structuredValue": "abcdefg",
+                  "name": "a"
                 }
-              }
-            }
+              ]
+            ]
           },
           "__METADATA__": {
             "primitiveValuesMeta": {
