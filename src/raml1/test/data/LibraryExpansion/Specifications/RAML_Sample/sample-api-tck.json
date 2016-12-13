@@ -295,24 +295,26 @@
                       }
                     ],
                     "required": true,
-                    "items": {
-                      "name": "items",
-                      "displayName": "items",
-                      "type": [
-                        "dataTypes.Customer"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
+                    "items": [
+                      {
+                        "name": "items",
+                        "displayName": "items",
+                        "type": [
+                          "dataTypes.Customer"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
                           }
                         }
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {

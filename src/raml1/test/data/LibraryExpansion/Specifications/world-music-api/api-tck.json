@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "info": {
+        "name": "info",
         "structuredValue": {
           "license": "MIT"
-        },
-        "name": "info"
+        }
       }
     },
     "types": [
@@ -181,47 +179,49 @@
                 "array"
               ],
               "required": true,
-              "items": {
-                "name": "items",
-                "displayName": "items",
-                "type": [
-                  "object"
-                ],
-                "required": true,
-                "properties": {
-                  "comment": {
-                    "name": "comment",
-                    "displayName": "comment",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
+              "items": [
+                {
+                  "name": "items",
+                  "displayName": "items",
+                  "type": [
+                    "object"
+                  ],
+                  "required": true,
+                  "properties": {
+                    "comment": {
+                      "name": "comment",
+                      "displayName": "comment",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
                         }
                       }
                     }
-                  }
-                },
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
                     }
                   }
                 }
-              },
+              ],
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -236,27 +236,6 @@
             "extIdeas": {
               "name": "extIdeas",
               "displayName": "extIdeas",
-              "required": true,
-              "properties": {
-                "createdBy": {
-                  "name": "createdBy",
-                  "displayName": "createdBy",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                }
-              },
               "type": {
                 "name": "type",
                 "displayName": "type",
@@ -294,6 +273,27 @@
                     },
                     "required": {
                       "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "required": true,
+              "properties": {
+                "createdBy": {
+                  "name": "createdBy",
+                  "displayName": "createdBy",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
                     }
                   }
                 }
@@ -349,9 +349,6 @@
               "maximum": 32,
               "format": "int32",
               "multipleOf": 2,
-              "fixedFacets": {
-                "format": "int32"
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -361,6 +358,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "fixedFacets": {
+                "format": "int32"
               }
             },
             "propInteger": {
@@ -374,9 +374,6 @@
               "maximum": 5,
               "format": "int8",
               "multipleOf": 1,
-              "fixedFacets": {
-                "format": "int8"
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -386,6 +383,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "fixedFacets": {
+                "format": "int8"
               }
             },
             "propBoolean": {
@@ -443,13 +443,6 @@
                 "image/png"
               ],
               "maxLength": 307200,
-              "fixedFacets": {
-                "fileTypes": [
-                  "image/jpeg",
-                  "image/png"
-                ],
-                "maxLength": 307200
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -459,6 +452,13 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "fixedFacets": {
+                "fileTypes": [
+                  "image/jpeg",
+                  "image/png"
+                ],
+                "maxLength": 307200
               }
             },
             "NilValue": {
@@ -583,9 +583,6 @@
                 "ApiLib.CustomDate"
               ],
               "required": true,
-              "fixedFacets": {
-                "noHolidays": true
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -595,6 +592,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "fixedFacets": {
+                "noHolidays": true
               }
             }
           },
@@ -1051,12 +1051,6 @@
             "integer"
           ],
           "example": 2,
-          "structuredExample": {
-            "value": "2",
-            "strict": true,
-            "name": null,
-            "structuredValue": 2
-          },
           "required": true,
           "description": "interval in seconds",
           "__METADATA__": {
@@ -1068,6 +1062,12 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "structuredExample": {
+            "value": "2",
+            "strict": true,
+            "name": null,
+            "structuredValue": 2
           }
         }
       },
@@ -1619,7 +1619,6 @@
       {
         "annotations": {
           "ready": {
-            "structuredValue": null,
             "name": "ready"
           }
         },
@@ -1627,8 +1626,8 @@
           {
             "annotations": {
               "monitoringInterval": {
-                "structuredValue": 30,
-                "name": "monitoringInterval"
+                "name": "monitoringInterval",
+                "structuredValue": 30
               }
             },
             "queryParameters": {
@@ -1744,14 +1743,14 @@
               {
                 "annotations": {
                   "deprecated": {
+                    "name": "deprecated",
                     "structuredValue": {
                       "date": "2016-02-28T16:41:41.090Z",
                       "deprecatedBy": {
                         "firstname": "Christian"
                       },
                       "comment": "no comment"
-                    },
-                    "name": "deprecated"
+                    }
                   }
                 },
                 "responses": {
@@ -1894,11 +1893,13 @@
     "scalarsAnnotations": {
       "baseUri": [
         {
-          "structuredValue": true,
-          "name": "rediractable"
+          "name": "rediractable",
+          "structuredValue": true
         }
       ]
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }
