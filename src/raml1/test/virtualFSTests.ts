@@ -84,6 +84,14 @@ describe('HTTP Asynchronous tests',function() {
     });
 });
 
+describe('Path tests',function() {
+
+    it("Query String Test", function (done) {
+        testAPIHttpAsync(`./vfsTests/pathWithQuery/api.raml`).should.be.fulfilled.and.notify(done);
+    });
+
+});
+
 export function testAPIHttpAsync(apiRelPath:string):any{
 
     var apiWebPath = url.resolve(`https://${http2fs.DOMAIN}`,apiRelPath);

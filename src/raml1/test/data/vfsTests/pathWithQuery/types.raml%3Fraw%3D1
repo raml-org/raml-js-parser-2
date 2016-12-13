@@ -1,0 +1,6 @@
+#%RAML 1.0 Library
+types:
+  Customer:
+    properties:
+      id: string
+      name: string
