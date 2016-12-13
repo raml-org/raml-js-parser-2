@@ -835,7 +835,7 @@ describe('Helper methods', function () {
             "  Component:",
             "  TestType: Component[]"
         ].join("\n")));
-        assert.equal(api.types()[1].items(),null);
+        assert.equal(api.types()[1].items().length,0);
     });
 
     it('Items() for array expression 2', function () {
@@ -849,7 +849,7 @@ describe('Helper methods', function () {
             "      prop: TestType[]"
         ].join("\n")));
 
-        assert.equal(api.types()[2].properties()[0].items(),null);
+        assert.equal(api.types()[2].properties()[0].items().length,0);
     });
 
     it('Items() for array expression 3', function () {
