@@ -10,12 +10,12 @@ var fs = require("fs");
 
 var isNpm = process.argv[process.argv.indexOf("--type") + 1] === 'npm';
 
-rimraf.sync(isNpm ? "browser_version" : "browser_version_bower");
+rimraf.sync(isNpm ? "browser_version_npm" : "browser_version");
 
 var bowerJsonDist = path.resolve(__dirname, "./bower.json");
-var packageJsonDist = path.resolve(__dirname, "./browser_version/package.json");
+var packageJsonDist = path.resolve(__dirname, "./browser_version_npm/package.json");
 
-childProcess.execSync(isNpm ? "mkdir browser_version" : "mkdir browser_version_bower");
+childProcess.execSync(isNpm ? "mkdir browser_version_npm" : "mkdir browser_version");
 
 function webPackForBrowserLib() {
     var plugins = [];
@@ -31,7 +31,7 @@ function webPackForBrowserLib() {
         plugins: plugins,
 
         output: {
-            path: path.resolve(__dirname, isNpm ? "./browser_version" : "./browser_version_bower"),
+            path: path.resolve(__dirname, isNpm ? "./browser_version_npm" : "./browser_version"),
 
             library: ['RAML', 'Parser'],
 
@@ -83,7 +83,7 @@ function webPackForBrowserLib() {
         updateVersion();
         
         if(isNpm) {
-            childProcess.execSync('cd browser_version && npm publish');
+            childProcess.execSync('cd browser_version_npm && npm publish');
         }
     });
 }
@@ -99,13 +99,13 @@ function updateVersion() {
 
     targetJson.version = packageJson.version;
     targetJson.name = packageJson.name + '-browser';
-    targetJson.main = isNpm ? "index.js" : "browser_version_bower/index.js";
+    targetJson.main = isNpm ? "index.js" : "browser_version/index.js";
 
     if(!isNpm) {
         targetJson.ignore = [
             "*",
-            "!browser_version_bower/",
-            "!browser_version_bower/*"
+            "!browser_version/",
+            "!browser_version/*"
         ]
     }
 
