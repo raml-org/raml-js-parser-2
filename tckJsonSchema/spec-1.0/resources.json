@@ -30,22 +30,10 @@
                             "type": "string",
                             "description": "Resource name"
                         },
-                        "uriParameters": {
-                            "type": "object",
-                            "description": "Detailed information about any URI parameters of this resource",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
-                            }
-                        },
                         "resources": {
                             "type": "array",
                             "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
                             "items": {"$ref": "#/definitions/Resource10"}
-                        },
-                        "methods": {
-                            "type": "array",
-                            "description": "Methods that are part of this resource type definition",
-                            "items": {"$ref": "methods.json#/definitions/Method10"}
                         },
                         "relativeUri": {
                             "type": "string",
@@ -92,6 +80,10 @@
                         "usage": {
                             "type": "string",
                             "description": "Instructions on how and when the resource type should be used."
+                        },
+                        "displayName": {
+                            "type": "string",
+                            "description": "Resource name"
                         }
                     }
                 }
@@ -120,6 +112,18 @@
                             "type": "array",
                             "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
                             "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
+                        },
+                        "methods": {
+                            "type": "array",
+                            "description": "Methods that are part of this resource type definition",
+                            "items": {"$ref": "methods.json#/definitions/Method10"}
+                        },
+                        "uriParameters": {
+                            "type": "object",
+                            "description": "Detailed information about any URI parameters of this resource",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+                            }
                         },
                         "__METADATA__": {
                             "type": "object"
