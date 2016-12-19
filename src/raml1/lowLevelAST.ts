@@ -199,6 +199,8 @@ export interface ILowLevelASTNode{
      * Indicates that contents of this node are !included
      */
     includesContents() : boolean;
+
+    containingUnit():ICompilationUnit;
 }
 
 export enum CommandKind{

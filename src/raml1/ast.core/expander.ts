@@ -124,7 +124,8 @@ export class TraitsAndResourceTypesExpander {
     expandTraitsAndResourceTypes(
         api:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher = null,
-        forceProxy:boolean=false):hl.IHighLevelNode {
+        forceProxy:boolean=false,
+        reusedAPI?:hl.IHighLevelNode):hl.IHighLevelNode {
 
         this.init(api);
 
@@ -142,6 +143,10 @@ export class TraitsAndResourceTypesExpander {
         var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments);
         if (!result){
             return api;
+        }
+        if(reusedAPI) {
+            (<hlimpl.ASTNodeImpl>hlNode).setReusedNode(reusedAPI);
+            (<hlimpl.ASTNodeImpl>hlNode).setReuseMode(true);
         }
         return result;
     }

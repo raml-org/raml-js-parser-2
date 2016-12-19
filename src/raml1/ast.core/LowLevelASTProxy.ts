@@ -113,6 +113,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     unit():ll.ICompilationUnit { return this._originalNode.unit(); }
 
+    containingUnit():ll.ICompilationUnit { return this._originalNode.containingUnit(); }
+
     includeBaseUnit():ll.ICompilationUnit { return this._originalNode.unit(); }
 
     anchorId():string { return this._originalNode.anchorId(); }
@@ -613,6 +615,19 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         });
         this._children = filtered;
     }
+
+    containingUnit():ll.ICompilationUnit{
+        var paths = {};
+        for(var n of this.adoptedNodes()){
+            paths[n.containingUnit().absolutePath()] = true;
+        }
+        if(Object.keys(paths).length<=1){
+            return this._originalNode.containingUnit();
+        }
+        return null;
+    }
+
+
 }
 
 interface ChildEntry {

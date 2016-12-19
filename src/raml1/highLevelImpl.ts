@@ -92,6 +92,8 @@ export class BasicASTNode implements hl.IParseResult {
 
     private static CLASS_IDENTIFIER = "highLevelImpl.BasicASTNode";
 
+    protected _reuseMode;
+
     public static isInstance(instance : any) : instance is BasicASTNode {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
@@ -367,6 +369,14 @@ export class BasicASTNode implements hl.IParseResult {
 
     property():hl.IProperty{
         return null;
+    }
+
+    reuseMode():boolean{
+        return this._reuseMode;
+    }
+
+    setReuseMode(val:boolean){
+        this._reuseMode = val;
     }
 }
 
@@ -1280,6 +1290,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
      */
     private slave : hl.IParseResult;
 
+    private _reusedNode: IHighLevelNode;
+
     constructor(node:ll.ILowLevelASTNode, parent:hl.IHighLevelNode,private _def:hl.INodeDefinition,private _prop:hl.IProperty){
         super(node,parent)
         if(node) {
@@ -2028,6 +2040,26 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             }
         });
         return result;
+    }
+
+    setReuseMode(val:boolean){
+        this._reuseMode = val;
+        if(this._children && this.lowLevel().valueKind()!=yaml.Kind.SEQ){
+            this._children.forEach(x=>(<BasicASTNode>x).setReuseMode(val));
+        }
+    }
+
+    reusedNode(): hl.IHighLevelNode{
+        return this._reusedNode;
+    }
+
+    setReusedNode(n:hl.IHighLevelNode){
+        this._reusedNode = n;
+    }
+    
+    resetRuntimeTypes(){
+        delete this._associatedDef;
+        this.elements().forEach(x=>(<ASTNodeImpl>x).resetRuntimeTypes());
     }
 }
 

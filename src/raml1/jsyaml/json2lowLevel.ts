@@ -223,6 +223,10 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
 
     unit(){ return this._unit; }
 
+    containingUnit(){
+        return this._unit;
+    }
+
     includeBaseUnit(){ return this._unit; }
 
     anchorId(){ return null; }
