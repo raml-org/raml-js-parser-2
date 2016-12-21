@@ -2582,6 +2582,13 @@ class CompositeNodeValidator implements NodeValidator {
             }
 
         }
+        var nodeName = node.name();
+        if(nodeName==null){
+            nodeName = node.lowLevel().key();
+            if(nodeName==null){
+                nodeName = "";
+            }
+        }
         if (node.definition().key()==universes.Universe08.GlobalSchema){
             if (node.lowLevel().valueKind()!=yaml.Kind.SCALAR){
                 var isString=false;
@@ -2593,7 +2600,7 @@ class CompositeNodeValidator implements NodeValidator {
                 }
                 if (!isString) {
                     acceptor.accept(createIssue1(messageRegistry.SCHEMA_NAME_MUST_BE_STRING,
-                        {name: node.name()}, node))
+                        {name: nodeName}, node))
                 }
             }
 
@@ -2693,7 +2700,7 @@ class CompositeNodeValidator implements NodeValidator {
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
                 if (nodeValue!='~') {
-                    var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: node.name()}, node)
+                    var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: nodeName}, node)
                     acceptor.accept(i);
                 }
             }
