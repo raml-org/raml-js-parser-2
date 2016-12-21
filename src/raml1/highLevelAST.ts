@@ -338,6 +338,10 @@ export interface IParseResult {
      * RAML version
      */
     version();
+    
+    setJSON(val:any);
+    
+    getJSON():any;
 }
 
 export function isParseResult(object : any) : object is IParseResult {

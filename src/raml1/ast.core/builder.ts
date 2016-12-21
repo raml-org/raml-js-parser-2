@@ -379,10 +379,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                 if (rChild) {
                                     gotReuse = true;
                                     res.push(rChild);
-                                    // console.log(JSON.stringify({
-                                    //     "property": p.nameId(),
-                                    //     "value": tckDumperHL.dump(rChild,{})
-                                    // },null,2));
+                                    (<hlimpl.BasicASTNode>rChild).setReused(true);
                                     rChild.setParent(aNode);
                                     if(rChild.isElement()) {
                                         (<hlimpl.ASTNodeImpl>rChild).resetRuntimeTypes();

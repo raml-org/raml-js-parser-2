@@ -25,6 +25,20 @@ export function dump(node: hl.IHighLevelNode|hl.IAttribute, options:SerializeOpt
     return new TCKDumper(options).dump(node);
 }
 
+var getRootPath = function (node:hl.IParseResult) {
+    var rootPath:string;
+    var rootNode = node.root();
+    if (rootNode) {
+        var llRoot = rootNode.lowLevel();
+        if (llRoot) {
+            var rootUnit = llRoot.unit()
+            if (rootUnit) {
+                rootPath = rootUnit.absolutePath();
+            }
+        }
+    }
+    return rootPath;
+};
 export class TCKDumper {
 
     constructor(private options?:SerializeOptions) {
@@ -47,7 +61,8 @@ export class TCKDumper {
     dump(node:hl.IParseResult):any {
         var highLevelParent = node.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
-        var result = this.dumpInternal(node, null, true, rootNodeDetails);
+        var rootPath = getRootPath(node);
+        var result = this.dumpInternal(node, null, rootPath,true);
         if (rootNodeDetails) {
             var obj:any = result;
             result= {};            
@@ -67,13 +82,21 @@ export class TCKDumper {
         return result;
     }
 
-    dumpInternal(_node:hl.IParseResult, nodeProperty:hl.IProperty, isRoot = false, rootNodeDetails = false):any {
+    dumpInternal(_node:hl.IParseResult, nodeProperty:hl.IProperty, rp:string,isRoot = false):any {
 
         if (_node == null) {
             return null;
         }
 
+        if((<hlImpl.BasicASTNode>_node).isReused()) {
+            var reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
+            if(reusedJSON!=null){
+                //console.log(_node.id());
+                return reusedJSON;
+            }
+        }
 
+        var result:any = {};
         if (_node.isElement()) {
 
             var map:{[key:string]:PropertyValue} = {};
@@ -82,158 +105,159 @@ export class TCKDumper {
 
             if(universeHelpers.isExampleSpecType(definition)){
                 if(eNode.parent()!=null){
-                    return "";//to be fulfilled by the transformer
+                    result = "";//to be fulfilled by the transformer
                 }
-                var at = hlImpl.auxiliaryTypeForExample(eNode);
-                var eObj:any = helpersHL.dumpExpandableExample(
-                    at.examples()[0],this.options.dumpXMLRepresentationOfExamples);
-                var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x,x.property()));
-                if(uses.length>0){
-                    eObj["uses"] = uses;
+                else {
+                    var at = hlImpl.auxiliaryTypeForExample(eNode);
+                    var eObj:any = helpersHL.dumpExpandableExample(
+                        at.examples()[0], this.options.dumpXMLRepresentationOfExamples);
+                    var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
+                    if (uses.length > 0) {
+                        eObj["uses"] = uses;
+                    }
+                    result = eObj;
                 }
-                return eObj;
             }
+            else {
+                var obj:any = {};
+                var children = (<hl.IParseResult[]>eNode.attrs())
+                    .concat(eNode.children().filter(x=>!x.isAttr()));
+                for (var ch of children) {
+                    var prop = ch.property();
+                    if (prop != null) {
+                        var pName = prop.nameId();
+                        var pVal = map[pName];
+                        if (pVal == null) {
+                            pVal = new PropertyValue(prop);
+                            map[pName] = pVal;
+                        }
+                        pVal.registerValue(ch);
+                    }
+                    else {
+                        var llNode = ch.lowLevel();
+                        var key = llNode.key();
+                        if (key) {
+                            //obj[key] = llNode.dumpToObject(); 
+                        }
+                    }
+                }
+                var scalarsAnnotations = {};
+                for (var p of definition.allProperties()
+                    .concat((<def.NodeClass>definition).allCustomProperties())) {
 
-            var obj:any = {};
-            var children = (<hl.IParseResult[]>eNode.attrs())
-                .concat(eNode.children().filter(x=>!x.isAttr()));
-            for( var ch of children){
-                var prop = ch.property();                
-                if(prop!=null) {
-                    var pName = prop.nameId();
+                    if (def.UserDefinedProp.isInstance(p)) {
+                        continue;
+                    }
+                    if (universeHelpers.isTypeProperty(p)) {
+                        if (map["schema"]) {
+                            continue;
+                        }
+                    }
+
+                    var pName = p.nameId();
+                    //TODO implement as transformer or ignore case
+                    if (!isRoot && pName == "uses") {
+                        if (universeHelpers.isApiSibling(eNode.root().definition())) {
+                            continue;
+                        }
+                    }
                     var pVal = map[pName];
-                    if(pVal==null){
-                        pVal = new PropertyValue(prop);
-                        map[pName] = pVal;
-                    }
-                    pVal.registerValue(ch);
-                }
-                else{
-                    var llNode = ch.lowLevel();
-                    var key = llNode.key();
-                    if(key){
-                        //obj[key] = llNode.dumpToObject(); 
-                    }
-                }
-            }
-            var result:any = {};
-            var scalarsAnnotations = {};
-            for(var p of definition.allProperties()
-                .concat((<def.NodeClass>definition).allCustomProperties())){
-                
-                if(def.UserDefinedProp.isInstance(p)){
-                    continue;
-                }
-                if(universeHelpers.isTypeProperty(p)){
-                    if(map["schema"]){
-                        continue;
-                    }
-                }
-
-                var pName = p.nameId();
-                //TODO implement as transformer or ignore case
-                if(!isRoot&&pName=="uses"){
-                    if(universeHelpers.isApiSibling(eNode.root().definition())) {
-                        continue;
-                    }
-                }
-                var pVal = map[pName];
-                pVal = applyHelpers(pVal,eNode,p,this.options.serializeMetadata);
-                var udVal = obj[pName];
-                let aVal:any;
-                if(pVal!==undefined){
-                    if(pVal.isMultiValue) {
-                        aVal = pVal.arr.map(x=>this.dumpInternal(x,pVal.prop));
-                        if(p.isValueProperty()) {
-                            var sAnnotations = [];
-                            var gotScalarAnnotations = false;
-                            pVal.arr.filter(x=>x.isAttr()).map(x=>x.asAttr())
-                                .filter(x=>x.isAnnotatedScalar()).forEach(x=> {
-                                var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x,null));
-                                gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length>0;
-                                sAnnotations.push(sAnnotations1);
-                            });
-                            if(gotScalarAnnotations){
-                                scalarsAnnotations[pName] = sAnnotations;
-                            }
-                        }
-                        if(universeHelpers.isTypeDeclarationDescendant(definition)
-                            &&universeHelpers.isTypeProperty(p)){
-                            //TODO compatibility crutch
-                            if(pVal.arr.map(x=>(<hl.IAttribute>x).value())
-                                    .filter(x=>hlImpl.isStructuredValue(x)).length>0){
-                                aVal = aVal[0];
-                            }
-                        }
-                    }
-                    else{
-                        aVal = this.dumpInternal(pVal.val,pVal.prop);
-                        if(p.isValueProperty()) {
-                            var attr = pVal.val.asAttr();
-                            if(attr.isAnnotatedScalar()) {
-                                var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x,null));
-                                if (sAnnotations.length > 0) {
+                    pVal = applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
+                    var udVal = obj[pName];
+                    let aVal:any;
+                    if (pVal !== undefined) {
+                        if (pVal.isMultiValue) {
+                            aVal = pVal.arr.map(x=>this.dumpInternal(x, pVal.prop,rp));
+                            if (p.isValueProperty()) {
+                                var sAnnotations = [];
+                                var gotScalarAnnotations = false;
+                                pVal.arr.filter(x=>x.isAttr()).map(x=>x.asAttr())
+                                    .filter(x=>x.isAnnotatedScalar()).forEach(x=> {
+                                    var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length > 0;
+                                    sAnnotations.push(sAnnotations1);
+                                });
+                                if (gotScalarAnnotations) {
                                     scalarsAnnotations[pName] = sAnnotations;
                                 }
                             }
-                        }
-                    }
-                    
-                }
-                else if(udVal !== undefined){
-                    aVal = udVal;
-                }
-                else if(this.options.attributeDefaults){
-                    var defVal = this.getDefaultsCalculator().attributeDefaultIfEnabled(eNode, p);
-                    if(Array.isArray(defVal)){
-                        defVal = defVal.map(x=>{
-                            if(hlImpl.isASTPropImpl(x)){
-                                return this.dumpInternal(<hl.IParseResult>x,p);
-                            }
-                            return x;
-                        });
-                    }
-                    else if(hlImpl.isASTPropImpl(defVal)){
-                        defVal = this.dumpInternal(<hl.IParseResult>defVal,p);
-                    }
-                    aVal = defVal;
-                    if(aVal != null && p.isMultiValue()&&!Array.isArray(aVal)){
-                        aVal = [aVal];
-                    }
-                }
-                aVal = tckDumper.applyTransformersMap(eNode,p,aVal,this.oDumper.nodePropertyTransformersMap);
-                if(aVal != null) {
-                    //TODO implement as transformer
-                    if((pName === "type" || pName == "schema") && aVal && aVal.forEach && typeof aVal[0] === "string") {
-                        var schemaString = aVal[0].trim();
-
-                        var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
-                        var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
-
-                        if(canBeJson || canBeXml) {
-                            var include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
-
-                            if(include) {
-                                var aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
-
-                                var relativePath;
-
-                                if(aPath.indexOf("http://") === 0 || aPath.indexOf("https://") === 0) {
-                                    relativePath = aPath;
-                                } else {
-                                    relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);
+                            if (universeHelpers.isTypeDeclarationDescendant(definition)
+                                && universeHelpers.isTypeProperty(p)) {
+                                //TODO compatibility crutch
+                                if (pVal.arr.map(x=>(<hl.IAttribute>x).value())
+                                        .filter(x=>hlImpl.isStructuredValue(x)).length > 0) {
+                                    aVal = aVal[0];
                                 }
-
-                                relativePath = relativePath.replace(/\\/g,'/');
-
-                                result["schemaPath"] = relativePath;
                             }
                         }
+                        else {
+                            aVal = this.dumpInternal(pVal.val, pVal.prop,rp);
+                            if (p.isValueProperty()) {
+                                var attr = pVal.val.asAttr();
+                                if (attr.isAnnotatedScalar()) {
+                                    var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    if (sAnnotations.length > 0) {
+                                        scalarsAnnotations[pName] = sAnnotations;
+                                    }
+                                }
+                            }
+                        }
+
                     }
-                    result[pName] = aVal;
+                    else if (udVal !== undefined) {
+                        aVal = udVal;
+                    }
+                    else if (this.options.attributeDefaults) {
+                        var defVal = this.getDefaultsCalculator().attributeDefaultIfEnabled(eNode, p);
+                        if (Array.isArray(defVal)) {
+                            defVal = defVal.map(x=> {
+                                if (hlImpl.isASTPropImpl(x)) {
+                                    return this.dumpInternal(<hl.IParseResult>x, p,rp);
+                                }
+                                return x;
+                            });
+                        }
+                        else if (hlImpl.isASTPropImpl(defVal)) {
+                            defVal = this.dumpInternal(<hl.IParseResult>defVal, p,rp);
+                        }
+                        aVal = defVal;
+                        if (aVal != null && p.isMultiValue() && !Array.isArray(aVal)) {
+                            aVal = [aVal];
+                        }
+                    }
+                    aVal = tckDumper.applyTransformersMap(eNode, p, aVal, this.oDumper.nodePropertyTransformersMap);
+                    if (aVal != null) {
+                        //TODO implement as transformer
+                        if ((pName === "type" || pName == "schema") && aVal && aVal.forEach && typeof aVal[0] === "string") {
+                            var schemaString = aVal[0].trim();
+
+                            var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                            var canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+
+                            if (canBeJson || canBeXml) {
+                                var include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
+
+                                if (include) {
+                                    var aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
+
+                                    var relativePath;
+
+                                    if (aPath.indexOf("http://") === 0 || aPath.indexOf("https://") === 0) {
+                                        relativePath = aPath;
+                                    } else {
+                                        relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);
+                                    }
+
+                                    relativePath = relativePath.replace(/\\/g, '/');
+
+                                    result["schemaPath"] = relativePath;
+                                }
+                            }
+                        }
+                        result[pName] = aVal;
+                    }
                 }
-            }
-            if (this.options.dumpSchemaContents&&map["schema"]) {
+                if (this.options.dumpSchemaContents && map["schema"]) {
                     if (map["schema"].prop.range().key() == universes.Universe08.SchemaString) {
                         var schemas = eNode.root().elementsOfKind("schemas");
                         schemas.forEach(x=> {
@@ -246,25 +270,25 @@ export class TCKDumper {
                             }
                         })
                     }
-            }
-            if(this.options.serializeMetadata) {
-                this.serializeMeta(result, eNode);
-            }
-            if(Object.keys(scalarsAnnotations).length>0){
-                result["scalarsAnnotations"] = scalarsAnnotations;
-            }
-            var pProps = helpersHL.getTemplateParametrizedProperties(eNode);
-            if(pProps){
-                result["parametrizedProperties"] = pProps;
-            }
-            if(universeHelpers.isTypeDeclarationDescendant(definition)){
-                var fixedFacets = helpersHL.typeFixedFacets(eNode);
-                if(fixedFacets){
-                    result["fixedFacets"] = fixedFacets;
                 }
+                if (this.options.serializeMetadata) {
+                    this.serializeMeta(result, eNode);
+                }
+                if (Object.keys(scalarsAnnotations).length > 0) {
+                    result["scalarsAnnotations"] = scalarsAnnotations;
+                }
+                var pProps = helpersHL.getTemplateParametrizedProperties(eNode);
+                if (pProps) {
+                    result["parametrizedProperties"] = pProps;
+                }
+                if (universeHelpers.isTypeDeclarationDescendant(definition)) {
+                    var fixedFacets = helpersHL.typeFixedFacets(eNode);
+                    if (fixedFacets) {
+                        result["fixedFacets"] = fixedFacets;
+                    }
+                }
+                result = tckDumper.applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.oDumper.nodeTransformersMap);
             }
-            result = tckDumper.applyTransformersMap(eNode,nodeProperty||eNode.property(),result,this.oDumper.nodeTransformersMap);
-            return result;
         }
         else if (_node.isAttr()) {
 
@@ -273,68 +297,74 @@ export class TCKDumper {
             var prop = aNode.property();
             var rangeType = prop.range();
             var isValueType = rangeType.isValueType();
+            var val:any;
             if (isValueType && aNode['value']) {
-                var val = aNode['value']();
-                if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
-                    return val;
-                }
-            }            
-            if(hlImpl.isStructuredValue(val)){
-                var sVal = (<hlImpl.StructuredValue>val);
-                var llNode = sVal.lowLevel();
-                val = llNode ? llNode.dumpToObject() : null;
-                var propName = prop.nameId();
-                if(rangeType.isAssignableFrom("Reference")){
-                    //TODO implement as transformer
-                    var key = Object.keys(val)[0];
-                    var name = sVal.valueName();
-                    var refVal = val[key];
-                    if(refVal===undefined){
-                        refVal = null;
-                    }
-                    val = {
-                        name: name,
-                        structuredValue: refVal
-                    }
-                }
-                else if(propName == "type") {
-                    var llNode = aNode.lowLevel();
-                    var tdl = null;
-                    var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                    var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                    var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
-                    tNode.patchType(builder.doDescrimination(tNode));
-                    val = this.dumpInternal(tNode,nodeProperty||aNode.property(),true);
-                }
-                else if (propName == "items"&& typeof val === "object") {
-                    var isArr = Array.isArray(val);
-                    var isObj = !isArr;
-                    if(isArr){
-                        isObj = _.find(val,x=>typeof(x)=="object")!=null;
-                    }
-                    if(isObj) {
-                        val = null;
-                        var a = _node.parent().lowLevel();
-                        var tdl = null;
-                        a.children().forEach(x=> {
-                            if (x.key() == "items") {
-                                var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                                var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                                var tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
-                                tNode.patchType(builder.doDescrimination(tNode));
-                                val = this.dumpInternal(tNode,nodeProperty||aNode.property(),true);
-                                propName = x.key();
-                            }
-                        })
-                    }
-                }
+                val = aNode['value']();                
             }
-            val = tckDumper.applyTransformersMap(aNode,nodeProperty||aNode.property(),val,this.oDumper.nodeTransformersMap);
-            return val;
+            if (val!=null&&(typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean')) {
+                result = val;
+            }
+            else {
+                if (hlImpl.isStructuredValue(val)) {
+                    var sVal = (<hlImpl.StructuredValue>val);
+                    var llNode = sVal.lowLevel();
+                    val = llNode ? llNode.dumpToObject() : null;
+                    var propName = prop.nameId();
+                    if (rangeType.isAssignableFrom("Reference")) {
+                        //TODO implement as transformer
+                        var key = Object.keys(val)[0];
+                        var name = sVal.valueName();
+                        var refVal = val[key];
+                        if (refVal === undefined) {
+                            refVal = null;
+                        }
+                        val = {
+                            name: name,
+                            structuredValue: refVal
+                        }
+                    }
+                    else if (propName == "type") {
+                        var llNode = aNode.lowLevel();
+                        var tdl = null;
+                        var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                        var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                        var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
+                        tNode.patchType(builder.doDescrimination(tNode));
+                        val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, true);
+                    }
+                    else if (propName == "items" && typeof val === "object") {
+                        var isArr = Array.isArray(val);
+                        var isObj = !isArr;
+                        if (isArr) {
+                            isObj = _.find(val, x=>typeof(x) == "object") != null;
+                        }
+                        if (isObj) {
+                            val = null;
+                            var a = _node.parent().lowLevel();
+                            var tdl = null;
+                            a.children().forEach(x=> {
+                                if (x.key() == "items") {
+                                    var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                                    var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                                    var tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
+                                    tNode.patchType(builder.doDescrimination(tNode));
+                                    val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, true);
+                                    propName = x.key();
+                                }
+                            })
+                        }
+                    }
+                }
+                val = tckDumper.applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.oDumper.nodeTransformersMap);
+                result = val;
+            }
         }
-        var llNode = _node.lowLevel();
-        return llNode ? llNode.dumpToObject() : null;
-
+        else {
+            var llNode = _node.lowLevel();
+            result = llNode ? llNode.dumpToObject() : null;
+        }
+        _node.setJSON(result);
+        return result;
     }
 
     getDefaultsCalculator() : defaultCalculator.AttributeDefaultsCalculator {

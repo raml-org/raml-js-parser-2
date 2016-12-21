@@ -292,13 +292,21 @@ function getProject(apiPath:string,options?:parserCoreApi.Options):jsyaml.Projec
     options = options || {};
     var includeResolver = options.fsResolver;
     var httpResolver = options.httpResolver;
-
-    var projectRoot = path.dirname(apiPath);
-    var project:jsyaml.Project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
+    var reusedNode = options.reusedNode;
+    var project:jsyaml.Project;
+    if(reusedNode){
+        project = <jsyaml.Project>reusedNode.lowLevel().unit().project();
+        project.deleteUnit(path.basename(apiPath));
+    }
+    else {
+        var projectRoot = path.dirname(apiPath);
+        project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
+    }
     return project;
 };
 
 function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:parserCoreApi.Options,checkApisOverlays=false):hl.IHighLevelNode {
+    options = options||{};
     if(!unitOrHighlevel){
         return null;
     }
@@ -361,6 +369,11 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
 
     if (!highLevel) {
         highLevel = <hl.IHighLevelNode>hlimpl.fromUnit(unit);
+        if(options.reusedNode) {
+            if(options.reusedNode.lowLevel().unit().absolutePath()==unit.absolutePath()) {
+                (<hlimpl.ASTNodeImpl>highLevel).setReusedNode(options.reusedNode);
+            }
+        }
         //highLevel =
         //    new hlimpl.ASTNodeImpl(unit.ast(), null, <any>apiType, null)
     }

@@ -92,7 +92,11 @@ export class BasicASTNode implements hl.IParseResult {
 
     private static CLASS_IDENTIFIER = "highLevelImpl.BasicASTNode";
 
-    protected _reuseMode;
+    protected _reuseMode:boolean;
+
+    protected _isReused:boolean;
+
+    protected _jsonCache:any;
 
     public static isInstance(instance : any) : instance is BasicASTNode {
         return instance != null && instance.getClassIdentifier
@@ -377,6 +381,23 @@ export class BasicASTNode implements hl.IParseResult {
 
     setReuseMode(val:boolean){
         this._reuseMode = val;
+    }
+
+    isReused(){
+        return this._isReused;
+    }
+
+    setReused(val:boolean){
+        this._isReused = val;
+        this.children().forEach(x=>(<BasicASTNode>x).setReused(val));
+    }
+
+    setJSON(val:any){
+        this._jsonCache = val;
+    }
+
+    getJSON(){
+        return this._jsonCache;
     }
 }
 

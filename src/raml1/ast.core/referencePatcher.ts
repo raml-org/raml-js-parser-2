@@ -56,6 +56,10 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver=new namespaceResolver.NamespaceResolver(),
         units:ll.ICompilationUnit[] = [ rootNode.lowLevel().unit() ]){
 
+        if( (<hlimpl.BasicASTNode><any>node).isReused()){
+            return;
+        }
+
         var isNode:proxy.LowLevelCompositeNode;
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();

@@ -124,8 +124,7 @@ export class TraitsAndResourceTypesExpander {
     expandTraitsAndResourceTypes(
         api:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher = null,
-        forceProxy:boolean=false,
-        reusedAPI?:hl.IHighLevelNode):hl.IHighLevelNode {
+        forceProxy:boolean=false):hl.IHighLevelNode {
 
         this.init(api);
 
@@ -143,10 +142,6 @@ export class TraitsAndResourceTypesExpander {
         var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments);
         if (!result){
             return api;
-        }
-        if(reusedAPI) {
-            (<hlimpl.ASTNodeImpl>hlNode).setReusedNode(reusedAPI);
-            (<hlimpl.ASTNodeImpl>hlNode).setReuseMode(true);
         }
         return result;
     }
@@ -171,7 +166,12 @@ export class TraitsAndResourceTypesExpander {
         if(!(templateApplied||forceExpand)){
             return null;
         }
-
+        if(hlimpl.ASTNodeImpl.isInstance(hlNode)) {
+            var hnode = <hlimpl.ASTNodeImpl>hlNode;  
+            if(hnode.reusedNode()) {
+                hnode.setReuseMode(true);
+            }
+        }
         if (this.ramlVersion=="RAML10") {
             rp = rp || new referencePatcher.ReferencePatcher();
             rp.process(hlNode);
@@ -241,7 +241,9 @@ export class TraitsAndResourceTypesExpander {
         var masterApi = highLevelNodes.pop();
         highLevelNodes = highLevelNodes.reverse();
         var mergeMode = api.getMergeMode();
-        return mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode, rp, forceProxy);
+        var result = mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode, rp, forceProxy);
+        (<hlimpl.ASTNodeImpl>result).setReusedNode(api.reusedNode());
+        return result;
     }
 
     private processResource(resource:hl.IHighLevelNode,_nodes:hl.IParseResult[]=[]):boolean {
