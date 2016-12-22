@@ -631,7 +631,7 @@ types:
     type: Pet
     properties:
       wingLength: number
-      
+
   PetCollection: Pet[]
 
   RandomPet: Mammal|Bird
@@ -647,7 +647,7 @@ In order to extract AST nodes, which describe types, we can use `Api.types()` me
 
 In the hierarchy, `ObjectTypeDeclaration` is basically RAML object type, `StringTypeDeclaration` is a string, `NumberTypeDeclaration` is a number, `UnionTypeDeclaration` represents a union type etc.
 
-Now we can print all the type names names using the `TypeDeclaration.name` method:
+Now we can print all the type names using the `TypeDeclaration.name` method:
 
 ```js
 api.types().forEach(function (type) {
@@ -1384,7 +1384,7 @@ api.annotationTypes().filter(function(aType){
 api.annotationTypes().filter(function(aType){
     return aType.name()=="MyObjectAnnotation"
 }).forEach(function(aType){
-    
+
     console.log("annotation type");
     console.log("  name:",aType.name());
     console.log("  type:",aType.type());
@@ -1414,7 +1414,7 @@ The same operation can be performed by means of nominal type system:
 ```js
 	api.annotationTypes().forEach(function(aType){
 	    //see "Supertypes and Subtypes" section of the "Types" chapter
-	    //for "printHierarchyAndProperties" definition 
+	    //for "printHierarchyAndProperties" definition
 	    printHierarchyAndProperties(aType.localType());
 	    console.log();
 	});
@@ -1469,7 +1469,7 @@ api.childResource("/resource").annotations().forEach(function(aRef){
 
     console.log("referenced annotation:");
     //see "Supertypes and Subtypes" section of the "Types" chapter
-	//for "printHierarchyAndProperties" definition 
+	//for "printHierarchyAndProperties" definition
     printHierarchyAndProperties(aRef.annotation().localType());
     console.log("value:", JSON.stringify(aRef.structuredValue().toJSON(),null,2));
     console.log();
