@@ -1,4 +1,5 @@
 /// <reference path="../../typings/main.d.ts" />
+import {instanceOfPatchedReference} from "../raml1/ast.core/referencePatcher";
 var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
@@ -17,6 +18,7 @@ import util = require("../util/index")
 import _ = require("underscore");
 
 import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
+import helpersHL = require("../raml1/wrapped-ast/helpersHL");
 
 var pathUtils = require("path");
 
@@ -27,6 +29,8 @@ export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMet
     }).dump(node);
 }
 
+export type TransformersMap = {[key:string]:{[key:string]:{[key:string]:Transformation[]}}}; 
+
 export class TCKDumper {
 
     constructor(private options?:SerializeOptions) {
@@ -34,41 +38,45 @@ export class TCKDumper {
         if (this.options.serializeMetadata == null) {
             this.options.serializeMetadata = true;
         }
+        this.nodeTransformers = [
+            new ResourcesTransformer(),
+            new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
+            new ExamplesTransformer(this.options.dumpXMLRepresentationOfExamples),
+            //new ParametersTransformer(),
+            new ArrayExpressionTransformer(),
+            new TypesTransformer(),
+            //new UsesTransformer(),
+            //new PropertiesTransformer(),
+            //new ResponsesTransformer(),
+            //new BodiesTransformer(),
+            //new AnnotationsTransformer(),
+            new SecuritySchemesTransformer(),
+            new AnnotationTypesTransformer(),
+            new TemplateParametrizedPropertiesTransformer(),
+            new TraitsTransformer(),
+            new ResourceTypesTransformer(),
+            //new FacetsTransformer(),
+            new SchemasTransformer(),
+            new ProtocolsToUpperCaseTransformer(),
+            new ResourceTypeMethodsToMapTransformer(),
+            new ReferencesTransformer(),
+            new SimpleNamesTransformer(),
+            //new OneElementArrayTransformer()
+        ];
+        fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
+        fillTransformersMap(this.nodePropertyTransformers,this.nodePropertyTransformersMap);
     }
 
-    private nodeTransformers:Transformation[] = [
-        new ResourcesTransformer(),
-        new TypeExampleTransformer(),
-        //new ParametersTransformer(),
-        new ArrayExpressionTransformer(),
-        new TypesTransformer(),
-        //new UsesTransformer(),
-        //new PropertiesTransformer(),
-        //new ExamplesTransformer(),
-        //new ResponsesTransformer(),
-        //new BodiesTransformer(),
-        //new AnnotationsTransformer(),
-        new SecuritySchemesTransformer(),
-        new AnnotationTypesTransformer(),
-        new TemplateParametrizedPropertiesTransformer(),
-        new TraitsTransformer(),
-        new ResourceTypesTransformer(),
-        //new FacetsTransformer(),
-        new SchemasTransformer(),
-        new ProtocolsToUpperCaseTransformer(),
-        new ResourceTypeMethodsToMapTransformer(),
-        new ReferencesTransformer(),
-        new SimpleNamesTransformer(),
-        //new OneElementArrayTransformer()
-    ];
+    nodeTransformers:Transformation[];
 
-    private nodePropertyTransformers:Transformation[] = [
+    nodePropertyTransformers:Transformation[] = [
         //new ResourcesTransformer(),
         //new TypeExampleTransformer(),
         new ParametersTransformer(),
         //new TypesTransformer(),
         //new UsesTransformer(),
         new PropertiesTransformer(),
+        new TypeValueTransformer(),
         // //new ExamplesTransformer(),
         new ResponsesTransformer(),
         new BodiesTransformer(),
@@ -85,15 +93,18 @@ export class TCKDumper {
         //new ReferencesTransformer(),
         new OneElementArrayTransformer()
     ];
+    
+    nodeTransformersMap:TransformersMap = {};
+    nodePropertyTransformersMap:TransformersMap = {};
 
     private ignore:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
-        new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isDisplayNameProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isDisplayNameProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isAnnotationRefTypeOrDescendant, universeHelpers.isAnnotationProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemeRefType, universeHelpers.isSecuritySchemeProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isTraitRefType, universeHelpers.isTraitProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeRefType, universeHelpers.isResourceTypeProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isRAMLVersionProperty)
+        new BasicObjectPropertyMatcher(universes.Universe10.Response.name, universes.Universe10.TypeDeclaration.properties.displayName.name),
+        new BasicObjectPropertyMatcher(universes.Universe10.Api.name, universes.Universe10.TypeDeclaration.properties.displayName.name,true),
+        new BasicObjectPropertyMatcher(universes.Universe10.AnnotationRef.name, universes.Universe10.AnnotationRef.properties.annotation.name),
+        new BasicObjectPropertyMatcher(universes.Universe10.SecuritySchemeRef.name, universes.Universe10.SecuritySchemeRef.properties.securityScheme.name),
+        new BasicObjectPropertyMatcher(universes.Universe10.TraitRef.name, universes.Universe10.TraitRef.properties.trait.name),
+        new BasicObjectPropertyMatcher(universes.Universe10.ResourceTypeRef.name, universes.Universe10.ResourceTypeRef.properties.resourceType.name),
+        new BasicObjectPropertyMatcher(universes.Universe10.Api.name, universes.Universe10.Api.properties.RAMLVersion.name,true)
     ]);
 
     private missingProperties:PropertiesData = new PropertiesData();
@@ -196,8 +207,8 @@ export class TCKDumper {
             var obj = this.dumpProperties(props, node);
 
             this.nodeTransformers.forEach(x=> {
-                if (x.match(node, node.highLevel().property())) {
-                    obj = x.transform(obj,node);
+                if (x.match(node.highLevel(), node.highLevel().property())) {
+                    obj = x.transform(obj,node.highLevel());
                 }
             });
 
@@ -403,8 +414,8 @@ export class TCKDumper {
                     return;
                 }
                 for (var x of this.nodePropertyTransformers) {
-                    if (x.match(node, property)) {
-                        propertyValue = x.transform(propertyValue, node);
+                    if (x.match(node.highLevel(), property)) {
+                        propertyValue = x.transform(propertyValue, node.highLevel());
                     }
                 }
                 obj[propName] = propertyValue;
@@ -416,8 +427,8 @@ export class TCKDumper {
                 }
                 if (core.BasicNodeImpl.isInstance(node)) {
                     this.nodePropertyTransformers.forEach(x=> {
-                        if (x.match(node, property)) {
-                            val = x.transform(val, node);
+                        if (x.match(node.highLevel(), property)) {
+                            val = x.transform(val, node.highLevel());
                         }
                     });
                 }
@@ -517,42 +528,163 @@ export class TCKDumper {
 
 }
 
-interface Transformation{
+export interface Transformation{
 
-    match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean
+    match(node:hl.IParseResult,prop:nominals.IProperty):boolean
 
-    transform(value:any,node?:coreApi.BasicNode|coreApi.AttributeNode)
+    transform(value:any,node?:hl.IParseResult);
+
+    registrationInfo():Object;
 }
 
 interface ObjectPropertyMatcher{
 
     match(td:nominals.ITypeDefinition,prop:nominals.IProperty):boolean
+
+    registrationInfo():Object;
 }
 
-class BasicObjectPropertyMatcher implements ObjectPropertyMatcher{
-
-    constructor(
-        protected typeMatcher: (x:nominals.ITypeDefinition)=>boolean,
-        protected propMatcher: (x:nominals.IProperty)=>boolean
-    ){}
+abstract class AbstractObjectPropertyMatcher implements ObjectPropertyMatcher{
 
     match(td:nominals.ITypeDefinition,prop:nominals.IProperty):boolean{
-        return (td==null||this.typeMatcher(td))&&((prop==null) || this.propMatcher(prop));
+        if(td==null){
+            return false;
+        }
+        var info = this.registrationInfo();
+        var ver = td.universe().version();
+        if(td instanceof def.UserDefinedClass || td.isUserDefined()){
+            td = _.find(td.allSuperTypes(),x=>!x.isUserDefined());
+            if(td==null){
+                return prop==null;
+            }
+        }
+        var uObject = info[ver];
+        if(!uObject){
+            return false;
+        }
+        var tObject = uObject[td.nameId()];
+        if(!tObject){
+            return false;
+        }
+        var p = (prop == null) || tObject[prop.nameId()]===true || tObject["__$$anyprop__"] === true;
+        return p;
+    }
+
+    abstract registrationInfo():Object
+}
+
+class BasicObjectPropertyMatcher extends AbstractObjectPropertyMatcher{
+
+    constructor(
+        protected typeName:string,
+        protected propName:string,
+        protected applyToDescendatns:boolean = false,
+        protected restrictToUniverses: string[]
+            = ["RAML10","RAML08"]
+    ){
+        super();
+    }
+
+    private regInfo:any;
+
+    registrationInfo():Object{
+        if(this.regInfo){
+            return this.regInfo;
+        }
+        var result = {};
+        var uObjects:any[] = [];
+        for(var uName of this.restrictToUniverses){
+            var uObj = {};
+            result[uName] = uObj;
+            uObjects.push(uObj);
+        }
+        var tObjects:any[] = [];
+        for(var uName of Object.keys(result)){
+            var t = def.getUniverse(uName).type(this.typeName);
+            if(t) {
+                var uObject = result[uName];
+                var typeNames = [this.typeName];
+                if (this.applyToDescendatns) {
+                    t.allSubTypes().forEach(x=>typeNames.push(x.nameId()));
+                }
+                for (var tName of typeNames) {
+                    var tObject = {};
+                    if(this.propName!=null) {
+                        tObject[this.propName] = true;
+                    }
+                    else{
+                        tObject["__$$anyprop__"] = true;                        
+                    }                    
+                    uObject[tName] = tObject;
+                }
+            }
+        }
+
+        this.regInfo = {};
+        Object.keys(result).forEach(x=>{
+            var uObject = result[x];
+            if(Object.keys(uObject).length>0){
+                this.regInfo[x] = uObject;
+            }
+        });
+        return this.regInfo;
     }
 }
 
-class CompositeObjectPropertyMatcher implements ObjectPropertyMatcher{
+abstract class MatcherBasedTransformation implements Transformation{
 
-    constructor(protected matchers:ObjectPropertyMatcher[]){}
+    constructor(protected matcher:ObjectPropertyMatcher){}
 
-    match(td:nominals.ITypeDefinition,prop:nominals.IProperty):boolean{
-        var l = this.matchers.length;
-        for(var i = 0 ; i < l ; i++){
-            if(this.matchers[i].match(td,prop)){
-                return true;
+    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+        var definition:hl.ITypeDefinition;
+        if(node.isElement()) {
+            definition = node.asElement().definition();
+        }
+        else if(node.isAttr()){
+            var prop1 = node.asAttr().property();
+            if(prop1){
+                definition = prop1.range();
             }
         }
-        return false;
+        return definition ? this.matcher.match(definition,prop) : false;
+    }
+
+    abstract transform(_value:any,node?:hl.IParseResult);
+
+    registrationInfo():Object{
+        return this.matcher.registrationInfo();
+    }
+
+}
+
+abstract class BasicTransformation extends MatcherBasedTransformation{
+
+    constructor(
+        protected typeName:string,
+        protected propName:string,
+        protected applyToDescendatns:boolean = false,
+        protected restrictToUniverses: string[]
+            = ["RAML10","RAML08"]
+    ){
+        super(new BasicObjectPropertyMatcher(typeName,propName,applyToDescendatns,restrictToUniverses));
+    }
+
+}
+
+class CompositeObjectPropertyMatcher extends AbstractObjectPropertyMatcher{
+
+    constructor(protected matchers:ObjectPropertyMatcher[]){
+        super();
+    }
+
+    private regInfo:any;
+
+    registrationInfo():Object{
+        if(this.regInfo){
+            return this.regInfo;
+        }
+        this.regInfo = mergeRegInfos(this.matchers.map(x=>x.registrationInfo()));
+        return this.regInfo;
     }
 }
 
@@ -560,8 +692,8 @@ class ArrayToMapTransformer implements Transformation{
 
     constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return this.matcher.match(node.definition(),prop);
+    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+        return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
     }
 
     transform(value:any){
@@ -587,17 +719,20 @@ class ArrayToMapTransformer implements Transformation{
         return value;
     }
 
+    registrationInfo():Object{
+        return this.matcher.registrationInfo();
+    }
 }
 
 class ArrayToMappingsArrayTransformer implements Transformation{
 
     constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return this.matcher.match(node.definition ? node.definition():null,prop);
+    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+        return this.matcher.match(node.isElement() ? node.asElement().definition():null,prop);
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)){
             return value;
         }
@@ -608,22 +743,24 @@ class ArrayToMappingsArrayTransformer implements Transformation{
         }
     }
 
+    registrationInfo():Object{
+        return this.matcher.registrationInfo();
+    }
 }
 
 class ParametersTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isBaseUriParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isUriParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isHeadersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isHeadersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isHeadersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isBodyLikeType,universeHelpers.isFormParametersProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
         ]),"name");
     }
 
@@ -633,21 +770,16 @@ class TypesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isTypesProperty),
-            new BasicObjectPropertyMatcher(
-                x=>universeHelpers.isLibraryBaseSibling(x)&&universeHelpers.isRAML10Type(x)
-                ,universeHelpers.isSchemasProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.types.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.schemas.name,true)
         ]),"name");
     }
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean {
-        var res = node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
-
-        if(res) {
-            return true;
-        } else {
-            return false;
+    transform(value:any,node:hl.IParseResult){
+        if(node.parent()==null||!universeHelpers.isLibraryBaseSibling(node.parent().definition())){
+            return value;
         }
+        return super.transform(value,node);
     }
 
 }
@@ -656,7 +788,7 @@ class UsesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isUsesProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.uses.name,true)
         ]),"name");
     }
 
@@ -666,7 +798,7 @@ class PropertiesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isObjectTypeDeclarationSibling,universeHelpers.isPropertiesProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
         ]),"name");
     }
 
@@ -676,7 +808,8 @@ class ResponsesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling,universeHelpers.isResponsesProperty)
+            //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
         ]),"code");
     }
 }
@@ -685,7 +818,7 @@ class AnnotationsTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(x=>true,universeHelpers.isAnnotationsProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
         ]),"name");
     }
 }
@@ -694,8 +827,8 @@ class BodiesTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isResponseType,universeHelpers.isBodyProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling,universeHelpers.isBodyProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
+            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
         ]),"name");
     }
 
@@ -705,8 +838,15 @@ class TraitsTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isTraitsProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.Trait.name,null)
         ]),"name");
+    }
+    
+    transform(value,node){
+        // if(node.parent()==null){
+        //     return value;
+        // }
+        return super.transform(value,node);
     }
 }
 
@@ -714,11 +854,11 @@ class ResourceTypesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType,universeHelpers.isResourceTypesProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceType.name,null)
         ]),"name");
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         var methodsPropertyName = universes.Universe10.ResourceBase.properties.methods.name;
         if(Array.isArray(value)) {
             return value;
@@ -735,7 +875,10 @@ class ResourceTypesTransformer extends ArrayToMappingsArrayTransformer{
                 })
             }
             delete value[methodsPropertyName];
-            return super.transform(value);
+            // if(node.parent()==null){
+            //     return value;
+            // }
+            return super.transform(value,node);
         }
     }
 }
@@ -744,7 +887,7 @@ class FacetsTransformer extends ArrayToMapTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling,universeHelpers.isFacetsProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
         ]),"name");
     }
 }
@@ -752,11 +895,16 @@ class FacetsTransformer extends ArrayToMapTransformer{
 class SecuritySchemesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
-        super(null,"name");
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.AbstractSecurityScheme.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.AbstractSecurityScheme.name,universes.Universe08.Api.properties.securitySchemes.name,true)
+        ]),"name");
     }
-
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return prop != null && universeHelpers.isSecuritySchemesProperty(prop);
+    transform(value:any,node:hl.IParseResult){
+        // if(node.parent()==null){
+        //     return value;
+        // }
+        return super.transform(value,node);
     }
 }
 
@@ -764,12 +912,15 @@ class AnnotationTypesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isAnnotationTypesProperty)
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
         ]),"name");
     }
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
+    transform(value:any,node:hl.IParseResult){
+        if(node.parent()==null){
+            return value;
+        }
+        return super.transform(value,node);
     }
 
 }
@@ -777,13 +928,16 @@ class AnnotationTypesTransformer extends ArrayToMappingsArrayTransformer{
 class ResourceTypeMethodsToMapTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
-        super(null,"method");
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.Method.name,universes.Universe10.ResourceBase.properties.methods.name)
+        ]),"method");
     }
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return node.parent()!=null
-            && universeHelpers.isResourceTypeType(node.parent().definition())
-            && universeHelpers.isMethodsProperty(prop);
+    transform(value:any,node:hl.IParseResult){
+        if(node.parent()==null||!universeHelpers.isResourceTypeType(node.parent().definition())){
+            return value;
+        }
+        return super.transform(value,node);
     }
 }
 
@@ -791,66 +945,81 @@ var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
 var exampleContentProp = universe.Universe10.ExampleSpec.properties.value.name;
 var exampleStructuredContentProp = "structuredContent";
 
-class ExamplesTransformer implements Transformation{
+class ExamplesTransformer extends BasicTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return universeHelpers.isExampleSpecType(node.definition());
+    constructor(private dumpXMLRepresentationOfExamples=false){
+        super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
-    transform(value:any){
-        if(Array.isArray(value)&&value.length>0){
+    transform(_value:any,node?:hl.IParseResult){
 
-            if(value[0][exampleNameProp]){
-                var obj = {};
-                value.forEach(x=>obj[x[exampleNameProp]]=this.getActualExample(x));
-                return obj;
-            }
-            else{
-                var arr = value.map(x=>this.getActualExample(x));
-                return arr;
-            }
+        var isArray = Array.isArray(_value);
+        if(isArray && _value.length==0){
+            return _value;
         }
-        else {
-            return value;
+        var value = isArray ? _value[0] : _value;
+        var examples = helpersHL.typeExamples(
+            node.asElement(),this.dumpXMLRepresentationOfExamples);
+        if(examples.length>0){
+            value["examples"] = examples;
         }
-    }
-
-    private getActualExample(exampleSpecObj):any{
-        if(exampleSpecObj[exampleStructuredContentProp]){
-            return exampleSpecObj[exampleStructuredContentProp];
-        }
-        return exampleSpecObj[exampleContentProp];
+        return _value;
     }
 
 }
 
-class TypeExampleTransformer implements Transformation{
+class TypeValueTransformer extends BasicTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return node.definition && universeHelpers.isTypeDeclarationSibling(node.definition());
+    constructor(){
+        super(universes.Universe10.TypeDeclaration.name,
+            universes.Universe10.TypeDeclaration.properties.type.name,true)
     }
 
-    transform(value:any){
-        var isArray = Array.isArray(value);
-        var arr = isArray ? value : [ value ];
-        arr.forEach(x=>{
-            var structuredExample = x['example'];
-            if(structuredExample){
-                x['example'] = structuredExample.structuredValue;
-                x['structuredExample'] = structuredExample;
+    transform(_value:any,node?:hl.IParseResult){
+
+        var isArray = Array.isArray(_value);
+        var arr = isArray ? _value : [ _value ];
+        var arr1 = arr.map(x=>{
+            if(x==null){
+                return "string";
             }
-        });
-        return isArray ? arr : arr[0];
+            if(typeof(x)=="string") {
+                if (x === "NULL" || x === "Null") {
+                    return "string";
+                }
+            }
+            return x;
+        });        
+        return isArray ? arr1 : arr1[0];
     }
 }
 
-class SchemasTransformer implements Transformation{
+class TypeExampleTransformer extends BasicTransformation{
 
-    protected matcher = new BasicObjectPropertyMatcher(
-        x=>universeHelpers.isApiType(x)&&universeHelpers.isRAML08Type(x),universeHelpers.isSchemasProperty);
+    constructor(private dumpXMLRepresentationOfExamples=false){
+        super(universes.Universe10.TypeDeclaration.name,null,true);
+    }
 
-    match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
-        return node.parent()!=null&&this.matcher.match(node.parent().definition(),prop);
+    transform(_value:any,node?:hl.IParseResult){
+        var isArray = Array.isArray(_value);
+        if(isArray && _value.length==0){
+            return _value;
+        }
+        var value = isArray ? _value[0] : _value;
+        var exampleObj = helpersHL.typeExample(
+            node.asElement(),this.dumpXMLRepresentationOfExamples);
+        if(exampleObj){
+            value["structuredExample"] = exampleObj;
+            value["example"] = exampleObj["structuredValue"];
+        }
+        return _value;
+    }
+}
+
+class SchemasTransformer extends BasicTransformation{
+
+    constructor(){
+        super(universes.Universe08.GlobalSchema.name,universes.Universe08.Api.properties.schemas.name,true, ["RAML08"]);
     }
 
     transform(value:any){
@@ -863,20 +1032,15 @@ class SchemasTransformer implements Transformation{
             return obj;
         }
     }
-
-    private getActualExample(exampleSpecObj):any{
-        if(exampleSpecObj[exampleStructuredContentProp]){
-            return exampleSpecObj[exampleStructuredContentProp];
-        }
-        return exampleSpecObj[exampleContentProp];
-    }
-
 }
 
-class ProtocolsToUpperCaseTransformer implements Transformation{
+class ProtocolsToUpperCaseTransformer extends MatcherBasedTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return prop!=null && universeHelpers.isProtocolsProperty(prop);
+    constructor(){
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.protocols.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.protocols.name,true),
+        ]));
     }
 
     transform(value:any){
@@ -891,15 +1055,10 @@ class ProtocolsToUpperCaseTransformer implements Transformation{
 }
 
 
-class OneElementArrayTransformer implements Transformation{
+class OneElementArrayTransformer extends BasicTransformation{
 
-    usecases:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isMediaTypeProperty)
-    ]);
-
-
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return this.usecases.match(node.definition(),prop);
+    constructor(){
+        super(universes.Universe10.Api.name,universes.Universe10.Api.properties.mediaType.name,true);
     }
 
     transform(value:any){
@@ -908,16 +1067,15 @@ class OneElementArrayTransformer implements Transformation{
         }
         return value;
     }
-
 }
 
-class ResourcesTransformer implements Transformation{
+class ResourcesTransformer extends BasicTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return prop!=null && universeHelpers.isResourcesProperty(prop);
+    constructor(){
+        super(universes.Universe10.Resource.name,universes.Universe10.Api.properties.resources.name,true);
     }
 
-    transform(value:any,node){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)){
             return value;
         }
@@ -928,29 +1086,31 @@ class ResourcesTransformer implements Transformation{
                 segments.shift();
             }
             value["relativeUriPathSegments"] = segments;
-            value.absoluteUri = (<RamlWrapper10.Resource>node).absoluteUri();
+            value.absoluteUri = helpersHL.absoluteUri(node.asElement());
         }
         return value;
     }
-
 }
 
-class SimpleNamesTransformer implements Transformation{
+class SimpleNamesTransformer extends MatcherBasedTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        if(!node.parent() || !node.parent().highLevel().lowLevel()["libProcessed"]){
-            return false;
-        }
-        return universeHelpers.isAnnotationTypesProperty(prop)
-            || universeHelpers.isTypesProperty(prop)
-            || universeHelpers.isResourceTypesProperty(prop)
-            || universeHelpers.isTraitsProperty(prop)
-            || universeHelpers.isSecuritySchemesProperty(prop);
+    constructor(){
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true,["RAML10"]),
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.LibraryBase.properties.types.name,true,["RAML10"]),
+            new BasicObjectPropertyMatcher(universes.Universe10.Trait.name,universes.Universe10.LibraryBase.properties.traits.name,true,["RAML10"]),
+            new BasicObjectPropertyMatcher(universes.Universe10.AbstractSecurityScheme.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true,["RAML10"]),
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceType.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true,["RAML10"])
+        ]));
     }
 
-    transform(value:any,node?:coreApi.BasicNode|coreApi.AttributeNode){
+    transform(value:any,node?:hl.IParseResult){
 
-        var llNode = node.highLevel().lowLevel();
+        if(!node.parent() || !node.parent().lowLevel()["libProcessed"]){
+            return value;
+        }
+
+        var llNode = node.lowLevel();
         var key = llNode.key();
         var original:ll.ILowLevelASTNode = llNode;
         while(proxy.LowLevelProxyNode.isInstance(original)){
@@ -964,26 +1124,18 @@ class SimpleNamesTransformer implements Transformation{
         }
         return value;
     }
-
 }
 
 
-class TemplateParametrizedPropertiesTransformer implements Transformation{
+class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        var hlNode = node.highLevel();
-        if(!hlNode){
-            return false;
-        }
-        var d = hlNode.definition();
-        if(!d){
-            return false;
-        }
-        return universeHelpers.isResourceTypeType(d)
-            || universeHelpers.isTraitType(d)
-            || universeHelpers.isMethodType(d)
-            || universeHelpers.isTypeDeclarationSibling(d);
-
+    constructor(){
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceType.name,null,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Trait.name,null,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Method.name,null,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,null,true)
+        ]));
     }
 
     transform(value:any){
@@ -1004,16 +1156,14 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
 }
 
 
-class ReferencesTransformer implements Transformation{
+class ReferencesTransformer extends MatcherBasedTransformation{
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return prop!=null && (
-            universeHelpers.isSecuredByProperty(prop)
-                ||universeHelpers.isIsProperty(prop)
-                ||(node.parent()!=null&&(universeHelpers.isResourceType(node.parent().highLevel().definition())
-                    ||universeHelpers.isResourceTypeType(node.parent().highLevel().definition()))
-                &&universeHelpers.isTypeProperty(prop))
-        );
+    constructor(){
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.SecuritySchemeRef.name,universes.Universe10.Api.properties.securedBy.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.TraitRef.name,universes.Universe10.MethodBase.properties.is.name,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.ResourceTypeRef.name,universes.Universe10.ResourceBase.properties.type.name,true)
+        ]));
     }
 
     transform(value:any){
@@ -1027,6 +1177,9 @@ class ReferencesTransformer implements Transformation{
     }
 
     private toSimpleValue(x):any {
+        if(typeof(x)=="string"){
+            return x;
+        }
         var name = x['name'];
         var params = x['structuredValue'];
         if (params) {
@@ -1041,25 +1194,20 @@ class ReferencesTransformer implements Transformation{
 
 }
 
-class ArrayExpressionTransformer implements Transformation{
+class ArrayExpressionTransformer extends BasicTransformation{
 
-    match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
-        if(!(core.BasicNodeImpl.isInstance(node))){
-            return false;
-        }
-        var hlNode = (<coreApi.BasicNode>node).highLevel();
-        var definition = hlNode.definition();
-        if(!universeHelpers.isTypeDeclarationDescendant(definition)){
-            return false;
-        }
-        var lType = hlNode.localType();
-        if(!lType || !lType.isArray()){
-            return false;
-        }
-        return true;
+
+    constructor(){
+        super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
+
+        var lType = node.asElement().localType();
+        if(!lType || !lType.isArray()){
+            return value;
+        } 
+        
         var typePropName = universes.Universe10.TypeDeclaration.properties.type.name;
         var itemsPropName = universes.Universe10.ArrayTypeDeclaration.properties.items.name;
         var tValue = value[typePropName];
@@ -1151,4 +1299,120 @@ export interface SerializeOptions{
     dumpXMLRepresentationOfExamples?:boolean
 
     dumpSchemaContents?:boolean
+}
+
+export function mergeRegInfos(arr:Object[]):Object{
+    if(arr.length==0){
+        return {};
+    }
+    var result = arr[0];
+    for(var i = 1; i < arr.length ; i++){
+        var obj = arr[i];
+        result = mergeObjects(result,obj);
+    }
+    return result;
+}
+
+function mergeObjects(o1:Object,o2:Object):Object{
+    for(var k of Object.keys(o2)){
+        var f1 = o1[k];
+        var f2 = o2[k];
+        if(f1==null){
+            o1[k] = f2;
+        }
+        else{
+            if(typeof(f1)=="object"&&typeof(f2)=="object"){
+                o1[k] = mergeObjects(f1,f2);
+            }
+        }
+    }
+    return o1;
+}
+
+function fillTransformersMap(tArr:Transformation[], map:TransformersMap){
+    
+    for(var t of tArr){
+        
+        var info = t.registrationInfo();
+        for(var uName of Object.keys(info)){
+            
+            var uObject = info[uName];
+            var uMap = map[uName];
+            if(uMap==null){
+                uMap = {};
+                map[uName] = uMap;
+            }
+            for(var tName of Object.keys(uObject)){
+                var tObject = uObject[tName];
+                var tMap = uMap[tName];
+                if(tMap==null){
+                    tMap = {};
+                    uMap[tName] = tMap;
+                }
+                for(var pName of Object.keys(tObject)) {
+                    var arr:Transformation[] = tMap[pName];
+                    if(arr==null){
+                        arr = [];
+                        if(pName!="__$$anyprop__"){
+                            var aArr = tMap["__$$anyprop__"];
+                            if(aArr){
+                                arr = arr.concat(aArr);
+                            }
+                        }
+                        tMap[pName] = arr;
+                    }
+                    if(pName=="__$$anyprop__"){
+                        for(var pn of Object.keys(tMap)){
+                            tMap[pn].push(t);
+                        }
+                    }
+                    else{
+                        arr.push(t);
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+export function applyTransformersMap(node:hl.IParseResult,prop:hl.IProperty,value:any,map:TransformersMap):any{
+
+    var definition:hl.ITypeDefinition;
+    if(node.isElement()){
+        definition = node.asElement().definition();
+    }
+    else if(node.isAttr()){
+        var p = node.asAttr().property();
+        if(p){
+            definition = p.range();
+        }
+    }
+    if(definition instanceof def.UserDefinedClass || definition.isUserDefined()){
+        definition = _.find(definition.allSuperTypes(),x=>!x.isUserDefined());
+    }
+    if(definition==null){
+        return value;
+    }
+    var rv = definition.universe().version();
+    var uMap = map[rv];
+    if(!uMap){
+        return value;
+    }
+    var tMap = uMap[definition.nameId()];
+    if(!tMap){
+        return value;
+    }
+    var pName = prop ? prop.nameId() : "__$$anyprop__";
+    var arr = tMap[pName];
+    if(!arr){
+        arr = tMap["__$$anyprop__"];
+    }
+    if(!arr){
+        return value;
+    }
+    for(var t of arr){
+        value = t.transform(value,node);
+    }
+    return value;
 }

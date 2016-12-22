@@ -13,6 +13,7 @@
           "example": {
             "d": "a"
           },
+          "minProperties": 2,
           "required": true,
           "properties": {
             "/.*/": {

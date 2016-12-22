@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+title: test API
+
+securitySchemes:
+  OauthSecurity:
+    description: New Oauth security system. Do not use MediaSecurity or LegacySecurity.
+    type: OAuth 2.0
+    settings:
+      authorizationGrants: [ authorization_code ]
+      authorizationUri: 'https://oauth.simple.api/authorization'
+      accessTokenUri: 'https://oauth.simple.api/token'
+      scopes: [ admin, user ]
+
+securedBy: [ OauthSecurity: { scopes: [ hello ] } ]

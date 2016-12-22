@@ -110,7 +110,7 @@
           {
             "annotations": {
               "searchable": {
-                "structuredValue": null,
+                "structuredValue": "someValue",
                 "name": "searchable"
               }
             },

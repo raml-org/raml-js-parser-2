@@ -12,8 +12,8 @@
           ],
           "required": true,
           "fileTypes": [
-            {},
-            {}
+            "image/jpeg",
+            "image/png"
           ],
           "maxLength": 307200,
           "fixedFacets": {
@@ -44,7 +44,7 @@
           ],
           "required": true,
           "fileTypes": [
-            {}
+            "*/*"
           ],
           "maxLength": 1048576,
           "fixedFacets": {

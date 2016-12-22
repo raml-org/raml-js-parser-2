@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "types": [
       {
@@ -38,84 +36,86 @@
               ],
               "required": false,
               "description": "An array of boundaries",
-              "items": {
-                "name": "items",
-                "displayName": "items",
-                "type": [
-                  "object"
-                ],
-                "required": true,
-                "properties": {
-                  "id": {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
+              "items": [
+                {
+                  "name": "items",
+                  "displayName": "items",
+                  "type": [
+                    "object"
+                  ],
+                  "required": true,
+                  "properties": {
+                    "id": {
+                      "name": "id",
+                      "displayName": "id",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
                         }
                       }
-                    }
-                  },
-                  "type": {
-                    "name": "type",
-                    "displayName": "type",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    }
-                  },
-                  "boundaryAsWkt": {
-                    "name": "boundaryAsWkt",
-                    "displayName": "boundaryAsWkt",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "The well-known-text value of the boundary.",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    }
-                  }
-                },
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
+                      "name": "type",
+                      "displayName": "type",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
                     },
-                    "required": {
-                      "insertedAsDefault": true
+                    "boundaryAsWkt": {
+                      "name": "boundaryAsWkt",
+                      "displayName": "boundaryAsWkt",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "The well-known-text value of the boundary.",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
                     }
                   }
                 }
-              },
+              ],
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -146,5 +146,7 @@
     ],
     "title": "test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -19,12 +19,47 @@ import universeDef=require("../raml1/tools/universe")
 import parserCore=require('../raml1/wrapped-ast/parserCore')
 import parserCoreApi=require('../raml1/wrapped-ast/parserCoreApi')
 import ramlServices = require("../raml1/definition-system/ramlServices")
+import tckDumperHL = require("../util/TCKDumperHL")
 
 export type IHighLevelNode=hl.IHighLevelNode;
 export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../raml1/definition-system/universeProvider")
-import {IHighLevelNode} from "raml-definition-system/dist/definitionSystem";
+
+export function load(ramlPath:string,options?:hl.LoadOptions):Promise<Object>{
+    options = options || {};
+    return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
+        var expanded:hl.IHighLevelNode;
+        if(options.expandLibraries) {
+            expanded = expander.expandLibrariesHL(hlNode);
+        }
+        else{
+            expanded = expander.expandTraitsAndResourceTypesHL(hlNode);
+        }
+        return tckDumperHL.dump(expanded,{
+            rootNodeDetails: true,
+            attributeDefaults: true,
+            serializeMetadata: true
+        });
+    });
+}
+
+export function loadSync(ramlPath:string,options?:hl.LoadOptions):Object{
+    options = options || {};
+    var hlNode = loadRAMLInternalHL(ramlPath);
+    var expanded:hl.IHighLevelNode;
+    if (options.expandLibraries) {
+        expanded = expander.expandLibrariesHL(hlNode);
+    }
+    else {
+        expanded = expander.expandTraitsAndResourceTypesHL(hlNode);
+    }
+    return tckDumperHL.dump(expanded,{
+        rootNodeDetails: true,
+        attributeDefaults: true,
+        serializeMetadata: true
+    });
+}
 
 /***
  * Load API synchronously. Detects RAML version and uses corresponding parser.
@@ -34,13 +69,15 @@ import {IHighLevelNode} from "raml-definition-system/dist/definitionSystem";
  ***/
 export function loadApi(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options):Opt<RamlWrapper1.Api|RamlWrapper08.Api>{
 
-    var api = loadRAMLInternal(apiPath,arg1,arg2);
-
+    var hlNode = loadRAMLInternalHL(apiPath,arg1,arg2);
+    if(!hlNode) {
+        return Opt.empty< RamlWrapper1.Api | RamlWrapper08.Api >();
+    }
     // if (false) {
     //     //TODO loaded RAML is API
     //     throw new Error("Loaded RAML is not API");
     // } else {
-    return new Opt<RamlWrapper1.Api|RamlWrapper08.Api>(<any>api);
+    return new Opt<RamlWrapper1.Api|RamlWrapper08.Api>(<any>hlNode.wrapperNode());
     // }
 
 }
@@ -52,11 +89,14 @@ export function loadApi(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2
  * @return Opt&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
  ***/
 export function loadRAML(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : Opt<hl.BasicNode> {
-    var result = loadRAMLInternal(ramlPath, arg1, arg2);
-    return new Opt<hl.BasicNode>(result);
+    var hlNode = loadRAMLInternalHL(ramlPath, arg1, arg2);
+    if(!hlNode){
+        return Opt.empty<hl.BasicNode>();
+    }
+    return new Opt<hl.BasicNode>(hlNode.wrapperNode());
 }
 
-function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : hl.BasicNode {
+function loadRAMLInternalHL(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : hl.IHighLevelNode {
     var gotArray = Array.isArray(arg1);
     var extensionsAndOverlays = <string[]>(gotArray ? arg1: null);
     var options = <parserCoreApi.Options>(gotArray ? arg2 : arg1);
@@ -72,7 +112,7 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
         extensionsAndOverlays=null;
     }
 
-    var api:hl.BasicNode;
+    var api:hl.IHighLevelNode;
     if(unit){
 
         if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
@@ -91,27 +131,21 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
             //calling to perform the checks, we do not actually need the api itself
             extensionUnits.forEach(extensionUnit=>toApi(extensionUnit, options))
 
-            api = toApi(expander.mergeAPIs(unit, extensionUnits, hlimpl.OverlayMergeMode.MERGE), options)
+            api = toApi(expander.mergeAPIs(unit, extensionUnits, hlimpl.OverlayMergeMode.MERGE), options);
         } else {
 
             api = toApi(unit, options);
-            (<hlimpl.ASTNodeImpl>api.highLevel()).setMergeMode(hlimpl.OverlayMergeMode.MERGE);
+            (<hlimpl.ASTNodeImpl>api).setMergeMode(hlimpl.OverlayMergeMode.MERGE);
         }
 
     }
 
     if (!unit){
-            throw new Error("Can not resolve :"+apiPath);
+        throw new Error("Can not resolve :"+apiPath);
     }
 
     if(options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length){
         throw toError(api);
-    }
-
-    if (options.attributeDefaults != null && api) {
-        (<any>api).setAttributeDefaults(options.attributeDefaults);
-    } else if (api) {
-        (<any>api).setAttributeDefaults(true);
     }
     return api;
 }
@@ -141,6 +175,35 @@ export function loadApiAsync(apiPath:string,arg1?:string[]|parserCoreApi.Options
  * @return Promise&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
  ***/
 export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options):Promise<hl.BasicNode>{
+
+    return loadRAMLAsyncHL(ramlPath,arg1,arg2).then(x=>{
+
+        if(!x){
+            return null;
+        }
+        var gotArray = Array.isArray(arg1);
+        var options = <parserCoreApi.Options>(gotArray ? arg2 : arg1);
+        options = options || {};
+
+        var attrDefaults= options.attributeDefaults;
+        if(attrDefaults==null){
+            attrDefaults = true;
+        }
+
+        var node = x;
+        while (node != null) {
+            var wn = node.wrapperNode();
+            if (wn) {
+                (<any>wn).setAttributeDefaults(attrDefaults);
+            }
+            var master = node.getMaster();
+            node = master ? master.asElement() : null;
+        }
+
+        return x.wrapperNode();
+    });
+}
+export function loadRAMLAsyncHL(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options):Promise<hl.IHighLevelNode>{
     var gotArray = Array.isArray(arg1);
     var extensionsAndOverlays = <string[]>(gotArray ? arg1: null);
     var options = <parserCoreApi.Options>(gotArray ? arg2 : arg1);
@@ -155,14 +218,8 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
     }
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
-        return fetchAndLoadApiAsync(project, unitName, options).then(masterApi=>{
-            masterApi.highLevel().setMergeMode(hlimpl.OverlayMergeMode.MERGE);
-            if (options.attributeDefaults != null && masterApi) {
-                (<any>masterApi).setAttributeDefaults(options.attributeDefaults);
-            } else if (masterApi) {
-                (<any>masterApi).setAttributeDefaults(true);
-            }
-
+        return fetchAndLoadApiAsyncHL(project, unitName, options).then(masterApi=>{
+            (<hlimpl.ASTNodeImpl>masterApi).setMergeMode(hlimpl.OverlayMergeMode.MERGE);
             return masterApi;
         })
     } else {
@@ -173,33 +230,24 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
             }
         })
 
-        return fetchAndLoadApiAsync(project, unitName, options).then(masterApi=>{
+        return fetchAndLoadApiAsyncHL(project, unitName, options).then(masterApi=>{
             var apiPromises = []
 
             extensionsAndOverlays.forEach(extensionUnitPath=>{
-                apiPromises.push(fetchAndLoadApiAsync(project, extensionUnitPath, options))
-            })
+                apiPromises.push(fetchAndLoadApiAsyncHL(project, extensionUnitPath, options))
+            });
 
             return Promise.all(apiPromises).then(apis=>{
                 var overlayUnits = []
-                apis.forEach(currentApi=>overlayUnits.push(currentApi.highLevel().lowLevel().unit()))
+                apis.forEach(currentApi=>overlayUnits.push(currentApi.lowLevel().unit()))
 
-                var result = expander.mergeAPIs(masterApi.highLevel().lowLevel().unit(), overlayUnits,
+                var result = expander.mergeAPIs(masterApi.lowLevel().unit(), overlayUnits,
                     hlimpl.OverlayMergeMode.MERGE);
-                
-                var wrapperNode = result.wrapperNode();
-
-                if (options.attributeDefaults != null && result) {
-                    (<any>wrapperNode).setAttributeDefaults(options.attributeDefaults);
-                } else if (result) {
-                    (<any>wrapperNode).setAttributeDefaults(true);
-                }
-
-                return wrapperNode.highLevel();
+                return result;
             }).then(mergedHighLevel=>{
                 return toApi(mergedHighLevel, options);
             })
-        })
+        });
     }
 }
 
@@ -220,7 +268,11 @@ export function getLanguageElementByRuntimeType(runtimeType : hl.ITypeDefinition
     return highLevelNode.wrapperNode();
 }
 
-function fetchAndLoadApiAsync(project: jsyaml.Project, unitName : string, options: parserCoreApi.Options) {
+function fetchAndLoadApiAsync(project: jsyaml.Project, unitName : string, options: parserCoreApi.Options):Promise<hl.BasicNode> {
+    return fetchAndLoadApiAsyncHL(project,unitName,options).then(x=>x.wrapperNode());
+}
+
+function fetchAndLoadApiAsyncHL(project: jsyaml.Project, unitName : string, options: parserCoreApi.Options):Promise<hl.IHighLevelNode>{
     return llimpl.fetchIncludesAndMasterAsync(project,unitName).then(x=>{
         try {
             var api = toApi(x, options);
@@ -246,7 +298,7 @@ function getProject(apiPath:string,options?:parserCoreApi.Options):jsyaml.Projec
     return project;
 };
 
-function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:parserCoreApi.Options,checkApisOverlays=false):hl.BasicNode {
+function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:parserCoreApi.Options,checkApisOverlays=false):hl.IHighLevelNode {
     if(!unitOrHighlevel){
         return null;
     }
@@ -260,8 +312,6 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
         highLevel = <hlimpl.ASTNodeImpl>unitOrHighlevel;
         unit = highLevel.lowLevel().unit();
     }
-
-    var api:hl.BasicNode;
 
     var contents = unit.contents();
 
@@ -315,14 +365,12 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
         //    new hlimpl.ASTNodeImpl(unit.ast(), null, <any>apiType, null)
     }
     //api = new apiImpl(highLevel);
-    api = <hl.BasicNode>highLevel.wrapperNode();
-
-    return api;
+    return highLevel;
 };
 
-export function toError(api:hl.BasicNode):parserCore.ApiLoadingError{
+export function toError(api:hl.IHighLevelNode):hl.ApiLoadingError{
     var error:any = new Error('Api contains errors.');
-    error.parserErrors = api.errors();
+    error.parserErrors = hlimpl.toParserErrors(api.errors(),api);
     return error;
 }
 

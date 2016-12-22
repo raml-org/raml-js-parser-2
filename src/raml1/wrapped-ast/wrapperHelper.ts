@@ -27,6 +27,7 @@ import ramlservices=defs
 import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
+import helpersHL = require("./helpersHL");
 import builder = require("../ast.core/builder");
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
@@ -98,23 +99,7 @@ export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
 
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
 export function absoluteUri(res:RamlWrapper.Resource):string{
-    var uri = '';
-    var parent:any = res;
-    do{
-        res = <RamlWrapper.Resource>parent;//(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
-        uri = res.relativeUri().value() + uri;
-        parent = res.parent();
-    }
-    while (parent.definition().key().name==universes.Universe10.Resource.name);
-    uri = uri.replace(/\/\//g,'/');
-    var buri=(<RamlWrapper.Api>parent).baseUri();
-    var base =buri?buri.value():"";
-    base = base ? base : '';
-    if(util.stringEndsWith(base,'/')){
-        uri = uri.substring(1);
-    }
-    uri = base + uri;
-    return uri;
+    return helpersHL.absoluteUri(res.highLevel());
 }
 //__$helperMethod__ validate an instance against type
 export function validateInstance(res:RamlWrapper.TypeDeclaration, value: any):string[]{
@@ -173,7 +158,7 @@ function findTemplates(a:core.BasicNode,filter) {
     if(!nodePath){
         nodePath = ll.unit().path();
     }
-    var isProxy = proxy.LowLevelProxyNode.isInstance(a.highLevel().lowLevel());
+    var isProxy = !universeHelpers.isOverlayType(a.highLevel().definition());
     var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var topLevelArr = arr.map(x=>{
         var topLevelNode:core.BasicNode;
@@ -415,13 +400,7 @@ export function uriParametersPrimary(resource:RamlWrapper.ResourceBase):RamlWrap
  */
 export function uriParameters(resource:RamlWrapper.ResourceBase):RamlWrapper.TypeDeclaration[]{
 
-    var params = (<RamlWrapperImpl.ResourceBaseImpl>resource).uriParameters_original();
-    if(!(RamlWrapperImpl.ResourceImpl.isInstance(resource))){
-        return params;
-    }
-    var uri = (<RamlWrapper.Resource>resource).relativeUri().value();
-    var propName = universes.Universe10.ResourceBase.properties.uriParameters.name;
-    return extractParams(params, uri, resource, propName);
+    return helpersHL.uriParameters(resource.highLevel()).map(x=><RamlWrapper.TypeDeclaration>x.wrapperNode());
 }
 
 /**
@@ -458,11 +437,7 @@ export function baseUriParametersPrimary(api:RamlWrapper.Api):RamlWrapper.TypeDe
  */
 export function baseUriParameters(api:RamlWrapper.Api):RamlWrapper.TypeDeclaration[]{
 
-    var uri = api.baseUri() ? api.baseUri().value() : '';
-    var params = (<RamlWrapperImpl.ApiImpl>api).baseUriParameters_original();
-    var propName = universes.Universe10.Api.properties.baseUriParameters.name;
-
-    return extractParams(params, uri, api, propName);
+    return helpersHL.baseUriParameters(api.highLevel()).map(x=><RamlWrapper.TypeDeclaration>x.wrapperNode());
 }
 
 /**

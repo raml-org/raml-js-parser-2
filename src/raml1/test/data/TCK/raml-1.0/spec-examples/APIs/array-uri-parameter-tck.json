@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Serialization API",
     "resources": [
@@ -21,25 +19,27 @@
                 "required": true,
                 "description": "A list of userIds",
                 "uniqueItems": true,
-                "items": {
-                  "name": "items",
-                  "displayName": "items",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "minLength": 1,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
+                "items": [
+                  {
+                    "name": "items",
+                    "displayName": "items",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
                       }
                     }
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -81,5 +81,7 @@
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

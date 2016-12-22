@@ -124,6 +124,17 @@ export interface ValueMetadata{
 
     toJSON():any;
 }
+
+export interface LoadOptions {
+    
+    expandLibraries?:boolean
+}
+
+export interface ApiLoadingError extends Error{
+
+    parserErrors:RamlParserError[]
+}
+
 export interface RamlParserError {
 
     /**
