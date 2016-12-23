@@ -3933,6 +3933,7 @@ export function createIssue(
             proxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         }
     }
+    var oNode = node;
     if (node) {
         pr=node.property();
 
@@ -3949,6 +3950,20 @@ export function createIssue(
         }
     }
     if (original){
+        var resolver = (<jsyaml.Project>node.lowLevel().unit().project()).namespaceResolver();
+        if(resolver){
+            var uInfo = resolver.resolveNamespace(node.root().lowLevel().unit(),oNode.lowLevel().unit());
+            if(uInfo){
+                var issues = uInfo.usesNodes.map(x=>createLLIssue1(messageRegistry.ISSUES_IN_THE_LIBRARY,
+                    {value: x.value()}, x, x.unit().highLevel(),true));
+                issues.push(original);
+                issues = issues.reverse();
+                for(var i = 0 ; i < issues.length-1 ; i++){
+                    issues[i].extras.push(issues[i+1]);
+                }
+                return original;
+            }
+        }
         if (node.property()&&node.property().nameId()==universes.Universe10.FragmentDeclaration.properties.uses.name&&node.parent()!=null){
             pr=node.property();//FIXME there should be other cases
             node=node.parent();

@@ -444,21 +444,20 @@ export class ReferencePatcher{
         if(referencedUnit==null||referencedUnit.absolutePath()==rootUnit.absolutePath()){
             return null;
         }
+        var usesInfo = resolver.resolveNamespace(rootUnit, referencedUnit);
+        if(usesInfo==null){
+            return null;
+        }
+        var newNS = usesInfo.namespace();
+        if (newNS == null) {
+            return null;
+        }
         if(this.mode == PatchMode.PATH){
-            if(resolver.resolveNamespace(rootUnit, referencedUnit)==null){
-                return null;
-            }
             var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
             if(!ll.isWebPath(aPath)){
                 aPath = "file://" + aPath;
             }
             newNS = `${aPath}#/${collectionName}`;
-        }
-        else {
-            var newNS = resolver.resolveNamespace(rootUnit, referencedUnit);
-            if (newNS == null) {
-                return null;
-            }
         }
         if(gotQuestion){
             plainName += "?";
@@ -639,7 +638,8 @@ export class ReferencePatcher{
                 var libModel = this._libModels[ns];
                 if (libModel == null) {
                     var libUnit = project.unit(ns, true);
-                    if (libUnit && resolver.resolveNamespace(unit, libUnit) != null) {
+                    var usesInfo = resolver.resolveNamespace(unit, libUnit);
+                    if (libUnit && usesInfo != null && usesInfo.namespace() != null) {
                         libModel = this.extractLibModel(libUnit);
                     }
                 }
