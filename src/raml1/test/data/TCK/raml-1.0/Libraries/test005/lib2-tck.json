@@ -33,7 +33,6 @@
               }
             }
           },
-          "required": true,
           "properties": {
             "p2": {
               "name": "p2",
@@ -60,9 +59,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

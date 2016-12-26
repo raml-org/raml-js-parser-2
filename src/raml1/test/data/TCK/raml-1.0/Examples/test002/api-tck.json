@@ -10,16 +10,12 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -33,7 +29,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "firstName": {
               "name": "firstName",
@@ -79,9 +74,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -108,7 +100,6 @@
               }
             ]
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -190,9 +181,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

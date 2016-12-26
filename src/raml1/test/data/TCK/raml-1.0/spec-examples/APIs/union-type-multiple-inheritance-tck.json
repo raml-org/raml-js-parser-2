@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "homeAddress": {
               "name": "homeAddress",
@@ -35,9 +34,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -50,7 +46,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -93,9 +88,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -108,7 +100,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -151,9 +142,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -166,16 +154,12 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

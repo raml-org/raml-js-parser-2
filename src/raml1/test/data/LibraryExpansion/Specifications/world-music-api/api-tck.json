@@ -18,14 +18,10 @@
           "type": [
             "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -38,15 +34,11 @@
           "type": [
             "Entry"
           ],
-          "required": true,
           "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -62,7 +54,6 @@
           "example": {
             "firstname": "John"
           },
-          "required": true,
           "properties": {
             "firstname": {
               "name": "firstname",
@@ -112,9 +103,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -135,7 +123,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "propString": {
               "name": "propString",
@@ -187,7 +174,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "comment": {
                     "name": "comment",
@@ -214,9 +200,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -263,7 +246,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "comment": {
                     "name": "comment",
@@ -290,9 +272,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -602,9 +581,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -617,7 +593,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -660,9 +635,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -675,7 +647,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -718,9 +689,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -737,14 +705,10 @@
               "type": [
                 "boolean"
               ],
-              "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -755,14 +719,10 @@
               "type": [
                 "boolean"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -771,14 +731,10 @@
           "type": [
             "date-only"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -811,7 +767,6 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "title": {
               "name": "title",
@@ -856,9 +811,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -929,16 +881,12 @@
                     "schema": [
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -971,7 +919,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "date": {
               "name": "date",
@@ -1035,9 +982,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -1051,15 +995,11 @@
             "integer"
           ],
           "example": null,
-          "required": true,
           "description": "interval in seconds",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -1072,7 +1012,6 @@
           "type": [
             "nil"
           ],
-          "required": true,
           "description": "markes a resource as ready",
           "allowedTargets": [
             "Resource"
@@ -1081,9 +1020,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -1096,7 +1032,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "allowedTargets": [
             "API"
           ],
@@ -1131,9 +1066,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -1146,14 +1078,10 @@
           "type": [
             "boolean"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -1363,7 +1291,6 @@
               "type": [
                 "object"
               ],
-              "required": true,
               "properties": {
                 "start": {
                   "name": "start",
@@ -1409,9 +1336,6 @@
                   },
                   "type": {
                     "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -1442,14 +1366,10 @@
                 "type": [
                   "ApiLib.RamlDataType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -1507,14 +1427,10 @@
                     "type": [
                       "AnotherEntry"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -1551,16 +1467,12 @@
                     "schema": [
                       "Entry"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -1758,14 +1670,10 @@
                         "type": [
                           "SongsLib.Song"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -1777,14 +1685,10 @@
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
                         "example": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },

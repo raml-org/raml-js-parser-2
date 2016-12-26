@@ -13,7 +13,6 @@
           "example": {
             "a": 5
           },
-          "required": true,
           "properties": {
             "a": {
               "name": "a",
@@ -40,9 +39,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -74,7 +70,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "x": {
                         "name": "x",
@@ -101,9 +96,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

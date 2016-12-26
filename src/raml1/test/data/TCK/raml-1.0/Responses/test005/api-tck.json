@@ -10,14 +10,10 @@
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -33,7 +29,6 @@
           "example": {
             "id": "userId"
           },
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
@@ -58,9 +53,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -85,7 +77,6 @@
             "id": "userId",
             "username": "name"
           },
-          "required": true,
           "properties": {
             "username": {
               "name": "username",
@@ -110,9 +101,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -147,7 +135,6 @@
                       "username": "base",
                       "id": "any text"
                     },
-                    "required": true,
                     "properties": {
                       "additionalField": {
                         "name": "additionalField",
@@ -172,9 +159,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

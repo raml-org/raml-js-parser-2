@@ -11,14 +11,10 @@
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -43,14 +39,10 @@
                     "childName": "anothernames"
                   }
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

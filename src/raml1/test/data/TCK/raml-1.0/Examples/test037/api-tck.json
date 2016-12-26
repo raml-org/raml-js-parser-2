@@ -11,14 +11,10 @@
             "number"
           ],
           "example": 100,
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -41,14 +37,10 @@
             100,
             10
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -72,14 +64,10 @@
             "boolean"
           ],
           "example": true,
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

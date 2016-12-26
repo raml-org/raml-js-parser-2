@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "amount": {
               "name": "amount",
@@ -60,9 +59,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -85,7 +81,6 @@
                     "type": [
                       "Invoice"
                     ],
-                    "required": true,
                     "properties": {
                       "id": {
                         "name": "id",
@@ -110,9 +105,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -163,14 +155,10 @@
                     "type": [
                       "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}\n"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -181,14 +169,10 @@
                     "type": [
                       "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"invoice\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"accountID\" type=\"xs:string\"/>\n        <xs:element name=\"amount\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -207,7 +191,6 @@
                     "example": {
                       "error": "Amount cannot be negative"
                     },
-                    "required": true,
                     "properties": {
                       "error": {
                         "name": "error",
@@ -238,9 +221,6 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -263,14 +243,10 @@
                 "type": [
                   "Invoice"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

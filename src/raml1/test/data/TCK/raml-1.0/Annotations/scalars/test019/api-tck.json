@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "iProp": {
               "name": "iProp",
@@ -50,9 +49,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -67,7 +63,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 8,
           "maxLength": 64,
           "__METADATA__": {
@@ -76,9 +71,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

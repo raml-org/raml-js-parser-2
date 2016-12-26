@@ -13,7 +13,6 @@
           "example": {
             "prop1": "value1"
           },
-          "required": true,
           "properties": {
             "prop1": {
               "name": "prop1",
@@ -43,9 +42,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

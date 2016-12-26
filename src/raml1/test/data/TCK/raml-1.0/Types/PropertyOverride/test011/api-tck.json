@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -39,9 +38,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -54,7 +50,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -83,9 +78,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -98,7 +90,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "p1": {
               "name": "p1",
@@ -126,9 +117,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -141,7 +129,6 @@
           "type": [
             "ParentType"
           ],
-          "required": true,
           "properties": {
             "p1": {
               "name": "p1",
@@ -166,9 +153,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

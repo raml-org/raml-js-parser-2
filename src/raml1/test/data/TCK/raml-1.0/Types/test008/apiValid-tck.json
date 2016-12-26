@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "property1": {
               "name": "property1",
@@ -56,9 +55,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -71,7 +67,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "property3": {
               "name": "property3",
@@ -117,9 +112,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -132,14 +124,10 @@
           "type": [
             "SimpleType1 | SimpleType2"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -164,7 +152,6 @@
               }
             ]
           },
-          "required": true,
           "properties": {
             "unionArray": {
               "name": "unionArray",
@@ -190,9 +177,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

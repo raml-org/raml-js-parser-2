@@ -10,14 +10,10 @@
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"type\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -39,16 +35,12 @@
                     "schema": [
                       "TestSchema"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

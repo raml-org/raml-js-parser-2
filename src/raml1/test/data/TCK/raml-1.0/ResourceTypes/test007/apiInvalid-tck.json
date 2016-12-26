@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "propertyFromType1": {
               "name": "propertyFromType1",
@@ -38,9 +37,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -53,7 +49,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "propertyFromType2": {
               "name": "propertyFromType2",
@@ -81,9 +76,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -103,7 +95,6 @@
                 "type": [
                   "<<bodyTypeParam>>"
                 ],
-                "required": true,
                 "properties": {
                   "extraProperty": {
                     "name": "extraProperty",
@@ -128,9 +119,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -151,7 +139,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "propertyFromResourceType1": {
                     "name": "propertyFromResourceType1",
@@ -179,9 +166,6 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -202,7 +186,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "propertyFromResourceType2": {
                     "name": "propertyFromResourceType2",
@@ -229,9 +212,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -263,16 +243,12 @@
                   "propertyFromType1": "stringValue1",
                   "propertyFromResourceType1": "stringValue2"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -310,7 +286,6 @@
                   "propertyFromType1": "stringValue1",
                   "propertyFromResourceType1": "stringValue2"
                 },
-                "required": true,
                 "properties": {
                   "extraProperty": {
                     "name": "extraProperty",
@@ -353,9 +328,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

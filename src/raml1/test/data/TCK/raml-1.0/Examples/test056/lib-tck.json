@@ -14,7 +14,6 @@
             "name": null,
             "data": null
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -63,9 +62,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -87,7 +83,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "p1": {
               "name": "p1",
@@ -138,9 +133,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

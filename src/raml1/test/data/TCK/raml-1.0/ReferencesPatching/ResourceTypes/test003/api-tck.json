@@ -22,14 +22,10 @@
               "type": [
                 "lib1.lib2.MyLibType"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -72,14 +68,10 @@
                 "type": [
                   "lib1.lib2.MyLibType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

@@ -340,14 +340,10 @@
                         }
                       ]
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -525,14 +521,10 @@
                         }
                       }
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -684,16 +676,12 @@
                       },
                       "data": null
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -744,14 +732,10 @@
                       },
                       "data": null
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1080,14 +1064,10 @@
                         }
                       ]
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1509,14 +1489,10 @@
                         "type": [
                           "types.Media"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -1655,14 +1631,10 @@
                             "type": [
                               "types.MediaComment"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -1720,14 +1692,10 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -1757,7 +1725,6 @@
                         "type": [
                           "object"
                         ],
-                        "required": true,
                         "properties": {
                           "text": {
                             "name": "text",
@@ -1785,9 +1752,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -1853,16 +1817,12 @@
                                   },
                                   "data": null
                                 },
-                                "required": true,
                                 "__METADATA__": {
                                   "primitiveValuesMeta": {
                                     "displayName": {
                                       "calculated": true
                                     },
                                     "type": {
-                                      "insertedAsDefault": true
-                                    },
-                                    "required": {
                                       "insertedAsDefault": true
                                     }
                                   }
@@ -2042,14 +2002,10 @@
                             "type": [
                               "types.MediaLikes"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -2107,14 +2063,10 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -2177,16 +2129,12 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
                                 },
                                 "type": {
-                                  "insertedAsDefault": true
-                                },
-                                "required": {
                                   "insertedAsDefault": true
                                 }
                               }
@@ -2542,14 +2490,10 @@
                             }
                           }
                         },
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -2873,14 +2817,10 @@
                             }
                           }
                         },
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -3132,14 +3072,10 @@
                         "type": [
                           "types.Tag"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -3316,14 +3252,10 @@
                             "type": [
                               "types.TagsRecentMedia"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -3496,14 +3428,10 @@
                         "type": [
                           "types.TagsSearch"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -3656,14 +3584,10 @@
                         "type": [
                           "types.UserAccount"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -3827,14 +3751,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4025,14 +3945,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4459,14 +4375,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4788,14 +4700,10 @@
                             "type": [
                               "types.Relationships"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -4853,14 +4761,10 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4890,7 +4794,6 @@
                         "type": [
                           "object"
                         ],
-                        "required": true,
                         "properties": {
                           "action": {
                             "name": "action",
@@ -4929,9 +4832,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -5126,14 +5026,10 @@
                             }
                           ]
                         },
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -5299,14 +5195,10 @@
                         "type": [
                           "types.UserAccount"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -5658,14 +5550,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -6010,14 +5898,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -6394,14 +6278,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -6758,14 +6638,10 @@
                         "type": [
                           "types.Location"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -7161,14 +7037,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -7609,14 +7481,10 @@
                         "type": [
                           "types.Locations"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -7969,14 +7837,10 @@
                     "type": [
                       "types.SubscriptionsGet"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -8019,14 +7883,10 @@
                     "type": [
                       "types.SubscriptionPost"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -8045,7 +7905,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "client_id": {
                     "name": "client_id",
@@ -8238,9 +8097,6 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -8368,14 +8224,10 @@
                     "type": [
                       "types.SubscriptionsDelete"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

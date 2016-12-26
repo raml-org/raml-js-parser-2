@@ -16,7 +16,6 @@
           "type": [
             "ll.Person"
           ],
-          "required": true,
           "properties": {
             "name2": {
               "name": "name2",
@@ -41,9 +40,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

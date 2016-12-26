@@ -28,7 +28,6 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "p": {
               "name": "p",
@@ -55,9 +54,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -83,7 +79,6 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "p": {
               "name": "p",
@@ -110,9 +105,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

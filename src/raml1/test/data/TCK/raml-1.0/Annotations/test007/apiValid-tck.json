@@ -21,7 +21,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "v": {
               "name": "v",
@@ -49,9 +48,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

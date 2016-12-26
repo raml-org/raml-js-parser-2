@@ -11,15 +11,11 @@
             "number"
           ],
           "example": 5,
-          "required": true,
           "minimum": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -41,7 +37,6 @@
           "example": {
             "z": 5
           },
-          "required": true,
           "properties": {
             "z": {
               "name": "z",
@@ -68,9 +63,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

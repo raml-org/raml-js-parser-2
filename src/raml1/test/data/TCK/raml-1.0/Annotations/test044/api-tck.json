@@ -10,7 +10,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "allowedTargets": [
             "Example",
             "Resource"
@@ -21,9 +20,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -37,7 +33,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "allowedTargets": [
             "Method"
           ],
@@ -47,9 +42,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -89,16 +81,12 @@
                     }
                   }
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }

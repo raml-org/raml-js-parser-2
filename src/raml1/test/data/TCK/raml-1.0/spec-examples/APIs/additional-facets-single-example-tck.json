@@ -14,7 +14,6 @@
             "title": "Attention needed",
             "body": "You have been added to group 274"
           },
-          "required": true,
           "properties": {
             "title": {
               "name": "title",
@@ -96,9 +95,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -128,14 +124,10 @@
           "type": [
             "boolean"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

@@ -28,16 +28,12 @@
                       "p2": true,
                       "p3": "stringValue"
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -81,16 +77,12 @@
                       "p2": true,
                       "p3": "stringValue"
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

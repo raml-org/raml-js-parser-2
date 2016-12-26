@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "subject": {
               "name": "subject",
@@ -53,9 +52,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -78,16 +74,12 @@
               "body": "This is the text for email 2."
             }
           ],
-          "required": true,
           "uniqueItems": true,
           "minItems": 1,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

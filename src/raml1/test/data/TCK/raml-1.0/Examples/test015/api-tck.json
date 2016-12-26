@@ -14,7 +14,6 @@
             "d": "a",
             "dd": "2"
           },
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
@@ -43,9 +42,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -70,14 +66,10 @@
           "example": {
             "x": "3"
           },
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

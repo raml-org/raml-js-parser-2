@@ -13,7 +13,6 @@
           "example": {
             "prop1": "stringValue"
           },
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
@@ -40,9 +39,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

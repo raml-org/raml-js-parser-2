@@ -5,7 +5,6 @@
 		"type": [
 			"object"
 		],
-		"required": true,
 		"properties": {
 			"prop": {
 				"name": "prop",
@@ -30,9 +29,6 @@
 			"primitiveValuesMeta": {
 				"displayName": {
 					"calculated": true
-				},
-				"required": {
-					"insertedAsDefault": true
 				}
 			}
 		}

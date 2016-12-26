@@ -16,14 +16,12 @@
           "type": [
             "array"
           ],
-          "required": true,
           "items": {
             "name": "items",
             "displayName": "items",
             "type": [
               "object"
             ],
-            "required": true,
             "properties": {
               "cardId": {
                 "annotations": {
@@ -66,9 +64,6 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             }
@@ -77,9 +72,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

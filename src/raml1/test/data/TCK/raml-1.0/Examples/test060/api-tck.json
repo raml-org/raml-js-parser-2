@@ -15,14 +15,10 @@
             1,
             2
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -53,7 +49,6 @@
               0
             ]
           },
-          "required": true,
           "properties": {
             "p": {
               "name": "p",
@@ -80,9 +75,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -117,14 +109,10 @@
                     "type": [
                       "MyType"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -152,14 +140,10 @@
                     "type": [
                       "MyType"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

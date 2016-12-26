@@ -10,14 +10,10 @@
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -30,14 +26,10 @@
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -88,7 +80,6 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "nilProp_1": {
               "name": "nilProp_1",
@@ -133,9 +124,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

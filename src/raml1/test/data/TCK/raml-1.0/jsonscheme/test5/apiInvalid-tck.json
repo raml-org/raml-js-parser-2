@@ -11,14 +11,10 @@
           "type": [
             "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -40,14 +36,10 @@
                 "example": {
                   "innerTypeName1": "somename"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

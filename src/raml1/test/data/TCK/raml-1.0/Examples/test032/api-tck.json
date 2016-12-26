@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "baseField": {
               "name": "baseField",
@@ -35,9 +34,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -50,7 +46,6 @@
           "type": [
             "TypeBase"
           ],
-          "required": true,
           "properties": {
             "field": {
               "name": "field",
@@ -75,9 +70,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -111,7 +103,6 @@
                         }
                       }
                     ],
-                    "required": true,
                     "properties": {
                       "additionalField": {
                         "name": "additionalField",
@@ -136,9 +127,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

@@ -16,7 +16,6 @@
               "someProperty": "stringValue2"
             }
           },
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
@@ -43,9 +42,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

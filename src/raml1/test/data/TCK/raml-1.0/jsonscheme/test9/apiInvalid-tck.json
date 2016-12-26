@@ -11,14 +11,10 @@
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"properties\":{\n        \"rootName\": {\"type\": \"string\"},\n        \"parent\": {\"$ref\": \"subdir/remoteScheme.json#\"}\n    },\n    \"required\": [ \"rootName\" ]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -46,14 +42,10 @@
                     }
                   }
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

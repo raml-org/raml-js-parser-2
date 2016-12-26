@@ -16,16 +16,12 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -46,14 +42,10 @@
                   "type": [
                     "<<resourcePathName|!uppercamelcase>>"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -80,14 +72,10 @@
                   "type": [
                     "<<resourcePathName|!uppercamelcase>>"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -137,14 +125,10 @@
                     "type": [
                       "Example"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -169,14 +153,10 @@
                     "type": [
                       "Example"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

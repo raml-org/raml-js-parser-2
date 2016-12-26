@@ -13,7 +13,6 @@
           "example": {
             "field": "value"
           },
-          "required": true,
           "properties": {
             "field": {
               "name": "field",
@@ -38,9 +37,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

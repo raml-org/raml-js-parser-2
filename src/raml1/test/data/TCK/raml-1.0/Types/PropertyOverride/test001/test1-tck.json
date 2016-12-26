@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -74,9 +73,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -89,7 +85,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "_embeds": {
               "name": "_embeds",
@@ -135,9 +130,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -151,7 +143,6 @@
             "ZoomEmbed",
             "Feature"
           ],
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
@@ -176,9 +167,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -191,7 +179,6 @@
           "type": [
             "Scene"
           ],
-          "required": true,
           "properties": {
             "properties": {
               "name": "properties",
@@ -255,9 +242,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -270,7 +254,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "acquired": {
               "name": "acquired",
@@ -298,9 +281,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -313,7 +293,6 @@
           "type": [
             "BaseProperties"
           ],
-          "required": true,
           "properties": {
             "vnd_camera_gain": {
               "name": "vnd_camera_gain",
@@ -339,9 +318,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -354,15 +330,11 @@
           "type": [
             "string"
           ],
-          "required": true,
           "description": "A URL to a related resource.",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -445,14 +417,10 @@
                                 }
                               }
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },

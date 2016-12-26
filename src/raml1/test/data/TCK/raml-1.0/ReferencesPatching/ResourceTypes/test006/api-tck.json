@@ -25,14 +25,10 @@
                   "type": [
                     "error-types.<<parentType>>-<<resourcePathName>>-errors"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -48,14 +44,10 @@
                   "type": [
                     "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -111,14 +103,10 @@
                         "type": [
                           "error-types.alpha-letters-errors"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -134,14 +122,10 @@
                         "type": [
                           "error-types.alpha-letters-errors | string"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }

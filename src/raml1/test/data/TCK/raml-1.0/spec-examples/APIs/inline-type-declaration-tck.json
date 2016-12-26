@@ -17,7 +17,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "firstname": {
                         "name": "firstname",
@@ -78,9 +77,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

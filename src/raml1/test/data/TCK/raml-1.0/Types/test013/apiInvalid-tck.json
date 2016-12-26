@@ -17,7 +17,6 @@
               }
             }
           },
-          "required": true,
           "properties": {
             "someProperty": {
               "name": "someProperty",
@@ -44,9 +43,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

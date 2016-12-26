@@ -156,6 +156,25 @@ export class TCKDumper {
                     }
                 }
             }
+            if(universeHelpers.isTypeDeclarationDescendant(definition)){
+                var prop = basicNode.highLevel().property();
+                if(prop&&!(universeHelpers.isHeadersProperty(prop)
+                    ||universeHelpers.isQueryParametersProperty(prop)
+                    ||universeHelpers.isUriParametersProperty(prop)
+                    ||universeHelpers.isPropertiesProperty(prop)
+                    ||universeHelpers.isBaseUriParametersProperty(prop))){
+
+                    delete obj["required"];
+                    var metaObj = obj["__METADATA__"]
+                    if(metaObj){
+                        var pMetaObj = metaObj["primitiveValuesMeta"];
+                        if(pMetaObj){
+                            delete pMetaObj["required"];
+                        }
+                    }
+
+                }
+            }
             this.nodeTransformers.forEach(x=> {
                 if (x.match(node, nodeProperty||node.highLevel().property())) {
                     obj = x.transform(obj, node);

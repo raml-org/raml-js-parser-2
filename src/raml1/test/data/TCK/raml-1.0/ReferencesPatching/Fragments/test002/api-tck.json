@@ -27,14 +27,10 @@
                 "example": {
                   "prop": "stringValue"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -66,14 +62,10 @@
                   "lib.MyType"
                 ],
                 "example": "stringValue",
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -98,14 +90,10 @@
                 "example": {
                   "prop": "stringValue"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

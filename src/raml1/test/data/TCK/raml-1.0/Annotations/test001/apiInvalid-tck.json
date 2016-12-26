@@ -19,7 +19,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "q": {
               "name": "q",
@@ -68,9 +67,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

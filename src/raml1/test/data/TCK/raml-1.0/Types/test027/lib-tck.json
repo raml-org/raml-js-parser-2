@@ -10,14 +10,10 @@
           "type": [
             "integer|number"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -30,7 +26,6 @@
           "type": [
             "Foo"
           ],
-          "required": true,
           "fixedFacets": {
             "maximum": 2,
             "minimum": 1
@@ -39,9 +34,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

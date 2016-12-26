@@ -21,7 +21,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "description": "some very useful resource",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -29,9 +28,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -66,7 +62,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "description": "another very useful resource",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -74,9 +69,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

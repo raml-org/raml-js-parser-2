@@ -26,16 +26,12 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -51,7 +47,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "pattern": "[a-zA-Z0-9]{8,32}",
           "minLength": 8,
           "maxLength": 64,
@@ -61,9 +56,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -77,7 +69,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "property1": {
               "name": "property1",
@@ -169,9 +160,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

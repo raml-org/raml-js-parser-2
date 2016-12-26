@@ -24,7 +24,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -53,9 +52,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -68,7 +64,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
@@ -96,9 +91,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -111,7 +103,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
@@ -139,9 +130,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -156,7 +144,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "persons": {
               "name": "persons",
@@ -183,9 +170,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

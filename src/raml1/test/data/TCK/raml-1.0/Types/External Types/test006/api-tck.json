@@ -10,14 +10,10 @@
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -33,14 +29,10 @@
           "example": {
             "id": "4"
           },
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

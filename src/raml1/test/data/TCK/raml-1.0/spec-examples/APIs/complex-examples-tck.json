@@ -14,7 +14,6 @@
             "name": "Bob",
             "lastname": "Marley"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -57,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -81,7 +77,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -142,9 +137,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -195,14 +187,10 @@
                   "name": "Doe Enterprise",
                   "value": "Silver"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -250,14 +238,10 @@
                         }
                       }
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

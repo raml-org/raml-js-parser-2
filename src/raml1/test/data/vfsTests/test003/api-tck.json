@@ -14,14 +14,10 @@
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -44,14 +40,10 @@
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

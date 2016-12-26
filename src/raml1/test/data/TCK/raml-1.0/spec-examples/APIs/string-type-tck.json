@@ -10,7 +10,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "pattern": "^note\\d+$",
           "minLength": 2,
           "maxLength": 6,
@@ -18,9 +17,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

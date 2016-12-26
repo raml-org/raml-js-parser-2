@@ -22,7 +22,6 @@
                         "id": 7
                       }
                     },
-                    "required": true,
                     "properties": {
                       "body": {
                         "name": "body",
@@ -49,9 +48,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

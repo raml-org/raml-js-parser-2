@@ -21,7 +21,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
@@ -50,9 +49,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -67,7 +63,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "pp": {
               "name": "pp",
@@ -94,9 +89,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

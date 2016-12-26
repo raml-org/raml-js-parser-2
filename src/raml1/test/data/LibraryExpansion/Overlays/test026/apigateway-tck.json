@@ -11,7 +11,6 @@
             "string"
           ],
           "example": "POST",
-          "required": true,
           "enum": [
             "GET",
             "PATCH",
@@ -25,9 +24,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -47,7 +43,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "pattern": "^[12345]\\d\\d$",
           "__METADATA__": {
             "primitiveValuesMeta": {
@@ -55,9 +50,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -71,7 +63,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/\\w+/\\w+/": {
               "name": "/\\w+/\\w+/",
@@ -102,9 +93,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -117,7 +105,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "enum": [
             "aws_iam"
           ],
@@ -127,9 +114,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -143,7 +127,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -177,9 +160,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -192,7 +172,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -226,9 +205,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -241,7 +217,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -274,9 +249,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -328,7 +300,6 @@
               }
             }
           },
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -598,9 +569,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -656,14 +624,10 @@
           "type": [
             "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -678,14 +642,10 @@
           "type": [
             "AWS.amazon-apigateway-auth-type"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -698,14 +658,10 @@
           "type": [
             "AWS.amazon-apigateway-integration"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

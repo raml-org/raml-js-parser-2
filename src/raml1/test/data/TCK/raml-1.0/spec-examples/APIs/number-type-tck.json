@@ -10,7 +10,6 @@
           "type": [
             "number"
           ],
-          "required": true,
           "minimum": 3,
           "maximum": 5,
           "format": "int64",
@@ -22,9 +21,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

@@ -14,14 +14,10 @@
               "type": [
                 "boolean"
               ],
-              "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -32,14 +28,10 @@
               "type": [
                 "boolean"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -48,14 +40,10 @@
           "type": [
             "date-only"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -68,7 +56,6 @@
           "type": [
             "CustomDate"
           ],
-          "required": true,
           "fixedFacets": {
             "noHolidays": true
           },
@@ -76,9 +63,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

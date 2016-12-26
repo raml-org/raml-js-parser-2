@@ -14,7 +14,6 @@
             "name": "Fred",
             "comment": null
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -63,9 +62,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

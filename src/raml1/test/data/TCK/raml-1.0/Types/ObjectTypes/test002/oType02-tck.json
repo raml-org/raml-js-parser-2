@@ -13,7 +13,6 @@
           "example": {
             "initial_comments": "oo"
           },
-          "required": true,
           "properties": {
             "comment_id": {
               "name": "comment_id",
@@ -57,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

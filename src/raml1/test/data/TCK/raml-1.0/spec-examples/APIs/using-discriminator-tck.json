@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "kind": {
               "name": "kind",
@@ -54,9 +53,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -69,7 +65,6 @@
           "type": [
             "Person"
           ],
-          "required": true,
           "properties": {
             "employeeId": {
               "name": "employeeId",
@@ -94,9 +89,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -109,7 +101,6 @@
           "type": [
             "Person"
           ],
-          "required": true,
           "properties": {
             "userId": {
               "name": "userId",
@@ -134,9 +125,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

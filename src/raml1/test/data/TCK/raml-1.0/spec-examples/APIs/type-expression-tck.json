@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "manufacturer": {
               "name": "manufacturer",
@@ -53,9 +52,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -68,7 +64,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "manufacturer": {
               "name": "manufacturer",
@@ -111,9 +106,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -126,7 +118,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "devices": {
               "name": "devices",
@@ -171,9 +162,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

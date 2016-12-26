@@ -10,7 +10,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "enum": [
             "aws_iam"
           ],
@@ -20,9 +19,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -36,7 +32,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -70,9 +65,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -85,7 +77,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -119,9 +110,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -134,7 +122,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -168,9 +155,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -183,7 +167,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
@@ -217,9 +200,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -232,14 +212,10 @@
           "type": [
             "amazon-apigateway-integration-lambda | amazon-apigateway-integration-HTTP | amazon-apigateway-integration-mock | amazon-apigateway-integration-aws"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -254,7 +230,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "value": {
               "name": "value",
@@ -282,9 +257,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -297,7 +269,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "value": {
               "name": "value",
@@ -324,9 +295,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

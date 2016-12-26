@@ -23,14 +23,12 @@
                   },
                   "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
                 },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "objectProperty": {
                       "name": "objectProperty",
@@ -83,9 +81,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -94,9 +89,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

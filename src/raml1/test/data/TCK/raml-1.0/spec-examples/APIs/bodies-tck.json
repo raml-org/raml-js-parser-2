@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "firstName": {
               "name": "firstName",
@@ -62,9 +61,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -84,14 +80,10 @@
                 "type": [
                   "User"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -124,7 +116,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "groupName": {
                     "name": "groupName",
@@ -173,9 +164,6 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -186,14 +174,10 @@
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"group\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"name\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

@@ -14,7 +14,6 @@
             "c": "A",
             "y": 3
           },
-          "required": true,
           "properties": {
             "c": {
               "name": "c",
@@ -57,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

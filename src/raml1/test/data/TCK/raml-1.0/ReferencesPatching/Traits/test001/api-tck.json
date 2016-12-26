@@ -21,14 +21,10 @@
                   "type": [
                     "lib.LibType"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -63,14 +59,10 @@
                     "type": [
                       "lib.LibType"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

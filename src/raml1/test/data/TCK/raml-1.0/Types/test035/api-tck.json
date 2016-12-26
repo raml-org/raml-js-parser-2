@@ -10,14 +10,10 @@
           "type": [
             "object"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -35,7 +31,6 @@
               null
             ]
           },
-          "required": true,
           "properties": {
             "reports": {
               "name": "reports",
@@ -61,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

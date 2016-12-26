@@ -10,15 +10,11 @@
           "type": [
             "array"
           ],
-          "required": true,
           "minItems": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -39,7 +35,6 @@
               "3"
             ]
           },
-          "required": true,
           "properties": {
             "items": {
               "name": "items",
@@ -66,9 +61,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

@@ -46,14 +46,12 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "prop1": {
                       "name": "prop1",
@@ -99,9 +97,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -110,9 +105,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -156,14 +148,10 @@
                   "string",
                   "number"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -207,16 +195,12 @@
                   "string",
                   "number"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -260,16 +244,12 @@
                 "schema": [
                   "string"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -313,14 +293,10 @@
                 "type": [
                   "string"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -363,14 +339,10 @@
                 "schema": [
                   "number"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

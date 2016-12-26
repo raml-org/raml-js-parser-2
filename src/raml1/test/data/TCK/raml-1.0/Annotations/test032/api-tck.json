@@ -10,14 +10,12 @@
           "type": [
             "array"
           ],
-          "required": true,
           "items": {
             "name": "items",
             "displayName": "items",
             "type": [
               "object"
             ],
-            "required": true,
             "properties": {
               "method": {
                 "name": "method",
@@ -92,19 +90,12 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             }
           },
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       }

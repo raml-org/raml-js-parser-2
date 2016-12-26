@@ -24,14 +24,10 @@
               "type": [
                 "string"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -40,14 +36,10 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -60,7 +52,6 @@
           "type": [
             "myDate"
           ],
-          "required": true,
           "fixedFacets": {
             "format": "YYYY"
           },
@@ -68,9 +59,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -83,7 +71,6 @@
           "type": [
             "year"
           ],
-          "required": true,
           "fixedFacets": {
             "format": 1332
           },
@@ -91,9 +78,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -108,14 +92,10 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -128,14 +108,10 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

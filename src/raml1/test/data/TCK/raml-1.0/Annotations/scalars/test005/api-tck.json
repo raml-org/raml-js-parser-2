@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "prop": {
               "name": "prop",
@@ -46,9 +45,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -63,7 +59,6 @@
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 8,
           "maxLength": 64,
           "__METADATA__": {
@@ -72,9 +67,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

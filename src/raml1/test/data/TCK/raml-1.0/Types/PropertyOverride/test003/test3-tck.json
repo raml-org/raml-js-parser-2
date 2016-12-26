@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -38,9 +37,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -53,7 +49,6 @@
           "type": [
             "PropertyType1"
           ],
-          "required": true,
           "properties": {
             "name2": {
               "name": "name2",
@@ -78,9 +73,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -93,7 +85,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -121,9 +112,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -136,7 +124,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "testProperty": {
               "name": "testProperty",
@@ -164,9 +151,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -179,7 +163,6 @@
           "type": [
             "Type1"
           ],
-          "required": true,
           "properties": {
             "testProperty": {
               "name": "testProperty",
@@ -204,9 +187,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

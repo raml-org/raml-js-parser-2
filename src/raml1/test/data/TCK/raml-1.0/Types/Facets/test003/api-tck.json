@@ -14,14 +14,10 @@
               "type": [
                 "string"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -30,14 +26,10 @@
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

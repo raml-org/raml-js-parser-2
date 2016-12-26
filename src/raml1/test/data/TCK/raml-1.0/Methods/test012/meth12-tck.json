@@ -10,14 +10,10 @@
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -33,7 +29,6 @@
           "example": {
             "baseField": "name"
           },
-          "required": true,
           "properties": {
             "baseField": {
               "name": "baseField",
@@ -58,9 +53,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -85,7 +77,6 @@
             "baseField": "name",
             "field": "value"
           },
-          "required": true,
           "properties": {
             "field": {
               "name": "field",
@@ -110,9 +101,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -147,7 +135,6 @@
                       "baseField": "base",
                       "field": "any text"
                     },
-                    "required": true,
                     "properties": {
                       "additionalField": {
                         "name": "additionalField",
@@ -172,9 +159,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -198,16 +182,12 @@
                 "schema": [
                   "account"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }

@@ -13,7 +13,6 @@
           "example": {
             "name": "somestring"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -38,9 +37,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -61,7 +57,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "age": {
               "name": "age",
@@ -90,9 +85,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -111,7 +103,6 @@
               "age": "123s"
             }
           },
-          "required": true,
           "properties": {
             "someProperty": {
               "name": "someProperty",
@@ -136,9 +127,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

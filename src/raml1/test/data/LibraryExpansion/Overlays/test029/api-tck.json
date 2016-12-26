@@ -38,11 +38,10 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
-            "type": {
-              "name": "type",
-              "displayName": "type",
+            "title": {
+              "name": "title",
+              "displayName": "title",
               "type": [
                 "string"
               ],
@@ -58,9 +57,9 @@
                 }
               }
             },
-            "title": {
-              "name": "title",
-              "displayName": "title",
+            "type": {
+              "name": "type",
+              "displayName": "type",
               "type": [
                 "string"
               ],
@@ -102,9 +101,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -119,18 +115,13 @@
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Description of the RAML API spec.",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -141,18 +132,13 @@
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Service logo.",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -163,18 +149,13 @@
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Author of the RAML spec.",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -185,18 +166,13 @@
           "type": [
             "string"
           ],
-          "required": true,
           "description": "URL to the developer portal",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -207,7 +183,6 @@
           "type": [
             "library.apiResource[]"
           ],
-          "required": true,
           "allowedTargets": [
             "API",
             "Overlay"
@@ -216,9 +191,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

@@ -18,7 +18,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "numberProp": {
               "name": "numberProp",
@@ -46,9 +45,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -63,14 +59,10 @@
           "type": [
             "MyType"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

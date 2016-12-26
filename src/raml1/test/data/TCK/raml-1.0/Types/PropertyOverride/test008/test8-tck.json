@@ -10,15 +10,11 @@
           "type": [
             "number"
           ],
-          "required": true,
           "minimum": 0,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -31,15 +27,11 @@
           "type": [
             "PropertyType1"
           ],
-          "required": true,
           "maximum": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -52,7 +44,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "testProperty": {
               "name": "testProperty",
@@ -80,9 +71,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -95,7 +83,6 @@
           "type": [
             "Type1"
           ],
-          "required": true,
           "properties": {
             "testProperty": {
               "name": "testProperty",
@@ -120,9 +107,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

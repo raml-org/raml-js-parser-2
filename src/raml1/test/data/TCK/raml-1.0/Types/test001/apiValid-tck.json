@@ -13,7 +13,6 @@
           "example": {
             "name": "somestring"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -38,9 +37,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

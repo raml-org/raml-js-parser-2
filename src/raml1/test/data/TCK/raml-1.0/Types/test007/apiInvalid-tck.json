@@ -10,14 +10,10 @@
           "type": [
             "string[] | number[]"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -42,7 +38,6 @@
               "blah"
             ]
           },
-          "required": true,
           "properties": {
             "unionArray1": {
               "name": "unionArray1",
@@ -85,9 +80,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

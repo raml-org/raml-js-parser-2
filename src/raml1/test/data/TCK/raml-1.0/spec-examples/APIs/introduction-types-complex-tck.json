@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "onCall": {
               "name": "onCall",
@@ -53,9 +52,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -68,7 +64,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "firstname": {
               "name": "firstname",
@@ -129,9 +124,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -144,15 +136,11 @@
           "type": [
             "string"
           ],
-          "required": true,
           "pattern": "[0-9|-]+",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -165,7 +153,6 @@
           "type": [
             "Person"
           ],
-          "required": true,
           "properties": {
             "reports": {
               "name": "reports",
@@ -209,9 +196,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -224,7 +208,6 @@
           "type": [
             "Person"
           ],
-          "required": true,
           "properties": {
             "clearanceLevel": {
               "name": "clearanceLevel",
@@ -256,9 +239,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -271,7 +251,6 @@
           "type": [
             "Admin"
           ],
-          "required": true,
           "properties": {
             "phone": {
               "name": "phone",
@@ -296,9 +275,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -311,14 +287,10 @@
           "type": [
             "Manager | AlertableAdmin"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -341,14 +313,10 @@
                     "type": [
                       "Org"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

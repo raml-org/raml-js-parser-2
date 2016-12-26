@@ -27,15 +27,11 @@
                   "type": [
                     "string"
                   ],
-                  "required": true,
                   "minLength": 1,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }

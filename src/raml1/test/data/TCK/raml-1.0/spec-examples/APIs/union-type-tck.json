@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "manufacturer": {
               "name": "manufacturer",
@@ -71,9 +70,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -86,7 +82,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "manufacturer": {
               "name": "manufacturer",
@@ -147,9 +142,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -162,14 +154,10 @@
           "type": [
             "Phone | Notebook"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

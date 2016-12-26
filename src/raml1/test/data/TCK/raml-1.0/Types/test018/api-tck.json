@@ -10,16 +10,12 @@
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 1,
           "maxLength": 10,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

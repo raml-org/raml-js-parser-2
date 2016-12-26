@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -74,9 +73,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -89,7 +85,6 @@
           "type": [
             "TestType"
           ],
-          "required": true,
           "properties": {
             "name4": {
               "name": "name4",
@@ -114,9 +109,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -129,7 +121,6 @@
           "type": [
             "TestType2"
           ],
-          "required": true,
           "properties": {
             "name5": {
               "name": "name5",
@@ -154,9 +145,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -169,7 +157,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "proppp": {
               "name": "proppp",
@@ -194,9 +181,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -297,16 +281,12 @@
                         "schema": [
                           "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -323,16 +303,12 @@
                         "schema": [
                           "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -349,14 +325,10 @@
                         "type": [
                           "TestType"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },

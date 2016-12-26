@@ -11,14 +11,10 @@
             "number"
           ],
           "example": 630128,
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -44,7 +40,6 @@
             "house": "77, Suite 400",
             "zip": 94108
           },
-          "required": true,
           "properties": {
             "country": {
               "name": "country",
@@ -162,9 +157,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -190,7 +182,6 @@
             "string"
           ],
           "example": "press@mulesoft.com",
-          "required": true,
           "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
           "minLength": 15,
           "maxLength": 64,
@@ -200,9 +191,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -227,7 +215,6 @@
                 "string"
               ],
               "default": "user",
-              "required": true,
               "enum": [
                 "user",
                 "manager",
@@ -240,9 +227,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
                     "insertedAsDefault": true
                   }
                 }
@@ -286,7 +270,6 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
@@ -395,9 +378,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -446,7 +426,6 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "managerId": {
               "name": "managerId",
@@ -474,9 +453,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -489,7 +465,6 @@
           "type": [
             "User"
           ],
-          "required": true,
           "properties": {
             "adminId": {
               "name": "adminId",
@@ -517,9 +492,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -532,14 +504,10 @@
           "type": [
             "Admin"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -552,7 +520,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
@@ -734,9 +701,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -793,14 +757,10 @@
                     "type": [
                       "array"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -832,7 +792,6 @@
                     "type": [
                       "User"
                     ],
-                    "required": true,
                     "fixedFacets": {
                       "role": "admin"
                     },
@@ -840,9 +799,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -857,7 +813,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "title": {
                     "name": "title",
@@ -888,9 +843,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -927,14 +879,10 @@
                         "type": [
                           "Team"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -950,16 +898,12 @@
                         "type": [
                           "object"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -1045,14 +989,10 @@
                     "type": [
                       "array"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1101,7 +1041,6 @@
                     "type": [
                       "User"
                     ],
-                    "required": true,
                     "fixedFacets": {
                       "role": "admin"
                     },
@@ -1109,9 +1048,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

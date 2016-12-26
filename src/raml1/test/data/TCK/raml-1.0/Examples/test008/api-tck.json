@@ -28,7 +28,6 @@
               1
             ]
           },
-          "required": true,
           "properties": {
             "items": {
               "name": "items",
@@ -97,9 +96,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

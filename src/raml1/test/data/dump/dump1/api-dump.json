@@ -7,7 +7,6 @@
 				"type": [
 					"object"
 				],
-				"required": true,
 				"properties": {
 					"firstname": {
 						"name": "firstname",
@@ -49,7 +48,6 @@
 						"type": [
 							"array"
 						],
-						"items": "string",
 						"required": true,
 						"__METADATA__": {
 							"primitiveValuesMeta": {
@@ -60,7 +58,8 @@
 									"insertedAsDefault": true
 								}
 							}
-						}
+						},
+						"items": "string"
 					},
 					"age": {
 						"name": "age",
@@ -85,9 +84,6 @@
 					"primitiveValuesMeta": {
 						"displayName": {
 							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
 						}
 					}
 				}
@@ -122,7 +118,6 @@
 										],
 										"age": 123
 									},
-									"required": true,
 									"properties": {
 										"juan": {
 											"name": "juan",
@@ -147,9 +142,6 @@
 										"primitiveValuesMeta": {
 											"displayName": {
 												"calculated": true
-											},
-											"required": {
-												"insertedAsDefault": true
 											}
 										}
 									},
@@ -179,7 +171,6 @@
 							"type": [
 								"object"
 							],
-							"required": true,
 							"properties": {
 								"developer": {
 									"name": "developer",
@@ -258,9 +249,6 @@
 								"primitiveValuesMeta": {
 									"displayName": {
 										"calculated": true
-									},
-									"required": {
-										"insertedAsDefault": true
 									}
 								}
 							}
@@ -280,7 +268,6 @@
 				}
 			],
 			"relativeUri": "/users",
-			"absoluteUri": "/media/users",
 			"displayName": "/users",
 			"__METADATA__": {
 				"primitiveValuesMeta": {
@@ -291,7 +278,8 @@
 			},
 			"relativeUriPathSegments": [
 				"users"
-			]
+			],
+			"absoluteUri": "/media/users"
 		}
 	],
 	"__METADATA__": {

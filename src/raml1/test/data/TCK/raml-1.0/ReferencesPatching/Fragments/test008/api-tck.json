@@ -33,14 +33,12 @@
                     "integerProperty": 5
                   }
                 },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "ownLibProperty": {
                       "name": "ownLibProperty",
@@ -96,9 +94,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -107,9 +102,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -150,14 +142,12 @@
                     "integerProperty": false
                   }
                 },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "ownLibProperty": {
                       "name": "ownLibProperty",
@@ -213,9 +203,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -224,9 +211,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -256,14 +240,10 @@
                   "lib.MyType"
                 ],
                 "example": "stringValue",
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

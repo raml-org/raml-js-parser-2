@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "x": {
               "name": "x",
@@ -54,9 +53,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -71,7 +67,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "point": {
               "name": "point",
@@ -99,9 +94,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

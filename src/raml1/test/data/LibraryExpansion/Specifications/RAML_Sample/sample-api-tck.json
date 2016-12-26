@@ -1,67 +1,12 @@
 {
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "specification": {
     "types": [
       {
         "dataTypes.Customer": {
           "name": "Customer",
           "displayName": "Customer",
-          "type": {
-            "name": "type",
-            "displayName": "type",
-            "type": [
-              "object"
-            ],
-            "required": true,
-            "properties": {
-              "id": {
-                "name": "id",
-                "displayName": "id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              "eTag": {
-                "name": "eTag",
-                "displayName": "eTag",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              }
-            }
-          },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -247,13 +192,62 @@
               }
             }
           },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "eTag": {
+                "name": "eTag",
+                "displayName": "eTag",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -294,21 +288,16 @@
                         }
                       }
                     ],
-                    "required": true,
                     "items": {
                       "name": "items",
                       "displayName": "items",
                       "type": [
                         "dataTypes.Customer"
                       ],
-                      "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
                           }
                         }
                       }
@@ -317,9 +306,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -382,7 +368,5 @@
       }
     }
   },
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "errors": []
 }

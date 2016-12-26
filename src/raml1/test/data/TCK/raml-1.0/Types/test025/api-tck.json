@@ -10,14 +10,10 @@
           "type": [
             "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -32,14 +28,10 @@
           "type": [
             "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

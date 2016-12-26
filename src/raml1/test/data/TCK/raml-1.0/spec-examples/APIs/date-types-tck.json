@@ -11,14 +11,10 @@
             "date-only"
           ],
           "example": "2015-05-23",
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -38,14 +34,10 @@
             "time-only"
           ],
           "example": "12:30:00",
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -65,14 +57,10 @@
             "datetime-only"
           ],
           "example": "2015-07-04T21:00:00",
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -92,7 +80,6 @@
             "datetime"
           ],
           "example": "2016-02-28T16:41:41.090Z",
-          "required": true,
           "format": "rfc3339",
           "fixedFacets": {
             "format": "rfc3339"
@@ -101,9 +88,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -123,7 +107,6 @@
             "datetime"
           ],
           "example": "Sun, 28 Feb 2016 16:41:41 GMT",
-          "required": true,
           "format": "rfc2616",
           "fixedFacets": {
             "format": "rfc2616"
@@ -132,9 +115,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

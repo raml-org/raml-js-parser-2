@@ -13,7 +13,6 @@
           "example": {
             "name": "somestring"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -38,9 +37,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -65,7 +61,6 @@
             "name1": "somestring",
             "age": "stringValue"
           },
-          "required": true,
           "properties": {
             "age": {
               "name": "age",
@@ -90,9 +85,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

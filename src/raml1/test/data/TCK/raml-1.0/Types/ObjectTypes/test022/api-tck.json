@@ -14,7 +14,6 @@
             "name": "eleo",
             "title??": "Yes, I have a title"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
@@ -54,9 +53,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

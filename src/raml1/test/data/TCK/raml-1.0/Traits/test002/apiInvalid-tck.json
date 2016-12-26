@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "rtTypeProperty1": {
               "name": "rtTypeProperty1",
@@ -38,9 +37,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -53,7 +49,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "rtTypeProperty2": {
               "name": "rtTypeProperty2",
@@ -81,9 +76,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -96,7 +88,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "typeProperty1": {
               "name": "typeProperty1",
@@ -124,9 +115,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -139,7 +127,6 @@
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "typeProperty2": {
               "name": "typeProperty2",
@@ -167,9 +154,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -186,14 +170,10 @@
               "type": [
                 "<<RTType>>"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -214,7 +194,6 @@
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "traitProperty1": {
                       "name": "traitProperty1",
@@ -278,9 +257,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -303,7 +279,6 @@
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "traitProperty1": {
                       "name": "traitProperty1",
@@ -367,9 +342,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -428,7 +400,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "traitProperty1": {
                         "name": "traitProperty1",
@@ -510,9 +481,6 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -530,14 +498,10 @@
                 "example": {
                   "rtTypeProperty1": "stringValue"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -577,7 +541,6 @@
                       "traitProperty1_3": "stringValue1",
                       "traitProperty2_3": "stringValue2"
                     },
-                    "required": true,
                     "properties": {
                       "traitProperty1": {
                         "name": "traitProperty1",
@@ -658,9 +621,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

@@ -24,7 +24,6 @@
             ],
             "someProperty": "stringValue"
           },
-          "required": true,
           "properties": {
             "selfReference": {
               "name": "selfReference",
@@ -69,9 +68,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

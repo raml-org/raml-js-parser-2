@@ -10,7 +10,6 @@
           "type": [
             "file"
           ],
-          "required": true,
           "fileTypes": [
             {},
             {}
@@ -27,9 +26,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -42,7 +38,6 @@
           "type": [
             "file"
           ],
-          "required": true,
           "fileTypes": [
             {}
           ],
@@ -57,9 +52,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
