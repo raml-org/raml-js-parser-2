@@ -24,6 +24,8 @@ node node_modules/raml-1-parser/test/testAsync02.js  //asynchronously loads XKCD
 
 Parser documentation: https://raml-org.github.io/raml-js-parser-2/
 
+Parser JSON output schema: https://github.com/raml-org/raml-js-parser-2/blob/master/tckJsonSchema/tckJsonSchema.json
+
 Getting started guide: https://github.com/raml-org/raml-js-parser-2/blob/master/documentation/GettingStarted.md
 
 High-level usage example: https://github.com/raml-org/raml-js-parser-2/blob/master/examples/highlevel-AST-usage/tutorial.md
