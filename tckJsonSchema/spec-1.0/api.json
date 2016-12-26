@@ -265,13 +265,16 @@
       "type": "object",
       "properties": {
         "line": {
-          "type": "number"
+          "type": "number",
+          "description": "Line number, starting at 0"
         },
         "column": {
-          "type": "number"
+          "type": "number",
+          "description": "Column number, starting at 0"
         },
         "position": {
-          "type": "number"
+          "type": "number",
+          "description": "Position in characters from the beginning of the document, starting at 0"
         }
       },
       "additionalProperties": false
