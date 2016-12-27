@@ -7,7 +7,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -15,13 +14,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "Dog": {
         "name": "Dog",
@@ -29,7 +26,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -37,13 +33,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "PersonOrDog": {
         "name": "PersonOrDog",
@@ -51,18 +45,15 @@
         "type": [
           "Person | Dog"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "Invalid Discriminator Usage",
@@ -81,7 +72,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "kind": {
                         "name": "kind",
@@ -100,7 +90,8 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "discriminator": "kind",
@@ -111,13 +102,11 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }

@@ -7,7 +7,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "prop": {
             "name": "prop",
@@ -26,7 +25,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -35,9 +35,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "required": {
               "insertedAsDefault": true
             }
           }
@@ -60,7 +57,8 @@
             "description": "my example"
           }
         ],
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "annotationTypes": {
@@ -70,7 +68,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "minLength": 8,
         "maxLength": 64,
         "__METADATA__": {
@@ -80,13 +77,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "testAPI",

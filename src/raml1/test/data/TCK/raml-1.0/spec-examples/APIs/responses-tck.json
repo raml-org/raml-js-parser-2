@@ -7,7 +7,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "amount": {
             "name": "amount",
@@ -27,7 +26,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "vendorName": {
             "name": "vendorName",
@@ -49,7 +49,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -59,13 +60,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "Example with responses",
@@ -86,7 +85,6 @@
                     "type": [
                       "Invoice"
                     ],
-                    "required": true,
                     "properties": {
                       "id": {
                         "name": "id",
@@ -105,20 +103,19 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -157,7 +154,8 @@
                         "name": null
                       }
                     ],
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "body": {
@@ -167,18 +165,15 @@
                     "type": [
                       "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}\n"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "mediaType": "application/json"
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
                   },
                   "text/xml": {
                     "name": "text/xml",
@@ -186,18 +181,15 @@
                     "type": [
                       "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"invoice\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"accountID\" type=\"xs:string\"/>\n        <xs:element name=\"amount\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "mediaType": "application/xml"
+                    "mediaType": "application/xml",
+                    "typePropertyKind": "XML"
                   }
                 }
               },
@@ -210,7 +202,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "error": {
                         "name": "error",
@@ -232,7 +223,8 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "__METADATA__": {
@@ -241,9 +233,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -257,7 +246,8 @@
                         "name": null
                       }
                     ],
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -269,18 +259,15 @@
                 "type": [
                   "Invoice"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"

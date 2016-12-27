@@ -15,18 +15,15 @@
         "type": [
           "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/json"
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       },
       "AnotherEntry": {
         "name": "AnotherEntry",
@@ -34,15 +31,11 @@
         "type": [
           "Entry"
         ],
-        "required": true,
         "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
@@ -54,7 +47,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "firstname": {
             "name": "firstname",
@@ -73,7 +65,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "lastname": {
             "name": "lastname",
@@ -96,7 +89,8 @@
                 "name": null
               }
             ],
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -105,9 +99,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "required": {
               "insertedAsDefault": true
             }
           }
@@ -121,7 +112,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ApiLib.RamlDataType": {
         "name": "RamlDataType",
@@ -129,7 +121,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "propString": {
             "name": "propString",
@@ -148,7 +139,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "propStringArray1": {
             "name": "propStringArray1",
@@ -168,7 +160,8 @@
               }
             },
             "items": "string",
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "ideas": {
             "name": "ideas",
@@ -184,7 +177,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "comment": {
                     "name": "comment",
@@ -203,7 +195,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -213,13 +206,11 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "__METADATA__": {
@@ -232,7 +223,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "extIdeas": {
             "name": "extIdeas",
@@ -244,7 +236,6 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "comment": {
                     "name": "comment",
@@ -263,7 +254,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -273,13 +265,11 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "required": true,
@@ -301,7 +291,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -314,7 +305,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "INPLACE"
           },
           "feedback": {
             "name": "feedback",
@@ -344,7 +336,8 @@
                 "name": null
               }
             ],
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "propNumber": {
             "name": "propNumber",
@@ -370,7 +363,8 @@
             "fixedFacets": {
               "format": "int32"
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "propInteger": {
             "name": "propInteger",
@@ -396,7 +390,8 @@
             "fixedFacets": {
               "format": "int8"
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "propBoolean": {
             "name": "propBoolean",
@@ -415,7 +410,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "propDate": {
             "name": "propDate",
@@ -441,7 +437,8 @@
                 "name": null
               }
             ],
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "userPicture": {
             "name": "userPicture",
@@ -472,7 +469,8 @@
               ],
               "maxLength": 307200
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "NilValue": {
             "name": "NilValue",
@@ -502,7 +500,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "comment": {
                 "name": "comment",
@@ -521,7 +520,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -534,7 +534,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "CatOrDog": {
             "name": "CatOrDog",
@@ -553,7 +554,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "CatAndDog": [
             {
@@ -573,7 +575,8 @@
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             },
             {
               "name": "CatAndDog",
@@ -592,7 +595,8 @@
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
           ],
           "PossibleMeetingDate": {
@@ -615,20 +619,19 @@
             "fixedFacets": {
               "noHolidays": true
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ApiLib.Cat": {
         "name": "Cat",
@@ -636,7 +639,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "name": {
             "name": "name",
@@ -655,7 +657,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "color": {
             "name": "color",
@@ -674,20 +677,19 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ApiLib.Dog": {
         "name": "Dog",
@@ -695,7 +697,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "name": {
             "name": "name",
@@ -714,7 +715,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "fangs": {
             "name": "fangs",
@@ -733,20 +735,19 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ApiLib.CustomDate": {
         "name": "CustomDate",
@@ -758,18 +759,15 @@
             "type": [
               "boolean"
             ],
-            "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "noHolidays": {
             "name": "noHolidays",
@@ -777,35 +775,29 @@
             "type": [
               "boolean"
             ],
-            "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "type": [
           "date-only"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "SongsLib.Song": {
         "name": "Song",
@@ -831,7 +823,6 @@
             "name": "song2"
           }
         ],
-        "required": true,
         "properties": {
           "title": {
             "name": "title",
@@ -850,7 +841,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "length": {
             "name": "length",
@@ -869,7 +861,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -879,13 +872,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "traits": {
@@ -908,7 +899,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "securedBy": [
@@ -936,7 +928,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -944,16 +935,14 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
                     "type": [
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
                     ],
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -992,7 +981,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "date": {
             "name": "date",
@@ -1011,7 +999,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "deprecatedBy": {
             "name": "deprecatedBy",
@@ -1030,7 +1019,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "comment": {
             "name": "comment",
@@ -1049,7 +1039,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -1059,13 +1050,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "monitoringInterval": {
         "name": "monitoringInterval",
@@ -1073,15 +1062,11 @@
         "type": [
           "integer"
         ],
-        "required": true,
         "description": "interval in seconds",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
@@ -1092,7 +1077,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ready": {
         "name": "ready",
@@ -1100,7 +1086,6 @@
         "type": [
           "nil"
         ],
-        "required": true,
         "description": "markes a resource as ready",
         "allowedTargets": [
           "Resource"
@@ -1109,13 +1094,11 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "info": {
         "name": "info",
@@ -1123,7 +1106,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "allowedTargets": [
           "API"
         ],
@@ -1149,7 +1131,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -1159,13 +1142,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "rediractable": {
         "name": "rediractable",
@@ -1173,18 +1154,15 @@
         "type": [
           "boolean"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "securitySchemes": {
@@ -1226,7 +1204,8 @@
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
           },
           "headers": {
@@ -1248,7 +1227,8 @@
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
           },
           "responses": [
@@ -1296,7 +1276,8 @@
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
           },
           "responses": [
@@ -1339,7 +1320,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "version": {
         "name": "version",
@@ -1368,7 +1350,8 @@
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -1391,7 +1374,6 @@
               "type": [
                 "object"
               ],
-              "required": true,
               "properties": {
                 "start": {
                   "name": "start",
@@ -1410,7 +1392,8 @@
                       }
                     }
                   },
-                  "mediaType": "application/raml+yaml"
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
                 },
                 "page-size": {
                   "name": "page-size",
@@ -1429,7 +1412,8 @@
                       }
                     }
                   },
-                  "mediaType": "application/raml+yaml"
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
                 }
               },
               "__METADATA__": {
@@ -1439,13 +1423,11 @@
                   },
                   "type": {
                     "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             },
             "protocols": [
               "HTTP"
@@ -1473,18 +1455,15 @@
                 "type": [
                   "ApiLib.RamlDataType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -1541,14 +1520,10 @@
                     "type": [
                       "AnotherEntry"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1583,16 +1558,12 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -1685,7 +1656,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "access_token": {
                 "name": "access_token",
@@ -1704,7 +1676,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -1742,7 +1715,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -1799,18 +1773,15 @@
                         "type": [
                           "SongsLib.Song"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       "application/xml": {
                         "name": "application/xml",
@@ -1818,14 +1789,10 @@
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -1836,7 +1803,8 @@
                             "name": null
                           }
                         ],
-                        "mediaType": "application/xml"
+                        "mediaType": "application/xml",
+                        "typePropertyKind": "XML"
                       }
                     }
                   }
@@ -1885,7 +1853,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "relativeUri": "/{songId}",

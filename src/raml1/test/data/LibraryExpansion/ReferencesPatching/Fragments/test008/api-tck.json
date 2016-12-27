@@ -7,7 +7,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "prop": {
             "name": "prop",
@@ -26,7 +25,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -36,13 +36,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "lib.MyType": {
         "name": "MyType",
@@ -50,18 +48,15 @@
         "type": [
           "string"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "types2.MyObjectType": {
         "name": "MyObjectType",
@@ -69,7 +64,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "integerProperty": {
             "name": "integerProperty",
@@ -88,7 +82,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -98,13 +93,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "resourceTypes": {
@@ -122,7 +115,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "ownLibProperty": {
                         "name": "ownLibProperty",
@@ -141,7 +133,8 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       "rootLibProperty": {
                         "name": "rootLibProperty",
@@ -160,7 +153,8 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "uses": [
@@ -180,23 +174,17 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -214,7 +202,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "INPLACE"
               }
             },
             "method": "post"
@@ -239,7 +228,6 @@
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "ownLibProperty": {
                         "name": "ownLibProperty",
@@ -258,7 +246,8 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       "rootLibProperty": {
                         "name": "rootLibProperty",
@@ -277,7 +266,8 @@
                             }
                           }
                         },
-                        "mediaType": "application/raml+yaml"
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "uses": [
@@ -297,23 +287,17 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -331,7 +315,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "INPLACE"
               }
             },
             "method": "post"
@@ -344,14 +329,10 @@
                 "type": [
                   "lib.MyType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -362,7 +343,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "put"

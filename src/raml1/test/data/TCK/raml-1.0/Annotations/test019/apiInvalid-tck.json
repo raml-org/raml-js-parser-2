@@ -13,18 +13,15 @@
         "type": [
           "number"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "annotationTypes": {
@@ -34,18 +31,15 @@
         "type": [
           "amazon-apigateway-integration"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "usage": "Data types and annotation types for AWS API Gateway"

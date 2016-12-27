@@ -28,7 +28,8 @@
                 "name": null
               }
             ],
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "description": "Some requests require authentication.",
@@ -59,7 +60,8 @@
                 "name": null
               }
             ],
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "description": "Some responses require paging.",
@@ -90,7 +92,8 @@
                 "name": null
               }
             ],
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "description": "Some requests require rate limiting.",
@@ -130,7 +133,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -184,7 +188,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "limit": {
                 "name": "limit",
@@ -208,7 +213,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "access_token": {
                 "name": "access_token",
@@ -235,7 +241,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "is": [
@@ -272,7 +279,8 @@
                     "name": null
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "responses": {
@@ -299,7 +307,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }

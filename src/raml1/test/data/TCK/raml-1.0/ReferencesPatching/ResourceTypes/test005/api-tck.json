@@ -19,18 +19,15 @@
             "type": [
               "lib1.lib2.MyLibType"
             ],
-            "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "name": "lib1.lib2.myTrait",
@@ -67,18 +64,15 @@
                 "type": [
                   "lib1.lib2.MyLibType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [

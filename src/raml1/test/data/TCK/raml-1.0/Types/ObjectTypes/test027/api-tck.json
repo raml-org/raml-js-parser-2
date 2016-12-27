@@ -7,7 +7,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "stringProperty": {
             "name": "stringProperty",
@@ -26,7 +25,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "kind": {
             "name": "kind",
@@ -45,7 +45,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "discriminator": "kind",
@@ -56,13 +57,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ChildType1": {
         "name": "ChildType1",
@@ -70,19 +69,16 @@
         "type": [
           "ParentType"
         ],
-        "required": true,
         "discriminatorValue": "k1",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ChildType2": {
         "name": "ChildType2",
@@ -90,7 +86,6 @@
         "type": [
           "ParentType"
         ],
-        "required": true,
         "properties": {
           "stringProperty": {
             "name": "stringProperty",
@@ -110,7 +105,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "discriminatorValue": "k2",
@@ -118,13 +114,11 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ArrayType1": {
         "name": "ArrayType1",
@@ -132,19 +126,16 @@
         "type": [
           "array"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
         "items": "ChildType1",
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ArrayType2": {
         "name": "ArrayType2",
@@ -152,19 +143,16 @@
         "type": [
           "array"
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
         "items": "ChildType2",
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "ArrayType": {
         "name": "ArrayType",
@@ -202,18 +190,15 @@
             "name": "ex2"
           }
         ],
-        "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "test API"

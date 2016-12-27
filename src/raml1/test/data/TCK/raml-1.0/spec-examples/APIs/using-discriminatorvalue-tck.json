@@ -7,7 +7,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "name": {
             "name": "name",
@@ -26,7 +25,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "kind": {
             "name": "kind",
@@ -45,7 +45,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "discriminator": "kind",
@@ -53,13 +54,11 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "Employee": {
         "name": "Employee",
@@ -67,7 +66,6 @@
         "type": [
           "Person"
         ],
-        "required": true,
         "properties": {
           "employeeId": {
             "name": "employeeId",
@@ -86,7 +84,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "discriminatorValue": "employee",
@@ -94,13 +93,11 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "User": {
         "name": "User",
@@ -108,7 +105,6 @@
         "type": [
           "Person"
         ],
-        "required": true,
         "properties": {
           "userId": {
             "name": "userId",
@@ -127,7 +123,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "discriminatorValue": "user",
@@ -135,13 +132,11 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "My API With Types"

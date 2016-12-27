@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: testAPI
+version: v1
+mediaType: application/json
+uses:
+  lib1: libraries/lib1.raml
+
+/resource:
+  post:
+    body: lib1.LibType1

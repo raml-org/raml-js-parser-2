@@ -7,20 +7,17 @@
         "type": [
           "array"
         ],
-        "required": true,
         "minItems": 5,
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
         "items": "string",
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "Person": {
         "name": "Person",
@@ -28,7 +25,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "items": {
             "name": "items",
@@ -47,7 +43,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -56,9 +53,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "required": {
               "insertedAsDefault": true
             }
           }
@@ -76,7 +70,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "Test API"

@@ -19,7 +19,8 @@
               }
             }
           },
-          "mediaType": "application/raml+yaml"
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
         },
         {
           "name": "a",
@@ -36,7 +37,8 @@
               }
             }
           },
-          "mediaType": "application/raml+yaml"
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
         }
       ]
     },

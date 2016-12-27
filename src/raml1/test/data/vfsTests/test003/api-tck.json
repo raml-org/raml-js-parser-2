@@ -11,18 +11,15 @@
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "typePropertyKind": "JSON"
               }
             },
             "method": "post"
@@ -43,18 +40,15 @@
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "typePropertyKind": "JSON"
               }
             },
             "method": "post"

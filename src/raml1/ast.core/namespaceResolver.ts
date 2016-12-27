@@ -18,7 +18,7 @@ export class NamespaceResolver{
 
     private _hasFragments: {[key:string]:boolean} = {};
 
-    resolveNamespace(from:ll.ICompilationUnit, to:ll.ICompilationUnit):string{
+    resolveNamespace(from:ll.ICompilationUnit, to:ll.ICompilationUnit):UsesInfo{
 
         if(to==null){
             return null;
@@ -29,7 +29,7 @@ export class NamespaceResolver{
             return null;
         }
         var usesInfo = unitMap[toPath];
-        return usesInfo != null ? usesInfo.namespace() : null;
+        return usesInfo;
     }
 
     expandedPathMap(unit:ll.ICompilationUnit) {
@@ -106,6 +106,7 @@ export class NamespaceResolver{
 
                             var childInfo = map[absPath];
                             var segments = info.namespaceSegments.concat(childInfo.namespaceSegments);
+                            var usesNodes = info.usesNodes.concat(childInfo.usesNodes);
                             var existing = result[absPath];
                             if (existing) {
                                 if (existing.steps() < steps) {
@@ -139,7 +140,7 @@ export class NamespaceResolver{
                                 }
                             }
                             includePath = includePath.replace(/\\/g, "/");
-                            var ui = new UsesInfo(segments, childInfo.unit, includePath);
+                            var ui = new UsesInfo(usesNodes, childInfo.unit, includePath);
                             if(!usedUnits[ui.absolutePath()]) {
                                 result[absPath] = ui;
                                 usesInfoArray.push(ui);
@@ -235,14 +236,14 @@ export class NamespaceResolver{
         }
         
         for (var un of usesDeclarationNodes) {
-            var key = un.key();
+
             var value = un.value();
             var libUnit = unit.resolve(value);
             if(libUnit==null){
                 continue;
             }
 
-            var segments = [ key ];
+            var usesNodes = [ un ];
             var absPath = libUnit.absolutePath();
             
             var includePath;
@@ -253,7 +254,7 @@ export class NamespaceResolver{
                 includePath = path.relative(rootPath, libUnit.absolutePath());
             }
             includePath = includePath.replace(/\\/g, "/");
-            var ui = new UsesInfo(segments, libUnit, includePath);
+            var ui = new UsesInfo(usesNodes, libUnit, includePath);
             result[absPath] = ui;
         }
 
@@ -311,10 +312,14 @@ export class NamespaceResolver{
 export class UsesInfo{
 
     constructor(
-        public namespaceSegments:string[],
+        public usesNodes:ll.ILowLevelASTNode[],
         public unit:ll.ICompilationUnit,
         public includePath:string
-    ){}
+    ){
+        this.namespaceSegments = this.usesNodes.map(x=>x.key());
+    }
+    
+    namespaceSegments:string[];
 
     steps():number{
         return this.namespaceSegments.length;

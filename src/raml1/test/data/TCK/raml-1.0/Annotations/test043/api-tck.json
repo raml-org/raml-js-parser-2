@@ -7,7 +7,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "allowedTargets": [
           "Example",
           "Resource"
@@ -19,13 +18,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "a2": {
         "name": "a2",
@@ -33,7 +30,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "allowedTargets": [
           "Method"
         ],
@@ -44,13 +40,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "test",
@@ -65,16 +59,12 @@
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -98,7 +88,8 @@
                     }
                   }
                 ],
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "get"
