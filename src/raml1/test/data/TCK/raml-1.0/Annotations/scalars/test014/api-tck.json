@@ -39,7 +39,7 @@
         "a": {
           "name": "a",
           "displayName": "a",
-`          "typePropertyKind": "TYPE_EXPRESSION",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
