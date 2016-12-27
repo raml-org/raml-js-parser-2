@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -17,6 +18,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -54,6 +56,7 @@
         "AnotherType": {
           "name": "AnotherType",
           "displayName": "AnotherType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SomeType"
           ],
@@ -61,6 +64,7 @@
             "age": {
               "name": "age",
               "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -91,6 +95,7 @@
         "ComplexType": {
           "name": "ComplexType",
           "displayName": "ComplexType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -104,6 +109,7 @@
             "someProperty": {
               "name": "someProperty",
               "displayName": "someProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "AnotherType"
               ],

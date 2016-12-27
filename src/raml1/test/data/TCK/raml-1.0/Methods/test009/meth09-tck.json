@@ -7,6 +7,7 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -17,6 +18,7 @@
             "field": {
               "name": "field",
               "displayName": "field",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -63,6 +65,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "TestType"
                     ],
@@ -81,6 +84,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "TestType"
                 ],

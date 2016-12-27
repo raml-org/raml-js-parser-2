@@ -7,6 +7,7 @@
         "xz": {
           "name": "xz",
           "displayName": "xz",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -41,6 +42,7 @@
                 },
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],

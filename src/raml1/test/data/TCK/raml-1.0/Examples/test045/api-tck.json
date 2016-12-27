@@ -7,6 +7,7 @@
         "dept_code": {
           "name": "dept_code",
           "displayName": "dept_code",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -31,6 +32,7 @@
             "X-Dept": {
               "name": "X-Dept",
               "displayName": "X-Dept",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -72,6 +74,7 @@
               "X-Dept": {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],

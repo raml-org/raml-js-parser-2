@@ -7,6 +7,7 @@
         "ParentType": {
           "name": "ParentType",
           "displayName": "ParentType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "stringProperty": {
               "name": "stringProperty",
               "displayName": "stringProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -32,6 +34,7 @@
             "kind": {
               "name": "kind",
               "displayName": "kind",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -65,6 +68,7 @@
         "ChildType1": {
           "name": "ChildType1",
           "displayName": "ChildType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ParentType"
           ],
@@ -82,6 +86,7 @@
         "ChildType2": {
           "name": "ChildType2",
           "displayName": "ChildType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ParentType"
           ],
@@ -89,6 +94,7 @@
             "stringProperty": {
               "name": "stringProperty",
               "displayName": "stringProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -120,6 +126,7 @@
         "ArrayType1": {
           "name": "ArrayType1",
           "displayName": "ArrayType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -137,6 +144,7 @@
         "ArrayType2": {
           "name": "ArrayType2",
           "displayName": "ArrayType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -154,6 +162,7 @@
         "ArrayType": {
           "name": "ArrayType",
           "displayName": "ArrayType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ArrayType1|ArrayType2"
           ],

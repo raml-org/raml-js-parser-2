@@ -15,6 +15,7 @@
               "userIds": {
                 "name": "userIds",
                 "displayName": "userIds",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
@@ -24,6 +25,7 @@
                 "items": {
                   "name": "items",
                   "displayName": "items",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],

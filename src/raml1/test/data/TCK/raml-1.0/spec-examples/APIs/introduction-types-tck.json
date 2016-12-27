@@ -7,6 +7,7 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "firstname": {
               "name": "firstname",
               "displayName": "firstname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -32,6 +34,7 @@
             "lastname": {
               "name": "lastname",
               "displayName": "lastname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -50,6 +53,7 @@
             "age": {
               "name": "age",
               "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -88,6 +92,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
@@ -109,6 +114,7 @@
           "id": {
             "name": "id",
             "displayName": "id",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

@@ -7,6 +7,7 @@
         "baseAnnotation": {
           "name": "baseAnnotation",
           "displayName": "baseAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "baseProperty1": {
               "name": "baseProperty1",
               "displayName": "baseProperty1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -22,6 +24,7 @@
                 "field1": {
                   "name": "field1",
                   "displayName": "field1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
@@ -43,6 +46,7 @@
                 "field2": {
                   "name": "field2",
                   "displayName": "field2",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -76,6 +80,7 @@
             "baseProperty2": {
               "name": "baseProperty2",
               "displayName": "baseProperty2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -125,6 +130,7 @@
           },
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -146,6 +152,7 @@
         "childAnnotation": {
           "name": "childAnnotation",
           "displayName": "childAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "baseAnnotation"
           ],
@@ -153,6 +160,7 @@
             "childProperty1": {
               "name": "childProperty1",
               "displayName": "childProperty1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -180,6 +188,7 @@
             "childProperty2": {
               "name": "childProperty2",
               "displayName": "childProperty2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -214,6 +223,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

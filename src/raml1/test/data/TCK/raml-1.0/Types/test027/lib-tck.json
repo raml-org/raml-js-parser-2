@@ -7,6 +7,7 @@
         "Foo": {
           "name": "Foo",
           "displayName": "Foo",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "integer|number"
           ],
@@ -23,6 +24,7 @@
         "Bar": {
           "name": "Bar",
           "displayName": "Bar",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Foo"
           ],

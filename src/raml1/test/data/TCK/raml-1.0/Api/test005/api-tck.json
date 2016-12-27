@@ -8,6 +8,7 @@
       "domain": {
         "name": "domain",
         "displayName": "domain",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -43,6 +44,7 @@
       "mediaType": {
         "name": "mediaType",
         "displayName": "mediaType",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

@@ -9,6 +9,7 @@
             "access_token": {
               "name": "access_token",
               "displayName": "access_token",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -44,6 +45,7 @@
             "limit": {
               "name": "limit",
               "displayName": "limit",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -89,6 +91,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],

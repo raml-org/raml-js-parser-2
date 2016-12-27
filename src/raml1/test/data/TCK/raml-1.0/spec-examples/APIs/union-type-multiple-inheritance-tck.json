@@ -7,6 +7,7 @@
         "HasHome": {
           "name": "HasHome",
           "displayName": "HasHome",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "homeAddress": {
               "name": "homeAddress",
               "displayName": "homeAddress",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -43,6 +45,7 @@
         "Cat": {
           "name": "Cat",
           "displayName": "Cat",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -50,6 +53,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -68,6 +72,7 @@
             "color": {
               "name": "color",
               "displayName": "color",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -97,6 +102,7 @@
         "Dog": {
           "name": "Dog",
           "displayName": "Dog",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -104,6 +110,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -122,6 +129,7 @@
             "fangs": {
               "name": "fangs",
               "displayName": "fangs",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -151,6 +159,7 @@
         "HomeAnimal": {
           "name": "HomeAnimal",
           "displayName": "HomeAnimal",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

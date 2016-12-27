@@ -83,6 +83,7 @@
         "Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -99,6 +100,7 @@
         "lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -115,6 +117,7 @@
         "lib.lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],

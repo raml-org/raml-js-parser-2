@@ -13,6 +13,7 @@
         "VIPCustomer": {
           "name": "VIPCustomer",
           "displayName": "VIPCustomer",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "lib.Customer"
           ],

@@ -18,6 +18,7 @@
         "MyType1": {
           "name": "MyType1",
           "displayName": "MyType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -25,6 +26,7 @@
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -60,6 +62,7 @@
         "MyAnnotationType1": {
           "name": "MyAnnotationType1",
           "displayName": "MyAnnotationType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -67,6 +70,7 @@
             "pp": {
               "name": "pp",
               "displayName": "pp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MyType1"
               ],

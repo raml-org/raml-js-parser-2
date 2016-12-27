@@ -7,6 +7,7 @@
         "Invoice": {
           "name": "Invoice",
           "displayName": "Invoice",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "amount": {
               "name": "amount",
               "displayName": "amount",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -33,6 +35,7 @@
             "vendorName": {
               "name": "vendorName",
               "displayName": "vendorName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -78,6 +81,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Invoice"
                     ],
@@ -85,6 +89,7 @@
                       "id": {
                         "name": "id",
                         "displayName": "id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -122,6 +127,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -152,6 +158,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "JSON",
                     "type": [
                       "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}\n"
                     ],
@@ -166,6 +173,7 @@
                   "text/xml": {
                     "name": "text/xml",
                     "displayName": "text/xml",
+                    "typePropertyKind": "XML",
                     "type": [
                       "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"invoice\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"accountID\" type=\"xs:string\"/>\n        <xs:element name=\"amount\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                     ],
@@ -185,6 +193,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -195,6 +204,7 @@
                       "error": {
                         "name": "error",
                         "displayName": "error",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -240,6 +250,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Invoice"
                 ],

@@ -2,6 +2,7 @@
 	"SomeType": {
 		"name": "SomeType",
 		"displayName": "SomeType",
+		"typePropertyKind": "TYPE_EXPRESSION",
 		"type": [
 			"lib.TypeFromLibrary"
 		],
@@ -9,6 +10,7 @@
 			"prop": {
 				"name": "prop",
 				"displayName": "prop",
+				"typePropertyKind": "TYPE_EXPRESSION",
 				"type": [
 					"string"
 				],

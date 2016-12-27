@@ -7,6 +7,7 @@
         "suborg": {
           "name": "suborg",
           "displayName": "suborg",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],

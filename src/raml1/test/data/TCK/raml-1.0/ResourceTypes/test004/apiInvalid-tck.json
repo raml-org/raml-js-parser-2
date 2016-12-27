@@ -7,6 +7,7 @@
         "Type1": {
           "name": "Type1",
           "displayName": "Type1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "propertyFromType1": {
               "name": "propertyFromType1",
               "displayName": "propertyFromType1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -46,6 +48,7 @@
         "Type2": {
           "name": "Type2",
           "displayName": "Type2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -53,6 +56,7 @@
             "propertyFromType2": {
               "name": "propertyFromType2",
               "displayName": "propertyFromType2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -92,6 +96,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<bodyTypeParam>>"
                 ],
@@ -99,6 +104,7 @@
                   "extraProperty": {
                     "name": "extraProperty",
                     "displayName": "extraProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -136,6 +142,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -143,6 +150,7 @@
                   "propertyFromResourceType1": {
                     "name": "propertyFromResourceType1",
                     "displayName": "propertyFromResourceType1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -183,6 +191,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -190,6 +199,7 @@
                   "propertyFromResourceType2": {
                     "name": "propertyFromResourceType2",
                     "displayName": "propertyFromResourceType2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -236,6 +246,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -280,6 +291,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Type2"
                 ],
@@ -292,6 +304,7 @@
                   "extraProperty": {
                     "name": "extraProperty",
                     "displayName": "extraProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -310,6 +323,7 @@
                   "propertyFromResourceType2": {
                     "name": "propertyFromResourceType2",
                     "displayName": "propertyFromResourceType2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],

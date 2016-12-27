@@ -7,6 +7,7 @@
         "t1": {
           "name": "t1",
           "displayName": "t1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -37,6 +38,7 @@
         "a": {
           "name": "a",
           "displayName": "a",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

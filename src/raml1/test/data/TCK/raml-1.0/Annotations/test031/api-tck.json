@@ -13,12 +13,14 @@
         "cards": {
           "name": "cards",
           "displayName": "cards",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
           "items": {
             "name": "items",
             "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -43,6 +45,7 @@
                 },
                 "name": "cardId",
                 "displayName": "cardId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

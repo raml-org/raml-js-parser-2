@@ -7,6 +7,7 @@
         "Org": {
           "name": "Org",
           "displayName": "Org",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "onCall": {
               "name": "onCall",
               "displayName": "onCall",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "AlertableAdmin"
               ],
@@ -32,6 +34,7 @@
             "Head": {
               "name": "Head",
               "displayName": "Head",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Manager"
               ],
@@ -61,6 +64,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -68,6 +72,7 @@
             "firstname": {
               "name": "firstname",
               "displayName": "firstname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -86,6 +91,7 @@
             "lastname": {
               "name": "lastname",
               "displayName": "lastname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -104,6 +110,7 @@
             "title": {
               "name": "title",
               "displayName": "title",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -133,6 +140,7 @@
         "Phone": {
           "name": "Phone",
           "displayName": "Phone",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -150,6 +158,7 @@
         "Manager": {
           "name": "Manager",
           "displayName": "Manager",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Person"
           ],
@@ -157,6 +166,7 @@
             "reports": {
               "name": "reports",
               "displayName": "reports",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -176,6 +186,7 @@
             "phone": {
               "name": "phone",
               "displayName": "phone",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Phone"
               ],
@@ -205,6 +216,7 @@
         "Admin": {
           "name": "Admin",
           "displayName": "Admin",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Person"
           ],
@@ -212,6 +224,7 @@
             "clearanceLevel": {
               "name": "clearanceLevel",
               "displayName": "clearanceLevel",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -248,6 +261,7 @@
         "AlertableAdmin": {
           "name": "AlertableAdmin",
           "displayName": "AlertableAdmin",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Admin"
           ],
@@ -255,6 +269,7 @@
             "phone": {
               "name": "phone",
               "displayName": "phone",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Phone"
               ],
@@ -284,6 +299,7 @@
         "Alertable": {
           "name": "Alertable",
           "displayName": "Alertable",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Manager | AlertableAdmin"
           ],
@@ -310,6 +326,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Org"
                     ],
@@ -331,6 +348,7 @@
           "orgId": {
             "name": "orgId",
             "displayName": "orgId",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

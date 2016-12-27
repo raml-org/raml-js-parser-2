@@ -33,6 +33,7 @@
         "simpleAnnotation": {
           "name": "simpleAnnotation",
           "displayName": "simpleAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -55,6 +56,7 @@
         "objectAnnotation": {
           "name": "objectAnnotation",
           "displayName": "objectAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -62,6 +64,7 @@
             "property1": {
               "name": "property1",
               "displayName": "property1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -70,6 +73,7 @@
                 "field1": {
                   "name": "field1",
                   "displayName": "field1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
@@ -91,6 +95,7 @@
                 "field2": {
                   "name": "field2",
                   "displayName": "field2",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -124,6 +129,7 @@
             "property2": {
               "name": "property2",
               "displayName": "property2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -163,6 +169,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

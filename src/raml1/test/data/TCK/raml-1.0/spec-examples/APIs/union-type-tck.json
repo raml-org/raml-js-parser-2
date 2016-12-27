@@ -7,6 +7,7 @@
         "Phone": {
           "name": "Phone",
           "displayName": "Phone",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "manufacturer": {
               "name": "manufacturer",
               "displayName": "manufacturer",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -32,6 +34,7 @@
             "numberOfSIMCards": {
               "name": "numberOfSIMCards",
               "displayName": "numberOfSIMCards",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -50,6 +53,7 @@
             "kind": {
               "name": "kind",
               "displayName": "kind",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -79,6 +83,7 @@
         "Notebook": {
           "name": "Notebook",
           "displayName": "Notebook",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -86,6 +91,7 @@
             "manufacturer": {
               "name": "manufacturer",
               "displayName": "manufacturer",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -104,6 +110,7 @@
             "numberOfUSBPorts": {
               "name": "numberOfUSBPorts",
               "displayName": "numberOfUSBPorts",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -122,6 +129,7 @@
             "kind": {
               "name": "kind",
               "displayName": "kind",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -151,6 +159,7 @@
         "Device": {
           "name": "Device",
           "displayName": "Device",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Phone | Notebook"
           ],

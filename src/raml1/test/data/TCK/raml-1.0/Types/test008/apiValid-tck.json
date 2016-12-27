@@ -7,6 +7,7 @@
         "SimpleType1": {
           "name": "SimpleType1",
           "displayName": "SimpleType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "property1": {
               "name": "property1",
               "displayName": "property1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -32,6 +34,7 @@
             "property2": {
               "name": "property2",
               "displayName": "property2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -64,6 +67,7 @@
         "SimpleType2": {
           "name": "SimpleType2",
           "displayName": "SimpleType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -71,6 +75,7 @@
             "property3": {
               "name": "property3",
               "displayName": "property3",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -89,6 +94,7 @@
             "property4": {
               "name": "property4",
               "displayName": "property4",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -121,6 +127,7 @@
         "SimpleUnion": {
           "name": "SimpleUnion",
           "displayName": "SimpleUnion",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SimpleType1 | SimpleType2"
           ],
@@ -137,6 +144,7 @@
         "TypeWithUnionProps": {
           "name": "TypeWithUnionProps",
           "displayName": "TypeWithUnionProps",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -156,6 +164,7 @@
             "unionArray": {
               "name": "unionArray",
               "displayName": "unionArray",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],

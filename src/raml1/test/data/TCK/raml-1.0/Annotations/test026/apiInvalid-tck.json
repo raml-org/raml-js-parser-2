@@ -7,6 +7,7 @@
         "a1": {
           "name": "a1",
           "displayName": "a1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -23,6 +24,7 @@
         "a2": {
           "name": "a2",
           "displayName": "a2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],

@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -43,6 +45,7 @@
         "ArrayType": {
           "name": "ArrayType",
           "displayName": "ArrayType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -60,6 +63,7 @@
         "AnotherType": {
           "name": "AnotherType",
           "displayName": "AnotherType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -77,6 +81,7 @@
             "prop": {
               "name": "prop",
               "displayName": "prop",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "ArrayType"
               ],

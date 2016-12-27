@@ -15,6 +15,7 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -26,6 +27,7 @@
                   "name": {
                     "name": "name",
                     "displayName": "name",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -44,6 +46,7 @@
                   "age": {
                     "name": "age",
                     "displayName": "age",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -95,6 +98,7 @@
           "blah": {
             "name": "blah",
             "displayName": "blah",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

@@ -15,6 +15,7 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -22,6 +23,7 @@
             "numberProp": {
               "name": "numberProp",
               "displayName": "numberProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -56,6 +58,7 @@
         "MyAnnotation": {
           "name": "MyAnnotation",
           "displayName": "MyAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "MyType"
           ],

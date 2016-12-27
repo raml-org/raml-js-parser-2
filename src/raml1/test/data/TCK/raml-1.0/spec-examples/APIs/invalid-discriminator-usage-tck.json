@@ -7,6 +7,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -26,6 +27,7 @@
         "Dog": {
           "name": "Dog",
           "displayName": "Dog",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -45,6 +47,7 @@
         "PersonOrDog": {
           "name": "PersonOrDog",
           "displayName": "PersonOrDog",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Person | Dog"
           ],
@@ -71,6 +74,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -78,6 +82,7 @@
                       "kind": {
                         "name": "kind",
                         "displayName": "kind",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],

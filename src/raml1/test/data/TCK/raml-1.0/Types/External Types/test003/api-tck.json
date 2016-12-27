@@ -7,6 +7,7 @@
         "Account": {
           "name": "Account",
           "displayName": "Account",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Raw text."
           ],

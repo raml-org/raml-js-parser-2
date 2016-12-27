@@ -9,6 +9,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -46,6 +47,7 @@
               "page": {
                 "name": "page",
                 "displayName": "page",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -69,6 +71,7 @@
               "per_page": {
                 "name": "per_page",
                 "displayName": "per_page",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],

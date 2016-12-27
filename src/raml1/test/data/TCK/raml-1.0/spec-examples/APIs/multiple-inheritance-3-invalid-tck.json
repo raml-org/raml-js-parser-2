@@ -7,6 +7,7 @@
         "Number1": {
           "name": "Number1",
           "displayName": "Number1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -24,6 +25,7 @@
         "Number2": {
           "name": "Number2",
           "displayName": "Number2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -41,6 +43,7 @@
         "Number3": {
           "name": "Number3",
           "displayName": "Number3",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

@@ -7,6 +7,7 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "prop": {
               "name": "prop",
               "displayName": "prop",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "date"
               ],

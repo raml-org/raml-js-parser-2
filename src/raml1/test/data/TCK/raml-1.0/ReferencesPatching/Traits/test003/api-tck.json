@@ -25,6 +25,7 @@
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "typesLib.LibType"
               ],
@@ -61,6 +62,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "typesLib.LibType"
                 ],

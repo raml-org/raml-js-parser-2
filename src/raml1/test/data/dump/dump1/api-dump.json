@@ -4,6 +4,7 @@
 			"Person": {
 				"name": "Person",
 				"displayName": "Person",
+				"typePropertyKind": "TYPE_EXPRESSION",
 				"type": [
 					"object"
 				],
@@ -11,6 +12,7 @@
 					"firstname": {
 						"name": "firstname",
 						"displayName": "firstname",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"string"
 						],
@@ -30,6 +32,7 @@
 					"lastname": {
 						"name": "lastname",
 						"displayName": "lastname",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"string"
 						],
@@ -45,6 +48,7 @@
 					"addresses": {
 						"name": "addresses",
 						"displayName": "addresses",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"array"
 						],
@@ -64,6 +68,7 @@
 					"age": {
 						"name": "age",
 						"displayName": "age",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"number"
 						],
@@ -106,6 +111,7 @@
 								"application/xml": {
 									"name": "application/xml",
 									"displayName": "application/xml",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"Person"
 									],
@@ -122,6 +128,7 @@
 										"juan": {
 											"name": "juan",
 											"displayName": "juan",
+											"typePropertyKind": "TYPE_EXPRESSION",
 											"type": [
 												"string"
 											],
@@ -168,6 +175,7 @@
 						"application/json": {
 							"name": "application/json",
 							"displayName": "application/json",
+							"typePropertyKind": "TYPE_EXPRESSION",
 							"type": [
 								"object"
 							],
@@ -175,6 +183,7 @@
 								"developer": {
 									"name": "developer",
 									"displayName": "developer",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -193,6 +202,7 @@
 								"test": {
 									"name": "test",
 									"displayName": "test",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -211,6 +221,7 @@
 								"animal": {
 									"name": "animal",
 									"displayName": "animal",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -229,6 +240,7 @@
 								"car": {
 									"name": "car",
 									"displayName": "car",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],

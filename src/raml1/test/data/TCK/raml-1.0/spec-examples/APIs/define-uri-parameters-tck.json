@@ -36,6 +36,7 @@
               "userId": {
                 "name": "userId",
                 "displayName": "userId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],

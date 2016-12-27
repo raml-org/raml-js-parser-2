@@ -17,6 +17,7 @@
         "Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -42,6 +43,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param1>>"
                 ],
@@ -56,6 +58,7 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param2>>"
                 ],
@@ -70,6 +73,7 @@
               "text/plain": {
                 "name": "text/plain",
                 "displayName": "text/plain",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.lib.Monkey"
                 ],
@@ -84,6 +88,7 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param1>> | <<param2>> | lib.lib.Monkey"
                 ],
@@ -124,6 +129,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Monkey"
                 ],
@@ -138,6 +144,7 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.Monkey"
                 ],
@@ -152,6 +159,7 @@
               "text/plain": {
                 "name": "text/plain",
                 "displayName": "text/plain",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.lib.Monkey"
                 ],
@@ -166,6 +174,7 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Monkey | lib.Monkey | lib.lib.Monkey"
                 ],

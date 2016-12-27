@@ -7,6 +7,7 @@
         "TestAnnotation": {
           "name": "TestAnnotation",
           "displayName": "TestAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

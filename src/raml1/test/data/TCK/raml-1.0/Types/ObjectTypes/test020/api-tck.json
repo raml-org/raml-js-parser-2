@@ -7,6 +7,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -18,6 +19,7 @@
             "firstname": {
               "name": "firstname",
               "displayName": "firstname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -36,6 +38,7 @@
             "lastname": {
               "name": "lastname",
               "displayName": "lastname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -54,6 +57,7 @@
             "title?": {
               "name": "title?",
               "displayName": "title?",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

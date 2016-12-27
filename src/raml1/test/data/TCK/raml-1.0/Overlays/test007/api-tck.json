@@ -7,6 +7,7 @@
         "testSchema": {
           "name": "testSchema",
           "displayName": "testSchema",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n\n}\n"
           ],

@@ -7,12 +7,14 @@
         "cards": {
           "name": "cards",
           "displayName": "cards",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
           "items": {
             "name": "items",
             "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -37,6 +39,7 @@
                 },
                 "name": "cardId",
                 "displayName": "cardId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -77,12 +80,14 @@
         "lib.bindingDefinition": {
           "name": "bindingDefinition",
           "displayName": "BindingDefinition",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
           "items": {
             "name": "items",
             "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -90,6 +95,7 @@
               "method": {
                 "name": "method",
                 "displayName": "method",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -113,6 +119,7 @@
               "input": {
                 "name": "input",
                 "displayName": "input",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -134,6 +141,7 @@
               "output": {
                 "name": "output",
                 "displayName": "output",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "OneMoreType"
           ],
@@ -23,6 +24,7 @@
         "AnotherType": {
           "name": "AnotherType",
           "displayName": "AnotherType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SomeType"
           ],
@@ -39,6 +41,7 @@
         "OneMoreType": {
           "name": "OneMoreType",
           "displayName": "OneMoreType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "AnotherType"
           ],

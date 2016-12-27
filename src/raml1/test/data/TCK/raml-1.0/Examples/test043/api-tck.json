@@ -7,6 +7,7 @@
         "MM": {
           "name": "MM",
           "displayName": "MM",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -33,6 +34,7 @@
             "a": {
               "name": "a",
               "displayName": "a",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -51,6 +53,7 @@
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -81,6 +84,7 @@
         "VV": {
           "name": "VV",
           "displayName": "VV",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -88,6 +92,7 @@
             "r2": {
               "name": "r2",
               "displayName": "r2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -109,6 +114,7 @@
             "c": {
               "name": "c",
               "displayName": "c",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -127,6 +133,7 @@
             "r1": {
               "name": "r1",
               "displayName": "r1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -161,6 +168,7 @@
         "qq": {
           "name": "qq",
           "displayName": "qq",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -168,6 +176,7 @@
             "z": {
               "name": "z",
               "displayName": "z",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MM"
               ],

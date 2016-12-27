@@ -7,6 +7,7 @@
         "Zip": {
           "name": "Zip",
           "displayName": "Zip",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -30,6 +31,7 @@
         "Address": {
           "name": "Address",
           "displayName": "Address",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -44,6 +46,7 @@
             "country": {
               "name": "country",
               "displayName": "country",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -71,6 +74,7 @@
             "city": {
               "name": "city",
               "displayName": "city",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -92,6 +96,7 @@
             "street": {
               "name": "street",
               "displayName": "street",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -113,6 +118,7 @@
             "house": {
               "name": "house",
               "displayName": "house",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -134,6 +140,7 @@
             "zip": {
               "name": "zip",
               "displayName": "zip",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Zip"
               ],
@@ -178,6 +185,7 @@
         "Email": {
           "name": "Email",
           "displayName": "Email",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -211,6 +219,7 @@
             "role": {
               "name": "role",
               "displayName": "role",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -233,6 +242,7 @@
               }
             }
           },
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -274,6 +284,7 @@
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -292,6 +303,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -313,6 +325,7 @@
             "email": {
               "name": "email",
               "displayName": "email",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Email"
               ],
@@ -331,6 +344,7 @@
             "phone": {
               "name": "phone",
               "displayName": "phone",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -355,6 +369,7 @@
             "address": {
               "name": "address",
               "displayName": "address",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Address"
               ],
@@ -387,6 +402,7 @@
         "Manager": {
           "name": "Manager",
           "displayName": "Manager",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "User"
           ],
@@ -430,6 +446,7 @@
             "managerId": {
               "name": "managerId",
               "displayName": "managerId",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -462,6 +479,7 @@
         "Admin": {
           "name": "Admin",
           "displayName": "Admin",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "User"
           ],
@@ -469,6 +487,7 @@
             "adminId": {
               "name": "adminId",
               "displayName": "adminId",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -501,6 +520,7 @@
         "SuperAdmin": {
           "name": "SuperAdmin",
           "displayName": "SuperAdmin",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Admin"
           ],
@@ -517,6 +537,7 @@
         "Team": {
           "name": "Team",
           "displayName": "Team",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -524,6 +545,7 @@
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -542,6 +564,7 @@
             "title": {
               "name": "title",
               "displayName": "title",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -564,6 +587,7 @@
             "manager": {
               "name": "manager",
               "displayName": "manager",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Manager"
               ],
@@ -582,6 +606,7 @@
             "admin": {
               "name": "admin",
               "displayName": "admin",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Admin|SuperAdmin"
               ],
@@ -600,6 +625,7 @@
             "members": {
               "name": "members",
               "displayName": "members",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -619,6 +645,7 @@
             "info": {
               "name": "info",
               "displayName": "info",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -627,6 +654,7 @@
                 "address": {
                   "name": "address",
                   "displayName": "address",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "Address"
                   ],
@@ -645,6 +673,7 @@
                 "email": {
                   "name": "email",
                   "displayName": "email",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "Email"
                   ],
@@ -663,6 +692,7 @@
                 "size": {
                   "name": "size",
                   "displayName": "size",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -714,6 +744,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -754,6 +785,7 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -789,6 +821,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
@@ -810,6 +843,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -817,6 +851,7 @@
                   "title": {
                     "name": "title",
                     "displayName": "title",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -876,6 +911,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "Team"
                         ],
@@ -895,6 +931,7 @@
                       "text/plain": {
                         "name": "text/plain",
                         "displayName": "text/plain",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -929,6 +966,7 @@
               "id": {
                 "name": "id",
                 "displayName": "id",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -986,6 +1024,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -1038,6 +1077,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
@@ -1072,6 +1112,7 @@
           "id": {
             "name": "id",
             "displayName": "id",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

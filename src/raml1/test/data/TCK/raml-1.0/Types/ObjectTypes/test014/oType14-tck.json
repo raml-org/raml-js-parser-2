@@ -7,6 +7,7 @@
         "Initial_comments": {
           "name": "Initial_comments",
           "displayName": "Initial_comments",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

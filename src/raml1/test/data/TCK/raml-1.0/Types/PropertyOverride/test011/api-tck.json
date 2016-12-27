@@ -7,6 +7,7 @@
         "strType1": {
           "name": "strType1",
           "displayName": "strType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -47,6 +49,7 @@
         "strType2": {
           "name": "strType2",
           "displayName": "strType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -54,6 +57,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -87,6 +91,7 @@
         "ParentType": {
           "name": "ParentType",
           "displayName": "ParentType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -94,6 +99,7 @@
             "p1": {
               "name": "p1",
               "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "strType1"
               ],
@@ -126,6 +132,7 @@
         "Childtype": {
           "name": "Childtype",
           "displayName": "Childtype",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ParentType"
           ],
@@ -133,6 +140,7 @@
             "p1": {
               "name": "p1",
               "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "strType2"
               ],

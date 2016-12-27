@@ -7,6 +7,7 @@
         "deprecated": {
           "name": "deprecated",
           "displayName": "deprecated",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
@@ -23,6 +24,7 @@
         "experimental": {
           "name": "experimental",
           "displayName": "experimental",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil | string"
           ],
@@ -39,6 +41,7 @@
         "feedbackRequested": {
           "name": "feedbackRequested",
           "displayName": "feedbackRequested",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string?"
           ],
@@ -55,6 +58,7 @@
         "testHarness": {
           "name": "testHarness",
           "displayName": "testHarness",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -71,6 +75,7 @@
         "badge": {
           "name": "badge",
           "displayName": "badge",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -90,6 +95,7 @@
         "clearanceLevel": {
           "name": "clearanceLevel",
           "displayName": "clearanceLevel",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -97,6 +103,7 @@
             "level": {
               "name": "level",
               "displayName": "level",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -120,6 +127,7 @@
             "signature": {
               "name": "signature",
               "displayName": "signature",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

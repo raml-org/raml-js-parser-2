@@ -15,6 +15,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -32,6 +33,7 @@
                   "description": {
                     "name": "description",
                     "displayName": "description",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Parsed RAML"
                     ],
@@ -50,6 +52,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],

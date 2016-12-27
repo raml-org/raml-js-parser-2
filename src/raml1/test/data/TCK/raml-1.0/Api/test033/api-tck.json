@@ -8,6 +8,7 @@
       "param1": {
         "name": "param1",
         "displayName": "param1",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -26,6 +27,7 @@
       "param2": {
         "name": "param2",
         "displayName": "param2",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -48,6 +50,7 @@
       "param3": {
         "name": "param3",
         "displayName": "param3",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

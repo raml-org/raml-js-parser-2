@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -21,6 +22,7 @@
             "someProperty": {
               "name": "someProperty",
               "displayName": "someProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SomeType?"
               ],

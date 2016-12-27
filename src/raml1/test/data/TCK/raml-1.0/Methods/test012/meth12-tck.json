@@ -7,6 +7,7 @@
         "account": {
           "name": "account",
           "displayName": "account",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
@@ -23,6 +24,7 @@
         "TypeBase": {
           "name": "TypeBase",
           "displayName": "TypeBase",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -33,6 +35,7 @@
             "baseField": {
               "name": "baseField",
               "displayName": "baseField",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -70,6 +73,7 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "TypeBase"
           ],
@@ -81,6 +85,7 @@
             "field": {
               "name": "field",
               "displayName": "field",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -128,6 +133,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "TestType"
                     ],
@@ -139,6 +145,7 @@
                       "additionalField": {
                         "name": "additionalField",
                         "displayName": "additionalField",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],

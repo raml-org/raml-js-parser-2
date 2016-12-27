@@ -7,6 +7,7 @@
         "SimpleUnion": {
           "name": "SimpleUnion",
           "displayName": "SimpleUnion",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string[] | number[]"
           ],
@@ -23,6 +24,7 @@
         "TypeWithUnionProps": {
           "name": "TypeWithUnionProps",
           "displayName": "TypeWithUnionProps",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -42,6 +44,7 @@
             "unionArray1": {
               "name": "unionArray1",
               "displayName": "unionArray1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SimpleUnion"
               ],
@@ -60,6 +63,7 @@
             "unionArray2": {
               "name": "unionArray2",
               "displayName": "unionArray2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SimpleUnion"
               ],

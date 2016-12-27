@@ -21,6 +21,7 @@
             "format": {
               "name": "format",
               "displayName": "format",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
               }
             }
           },
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -49,6 +51,7 @@
         "year": {
           "name": "year",
           "displayName": "year",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "myDate"
           ],
@@ -68,6 +71,7 @@
         "yee": {
           "name": "yee",
           "displayName": "yee",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "year"
           ],
@@ -89,6 +93,7 @@
         "reader": {
           "name": "reader",
           "displayName": "reader",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -105,6 +110,7 @@
         "writer": {
           "name": "writer",
           "displayName": "writer",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -127,6 +133,7 @@
               "y": {
                 "name": "y",
                 "displayName": "y",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "year"
                 ],

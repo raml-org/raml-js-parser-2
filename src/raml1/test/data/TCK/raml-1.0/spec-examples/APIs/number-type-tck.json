@@ -7,6 +7,7 @@
         "Weight": {
           "name": "Weight",
           "displayName": "Weight",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],

@@ -7,6 +7,7 @@
         "lib.LibType": {
           "name": "LibType",
           "displayName": "LibType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -30,6 +31,7 @@
                 "application/json": {
                   "name": "application/json",
                   "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "lib.LibType"
                   ],
@@ -65,6 +67,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib.LibType"
                     ],

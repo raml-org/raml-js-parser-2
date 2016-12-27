@@ -11,6 +11,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "JSON",
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
@@ -37,6 +38,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "JSON",
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],

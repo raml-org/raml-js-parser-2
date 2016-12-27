@@ -7,6 +7,7 @@
         "TestSchema": {
           "name": "TestSchema",
           "displayName": "TestSchema",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"type\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
@@ -32,6 +33,7 @@
                   {
                     "name": "Retry-After",
                     "displayName": "Retry-After",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],

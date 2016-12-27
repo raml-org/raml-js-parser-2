@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -21,6 +22,7 @@
       },
       {
         "undefined": {
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

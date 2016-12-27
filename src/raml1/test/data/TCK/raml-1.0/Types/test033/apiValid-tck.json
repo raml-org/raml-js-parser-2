@@ -7,6 +7,7 @@
         "NilType_1": {
           "name": "NilType_1",
           "displayName": "NilType_1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
@@ -23,6 +24,7 @@
         "NilType_2": {
           "name": "NilType_2",
           "displayName": "NilType_2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
@@ -39,6 +41,7 @@
         "TypeWithNilProperties": {
           "name": "TypeWithNilProperties",
           "displayName": "TypeWithNilProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -84,6 +87,7 @@
             "nilProp_1": {
               "name": "nilProp_1",
               "displayName": "nilProp_1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "NilType_1"
               ],
@@ -102,6 +106,7 @@
             "nilProp_2": {
               "name": "nilProp_2",
               "displayName": "nilProp_2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "NilType_2"
               ],

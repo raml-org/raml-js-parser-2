@@ -9,6 +9,7 @@
             "platform": {
               "name": "platform",
               "displayName": "platform",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -46,6 +47,7 @@
               "platform": {
                 "name": "platform",
                 "displayName": "platform",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

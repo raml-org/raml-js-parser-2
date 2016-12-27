@@ -7,6 +7,7 @@
         "AWS.amazon-apigateway-method": {
           "name": "amazon-apigateway-method",
           "displayName": "amazon-apigateway-method",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -40,6 +41,7 @@
         "AWS.amazon-apigateway-status": {
           "name": "amazon-apigateway-status",
           "displayName": "amazon-apigateway-status",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -60,6 +62,7 @@
         "AWS.amazon-apigateway-templates": {
           "name": "amazon-apigateway-templates",
           "displayName": "amazon-apigateway-templates",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -67,6 +70,7 @@
             "/\\w+/\\w+/": {
               "name": "/\\w+/\\w+/",
               "displayName": "/\\w+/\\w+/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -102,6 +106,7 @@
         "AWS.amazon-apigateway-auth-type": {
           "name": "amazon-apigateway-auth-type",
           "displayName": "amazon-apigateway-auth-type",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -124,6 +129,7 @@
         "AWS.amazon-apigateway-integration-lambda": {
           "name": "amazon-apigateway-integration-lambda",
           "displayName": "amazon-apigateway-integration-lambda",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -131,6 +137,7 @@
             "type": {
               "name": "type",
               "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -169,6 +176,7 @@
         "AWS.amazon-apigateway-integration-HTTP": {
           "name": "amazon-apigateway-integration-HTTP",
           "displayName": "amazon-apigateway-integration-HTTP",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -176,6 +184,7 @@
             "type": {
               "name": "type",
               "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -214,6 +223,7 @@
         "AWS.amazon-apigateway-integration-mock": {
           "name": "amazon-apigateway-integration-mock",
           "displayName": "amazon-apigateway-integration-mock",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -221,6 +231,7 @@
             "type": {
               "name": "type",
               "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -259,6 +270,7 @@
         "AWS.amazon-apigateway-integration-aws": {
           "name": "amazon-apigateway-integration-aws",
           "displayName": "amazon-apigateway-integration-aws",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -304,6 +316,7 @@
             "type": {
               "name": "type",
               "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -328,6 +341,7 @@
             "uri": {
               "name": "uri",
               "displayName": "uri",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -349,6 +363,7 @@
             "httpMethod": {
               "name": "httpMethod",
               "displayName": "httpMethod",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "AWS.amazon-apigateway-method"
               ],
@@ -367,6 +382,7 @@
             "credentials": {
               "name": "credentials",
               "displayName": "credentials",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -388,6 +404,7 @@
             "requestTemplates": {
               "name": "requestTemplates",
               "displayName": "requestTemplates",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "AWS.amazon-apigateway-templates"
               ],
@@ -406,6 +423,7 @@
             "requestParameters": {
               "name": "requestParameters",
               "displayName": "requestParameters",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -424,6 +442,7 @@
             "cacheNamespace": {
               "name": "cacheNamespace",
               "displayName": "cacheNamespace",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -445,6 +464,7 @@
             "cacheKeyParameters": {
               "name": "cacheKeyParameters",
               "displayName": "cacheKeyParameters",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -464,6 +484,7 @@
             "responses": {
               "name": "responses",
               "displayName": "responses",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -472,6 +493,7 @@
                 "/.*/": {
                   "name": "/.*/",
                   "displayName": "/.*/",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "object"
                   ],
@@ -480,6 +502,7 @@
                     "statusCode": {
                       "name": "statusCode",
                       "displayName": "statusCode",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "AWS.amazon-apigateway-status"
                       ],
@@ -498,6 +521,7 @@
                     "responseParameters": {
                       "name": "responseParameters",
                       "displayName": "responseParameters",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "object"
                       ],
@@ -516,6 +540,7 @@
                     "responseTemplates": {
                       "name": "responseTemplates",
                       "displayName": "responseTemplates",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "AWS.amazon-apigateway-templates"
                       ],
@@ -621,6 +646,7 @@
         "AWS.amazon-apigateway-integration": {
           "name": "amazon-apigateway-integration",
           "displayName": "amazon-apigateway-integration",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
           ],
@@ -639,6 +665,7 @@
         "AWS.amazon-apigateway-auth": {
           "name": "amazon-apigateway-auth",
           "displayName": "amazon-apigateway-auth",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "AWS.amazon-apigateway-auth-type"
           ],
@@ -655,6 +682,7 @@
         "AWS.amazon-apigateway-integration": {
           "name": "amazon-apigateway-integration",
           "displayName": "amazon-apigateway-integration",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "AWS.amazon-apigateway-integration"
           ],
@@ -678,6 +706,7 @@
               "x-api-key": {
                 "name": "x-api-key",
                 "displayName": "x-api-key",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -763,6 +792,7 @@
               "latitude": {
                 "name": "latitude",
                 "displayName": "latitude",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -783,6 +813,7 @@
               "longitude": {
                 "name": "longitude",
                 "displayName": "longitude",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
