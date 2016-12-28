@@ -2582,6 +2582,13 @@ class CompositeNodeValidator implements NodeValidator {
             }
 
         }
+        var nodeName = node.name();
+        if(nodeName==null){
+            nodeName = node.lowLevel().key();
+            if(nodeName==null){
+                nodeName = "";
+            }
+        }
         if (node.definition().key()==universes.Universe08.GlobalSchema){
             if (node.lowLevel().valueKind()!=yaml.Kind.SCALAR){
                 var isString=false;
@@ -2593,7 +2600,7 @@ class CompositeNodeValidator implements NodeValidator {
                 }
                 if (!isString) {
                     acceptor.accept(createIssue1(messageRegistry.SCHEMA_NAME_MUST_BE_STRING,
-                        {name: node.name()}, node))
+                        {name: nodeName}, node))
                 }
             }
 
@@ -2693,7 +2700,7 @@ class CompositeNodeValidator implements NodeValidator {
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
                 if (nodeValue!='~') {
-                    var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: node.name()}, node)
+                    var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: nodeName}, node)
                     acceptor.accept(i);
                 }
             }
@@ -3926,6 +3933,7 @@ export function createIssue(
             proxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         }
     }
+    var oNode = node;
     if (node) {
         pr=node.property();
 
@@ -3942,6 +3950,20 @@ export function createIssue(
         }
     }
     if (original){
+        var resolver = (<jsyaml.Project>node.lowLevel().unit().project()).namespaceResolver();
+        if(resolver){
+            var uInfo = resolver.resolveNamespace(node.root().lowLevel().unit(),oNode.lowLevel().unit());
+            if(uInfo){
+                var issues = uInfo.usesNodes.map(x=>createLLIssue1(messageRegistry.ISSUES_IN_THE_LIBRARY,
+                    {value: x.value()}, x, x.unit().highLevel(),true));
+                issues.push(original);
+                issues = issues.reverse();
+                for(var i = 0 ; i < issues.length-1 ; i++){
+                    issues[i].extras.push(issues[i+1]);
+                }
+                return original;
+            }
+        }
         if (node.property()&&node.property().nameId()==universes.Universe10.FragmentDeclaration.properties.uses.name&&node.parent()!=null){
             pr=node.property();//FIXME there should be other cases
             node=node.parent();

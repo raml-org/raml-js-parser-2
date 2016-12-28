@@ -43,9 +43,12 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
         var rootUnit = context.root().lowLevel().unit();
         var resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
         var unit = x.lowLevel().unit();
-        var ns = resolver.resolveNamespace(rootUnit,unit);
-        if(ns != null){
-            return ns + "." + nm;
+        var usesInfo = resolver.resolveNamespace(rootUnit,unit);
+        if(usesInfo != null) {
+            var ns = usesInfo.namespace();
+            if (ns != null) {
+                return ns + "." + nm;
+            }
         }
     }
     if (x.lowLevel().unit()!=context.lowLevel().unit()){

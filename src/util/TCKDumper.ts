@@ -172,6 +172,25 @@ export class TCKDumper {
                     }
                 }
             }
+            if(universeHelpers.isTypeDeclarationDescendant(definition)){
+                var prop = basicNode.highLevel().property();
+                if(prop&&!(universeHelpers.isHeadersProperty(prop)
+                    ||universeHelpers.isQueryParametersProperty(prop)
+                    ||universeHelpers.isUriParametersProperty(prop)
+                    ||universeHelpers.isPropertiesProperty(prop)
+                    ||universeHelpers.isBaseUriParametersProperty(prop))){
+
+                    delete obj["required"];
+                    var metaObj = obj["__METADATA__"]
+                    if(metaObj){
+                        var pMetaObj = metaObj["primitiveValuesMeta"];
+                        if(pMetaObj){
+                            delete pMetaObj["required"];
+                        }
+                    }
+
+                }
+            }
             this.nodeTransformers.forEach(x=> {
                 if (x.match(node, nodeProperty||node.highLevel().property())) {
                     obj = x.transform(obj, node);
@@ -275,6 +294,14 @@ export class TCKDumper {
         return eObj;
     }
 
+    private stringLooksLikeXML(contents: string) : boolean {
+        return (contents[0] === "<" && contents[contents.length - 1] === ">");
+    }
+
+    private stringLooksLikeJSON(contents: string) : boolean {
+        return (contents[0] === "{" && contents[contents.length - 1] === "}")
+    }
+
     private dumpProperties(props, node:coreApi.BasicNode|coreApi.AttributeNode):any {
         var obj = {};
         var definition:hl.ITypeDefinition;
@@ -337,11 +364,38 @@ export class TCKDumper {
                 }
             }
 
+            if(definition && definition.isAssignableFrom("TypeDeclaration")
+                && (propName === "type" || propName == "schema") && value) {
+
+                if (value.forEach && typeof value[0] === "string") {
+
+                    var highLevelNode = (<hl.IHighLevelNode>node.highLevel());
+                    var runtimeType = highLevelNode.localType();
+
+                    if (runtimeType && runtimeType.hasExternalInHierarchy()) {
+
+                        var schemaString = value[0].trim();
+                        var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                        var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+
+                        if (canBeJson) {
+                            obj["typePropertyKind"] = "JSON";
+                        } else if (canBeXml) {
+                            obj["typePropertyKind"] = "XML";
+                        }
+                    } else {
+                        obj["typePropertyKind"] = "TYPE_EXPRESSION";
+                    }
+                } else if (typeof value === "object"){
+                    obj["typePropertyKind"] = "INPLACE";
+                }
+            }
+
             if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
                 var schemaString = value[0].trim();
 
-                var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
-                var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                var canBeJson = this.stringLooksLikeJSON(schemaString);
+                var canBeXml= this.stringLooksLikeXML(schemaString);
 
                 if(canBeJson || canBeXml) {
                     var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
@@ -981,6 +1035,44 @@ class TypeTransformer extends BasicTransformation{
                     value.mediaType = "application/json";
                 }
             }
+        }
+        var prop = node.property();
+        if (prop && !(universeHelpers.isHeadersProperty(prop)
+            || universeHelpers.isQueryParametersProperty(prop)
+            || universeHelpers.isUriParametersProperty(prop)
+            || universeHelpers.isPropertiesProperty(prop)
+            || universeHelpers.isBaseUriParametersProperty(prop))) {
+
+            delete value["required"];
+            var metaObj = value["__METADATA__"]
+            if (metaObj) {
+                var pMetaObj = metaObj["primitiveValuesMeta"];
+                if (pMetaObj) {
+                    delete pMetaObj["required"];
+                }
+            }
+        }
+        var typeValue = value["type"];
+        if (typeValue.forEach && typeof typeValue[0] === "string") {
+
+            var runtimeType = node.asElement().localType();
+
+            if (runtimeType && runtimeType.hasExternalInHierarchy()) {
+
+                var schemaString = typeValue[0].trim();
+                var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+
+                if (canBeJson) {
+                    value["typePropertyKind"] = "JSON";
+                } else if (canBeXml) {
+                    value["typePropertyKind"] = "XML";
+                }
+            } else {
+                value["typePropertyKind"] = "TYPE_EXPRESSION";
+            }
+        } else if (typeof typeValue === "object"){
+            value["typePropertyKind"] = "INPLACE";
         }
         return _value;
     }

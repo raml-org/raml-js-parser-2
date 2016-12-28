@@ -35,7 +35,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "title": {
             "name": "title",
@@ -54,7 +53,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "type": {
             "name": "type",
@@ -73,7 +73,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "uri": {
             "name": "uri",
@@ -92,7 +93,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -102,13 +104,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "annotationTypes": {
@@ -118,20 +118,16 @@
         "type": [
           "string"
         ],
-        "required": true,
         "description": "Description of the RAML API spec.",
         "allowedTargets": [
           "API",
           "Overlay"
         ],
         "__METADATA__": {
-          "primitiveValuesMeta": {
-            "required": {
-              "insertedAsDefault": true
-            }
-          }
+          "primitiveValuesMeta": {}
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "library.apiLogo": {
         "name": "apiLogo",
@@ -139,20 +135,16 @@
         "type": [
           "string"
         ],
-        "required": true,
         "description": "Service logo.",
         "allowedTargets": [
           "API",
           "Overlay"
         ],
         "__METADATA__": {
-          "primitiveValuesMeta": {
-            "required": {
-              "insertedAsDefault": true
-            }
-          }
+          "primitiveValuesMeta": {}
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "library.specAuthor": {
         "name": "specAuthor",
@@ -160,20 +152,16 @@
         "type": [
           "string"
         ],
-        "required": true,
         "description": "Author of the RAML spec.",
         "allowedTargets": [
           "API",
           "Overlay"
         ],
         "__METADATA__": {
-          "primitiveValuesMeta": {
-            "required": {
-              "insertedAsDefault": true
-            }
-          }
+          "primitiveValuesMeta": {}
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "library.devPortal": {
         "name": "devPortal",
@@ -181,20 +169,16 @@
         "type": [
           "string"
         ],
-        "required": true,
         "description": "URL to the developer portal",
         "allowedTargets": [
           "API",
           "Overlay"
         ],
         "__METADATA__": {
-          "primitiveValuesMeta": {
-            "required": {
-              "insertedAsDefault": true
-            }
-          }
+          "primitiveValuesMeta": {}
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "library.extraResources": {
         "name": "extraResources",
@@ -202,7 +186,6 @@
         "type": [
           "array"
         ],
-        "required": true,
         "allowedTargets": [
           "API",
           "Overlay"
@@ -211,14 +194,12 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
         "items": "library.apiResource",
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "Api",

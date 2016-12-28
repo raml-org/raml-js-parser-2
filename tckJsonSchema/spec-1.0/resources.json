@@ -29,18 +29,7 @@
                         "displayName": {
                             "type": "string",
                             "description": "Resource name"
-                        },
-                        "uriParameters": {
-                            "type": "object",
-                            "description": "Detailed information about any URI parameters of this resource",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
-                            }
-                        },
-                        "allUriParameters": {
-                            "type": "array",
-                            "items": {"$ref": "datamodel.json#/definitions/Type"}
-                        },
+                        }
                         "resources": {
                             "type": "array",
                             "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
@@ -88,6 +77,10 @@
                         "usage": {
                             "type": "string",
                             "description": "Instructions on how and when the resource type should be used."
+                        },
+                        "displayName": {
+                            "type": "string",
+                            "description": "Resource name"
                         }
                     }
                 }
@@ -126,6 +119,16 @@
                                 }
                             },
                             "additionalProperties": false
+                            "type": "array",
+                            "description": "Methods that are part of this resource type definition",
+                            "items": {"$ref": "methods.json#/definitions/Method10"}
+                        },
+                        "uriParameters": {
+                            "type": "object",
+                            "description": "Detailed information about any URI parameters of this resource",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+                            }
                         },
                         "__METADATA__": {
                             "type": "object"

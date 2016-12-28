@@ -7,7 +7,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "enum": [
           "GET",
           "PATCH",
@@ -20,9 +19,6 @@
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
@@ -33,7 +29,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-status": {
         "name": "amazon-apigateway-status",
@@ -41,7 +38,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "pattern": "^[12345]\\d\\d$",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -50,13 +46,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-templates": {
         "name": "amazon-apigateway-templates",
@@ -64,7 +58,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "/\\w+/\\w+/": {
             "name": "/\\w+/\\w+/",
@@ -86,7 +79,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -96,13 +90,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-auth-type": {
         "name": "amazon-apigateway-auth-type",
@@ -110,7 +102,6 @@
         "type": [
           "string"
         ],
-        "required": true,
         "enum": [
           "aws_iam"
         ],
@@ -121,13 +112,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-integration-lambda": {
         "name": "amazon-apigateway-integration-lambda",
@@ -135,7 +124,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "type": {
             "name": "type",
@@ -160,7 +148,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -170,13 +159,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-integration-HTTP": {
         "name": "amazon-apigateway-integration-HTTP",
@@ -184,7 +171,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "type": {
             "name": "type",
@@ -209,7 +195,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -219,13 +206,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-integration-mock": {
         "name": "amazon-apigateway-integration-mock",
@@ -233,7 +218,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "type": {
             "name": "type",
@@ -258,7 +242,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -268,13 +253,11 @@
             },
             "type": {
               "insertedAsDefault": true
-            },
-            "required": {
-              "insertedAsDefault": true
             }
           }
         },
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "amazon-apigateway-integration-aws": {
         "name": "amazon-apigateway-integration-aws",
@@ -282,7 +265,6 @@
         "type": [
           "object"
         ],
-        "required": true,
         "properties": {
           "type": {
             "name": "type",
@@ -307,7 +289,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "uri": {
             "name": "uri",
@@ -329,7 +312,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "httpMethod": {
             "name": "httpMethod",
@@ -348,7 +332,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "credentials": {
             "name": "credentials",
@@ -370,7 +355,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "requestTemplates": {
             "name": "requestTemplates",
@@ -389,7 +375,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "requestParameters": {
             "name": "requestParameters",
@@ -408,7 +395,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "cacheNamespace": {
             "name": "cacheNamespace",
@@ -430,7 +418,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "cacheKeyParameters": {
             "name": "cacheKeyParameters",
@@ -450,7 +439,8 @@
               }
             },
             "items": "string",
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "responses": {
             "name": "responses",
@@ -485,7 +475,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   "responseParameters": {
                     "name": "responseParameters",
@@ -504,7 +495,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   "responseTemplates": {
                     "name": "responseTemplates",
@@ -523,7 +515,8 @@
                         }
                       }
                     },
-                    "mediaType": "application/raml+yaml"
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -539,7 +532,8 @@
                     }
                   }
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -555,7 +549,8 @@
                 }
               }
             },
-            "mediaType": "application/raml+yaml"
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "__METADATA__": {
@@ -564,9 +559,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "required": {
               "insertedAsDefault": true
             }
           }
@@ -615,7 +607,8 @@
             "name": null
           }
         ],
-        "mediaType": "application/raml+yaml"
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "API Gateway Test API",

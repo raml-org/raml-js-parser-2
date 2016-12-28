@@ -32,7 +32,8 @@
                   }
                 }
               },
-              "mediaType": "application/raml+yaml"
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
           }
         }
@@ -118,7 +119,8 @@
                 "fixedFacets": {
                   "format": "double"
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "longitude": {
                 "name": "longitude",
@@ -139,7 +141,8 @@
                 "fixedFacets": {
                   "format": "double"
                 },
-                "mediaType": "application/raml+yaml"
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [

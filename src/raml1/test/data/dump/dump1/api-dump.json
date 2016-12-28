@@ -6,7 +6,6 @@
 			"type": [
 				"object"
 			],
-			"required": true,
 			"properties": {
 				"firstname": {
 					"name": "firstname",
@@ -26,7 +25,8 @@
 							}
 						}
 					},
-					"mediaType": "application/raml+yaml"
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
 				},
 				"lastname": {
 					"name": "lastname",
@@ -42,7 +42,8 @@
 							}
 						}
 					},
-					"mediaType": "application/raml+yaml"
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
 				},
 				"addresses": {
 					"name": "addresses",
@@ -62,7 +63,8 @@
 						}
 					},
 					"items": "string",
-					"mediaType": "application/raml+yaml"
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
 				},
 				"age": {
 					"name": "age",
@@ -81,20 +83,19 @@
 							}
 						}
 					},
-					"mediaType": "application/raml+yaml"
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
 				}
 			},
 			"__METADATA__": {
 				"primitiveValuesMeta": {
 					"displayName": {
 						"calculated": true
-					},
-					"required": {
-						"insertedAsDefault": true
 					}
 				}
 			},
-			"mediaType": "application/raml+yaml"
+			"mediaType": "application/raml+yaml",
+			"typePropertyKind": "TYPE_EXPRESSION"
 		}
 	},
 	"title": "API with Types",
@@ -116,7 +117,6 @@
 									"type": [
 										"Person"
 									],
-									"required": true,
 									"properties": {
 										"juan": {
 											"name": "juan",
@@ -135,16 +135,14 @@
 													}
 												}
 											},
-											"mediaType": "application/raml+yaml"
+											"mediaType": "application/raml+yaml",
+											"typePropertyKind": "TYPE_EXPRESSION"
 										}
 									},
 									"__METADATA__": {
 										"primitiveValuesMeta": {
 											"displayName": {
 												"calculated": true
-											},
-											"required": {
-												"insertedAsDefault": true
 											}
 										}
 									},
@@ -164,7 +162,8 @@
 											"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
 										}
 									],
-									"mediaType": "application/raml+yaml"
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								}
 							}
 						}
@@ -176,7 +175,6 @@
 							"type": [
 								"object"
 							],
-							"required": true,
 							"properties": {
 								"developer": {
 									"name": "developer",
@@ -195,7 +193,8 @@
 											}
 										}
 									},
-									"mediaType": "application/raml+yaml"
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								},
 								"test": {
 									"name": "test",
@@ -214,7 +213,8 @@
 											}
 										}
 									},
-									"mediaType": "application/raml+yaml"
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								},
 								"animal": {
 									"name": "animal",
@@ -233,7 +233,8 @@
 											}
 										}
 									},
-									"mediaType": "application/raml+yaml"
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								},
 								"car": {
 									"name": "car",
@@ -252,20 +253,19 @@
 											}
 										}
 									},
-									"mediaType": "application/raml+yaml"
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								}
 							},
 							"__METADATA__": {
 								"primitiveValuesMeta": {
 									"displayName": {
 										"calculated": true
-									},
-									"required": {
-										"insertedAsDefault": true
 									}
 								}
 							},
-							"mediaType": "application/raml+yaml"
+							"mediaType": "application/raml+yaml",
+							"typePropertyKind": "TYPE_EXPRESSION"
 						}
 					},
 					"protocols": [

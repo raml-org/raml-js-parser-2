@@ -558,22 +558,11 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                         }
                                     }
                                 }
-                                var exit=false;
                                 chld.forEach(y=> {
-                                    if (exit){
-                                        return;
-                                    }
                                     //TODO TRACK GROUP KEY
                                     var cld = y.children()
                                     if (!y.key() && cld.length == 1) {
-                                        if (aNode.universe().version() == "RAML10"&&!aNode.parent()) {
-                                            var bnode = new hlimpl.BasicASTNode(x, aNode);
-                                            res.push(bnode);
-                                            bnode.needMap = true;
-                                            bnode.knownProperty=p;
-                                            exit=true;
-                                        }
-                                        else {
+                                        if (aNode.universe().version() != "RAML10"||aNode.parent()) {
                                             var node = new hlimpl.ASTNodeImpl(cld[0], aNode, <any> range, p);
                                             node._allowQuestion = allowsQuestion;
                                             rs.push(node);
@@ -593,7 +582,13 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                             }
                                         }
                                     }
-                                })
+                                });
+                                if(aNode.universe().version() == "RAML10"&&x.valueKind()==yaml.Kind.SEQ){
+                                    var bnode = new hlimpl.BasicASTNode(x, aNode);
+                                    res.push(bnode);
+                                    bnode.needMap = true;
+                                    bnode.knownProperty=p;
+                                }
                             }
                             else {
                                 var filter:any = {}
