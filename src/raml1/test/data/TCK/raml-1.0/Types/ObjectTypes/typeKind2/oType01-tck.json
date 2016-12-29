@@ -1,0 +1,82 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Initial_comments": {
+          "name": "Initial_comments",
+          "displayName": "Initial_comments",
+          "typePropertyKind": "INPLACE",
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "comment_id": {
+                "name": "comment_id",
+                "displayName": "comment_id",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "initial_comments": {
+                "name": "initial_comments",
+                "displayName": "initial_comments",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "My API With Types"
+  },
+  "errors": []
+}
