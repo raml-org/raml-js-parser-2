@@ -7,6 +7,7 @@
         "Feature": {
           "name": "Feature",
           "displayName": "Feature",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "type": {
               "name": "type",
               "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -35,6 +37,7 @@
             "geometry": {
               "name": "geometry",
               "displayName": "geometry",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -53,6 +56,7 @@
             "properties": {
               "name": "properties",
               "displayName": "properties",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -82,6 +86,7 @@
         "ZoomEmbed": {
           "name": "ZoomEmbed",
           "displayName": "ZoomEmbed",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -89,6 +94,7 @@
             "_embeds": {
               "name": "_embeds",
               "displayName": "_embeds",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -109,6 +115,7 @@
             "_links": {
               "name": "_links",
               "displayName": "_links",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -139,6 +146,7 @@
         "Scene": {
           "name": "Scene",
           "displayName": "Scene",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ZoomEmbed",
             "Feature"
@@ -147,6 +155,7 @@
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -176,6 +185,7 @@
         "PlanetScene": {
           "name": "PlanetScene",
           "displayName": "PlanetScene",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Scene"
           ],
@@ -183,6 +193,7 @@
             "properties": {
               "name": "properties",
               "displayName": "properties",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "PlanetProperties"
               ],
@@ -201,6 +212,7 @@
             "_links": {
               "name": "_links",
               "displayName": "_links",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -210,6 +222,7 @@
                 "licenses": {
                   "name": "licenses",
                   "displayName": "licenses",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "ResourceURL"
                   ],
@@ -251,6 +264,7 @@
         "BaseProperties": {
           "name": "BaseProperties",
           "displayName": "BaseProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -258,6 +272,7 @@
             "acquired": {
               "name": "acquired",
               "displayName": "acquired",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "datetime"
               ],
@@ -290,6 +305,7 @@
         "PlanetProperties": {
           "name": "PlanetProperties",
           "displayName": "PlanetProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "BaseProperties"
           ],
@@ -297,6 +313,7 @@
             "vnd_camera_gain": {
               "name": "vnd_camera_gain",
               "displayName": "vnd_camera_gain",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -327,6 +344,7 @@
         "ResourceURL": {
           "name": "ResourceURL",
           "displayName": "ResourceURL",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -399,6 +417,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "array"
                             ],

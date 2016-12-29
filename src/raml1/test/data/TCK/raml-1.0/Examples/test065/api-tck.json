@@ -7,6 +7,7 @@
         "t1": {
           "name": "t1",
           "displayName": "t1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -32,6 +33,7 @@
             "p": {
               "name": "p",
               "displayName": "p",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -64,6 +66,7 @@
         "t2": {
           "name": "t2",
           "displayName": "t2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -83,6 +86,7 @@
             "p": {
               "name": "p",
               "displayName": "p",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

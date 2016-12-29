@@ -13,6 +13,7 @@
           },
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -26,6 +27,7 @@
               },
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -57,6 +59,7 @@
         "meta-resource-method": {
           "name": "meta-resource-method",
           "displayName": "meta-resource-method",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -80,6 +83,7 @@
         "meta-data": {
           "name": "meta-data",
           "displayName": "meta-data",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -127,6 +131,7 @@
                     },
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],

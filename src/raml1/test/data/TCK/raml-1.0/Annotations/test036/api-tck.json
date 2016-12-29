@@ -7,6 +7,7 @@
         "Label": {
           "name": "Label",
           "displayName": "Label",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],

@@ -13,6 +13,7 @@
         "t2": {
           "name": "t2",
           "displayName": "t2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -37,6 +38,7 @@
             "p2": {
               "name": "p2",
               "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "lib.t1"
               ],

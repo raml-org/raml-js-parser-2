@@ -7,6 +7,7 @@
         "birthday": {
           "name": "birthday",
           "displayName": "birthday",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "date-only"
           ],
@@ -30,6 +31,7 @@
         "lunchtime": {
           "name": "lunchtime",
           "displayName": "lunchtime",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "time-only"
           ],
@@ -53,6 +55,7 @@
         "fireworks": {
           "name": "fireworks",
           "displayName": "fireworks",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "datetime-only"
           ],
@@ -76,6 +79,7 @@
         "created": {
           "name": "created",
           "displayName": "created",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "datetime"
           ],
@@ -103,6 +107,7 @@
         "If-Modified-Since": {
           "name": "If-Modified-Since",
           "displayName": "If-Modified-Since",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "datetime"
           ],

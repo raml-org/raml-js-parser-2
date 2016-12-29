@@ -1,6 +1,7 @@
 {
 	"name": "SomeType",
 	"displayName": "SomeType",
+	"typePropertyKind": "TYPE_EXPRESSION",
 	"type": [
 		"object"
 	],

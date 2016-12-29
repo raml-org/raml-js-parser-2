@@ -1,6 +1,7 @@
 {
 	"name": "example",
 	"displayName": "example",
+	"typePropertyKind": "TYPE_EXPRESSION",
 	"type": [
 		"\"<TypeFromLibrary>\\n  <someProp>lorem ipsum</someProp>\\n</TypeFromLibrary>\\n\""
 	],

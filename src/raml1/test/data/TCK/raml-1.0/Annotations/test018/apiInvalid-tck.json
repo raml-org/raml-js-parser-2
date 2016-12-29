@@ -7,6 +7,7 @@
         "amazon-apigateway-integration": {
           "name": "amazon-apigateway-integration",
           "displayName": "amazon-apigateway-integration",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -25,6 +26,7 @@
         "amazon-apigateway-integration": {
           "name": "amazon-apigateway-integration",
           "displayName": "amazon-apigateway-integration",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "amazon-apigateway-integration1"
           ],

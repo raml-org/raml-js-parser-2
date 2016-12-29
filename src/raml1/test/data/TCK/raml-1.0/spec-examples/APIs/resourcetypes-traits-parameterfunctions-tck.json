@@ -7,6 +7,7 @@
         "Users": {
           "name": "Users",
           "displayName": "Users",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -26,6 +27,7 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -49,6 +51,7 @@
             "<<methodName>>": {
               "name": "<<methodName>>",
               "displayName": "<<methodName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -93,6 +96,7 @@
                   "body": {
                     "name": "body",
                     "displayName": "body",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<resourcePathName>>"
                     ],
@@ -117,6 +121,7 @@
                   "body": {
                     "name": "body",
                     "displayName": "body",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<resourcePathName | !singularize>>"
                     ],
@@ -146,6 +151,7 @@
                   "body": {
                     "name": "body",
                     "displayName": "body",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<resourcePathName>>"
                     ],

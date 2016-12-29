@@ -4,6 +4,7 @@
 			"SomeType": {
 				"name": "SomeType",
 				"displayName": "SomeType",
+				"typePropertyKind": "TYPE_EXPRESSION",
 				"type": [
 					"object"
 				],
@@ -11,6 +12,7 @@
 					"prop": {
 						"name": "prop",
 						"displayName": "prop",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"string"
 						],
@@ -49,6 +51,7 @@
 								"application/xml": {
 									"name": "application/xml",
 									"displayName": "application/xml",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"SomeType"
 									],

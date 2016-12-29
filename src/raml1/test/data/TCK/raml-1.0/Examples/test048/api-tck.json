@@ -7,6 +7,7 @@
         "ObjectType1": {
           "name": "ObjectType1",
           "displayName": "ObjectType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -17,6 +18,7 @@
             "prop1": {
               "name": "prop1",
               "displayName": "prop1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

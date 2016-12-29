@@ -7,6 +7,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -31,6 +32,7 @@
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -51,6 +53,7 @@
             "items2": {
               "name": "items2",
               "displayName": "items2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -71,6 +74,7 @@
             "items3": {
               "name": "items3",
               "displayName": "items3",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],

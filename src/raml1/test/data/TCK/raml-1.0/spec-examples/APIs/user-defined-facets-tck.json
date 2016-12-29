@@ -11,6 +11,7 @@
             "onlyFutureDates": {
               "name": "onlyFutureDates",
               "displayName": "onlyFutureDates",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "boolean"
               ],
@@ -25,6 +26,7 @@
             "noHolidays": {
               "name": "noHolidays",
               "displayName": "noHolidays",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "boolean"
               ],
@@ -37,6 +39,7 @@
               }
             }
           },
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "date-only"
           ],
@@ -53,6 +56,7 @@
         "PossibleMeetingDate": {
           "name": "PossibleMeetingDate",
           "displayName": "PossibleMeetingDate",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "CustomDate"
           ],

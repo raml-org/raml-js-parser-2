@@ -9,6 +9,7 @@
             "<<queryParamName>>": {
               "name": "<<queryParamName>>",
               "displayName": "<<queryParamName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -42,6 +43,7 @@
               "<<queryParamName>>": {
                 "name": "<<queryParamName>>",
                 "displayName": "<<queryParamName>>",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

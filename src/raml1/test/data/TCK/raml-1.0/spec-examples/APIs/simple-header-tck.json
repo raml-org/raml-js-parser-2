@@ -9,6 +9,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -46,6 +47,7 @@
               "Zencoder-Api-Key": {
                 "name": "Zencoder-Api-Key",
                 "displayName": "Zencoder-Api-Key",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

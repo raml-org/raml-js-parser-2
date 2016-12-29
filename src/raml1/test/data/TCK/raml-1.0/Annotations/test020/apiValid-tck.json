@@ -9,6 +9,7 @@
             "nightMare": {
               "name": "nightMare",
               "displayName": "nightMare",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,6 +39,7 @@
         "searchable": {
           "name": "searchable",
           "displayName": "searchable",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
@@ -54,6 +56,7 @@
         "sortable": {
           "name": "sortable",
           "displayName": "sortable",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -61,6 +64,7 @@
             "default": {
               "name": "default",
               "displayName": "default",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -116,6 +120,7 @@
                 },
                 "name": "kind",
                 "displayName": "kind",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -142,6 +147,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],

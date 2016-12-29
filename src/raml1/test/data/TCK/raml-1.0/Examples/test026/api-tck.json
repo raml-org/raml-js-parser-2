@@ -7,6 +7,7 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -32,6 +34,7 @@
             "name2": {
               "name": "name2",
               "displayName": "name2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -50,6 +53,7 @@
             "name3": {
               "name": "name3",
               "displayName": "name3",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "TestType4"
               ],
@@ -82,6 +86,7 @@
         "TestType2": {
           "name": "TestType2",
           "displayName": "TestType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "TestType"
           ],
@@ -89,6 +94,7 @@
             "name4": {
               "name": "name4",
               "displayName": "name4",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -118,6 +124,7 @@
         "TestType3": {
           "name": "TestType3",
           "displayName": "TestType3",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "TestType2"
           ],
@@ -125,6 +132,7 @@
             "name5": {
               "name": "name5",
               "displayName": "name5",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -154,6 +162,7 @@
         "TestType4": {
           "name": "TestType4",
           "displayName": "TestType4",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -161,6 +170,7 @@
             "proppp": {
               "name": "proppp",
               "displayName": "proppp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -194,6 +204,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -235,6 +246,7 @@
                   "bbb": {
                     "name": "bbb",
                     "displayName": "bbb",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -255,6 +267,7 @@
                   "blah": {
                     "name": "blah",
                     "displayName": "blah",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -278,6 +291,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "JSON",
                         "schema": [
                           "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
                         ],
@@ -300,6 +314,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "JSON",
                         "schema": [
                           "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
                         ],
@@ -322,6 +337,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "TestType"
                         ],

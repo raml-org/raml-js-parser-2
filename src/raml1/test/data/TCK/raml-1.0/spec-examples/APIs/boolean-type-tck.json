@@ -7,6 +7,7 @@
         "IsMarried": {
           "name": "IsMarried",
           "displayName": "IsMarried",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],

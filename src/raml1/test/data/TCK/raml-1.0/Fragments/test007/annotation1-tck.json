@@ -3,6 +3,7 @@
   "type": "StringTypeDeclaration",
   "specification": {
     "displayName": "MyAnnotation",
+    "typePropertyKind": "TYPE_EXPRESSION",
     "type": [
       "string"
     ],

@@ -13,6 +13,7 @@
         "Example": {
           "name": "Example",
           "displayName": "Example",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -39,6 +40,7 @@
                 "application/json": {
                   "name": "application/json",
                   "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "<<resourcePathName|!uppercamelcase>>"
                   ],
@@ -69,6 +71,7 @@
                 "application/json": {
                   "name": "application/json",
                   "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "<<resourcePathName|!uppercamelcase>>"
                   ],
@@ -122,6 +125,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Example"
                     ],
@@ -150,6 +154,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Example"
                     ],

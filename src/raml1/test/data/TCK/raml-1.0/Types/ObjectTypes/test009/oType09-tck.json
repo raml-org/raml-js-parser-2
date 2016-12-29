@@ -7,6 +7,7 @@
         "MapOfNumbers": {
           "name": "MapOfNumbers",
           "displayName": "MapOfNumbers",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "count": {
               "name": "count",
               "displayName": "count",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],

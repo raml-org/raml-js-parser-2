@@ -24,6 +24,7 @@
         "SmallArray": {
           "name": "SmallArray",
           "displayName": "SmallArray",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -44,6 +45,7 @@
         "MyAnnotationType1": {
           "name": "MyAnnotationType1",
           "displayName": "MyAnnotationType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -51,6 +53,7 @@
             "cc": {
               "name": "cc",
               "displayName": "cc",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SmallArray"
               ],
@@ -83,6 +86,7 @@
         "MyAnnotationType2": {
           "name": "MyAnnotationType2",
           "displayName": "MyAnnotationType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

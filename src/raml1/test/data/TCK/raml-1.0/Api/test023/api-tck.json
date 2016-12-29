@@ -8,6 +8,7 @@
       "a": {
         "name": "a",
         "displayName": "A",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "integer"
         ],

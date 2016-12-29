@@ -21,6 +21,7 @@
         "Pet": {
           "name": "Pet",
           "displayName": "Pet",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -28,6 +29,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -61,6 +63,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -68,6 +71,7 @@
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Pet"
               ],
@@ -100,6 +104,7 @@
         "MapOfPerson": {
           "name": "MapOfPerson",
           "displayName": "MapOfPerson",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -107,6 +112,7 @@
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Person"
               ],
@@ -141,6 +147,7 @@
         "hello": {
           "name": "hello",
           "displayName": "hello",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -148,6 +155,7 @@
             "persons": {
               "name": "persons",
               "displayName": "persons",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MapOfPerson"
               ],

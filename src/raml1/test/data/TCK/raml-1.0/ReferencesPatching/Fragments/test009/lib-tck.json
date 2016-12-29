@@ -7,6 +7,7 @@
         "ownType": {
           "name": "ownType",
           "displayName": "ownType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -26,6 +27,7 @@
         "includedType": {
           "name": "includedType",
           "displayName": "includedType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -33,6 +35,7 @@
             "p1": {
               "name": "p1",
               "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "lib.ownType"
               ],
@@ -51,6 +54,7 @@
             "p2": {
               "name": "p2",
               "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "ownType"
               ],

@@ -25,6 +25,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -40,6 +41,7 @@
                   "ownLibProperty": {
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib0.MyType"
                     ],
@@ -58,6 +60,7 @@
                   "rootLibProperty": {
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types2.MyObjectType"
                     ],
@@ -113,6 +116,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.MyType"
                 ],
@@ -139,6 +143,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -154,6 +159,7 @@
                   "ownLibProperty": {
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib0.MyType"
                     ],
@@ -172,6 +178,7 @@
                   "rootLibProperty": {
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types2.MyObjectType"
                     ],

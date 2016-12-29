@@ -7,6 +7,7 @@
         "GeoPoint": {
           "name": "GeoPoint",
           "displayName": "GeoPoint",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
@@ -30,6 +31,7 @@
         "GeoPoints": {
           "name": "GeoPoints",
           "displayName": "GeoPoints",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -60,6 +62,7 @@
         "Bool": {
           "name": "Bool",
           "displayName": "Bool",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],

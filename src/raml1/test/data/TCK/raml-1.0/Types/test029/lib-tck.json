@@ -9,6 +9,7 @@
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "<<param>>"
               ],
@@ -16,6 +17,7 @@
                 "prop1": {
                   "name": "prop1",
                   "displayName": "prop1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],

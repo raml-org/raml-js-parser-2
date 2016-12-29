@@ -7,6 +7,7 @@
         "userPicture": {
           "name": "userPicture",
           "displayName": "userPicture",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "file"
           ],
@@ -35,6 +36,7 @@
         "customFile": {
           "name": "customFile",
           "displayName": "customFile",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "file"
           ],

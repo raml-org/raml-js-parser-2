@@ -10,6 +10,7 @@
           "ext": {
             "name": "ext",
             "displayName": "ext",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

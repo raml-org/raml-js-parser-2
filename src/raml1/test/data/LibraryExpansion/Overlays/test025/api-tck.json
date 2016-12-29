@@ -7,6 +7,7 @@
         "lib.TestAnnotationType": {
           "name": "TestAnnotationType",
           "displayName": "TestAnnotationType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -23,6 +24,7 @@
         "lib.AnotherAnnotationType": {
           "name": "AnotherAnnotationType",
           "displayName": "AnotherAnnotationType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -30,6 +32,7 @@
             "firstProp": {
               "name": "firstProp",
               "displayName": "firstProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -48,6 +51,7 @@
             "secondProp": {
               "name": "secondProp",
               "displayName": "secondProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],

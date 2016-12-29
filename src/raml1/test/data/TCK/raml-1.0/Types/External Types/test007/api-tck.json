@@ -7,6 +7,7 @@
         "mySchema": {
           "name": "mySchema",
           "displayName": "mySchema",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
           ],
@@ -23,6 +24,7 @@
         "z2": {
           "name": "z2",
           "displayName": "z2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -33,6 +35,7 @@
             "c": {
               "name": "c",
               "displayName": "c",
+              "typePropertyKind": "INPLACE",
               "type": [
                 "mySchema"
               ],

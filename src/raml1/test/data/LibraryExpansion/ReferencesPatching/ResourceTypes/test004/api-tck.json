@@ -7,6 +7,7 @@
         "lib1.lib2.MyLibType": {
           "name": "MyLibType",
           "displayName": "MyLibType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -27,6 +28,7 @@
             "q": {
               "name": "q",
               "displayName": "<<paramName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -47,6 +49,7 @@
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "lib1.lib2.MyLibType"
               ],
@@ -91,6 +94,7 @@
               "q": {
                 "name": "q",
                 "displayName": "QParam",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -111,6 +115,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib1.lib2.MyLibType"
                 ],

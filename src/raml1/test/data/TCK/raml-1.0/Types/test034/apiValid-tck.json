@@ -7,6 +7,7 @@
         "StringType_10": {
           "name": "StringType_10",
           "displayName": "StringType_10",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -26,6 +27,7 @@
         "StringType_11": {
           "name": "StringType_11",
           "displayName": "StringType_11",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -52,6 +54,7 @@
         "StringType_12": {
           "name": "StringType_12",
           "displayName": "StringType_12",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -78,6 +81,7 @@
         "StringType_20": {
           "name": "StringType_20",
           "displayName": "StringType_20",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -94,6 +98,7 @@
         "StringType_21": {
           "name": "StringType_21",
           "displayName": "StringType_21",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -117,6 +122,7 @@
         "StringType_30": {
           "name": "StringType_30",
           "displayName": "StringType_30",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -136,6 +142,7 @@
         "StringType_31": {
           "name": "StringType_31",
           "displayName": "StringType_31",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -162,6 +169,7 @@
         "StringType_40": {
           "name": "StringType_40",
           "displayName": "StringType_40",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -178,6 +186,7 @@
         "StringType_41": {
           "name": "StringType_41",
           "displayName": "StringType_41",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -201,6 +210,7 @@
         "StringType_50": {
           "name": "StringType_50",
           "displayName": "StringType_50",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -217,6 +227,7 @@
         "StringType_51": {
           "name": "StringType_51",
           "displayName": "StringType_51",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -240,6 +251,7 @@
         "StringType_60": {
           "name": "StringType_60",
           "displayName": "StringType_60",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -259,6 +271,7 @@
         "StringType_61": {
           "name": "StringType_61",
           "displayName": "StringType_61",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -285,6 +298,7 @@
         "StringType_70": {
           "name": "StringType_70",
           "displayName": "StringType_70",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -304,6 +318,7 @@
         "StringType_71": {
           "name": "StringType_71",
           "displayName": "StringType_71",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -330,6 +345,7 @@
         "TypeWithStringProperties": {
           "name": "TypeWithStringProperties",
           "displayName": "TypeWithStringProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -383,6 +399,7 @@
             "strProp_10": {
               "name": "strProp_10",
               "displayName": "strProp_10",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_10"
               ],
@@ -401,6 +418,7 @@
             "strProp_11": {
               "name": "strProp_11",
               "displayName": "strProp_11",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_11"
               ],
@@ -419,6 +437,7 @@
             "strProp_12": {
               "name": "strProp_12",
               "displayName": "strProp_12",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_12"
               ],
@@ -437,6 +456,7 @@
             "strProp_20": {
               "name": "strProp_20",
               "displayName": "strProp_20",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_20"
               ],
@@ -455,6 +475,7 @@
             "strProp_21": {
               "name": "strProp_21",
               "displayName": "strProp_21",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_21"
               ],
@@ -473,6 +494,7 @@
             "strProp_30": {
               "name": "strProp_30",
               "displayName": "strProp_30",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_30"
               ],
@@ -491,6 +513,7 @@
             "strProp_31": {
               "name": "strProp_31",
               "displayName": "strProp_31",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_31"
               ],
@@ -509,6 +532,7 @@
             "strProp_40": {
               "name": "strProp_40",
               "displayName": "strProp_40",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_40"
               ],
@@ -527,6 +551,7 @@
             "strProp_41": {
               "name": "strProp_41",
               "displayName": "strProp_41",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_41"
               ],
@@ -545,6 +570,7 @@
             "strProp_50": {
               "name": "strProp_50",
               "displayName": "strProp_50",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_50"
               ],
@@ -563,6 +589,7 @@
             "strProp_51": {
               "name": "strProp_51",
               "displayName": "strProp_51",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_51"
               ],
@@ -581,6 +608,7 @@
             "strProp_60": {
               "name": "strProp_60",
               "displayName": "strProp_60",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_60"
               ],
@@ -599,6 +627,7 @@
             "strProp_61": {
               "name": "strProp_61",
               "displayName": "strProp_61",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_61"
               ],
@@ -617,6 +646,7 @@
             "strProp_70": {
               "name": "strProp_70",
               "displayName": "strProp_70",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_70"
               ],
@@ -635,6 +665,7 @@
             "strProp_71": {
               "name": "strProp_71",
               "displayName": "strProp_71",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "StringType_71"
               ],

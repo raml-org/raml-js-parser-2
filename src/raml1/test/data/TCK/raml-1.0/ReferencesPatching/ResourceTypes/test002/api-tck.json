@@ -9,6 +9,7 @@
             "<<param>>": {
               "name": "<<param>>",
               "displayName": "<<param>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -29,6 +30,7 @@
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -53,6 +55,7 @@
             "stringParam": {
               "name": "stringParam",
               "displayName": "stringParam",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -110,6 +113,7 @@
               "qParam": {
                 "name": "qParam",
                 "displayName": "qParam",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -128,6 +132,7 @@
               "stringParam": {
                 "name": "stringParam",
                 "displayName": "stringParam",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -148,6 +153,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -170,6 +176,7 @@
               "qParam": {
                 "name": "qParam",
                 "displayName": "qParam",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -188,6 +195,7 @@
               "stringParam": {
                 "name": "stringParam",
                 "displayName": "stringParam",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -208,6 +216,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],

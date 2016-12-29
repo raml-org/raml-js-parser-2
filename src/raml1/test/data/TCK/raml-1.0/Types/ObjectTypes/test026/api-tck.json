@@ -7,6 +7,7 @@
         "ParentType": {
           "name": "ParentType",
           "displayName": "ParentType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "stringProperty": {
               "name": "stringProperty",
               "displayName": "stringProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -32,6 +34,7 @@
             "kind": {
               "name": "kind",
               "displayName": "kind",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -65,6 +68,7 @@
         "ChildType1": {
           "name": "ChildType1",
           "displayName": "ChildType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ParentType"
           ],
@@ -82,6 +86,7 @@
         "ChildType2": {
           "name": "ChildType2",
           "displayName": "ChildType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ParentType"
           ],
@@ -89,6 +94,7 @@
             "stringProperty": {
               "name": "stringProperty",
               "displayName": "stringProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -126,6 +132,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],

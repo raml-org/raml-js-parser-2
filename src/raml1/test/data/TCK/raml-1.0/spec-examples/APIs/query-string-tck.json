@@ -7,6 +7,7 @@
         "lat-long": {
           "name": "lat-long",
           "displayName": "lat-long",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,6 +15,7 @@
             "lat": {
               "name": "lat",
               "displayName": "lat",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -32,6 +34,7 @@
             "long": {
               "name": "long",
               "displayName": "long",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -64,6 +67,7 @@
         "loc": {
           "name": "loc",
           "displayName": "loc",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -71,6 +75,7 @@
             "location": {
               "name": "location",
               "displayName": "location",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -106,6 +111,7 @@
         "paging": {
           "name": "paging",
           "displayName": "paging",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -113,6 +119,7 @@
             "start": {
               "name": "start",
               "displayName": "start",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -131,6 +138,7 @@
             "page-size": {
               "name": "page-size",
               "displayName": "page-size",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -168,6 +176,7 @@
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "paging",
                 "lat-long | loc"

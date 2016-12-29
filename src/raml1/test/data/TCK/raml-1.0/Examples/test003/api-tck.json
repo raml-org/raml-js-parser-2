@@ -7,6 +7,7 @@
         "URL": {
           "name": "URL",
           "displayName": "URL",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -26,6 +27,7 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -33,6 +35,7 @@
             "firstName": {
               "name": "firstName",
               "displayName": "firstName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -51,6 +54,7 @@
             "lastName": {
               "name": "lastName",
               "displayName": "lastName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -83,6 +87,7 @@
         "Brand": {
           "name": "Brand",
           "displayName": "Brand",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -105,6 +110,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -123,6 +129,7 @@
             "logo": {
               "name": "logo",
               "displayName": "logo",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "URL"
               ],
@@ -141,6 +148,7 @@
             "followers": {
               "name": "followers",
               "displayName": "followers",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -160,6 +168,7 @@
             "/^X/": {
               "name": "/^X/",
               "displayName": "/^X/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],

@@ -7,6 +7,7 @@
         "ItsComplicated": {
           "name": "ItsComplicated",
           "displayName": "ItsComplicated",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -17,6 +18,7 @@
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string[] | string"
               ],

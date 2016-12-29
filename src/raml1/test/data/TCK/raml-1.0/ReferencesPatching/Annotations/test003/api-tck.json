@@ -99,6 +99,7 @@
         "Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

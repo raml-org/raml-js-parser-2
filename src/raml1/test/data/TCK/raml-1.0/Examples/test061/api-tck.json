@@ -7,6 +7,7 @@
         "MyArrayType": {
           "name": "MyArrayType",
           "displayName": "MyArrayType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -24,6 +25,7 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -38,6 +40,7 @@
             "p": {
               "name": "p",
               "displayName": "p",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MyArrayType"
               ],
@@ -91,6 +94,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "MyType"
                     ],
@@ -122,6 +126,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "MyType"
                     ],

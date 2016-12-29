@@ -7,19 +7,18 @@
         "Initial_comments": {
           "name": "Initial_comments",
           "displayName": "Initial_comments",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "required": true,
           "properties": {
             "comment_id": {
               "name": "comment_id",
               "displayName": "comment_id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
-              "typePropertyKind": "TYPE_EXPRESSION",
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -35,10 +34,10 @@
             "initial_comments": {
               "name": "initial_comments",
               "displayName": "initial_comments",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
-              "typePropertyKind": "TYPE_EXPRESSION",
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -56,9 +55,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

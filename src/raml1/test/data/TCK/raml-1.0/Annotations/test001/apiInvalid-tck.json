@@ -16,6 +16,7 @@
         "test": {
           "name": "test",
           "displayName": "test",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -23,6 +24,7 @@
             "q": {
               "name": "q",
               "displayName": "q",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "boolean"
               ],
@@ -41,6 +43,7 @@
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

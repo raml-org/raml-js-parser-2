@@ -9,6 +9,7 @@
             "dept_code": {
               "name": "dept_code",
               "displayName": "dept_code",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -40,6 +41,7 @@
             "start": {
               "name": "start",
               "displayName": "start",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],

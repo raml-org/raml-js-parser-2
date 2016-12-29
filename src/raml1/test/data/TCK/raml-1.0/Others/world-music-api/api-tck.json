@@ -25,6 +25,7 @@
         "Entry": {
           "name": "Entry",
           "displayName": "Entry",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
           ],
@@ -41,6 +42,7 @@
         "AnotherEntry": {
           "name": "AnotherEntry",
           "displayName": "AnotherEntry",
+          "typePropertyKind": "INPLACE",
           "type": [
             "Entry"
           ],
@@ -58,6 +60,7 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -68,6 +71,7 @@
             "firstname": {
               "name": "firstname",
               "displayName": "firstname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -86,6 +90,7 @@
             "lastname": {
               "name": "lastname",
               "displayName": "lastname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -134,6 +139,7 @@
             "access_token": {
               "name": "access_token",
               "displayName": "access_token",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -187,6 +193,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "schema": [
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
                     ],
@@ -225,6 +232,7 @@
         "deprecated": {
           "name": "deprecated",
           "displayName": "deprecated",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -232,6 +240,7 @@
             "date": {
               "name": "date",
               "displayName": "date",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "datetime"
               ],
@@ -250,6 +259,7 @@
             "deprecatedBy": {
               "name": "deprecatedBy",
               "displayName": "deprecatedBy",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "User"
               ],
@@ -268,6 +278,7 @@
             "comment": {
               "name": "comment",
               "displayName": "comment",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "nil | string"
               ],
@@ -300,6 +311,7 @@
         "monitoringInterval": {
           "name": "monitoringInterval",
           "displayName": "monitoringInterval",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "integer"
           ],
@@ -318,6 +330,7 @@
         "ready": {
           "name": "ready",
           "displayName": "ready",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
@@ -338,6 +351,7 @@
         "info": {
           "name": "info",
           "displayName": "info",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -348,6 +362,7 @@
             "license": {
               "name": "license",
               "displayName": "license",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -384,6 +399,7 @@
         "rediractable": {
           "name": "rediractable",
           "displayName": "rediractable",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],
@@ -424,6 +440,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -445,6 +462,7 @@
               "Authorization": {
                 "name": "Authorization",
                 "displayName": "Authorization",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -494,6 +512,7 @@
               "SpecialToken": {
                 "name": "SpecialToken",
                 "displayName": "SpecialToken",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -532,6 +551,7 @@
       "environment": {
         "name": "environment",
         "displayName": "environment",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -556,6 +576,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -597,6 +618,7 @@
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -604,6 +626,7 @@
                 "start": {
                   "name": "start",
                   "displayName": "start",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -622,6 +645,7 @@
                 "page-size": {
                   "name": "page-size",
                   "displayName": "page-size",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -672,6 +696,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "ApiLib.RamlDataType"
                 ],
@@ -733,6 +758,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "INPLACE",
                     "type": [
                       "AnotherEntry"
                     ],
@@ -850,6 +876,7 @@
               "genre": {
                 "name": "genre",
                 "displayName": "genre",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -872,6 +899,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -909,6 +937,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -976,6 +1005,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "SongsLib.Song"
                         ],
@@ -990,6 +1020,7 @@
                       "application/xml": {
                         "name": "application/xml",
                         "displayName": "application/xml",
+                        "typePropertyKind": "XML",
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
@@ -1037,6 +1068,7 @@
               "songId": {
                 "name": "songId",
                 "displayName": "songId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
