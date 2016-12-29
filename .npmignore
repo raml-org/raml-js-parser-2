@@ -1,36 +1,15 @@
-/node_modules
-
-npm-debug.log
-
-*.iml
-
-.project
-.settings
-
-/browserVersion
-
-/src
-
-gulpfile.js
-
-tsconfig.json
-
-typings.json
-/typings
-/custom_typings
-
-RAML Parser.png
-
-.travis.yml
-
-/coverage
-coverage.zip
-/raml-1-parser
-raml-1-parser.zip
-
-/TCK
+/*
+!/dist
 
 /documentation/*
 !/documentation/GettingStarted.md
 
-/examples/validationPlugins
+/examples/*
+!/examples/highlevel-AST-usage
+
+!/resources
+!/test
+!/web-tools
+!/package.json
+!/README.md
+!/license.txt
