@@ -7,14 +7,15 @@
         "Header": {
           "name": "Header",
           "displayName": "Header",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
             "value": {
               "name": "value",
               "displayName": "value",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,9 +55,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -65,14 +64,15 @@
         "Message": {
           "name": "Message",
           "displayName": "Message",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -91,6 +91,7 @@
             "payload": {
               "name": "payload",
               "displayName": "payload",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -99,6 +100,7 @@
                 "mimeType": {
                   "name": "mimeType",
                   "displayName": "mimeType",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
@@ -117,6 +119,7 @@
                 "filename": {
                   "name": "filename",
                   "displayName": "filename",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
@@ -135,6 +138,7 @@
                 "headers": {
                   "name": "headers",
                   "displayName": "headers",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "array"
                   ],
@@ -154,6 +158,7 @@
                 "body": {
                   "name": "body",
                   "displayName": "body",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "object"
                   ],
@@ -162,6 +167,7 @@
                     "size": {
                       "name": "size",
                       "displayName": "size",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "number"
                       ],
@@ -180,6 +186,7 @@
                     "data": {
                       "name": "data",
                       "displayName": "data",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "string"
                       ],
@@ -210,6 +217,7 @@
                 "parts": {
                   "name": "parts",
                   "displayName": "parts",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "array"
                   ],
@@ -241,6 +249,7 @@
             "sizeEstimate": {
               "name": "sizeEstimate",
               "displayName": "sizeEstimate",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -261,9 +270,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -273,6 +279,7 @@
         "Thread": {
           "name": "Thread",
           "displayName": "Thread",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -312,11 +319,11 @@
               }
             ]
           },
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -335,6 +342,7 @@
             "historyId": {
               "name": "historyId",
               "displayName": "historyId",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -353,6 +361,7 @@
             "messages": {
               "name": "messages",
               "displayName": "messages",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -374,9 +383,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

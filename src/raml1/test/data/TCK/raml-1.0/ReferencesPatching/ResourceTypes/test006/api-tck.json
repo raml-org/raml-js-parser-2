@@ -22,17 +22,14 @@
                 "application/json": {
                   "name": "application/json",
                   "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "error-types.<<parentType>>-<<resourcePathName>>-errors"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -45,17 +42,14 @@
                 "application/json": {
                   "name": "application/json",
                   "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
                   ],
-                  "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -108,17 +102,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "error-types.alpha-letters-errors"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -131,17 +122,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "error-types.alpha-letters-errors | string"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }

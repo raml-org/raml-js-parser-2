@@ -15,6 +15,7 @@
               "userIds": {
                 "name": "userIds",
                 "displayName": "userIds",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
@@ -24,18 +25,15 @@
                 "items": {
                   "name": "items",
                   "displayName": "items",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
-                  "required": true,
                   "minLength": 1,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }

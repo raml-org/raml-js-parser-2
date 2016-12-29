@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -17,11 +18,11 @@
               }
             }
           },
-          "required": true,
           "properties": {
             "someProperty": {
               "name": "someProperty",
               "displayName": "someProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SomeType"
               ],
@@ -44,9 +45,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

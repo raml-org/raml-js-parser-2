@@ -7,14 +7,15 @@
         "SimpleType1": {
           "name": "SimpleType1",
           "displayName": "SimpleType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "property1": {
               "name": "property1",
               "displayName": "property1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
             "property2": {
               "name": "property2",
               "displayName": "property2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -56,9 +58,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -68,14 +67,15 @@
         "SimpleType2": {
           "name": "SimpleType2",
           "displayName": "SimpleType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "property3": {
               "name": "property3",
               "displayName": "property3",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -94,6 +94,7 @@
             "property4": {
               "name": "property4",
               "displayName": "property4",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -117,9 +118,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -129,17 +127,14 @@
         "SimpleUnion": {
           "name": "SimpleUnion",
           "displayName": "SimpleUnion",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SimpleType1 | SimpleType2"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -149,6 +144,7 @@
         "TypeWithUnionProps": {
           "name": "TypeWithUnionProps",
           "displayName": "TypeWithUnionProps",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -162,11 +158,11 @@
               "property4": "blahblah"
             }
           },
-          "required": true,
           "properties": {
             "union1": {
               "name": "union1",
               "displayName": "union1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SimpleUnion"
               ],
@@ -185,6 +181,7 @@
             "union2": {
               "name": "union2",
               "displayName": "union2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SimpleUnion"
               ],
@@ -205,9 +202,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

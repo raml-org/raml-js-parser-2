@@ -7,10 +7,10 @@
         "TestAnnotation": {
           "name": "TestAnnotation",
           "displayName": "TestAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "allowedTargets": [
             "SecuritySchemeSettings"
           ],
@@ -18,9 +18,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

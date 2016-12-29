@@ -7,10 +7,10 @@
         "Email": {
           "name": "Email",
           "displayName": "Email",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "pattern": "^note\\d+$",
           "minLength": 2,
           "maxLength": 6,
@@ -18,9 +18,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

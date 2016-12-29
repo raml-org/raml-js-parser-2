@@ -7,14 +7,15 @@
         "baseAnnotation": {
           "name": "baseAnnotation",
           "displayName": "baseAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "baseProperty1": {
               "name": "baseProperty1",
               "displayName": "baseProperty1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -23,6 +24,7 @@
                 "field1": {
                   "name": "field1",
                   "displayName": "field1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
@@ -44,6 +46,7 @@
                 "field2": {
                   "name": "field2",
                   "displayName": "field2",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -77,6 +80,7 @@
             "baseProperty2": {
               "name": "baseProperty2",
               "displayName": "baseProperty2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -103,9 +107,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -129,19 +130,16 @@
           },
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -154,14 +152,15 @@
         "childAnnotation": {
           "name": "childAnnotation",
           "displayName": "childAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "baseAnnotation"
           ],
-          "required": true,
           "properties": {
             "childProperty1": {
               "name": "childProperty1",
               "displayName": "childProperty1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -189,6 +188,7 @@
             "childProperty2": {
               "name": "childProperty2",
               "displayName": "childProperty2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -210,9 +210,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -226,6 +223,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

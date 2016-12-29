@@ -47,17 +47,14 @@
         "lib.MyAnnotation": {
           "name": "MyAnnotation",
           "displayName": "MyAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -101,6 +98,7 @@
           "id": {
             "name": "id",
             "displayName": "id",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

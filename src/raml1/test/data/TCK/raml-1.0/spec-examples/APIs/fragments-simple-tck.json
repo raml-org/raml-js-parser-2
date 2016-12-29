@@ -20,6 +20,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -63,6 +64,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],

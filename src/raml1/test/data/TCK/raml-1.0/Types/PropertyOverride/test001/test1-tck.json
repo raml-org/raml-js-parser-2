@@ -7,14 +7,15 @@
         "Feature": {
           "name": "Feature",
           "displayName": "Feature",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "type": {
               "name": "type",
               "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -36,6 +37,7 @@
             "geometry": {
               "name": "geometry",
               "displayName": "geometry",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -54,6 +56,7 @@
             "properties": {
               "name": "properties",
               "displayName": "properties",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -74,9 +77,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -86,14 +86,15 @@
         "ZoomEmbed": {
           "name": "ZoomEmbed",
           "displayName": "ZoomEmbed",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "_embeds": {
               "name": "_embeds",
               "displayName": "_embeds",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -114,6 +115,7 @@
             "_links": {
               "name": "_links",
               "displayName": "_links",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -135,9 +137,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -147,15 +146,16 @@
         "Scene": {
           "name": "Scene",
           "displayName": "Scene",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ZoomEmbed",
             "Feature"
           ],
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -176,9 +176,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -188,14 +185,15 @@
         "PlanetScene": {
           "name": "PlanetScene",
           "displayName": "PlanetScene",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Scene"
           ],
-          "required": true,
           "properties": {
             "properties": {
               "name": "properties",
               "displayName": "properties",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "PlanetProperties"
               ],
@@ -214,6 +212,7 @@
             "_links": {
               "name": "_links",
               "displayName": "_links",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -223,6 +222,7 @@
                 "licenses": {
                   "name": "licenses",
                   "displayName": "licenses",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "ResourceURL"
                   ],
@@ -255,9 +255,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -267,14 +264,15 @@
         "BaseProperties": {
           "name": "BaseProperties",
           "displayName": "BaseProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "acquired": {
               "name": "acquired",
               "displayName": "acquired",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "datetime"
               ],
@@ -298,9 +296,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -310,14 +305,15 @@
         "PlanetProperties": {
           "name": "PlanetProperties",
           "displayName": "PlanetProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "BaseProperties"
           ],
-          "required": true,
           "properties": {
             "vnd_camera_gain": {
               "name": "vnd_camera_gain",
               "displayName": "vnd_camera_gain",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -339,9 +335,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -351,18 +344,15 @@
         "ResourceURL": {
           "name": "ResourceURL",
           "displayName": "ResourceURL",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "description": "A URL to a related resource.",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -427,6 +417,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "array"
                             ],
@@ -445,14 +436,10 @@
                                 }
                               }
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },

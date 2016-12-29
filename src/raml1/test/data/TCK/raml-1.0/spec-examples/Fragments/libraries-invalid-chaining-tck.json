@@ -17,17 +17,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "files.file-type.File"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

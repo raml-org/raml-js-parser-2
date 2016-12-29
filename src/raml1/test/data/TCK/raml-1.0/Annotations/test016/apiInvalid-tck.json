@@ -13,10 +13,10 @@
           },
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "annotations": {
@@ -27,6 +27,7 @@
               },
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -47,9 +48,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -61,10 +59,10 @@
         "meta-resource-method": {
           "name": "meta-resource-method",
           "displayName": "meta-resource-method",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "allowedTargets": [
             "Resource",
             "Method"
@@ -76,9 +74,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -88,10 +83,10 @@
         "meta-data": {
           "name": "meta-data",
           "displayName": "meta-data",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "allowedTargets": [
             "TypeDeclaration"
           ],
@@ -99,9 +94,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -143,17 +135,14 @@
                     },
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

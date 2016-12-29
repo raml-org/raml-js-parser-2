@@ -13,17 +13,14 @@
         "VIPCustomer": {
           "name": "VIPCustomer",
           "displayName": "VIPCustomer",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "lib.Customer"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

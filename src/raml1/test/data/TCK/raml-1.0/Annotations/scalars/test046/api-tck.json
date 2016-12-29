@@ -7,17 +7,18 @@
         "t1": {
           "name": "t1",
           "displayName": "t1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "prop": "stringValue"
           },
-          "required": true,
           "properties": {
             "prop": {
               "name": "prop",
               "displayName": "prop",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -40,9 +41,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -71,10 +69,10 @@
         "a": {
           "name": "a",
           "displayName": "a",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 8,
           "maxLength": 64,
           "__METADATA__": {
@@ -83,9 +81,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

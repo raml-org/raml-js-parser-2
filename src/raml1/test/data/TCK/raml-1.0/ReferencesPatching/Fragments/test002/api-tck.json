@@ -21,20 +21,17 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib0.MyType"
                 ],
                 "example": {
                   "prop": "stringValue"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -62,18 +59,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.MyType"
                 ],
                 "example": "stringValue",
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -92,20 +86,17 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib0.MyType"
                 ],
                 "example": {
                   "prop": "stringValue"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

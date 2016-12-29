@@ -4,14 +4,15 @@
 			"Person": {
 				"name": "Person",
 				"displayName": "Person",
+				"typePropertyKind": "TYPE_EXPRESSION",
 				"type": [
 					"object"
 				],
-				"required": true,
 				"properties": {
 					"firstname": {
 						"name": "firstname",
 						"displayName": "firstname",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"string"
 						],
@@ -31,6 +32,7 @@
 					"lastname": {
 						"name": "lastname",
 						"displayName": "lastname",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"string"
 						],
@@ -46,10 +48,10 @@
 					"addresses": {
 						"name": "addresses",
 						"displayName": "addresses",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"array"
 						],
-						"items": "string",
 						"required": true,
 						"__METADATA__": {
 							"primitiveValuesMeta": {
@@ -60,11 +62,13 @@
 									"insertedAsDefault": true
 								}
 							}
-						}
+						},
+						"items": "string"
 					},
 					"age": {
 						"name": "age",
 						"displayName": "age",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"number"
 						],
@@ -85,9 +89,6 @@
 					"primitiveValuesMeta": {
 						"displayName": {
 							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
 						}
 					}
 				}
@@ -110,6 +111,7 @@
 								"application/xml": {
 									"name": "application/xml",
 									"displayName": "application/xml",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"Person"
 									],
@@ -122,11 +124,11 @@
 										],
 										"age": 123
 									},
-									"required": true,
 									"properties": {
 										"juan": {
 											"name": "juan",
 											"displayName": "juan",
+											"typePropertyKind": "TYPE_EXPRESSION",
 											"type": [
 												"string"
 											],
@@ -147,9 +149,6 @@
 										"primitiveValuesMeta": {
 											"displayName": {
 												"calculated": true
-											},
-											"required": {
-												"insertedAsDefault": true
 											}
 										}
 									},
@@ -176,14 +175,15 @@
 						"application/json": {
 							"name": "application/json",
 							"displayName": "application/json",
+							"typePropertyKind": "TYPE_EXPRESSION",
 							"type": [
 								"object"
 							],
-							"required": true,
 							"properties": {
 								"developer": {
 									"name": "developer",
 									"displayName": "developer",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -202,6 +202,7 @@
 								"test": {
 									"name": "test",
 									"displayName": "test",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -220,6 +221,7 @@
 								"animal": {
 									"name": "animal",
 									"displayName": "animal",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -238,6 +240,7 @@
 								"car": {
 									"name": "car",
 									"displayName": "car",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -258,9 +261,6 @@
 								"primitiveValuesMeta": {
 									"displayName": {
 										"calculated": true
-									},
-									"required": {
-										"insertedAsDefault": true
 									}
 								}
 							}
@@ -280,7 +280,6 @@
 				}
 			],
 			"relativeUri": "/users",
-			"absoluteUri": "/media/users",
 			"displayName": "/users",
 			"__METADATA__": {
 				"primitiveValuesMeta": {
@@ -291,7 +290,8 @@
 			},
 			"relativeUriPathSegments": [
 				"users"
-			]
+			],
+			"absoluteUri": "/media/users"
 		}
 	],
 	"__METADATA__": {

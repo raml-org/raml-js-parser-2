@@ -21,17 +21,14 @@
         "lib0.a0": {
           "name": "a0",
           "displayName": "a0",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -41,17 +38,14 @@
         "lib1.a1": {
           "name": "a1",
           "displayName": "a1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -61,17 +55,14 @@
         "lib2.a2": {
           "name": "a2",
           "displayName": "a2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

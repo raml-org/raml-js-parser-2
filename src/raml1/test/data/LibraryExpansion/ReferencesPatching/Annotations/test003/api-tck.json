@@ -83,17 +83,14 @@
         "Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -103,17 +100,14 @@
         "lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -123,17 +117,14 @@
         "lib.lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

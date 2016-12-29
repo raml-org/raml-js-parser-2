@@ -33,6 +33,7 @@
               "userId": {
                 "name": "userId",
                 "displayName": "userId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -91,6 +92,7 @@
                       "keyId": {
                         "name": "keyId",
                         "displayName": "keyId",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],

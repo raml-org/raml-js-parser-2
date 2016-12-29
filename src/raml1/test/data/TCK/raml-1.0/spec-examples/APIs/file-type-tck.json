@@ -7,10 +7,10 @@
         "userPicture": {
           "name": "userPicture",
           "displayName": "userPicture",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "file"
           ],
-          "required": true,
           "fileTypes": [
             {},
             {}
@@ -27,9 +27,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -39,10 +36,10 @@
         "customFile": {
           "name": "customFile",
           "displayName": "customFile",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "file"
           ],
-          "required": true,
           "fileTypes": [
             {}
           ],
@@ -57,9 +54,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

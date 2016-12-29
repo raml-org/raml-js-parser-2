@@ -9,6 +9,7 @@
             "access_token": {
               "name": "access_token",
               "displayName": "access_token",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -44,6 +45,7 @@
             "page": {
               "name": "page",
               "displayName": "page",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -76,6 +78,7 @@
             "limit": {
               "name": "limit",
               "displayName": "limit",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -121,6 +124,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -169,6 +173,7 @@
               "page": {
                 "name": "page",
                 "displayName": "page",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -192,6 +197,7 @@
               "limit": {
                 "name": "limit",
                 "displayName": "limit",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -215,6 +221,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -251,6 +258,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -282,6 +290,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],

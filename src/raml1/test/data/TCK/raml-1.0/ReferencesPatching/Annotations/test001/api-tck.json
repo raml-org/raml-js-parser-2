@@ -25,19 +25,16 @@
               },
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
                     "insertedAsDefault": true
                   }
                 }
@@ -84,19 +81,16 @@
                 },
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }

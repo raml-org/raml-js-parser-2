@@ -8,6 +8,7 @@
       "mediaType": {
         "name": "mediaType",
         "displayName": "mediaType",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

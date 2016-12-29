@@ -11,6 +11,7 @@
               "X-Chargeback": {
                 "name": "X-Chargeback",
                 "displayName": "X-Chargeback",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -48,6 +49,7 @@
               "X-Chargeback": {
                 "name": "X-Chargeback",
                 "displayName": "X-Chargeback",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

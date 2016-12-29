@@ -7,17 +7,14 @@
         "SimpleUnion": {
           "name": "SimpleUnion",
           "displayName": "SimpleUnion",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string[] | number[]"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,6 +24,7 @@
         "TypeWithUnionProps": {
           "name": "TypeWithUnionProps",
           "displayName": "TypeWithUnionProps",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -42,11 +40,11 @@
               "blah"
             ]
           },
-          "required": true,
           "properties": {
             "unionArray1": {
               "name": "unionArray1",
               "displayName": "unionArray1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SimpleUnion"
               ],
@@ -65,6 +63,7 @@
             "unionArray2": {
               "name": "unionArray2",
               "displayName": "unionArray2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SimpleUnion"
               ],
@@ -85,9 +84,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

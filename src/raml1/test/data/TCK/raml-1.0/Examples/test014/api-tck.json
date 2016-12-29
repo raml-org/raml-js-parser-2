@@ -7,6 +7,7 @@
         "MyType1": {
           "name": "MyType1",
           "displayName": "MyType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,11 +15,11 @@
             "d": "a",
             "dd": "2"
           },
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -43,9 +44,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -64,20 +62,17 @@
         "MyType2": {
           "name": "MyType2",
           "displayName": "MyType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "MyType1"
           ],
           "example": {
             "x": "3"
           },
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

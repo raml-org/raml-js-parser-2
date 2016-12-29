@@ -9,6 +9,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -46,18 +47,19 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "required": true,
+                "typePropertyKind": "INPLACE",
                 "type": {
                   "name": "type",
                   "displayName": "type",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "prop1": {
                       "name": "prop1",
                       "displayName": "prop1",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "string"
                       ],
@@ -76,6 +78,7 @@
                     "prop2": {
                       "name": "prop2",
                       "displayName": "prop2",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "number"
                       ],
@@ -99,9 +102,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -110,9 +110,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -152,18 +149,15 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string",
                   "number"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -203,20 +197,17 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "schema": [
                   "string",
                   "number"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -257,19 +248,16 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "schema": [
                   "string"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -310,17 +298,14 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -360,17 +345,14 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "schema": [
                   "number"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

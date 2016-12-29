@@ -7,14 +7,15 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "kind": {
               "name": "kind",
               "displayName": "kind",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -54,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -66,14 +65,15 @@
         "Employee": {
           "name": "Employee",
           "displayName": "Employee",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Person"
           ],
-          "required": true,
           "properties": {
             "employeeId": {
               "name": "employeeId",
               "displayName": "employeeId",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -94,9 +94,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -106,14 +103,15 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Person"
           ],
-          "required": true,
           "properties": {
             "userId": {
               "name": "userId",
               "displayName": "userId",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -134,9 +132,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

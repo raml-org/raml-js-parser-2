@@ -9,6 +9,7 @@
             "param1": {
               "name": "param1",
               "displayName": "param1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "<<type1>>"
               ],
@@ -43,6 +44,7 @@
               "param1": {
                 "name": "param1",
                 "displayName": "param1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -63,22 +65,19 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "example": {
                   "prop": "value"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }

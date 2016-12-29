@@ -7,14 +7,15 @@
         "MM": {
           "name": "MM",
           "displayName": "MM",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "a": {
               "name": "a",
               "displayName": "a",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -33,6 +34,7 @@
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -54,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -66,14 +65,15 @@
         "VV": {
           "name": "VV",
           "displayName": "VV",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "c": {
               "name": "c",
               "displayName": "c",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -92,6 +92,7 @@
             "b": {
               "name": "b",
               "displayName": "b",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -113,6 +114,7 @@
             "c1": {
               "name": "c1",
               "displayName": "c1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -136,9 +138,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -150,14 +149,15 @@
         "qq": {
           "name": "qq",
           "displayName": "qq",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "z": {
               "name": "z",
               "displayName": "z",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MM"
               ],
@@ -181,9 +181,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -203,6 +200,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "schema": [
                       "MM"
                     ],
@@ -218,16 +216,12 @@
                         }
                       ]
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

@@ -7,6 +7,7 @@
         "TestHeader": {
           "name": "TestHeader",
           "displayName": "TestHeader",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],

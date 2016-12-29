@@ -7,14 +7,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "p1": {
               "name": "p1",
               "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -52,21 +50,17 @@
         "meta": {
           "name": "meta",
           "displayName": "Resource metadata",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Metadata for this resource",
           "allowedTargets": [
             "Resource"
           ],
           "minLength": 10,
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       }

@@ -7,14 +7,15 @@
         "Type1": {
           "name": "Type1",
           "displayName": "Type1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "propertyFromType1": {
               "name": "propertyFromType1",
               "displayName": "propertyFromType1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -37,9 +38,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -50,14 +48,15 @@
         "Type2": {
           "name": "Type2",
           "displayName": "Type2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "propertyFromType2": {
               "name": "propertyFromType2",
               "displayName": "propertyFromType2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -80,9 +79,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -100,14 +96,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<bodyTypeParam>>"
                 ],
-                "required": true,
                 "properties": {
                   "extraProperty": {
                     "name": "extraProperty",
                     "displayName": "extraProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -128,9 +125,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -148,14 +142,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "propertyFromResourceType1": {
                     "name": "propertyFromResourceType1",
                     "displayName": "propertyFromResourceType1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -178,9 +173,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -199,14 +191,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "propertyFromResourceType2": {
                     "name": "propertyFromResourceType2",
                     "displayName": "propertyFromResourceType2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -229,9 +222,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -263,6 +253,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Type1"
                 ],
@@ -271,11 +262,11 @@
                   "propertyFromType1": "stringValue2",
                   "extraProperty": "stringValue3"
                 },
-                "required": true,
                 "properties": {
                   "extraProperty": {
                     "name": "extraProperty",
                     "displayName": "extraProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -294,6 +285,7 @@
                   "propertyFromResourceType1": {
                     "name": "propertyFromResourceType1",
                     "displayName": "propertyFromResourceType1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -314,9 +306,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

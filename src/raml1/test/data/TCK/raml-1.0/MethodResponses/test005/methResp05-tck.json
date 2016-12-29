@@ -7,17 +7,14 @@
         "account": {
           "name": "account",
           "displayName": "account",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,17 +24,18 @@
         "TypeBase": {
           "name": "TypeBase",
           "displayName": "TypeBase",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "id": "userId"
           },
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -58,9 +56,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -78,6 +73,7 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "TypeBase"
           ],
@@ -85,11 +81,11 @@
             "id": "userId",
             "username": "name"
           },
-          "required": true,
           "properties": {
             "username": {
               "name": "username",
               "displayName": "username",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -110,9 +106,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -140,6 +133,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "TestType"
                     ],
@@ -147,11 +141,11 @@
                       "username": "base",
                       "id": "any text"
                     },
-                    "required": true,
                     "properties": {
                       "additionalField": {
                         "name": "additionalField",
                         "displayName": "additionalField",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -172,9 +166,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

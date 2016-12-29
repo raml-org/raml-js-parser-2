@@ -7,18 +7,15 @@
         "PropertyType1": {
           "name": "PropertyType1",
           "displayName": "PropertyType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 0,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -28,18 +25,15 @@
         "PropertyType2": {
           "name": "PropertyType2",
           "displayName": "PropertyType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "PropertyType1"
           ],
-          "required": true,
           "maxLength": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -49,14 +43,15 @@
         "Type1": {
           "name": "Type1",
           "displayName": "Type1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "testProperty": {
               "name": "testProperty",
               "displayName": "testProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "PropertyType1"
               ],
@@ -80,9 +75,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -92,14 +84,15 @@
         "Type2": {
           "name": "Type2",
           "displayName": "Type2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Type1"
           ],
-          "required": true,
           "properties": {
             "testProperty": {
               "name": "testProperty",
               "displayName": "testProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "PropertyType2"
               ],
@@ -120,9 +113,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

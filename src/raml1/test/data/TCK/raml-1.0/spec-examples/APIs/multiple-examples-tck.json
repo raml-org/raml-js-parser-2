@@ -7,6 +7,7 @@
         "Message": {
           "name": "Message",
           "displayName": "Message",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -30,11 +31,11 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "title": {
               "name": "title",
               "displayName": "title",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,6 +54,7 @@
             "body": {
               "name": "body",
               "displayName": "body",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -71,6 +73,7 @@
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -89,6 +92,7 @@
             "comment": {
               "name": "comment",
               "displayName": "comment",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -111,9 +115,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

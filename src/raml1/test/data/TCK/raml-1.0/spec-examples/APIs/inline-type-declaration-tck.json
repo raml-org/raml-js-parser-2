@@ -14,14 +14,15 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "firstname": {
                         "name": "firstname",
                         "displayName": "firstname",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -40,6 +41,7 @@
                       "lastname": {
                         "name": "lastname",
                         "displayName": "lastname",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -58,6 +60,7 @@
                       "age": {
                         "name": "age",
                         "displayName": "age",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -78,9 +81,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -95,6 +95,7 @@
           "id": {
             "name": "id",
             "displayName": "id",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

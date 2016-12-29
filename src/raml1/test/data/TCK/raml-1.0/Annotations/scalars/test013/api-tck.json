@@ -7,10 +7,10 @@
         "t1": {
           "name": "t1",
           "displayName": "t1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "items": [
             "string"
           ],
@@ -28,9 +28,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -42,10 +39,10 @@
         "a": {
           "name": "a",
           "displayName": "a",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 8,
           "maxLength": 64,
           "__METADATA__": {
@@ -54,9 +51,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

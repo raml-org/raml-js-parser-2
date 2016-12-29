@@ -7,6 +7,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -27,11 +28,11 @@
               3
             ]
           },
-          "required": true,
           "properties": {
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -52,6 +53,7 @@
             "items2": {
               "name": "items2",
               "displayName": "items2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -72,6 +74,7 @@
             "items3": {
               "name": "items3",
               "displayName": "items3",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -96,9 +99,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

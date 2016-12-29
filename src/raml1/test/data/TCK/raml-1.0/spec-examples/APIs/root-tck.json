@@ -7,19 +7,16 @@
         "Gist": {
           "name": "Gist",
           "displayName": "Gist",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -30,19 +27,16 @@
         "Gists": {
           "name": "Gists",
           "displayName": "Gists",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -79,6 +73,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -100,6 +95,7 @@
               "Authorization": {
                 "name": "Authorization",
                 "displayName": "Authorization",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

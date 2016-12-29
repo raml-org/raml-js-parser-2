@@ -7,17 +7,14 @@
         "Player2": {
           "name": "Player2",
           "displayName": "Player2",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -29,17 +26,14 @@
         "Player1": {
           "name": "Player1",
           "displayName": "Player1",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

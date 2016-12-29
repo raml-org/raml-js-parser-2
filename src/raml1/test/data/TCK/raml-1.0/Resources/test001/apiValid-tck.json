@@ -18,10 +18,10 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "description": "some very useful resource",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -29,9 +29,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -63,10 +60,10 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "description": "another very useful resource",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -74,9 +71,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

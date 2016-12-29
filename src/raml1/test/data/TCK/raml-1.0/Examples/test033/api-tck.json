@@ -7,14 +7,15 @@
         "TypeBase": {
           "name": "TypeBase",
           "displayName": "TypeBase",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "baseField": {
               "name": "baseField",
               "displayName": "baseField",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -35,9 +36,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -47,14 +45,15 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "TypeBase"
           ],
-          "required": true,
           "properties": {
             "field": {
               "name": "field",
               "displayName": "field",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -75,9 +74,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -96,6 +92,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "TestType"
                     ],
@@ -104,11 +101,11 @@
                       "baseField": "asdasd",
                       "field": "asdds"
                     },
-                    "required": true,
                     "properties": {
                       "additionalField": {
                         "name": "additionalField",
                         "displayName": "additionalField",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -129,9 +126,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

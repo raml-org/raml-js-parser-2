@@ -7,19 +7,16 @@
         "t0": {
           "name": "t0",
           "displayName": "t0",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -30,19 +27,16 @@
         "t1": {
           "name": "t1",
           "displayName": "t1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -53,11 +47,11 @@
         "t2": {
           "name": "t2",
           "displayName": "t2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "t0",
             "t1"
           ],
-          "required": true,
           "scalarsAnnotations": {
             "type": [
               [
@@ -78,9 +72,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -92,10 +83,10 @@
         "a": {
           "name": "a",
           "displayName": "a",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "minLength": 8,
           "maxLength": 64,
           "__METADATA__": {
@@ -104,9 +95,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

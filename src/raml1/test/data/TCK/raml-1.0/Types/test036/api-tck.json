@@ -7,14 +7,15 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "prop": {
               "name": "prop",
               "displayName": "prop",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "date"
               ],
@@ -34,9 +35,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

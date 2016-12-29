@@ -7,14 +7,15 @@
         "Email": {
           "name": "Email",
           "displayName": "Email",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -35,9 +36,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -47,10 +45,10 @@
         "Emails": {
           "name": "Emails",
           "displayName": "Emails",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "uniqueItems": true,
           "items": [
             "Email"
@@ -60,9 +58,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

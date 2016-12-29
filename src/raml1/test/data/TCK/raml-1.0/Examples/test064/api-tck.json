@@ -14,6 +14,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -22,11 +23,11 @@
                         "id": 7
                       }
                     },
-                    "required": true,
                     "properties": {
                       "body": {
                         "name": "body",
                         "displayName": "body",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -49,9 +50,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

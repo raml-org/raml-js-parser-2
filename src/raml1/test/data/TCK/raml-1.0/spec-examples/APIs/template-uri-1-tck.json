@@ -9,6 +9,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -50,6 +51,7 @@
               "jobId": {
                 "name": "jobId",
                 "displayName": "jobId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

@@ -7,14 +7,15 @@
         "Point": {
           "name": "Point",
           "displayName": "Point",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "x": {
               "name": "x",
               "displayName": "x",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -33,6 +34,7 @@
             "y": {
               "name": "y",
               "displayName": "y",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -53,9 +55,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -67,14 +66,15 @@
         "Label": {
           "name": "Label",
           "displayName": "Label",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "point": {
               "name": "point",
               "displayName": "point",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Point"
               ],
@@ -97,9 +97,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

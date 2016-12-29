@@ -7,14 +7,15 @@
         "Invoice": {
           "name": "Invoice",
           "displayName": "Invoice",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "amount": {
               "name": "amount",
               "displayName": "amount",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -34,6 +35,7 @@
             "vendorName": {
               "name": "vendorName",
               "displayName": "vendorName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -60,9 +62,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -82,14 +81,15 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Invoice"
                     ],
-                    "required": true,
                     "properties": {
                       "id": {
                         "name": "id",
                         "displayName": "id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -110,9 +110,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -130,6 +127,7 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -160,17 +158,14 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "JSON",
                     "type": [
                       "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}\n"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -178,17 +173,14 @@
                   "text/xml": {
                     "name": "text/xml",
                     "displayName": "text/xml",
+                    "typePropertyKind": "XML",
                     "type": [
                       "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"invoice\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"accountID\" type=\"xs:string\"/>\n        <xs:element name=\"amount\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -201,17 +193,18 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
                     "example": {
                       "error": "Amount cannot be negative"
                     },
-                    "required": true,
                     "properties": {
                       "error": {
                         "name": "error",
                         "displayName": "error",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -238,9 +231,6 @@
                         },
                         "type": {
                           "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -260,17 +250,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Invoice"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

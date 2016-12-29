@@ -35,14 +35,15 @@
         "library.apiResource": {
           "name": "apiResource",
           "displayName": "apiResource",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
-            "type": {
-              "name": "type",
-              "displayName": "type",
+            "title": {
+              "name": "title",
+              "displayName": "title",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -58,9 +59,10 @@
                 }
               }
             },
-            "title": {
-              "name": "title",
-              "displayName": "title",
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -79,6 +81,7 @@
             "uri": {
               "name": "uri",
               "displayName": "uri",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -102,9 +105,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -116,21 +116,17 @@
         "library.highLevelApiDescription": {
           "name": "highLevelApiDescription",
           "displayName": "Api Description",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Description of the RAML API spec.",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -138,21 +134,17 @@
         "library.apiLogo": {
           "name": "apiLogo",
           "displayName": "Logo",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Service logo.",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -160,21 +152,17 @@
         "library.specAuthor": {
           "name": "specAuthor",
           "displayName": "Spec Author",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "description": "Author of the RAML spec.",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -182,21 +170,17 @@
         "library.devPortal": {
           "name": "devPortal",
           "displayName": "Developer Portal",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "description": "URL to the developer portal",
           "allowedTargets": [
             "API",
             "Overlay"
           ],
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       },
@@ -204,10 +188,10 @@
         "library.extraResources": {
           "name": "extraResources",
           "displayName": "extraResources",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "library.apiResource[]"
           ],
-          "required": true,
           "allowedTargets": [
             "API",
             "Overlay"
@@ -216,9 +200,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

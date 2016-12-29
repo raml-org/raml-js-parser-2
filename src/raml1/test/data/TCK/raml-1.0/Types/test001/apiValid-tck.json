@@ -7,17 +7,18 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "name": "somestring"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

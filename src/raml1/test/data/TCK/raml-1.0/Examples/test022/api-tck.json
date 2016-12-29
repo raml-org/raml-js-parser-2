@@ -7,19 +7,16 @@
         "MyType1": {
           "name": "MyType1",
           "displayName": "MyType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
           "example": 4,
-          "required": true,
           "minimum": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -35,17 +32,18 @@
         "MyType2": {
           "name": "MyType2",
           "displayName": "MyType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "z": 3
           },
-          "required": true,
           "properties": {
             "z": {
               "name": "z",
               "displayName": "z",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MyType1"
               ],
@@ -68,9 +66,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

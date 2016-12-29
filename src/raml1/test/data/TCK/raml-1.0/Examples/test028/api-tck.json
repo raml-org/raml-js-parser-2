@@ -7,14 +7,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "x": {
               "name": "x",
               "displayName": "x",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -63,14 +61,15 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
-                    "required": true,
                     "properties": {
                       "hello": {
                         "name": "hello",
                         "displayName": "hello",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -95,6 +94,7 @@
                       "key": {
                         "name": "key",
                         "displayName": "key",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -106,6 +106,7 @@
                           "x": {
                             "name": "x",
                             "displayName": "x",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "string"
                             ],
@@ -146,9 +147,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -156,17 +154,14 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

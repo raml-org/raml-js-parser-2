@@ -24,18 +24,15 @@
         "SmallArray": {
           "name": "SmallArray",
           "displayName": "SmallArray",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "minItems": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -48,14 +45,15 @@
         "MyAnnotationType1": {
           "name": "MyAnnotationType1",
           "displayName": "MyAnnotationType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "cc": {
               "name": "cc",
               "displayName": "cc",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SmallArray"
               ],
@@ -79,9 +77,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -91,19 +86,16 @@
         "MyAnnotationType2": {
           "name": "MyAnnotationType2",
           "displayName": "MyAnnotationType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

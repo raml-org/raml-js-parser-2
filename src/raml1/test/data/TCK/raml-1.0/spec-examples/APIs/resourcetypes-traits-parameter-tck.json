@@ -9,6 +9,7 @@
             "<<tokenName>>": {
               "name": "<<tokenName>>",
               "displayName": "<<tokenName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,6 +39,7 @@
             "numPages": {
               "name": "numPages",
               "displayName": "numPages",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -71,6 +73,7 @@
               "<<queryParamName>>": {
                 "name": "<<queryParamName>>",
                 "displayName": "<<queryParamName>>",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -93,6 +96,7 @@
               "<<fallbackParamName>>": {
                 "name": "<<fallbackParamName>>",
                 "displayName": "<<fallbackParamName>>",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -128,6 +132,7 @@
               "title": {
                 "name": "title",
                 "displayName": "title",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -150,6 +155,7 @@
               "digest_all_fields": {
                 "name": "digest_all_fields",
                 "displayName": "digest_all_fields",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -172,6 +178,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -194,6 +201,7 @@
               "numPages": {
                 "name": "numPages",
                 "displayName": "numPages",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

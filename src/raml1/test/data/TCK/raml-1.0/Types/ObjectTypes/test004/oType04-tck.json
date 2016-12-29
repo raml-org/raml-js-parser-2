@@ -7,6 +7,7 @@
         "Initial_comments": {
           "name": "Initial_comments",
           "displayName": "Initial_comments",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -15,11 +16,11 @@
             "user": "Raml",
             "time_stamp": 1422378528
           },
-          "required": true,
           "properties": {
             "comment_id": {
               "name": "comment_id",
               "displayName": "comment_id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -35,6 +36,7 @@
             "initial_comments": {
               "name": "initial_comments",
               "displayName": "initial_comments",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,6 +55,7 @@
             "user": {
               "name": "user",
               "displayName": "user",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -71,6 +74,7 @@
             "time_stamp": {
               "name": "time_stamp",
               "displayName": "time_stamp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -89,6 +93,7 @@
             "created": {
               "name": "created",
               "displayName": "created",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -111,9 +116,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

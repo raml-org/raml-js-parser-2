@@ -21,33 +21,27 @@
             "format": {
               "name": "format",
               "displayName": "format",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
             }
           },
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -57,10 +51,10 @@
         "year": {
           "name": "year",
           "displayName": "year",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "myDate"
           ],
-          "required": true,
           "fixedFacets": {
             "format": "YYYY"
           },
@@ -68,9 +62,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -82,17 +73,14 @@
         "reader": {
           "name": "reader",
           "displayName": "reader",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -102,17 +90,14 @@
         "writer": {
           "name": "writer",
           "displayName": "writer",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -128,6 +113,7 @@
               "y": {
                 "name": "y",
                 "displayName": "y",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "year"
                 ],

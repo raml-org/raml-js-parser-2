@@ -559,7 +559,10 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/custom/seq.raml"));//Ok for now lets improve later
     })
     it ("sequence composition does not works in 1.0" ,function(){
-        testErrorsByNumber(util.data("parser/custom/seq1.raml"),2);//Ok for now lets improve later
+        testErrors(util.data("parser/custom/seq1.raml"),["Unknown node: 'a'","Unknown node: 'b'","'traits' should be a map in RAML 1.0"]);
+    })
+    it ("empty 'traits' array is prohibited in 1.0" ,function(){
+        testErrors(util.data("parser/custom/seq2.raml"),["'traits' should be a map in RAML 1.0"]);
     })
     it ("authorization grant is any absolute uri" ,function(){
         testErrorsByNumber(util.data("parser/custom/grantIsAnyAbsoluteUri.raml"),0);//Ok for now lets improve later

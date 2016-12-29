@@ -7,18 +7,15 @@
         "SmallArray": {
           "name": "SmallArray",
           "displayName": "SmallArray",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "minItems": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -29,6 +26,7 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -39,11 +37,11 @@
               "3"
             ]
           },
-          "required": true,
           "properties": {
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "SmallArray"
               ],
@@ -66,9 +64,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

@@ -7,6 +7,7 @@
         "MyType1": {
           "name": "MyType1",
           "displayName": "MyType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -15,11 +16,11 @@
             "y": 3,
             "z": "5 2"
           },
-          "required": true,
           "properties": {
             "x": {
               "name": "x",
               "displayName": "x",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -38,6 +39,7 @@
             "y": {
               "name": "y",
               "displayName": "y",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -60,9 +62,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

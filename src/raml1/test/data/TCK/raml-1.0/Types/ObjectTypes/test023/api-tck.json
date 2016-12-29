@@ -11,6 +11,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
                 "example": {
                   "ownLibProperty": {
                     "prop": "stringValue2"
@@ -19,18 +20,18 @@
                     "integerProperty": 8
                   }
                 },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "ownLibProperty": {
                       "name": "ownLibProperty",
                       "displayName": "ownLibProperty",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "object"
                       ],
@@ -49,6 +50,7 @@
                     "rootLibProperty": {
                       "name": "rootLibProperty",
                       "displayName": "rootLibProperty",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "object"
                       ],
@@ -73,9 +75,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -84,9 +83,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

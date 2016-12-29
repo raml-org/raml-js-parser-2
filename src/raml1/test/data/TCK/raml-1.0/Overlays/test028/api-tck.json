@@ -17,6 +17,7 @@
             "priceLessThen": {
               "name": "priceLessThen",
               "displayName": "priceLessThen",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -35,6 +36,7 @@
             "priceMoreThen": {
               "name": "priceMoreThen",
               "displayName": "priceMoreThen",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -60,14 +62,15 @@
         "Test3": {
           "name": "Test3",
           "displayName": "Test3",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -90,9 +93,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

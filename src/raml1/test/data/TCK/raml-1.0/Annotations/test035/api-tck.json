@@ -7,17 +7,14 @@
         "deprecated": {
           "name": "deprecated",
           "displayName": "deprecated",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

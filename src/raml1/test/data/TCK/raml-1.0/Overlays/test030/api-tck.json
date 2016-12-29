@@ -9,6 +9,7 @@
             "q1": {
               "name": "q1",
               "displayName": "q1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -44,6 +45,7 @@
               "q1": {
                 "name": "q1",
                 "displayName": "q1",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

@@ -11,18 +11,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "XML",
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema version=\"1.0\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n\n    <xs:element name=\"tree\" type=\"Tree\"/>\n\n    <xs:complexType name=\"Tree\">\n        <xs:sequence>\n            <xs:element name=\"length\" type=\"xs:int\"></xs:element>\n            <xs:element name=\"color\" type=\"xs:string\"></xs:element>\n        </xs:sequence>\n    </xs:complexType>\n\n</xs:schema>\n"
                 ],
                 "example": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<tree xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"tree_v1_0_0.xsd\">\n  <length>303</length>\n  <color>brown</color>\n</tree>\n",
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

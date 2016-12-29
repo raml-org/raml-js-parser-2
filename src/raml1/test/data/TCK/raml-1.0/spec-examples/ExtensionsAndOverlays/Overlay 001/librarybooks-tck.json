@@ -7,14 +7,15 @@
         "monitor": {
           "name": "monitor",
           "displayName": "monitor",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "frequency": {
               "name": "frequency",
               "displayName": "frequency",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
@@ -23,6 +24,7 @@
                 "interval": {
                   "name": "interval",
                   "displayName": "interval",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "integer"
                   ],
@@ -41,6 +43,7 @@
                 "unitOfMeasure": {
                   "name": "unitOfMeasure",
                   "displayName": "unitOfMeasure",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "string"
                   ],
@@ -82,6 +85,7 @@
             "script": {
               "name": "script",
               "displayName": "script",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -107,9 +111,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

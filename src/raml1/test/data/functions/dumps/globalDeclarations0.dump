@@ -2,14 +2,15 @@
 	"SomeType": {
 		"name": "SomeType",
 		"displayName": "SomeType",
+		"typePropertyKind": "TYPE_EXPRESSION",
 		"type": [
 			"object"
 		],
-		"required": true,
 		"properties": {
 			"prop": {
 				"name": "prop",
 				"displayName": "prop",
+				"typePropertyKind": "TYPE_EXPRESSION",
 				"type": [
 					"string"
 				],
@@ -30,9 +31,6 @@
 			"primitiveValuesMeta": {
 				"displayName": {
 					"calculated": true
-				},
-				"required": {
-					"insertedAsDefault": true
 				}
 			}
 		}

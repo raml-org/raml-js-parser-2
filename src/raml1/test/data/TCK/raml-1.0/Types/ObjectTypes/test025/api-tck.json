@@ -7,14 +7,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "id": {
               "name": "id",
               "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -33,6 +34,7 @@
             "boundaries": {
               "name": "boundaries",
               "displayName": "boundaries",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -41,14 +43,15 @@
               "items": {
                 "name": "items",
                 "displayName": "items",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "id": {
                     "name": "id",
                     "displayName": "id",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -67,6 +70,7 @@
                   "type": {
                     "name": "type",
                     "displayName": "type",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -85,6 +89,7 @@
                   "boundaryAsWkt": {
                     "name": "boundaryAsWkt",
                     "displayName": "boundaryAsWkt",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -109,9 +114,6 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -134,9 +136,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

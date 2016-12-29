@@ -7,10 +7,10 @@
         "a1": {
           "name": "a1",
           "displayName": "a1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "allowedTargets": [
             "API",
             "DocumentationItem",
@@ -36,9 +36,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

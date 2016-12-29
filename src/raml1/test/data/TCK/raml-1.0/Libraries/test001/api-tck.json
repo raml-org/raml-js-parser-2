@@ -13,14 +13,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ll.Person"
           ],
-          "required": true,
           "properties": {
             "name2": {
               "name": "name2",
               "displayName": "name2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -41,9 +42,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

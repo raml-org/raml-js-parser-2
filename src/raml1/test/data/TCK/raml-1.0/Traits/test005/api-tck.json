@@ -34,6 +34,7 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -51,16 +52,12 @@
                         "structuredValue": "<doc><property2>value2</property2></doc>\n"
                       }
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }

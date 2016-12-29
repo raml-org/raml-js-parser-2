@@ -7,17 +7,18 @@
         "TestType": {
           "name": "TestType",
           "displayName": "TestType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "field": "value"
           },
-          "required": true,
           "properties": {
             "field": {
               "name": "field",
               "displayName": "field",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

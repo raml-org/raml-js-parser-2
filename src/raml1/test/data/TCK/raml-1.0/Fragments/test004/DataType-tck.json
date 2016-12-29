@@ -2,6 +2,7 @@
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",
   "specification": {
+    "typePropertyKind": "TYPE_EXPRESSION",
     "type": [
       "object"
     ],
@@ -10,6 +11,7 @@
       "first": {
         "name": "first",
         "displayName": "first",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -28,6 +30,7 @@
       "second": {
         "name": "second",
         "displayName": "second",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

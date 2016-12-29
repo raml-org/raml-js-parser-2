@@ -7,14 +7,15 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "firstName": {
               "name": "firstName",
               "displayName": "firstName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -36,6 +37,7 @@
             "lastName": {
               "name": "lastName",
               "displayName": "lastName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -62,9 +64,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -81,17 +80,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "User"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -121,14 +117,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "groupName": {
                     "name": "groupName",
                     "displayName": "groupName",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -150,6 +147,7 @@
                   "deptCode": {
                     "name": "deptCode",
                     "displayName": "deptCode",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -173,9 +171,6 @@
                     },
                     "type": {
                       "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -183,17 +178,14 @@
               "text/xml": {
                 "name": "text/xml",
                 "displayName": "text/xml",
+                "typePropertyKind": "XML",
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"group\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"name\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

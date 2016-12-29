@@ -7,19 +7,16 @@
         "URL": {
           "name": "URL",
           "displayName": "URL",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -30,14 +27,15 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "firstName": {
               "name": "firstName",
               "displayName": "firstName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -56,6 +54,7 @@
             "lastName": {
               "name": "lastName",
               "displayName": "lastName",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -79,9 +78,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -91,6 +87,7 @@
         "Brand": {
           "name": "Brand",
           "displayName": "Brand",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -109,11 +106,11 @@
             ],
             "X": "x"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -132,6 +129,7 @@
             "logo": {
               "name": "logo",
               "displayName": "logo",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "URL"
               ],
@@ -150,6 +148,7 @@
             "followers": {
               "name": "followers",
               "displayName": "followers",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -169,6 +168,7 @@
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -191,9 +191,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

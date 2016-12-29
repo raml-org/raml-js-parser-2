@@ -9,6 +9,7 @@
       "bucketName": {
         "name": "bucketName",
         "displayName": "bucketName",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

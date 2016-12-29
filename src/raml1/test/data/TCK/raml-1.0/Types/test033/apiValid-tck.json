@@ -7,17 +7,14 @@
         "NilType_1": {
           "name": "NilType_1",
           "displayName": "NilType_1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,17 +24,14 @@
         "NilType_2": {
           "name": "NilType_2",
           "displayName": "NilType_2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -47,6 +41,7 @@
         "TypeWithNilProperties": {
           "name": "TypeWithNilProperties",
           "displayName": "TypeWithNilProperties",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -88,11 +83,11 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "nilProp_1": {
               "name": "nilProp_1",
               "displayName": "nilProp_1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "NilType_1"
               ],
@@ -111,6 +106,7 @@
             "nilProp_2": {
               "name": "nilProp_2",
               "displayName": "nilProp_2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "NilType_2"
               ],
@@ -133,9 +129,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

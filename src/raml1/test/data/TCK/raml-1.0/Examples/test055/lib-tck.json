@@ -7,6 +7,7 @@
         "NullValue": {
           "name": "NullValue",
           "displayName": "NullValue",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,11 +15,11 @@
             "name": "Fred",
             "size": 0
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -40,6 +41,7 @@
             "size": {
               "name": "size",
               "displayName": "size",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -60,9 +62,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

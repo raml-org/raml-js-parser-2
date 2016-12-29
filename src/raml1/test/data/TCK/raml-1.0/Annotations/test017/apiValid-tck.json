@@ -15,14 +15,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "numberProp": {
               "name": "numberProp",
               "displayName": "numberProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -46,9 +47,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -58,14 +56,15 @@
         "TargetType": {
           "name": "TargetType",
           "displayName": "TargetType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "stringParam": {
               "name": "stringParam",
               "displayName": "stringParam",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -89,9 +88,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -105,6 +101,7 @@
             "header1": {
               "name": "header1",
               "displayName": "header1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -133,10 +130,10 @@
         "MyAnnotation": {
           "name": "MyAnnotation",
           "displayName": "MyAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "MyType"
           ],
-          "required": true,
           "allowedTargets": [
             "API"
           ],
@@ -144,9 +141,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

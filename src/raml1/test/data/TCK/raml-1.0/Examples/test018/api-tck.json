@@ -7,11 +7,11 @@
         "MyType1": {
           "name": "MyType1",
           "displayName": "MyType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
           "example": "d",
-          "required": true,
           "minLength": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
@@ -19,9 +19,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -38,11 +35,11 @@
         "MyType2": {
           "name": "MyType2",
           "displayName": "MyType2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
           "example": "d1111",
-          "required": true,
           "maxLength": 3,
           "__METADATA__": {
             "primitiveValuesMeta": {
@@ -50,9 +47,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

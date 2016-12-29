@@ -7,19 +7,16 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "integer"
           ],
-          "required": true,
           "minimum": 1,
           "maximum": 1,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

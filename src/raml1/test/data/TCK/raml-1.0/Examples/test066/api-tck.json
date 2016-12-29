@@ -7,14 +7,15 @@
         "t": {
           "name": "t",
           "displayName": "t",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "p": {
               "name": "p",
               "displayName": "p",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -50,6 +48,7 @@
         "nt1": {
           "name": "nt1",
           "displayName": "nt1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "t | nil"
           ],
@@ -67,14 +66,10 @@
               "structuredValue": "null\n"
             }
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -84,6 +79,7 @@
         "tn2": {
           "name": "tn2",
           "displayName": "tn2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil | t"
           ],
@@ -97,14 +93,10 @@
               "structuredValue": "null\n"
             }
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

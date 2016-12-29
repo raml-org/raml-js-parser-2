@@ -7,14 +7,15 @@
         "lat-long": {
           "name": "lat-long",
           "displayName": "lat-long",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "lat": {
               "name": "lat",
               "displayName": "lat",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -33,6 +34,7 @@
             "long": {
               "name": "long",
               "displayName": "long",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -56,9 +58,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -68,14 +67,15 @@
         "loc": {
           "name": "loc",
           "displayName": "loc",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "location": {
               "name": "location",
               "displayName": "location",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -102,9 +102,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -114,14 +111,15 @@
         "paging": {
           "name": "paging",
           "displayName": "paging",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "start": {
               "name": "start",
               "displayName": "start",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -140,6 +138,7 @@
             "page-size": {
               "name": "page-size",
               "displayName": "page-size",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -163,9 +162,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -180,6 +176,7 @@
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "paging",
                 "lat-long | loc"
@@ -215,14 +212,10 @@
                   }
                 }
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }

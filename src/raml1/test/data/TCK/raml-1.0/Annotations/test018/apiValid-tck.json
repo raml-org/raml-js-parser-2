@@ -7,17 +7,14 @@
         "amazon-apigateway-integration": {
           "name": "amazon-apigateway-integration",
           "displayName": "amazon-apigateway-integration",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -29,17 +26,14 @@
         "amazon-apigateway-integration": {
           "name": "amazon-apigateway-integration",
           "displayName": "amazon-apigateway-integration",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "amazon-apigateway-integration"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

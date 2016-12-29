@@ -7,6 +7,7 @@
         "Hello": {
           "name": "Hello",
           "displayName": "Hello",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,11 +15,11 @@
             "name": "stringValue",
             "age": 0
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -37,6 +38,7 @@
             "age": {
               "name": "age",
               "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -59,9 +61,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

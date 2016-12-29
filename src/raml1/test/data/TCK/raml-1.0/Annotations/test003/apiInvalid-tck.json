@@ -15,14 +15,15 @@
         "test": {
           "name": "test",
           "displayName": "test",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "q": {
               "name": "q",
               "displayName": "q",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "boolean"
               ],
@@ -41,6 +42,7 @@
             "items": {
               "name": "items",
               "displayName": "items",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -67,9 +69,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

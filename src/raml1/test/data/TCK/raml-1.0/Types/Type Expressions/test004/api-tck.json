@@ -7,17 +7,14 @@
         "PersonAccounts": {
           "name": "PersonAccounts",
           "displayName": "PersonAccounts",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

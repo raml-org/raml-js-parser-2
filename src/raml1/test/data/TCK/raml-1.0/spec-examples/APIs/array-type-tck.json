@@ -7,14 +7,15 @@
         "Email": {
           "name": "Email",
           "displayName": "Email",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "subject": {
               "name": "subject",
               "displayName": "subject",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
             "body": {
               "name": "body",
               "displayName": "body",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,9 +55,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -65,6 +64,7 @@
         "Emails": {
           "name": "Emails",
           "displayName": "Emails",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -78,16 +78,12 @@
               "body": "This is the text for email 2."
             }
           ],
-          "required": true,
           "uniqueItems": true,
           "minItems": 1,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

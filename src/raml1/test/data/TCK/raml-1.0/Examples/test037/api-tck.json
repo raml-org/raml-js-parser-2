@@ -7,18 +7,15 @@
         "GeoPoint": {
           "name": "GeoPoint",
           "displayName": "GeoPoint",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
           "example": 100,
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -34,6 +31,7 @@
         "GeoPoints": {
           "name": "GeoPoints",
           "displayName": "GeoPoints",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
@@ -41,14 +39,10 @@
             100,
             10
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -68,18 +62,15 @@
         "Bool": {
           "name": "Bool",
           "displayName": "Bool",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],
           "example": true,
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

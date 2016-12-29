@@ -7,17 +7,14 @@
         "CatOrDog": {
           "name": "CatOrDog",
           "displayName": "CatOrDog",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Cat | Dog"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,14 +24,15 @@
         "Cat": {
           "name": "Cat",
           "displayName": "Cat",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,6 +51,7 @@
             "color": {
               "name": "color",
               "displayName": "color",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -73,9 +72,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -85,14 +81,15 @@
         "Dog": {
           "name": "Dog",
           "displayName": "Dog",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -111,6 +108,7 @@
             "fangs": {
               "name": "fangs",
               "displayName": "fangs",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -131,9 +129,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -153,6 +148,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "CatOrDog"
                     ],
@@ -160,14 +156,10 @@
                       "name": "Rex",
                       "fangs-INCORRECT": "big ones"
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -191,6 +183,7 @@
           "animalId": {
             "name": "animalId",
             "displayName": "animalId",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

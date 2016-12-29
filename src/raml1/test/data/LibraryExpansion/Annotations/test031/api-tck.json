@@ -7,17 +7,17 @@
         "cards": {
           "name": "cards",
           "displayName": "cards",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "items": {
             "name": "items",
             "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
-            "required": true,
             "properties": {
               "cardId": {
                 "annotations": {
@@ -39,6 +39,7 @@
                 },
                 "name": "cardId",
                 "displayName": "cardId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -60,9 +61,6 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             }
@@ -71,9 +69,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -85,21 +80,22 @@
         "lib.bindingDefinition": {
           "name": "bindingDefinition",
           "displayName": "BindingDefinition",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "array"
           ],
-          "required": true,
           "items": {
             "name": "items",
             "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
-            "required": true,
             "properties": {
               "method": {
                 "name": "method",
                 "displayName": "method",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -123,6 +119,7 @@
               "input": {
                 "name": "input",
                 "displayName": "input",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -144,6 +141,7 @@
               "output": {
                 "name": "output",
                 "displayName": "output",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -170,19 +168,12 @@
                 },
                 "type": {
                   "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
                 }
               }
             }
           },
           "__METADATA__": {
-            "primitiveValuesMeta": {
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
+            "primitiveValuesMeta": {}
           }
         }
       }

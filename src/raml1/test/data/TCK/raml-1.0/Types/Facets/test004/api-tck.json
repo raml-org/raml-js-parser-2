@@ -21,33 +21,27 @@
             "format": {
               "name": "format",
               "displayName": "format",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
             }
           },
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -59,17 +53,14 @@
         "reader": {
           "name": "reader",
           "displayName": "reader",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -79,17 +70,14 @@
         "writer": {
           "name": "writer",
           "displayName": "writer",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -105,17 +93,14 @@
               "type": {
                 "name": "type",
                 "displayName": "type",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "myDate"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -123,17 +108,14 @@
               "format": {
                 "name": "format",
                 "displayName": "format",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "YYYY"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

@@ -7,14 +7,15 @@
         "profile": {
           "name": "profile",
           "displayName": "profile",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "preference?": {
               "name": "preference?",
               "displayName": "preference?",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
             "foto?": {
               "name": "foto?",
               "displayName": "foto?",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -51,6 +53,7 @@
             "description?": {
               "name": "description?",
               "displayName": "description?",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -72,6 +75,7 @@
             "link": {
               "name": "link",
               "displayName": "link",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -97,9 +101,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

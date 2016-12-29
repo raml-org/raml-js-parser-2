@@ -7,17 +7,18 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "name": "somestring"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -58,14 +56,15 @@
         "AnotherType": {
           "name": "AnotherType",
           "displayName": "AnotherType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SomeType"
           ],
-          "required": true,
           "properties": {
             "age": {
               "name": "age",
               "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -87,9 +86,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -99,6 +95,7 @@
         "ComplexType": {
           "name": "ComplexType",
           "displayName": "ComplexType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -108,11 +105,11 @@
               "age": 123
             }
           },
-          "required": true,
           "properties": {
             "someProperty": {
               "name": "someProperty",
               "displayName": "someProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "AnotherType"
               ],
@@ -133,9 +130,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

@@ -7,19 +7,16 @@
         "ownType": {
           "name": "ownType",
           "displayName": "ownType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }
@@ -30,14 +27,15 @@
         "includedType": {
           "name": "includedType",
           "displayName": "includedType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "p1": {
               "name": "p1",
               "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "lib.ownType"
               ],
@@ -56,6 +54,7 @@
             "p2": {
               "name": "p2",
               "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "ownType"
               ],
@@ -84,9 +83,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

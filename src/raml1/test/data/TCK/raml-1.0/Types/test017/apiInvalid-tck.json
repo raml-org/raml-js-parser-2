@@ -7,17 +7,14 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object | SomeUnion"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,17 +24,14 @@
         "SomeUnion": {
           "name": "SomeUnion",
           "displayName": "SomeUnion",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "AnotherType[] | OneMoreType[]"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -47,17 +41,14 @@
         "AnotherType": {
           "name": "AnotherType",
           "displayName": "AnotherType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SomeType"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -67,17 +58,14 @@
         "OneMoreType": {
           "name": "OneMoreType",
           "displayName": "OneMoreType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "AnotherType"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

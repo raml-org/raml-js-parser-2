@@ -7,17 +7,18 @@
         "ItsComplicated": {
           "name": "ItsComplicated",
           "displayName": "ItsComplicated",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "prop1": "stringValue"
           },
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string[] | string"
               ],
@@ -40,9 +41,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

@@ -9,6 +9,7 @@
             "access_token": {
               "name": "access_token",
               "displayName": "access_token",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

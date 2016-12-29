@@ -26,6 +26,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -61,14 +62,10 @@
                         "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
                       }
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },

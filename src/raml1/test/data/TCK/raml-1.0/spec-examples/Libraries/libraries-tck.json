@@ -7,14 +7,15 @@
         "File": {
           "name": "File",
           "displayName": "File",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -36,6 +37,7 @@
             "length": {
               "name": "length",
               "displayName": "length",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -59,9 +61,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -75,6 +74,7 @@
             "drm-key": {
               "name": "drm-key",
               "displayName": "drm-key",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],

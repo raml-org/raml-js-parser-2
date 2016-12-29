@@ -7,17 +7,14 @@
         "mySchema": {
           "name": "mySchema",
           "displayName": "mySchema",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,6 +24,7 @@
         "z2": {
           "name": "z2",
           "displayName": "z2",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -35,11 +33,11 @@
               "id": "2"
             }
           },
-          "required": true,
           "properties": {
             "c": {
               "name": "c",
               "displayName": "c",
+              "typePropertyKind": "INPLACE",
               "type": [
                 "mySchema"
               ],
@@ -62,9 +60,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

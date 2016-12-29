@@ -19,6 +19,7 @@
             "q": {
               "name": "q",
               "displayName": "<<paramName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -39,17 +40,14 @@
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "lib1.lib2.MyLibType"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -93,6 +91,7 @@
               "q": {
                 "name": "q",
                 "displayName": "QParam",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -113,17 +112,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib1.lib2.MyLibType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

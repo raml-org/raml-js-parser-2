@@ -1,17 +1,14 @@
 {
 	"name": "example",
 	"displayName": "example",
+	"typePropertyKind": "TYPE_EXPRESSION",
 	"type": [
 		"\"<TypeFromLibrary>\\n  <someProp>lorem ipsum</someProp>\\n</TypeFromLibrary>\\n\""
 	],
-	"required": true,
 	"__METADATA__": {
 		"primitiveValuesMeta": {
 			"displayName": {
 				"calculated": true
-			},
-			"required": {
-				"insertedAsDefault": true
 			}
 		}
 	}

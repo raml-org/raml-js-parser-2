@@ -7,17 +7,14 @@
         "Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,17 +24,14 @@
         "lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -47,17 +41,14 @@
         "lib.lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -84,17 +75,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param1>>"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -102,17 +90,14 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param2>>"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -120,17 +105,14 @@
               "text/plain": {
                 "name": "text/plain",
                 "displayName": "text/plain",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.lib.Monkey"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -138,17 +120,14 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param1>> | <<param2>> | lib.lib.Monkey"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -168,17 +147,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Monkey"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -186,17 +162,14 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.Monkey"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -204,17 +177,14 @@
               "text/plain": {
                 "name": "text/plain",
                 "displayName": "text/plain",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.lib.Monkey"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -222,17 +192,14 @@
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Monkey | lib.Monkey | lib.lib.Monkey"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

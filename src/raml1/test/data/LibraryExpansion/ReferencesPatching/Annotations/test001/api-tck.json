@@ -15,19 +15,16 @@
               },
               "name": "application/json",
               "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
-              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
                     "insertedAsDefault": true
                   }
                 }
@@ -53,17 +50,14 @@
         "lib1.lib2.MyAnnotation": {
           "name": "MyAnnotation",
           "displayName": "MyAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -90,19 +84,16 @@
                 },
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }

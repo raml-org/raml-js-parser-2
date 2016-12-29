@@ -7,17 +7,14 @@
         "testSchema": {
           "name": "testSchema",
           "displayName": "testSchema",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

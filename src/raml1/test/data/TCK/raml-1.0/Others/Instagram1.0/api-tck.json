@@ -15,6 +15,7 @@
             "callback": {
               "name": "callback",
               "displayName": "callback",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -62,6 +63,7 @@
             "lat": {
               "name": "lat",
               "displayName": "lat",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -81,6 +83,7 @@
             "lng": {
               "name": "lng",
               "displayName": "lng",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -100,6 +103,7 @@
             "distance": {
               "name": "distance",
               "displayName": "distance",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -139,6 +143,7 @@
             "count": {
               "name": "count",
               "displayName": "count",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -183,6 +188,7 @@
             "max_timestamp": {
               "name": "max_timestamp",
               "displayName": "max_timestamp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -202,6 +208,7 @@
             "min_timestamp": {
               "name": "min_timestamp",
               "displayName": "min_timestamp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -239,6 +246,7 @@
             "min_id": {
               "name": "min_id",
               "displayName": "min_id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -258,6 +266,7 @@
             "max_id": {
               "name": "max_id",
               "displayName": "max_id",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "integer"
               ],
@@ -312,6 +321,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.Users"
                     ],
@@ -340,14 +350,10 @@
                         }
                       ]
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -428,6 +434,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.MediaSearch"
                     ],
@@ -525,14 +532,10 @@
                         }
                       }
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -675,6 +678,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "schema": [
                       "types.OkStatus | string"
                     ],
@@ -684,16 +688,12 @@
                       },
                       "data": null
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -735,6 +735,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.OkStatus | string"
                     ],
@@ -744,14 +745,10 @@
                       },
                       "data": null
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -892,6 +889,7 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.MediaSearchArray"
                     ],
@@ -1080,14 +1078,10 @@
                         }
                       ]
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -1312,6 +1306,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -1358,6 +1353,7 @@
               "client_id": {
                 "name": "client_id",
                 "displayName": "client_id",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -1396,6 +1392,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -1446,6 +1443,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -1472,6 +1470,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -1506,17 +1505,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.Media"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -1562,6 +1558,7 @@
               "mediaId": {
                 "name": "mediaId",
                 "displayName": "mediaId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -1592,6 +1589,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -1618,6 +1616,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -1652,17 +1651,14 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.MediaComment"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -1711,6 +1707,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.OkStatus | string"
                             ],
@@ -1720,14 +1717,10 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -1754,14 +1747,15 @@
                       "application/x-www-form-urlencoded": {
                         "name": "application/x-www-form-urlencoded",
                         "displayName": "application/x-www-form-urlencoded",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
-                        "required": true,
                         "properties": {
                           "text": {
                             "name": "text",
                             "displayName": "text",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "string"
                             ],
@@ -1785,9 +1779,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -1844,6 +1835,7 @@
                               "application/json": {
                                 "name": "application/json",
                                 "displayName": "application/json",
+                                "typePropertyKind": "TYPE_EXPRESSION",
                                 "schema": [
                                   "types.OkStatus | string"
                                 ],
@@ -1853,16 +1845,12 @@
                                   },
                                   "data": null
                                 },
-                                "required": true,
                                 "__METADATA__": {
                                   "primitiveValuesMeta": {
                                     "displayName": {
                                       "calculated": true
                                     },
                                     "type": {
-                                      "insertedAsDefault": true
-                                    },
-                                    "required": {
                                       "insertedAsDefault": true
                                     }
                                   }
@@ -1928,6 +1916,7 @@
                       "commentId": {
                         "name": "commentId",
                         "displayName": "commentId",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -1979,6 +1968,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -2005,6 +1995,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -2039,17 +2030,14 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.MediaLikes"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -2098,6 +2086,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.OkStatus | string"
                             ],
@@ -2107,14 +2096,10 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -2168,6 +2153,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "schema": [
                               "types.OkStatus | string"
                             ],
@@ -2177,16 +2163,12 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
                                 },
                                 "type": {
-                                  "insertedAsDefault": true
-                                },
-                                "required": {
                                   "insertedAsDefault": true
                                 }
                               }
@@ -2288,6 +2270,7 @@
                   "max_timestamp": {
                     "name": "max_timestamp",
                     "displayName": "max_timestamp",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -2307,6 +2290,7 @@
                   "min_timestamp": {
                     "name": "min_timestamp",
                     "displayName": "min_timestamp",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -2326,6 +2310,7 @@
                   "lat": {
                     "name": "lat",
                     "displayName": "lat",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -2345,6 +2330,7 @@
                   "lng": {
                     "name": "lng",
                     "displayName": "lng",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -2364,6 +2350,7 @@
                   "distance": {
                     "name": "distance",
                     "displayName": "distance",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -2385,6 +2372,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -2411,6 +2399,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -2445,6 +2434,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.MediaSearch"
                         ],
@@ -2542,14 +2532,10 @@
                             }
                           }
                         },
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -2716,6 +2702,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -2742,6 +2729,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -2776,6 +2764,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.MediaSearch"
                         ],
@@ -2873,14 +2862,10 @@
                             }
                           }
                         },
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -3069,6 +3054,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -3095,6 +3081,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -3129,17 +3116,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.Tag"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -3185,6 +3169,7 @@
               "tagName": {
                 "name": "tagName",
                 "displayName": "tagName",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -3215,6 +3200,7 @@
                       "min_id": {
                         "name": "min_id",
                         "displayName": "min_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -3234,6 +3220,7 @@
                       "max_id": {
                         "name": "max_id",
                         "displayName": "max_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -3253,6 +3240,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -3279,6 +3267,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -3313,17 +3302,14 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.TagsRecentMedia"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -3407,6 +3393,7 @@
                   "q": {
                     "name": "q",
                     "displayName": "q",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -3433,6 +3420,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -3459,6 +3447,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -3493,17 +3482,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.TagsSearch"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -3593,6 +3579,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -3619,6 +3606,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -3653,17 +3641,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.UserAccount"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -3709,6 +3694,7 @@
               "userId": {
                 "name": "userId",
                 "displayName": "userId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -3739,6 +3725,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -3765,6 +3752,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -3799,6 +3787,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.Users"
                             ],
@@ -3827,14 +3816,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -3937,6 +3922,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -3963,6 +3949,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -3997,6 +3984,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.Users"
                             ],
@@ -4025,14 +4013,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4135,6 +4119,7 @@
                       "min_id": {
                         "name": "min_id",
                         "displayName": "min_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -4154,6 +4139,7 @@
                       "max_id": {
                         "name": "max_id",
                         "displayName": "max_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -4173,6 +4159,7 @@
                       "max_timestamp": {
                         "name": "max_timestamp",
                         "displayName": "max_timestamp",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -4192,6 +4179,7 @@
                       "min_timestamp": {
                         "name": "min_timestamp",
                         "displayName": "min_timestamp",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -4211,6 +4199,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -4237,6 +4226,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -4271,6 +4261,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.MediaSearchArray"
                             ],
@@ -4459,14 +4450,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4725,6 +4712,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -4751,6 +4739,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -4785,17 +4774,14 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.Relationships"
                             ],
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             }
@@ -4844,6 +4830,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.Relationships"
                             ],
@@ -4853,14 +4840,10 @@
                               },
                               "data": null
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -4887,14 +4870,15 @@
                       "application/x-www-form-urlencoded": {
                         "name": "application/x-www-form-urlencoded",
                         "displayName": "application/x-www-form-urlencoded",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
-                        "required": true,
                         "properties": {
                           "action": {
                             "name": "action",
                             "displayName": "action",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "string"
                             ],
@@ -4929,9 +4913,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "required": {
                               "insertedAsDefault": true
                             }
                           }
@@ -5012,6 +4993,7 @@
                   "q": {
                     "name": "q",
                     "displayName": "q",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -5038,6 +5020,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -5064,6 +5047,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -5098,6 +5082,7 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.Users"
                         ],
@@ -5126,14 +5111,10 @@
                             }
                           ]
                         },
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -5236,6 +5217,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -5262,6 +5244,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -5296,17 +5279,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.UserAccount"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -5372,6 +5352,7 @@
                       "min_id": {
                         "name": "min_id",
                         "displayName": "min_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -5391,6 +5372,7 @@
                       "max_id": {
                         "name": "max_id",
                         "displayName": "max_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -5410,6 +5392,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -5436,6 +5419,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -5470,6 +5454,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.MediaSearchArray"
                             ],
@@ -5658,14 +5643,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -5922,6 +5903,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -5948,6 +5930,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -5982,6 +5965,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.Users"
                             ],
@@ -6010,14 +5994,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -6120,6 +6100,7 @@
                       "max_like_id": {
                         "name": "max_like_id",
                         "displayName": "max_like_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6146,6 +6127,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6172,6 +6154,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -6206,6 +6189,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.MediaSearchArray"
                             ],
@@ -6394,14 +6378,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -6695,6 +6675,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -6721,6 +6702,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -6755,17 +6737,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.Location"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -6811,6 +6790,7 @@
               "locId": {
                 "name": "locId",
                 "displayName": "locId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -6837,6 +6817,7 @@
                       "min_id": {
                         "name": "min_id",
                         "displayName": "min_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6856,6 +6837,7 @@
                       "max_id": {
                         "name": "max_id",
                         "displayName": "max_id",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6875,6 +6857,7 @@
                       "max_timestamp": {
                         "name": "max_timestamp",
                         "displayName": "max_timestamp",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6894,6 +6877,7 @@
                       "min_timestamp": {
                         "name": "min_timestamp",
                         "displayName": "min_timestamp",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6913,6 +6897,7 @@
                       "count": {
                         "name": "count",
                         "displayName": "count",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "integer"
                         ],
@@ -6939,6 +6924,7 @@
                       "callback": {
                         "name": "callback",
                         "displayName": "callback",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -6973,6 +6959,7 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
+                            "typePropertyKind": "TYPE_EXPRESSION",
                             "type": [
                               "types.MediaSearchArray"
                             ],
@@ -7161,14 +7148,10 @@
                                 }
                               ]
                             },
-                            "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "required": {
-                                  "insertedAsDefault": true
                                 }
                               }
                             },
@@ -7443,6 +7426,7 @@
                   "foursquare_v2_id": {
                     "name": "foursquare_v2_id",
                     "displayName": "foursquare_v2_id",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -7465,6 +7449,7 @@
                   "foursquare_id": {
                     "name": "foursquare_id",
                     "displayName": "foursquare_id",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -7487,6 +7472,7 @@
                   "lat": {
                     "name": "lat",
                     "displayName": "lat",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -7506,6 +7492,7 @@
                   "lng": {
                     "name": "lng",
                     "displayName": "lng",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -7525,6 +7512,7 @@
                   "distance": {
                     "name": "distance",
                     "displayName": "distance",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -7546,6 +7534,7 @@
                   "count": {
                     "name": "count",
                     "displayName": "count",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
@@ -7572,6 +7561,7 @@
                   "callback": {
                     "name": "callback",
                     "displayName": "callback",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -7606,17 +7596,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "types.Locations"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -7699,6 +7686,7 @@
               "min_id": {
                 "name": "min_id",
                 "displayName": "min_id",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -7725,6 +7713,7 @@
               "count": {
                 "name": "count",
                 "displayName": "count",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -7751,6 +7740,7 @@
               "callback": {
                 "name": "callback",
                 "displayName": "callback",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -7821,6 +7811,7 @@
           "geoId": {
             "name": "geoId",
             "displayName": "geoId",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -7868,6 +7859,7 @@
               "client_id": {
                 "name": "client_id",
                 "displayName": "client_id",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -7887,6 +7879,7 @@
               "client_secret": {
                 "name": "client_secret",
                 "displayName": "client_secret",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -7906,6 +7899,7 @@
               "count": {
                 "name": "count",
                 "displayName": "count",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -7932,6 +7926,7 @@
               "callback": {
                 "name": "callback",
                 "displayName": "callback",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -7966,17 +7961,14 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.SubscriptionsGet"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -8016,17 +8008,14 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.SubscriptionPost"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -8042,14 +8031,15 @@
               "application/x-www-form-urlencoded": {
                 "name": "application/x-www-form-urlencoded",
                 "displayName": "application/x-www-form-urlencoded",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "required": true,
                 "properties": {
                   "client_id": {
                     "name": "client_id",
                     "displayName": "client_id",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -8069,6 +8059,7 @@
                   "client_secret": {
                     "name": "client_secret",
                     "displayName": "client_secret",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -8088,6 +8079,7 @@
                   "object": {
                     "name": "object",
                     "displayName": "object",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -8116,6 +8108,7 @@
                   "object_id": {
                     "name": "object_id",
                     "displayName": "object_id",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -8138,6 +8131,7 @@
                   "aspect": {
                     "name": "aspect",
                     "displayName": "aspect",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -8160,6 +8154,7 @@
                   "callback_url": {
                     "name": "callback_url",
                     "displayName": "callback_url",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -8179,6 +8174,7 @@
                   "lat": {
                     "name": "lat",
                     "displayName": "",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -8195,6 +8191,7 @@
                   "lng": {
                     "name": "lng",
                     "displayName": "lng",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -8214,6 +8211,7 @@
                   "radius": {
                     "name": "radius",
                     "displayName": "radius",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -8237,9 +8235,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -8271,6 +8266,7 @@
               "client_id": {
                 "name": "client_id",
                 "displayName": "client_id",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -8290,6 +8286,7 @@
               "client_secret": {
                 "name": "client_secret",
                 "displayName": "client_secret",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -8309,6 +8306,7 @@
               "id": {
                 "name": "id",
                 "displayName": "id",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -8331,6 +8329,7 @@
               "object": {
                 "name": "object",
                 "displayName": "object",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -8365,17 +8364,14 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.SubscriptionsDelete"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }

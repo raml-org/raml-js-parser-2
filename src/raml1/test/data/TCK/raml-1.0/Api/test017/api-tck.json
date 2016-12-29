@@ -8,6 +8,7 @@
       "a": {
         "name": "a",
         "displayName": "a",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -30,6 +31,7 @@
       "b": {
         "name": "b",
         "displayName": "second",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],

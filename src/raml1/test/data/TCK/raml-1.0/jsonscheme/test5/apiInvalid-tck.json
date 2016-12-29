@@ -7,18 +7,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "JSON",
           "schemaPath": "c2NoZW1lLmpzb24vL2RlZmluaXRpb25zL0lubmVyVHlwZQ.json",
           "type": [
             "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -34,20 +31,17 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
                 "type": [
                   "MyType"
                 ],
                 "example": {
                   "innerTypeName1": "somename"
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

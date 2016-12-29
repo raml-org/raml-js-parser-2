@@ -4,14 +4,15 @@
 			"SomeType": {
 				"name": "SomeType",
 				"displayName": "SomeType",
+				"typePropertyKind": "TYPE_EXPRESSION",
 				"type": [
 					"object"
 				],
-				"required": true,
 				"properties": {
 					"prop": {
 						"name": "prop",
 						"displayName": "prop",
+						"typePropertyKind": "TYPE_EXPRESSION",
 						"type": [
 							"string"
 						],
@@ -32,9 +33,6 @@
 					"primitiveValuesMeta": {
 						"displayName": {
 							"calculated": true
-						},
-						"required": {
-							"insertedAsDefault": true
 						}
 					}
 				}
@@ -53,20 +51,17 @@
 								"application/xml": {
 									"name": "application/xml",
 									"displayName": "application/xml",
+									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"SomeType"
 									],
 									"example": {
 										"prop": "aaa"
 									},
-									"required": true,
 									"__METADATA__": {
 										"primitiveValuesMeta": {
 											"displayName": {
 												"calculated": true
-											},
-											"required": {
-												"insertedAsDefault": true
 											}
 										}
 									},

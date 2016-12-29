@@ -7,17 +7,14 @@
         "lib.TestAnnotationType": {
           "name": "TestAnnotationType",
           "displayName": "TestAnnotationType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -27,14 +24,15 @@
         "lib.AnotherAnnotationType": {
           "name": "AnotherAnnotationType",
           "displayName": "AnotherAnnotationType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "firstProp": {
               "name": "firstProp",
               "displayName": "firstProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,6 +51,7 @@
             "secondProp": {
               "name": "secondProp",
               "displayName": "secondProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -73,9 +72,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

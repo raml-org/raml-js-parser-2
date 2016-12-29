@@ -7,14 +7,15 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -33,6 +34,7 @@
             "age": {
               "name": "age",
               "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -53,9 +55,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -78,6 +77,7 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
@@ -85,14 +85,10 @@
                       "name": "john",
                       "age": "34s"
                     },
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     },
@@ -126,6 +122,7 @@
           "blah": {
             "name": "blah",
             "displayName": "blah",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

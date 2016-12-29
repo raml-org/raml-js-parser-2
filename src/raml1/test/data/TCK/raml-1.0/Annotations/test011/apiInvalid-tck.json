@@ -21,14 +21,15 @@
         "Pet": {
           "name": "Pet",
           "displayName": "Pet",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -53,9 +54,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -65,14 +63,15 @@
         "Person": {
           "name": "Person",
           "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Pet"
               ],
@@ -96,9 +95,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -108,14 +104,15 @@
         "MapOfPerson": {
           "name": "MapOfPerson",
           "displayName": "MapOfPerson",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/.*/": {
               "name": "/.*/",
               "displayName": "/.*/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Person"
               ],
@@ -139,9 +136,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -153,14 +147,15 @@
         "hello": {
           "name": "hello",
           "displayName": "hello",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "persons": {
               "name": "persons",
               "displayName": "persons",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "MapOfPerson"
               ],
@@ -183,9 +178,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
                 "insertedAsDefault": true
               }
             }

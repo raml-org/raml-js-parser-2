@@ -66,15 +66,6 @@
         {"$ref": "#/definitions/TypeDeclaration"},
         {
           "properties": {
-            "example": {
-              "type": ["object", "string", "boolean", "number", "array"],
-              "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
-            },
-            "examples": {
-              "type": "array",
-              "description": "An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.",
-              "items": {"$ref": "#/definitions/ExampleSpec10"}
-            },
             "uniqueItems": {
               "type": "boolean",
               "description": "Should items in array be unique"
@@ -87,11 +78,6 @@
               "type": "number",
               "description": "Maximum amount of items in array"
             },
-            "default": {
-              "type": "array",
-              "description": "Provides default value for a property"
-            },
-            "structuredExample": {"$ref": "#/definitions/ExampleSpec10"},
             "items": {"$ref": "#/definitions/TypeReference10"}
           }
         }
@@ -154,12 +140,7 @@
             "maxLength": {
               "type": "number",
               "description": "Maximum length of the string"
-            },
-            "example": {
-              "type": "string",
-              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
-            },
-            "structuredExample": {"$ref": "#/definitions/ExampleSpec10"}
+            }
           }
         }
       ]
@@ -185,14 +166,6 @@
             "maximum": {
               "type": "number",
               "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
-            },
-            "default": {
-              "type": "number",
-              "description": "Provides default value for a property"
-            },
-            "example": {
-              "type": "number",
-              "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
             },
             "format": {
               "type": "string",
@@ -220,8 +193,7 @@
                 }
               },
               "additionalProperties": false
-            },
-            "structuredExample": {"$ref": "#/definitions/ExampleSpec10"}
+            }
           }
         }
       ]
@@ -229,39 +201,7 @@
     "DateTypeDeclaration": {
       "description": "the \"full-date\" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)",
       "allOf":[
-        {"$ref": "#/definitions/TypeDeclaration"},
-        {
-          "properties": {
-            "enum": {
-              "type": "array",
-              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
-            },
-            "pattern": {
-              "type": "string",
-              "description": "Regular expression"
-            },
-            "format": {
-              "type": ["string", "number"],
-              "description": "Value format"
-            },
-            "fixedFacets": {
-              "type": "object",
-              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
-              "properties": {
-                "format": {
-                  "type": ["string", "number"],
-                  "description": "Value format"
-                }
-              },
-              "additionalProperties": false
-            },
-            "example": {
-              "type": ["string"],
-              "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
-            },
-            "structuredExample": {"$ref": "#/definitions/ExampleSpec10"}
-          }
-        }
+        {"$ref": "#/definitions/TypeDeclaration"}
       ]
     },
     "TypeReference10": {

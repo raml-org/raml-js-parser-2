@@ -7,17 +7,18 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "name": "somestring"
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -38,9 +39,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -58,6 +56,7 @@
         "AnotherType": {
           "name": "AnotherType",
           "displayName": "AnotherType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "SomeType"
           ],
@@ -65,11 +64,11 @@
             "name": "somestring",
             "age": 11
           },
-          "required": true,
           "properties": {
             "age": {
               "name": "age",
               "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -90,9 +89,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

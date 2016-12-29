@@ -25,17 +25,14 @@
         "Entry": {
           "name": "Entry",
           "displayName": "Entry",
+          "typePropertyKind": "JSON",
           "type": [
             "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -45,18 +42,15 @@
         "AnotherEntry": {
           "name": "AnotherEntry",
           "displayName": "AnotherEntry",
+          "typePropertyKind": "INPLACE",
           "type": [
             "Entry"
           ],
-          "required": true,
           "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -66,17 +60,18 @@
         "User": {
           "name": "User",
           "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
           "example": {
             "firstname": "John"
           },
-          "required": true,
           "properties": {
             "firstname": {
               "name": "firstname",
               "displayName": "firstname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -95,6 +90,7 @@
             "lastname": {
               "name": "lastname",
               "displayName": "lastname",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -122,9 +118,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },
@@ -146,6 +139,7 @@
             "access_token": {
               "name": "access_token",
               "displayName": "access_token",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -199,19 +193,16 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "schema": [
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -241,14 +232,15 @@
         "deprecated": {
           "name": "deprecated",
           "displayName": "deprecated",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "date": {
               "name": "date",
               "displayName": "date",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "datetime"
               ],
@@ -267,6 +259,7 @@
             "deprecatedBy": {
               "name": "deprecatedBy",
               "displayName": "deprecatedBy",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "User"
               ],
@@ -285,6 +278,7 @@
             "comment": {
               "name": "comment",
               "displayName": "comment",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "nil | string"
               ],
@@ -308,9 +302,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -320,19 +311,16 @@
         "monitoringInterval": {
           "name": "monitoringInterval",
           "displayName": "monitoringInterval",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "integer"
           ],
           "example": null,
-          "required": true,
           "description": "interval in seconds",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -342,10 +330,10 @@
         "ready": {
           "name": "ready",
           "displayName": "ready",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "nil"
           ],
-          "required": true,
           "description": "markes a resource as ready",
           "allowedTargets": [
             "Resource"
@@ -354,9 +342,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -366,10 +351,10 @@
         "info": {
           "name": "info",
           "displayName": "info",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "allowedTargets": [
             "API"
           ],
@@ -377,6 +362,7 @@
             "license": {
               "name": "license",
               "displayName": "license",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -404,9 +390,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -416,17 +399,14 @@
         "rediractable": {
           "name": "rediractable",
           "displayName": "rediractable",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "boolean"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -460,6 +440,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -481,6 +462,7 @@
               "Authorization": {
                 "name": "Authorization",
                 "displayName": "Authorization",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -530,6 +512,7 @@
               "SpecialToken": {
                 "name": "SpecialToken",
                 "displayName": "SpecialToken",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -568,6 +551,7 @@
       "environment": {
         "name": "environment",
         "displayName": "environment",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -592,6 +576,7 @@
       "version": {
         "name": "version",
         "displayName": "version",
+        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -633,14 +618,15 @@
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "object"
               ],
-              "required": true,
               "properties": {
                 "start": {
                   "name": "start",
                   "displayName": "start",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -659,6 +645,7 @@
                 "page-size": {
                   "name": "page-size",
                   "displayName": "page-size",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "number"
                   ],
@@ -681,9 +668,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
                     "insertedAsDefault": true
                   }
                 }
@@ -712,17 +696,14 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "ApiLib.RamlDataType"
                 ],
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -777,17 +758,14 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
+                    "typePropertyKind": "INPLACE",
                     "type": [
                       "AnotherEntry"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
                         }
                       }
                     }
@@ -824,16 +802,12 @@
                     "schema": [
                       "Entry"
                     ],
-                    "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
                           "insertedAsDefault": true
                         }
                       }
@@ -902,6 +876,7 @@
               "genre": {
                 "name": "genre",
                 "displayName": "genre",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -924,6 +899,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -961,6 +937,7 @@
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -1028,17 +1005,14 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
+                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "SongsLib.Song"
                         ],
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         }
@@ -1046,18 +1020,15 @@
                       "application/xml": {
                         "name": "application/xml",
                         "displayName": "application/xml",
+                        "typePropertyKind": "XML",
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
                         "example": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
-                        "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
                             }
                           }
                         },
@@ -1097,6 +1068,7 @@
               "songId": {
                 "name": "songId",
                 "displayName": "songId",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],

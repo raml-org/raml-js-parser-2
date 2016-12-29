@@ -7,6 +7,7 @@
         "SomeType": {
           "name": "SomeType",
           "displayName": "SomeType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -24,11 +25,11 @@
             ],
             "someProperty": "stringValue"
           },
-          "required": true,
           "properties": {
             "selfReference": {
               "name": "selfReference",
               "displayName": "selfReference",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "array"
               ],
@@ -48,6 +49,7 @@
             "someProperty": {
               "name": "someProperty",
               "displayName": "someProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -69,9 +71,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

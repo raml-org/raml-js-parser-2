@@ -7,6 +7,7 @@
         "NullValue": {
           "name": "NullValue",
           "displayName": "NullValue",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -14,11 +15,11 @@
             "name": "Fred",
             "comment": null
           },
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -40,6 +41,7 @@
             "comment": {
               "name": "comment",
               "displayName": "comment",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "nil | string"
               ],
@@ -60,9 +62,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

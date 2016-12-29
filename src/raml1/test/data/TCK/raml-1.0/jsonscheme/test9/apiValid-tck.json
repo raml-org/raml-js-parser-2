@@ -7,18 +7,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "JSON",
           "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test9/remoteScheme.json",
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"properties\":{\n        \"rootName\": {\"type\": \"string\"},\n        \"parent\": {\"$ref\": \"subdir/remoteScheme.json#\"}\n    },\n    \"required\": [ \"rootName\" ]\n}\n"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -34,6 +31,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
                 "type": [
                   "MyType"
                 ],
@@ -46,14 +44,10 @@
                     }
                   }
                 },
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },

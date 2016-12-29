@@ -7,14 +7,15 @@
         "MapOfNumbers": {
           "name": "MapOfNumbers",
           "displayName": "MapOfNumbers",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "/a-zA-Z/": {
               "name": "/a-zA-Z/",
               "displayName": "/a-zA-Z/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -35,9 +36,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

@@ -7,6 +7,7 @@
         "ObjectType1": {
           "name": "ObjectType1",
           "displayName": "ObjectType1",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -56,11 +57,11 @@
               }
             }
           ],
-          "required": true,
           "properties": {
             "prop1": {
               "name": "prop1",
               "displayName": "prop1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -87,9 +88,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -101,17 +99,14 @@
         "NumberAnnotation": {
           "name": "NumberAnnotation",
           "displayName": "NumberAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "number"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -121,17 +116,14 @@
         "ObjectAnnotation": {
           "name": "ObjectAnnotation",
           "displayName": "ObjectAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "ObjectType1"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

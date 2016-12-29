@@ -9,6 +9,7 @@
           "userId": {
             "name": "userId",
             "displayName": "userId",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -49,6 +50,7 @@
           "username": {
             "name": "username",
             "displayName": "username",
+            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],

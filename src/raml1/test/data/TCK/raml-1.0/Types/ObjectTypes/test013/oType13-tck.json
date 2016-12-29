@@ -7,14 +7,15 @@
         "Method": {
           "name": "Method",
           "displayName": "Method",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "name": {
               "name": "name",
               "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -35,9 +36,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -47,6 +45,7 @@
         "Resource": {
           "name": "Resource",
           "displayName": "Resource",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -58,11 +57,11 @@
               "name": "create method"
             }
           },
-          "required": true,
           "properties": {
             "/post|get|put/": {
               "name": "/post|get|put/",
               "displayName": "/post|get|put/",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "Method"
               ],
@@ -83,9 +82,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           },

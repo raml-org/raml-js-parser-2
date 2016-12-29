@@ -7,17 +7,14 @@
         "Account": {
           "name": "Account",
           "displayName": "Account",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "Raw text."
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

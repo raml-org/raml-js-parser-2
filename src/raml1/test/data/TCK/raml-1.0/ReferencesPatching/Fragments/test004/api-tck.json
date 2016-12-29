@@ -25,6 +25,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -36,11 +37,11 @@
                     "integerProperty": true
                   }
                 },
-                "required": true,
                 "properties": {
                   "ownLibProperty": {
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib0.MyType"
                     ],
@@ -59,6 +60,7 @@
                   "rootLibProperty": {
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types2.MyObjectType"
                     ],
@@ -81,9 +83,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }
@@ -117,18 +116,15 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.MyType"
                 ],
                 "example": "stringValue",
-                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
@@ -147,6 +143,7 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -158,11 +155,11 @@
                     "integerProperty": true
                   }
                 },
-                "required": true,
                 "properties": {
                   "ownLibProperty": {
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib0.MyType"
                     ],
@@ -181,6 +178,7 @@
                   "rootLibProperty": {
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
+                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types2.MyObjectType"
                     ],
@@ -203,9 +201,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
                       "insertedAsDefault": true
                     }
                   }

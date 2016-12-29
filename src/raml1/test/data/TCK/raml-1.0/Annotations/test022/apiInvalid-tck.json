@@ -15,14 +15,15 @@
         "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
-          "required": true,
           "properties": {
             "numberProp": {
               "name": "numberProp",
               "displayName": "numberProp",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "number"
               ],
@@ -46,9 +47,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }
@@ -60,17 +58,14 @@
         "MyAnnotation": {
           "name": "MyAnnotation",
           "displayName": "MyAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "MyType"
           ],
-          "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
               }
             }
           }

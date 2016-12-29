@@ -17,24 +17,25 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
                 "example": {
                   "objectProperty": {
                     "prop": "string"
                   },
                   "stringProperty": "stringValue"
                 },
-                "required": true,
                 "type": {
                   "name": "type",
                   "displayName": "type",
+                  "typePropertyKind": "TYPE_EXPRESSION",
                   "type": [
                     "object"
                   ],
-                  "required": true,
                   "properties": {
                     "objectProperty": {
                       "name": "objectProperty",
                       "displayName": "objectProperty",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "lib.MyType"
                       ],
@@ -53,6 +54,7 @@
                     "stringProperty": {
                       "name": "stringProperty",
                       "displayName": "stringProperty",
+                      "typePropertyKind": "TYPE_EXPRESSION",
                       "type": [
                         "lib.MyStringType"
                       ],
@@ -83,9 +85,6 @@
                       },
                       "type": {
                         "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
                       }
                     }
                   }
@@ -94,9 +93,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
                     }
                   }
                 },
