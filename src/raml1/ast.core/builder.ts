@@ -892,7 +892,14 @@ function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingTy
                 facetBasedProperty = new defs.Property(facet.facetName(), "");
             }
 
-            facetBasedProperty.withRange(parentOfReferencingNode.definition().universe().type("StringType"));
+            var currentUniverse = null;
+            if (parentOfReferencingNode) {
+                currentUniverse = parentOfReferencingNode.definition().universe()
+            } else {
+                currentUniverse = nodeReferencingType.definition().universe()
+            }
+
+            facetBasedProperty.withRange(currentUniverse.type("StringType"));
             facetBasedProperty.withDomain(patchedType);
             facetBasedProperty.withGroupName(facet.facetName());
             facetBasedProperty.withRequired(false);

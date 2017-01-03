@@ -629,22 +629,25 @@ function extractParams(
     var mentionedParams = {};
     for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
         prev = uri.indexOf('}', ++i);
+        if(prev<0){
+            break;
+        }
         var paramName = uri.substring(i, prev);
         mentionedParams[paramName] = true;
         if (describedParams[paramName]) {
             describedParams[paramName].forEach(x=>allParams.push(x));
         }
-    else {
-            var uriParameter = new RamlWrapperImpl.StringTypeDeclarationImpl(paramName);
-            uriParameter.setName(paramName);
-            var hlNode = uriParameter.highLevel();
-            hlNode.setParent(ownerHl);
-            (<core.NodeMetadataImpl>uriParameter.meta()).setCalculated();
-            (<hlimpl.ASTNodeImpl>hlNode).patchProp(prop);
+        else {
+                var uriParameter = new RamlWrapperImpl.StringTypeDeclarationImpl(paramName);
+                uriParameter.setName(paramName);
+                var hlNode = uriParameter.highLevel();
+                hlNode.setParent(ownerHl);
+                (<core.NodeMetadataImpl>uriParameter.meta()).setCalculated();
+                (<hlimpl.ASTNodeImpl>hlNode).patchProp(prop);
 
-            allParams.push(uriParameter);
+                allParams.push(uriParameter);
+            }
         }
-    }
     Object.keys(describedParams).filter(x=>!mentionedParams[x])
         .forEach(x=>describedParams[x].forEach(y=>allParams.push(y)));
     return allParams;
