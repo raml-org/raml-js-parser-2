@@ -639,8 +639,8 @@ describe('Object types', function(){
         testErrors(util.data('parser/objectTypes/oType11.raml'));
     });
 
-    it('Should parse alternatively use additionalProperties',function(){
-        testErrors(util.data('parser/objectTypes/oType12.raml'));
+    it('Should not parse alternatively use additionalProperties',function(){
+        testErrors(util.data('parser/objectTypes/oType12.raml'), ["Value of 'additionalProperties' facet should be boolean"]);
     });
 
     it('Should parse inline type expression gets expanded to a proper type declaration',function(){
