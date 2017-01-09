@@ -3467,7 +3467,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                 }
                 if (isXML(mediaType)){
                     try {
-                        pObj = xmlutil(vl);
+                        pObj = xmlutil.parseXML(vl);
                     }
                     catch (e){
                         cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
@@ -3500,7 +3500,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
 
                     if (vl.trim().indexOf("<")==0){
                         try {
-                            pObj = xmlutil(vl);
+                            pObj = xmlutil.parseXML(vl);
                         }
                         catch (e){
                             cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
