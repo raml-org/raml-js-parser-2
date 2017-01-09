@@ -387,6 +387,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                     if (aNode.isExpanded()) {
                                         (<proxy.LowLevelCompositeNode>llParent)
                                             .replaceChild(ch1, rChild.lowLevel());
+                                        
+                                        (<proxy.LowLevelCompositeNode>rChild.lowLevel()).setTransformer(
+                                            (<proxy.LowLevelCompositeNode>llParent).transformer());
                                     }
                                     continue;
                                 }

@@ -67,6 +67,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     transformer():ValueTransformer{ return this._transformer; }
 
+    setTransformer(tr:ValueTransformer) {
+        this._transformer = tr;
+    }
+
     originalNode():ll.ILowLevelASTNode{
         return this._originalNode;
     }
