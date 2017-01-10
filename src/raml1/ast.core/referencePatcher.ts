@@ -948,7 +948,13 @@ export class PatchedReference{
         private _name:string,
         private _collectionName:string,
         private _referencedUnit:ll.ICompilationUnit,
-        private _mode:PatchMode){}
+        private _mode:PatchMode){
+        //
+        // var l = this._name.length;
+        // if(this._name.charAt(l-1)=="?"){
+        //     this._name = this._name.substring(0,l-1);
+        // }
+    }
     
     referencedNode: ll.ILowLevelASTNode;
 
