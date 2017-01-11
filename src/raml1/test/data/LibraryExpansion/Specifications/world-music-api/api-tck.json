@@ -439,17 +439,10 @@
               ],
               "required": true,
               "fileTypes": [
-                {},
-                {}
+                "image/jpeg",
+                "image/png"
               ],
               "maxLength": 307200,
-              "fixedFacets": {
-                "fileTypes": [
-                  "image/jpeg",
-                  "image/png"
-                ],
-                "maxLength": 307200
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
