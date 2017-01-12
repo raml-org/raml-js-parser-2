@@ -77,9 +77,6 @@
                         "minimum": 0,
                         "maximum": 10,
                         "format": "int",
-                        "fixedFacets": {
-                          "format": "int"
-                        },
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {

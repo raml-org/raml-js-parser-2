@@ -111,9 +111,6 @@
                 "required": true,
                 "description": "Latitude component of location",
                 "format": "double",
-                "fixedFacets": {
-                  "format": "double"
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -132,9 +129,6 @@
                 "required": true,
                 "description": "Longitude component of location",
                 "format": "double",
-                "fixedFacets": {
-                  "format": "double"
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

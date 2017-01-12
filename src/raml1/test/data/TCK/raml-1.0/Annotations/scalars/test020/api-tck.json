@@ -21,9 +21,6 @@
               ],
               "required": true,
               "format": "int64",
-              "fixedFacets": {
-                "format": "int64"
-              },
               "scalarsAnnotations": {
                 "format": [
                   {
