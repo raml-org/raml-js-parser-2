@@ -39,7 +39,8 @@
         "name": "Number3",
         "displayName": "Number3",
         "type": [
-          "string"
+          "Number1",
+          "Number2"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {

@@ -159,15 +159,13 @@
         "name": "HomeAnimal",
         "displayName": "HomeAnimal",
         "type": [
-          "string"
+          "HasHome",
+          "Dog | Cat"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
-            },
-            "type": {
-              "insertedAsDefault": true
             }
           }
         },
