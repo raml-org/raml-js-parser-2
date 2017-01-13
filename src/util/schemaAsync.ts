@@ -16,11 +16,15 @@ export function isScheme(content) {
 
         return schemeObject['$schema'];
     } catch(exception) {
-        return false;
+        return xmlutil.isXmlScheme(content);
     }
 }
 
 export function startDownloadingReferencesAsync(schemaContent: string, unit: lowLevel.ICompilationUnit): Promise<lowLevel.ICompilationUnit>{
+    if(xmlutil.isXmlScheme(schemaContent)) {
+        return su.getXMLSchema(schemaContent, new contentprovider.ContentProvider(unit)).loadSchemaReferencesAsync().then(() => unit);
+    }
+    
     var schemaObject = su.getJSONSchema(schemaContent, new contentprovider.ContentProvider(unit));
 
     var missedReferences = schemaObject.getMissingReferences([]).map(reference => schemaObject.contentAsync(reference));
@@ -37,7 +41,7 @@ export function startDownloadingReferencesAsync(schemaContent: string, unit: low
 }
 
 export function getReferences(schemaContent, unit) {
-    var schemaObject = su.getJSONSchema(schemaContent, new contentprovider.ContentProvider(unit));
+    var schemaObject = su.createSchema(schemaContent, new contentprovider.ContentProvider(unit));
 
     return schemaObject.getMissingReferences([], true);
 }

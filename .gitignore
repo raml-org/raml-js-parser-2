@@ -8,6 +8,7 @@ npm-debug.log
 .settings
 
 /browserVersion
+/browser_version_npm
 
 /src/**/*.js
 /src/**/*.js.map

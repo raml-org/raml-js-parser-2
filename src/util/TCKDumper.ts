@@ -217,11 +217,15 @@ export class TCKDumper {
             var props:{[key:string]:nominals.IProperty} = {};
             var attrNode:coreApi.AttributeNode = <coreApi.AttributeNode>node;
             var definition = attrNode.highLevel().definition();
-            (<def.ValueType>definition).allCustomProperties().filter(x=>!this.ignore.match(attrNode.highLevel().property().range(), x)).forEach(x=> {
+            var pRange = attrNode.highLevel().property().range();
+            if(pRange.isArray()){
+                pRange = pRange.array().componentType();
+            }
+            (<def.ValueType>definition).allCustomProperties().filter(x=>!this.ignore.match(pRange, x)).forEach(x=> {
                 props[x.nameId()] = x;
             });
 
-            var isValueType = attrNode.highLevel().property().range().isValueType();
+            var isValueType = pRange.isValueType();
             if (isValueType && attrNode['value']) {
                 var val = attrNode['value']();
                 if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {

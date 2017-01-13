@@ -85,12 +85,21 @@ function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.I
         var props = cls.allProperties();
         //console.log('class: ' + cls.name());
         //props.forEach(x=> console.log('  prop: ' + x.name()));
+        var llchilds = where.lowLevel().children();
+        
+        if(universeHelpers.isTraitsProperty(node.property())) {
+            return _.find(llchilds, (llch: jsyaml.ASTNode) => {
+                if(!llch.isMapping()) return false;
+
+                llch.asMapping().key.value === node.property().nameId()
+            })
+        }
+
         var pindex = cls.propertyIndex(pname);
         if(pindex < 0) {
             return null;
             //throw 'unknown property: ' + cls.name() + '.' + pname;
         }
-        var llchilds = where.lowLevel().children();
         //console.log('lookup: ' + pname + ' index: ' + pindex + ' childs: ' + llchilds.length);
         for(var i=0; i<llchilds.length; i++) {
             var llch = <jsyaml.ASTNode>llchilds[i];

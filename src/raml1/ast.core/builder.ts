@@ -90,6 +90,27 @@ function getAllOptions(c:hl.IUnionType,deep:number=0){
 }
 var ad=0;
 
+/**
+ * Checks if a node is type declaration by a type shortcut having multiple inheritance TE as a value
+ * @param node
+ */
+function isMultipleInheritanceTypeExpressionTypeDeclaration(node:hl.IHighLevelNode) : boolean {
+    var definition = node.definition();
+    if(!definition || !universeHelpers.isTypeDeclarationDescendant(definition)) return false;
+
+    var lowLevel = node.lowLevel();
+    if (lowLevel.valueKind() !== yaml.Kind.SEQ) return false;
+
+    var children = lowLevel.children()
+    if (children == null) return false;
+
+    for (var child of children) {
+        if (child.kind() !== yaml.Kind.SCALAR) return false;
+    }
+
+    return true;
+}
+
 export class BasicNodeBuilder implements hl.INodeBuilder{
 
 
@@ -207,7 +228,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                         }
                     }
                 }
-                if (node.lowLevel().valueKind() === yaml.Kind.SEQ){
+                if (node.lowLevel().valueKind() === yaml.Kind.SEQ
+                    && !isMultipleInheritanceTypeExpressionTypeDeclaration(node)){
+
                     var error=new hlimpl.BasicASTNode(node.lowLevel(), aNode);
                     error.errorMessage= {
                         entry: messageRegistry.DEFINITION_SHOULD_BE_A_MAP,
@@ -956,7 +979,14 @@ function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingTy
                 facetBasedProperty = new defs.Property(facet.facetName(), "");
             }
 
-            facetBasedProperty.withRange(parentOfReferencingNode.definition().universe().type("StringType"));
+            var currentUniverse = null;
+            if (parentOfReferencingNode) {
+                currentUniverse = parentOfReferencingNode.definition().universe()
+            } else {
+                currentUniverse = nodeReferencingType.definition().universe()
+            }
+
+            facetBasedProperty.withRange(currentUniverse.type("StringType"));
             facetBasedProperty.withDomain(patchedType);
             facetBasedProperty.withGroupName(facet.facetName());
             facetBasedProperty.withRequired(false);

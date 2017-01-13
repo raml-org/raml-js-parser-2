@@ -105,7 +105,7 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
         plugins: plugins,
         resolve: {
             alias: {
-                fs: path.resolve(__dirname, "../../web-tools/modules/emptyFS1.js")
+                fs: path.resolve(__dirname, "../../web-tools/modules/emptyFS.js")
             }
         },
 

@@ -35,15 +35,44 @@ export class AttributeDefaultsCalculator {
     }
 
     valueCalculators:ValueCalculator[]
+
+    /**
+     * These calculators are only applied when default calculator is generally disabled (this.enabled==false)
+     * and should cover the cases when we -need- to insert some calculated value in any case
+     * and helpers should be avoided for some reason.
+     * @type {UnconditionalRequiredPropertyCalculator[]}
+     */
+    unconditionalValueCalculators:ValueCalculator[] = [
+        new UnconditionalRequiredPropertyCalculator(),
+    ];
+
     /**
      * Return attribute default value if defaults calculator is enabled.
      * If attribute value is null or undefined, returns attribute default.
      */
     attributeDefaultIfEnabled(node : hl.IHighLevelNode, attributeProperty : hl.IProperty) : any {
         if (!this.enabled)
-            return null;
+            return this.getUnconditionalAttributeDefault(attributeProperty, node);
 
         return this.getAttributeDefault(node, attributeProperty);
+    }
+
+    getUnconditionalAttributeDefault(attributeProperty: hl.IProperty, node : hl.IHighLevelNode) : any {
+
+        if (!node || !attributeProperty) return null;
+
+        for(var i = 0 ; i < this.unconditionalValueCalculators.length; i++){
+
+            var calculator = this.unconditionalValueCalculators[i];
+            if(calculator.matches(attributeProperty,node)){
+                var value = calculator.calculate(attributeProperty,node);
+                if(value != null){
+                    return value;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -451,4 +480,41 @@ class VersionParamEnumCalculator implements ValueCalculator{
     kind():InsertionKind{
         return InsertionKind.CALCULATED;
     }
+}
+
+/**
+ * This calculator inserts "required=false" if the key property ends with question mark.
+ * All other cases are handled in the regular RequiredPropertyCalculator
+ */
+class UnconditionalRequiredPropertyCalculator implements ValueCalculator{
+
+    calculate(attributeProperty: hl.IProperty, node : hl.IHighLevelNode):any {
+
+        var nodeDefinition:hl.ITypeDefinition = node.definition();
+
+        if (nodeDefinition == null) return null;
+
+        //if node key is ending with question mark, it optional, thus its "required" == false
+        var adapter = nodeDefinition.getAdapter(services.RAMLService);
+        if (adapter == null) return null;
+
+        var keyProperty = adapter.getKeyProp();
+        if (keyProperty == null) return null;
+
+        var attribute = node.attr(keyProperty.nameId());
+        if (attribute == null) return null;
+
+        if (attribute.optional()) return false;
+
+        return null;
+    }
+
+    matches(attributeProperty: hl.IProperty, node : hl.IHighLevelNode):boolean{
+        return universeHelpers.isRequiredProperty(attributeProperty);
+    }
+
+    kind():InsertionKind{
+        return InsertionKind.BY_DEFAULT;
+    }
+
 }

@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: API
+
+types:
+  SomeType:
+    type: !include root.xsd
+    example: |
+      <shiporder orderid="123456">
+        <remoteref>
+          <someProp> </someProp>
+        </remoteref>
+        <orderperson></orderperson>
+
+        <shipto>
+          <name>blah</name>
+
+          <address>blah</address>
+          <city>blah</city>
+          <country>blah</country>
+        </shipto>
+        <item>
+          <title></title>
+          <note></note>
+          <quantity>1</quantity>
+          <price>100500</price>
+        </item>
+      </shiporder>

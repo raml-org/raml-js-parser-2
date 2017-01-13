@@ -1,6 +1,34 @@
 /// <reference path="../../typings/main.d.ts" />
+var DomParser = require("xmldom");
 
-var DomParser=require("xmldom");
+function elementChildrenByName(parent: any, tagName: string): any[] {
+    var elements = parent.getElementsByTagName(tagName);
+
+    var result: any[] = [];
+
+    for(var i: number = 0; i < elements.length; i++) {
+        var child = elements[i];
+
+        if(child.parentNode === parent) {
+            result.push(child);
+        }
+    }
+
+    return result;
+}
+
+export function isXmlScheme(content: string): boolean {
+    try {
+        var doc = new DomParser().parseFromString(content);
+        
+        var schemas = elementChildrenByName(doc, 'xs:schema');
+        
+        return schemas.length > 0;
+    } catch(exception) {
+        return false;
+    }
+}
+
 function xmlToJson(xml) {
 
     // Create the return object
@@ -78,11 +106,10 @@ function cleanupJson(j:any){
     return j;
 }
 
-function parseXML(value:string){
+export function parseXML(value:string){
     var v=new DomParser.DOMParser();
     if (!value || value.trim().indexOf("<<") == 0) return null;
 
     var parsed=v.parseFromString(value);
     return cleanupJson(cleanupText(xmlToJson(parsed)))
 }
-export=parseXML;

@@ -1,0 +1,66 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  MyObjectType:
+    type: object
+    displayName: Test Object Type
+    description: test object type
+    usage: type for testing object type built in facets
+    properties:
+      kind:
+      /[a-z]+/:
+    minProperties: 1
+    maxProperties: 2
+    discriminator: kind
+    discriminatorValue: __MyObjectType__
+    additionalProperties: false
+
+  MyFileType:
+    type: file
+    displayName: Test File Type
+    description: test file type
+    usage: type for testing file type built in facets
+    minLength: 1024
+    maxLength: 8192
+    fileTypes: [ text/txt, text/doc ]
+
+  MyArrayType:
+    type: array
+    displayName: Test Array Type
+    description: test array type
+    usage: type for testing array type built in facets
+    minItems: 1
+    maxItems: 10
+    uniqueItems: true
+
+  MyStringType:
+    type:
+    displayName: Test String Type
+    description: test string type
+    usage: type for testing string type built in facets
+    minLength: 3
+    maxLength: 128
+    enum: [ "abcd", "12345" ]
+    pattern: "[a-zA-Z0-9]{3,128}"
+    default: abcd
+
+  MyNumberType:
+    type: number
+    displayName: Test Number Type
+    description: test number type
+    usage: type for testing number type built in facets
+    minimum: 1
+    maximum: 1000
+    multipleOf: 5
+    enum: [ 15, 20, 25, 30 ]
+    format: int8
+    default: 15
+
+annotationTypes:
+  MyAnnotationType:
+    displayName: Test Annotation Type
+    description: test Annotation type
+    usage: type for testing annotation type built in 'allowedTarget' facet
+    allowedTargets: [ Method, Resource ]

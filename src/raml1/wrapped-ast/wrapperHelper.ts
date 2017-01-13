@@ -751,9 +751,15 @@ export function getTypeExamples(td:RamlWrapper.TypeDeclaration):RamlWrapper.Exam
  */
 export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
     var rDef = td.runtimeDefinition();
-    var obj = rDef.getFixedFacets();
-    var keys = Object.keys(obj);
-    if(td.kind()!=universeDef.Universe10.UnionTypeDeclaration.name) {
+    var obj = rDef.fixedFacets();
+    if(td.kind()==universeDef.Universe10.UnionTypeDeclaration.name) {
+        var builtInFacets = rDef.allFixedBuiltInFacets();
+        for (var key of Object.keys(builtInFacets)) {
+            obj[key] = builtInFacets[key];
+        }
+    }
+    else {
+        var keys = Object.keys(obj);
         for (var key of keys) {
             if (rDef.facet(key) == null) {
                 delete obj[key];

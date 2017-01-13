@@ -9,19 +9,20 @@
   "raml-definition-system" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
-    "gitBranch": "develop",
+    "gitBranch" : "develop",
     "installTypings" : true
   },
   "raml-typesystem" : {
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
-    "installTypings" : true,
-    "gitBranch": "develop"
+    "gitBranch" : "develop",
+    "installTypings" : true
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/raml-xml-validation.git",
+    "gitBranch" : "develop",
     "installTypings" : true
   },
   "raml-json-validation" : {
@@ -36,13 +37,11 @@
   },
   "yaml-ast-parser" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git",
-    "gitBranch": "develop"
+    "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git"
   },
   "ts-model" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/ts-model.git",
-    "installTypings" : true,
-    "gitBranch": "develop"
+    "installTypings" : true
   }
 }

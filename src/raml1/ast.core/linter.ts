@@ -1431,6 +1431,20 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             return tm;
         }
         if (t.key() == universes.Universe08.SchemaString||t.key() == universes.Universe10.SchemaString) {
+            var isTypeProp = false;
+            if(def.UserDefinedProp.isInstance(p)){
+                var udp = <def.UserDefinedProp>p;
+                var src = udp.node();
+                if(src){
+                    var srcProp = src.property();
+                    if(srcProp){
+                        isTypeProp = universeHelpers.isTypeProperty(srcProp) || universeHelpers.isSchemaProperty(srcProp); 
+                    }
+                }
+            }
+            if(isTypeProp){
+                return false;
+            }
             var tm = su.createSchema(v, contentProvider(h.lowLevel()));
             if (tm instanceof Error){
                 (<any>tm).canBeRef=true;
@@ -3453,7 +3467,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                 }
                 if (isXML(mediaType)){
                     try {
-                        pObj = xmlutil(vl);
+                        pObj = xmlutil.parseXML(vl);
                     }
                     catch (e){
                         cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
@@ -3486,7 +3500,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
 
                     if (vl.trim().indexOf("<")==0){
                         try {
-                            pObj = xmlutil(vl);
+                            pObj = xmlutil.parseXML(vl);
                         }
                         catch (e){
                             cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
