@@ -360,9 +360,6 @@
                 }
               }
             },
-            "fixedFacets": {
-              "format": "int32"
-            },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
@@ -386,9 +383,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "fixedFacets": {
-              "format": "int8"
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
@@ -461,13 +455,6 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "fixedFacets": {
-              "fileTypes": [
-                "image/jpeg",
-                "image/png"
-              ],
-              "maxLength": 307200
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"

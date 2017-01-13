@@ -84,9 +84,6 @@
             }
           }
         },
-        "fixedFacets": {
-          "format": "rfc3339"
-        },
         "examples": [
           {
             "value": "2016-02-28T16:41:41.090Z",
@@ -110,9 +107,6 @@
               "calculated": true
             }
           }
-        },
-        "fixedFacets": {
-          "format": "rfc2616"
         },
         "examples": [
           {

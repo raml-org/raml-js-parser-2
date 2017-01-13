@@ -116,9 +116,6 @@
                     }
                   }
                 },
-                "fixedFacets": {
-                  "format": "double"
-                },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
@@ -137,9 +134,6 @@
                       "calculated": true
                     }
                   }
-                },
-                "fixedFacets": {
-                  "format": "double"
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
