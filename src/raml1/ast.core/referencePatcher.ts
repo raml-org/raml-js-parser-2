@@ -173,7 +173,7 @@ export class ReferencePatcher{
         var nodeType = node.definition();
         var isExternal = node.localType().isExternal();
         if(!isExternal){
-            for(var st of node.localType().allSuperTypes()){
+            for(var st of node.localType().superTypes()){
                 isExternal = st.isExternal();
                 if(isExternal){
                     break;
@@ -726,6 +726,9 @@ export class ReferencePatcher{
 
     private contributeCollection(llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
 
+        if(collection.array.length==0){
+            return false;
+        }
         var name = collection.name;
         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
             llApi.children(),
