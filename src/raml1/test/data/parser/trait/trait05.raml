@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Test API
+
+traits:
+  tr:
+    queryParameters:
+      username:
+        required: <<param1>>
+      password:
+        required: <<param1>>
+
+/resource:
+  get:
+    is: [ tr: { param1: true }  ]

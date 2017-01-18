@@ -348,6 +348,14 @@ describe('Trait', function(){
     it('Should parse traits with parameters', function(){
         testErrors(util.data('parser/trait/trait04.raml'));
     });
+
+    it('Should parse traits with boolean parameters', function(){
+        testErrors(util.data('parser/trait/trait05.raml'));
+    });
+
+    it('Should parse traits with number parameters', function(){
+        testErrors(util.data('parser/trait/trait06.raml'));
+    });
 });
 
 describe('Method response', function(){
