@@ -481,7 +481,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).types()[0];
         var prop = type.runtimeType().properties()[1];
         var regExp = prop.getKeyRegexp();
-        assert(regExp=="[a-z]+");
+        assert(regExp=="/[a-z]+/");
     });
 
     it ("Built-in facets for File type",function(){
