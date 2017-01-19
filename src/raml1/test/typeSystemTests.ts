@@ -476,6 +476,14 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         testFacets(type,expected,ignore);     
     });
 
+    it ("Pattern Property RegExp",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/facets.raml")).getOrElse(null);
+        var type = (<RamlWrapper.Api>api).types()[0];
+        var prop = type.runtimeType().properties()[1];
+        var regExp = prop.getKeyRegexp();
+        assert(regExp=="[a-z]+");
+    });
+
     it ("Built-in facets for File type",function(){
         var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/facets.raml")).getOrElse(null);
         var type = (<RamlWrapper.Api>api).types()[1];
@@ -572,15 +580,13 @@ function testFacets(typeNode:core.BasicNode,expected:any,ignoredProperties:any={
     });
 
     for(var pName of props){
-        for(var pName of props){
-            var eVal = expected[pName];
-            var aVal = fixedBuiltInFacets[pName];
-            assert.notEqual(eVal,null);
-            if(Array.isArray(aVal)&&Array.isArray(eVal)){
-                aVal = aVal.toString();
-                eVal = eVal.toString();
-            }
-            assert.equal(aVal,eVal);
+        var eVal = expected[pName];
+        var aVal = fixedBuiltInFacets[pName];
+        assert.notEqual(eVal, null);
+        if (Array.isArray(aVal) && Array.isArray(eVal)) {
+            aVal = aVal.toString();
+            eVal = eVal.toString();
         }
+        assert.equal(aVal, eVal);
     }
 }
