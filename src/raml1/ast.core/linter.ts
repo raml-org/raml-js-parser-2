@@ -2554,7 +2554,7 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
         }
         return ch.name()=== p.name;
     });
-    if(universeHelpers.isTypeDeclarationDescendant(n.asElement().definition())){
+    if(n.isElement()&&universeHelpers.isTypeDeclarationDescendant(n.asElement().definition())){
 
         var lNode = n.lowLevel();
         chld = _.uniq(n.directChildren().concat(n.children()))
