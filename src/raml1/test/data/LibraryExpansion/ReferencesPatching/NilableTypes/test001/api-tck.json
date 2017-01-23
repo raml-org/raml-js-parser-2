@@ -35,7 +35,7 @@
               "displayName": "id",
               "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
-                "Types.SharedTypes.StandardInt64"
+                "Types.SharedTypes.StandardInt64?"
               ],
               "required": true,
               "__METADATA__": {
@@ -76,11 +76,22 @@
                 "type": [
                   "Types.Type1"
                 ],
+                "example": {
+                  "id": null
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"id\": null\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "id": null
                   }
                 }
               }

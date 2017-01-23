@@ -955,11 +955,14 @@ export class PatchedReference{
         
         var l = this._name.length;
         if(this._name.charAt(l-1)=="?"){
+            this.gotQuestion = true;
             this._name = this._name.substring(0,l-1);
         }
     }
     
     referencedNode: ll.ILowLevelASTNode;
+
+    gotQuestion:boolean = false;
 
     namespace():string{ return this._namespace; }
 
@@ -976,7 +979,7 @@ export class PatchedReference{
             return this._name;
         }
         var delim = this._mode == PatchMode.PATH ? "/" : ".";
-        return this._namespace + delim + this._name;
+        return this._namespace + delim + this._name + (this.gotQuestion ? "?" : "");
     }
 }
 
