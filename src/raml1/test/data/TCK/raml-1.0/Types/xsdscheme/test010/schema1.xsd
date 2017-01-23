@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd1:schema xmlns:xsd1="http://www.w3.org/2001/XMLSchema">
+
+<xsd1:complexType name="remotetype">
+  <xsd1:sequence>
+    <xsd1:element name="someProp" type="xsd1:string"/>
+  </xsd1:sequence>
+</xsd1:complexType>
+
+</xsd1:schema>

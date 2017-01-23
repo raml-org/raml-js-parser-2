@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "language": {"type": "string", "minLength": 2},
+    "country": {"type": "string", "minLength": 2}
+  },
+  "required": ["language"]
+}

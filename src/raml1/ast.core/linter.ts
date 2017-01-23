@@ -2554,6 +2554,33 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
         }
         return ch.name()=== p.name;
     });
+    if(n.isElement()&&universeHelpers.isTypeDeclarationDescendant(n.asElement().definition())){
+
+        var lNode = n.lowLevel();
+        chld = _.uniq(n.directChildren().concat(n.children()))
+            .filter(ch=>{
+                if(ch.isAttr()&&(<hlimpl.ASTPropImpl>ch.asAttr()).isFromKey()){
+                    return false;
+                }
+                return ch.name()=== p.name;
+            }).sort((x,y)=>{
+                var ll1 = x.lowLevel().parent();
+                while(ll1 && ll1.kind() != yaml.Kind.MAPPING){
+                    ll1 = ll1.parent()
+                }
+                var ll2 = y.lowLevel().parent();
+                while(ll2 && ll2.kind() != yaml.Kind.MAPPING){
+                    ll2 = ll2.parent();
+                }
+                if(ll1==lNode){
+                    return -1;
+                }
+                else if(ll2==lNode){
+                    return 1;
+                }
+                return 0;
+        });
+    }
     var ind = (p.child && typeof(p.child.name)=="number") ? <number>p.child.name : -1;
     if(ind>=0 && chld.length>ind){
         return findElementAtPath(chld[ind], p.child.child);
