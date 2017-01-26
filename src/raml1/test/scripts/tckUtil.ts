@@ -585,7 +585,7 @@ function dumpTest(test:Test,dataRoot:string,libExpand:boolean):string{
     var testMethod = libExpand ? 'testAPILibExpand' : 'testAPI';
 
     return`    it("${path.basename(path.dirname(test.masterPath()))}/${path.basename(test.masterPath())}", function () {
-        this.timeout(15000);
+        this.timeout(20000);
         tckUtil.${testMethod}(${args.join(", ")});
     });`
 }

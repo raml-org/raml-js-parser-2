@@ -71,6 +71,8 @@ function mergeHighLevelNodes(
 
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
+        
+        
 
         if(expand&&(proxy.LowLevelProxyNode.isInstance(currentMaster.lowLevel()))) {
             currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
@@ -210,9 +212,12 @@ export class TraitsAndResourceTypesExpander {
             else{
                 topComposite = llNode;
             }
+
+            
             
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
+            newNode.setUniverse(node.universe());
             highLevelNodes.push(newNode);
             if(!merge){
                 break;

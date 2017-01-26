@@ -2916,6 +2916,11 @@ class OverlayNodesValidator implements NodeValidator{
 
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor){
         var root = node.root();
+        if(root.isExpanded()){
+            if(root.lowLevel().unit().absolutePath()!=node.lowLevel().unit().absolutePath()){
+                return;
+            }
+        }
 
         var property = node.property();
         var definition = node.definition();
@@ -2954,7 +2959,15 @@ class OverlayNodesValidator implements NodeValidator{
     }
 
     private validateProperties(node:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) : void {
+        var root = node.root();
+        var rootPath = root.lowLevel().unit().absolutePath();
+        var isExpanded = root.isExpanded()
+            
         node.attrs().forEach(attribute=>{
+            
+            if(isExpanded && rootPath!=attribute.lowLevel().unit().absolutePath()){
+                return;
+            }        
 
             //ignoring key properties as they are not overriding anything
             if (attribute.property().getAdapter(services.RAMLPropertyService).isKey()) {
