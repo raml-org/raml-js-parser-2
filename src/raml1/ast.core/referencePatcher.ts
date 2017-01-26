@@ -137,6 +137,7 @@ export class ReferencePatcher{
             if(newValue!=null){
                 var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
                 (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
+                (<hlimpl.ASTPropImpl>attr).overrideValue(newValue1);
                 this.registerPatchedReference(newValue);
             }
         }
@@ -171,9 +172,16 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[]){
 
         var nodeType = node.definition();
-        var isExternal = node.localType().isExternal();
+        var localType = node.localType();
+        if(localType.isAnnotationType()){
+            var superTypes = localType.superTypes();
+            if(superTypes.length>0) {
+                localType = superTypes[0];
+            }
+        }
+        var isExternal = localType.isExternal();
         if(!isExternal){
-            for(var st of node.localType().superTypes()){
+            for(var st of localType.superTypes()){
                 isExternal = st.isExternal();
                 if(isExternal){
                     break;
@@ -204,6 +212,9 @@ export class ReferencePatcher{
                     var localPath = localUnit.absolutePath();
 
                     var value = typeAttr.value();
+                    if(value == null){
+                        continue;
+                    }
                     if(typeof value == "string") {
 
                         var gotExpression = checkExpression(value);                        
@@ -236,7 +247,7 @@ export class ReferencePatcher{
                         }
                         var appendedAttrUnit = this.appendUnitIfNeeded(typeAttr,units);
                         
-                        var newValue:string;
+                        let newValue:string;
                         if(gotExpression){
                             var expressionPatchFailed = false;
                             var expr = typeExpressions.parse(stringToPatch);
