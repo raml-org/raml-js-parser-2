@@ -408,7 +408,7 @@ export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
             var arr = [];
             v[key] = arr;
             for(var  ch of n.children()){
-                arr.push(serialize2(ch,true));
+                arr.push(serialize2(ch,full));
             }
         }
         else if(valueKind==yaml.Kind.MAP){
@@ -416,8 +416,16 @@ export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
             v[key] = obj;
             for(var  ch of n.children()){
                 var chKey = ""+(<any>ch).key(true);
-                var serialized = serialize2(ch,true);
-                obj[chKey] = serialized === undefined ? null : serialized;
+                var serialized = serialize2(ch,full);
+                if(serialized===undefined){
+                    if(full){
+                        serialized = "!$$$novalue";
+                    }
+                    else {
+                        serialized = null;
+                    }
+                }
+                obj[chKey] = serialized;
             }
         }
         return v[key];

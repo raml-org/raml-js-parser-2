@@ -463,7 +463,7 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
   if (!extensions || extensions.length == 0) {
     api = loadApi(data(masterPath));
     if (global.isExpanded & <any>api.wrapperNode){
-      api = (<any>api.wrapperNode()).expand().highLevel();
+      api = (<any>api.wrapperNode()).expand(global.isLibExpanded).highLevel();
     }
     if (mode != null) {
       api.setMergeMode(mode?hlimpl.OverlayMergeMode.MERGE : hlimpl.OverlayMergeMode.AGGREGATE);
@@ -538,12 +538,12 @@ export function expandHighIfNeeded(original : high.ASTNodeImpl) : high.ASTNodeIm
 
   if ((<any>wrapper).expand == null) return original;
 
-  return <high.ASTNodeImpl>((<any>wrapper).expand()).highLevel();
+  return <high.ASTNodeImpl>((<any>wrapper).expand(global.isLibExpanded)).highLevel();
 }
 
 
 export function expandWrapperIfNeeded(original : RamlWrapper.Api | RamlWrapper08.Api) : RamlWrapper.Api | RamlWrapper08.Api {
   if(!global.isExpanded) return original;
 
-  return original.expand();
+  return (<RamlWrapper.Api>original).expand(global.isLibExpanded);
 }
