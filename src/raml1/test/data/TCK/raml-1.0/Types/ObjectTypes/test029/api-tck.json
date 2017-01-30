@@ -1,0 +1,81 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Error": {
+          "name": "Error",
+          "displayName": "Error",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "type": "internal_server_error"
+          },
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "discriminator": "type",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"type\": \"internal_server_error\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "type": "internal_server_error"
+            }
+          }
+        }
+      },
+      {
+        "ServerError": {
+          "name": "ServerError",
+          "displayName": "ServerError",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "Error"
+          ],
+          "discriminatorValue": "internal_server_error",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}
