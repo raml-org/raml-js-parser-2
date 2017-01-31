@@ -85,9 +85,6 @@
           ],
           "example": "2016-02-28T16:41:41.090Z",
           "format": "rfc3339",
-          "fixedFacets": {
-            "format": "rfc3339"
-          },
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
@@ -113,9 +110,6 @@
           ],
           "example": "Sun, 28 Feb 2016 16:41:41 GMT",
           "format": "rfc2616",
-          "fixedFacets": {
-            "format": "rfc2616"
-          },
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {

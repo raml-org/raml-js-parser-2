@@ -87,7 +87,9 @@ function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.I
         //props.forEach(x=> console.log('  prop: ' + x.name()));
         var llchilds = where.lowLevel().children();
         
-        if(universeHelpers.isTraitsProperty(node.property())) {
+        var nodeProperty = node.property();
+        
+        if(universeHelpers.isTraitsProperty(nodeProperty) || universeHelpers.isResourceTypesProperty(nodeProperty)) {
             return _.find(llchilds, (llch: jsyaml.ASTNode) => {
                 if(!llch.isMapping()) return false;
 

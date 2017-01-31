@@ -13,6 +13,7 @@ import util = require("./test-utils")
 import textutil=require('../../util/textutil')
 import smg = require("../tools/schemaModelGen");
 
+
 describe('Schema Tests', function() {
 
   describe('generate model by json', function () {

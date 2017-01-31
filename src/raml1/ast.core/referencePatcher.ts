@@ -137,6 +137,7 @@ export class ReferencePatcher{
             if(newValue!=null){
                 var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
                 (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
+                (<hlimpl.ASTPropImpl>attr).overrideValue(newValue1);
                 this.registerPatchedReference(newValue);
             }
         }
@@ -171,9 +172,16 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[]){
 
         var nodeType = node.definition();
-        var isExternal = node.localType().isExternal();
+        var localType = node.localType();
+        if(localType.isAnnotationType()){
+            var superTypes = localType.superTypes();
+            if(superTypes.length>0) {
+                localType = superTypes[0];
+            }
+        }
+        var isExternal = localType.isExternal();
         if(!isExternal){
-            for(var st of node.localType().allSuperTypes()){
+            for(var st of localType.superTypes()){
                 isExternal = st.isExternal();
                 if(isExternal){
                     break;
@@ -204,6 +212,9 @@ export class ReferencePatcher{
                     var localPath = localUnit.absolutePath();
 
                     var value = typeAttr.value();
+                    if(value == null){
+                        continue;
+                    }
                     if(typeof value == "string") {
 
                         var gotExpression = checkExpression(value);                        
@@ -236,7 +247,7 @@ export class ReferencePatcher{
                         }
                         var appendedAttrUnit = this.appendUnitIfNeeded(typeAttr,units);
                         
-                        var newValue:string;
+                        let newValue:string;
                         if(gotExpression){
                             var expressionPatchFailed = false;
                             var expr = typeExpressions.parse(stringToPatch);
@@ -726,6 +737,9 @@ export class ReferencePatcher{
 
     private contributeCollection(llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
 
+        if(collection.array.length==0){
+            return false;
+        }
         var name = collection.name;
         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
             llApi.children(),
@@ -952,11 +966,14 @@ export class PatchedReference{
         
         var l = this._name.length;
         if(this._name.charAt(l-1)=="?"){
+            this.gotQuestion = true;
             this._name = this._name.substring(0,l-1);
         }
     }
     
     referencedNode: ll.ILowLevelASTNode;
+
+    gotQuestion:boolean = false;
 
     namespace():string{ return this._namespace; }
 
@@ -973,7 +990,7 @@ export class PatchedReference{
             return this._name;
         }
         var delim = this._mode == PatchMode.PATH ? "/" : ".";
-        return this._namespace + delim + this._name;
+        return this._namespace + delim + this._name + (this.gotQuestion ? "?" : "");
     }
 }
 

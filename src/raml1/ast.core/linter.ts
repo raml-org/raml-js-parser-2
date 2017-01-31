@@ -2554,6 +2554,33 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
         }
         return ch.name()=== p.name;
     });
+    if(n.isElement()&&universeHelpers.isTypeDeclarationDescendant(n.asElement().definition())){
+
+        var lNode = n.lowLevel();
+        chld = _.uniq(n.directChildren().concat(n.children()))
+            .filter(ch=>{
+                if(ch.isAttr()&&(<hlimpl.ASTPropImpl>ch.asAttr()).isFromKey()){
+                    return false;
+                }
+                return ch.name()=== p.name;
+            }).sort((x,y)=>{
+                var ll1 = x.lowLevel().parent();
+                while(ll1 && ll1.kind() != yaml.Kind.MAPPING){
+                    ll1 = ll1.parent()
+                }
+                var ll2 = y.lowLevel().parent();
+                while(ll2 && ll2.kind() != yaml.Kind.MAPPING){
+                    ll2 = ll2.parent();
+                }
+                if(ll1==lNode){
+                    return -1;
+                }
+                else if(ll2==lNode){
+                    return 1;
+                }
+                return 0;
+        });
+    }
     var ind = (p.child && typeof(p.child.name)=="number") ? <number>p.child.name : -1;
     if(ind>=0 && chld.length>ind){
         return findElementAtPath(chld[ind], p.child.child);
@@ -2889,6 +2916,11 @@ class OverlayNodesValidator implements NodeValidator{
 
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor){
         var root = node.root();
+        if(root.isExpanded()){
+            if(root.lowLevel().unit().absolutePath()!=node.lowLevel().unit().absolutePath()){
+                return;
+            }
+        }
 
         var property = node.property();
         var definition = node.definition();
@@ -2927,7 +2959,15 @@ class OverlayNodesValidator implements NodeValidator{
     }
 
     private validateProperties(node:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) : void {
+        var root = node.root();
+        var rootPath = root.lowLevel().unit().absolutePath();
+        var isExpanded = root.isExpanded()
+            
         node.attrs().forEach(attribute=>{
+            
+            if(isExpanded && rootPath!=attribute.lowLevel().unit().absolutePath()){
+                return;
+            }        
 
             //ignoring key properties as they are not overriding anything
             if (attribute.property().getAdapter(services.RAMLPropertyService).isKey()) {

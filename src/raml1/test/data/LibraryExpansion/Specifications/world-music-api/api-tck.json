@@ -345,9 +345,6 @@
               "maximum": 32,
               "format": "int32",
               "multipleOf": 2,
-              "fixedFacets": {
-                "format": "int32"
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -371,9 +368,6 @@
               "maximum": 5,
               "format": "int8",
               "multipleOf": 1,
-              "fixedFacets": {
-                "format": "int8"
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -439,17 +433,10 @@
               ],
               "required": true,
               "fileTypes": [
-                {},
-                {}
+                "image/jpeg",
+                "image/png"
               ],
               "maxLength": 307200,
-              "fixedFacets": {
-                "fileTypes": [
-                  "image/jpeg",
-                  "image/png"
-                ],
-                "maxLength": 307200
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {

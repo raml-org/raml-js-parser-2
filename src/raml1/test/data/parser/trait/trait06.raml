@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Test API
+
+traits:
+  tr:
+    queryParameters:
+      nParam1:
+        type: number
+        maximum: <<param1>>
+      nParam2:
+        type: number
+        minimum: <<param2>>
+
+/resource:
+  get:
+    is: [ tr: { param1: 5, param2: 0 }  ]

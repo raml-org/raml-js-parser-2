@@ -12,9 +12,6 @@
             "integer"
           ],
           "format": "int64",
-          "fixedFacets": {
-            "format": "int64"
-          },
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
@@ -38,12 +35,9 @@
               "displayName": "id",
               "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
-                "Types.SharedTypes.StandardInt64"
+                "Types.SharedTypes.StandardInt64?"
               ],
               "required": true,
-              "fixedFacets": {
-                "format": "int64"
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -82,11 +76,22 @@
                 "type": [
                   "Types.Type1"
                 ],
+                "example": {
+                  "id": null
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"id\": null\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "id": null
                   }
                 }
               }

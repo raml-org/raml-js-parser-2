@@ -4,31 +4,25 @@
   "specification": {
     "types": [
       {
-        "t1": {
-          "name": "t1",
-          "displayName": "t1",
+        "Error": {
+          "name": "Error",
+          "displayName": "Error",
           "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
+          "example": {
+            "type": "internal_server_error"
+          },
           "properties": {
-            "iProp": {
-              "name": "iProp",
-              "displayName": "iProp",
+            "type": {
+              "name": "type",
+              "displayName": "type",
               "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
-                "integer"
+                "string"
               ],
               "required": true,
-              "format": "int64",
-              "scalarsAnnotations": {
-                "format": [
-                  {
-                    "structuredValue": "abcdefg",
-                    "name": "a"
-                  }
-                ]
-              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -41,6 +35,7 @@
               }
             }
           },
+          "discriminator": "type",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
@@ -50,54 +45,37 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "structuredExample": {
+            "value": "{\n  \"type\": \"internal_server_error\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "type": "internal_server_error"
+            }
           }
         }
-      }
-    ],
-    "annotationTypes": [
+      },
       {
-        "a": {
-          "name": "a",
-          "displayName": "a",
+        "ServerError": {
+          "name": "ServerError",
+          "displayName": "ServerError",
           "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
-            "string"
+            "Error"
           ],
-          "minLength": 8,
-          "maxLength": 64,
+          "discriminatorValue": "internal_server_error",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
               }
             }
           }
         }
       }
     ],
-    "title": "testAPI",
-    "version": "v1"
+    "title": "test API"
   },
-  "errors": [
-    {
-      "code": "MINMAX_RESTRICTION_VIOLATION",
-      "message": "'a.minLength=8' i.e. string length should not be less than 8",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 17,
-          "column": 10,
-          "position": 237
-        },
-        "end": {
-          "line": 17,
-          "column": 13,
-          "position": 240
-        }
-      }
-    }
-  ]
+  "errors": []
 }

@@ -71,6 +71,8 @@ function mergeHighLevelNodes(
 
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
+        
+        
 
         if(expand&&(proxy.LowLevelProxyNode.isInstance(currentMaster.lowLevel()))) {
             currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
@@ -101,11 +103,15 @@ export class TraitsAndResourceTypesExpander {
 
         this.init(api);
 
-        if(!api.highLevel().lowLevel()) {
+        var llNode = api.highLevel().lowLevel();
+        if(!llNode) {
+            return api;
+        }
+        if(llNode.actual().libExpanded){
             return api;
         }
 
-        var unit = api.highLevel().lowLevel().unit();
+        var unit = llNode.unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
         var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
         if (!(hasTemplates||hasFragments)&&!forceProxy){
@@ -197,15 +203,21 @@ export class TraitsAndResourceTypesExpander {
             var llNode:ll.ILowLevelASTNode = node.lowLevel();
             var topComposite:ll.ILowLevelASTNode;
             if (api.definition().key()!=universeDef.Universe10.Overlay||forceProxy){
+                if(proxy.LowLevelCompositeNode.isInstance(llNode)){
+                    llNode = (<proxy.LowLevelCompositeNode>(<proxy.LowLevelCompositeNode>llNode).originalNode()).originalNode();
+                }
                 topComposite = new proxy.LowLevelCompositeNode(
                     llNode, null, null, this.ramlVersion);
             }
             else{
                 topComposite = llNode;
             }
+
+            
             
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
+            newNode.setUniverse(node.universe());
             highLevelNodes.push(newNode);
             if(!merge){
                 break;
