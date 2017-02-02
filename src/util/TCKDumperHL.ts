@@ -57,8 +57,22 @@ export class TCKDumper {
 
 
     private defaultsCalculator:defaultCalculator.AttributeDefaultsCalculator;
+    
+    schemasCache08:{[key:string]:hl.IHighLevelNode};
 
     dump(node:hl.IParseResult):any {
+        var isElement = node.isElement();
+        if(isElement){
+            var eNode = node.asElement();
+            var definition = eNode.definition();
+            if(definition.universe().version()=="RAML08"){
+                if(universeHelpers.isApiType(definition)){
+                    this.schemasCache08 = {};
+                    eNode.elementsOfKind(universes.Universe08.Api.properties.schemas.name)
+                        .forEach(x=>this.schemasCache08[x.name()] = x);
+                }
+            }
+        }
         var highLevelParent = node.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
         var rootPath = getRootPath(node);
@@ -67,7 +81,7 @@ export class TCKDumper {
             var obj:any = result;
             result= {};            
             result.specification = obj;
-            if(node.isElement()) {
+            if(isElement) {
                 var eNode = node.asElement();
                 var definition = eNode.definition();
                 if (definition) {
@@ -162,7 +176,7 @@ export class TCKDumper {
                         }
                     }
                     var pVal = map[pName];
-                    pVal = applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
+                    pVal = applyHelpers(pVal, eNode, p, this.options.serializeMetadata,this.schemasCache08);
                     var udVal = obj[pName];
                     let aVal:any;
                     if (pVal !== undefined) {
@@ -477,7 +491,12 @@ class PropertyValue{
 }
 
 
-function applyHelpers(pVal:PropertyValue,node:hl.IHighLevelNode,p:hl.IProperty,serializeMetadata:boolean){
+function applyHelpers(
+    pVal:PropertyValue,
+    node:hl.IHighLevelNode,
+    p:hl.IProperty,
+    serializeMetadata:boolean,
+    schemasCache08:{[key:string]:hl.IHighLevelNode}){
     
     var newVal:PropertyValue;
     if(universeHelpers.isBaseUriParametersProperty(p)){
@@ -509,7 +528,7 @@ function applyHelpers(pVal:PropertyValue,node:hl.IHighLevelNode,p:hl.IProperty,s
         }
     }
     else if(p.nameId()=="schemaContent"){
-        var attr = helpersHL.schemaContent08(node);
+        var attr = helpersHL.schemaContent08Internal(node,schemasCache08);
         if(attr){
             newVal = new PropertyValue(p);
             newVal.registerValue(attr);
