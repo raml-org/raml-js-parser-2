@@ -423,10 +423,10 @@ export function findDeclarationByNode(node : hl.IParseResult,
 
     var start = node.lowLevel().start();
     var end = node.lowLevel().end();
-    if (nodePart && nodePart == LocationKind.KEY_COMPLETION) {
+    if (nodePart != null && nodePart == LocationKind.KEY_COMPLETION) {
         start = node.lowLevel().keyStart();
         end = node.lowLevel().keyEnd();
-    } else if (nodePart && nodePart == LocationKind.VALUE_COMPLETION) {
+    } else if (nodePart != null && nodePart == LocationKind.VALUE_COMPLETION) {
         start = node.lowLevel().valueStart();
         end = node.lowLevel().valueEnd();
     }
