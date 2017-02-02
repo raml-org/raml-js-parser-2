@@ -1,8 +1,16 @@
 /// <reference path="../../typings/main.d.ts" />
 var DomParser = require("xmldom");
 
-function elementChildrenByName(parent: any, tagName: string): any[] {
-    var elements = parent.getElementsByTagName(tagName);
+function elementChildrenByName(parent: any, tagName: string, ns:string): any[] {
+
+    if(ns==null) {
+        ns = extractNamespace(parent);
+    }
+    if(ns.length>0){
+        ns += ":";
+    }
+
+    var elements = parent.getElementsByTagName(ns+tagName);
 
     var result: any[] = [];
 
@@ -17,11 +25,28 @@ function elementChildrenByName(parent: any, tagName: string): any[] {
     return result;
 }
 
+function extractNamespace(documentOrElement:any){
+    var ns = "";
+    if(documentOrElement) {
+        var doc = documentOrElement;
+        if (documentOrElement.ownerDocument) {
+            doc = documentOrElement.ownerDocument;
+        }
+        if (doc) {
+            var docElement = doc.documentElement;
+            if (docElement) {
+                ns = docElement.prefix;
+            }
+        }
+    }
+    return ns;
+}
+
 export function isXmlScheme(content: string): boolean {
     try {
-        var doc = new DomParser().parseFromString(content);
+        var doc = new DomParser.DOMParser().parseFromString(content);
         
-        var schemas = elementChildrenByName(doc, 'xs:schema');
+        var schemas = elementChildrenByName(doc, 'schema', extractNamespace(doc));
         
         return schemas.length > 0;
     } catch(exception) {

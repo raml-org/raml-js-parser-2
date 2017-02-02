@@ -29,12 +29,11 @@ var WEBPACK_OUTPUT_OPTIONS = {
 // remove this one day when the Gulp task doesn't suck so much.
 var tsWatch = false;
 
-var testFiles = [
+var testFilesLibExpand = [
   'dist/raml1/test/schema-model-tests.js',
   // ////
   'dist/raml1/test/parserTests.js',
   'dist/raml1/test/parserTests2.js',
-  'dist/raml1/test/funcTests.js',
   'dist/raml1/test/parserASTTests.js',
   'dist/raml1/test/traits-and-resource-types-expanding-tests.js',
   'dist/raml1/test/helpersTest.js',
@@ -59,10 +58,15 @@ var testFiles = [
   'src/raml1/test/data/parser/test/specs/transformations.js',
   'src/raml1/test/data/parser/test/specs/validator.js',
   'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js',
-  'dist/raml1/test/parserTestsRC2.js',
+  'dist/raml1/test/parserTestsRC2.js'
 ]
 
-var testFiles1 = [
+var testFilesExpand = [
+  'dist/raml1/test/schema-model-tests.js',
+  'dist/raml1/test/funcTests.js',
+].concat(testFilesLibExpand)
+
+var testFilesAll = [
   'src/**/*.test.js',
   'test/**/*.js',
   //'dist/raml1/test/model-editing-tests-attrs.js',
@@ -70,12 +74,12 @@ var testFiles1 = [
   'dist/raml1/test/model-editing-tests-refactoring.js',
   'dist/raml1/test/model-editing-tests-remove.js',
   'dist/raml1/test/model-editing-tests-sig.js',
-].concat(testFiles);
+].concat(testFilesExpand);
 
 gulp.task('test:ts', ['pre-test'], function () {
     global.isExpanded = null;
 
-    return gulp.src(testFiles1, { read: false })
+    return gulp.src(testFilesAll, { read: false })
         .pipe(mocha({
             bail: false,
             reporter: 'spec'
@@ -86,7 +90,18 @@ gulp.task('test:ts', ['pre-test'], function () {
 gulp.task('testExpand:ts', function () {
   global.isExpanded = true;
 
-  return gulp.src(testFiles, { read: false })
+  return gulp.src(testFilesExpand, { read: false })
+      .pipe(mocha({
+        bail: false,
+        reporter: 'spec'
+      }));
+});
+
+gulp.task('testLibExpand:ts', function () {
+  global.isExpanded = true;
+  global.isLibExpanded = true;
+
+  return gulp.src(testFilesLibExpand, { read: false })
       .pipe(mocha({
         bail: false,
         reporter: 'spec'

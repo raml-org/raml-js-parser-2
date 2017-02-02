@@ -101,6 +101,8 @@ function mergeHighLevelNodes(
     var expander:TraitsAndResourceTypesExpander;
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
+        
+        
 
         if(expand&&(proxy.LowLevelProxyNode.isInstance(currentMaster.lowLevel()))) {
             if(!expander){
@@ -129,7 +131,11 @@ export class TraitsAndResourceTypesExpander {
 
         this.init(api);
 
-        if(!api.lowLevel()) {
+        var llNode = api.lowLevel();
+        if(!llNode) {
+            return api;
+        }
+        if(llNode.actual().libExpanded){
             return api;
         }
 
@@ -224,15 +230,21 @@ export class TraitsAndResourceTypesExpander {
             var llNode:ll.ILowLevelASTNode = node.lowLevel();
             var topComposite:ll.ILowLevelASTNode;
             if (api.definition().key()!=universeDef.Universe10.Overlay||forceProxy){
+                if(proxy.LowLevelCompositeNode.isInstance(llNode)){
+                    llNode = (<proxy.LowLevelCompositeNode>(<proxy.LowLevelCompositeNode>llNode).originalNode()).originalNode();
+                }
                 topComposite = new proxy.LowLevelCompositeNode(
                     llNode, null, null, this.ramlVersion);
             }
             else{
                 topComposite = llNode;
             }
+
+            
             
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
+            newNode.setUniverse(node.universe());
             highLevelNodes.push(newNode);
             if(!merge){
                 break;

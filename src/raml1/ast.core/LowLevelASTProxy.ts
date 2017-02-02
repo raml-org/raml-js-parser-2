@@ -144,8 +144,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     //TODO
     dump():string{ return null; }
 
-    dumpToObject():any{
-        var serialized = json.serialize2(this,false);
+    dumpToObject(full:boolean):any{
+        var serialized = json.serialize2(this,full);
         //var serialized = json.serialize(this);
         if(this.kind() == yaml.Kind.MAPPING){
             var obj:any = {};
@@ -211,6 +211,57 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     includesContents() : boolean {
         return this._originalNode.includesContents();
+    }
+
+    root(): ll.ILowLevelASTNode {
+        var node:ll.ILowLevelASTNode = this;
+        while(node.parent()) {
+            var p = node.parent();
+            node = p;
+        }
+        return node;
+    }
+
+    find(name: string): ll.ILowLevelASTNode {
+        var found: ll.ILowLevelASTNode = null;
+        this.children().forEach(y=>{
+            if (y.key() && y.key() == name){
+                if(!found) found = y;
+            }
+        });
+        return found;
+    }
+
+    isMap(): boolean {
+        return this.kind() == yaml.Kind.MAP;
+    }
+
+    isMapping(): boolean {
+        return this.kind() == yaml.Kind.MAPPING;
+    }
+
+    isSeq(): boolean {
+        return this.kind() == yaml.Kind.SEQ;
+    }
+
+    isScalar(): boolean {
+        return this.kind() == yaml.Kind.SCALAR;
+    }
+
+    isValueSeq(): boolean {
+        return this.valueKind() == yaml.Kind.SEQ;
+    }
+
+    isValueMap(): boolean {
+        return this.valueKind() == yaml.Kind.MAP;
+    }
+
+    isValueInclude(): boolean {
+        return this.valueKind() == yaml.Kind.INCLUDE_REF;
+    }
+
+    isValueScalar(): boolean {
+        return this.valueKind() == yaml.Kind.SCALAR;
     }
 }
 
