@@ -318,6 +318,10 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
  * __$meta__={"primary":true}
  **/
 export function schemaContent08(bodyDeclaration:hl.IHighLevelNode):hl.IAttribute {
+    return schemaContent08Internal(bodyDeclaration);
+}
+export function schemaContent08Internal(bodyDeclaration:hl.IHighLevelNode,
+                     cache?:{[key:string]:hl.IHighLevelNode}):hl.IAttribute {
 
     var schemaAttribute =
         bodyDeclaration.attr(universes.Universe08.BodyLike.properties.schema.name);
@@ -326,7 +330,29 @@ export function schemaContent08(bodyDeclaration:hl.IHighLevelNode):hl.IAttribute
         return null;
     }
 
-    var declaration = search.findDeclarationByNode(schemaAttribute, search.LocationKind.VALUE_COMPLETION);
+    var schemaString = schemaAttribute.value();
+    if(!schemaString){
+        return null;
+    }
+
+    if(util.stringStartsWith(schemaString,"{")
+        ||util.stringStartsWith(schemaString,"[")
+        ||util.stringStartsWith(schemaString,"<")){
+        return schemaAttribute;
+    }
+    
+    var declaration:hl.IHighLevelNode;
+    if(cache){
+        declaration = cache[schemaString];
+    }
+    else{
+        var root = bodyDeclaration.root();
+        var globalSchemas = root.elementsOfKind(universes.Universe08.Api.properties.schemas.name);
+        declaration = _.find(globalSchemas,x=>x.name()==schemaString);
+    }
+    if(!declaration){
+        return schemaAttribute;
+    }
     if (!declaration) return schemaAttribute;
 
     if (!(<any>declaration).getKind || (<any>declaration).getKind() != hl.NodeKind.NODE) {
