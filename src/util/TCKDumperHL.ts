@@ -242,7 +242,7 @@ export class TCKDumper {
 
                                     var relativePath;
 
-                                    if (aPath.indexOf("http://") === 0 || aPath.indexOf("https://") === 0) {
+                                    if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
                                         relativePath = aPath;
                                     } else {
                                         relativePath = pathUtils.relative(eNode.lowLevel().unit().project().getRootPath(), aPath);

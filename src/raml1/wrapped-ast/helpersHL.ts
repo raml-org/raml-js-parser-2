@@ -204,21 +204,25 @@ export function dumpExpandableExample(ex,dumpXMLRepresentationOfExamples=false):
         strict: ex.strict(),
         name: ex.name()
     };
-    var annotations = ex.annotations();
-    var aObj = toAnnotations(annotations);
-    if (Object.keys(aObj).length > 0) {
-        sObj["annotations"] = aObj;
-    }
-    var sAnnotations = ex.scalarsAnnotations();
-    var saObj = {};
-    Object.keys(sAnnotations).forEach(pName=> {
-        var aObj1 = toAnnotations(sAnnotations[pName]);
-        if (Object.keys(aObj1).length > 0) {
-            saObj[pName] = Object.keys(aObj1).map(x=>aObj1[x]);
+    if(ex.hasAnnotations()) {
+        var annotations = ex.annotations();
+        var aObj = toAnnotations(annotations);
+        if (Object.keys(aObj).length > 0) {
+            sObj["annotations"] = aObj;
         }
-    });
-    if (Object.keys(saObj).length > 0) {
-        sObj["scalarsAnnotations"] = saObj;
+    }
+    if(ex.hasScalarAnnotations()) {
+        var sAnnotations = ex.scalarsAnnotations();
+        var saObj = {};
+        Object.keys(sAnnotations).forEach(pName=> {
+            var aObj1 = toAnnotations(sAnnotations[pName]);
+            if (Object.keys(aObj1).length > 0) {
+                saObj[pName] = Object.keys(aObj1).map(x=>aObj1[x]);
+            }
+        });
+        if (Object.keys(saObj).length > 0) {
+            sObj["scalarsAnnotations"] = saObj;
+        }
     }
     var displayName = ex.displayName();
     if (displayName) {
