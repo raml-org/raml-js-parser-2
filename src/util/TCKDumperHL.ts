@@ -90,7 +90,7 @@ export class TCKDumper {
                     result.ramlVersion = ramlVersion;
                     result.type = definition.nameId();
                 }
-                result.errors = this.dumpErrors(eNode.wrapperNode().errors());
+                result.errors = this.dumpErrors(core.errors(eNode));
             }
         }
 
