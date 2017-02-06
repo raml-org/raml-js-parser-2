@@ -584,7 +584,7 @@ function applyHelpers(
 }
 
 
-export function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=false):PropertyValue{
+function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=false):PropertyValue{
     var attr = resource.attr(universes.Universe10.Resource.properties.relativeUri.name);
     if(!attr){
         return pVal;
@@ -593,7 +593,7 @@ export function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl
     return extractParams(pVal, uri, resource,p,serializeMetadata);
 }
 
-export function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=true):PropertyValue{
+function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=true):PropertyValue{
 
     var buriAttr = api.attr(universes.Universe10.Api.properties.baseUri.name);
     var uri = buriAttr ? buriAttr.value() : '';
