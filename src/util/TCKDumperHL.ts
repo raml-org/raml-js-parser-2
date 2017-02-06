@@ -18,6 +18,7 @@ import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 import tckDumper = require("./TCKDumper");
 import defaultCalculator = require("../raml1/wrapped-ast/defaultCalculator");
 import helpersHL = require("../raml1/wrapped-ast/helpersHL");
+import stubs = require('../raml1/stubs');
 
 var pathUtils = require("path");
 
@@ -76,7 +77,7 @@ export class TCKDumper {
         var highLevelParent = node.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
         var rootPath = getRootPath(node);
-        var result = this.dumpInternal(node, null, rootPath,true);
+        var result = this.dumpInternal(node, null, rootPath,null,true);
         if (rootNodeDetails) {
             var obj:any = result;
             result= {};            
@@ -96,7 +97,7 @@ export class TCKDumper {
         return result;
     }
 
-    dumpInternal(_node:hl.IParseResult, nodeProperty:hl.IProperty, rp:string,isRoot = false):any {
+    dumpInternal(_node:hl.IParseResult, nodeProperty:hl.IProperty, rp:string,meta?:core.NodeMetadata,isRoot = false):any {
 
         if (_node == null) {
             return null;
@@ -162,11 +163,6 @@ export class TCKDumper {
                     if (def.UserDefinedProp.isInstance(p)) {
                         continue;
                     }
-                    if (universeHelpers.isTypeProperty(p)) {
-                        if (map["schema"]) {
-                            continue;
-                        }
-                    }
 
                     var pName = p.nameId();
                     //TODO implement as transformer or ignore case
@@ -176,12 +172,49 @@ export class TCKDumper {
                         }
                     }
                     var pVal = map[pName];
+                    if(universeHelpers.isTypeProperty(p)){
+                        if (map["schema"]) {
+                            var isNull = (pVal == null);
+                            if(!isNull && pVal.arr.length==1 && pVal.arr[0].isAttr()){
+                                isNull = (pVal.arr[0].asAttr().value()==null);
+                            }
+                            if(isNull) {
+                                meta = meta || new core.NodeMetadataImpl();
+                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
+                              }
+                            continue;
+                        }
+                        if(universeHelpers.isStringTypeDeclarationDescendant(definition)){
+                            if(pVal==null){
+                                result["type"] = "string";
+                                meta = meta || new core.NodeMetadataImpl();
+                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
+                                continue;
+                            }
+                            else if (pVal.arr.length == 1 && pVal.arr[0].isAttr()) {
+                                var tVal = pVal.arr[0].asAttr().value()
+                                if (tVal == null){
+                                    result["type"] = "string";
+                                    meta = meta || new core.NodeMetadataImpl();
+                                    (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue("type");
+                                    continue;
+                                }
+                                else if(tVal === "NULL" || tVal === "Null"){
+                                    result["type"] = "string";
+                                    continue;
+                                }
+                            }
+                        }
+                    }
                     pVal = applyHelpers(pVal, eNode, p, this.options.serializeMetadata,this.schemasCache08);
                     var udVal = obj[pName];
                     let aVal:any;
                     if (pVal !== undefined) {
                         if (pVal.isMultiValue) {
-                            aVal = pVal.arr.map(x=>this.dumpInternal(x, pVal.prop,rp));
+                            aVal = pVal.arr.map((x,i)=>{
+                                var pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
+                                return this.dumpInternal(x, pVal.prop,rp,pMeta);
+                            });
                             if (p.isValueProperty()) {
                                 var sAnnotations = [];
                                 var gotScalarAnnotations = false;
@@ -221,22 +254,32 @@ export class TCKDumper {
                     else if (udVal !== undefined) {
                         aVal = udVal;
                     }
-                    else if (this.options.attributeDefaults) {
-                        var defVal = this.getDefaultsCalculator().attributeDefaultIfEnabled(eNode, p);
-                        if (Array.isArray(defVal)) {
-                            defVal = defVal.map(x=> {
-                                if (hlImpl.isASTPropImpl(x)) {
-                                    return this.dumpInternal(<hl.IParseResult>x, p,rp);
-                                }
-                                return x;
-                            });
-                        }
-                        else if (hlImpl.isASTPropImpl(defVal)) {
-                            defVal = this.dumpInternal(<hl.IParseResult>defVal, p,rp);
-                        }
-                        aVal = defVal;
-                        if (aVal != null && p.isMultiValue() && !Array.isArray(aVal)) {
-                            aVal = [aVal];
+                    else if (this.options.attributeDefaults) {                        
+                        var defVal = this.defaultsCalculator.attributeDefaultIfEnabled(eNode, p);
+                        if(defVal != null) {
+                            meta = meta || new core.NodeMetadataImpl();
+                            if (Array.isArray(defVal)) {
+                                defVal = defVal.map(x=> {
+                                    if (hlImpl.isASTPropImpl(x)) {
+                                        return this.dumpInternal(<hl.IParseResult>x, p, rp);
+                                    }
+                                    return x;
+                                });
+                            }
+                            else if (hlImpl.isASTPropImpl(defVal)) {
+                                defVal = this.dumpInternal(<hl.IParseResult>defVal, p, rp);
+                            }
+                            aVal = defVal;
+                            if (aVal != null && p.isMultiValue() && !Array.isArray(aVal)) {
+                                aVal = [aVal];
+                            }
+                            var insertionKind = this.defaultsCalculator.insertionKind(eNode,p);
+                            if(insertionKind == defaultCalculator.InsertionKind.CALCULATED) {
+                                (<core.NodeMetadataImpl>meta).registerCalculatedValue(pName);
+                            }
+                            else if(insertionKind == defaultCalculator.InsertionKind.BY_DEFAULT){
+                                (<core.NodeMetadataImpl>meta).registerInsertedAsDefaultValue(pName);
+                            }
                         }
                     }
                     aVal = tckDumper.applyTransformersMap(eNode, p, aVal, this.oDumper.nodePropertyTransformersMap);
@@ -286,7 +329,7 @@ export class TCKDumper {
                     }
                 }
                 if (this.options.serializeMetadata) {
-                    this.serializeMeta(result, eNode);
+                    this.serializeMeta(result, eNode, meta);
                 }
                 if (Object.keys(scalarsAnnotations).length > 0) {
                     result["scalarsAnnotations"] = scalarsAnnotations;
@@ -344,7 +387,7 @@ export class TCKDumper {
                         var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
                         var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
-                        val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, true);
+                        val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
                     }
                     else if (propName == "items" && typeof val === "object") {
                         var isArr = Array.isArray(val);
@@ -362,7 +405,7 @@ export class TCKDumper {
                                     var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
                                     var tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
                                     tNode.patchType(builder.doDescrimination(tNode));
-                                    val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, true);
+                                    val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
                                     propName = x.key();
                                 }
                             })
@@ -429,17 +472,22 @@ export class TCKDumper {
         return eObj;
     }
 
-    serializeMeta(obj:any, node:hl.IHighLevelNode) {
+    serializeMeta(obj:any, node:hl.IHighLevelNode,_meta:core.NodeMetadata) {
         if (!this.options.serializeMetadata) {
             return;
         }
-        var wn = node.wrapperNode();
-        if(wn) {
-            var meta = wn.meta();
-            if (!meta.isDefault()) {
-                obj["__METADATA__"] = meta.toJSON();
-            }
+        var definition = node.definition();
+        var isOptional = universeHelpers.isMethodType(definition)&&node.optional();
+        if(!_meta && !isOptional){
+            return;
         }
+        var meta = <core.NodeMetadataImpl>_meta || new core.NodeMetadataImpl(false,false);
+        if(isOptional){
+            meta.setOptional();
+        }
+        //if (!meta.isDefault()) {
+            obj["__METADATA__"] = meta.toJSON();
+        //}
     }
 
 }
@@ -477,8 +525,11 @@ class PropertyValue{
     }
     
     arr:hl.IParseResult[] = [];
+    mArr:core.NodeMetadata[] = [];
     val:hl.IParseResult;
     isMultiValue:boolean;
+
+    hasMeta:boolean;
     
     registerValue(val:hl.IParseResult){
         if(this.isMultiValue){
@@ -486,6 +537,12 @@ class PropertyValue{
         }
         else{
             this.val = val;
+        }
+    }
+    
+    registerMeta(m:core.NodeMetadata){
+        if(this.isMultiValue){
+            this.mArr.push(m);
         }
     }
 }
@@ -500,32 +557,18 @@ function applyHelpers(
     
     var newVal:PropertyValue;
     if(universeHelpers.isBaseUriParametersProperty(p)){
-        var baseUriParameters = helpersHL.baseUriParameters(node,serializeMetadata);
-        if(baseUriParameters.length>0) {
-            newVal = new PropertyValue(p);
-            baseUriParameters.forEach(x=>newVal.registerValue(x));
-        }
+        newVal = baseUriParameters(node,pVal,p,serializeMetadata);
     }
     if(universeHelpers.isUriParametersProperty(p)){
-        var uriParameters = helpersHL.uriParameters(node,serializeMetadata);
-        if(uriParameters.length>0) {
-            newVal = new PropertyValue(p);
-            uriParameters.forEach(x=>newVal.registerValue(x));
-        }
+        newVal = uriParameters(node,pVal,p,serializeMetadata);
     }
     else if(universeHelpers.isTraitsProperty(p)){
-        var arr = helpersHL.allTraits(node,serializeMetadata);
-        if(arr.length>0){
-            newVal = new PropertyValue(p);
-            arr.forEach(x=>newVal.registerValue(x));
-        }
+        var arr = helpersHL.allTraits(node,false);
+        newVal = contributeExternalNodes(node,arr,p,serializeMetadata);
     }
     else if(universeHelpers.isResourceTypesProperty(p)){
-        var arr = helpersHL.allResourceTypes(node,serializeMetadata);
-        if(arr.length>0){
-            newVal = new PropertyValue(p);
-            arr.forEach(x=>newVal.registerValue(x));
-        }
+        var arr = helpersHL.allResourceTypes(node,false);
+        newVal = contributeExternalNodes(node,arr,p,serializeMetadata);
     }
     else if(p.nameId()=="schemaContent"){
         var attr = helpersHL.schemaContent08Internal(node,schemasCache08);
@@ -538,4 +581,120 @@ function applyHelpers(
         return newVal;
     }
     return pVal;    
+}
+
+
+export function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=false):PropertyValue{
+    var attr = resource.attr(universes.Universe10.Resource.properties.relativeUri.name);
+    if(!attr){
+        return pVal;
+    }
+    var uri = attr.value();
+    return extractParams(pVal, uri, resource,p,serializeMetadata);
+}
+
+export function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=true):PropertyValue{
+
+    var buriAttr = api.attr(universes.Universe10.Api.properties.baseUri.name);
+    var uri = buriAttr ? buriAttr.value() : '';
+    return extractParams(pVal, uri, api,p,serializeMetadata);
+}
+
+function extractParams(
+    pVal:PropertyValue,
+    uri:string,
+    ownerHl:hl.IHighLevelNode,
+    prop:hl.IProperty,
+    serializeMetadata:boolean):PropertyValue {
+
+    if(!uri){
+        return pVal;
+    }
+
+    var describedParams = {};
+    if(pVal) {
+        pVal.arr.forEach(x=> {
+            var arr = describedParams[x.name()];
+            if (!arr) {
+                arr = [];
+                describedParams[x.name()] = arr;
+            }
+            arr.push(x);
+        });
+    }
+
+    var newVal = new PropertyValue(prop);
+    var prev = 0;
+    var mentionedParams = {};
+    var gotUndescribedParam = false;
+    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
+        prev = uri.indexOf('}', ++i);
+        if(prev<0){
+            break;
+        }
+        var paramName = uri.substring(i, prev);
+        mentionedParams[paramName] = true;
+        if (describedParams[paramName]) {
+            describedParams[paramName].forEach(x=>{
+                newVal.registerValue(x);
+                newVal.registerMeta(null);
+            });
+        }
+        else {
+            gotUndescribedParam = true;
+            var universe = ownerHl.definition().universe();
+            var nc=<def.NodeClass>universe.type(universes.Universe10.StringTypeDeclaration.name);
+            var hlNode=stubs.createStubNode(nc,null,paramName,ownerHl.lowLevel().unit());
+            hlNode.setParent(ownerHl);
+            hlNode.attrOrCreate("name").setValue(paramName);
+            (<hlImpl.ASTNodeImpl>hlNode).patchProp(prop);
+
+            newVal.registerValue(hlNode);
+            if(serializeMetadata) {
+                newVal.hasMeta = true;
+                var meta = new core.NodeMetadataImpl();
+                meta.setCalculated();
+                newVal.registerMeta(meta);
+            }
+        }
+    }
+    if(!gotUndescribedParam){
+        return pVal;
+    }
+    Object.keys(describedParams).filter(x=>!mentionedParams[x])
+        .forEach(x=>describedParams[x].forEach(y=>{
+            newVal.registerValue(y);
+            if(newVal.hasMeta){
+                newVal.registerMeta(null);
+            }
+        }));
+    return newVal;
+};
+
+function contributeExternalNodes(
+    ownerNode:hl.IHighLevelNode,
+    arr:hl.IHighLevelNode[],
+    p:hl.IProperty,
+    serializeMetadata:boolean):PropertyValue{
+
+    if(arr.length==0){
+        return null;
+    }
+    var rootPath = ownerNode.lowLevel().unit().absolutePath();
+    var newVal = new PropertyValue(p);
+    arr.forEach(x=>{
+        newVal.registerValue(x);
+        if(serializeMetadata){
+            if(x.lowLevel().unit().absolutePath()!=rootPath){
+                newVal.hasMeta = true;
+                var meta = new core.NodeMetadataImpl();
+                meta.setCalculated();
+                newVal.mArr.push(meta);
+            }
+            else{
+                newVal.mArr.push(null);
+            }
+        }
+    });
+    return newVal;
 }
