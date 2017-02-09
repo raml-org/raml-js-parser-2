@@ -81,7 +81,7 @@ export class ReferencePatcher{
                         node: x,
                         transformer: (<proxy.LowLevelProxyNode>x).transformer()
                     };
-                }));
+                }),units[0].absolutePath());
             }
         }
 
@@ -438,6 +438,7 @@ export class ReferencePatcher{
         var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],range);
         if(patched != null){
             llNode.setKeyOverride(patched.value());
+            (<hlimpl.ASTNodeImpl>hlNode).resetIDs();
         }
     }
 
@@ -543,10 +544,7 @@ export class ReferencePatcher{
         var extendedUsesInfos = Object.keys(extendedUnitMap).map(x=>extendedUnitMap[x])
             .filter(x=>!unitMap[x.absolutePath()]/*&&this.usedNamespaces[x.namespace()]*/);
 
-        var u = node.unit();
-        var unitPath = u.absolutePath();
-
-
+        var unitPath = unit.absolutePath();
         var existingLibs = {};
         var usesNode:proxy.LowLevelCompositeNode;
         if(usesNodes.length>0){
@@ -561,6 +559,20 @@ export class ReferencePatcher{
         }
         var usesProp = hlNode.definition().property(usesPropName);
         var usesType = usesProp.range(); 
+        var directChildren = (<hlimpl.ASTNodeImpl>hlNode)._children.filter(x=>{
+            if(x.lowLevel().unit().absolutePath()==unitPath){
+                return true;
+            }
+            var p = x.property();
+            return !p||!universeHelpers.isUsesProperty(p)
+        });
+        var mergedChildren = (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren.filter(x=>{
+            if(x.lowLevel().unit().absolutePath()==unitPath){
+                return true;
+            }
+            var p = x.property();
+            return !p||!universeHelpers.isUsesProperty(p)
+        });;        
         for (var ui of usesInfos.concat(extendedUsesInfos)) {
             var up = ui.absolutePath();
             if(existingLibs[ui.namespace()]){
@@ -570,10 +582,12 @@ export class ReferencePatcher{
             var mapping = jsyaml.createMapping(ui.namespace(), ip);
             mapping.setUnit(yamlNode.unit());
             var hlUses = new hlimpl.ASTNodeImpl(mapping,hlNode,usesType,usesProp);
-            (<hlimpl.ASTNodeImpl>hlNode)._children.push(hlUses);
-            (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren.push(hlUses);
+            directChildren.push(hlUses);
+            mergedChildren.push(hlUses);
             usesNode.replaceChild(null,mapping);
         }
+        (<hlimpl.ASTNodeImpl>hlNode)._children  = directChildren;
+        (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = mergedChildren;
     }
 
     removeUses(hlNode:hl.IHighLevelNode){
@@ -773,23 +787,54 @@ export class ReferencePatcher{
     private removeUnusedDependencies(api:hl.IHighLevelNode) {
         var llNode = <proxy.LowLevelCompositeNode>api.lowLevel();
         var apiPath = llNode.unit().absolutePath();
-        var children = [].concat(api.children());
-        for (var ch of children) {
+
+        var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
+        //var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
+        var newDirectChildren:hl.IParseResult[] = [];
+        //var newMergedChildren:hl.IParseResult[] = [];
+        for(var ch of directChildren){
             var chLl = ch.lowLevel();
             if (ch.isElement()&&chLl["libProcessed"]) {
+                newDirectChildren.push(ch);
                 continue;
             }
             var chPath = chLl.unit().absolutePath();
             if (chPath == apiPath) {
+                newDirectChildren.push(ch);
                 continue;
             }
             (<proxy.LowLevelCompositeNode>chLl.parent()).removeChild(chLl);
         }
+        // var extensionPaths = {};
+        // var master = api;
+        // while(master){
+        //     var mPath = master.lowLevel().unit().absolutePath();
+        //     if(extensionPaths[mPath]){
+        //         break;
+        //     }
+        //     extensionPaths[mPath] = true;
+        //     var mNode = master.getMaster();
+        //     master = mNode && mNode.asElement();
+        // }
+        // for(var ch of mergedChildren){
+        //     var chLl = ch.lowLevel();
+        //     if (ch.isElement()&&chLl["libProcessed"]) {
+        //         newMergedChildren.push(ch);
+        //         continue;
+        //     }
+        //     var chPath = chLl.unit().absolutePath();
+        //     if (extensionPaths[chPath]) {
+        //         newMergedChildren.push(ch);
+        //         continue;
+        //     }
+        // }
+        (<hlimpl.ASTNodeImpl>api)._children = newDirectChildren;
+        (<hlimpl.ASTNodeImpl>api)._mergedChildren = null;
     }
 
     private contributeCollection(api:hl.IHighLevelNode, collection:ElementsCollection):boolean {
 
-        var llApi = <proxy.LowLevelCompositeNode>api.lowLevel()
+        var llApi = <proxy.LowLevelCompositeNode>api.lowLevel();
         if(collection.array.length==0){
             return false;
         }
@@ -818,9 +863,6 @@ export class ReferencePatcher{
             }
             var newLlNode = llNode.replaceChild(null,e.lowLevel());
             var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,propRange,prop);
-            if(name=="types"||name=="annotationTypes"){
-                newHLNode.patchType(builder.doDescrimination(newHLNode));
-            }
             directChildren.push(newHLNode);
             if(mergedChildren){
                 mergedChildren.push(newHLNode);
@@ -957,7 +999,8 @@ function checkExpression(value:string) {
 export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     node:ll.ILowLevelASTNode,
     transformer:proxy.ValueTransformer
-}[]):proxy.LowLevelCompositeNode{
+}[],
+rootPath:string):proxy.LowLevelCompositeNode{
     
     var llMethod = <proxy.LowLevelCompositeNode>node.lowLevel();
     var ramlVersion = node.definition().universe().version();
@@ -974,7 +1017,8 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
         isNode = (<proxy.LowLevelCompositeNode>llMethod).replaceChild(null,newLLIsNode);
     }
     var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
-    var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
+    var childrenToPreserve = (originalIsNode != null && (originalIsNode.unit().absolutePath() == rootPath))
+        ? originalIsNode.children() : [];
 
     var newTraits = childrenToPreserve.concat(traits.map(x=>{
         var llChNode = prepareTraitRefNode(x.node,isNode);

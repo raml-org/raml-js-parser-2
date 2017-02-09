@@ -83,8 +83,10 @@ export class TCKDumper {
                     this.helpersMap["schemaContent"] = new SchemaContentHandler(schemasCache08);
                 }
             }
-            this.helpersMap["traits"] = new TemplatesHandler(helpersHL.allTraits(eNode,false));
-            this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersHL.allResourceTypes(eNode,false));
+            if(universeHelpers.isApiSibling(definition)) {
+                this.helpersMap["traits"] = new TemplatesHandler(helpersHL.allTraits(eNode, false));
+                this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersHL.allResourceTypes(eNode, false));
+            }
         }        
     }
     

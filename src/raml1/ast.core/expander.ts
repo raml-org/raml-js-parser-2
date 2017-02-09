@@ -483,23 +483,23 @@ export class TraitsAndResourceTypesExpander {
 
         return null;
     }
-
-    private appendTraitReferences(
-        m:hl.IHighLevelNode,
-        traits:GenericData[]){
-        
-        if(traits.length==0){
-            return;
-        }
-
-        var traitsData = traits.map(x=>{
-            return {
-                node: x.ref.lowLevel(),
-                transformer: x.parentTransformer
-            };
-        });
-        referencePatcher.patchMethodIs(m,traitsData);
-    }
+    //
+    // private appendTraitReferences(
+    //     m:hl.IHighLevelNode,
+    //     traits:GenericData[]){
+    //    
+    //     if(traits.length==0){
+    //         return;
+    //     }
+    //
+    //     var traitsData = traits.map(x=>{
+    //         return {
+    //             node: x.ref.lowLevel(),
+    //             transformer: x.parentTransformer
+    //         };
+    //     });
+    //     referencePatcher.patchMethodIs(m,traitsData);
+    // }
 }
 
 export class LibraryExpander{

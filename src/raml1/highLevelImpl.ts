@@ -348,6 +348,11 @@ export class BasicASTNode implements hl.IParseResult {
     }
     cachedId: string
     cachedFullId: string
+    
+    resetIDs(){
+        this.cachedId = null;
+        this.cachedFullId = null;
+    }
 
     fullLocalId() : string {
         if (this.cachedFullId){
