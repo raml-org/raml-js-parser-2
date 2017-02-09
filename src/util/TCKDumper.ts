@@ -1119,8 +1119,12 @@ class ArrayExpressionTransformer implements Transformation{
 
     transform(value:any){
         var typePropName = universes.Universe10.TypeDeclaration.properties.type.name;
+        var schemaPropName = universes.Universe10.TypeDeclaration.properties.schema.name;
         var itemsPropName = universes.Universe10.ArrayTypeDeclaration.properties.items.name;
         var tValue = value[typePropName];
+        if(!tValue){
+            tValue = value[schemaPropName];
+        }
         if(tValue.length==1&&util.stringEndsWith(tValue[0],"[]")) {
             if(value[itemsPropName]==null) {
                 value[itemsPropName] = tValue[0].substring(0, tValue[0].length - 2);
