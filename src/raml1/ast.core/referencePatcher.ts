@@ -4,6 +4,7 @@ import hl=require("../highLevelAST");
 import hlimpl=require("../highLevelImpl");
 import yaml=require("yaml-ast-parser");
 import jsyaml=require("../jsyaml/jsyaml2lowLevel");
+import json=require("../jsyaml/json2lowLevel");
 import util=require("../../util/index");
 import proxy=require("./LowLevelASTProxy");
 import universeDef=require("../tools/universe");
@@ -13,6 +14,7 @@ import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import typeExpressions = def.rt.typeExpressions;
 import expander=require("./expander");
+import builder = require("./builder");
 
 export enum PatchMode{
     DEFAULT, PATH
@@ -40,13 +42,12 @@ export class ReferencePatcher{
             this.patchNodeName(hlNode,rootNode.lowLevel().unit(),resolver);
         }
         if(removeUses){
-            this.removeUses(hlNode.lowLevel());
+            this.removeUses(hlNode);
         }
         else {
-            this.patchUses(hlNode.lowLevel(), resolver);
+            this.patchUses(hlNode, resolver);
         }
         this.resetTypes(hlNode);
-        hlNode.resetChildren();
         hlNode.lowLevel()["libProcessed"] = true;
     }
 
@@ -68,10 +69,14 @@ export class ReferencePatcher{
             }
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
             var traitNodes = node.attributes(isPropertyName);
-            cNode.preserveAnnotations();
-            node.resetChildren();
             if(traitNodes.length!=0) {                                
                 isNode = patchMethodIs(node,traitNodes.map(x=>x.lowLevel()).map(x=>{
+                    if(!proxy.LowLevelProxyNode.isInstance(x)){
+                        return {
+                            node: x,
+                            transformer: null
+                        }
+                    }
                     return{
                         node: x,
                         transformer: (<proxy.LowLevelProxyNode>x).transformer()
@@ -101,7 +106,34 @@ export class ReferencePatcher{
         }
         if(isNode){
             isNode.filterChildren();
+            var directChildren = node.directChildren();
+            if(directChildren){
+                (<hlimpl.ASTNodeImpl>node)._children = this.filterTraitReferences(directChildren);
+            }
+            var mergedChildren = node.children();
+            if(mergedChildren) {
+                (<hlimpl.ASTNodeImpl>node)._mergedChildren = this.filterTraitReferences(mergedChildren);
+            }
         }
+    }
+    
+    private filterTraitReferences(children:hl.IParseResult[]):hl.IParseResult[]{
+        var newChildren:hl.IParseResult[] = [];
+        var map = {};
+        for(var ch of children){
+            var p = ch.property();
+            if(!p||!universeHelpers.isIsProperty(p)){
+                newChildren.push(ch);
+                continue;
+            }
+            var key = JSON.stringify(json.serialize(ch.lowLevel()));
+            if(map[key]){
+                continue;
+            }
+            map[key] = true;
+            newChildren.push(ch);
+        }
+        return newChildren;
     }
 
     patchReferenceAttr(
@@ -480,7 +512,9 @@ export class ReferencePatcher{
         return new PatchedReference(newNS,plainName,collectionName,referencedUnit,this.mode);
     }
 
-    patchUses(node:ll.ILowLevelASTNode,resolver:namespaceResolver.NamespaceResolver){
+    private patchUses(hlNode:hl.IHighLevelNode,resolver:namespaceResolver.NamespaceResolver){
+        var node = hlNode.lowLevel();
+        hlNode.children();
         if(!(proxy.LowLevelCompositeNode.isInstance(node))){
             return;
         }
@@ -496,8 +530,8 @@ export class ReferencePatcher{
 
         var cNode = <proxy.LowLevelCompositeNode>node;
         var originalChildren = node.children();
-        var usesNodes = originalChildren.filter(x=>
-        x.key()==universeDef.Universe10.FragmentDeclaration.properties.uses.name);
+        var usesPropName = universeDef.Universe10.FragmentDeclaration.properties.uses.name;
+        var usesNodes = originalChildren.filter(x=>x.key()== usesPropName);
 
         var oNode = toOriginal(node);
         var yamlNode = oNode;
@@ -524,7 +558,9 @@ export class ReferencePatcher{
             newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
             newUses.setUnit(yamlNode.unit());
             usesNode = cNode.replaceChild(null,newUses);
-        }        
+        }
+        var usesProp = hlNode.definition().property(usesPropName);
+        var usesType = usesProp.range(); 
         for (var ui of usesInfos.concat(extendedUsesInfos)) {
             var up = ui.absolutePath();
             if(existingLibs[ui.namespace()]){
@@ -533,11 +569,15 @@ export class ReferencePatcher{
             var ip = ui.includePath;
             var mapping = jsyaml.createMapping(ui.namespace(), ip);
             mapping.setUnit(yamlNode.unit());
+            var hlUses = new hlimpl.ASTNodeImpl(mapping,hlNode,usesType,usesProp);
+            (<hlimpl.ASTNodeImpl>hlNode)._children.push(hlUses);
+            (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren.push(hlUses);
             usesNode.replaceChild(null,mapping);
         }
     }
 
-    removeUses(node:ll.ILowLevelASTNode){
+    removeUses(hlNode:hl.IHighLevelNode){
+        var node = hlNode.lowLevel();
         if(!(proxy.LowLevelCompositeNode.isInstance(node))){
             return;
         }
@@ -548,12 +588,23 @@ export class ReferencePatcher{
         if(usesNodes.length>0){
             cNode.removeChild(usesNodes[0]);
         }
+        (<hlimpl.ASTNodeImpl>hlNode)._children = hlNode.directChildren().filter(x=>{
+            var p = x.property();
+            return p == null || !universeHelpers.isUsesProperty(p);
+        });
+        (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = hlNode.children().filter(x=>{
+            var p = x.property();
+            return p == null || !universeHelpers.isUsesProperty(p);
+        });
     }
 
     resetTypes(hlNode:hl.IHighLevelNode) {
         for(var ch of hlNode.elements()){
             this.resetTypes(ch);
         }
+        // for(var attr of hlNode.attrs()){
+        //     (<hlimpl.ASTPropImpl>attr).patchType(null);
+        // }
         delete hlNode.lowLevel().actual().types;
         delete hlNode["_ptype"];
         delete hlNode["_types"];
@@ -667,14 +718,12 @@ export class ReferencePatcher{
                 for (var cName of Object.keys(libModel)) {
                     var collection:ElementsCollection = <ElementsCollection>libModel[cName];
                     if (ElementsCollection.isInstance(collection)) {
-                        gotContribution = this.contributeCollection(
-                                <proxy.LowLevelCompositeNode>api.lowLevel(),
-                                collection) || gotContribution;
+                        gotContribution = this.contributeCollection(api,collection) || gotContribution;
                     }
                 }
             }
-            this.resetTypes(api);
             api.resetChildren();
+            this.resetTypes(api);
             if (gotContribution) {
                 var gotPatch = false;
                 do {
@@ -684,10 +733,9 @@ export class ReferencePatcher{
                 this.removeUnusedDependencies(api);
             }
         }
-        this.removeUses(api.lowLevel());
+        this.removeUses(api);
         api.lowLevel().actual().libExpanded = true;
         this.resetTypes(api);
-        api.resetChildren();
     }
 
     private patchDependencies(api:hl.IHighLevelNode):boolean {
@@ -698,7 +746,7 @@ export class ReferencePatcher{
                 continue;
             }
             var chNode = ch.asElement();
-            this.removeUses(chNode.lowLevel());
+            this.removeUses(chNode);
             var chPath = ch.lowLevel().unit().absolutePath();
             if (chPath == apiPath && ch.lowLevel().includePath() == null) {
                 continue;
@@ -739,12 +787,15 @@ export class ReferencePatcher{
         }
     }
 
-    private contributeCollection(llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
+    private contributeCollection(api:hl.IHighLevelNode, collection:ElementsCollection):boolean {
 
+        var llApi = <proxy.LowLevelCompositeNode>api.lowLevel()
         if(collection.array.length==0){
             return false;
         }
         var name = collection.name;
+        var prop = api.definition().property(name);
+        var propRange = prop.range();
         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
             llApi.children(),
             x=>x.key()==name);
@@ -753,6 +804,8 @@ export class ReferencePatcher{
             llNode = llApi.replaceChild(null,n);
         }
         var result = false;
+        var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
+        var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
         for(var e of collection.array){
             if(llNode.children().some(x=>{
                     var oNode = toOriginal(x);
@@ -763,7 +816,15 @@ export class ReferencePatcher{
                 })){
                 continue;
             }
-            llNode.replaceChild(null,e.lowLevel());
+            var newLlNode = llNode.replaceChild(null,e.lowLevel());
+            var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,propRange,prop);
+            if(name=="types"||name=="annotationTypes"){
+                newHLNode.patchType(builder.doDescrimination(newHLNode));
+            }
+            directChildren.push(newHLNode);
+            if(mergedChildren){
+                mergedChildren.push(newHLNode);
+            }
             result = true;
         }
         return result;
@@ -925,6 +986,29 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     })).filter(x=>x!=null);
     isNode.setChildren(newTraits);
     isNode.filterChildren();
+    newTraits = isNode.children();
+    var directChildren = node.directChildren();
+    var isProp = node.definition().property("is");
+    var isPropRange = isProp.range();
+    if(directChildren){
+        directChildren = directChildren.filter(x=>{
+            var p = x.property();
+            return p==null || !universeHelpers.isIsProperty(p); 
+        });        
+        (<hlimpl.ASTNodeImpl>node)._children = directChildren.concat(newTraits.map(x=>
+            new hlimpl.ASTPropImpl(x,node,isPropRange,isProp)
+        ));
+    }
+    var mergedChildren = node.children();
+    if(mergedChildren) {
+        mergedChildren = mergedChildren.filter(x=>{
+            var p = x.property();
+            return p==null || !universeHelpers.isIsProperty(p);
+        });
+        (<hlimpl.ASTNodeImpl>node)._mergedChildren = mergedChildren.concat(newTraits.map(x=>
+            new hlimpl.ASTPropImpl(x,node,isPropRange,isProp)
+        ));
+    }
     return isNode;
 }
 

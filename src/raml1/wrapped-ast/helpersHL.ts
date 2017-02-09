@@ -296,13 +296,14 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
         &&!universeHelpers.isOverlayType(hlNode.definition());
     var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var result:hl.IHighLevelNode[] = [];
+    var rp = new referencePatcher.ReferencePatcher();
     for(var x of arr){
         var p = x.lowLevel().unit().path();
         if(isProxy){
-            if(!(x.lowLevel() instanceof proxy.LowLevelProxyNode)) {
+            if(!proxy.LowLevelProxyNode.isInstance(x.lowLevel())) {
                 x = exp.createHighLevelNode(x, false);
             }
-            new referencePatcher.ReferencePatcher().process(x,hlNode,true,true);
+            rp.process(x,hlNode,true,true);
         }
         if(serializeMetadata&&p!=nodePath){
             (<core.NodeMetadataImpl>x.wrapperNode().meta()).setCalculated();

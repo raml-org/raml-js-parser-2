@@ -402,6 +402,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             result = [];
         }
         this._children = result;
+        if(this._preserveAnnotations){
+            this._children.forEach(x=>x.preserveAnnotations());
+        }
         return result;
     }
 
@@ -435,7 +438,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 var key = y.originalNode().key();
                 if(key && x.transformer()){
                     var isAnnotation = key!=null
-                        && (this._preserveAnnotations||this.isResource())
+                        && this._preserveAnnotations
                         && util.stringStartsWith(key,"(")
                         && util.stringEndsWith(key,")");
                     if(!isAnnotation) {
@@ -631,25 +634,26 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     }
 
     preserveAnnotations(){
-        if(!this._preserveAnnotations) {
-            if(this.isInsideResource===undefined){
-                this.isInsideResource = false;
-                if(!this.isResource()){
-                    var parent = this._parent;
-                    while (parent) {
-                        if ((<LowLevelCompositeNode>parent).isResource()) {
-                            this.isInsideResource = true;
-                            break;
-                        }
-                        parent = parent.parent();
-                    }
-                }
-            }
-            if(this.isInsideResource) {
-                this._preserveAnnotations = true;
-                this._children = null;
-            }
-        }
+        this._preserveAnnotations = true;
+        // if(!this._preserveAnnotations) {
+        //     if(this.isInsideResource===undefined){
+        //         this.isInsideResource = false;
+        //         if(!this.isResource()){
+        //             var parent = this._parent;
+        //             while (parent) {
+        //                 if ((<LowLevelCompositeNode>parent).isResource()) {
+        //                     this.isInsideResource = true;
+        //                     break;
+        //                 }
+        //                 parent = parent.parent();
+        //             }
+        //         }
+        //     }
+        //     if(this.isInsideResource) {
+        //         this._preserveAnnotations = true;
+        //         //this._children = null;
+        //     }
+        // }
     }
 
     filterChildren(){

@@ -7,6 +7,9 @@ import hl = require("../raml1/highLevelAST");
 import ll = require("../raml1/lowLevelAST");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
+import search=require("../search/search-interface");
+import expander=require("../raml1/ast.core/expander");
+import referencePatcher = require("../raml1/ast.core/referencePatcher");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
@@ -58,22 +61,40 @@ export class TCKDumper {
 
 
     private defaultsCalculator:defaultCalculator.AttributeDefaultsCalculator;
-    
-    schemasCache08:{[key:string]:hl.IHighLevelNode};
 
-    dump(node:hl.IParseResult):any {
+    private helpersMap:{[key:string]:HelperMethod};
+
+    private init(node:hl.IParseResult){
+
+        this.helpersMap = {
+            "baseUriParameters" :  baseUriParametersHandler,
+            "uriParameters" : uriParametersHandler
+        };
         var isElement = node.isElement();
         if(isElement){
             var eNode = node.asElement();
             var definition = eNode.definition();
             if(definition.universe().version()=="RAML08"){
                 if(universeHelpers.isApiType(definition)){
-                    this.schemasCache08 = {};
+                    var schemasCache08 = {};
                     eNode.elementsOfKind(universes.Universe08.Api.properties.schemas.name)
-                        .forEach(x=>this.schemasCache08[x.name()] = x);
+                        .forEach(x=>schemasCache08[x.name()] = x);
+
+                    this.helpersMap["schemaContent"] = new SchemaContentHandler(schemasCache08);
                 }
             }
-        }
+            this.helpersMap["traits"] = new TemplatesHandler(helpersHL.allTraits(eNode,false));
+            this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersHL.allResourceTypes(eNode,false));
+        }        
+    }
+    
+    private dispose(){
+        delete this.helpersMap;
+    }
+
+    dump(node:hl.IParseResult):any {
+        this.init(node);
+        var isElement = node.isElement();
         var highLevelParent = node.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
         var rootPath = getRootPath(node);
@@ -93,7 +114,7 @@ export class TCKDumper {
                 result.errors = this.dumpErrors(core.errors(eNode));
             }
         }
-
+        this.dispose();
         return result;
     }
 
@@ -206,7 +227,7 @@ export class TCKDumper {
                             }
                         }
                     }
-                    pVal = applyHelpers(pVal, eNode, p, this.options.serializeMetadata,this.schemasCache08);
+                    pVal = this.applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
                     var udVal = obj[pName];
                     let aVal:any;
                     if (pVal !== undefined) {
@@ -490,6 +511,23 @@ export class TCKDumper {
         //}
     }
 
+    private applyHelpers(pVal:PropertyValue,
+                         node:hl.IHighLevelNode,
+                         p:hl.IProperty,
+                         serializeMetadata:boolean) {
+
+        var pName = p.nameId();
+        var hMethod = this.helpersMap[pName];
+        if (!hMethod) {
+            return pVal;
+        }
+        var newVal = hMethod.apply(node, pVal, p, serializeMetadata);
+        if (!newVal) {
+            return pVal;
+        }
+        return newVal;
+    }
+
 }
 
 export interface SerializeOptions{
@@ -697,4 +735,67 @@ function contributeExternalNodes(
         }
     });
     return newVal;
+}
+
+interface HelperMethod{
+    apply(node:hl.IHighLevelNode,
+        pVal:PropertyValue,
+        p:hl.IProperty,
+        serializeMetadata:boolean):PropertyValue
+}
+
+var baseUriParametersHandler:HelperMethod = {
+    apply: (node:hl.IHighLevelNode,
+            pVal:PropertyValue,
+            p:hl.IProperty,
+            serializeMetadata:boolean) => {
+        var buriAttr = node.attr(universes.Universe10.Api.properties.baseUri.name);
+        var uri = buriAttr ? buriAttr.value() : '';
+        return extractParams(pVal, uri, node, p, serializeMetadata);
+    }
+}
+
+var uriParametersHandler:HelperMethod = {
+    apply: (node:hl.IHighLevelNode,
+            pVal:PropertyValue,
+            p:hl.IProperty,
+            serializeMetadata:boolean) => {
+        var attr = node.attr(universes.Universe10.Resource.properties.relativeUri.name);
+        if (!attr) {
+            return pVal;
+        }
+        var uri = attr.value();
+        return extractParams(pVal, uri, node, p, serializeMetadata);
+    }
+}
+
+class TemplatesHandler implements HelperMethod {
+    
+    constructor(public arr:hl.IHighLevelNode[]){}
+    
+    apply(node:hl.IHighLevelNode,
+            pVal:PropertyValue,
+            p:hl.IProperty,
+            serializeMetadata:boolean){
+        //var arr = helpersHL.allTraits(node,false);
+        return contributeExternalNodes(node, this.arr, p, serializeMetadata);
+    }
+}
+
+class SchemaContentHandler implements HelperMethod{
+
+    constructor(public schemasCache08:any){}
+    
+    apply(node:hl.IHighLevelNode,
+            pVal:PropertyValue,
+            p:hl.IProperty,
+            serializeMetadata:boolean){
+        var newVal:PropertyValue = null;
+        var attr = helpersHL.schemaContent08Internal(node, this.schemasCache08);
+        if (attr) {
+            newVal = new PropertyValue(p);
+            newVal.registerValue(attr);
+        }
+        return newVal;
+    }
 }

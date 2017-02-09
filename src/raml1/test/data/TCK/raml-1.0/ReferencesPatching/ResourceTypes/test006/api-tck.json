@@ -57,6 +57,12 @@
           }
         },
         "name": "defaultResponses.general",
+        "uses": [
+          {
+            "key": "error-types",
+            "value": "../types/error-types.raml"
+          }
+        ],
         "__METADATA__": {
           "calculated": true
         }
@@ -143,11 +149,6 @@
                   "HTTPS"
                 ],
                 "is": [
-                  {
-                    "defaultResponses.general": {
-                      "parentType": "<<parentType>>"
-                    }
-                  },
                   {
                     "defaultResponses.general": {
                       "parentType": "alpha"

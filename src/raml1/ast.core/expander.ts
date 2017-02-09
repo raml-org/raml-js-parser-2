@@ -267,6 +267,10 @@ export class TraitsAndResourceTypesExpander {
 
 
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.lowLevel();
+        if(!proxy.LowLevelProxyNode.isInstance(resourceLowLevel)){
+            return result;
+        }
+        resourceLowLevel.preserveAnnotations();
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.lowLevel();
             var resourceTypeTransformer = x.resourceType.transformer;
