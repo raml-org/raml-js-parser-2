@@ -191,17 +191,23 @@ Loads the given RAML document and returns it as top-level API node promise. This
 
 Method gets file `path` string, optional `extensionsAndOverlays` string array and `options` map as parameters. `extensionsAndOverlays` is an array of additional extensions and overlays to be applied to the file specified in `path` parameter.
 
+This method will be removed in the distant future.
+
 #### `loadApi(path, [extensionsAndOverlays], [options])`
 
 Loads the given RAML API document and returns it as top-level API node promise. This node can be further expanded by calling `expand(true)` and converted to JSON by calling `toJSON()`. Fails for fragment types different from API.
 
 Method gets file `path` string, optional `extensionsAndOverlays` string array and `options` map as parameters. `extensionsAndOverlays` is an array of additional extensions and overlays to be applied to the file specified in `path` parameter.
 
+This method will be removed in the distant future.
+
 #### `parseRAML(content, [options])`
 
 Loads the given RAML API document and returns it as top-level API node promise. This node can be further expanded by calling `expand(true)` and converted to JSON by calling `toJSON()`. Fails for fragment types different from API.
 
 Method gets file `content` string and optional `options` map as parameters. Parser will still reach out from the original file contents if there are any outgoing links like libraries and includes.
+
+This method will be removed in the distant future.
 
 #### Old API Options
 
