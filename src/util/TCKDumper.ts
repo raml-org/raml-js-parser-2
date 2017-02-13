@@ -387,8 +387,25 @@ export class TCKDumper {
 
                 if(canBeJson || canBeXml) {
                     var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
+                    if(!include&&node.highLevel().isElement()){
+                        var typeAttr = node.highLevel().asElement().attr("type");
+                        if(!typeAttr){
+                            typeAttr = node.highLevel().asElement().attr("schema");
+                        }
+                        if(typeAttr){
+                            include = typeAttr.lowLevel().includePath && typeAttr.lowLevel().includePath();
+                        }
+                    }
 
                     if(include) {
+                        
+                        var ind = include.indexOf("#");
+                        var postfix = "";
+                        if(ind>=0){
+                            postfix = include.substring(ind);
+                            include = include.substring(0,ind);
+                        }
+                        
                         var aPath = node.highLevel().lowLevel().unit().resolve(include).absolutePath();
 
                         var relativePath;
@@ -401,7 +418,7 @@ export class TCKDumper {
 
                         relativePath = relativePath.replace(/\\/g,'/');
 
-                        obj["schemaPath"] = relativePath;
+                        obj["schemaPath"] = relativePath + postfix;
                     }
                 }
             }
