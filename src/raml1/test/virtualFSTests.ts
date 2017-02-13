@@ -80,7 +80,7 @@ describe('HTTP Asynchronous tests',function() {
     });
 
     it("JSON references test", function (done) {
-        testAPIHttpAsync(`./vfsTests/jsonRefsTest001/api.raml`).should.be.fulfilled.and.notify(done);
+        testAPIHttpAsync(`./vfsTests/jsonRefsTest001/api-remote.raml`).should.be.fulfilled.and.notify(done);
     });
 });
 
