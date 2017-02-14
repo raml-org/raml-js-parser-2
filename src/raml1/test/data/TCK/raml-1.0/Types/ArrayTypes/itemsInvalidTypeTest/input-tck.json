@@ -67,5 +67,23 @@
     ],
     "title": "TestRAML"
   },
-  "errors": []
+  "errors": [
+    {
+      "code": "ITEMS_SHOULD_BE_REFERENCE_OR_INLINE_TYPE",
+      "message": "The 'items' property value should be either a reference to an existing type or an inline type declaration",
+      "path": "input.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 13,
+          "position": 560
+        },
+        "end": {
+          "line": 18,
+          "column": 16,
+          "position": 563
+        }
+      }
+    }
+  ]
 }
