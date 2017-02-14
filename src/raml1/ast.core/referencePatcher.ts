@@ -104,11 +104,11 @@ export class ReferencePatcher{
         attr:hl.IAttribute,
         rootNode:hl.IHighLevelNode,
         resolver:namespaceResolver.NamespaceResolver,
-        units:ll.ICompilationUnit[]){
+        units:ll.ICompilationUnit[],force=false){
 
         var property = attr.property();
         var range = property.range();
-        if(!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
+        if(!force&&!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
             return;
         }
         var value = attr.value();
@@ -143,6 +143,14 @@ export class ReferencePatcher{
         }
         else{
             var sValue = <hlimpl.StructuredValue>value;
+            var hlNode = sValue.toHighLevel();
+            if(hlNode) {
+                for (var attr of hlNode.attrs()) {
+                    if (universeHelpers.isSchemaStringType(attr.definition())) {
+                        this.patchReferenceAttr(attr, rootNode, resolver, units, true);
+                    }
+                }
+            }
             var key = sValue.lowLevel().key();
             let stringToPatch = key;
             if(transformer!=null){
@@ -625,7 +633,7 @@ export class ReferencePatcher{
         else if (universeHelpers.isAnnotationRefTypeOrDescendant(range)||range.isAnnotationType()) {
             collectionName = def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name;
         }
-        else if (universeHelpers.isTypeDeclarationDescendant(range)) {
+        else if (universeHelpers.isTypeDeclarationDescendant(range)||universeHelpers.isSchemaStringType(range)) {
             collectionName = def.universesInfo.Universe10.LibraryBase.properties.types.name;
         }
         return collectionName;
