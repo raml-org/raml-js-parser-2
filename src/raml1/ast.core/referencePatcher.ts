@@ -624,9 +624,12 @@ export class ReferencePatcher{
         for(var ch of hlNode.elements()){
             this.resetTypes(ch);
         }
-        // for(var attr of hlNode.attrs()){
-        //     (<hlimpl.ASTPropImpl>attr).patchType(null);
-        // }
+        for(var attr of hlNode.attrs()){
+            var aVal = attr.value();
+            if(hlimpl.StructuredValue.isInstance(aVal)){
+                (<hlimpl.StructuredValue>aVal).resetHighLevelNode();
+            }
+        }
         delete hlNode.lowLevel().actual().types;
         delete hlNode["_ptype"];
         delete hlNode["_types"];

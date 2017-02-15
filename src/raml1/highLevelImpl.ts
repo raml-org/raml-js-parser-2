@@ -513,6 +513,10 @@ export class StructuredValue implements hl.IStructuredValue{
         }
         return null;
     }
+    
+    resetHighLevelNode(){
+        this._hl = null;
+    }
 }
 
 /**

@@ -57,21 +57,11 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-<<<<<<< HEAD
-=======
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemes1/subdir/scheme1.json#/definitions/Type1",
-                    "schema": [
+                    "type": [
                       "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
                     ],
-                    "example": {
-                      "p1": "p1Value",
-                      "p2": {
-                        "q1": "q1Value",
-                        "q2": 12
-                      }
-                    },
->>>>>>> refs/heads/develop
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {

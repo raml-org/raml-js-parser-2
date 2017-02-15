@@ -3,6 +3,7 @@
     "types": {
       "MyType": {
         "name": "MyType",
+        "displayName": "MyType",
         "typePropertyKind": "JSON",
         "schemaPath": "scheme.json#/definitions/InnerType",
         "type": [
