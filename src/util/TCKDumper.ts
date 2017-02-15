@@ -403,8 +403,25 @@ export class TCKDumper {
 
                 if(canBeJson || canBeXml) {
                     var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
+                    if(!include&&node.highLevel().isElement()){
+                        var typeAttr = node.highLevel().asElement().attr("type");
+                        if(!typeAttr){
+                            typeAttr = node.highLevel().asElement().attr("schema");
+                        }
+                        if(typeAttr){
+                            include = typeAttr.lowLevel().includePath && typeAttr.lowLevel().includePath();
+                        }
+                    }
 
                     if(include) {
+                        
+                        var ind = include.indexOf("#");
+                        var postfix = "";
+                        if(ind>=0){
+                            postfix = include.substring(ind);
+                            include = include.substring(0,ind);
+                        }
+                        
                         var aPath = node.highLevel().lowLevel().unit().resolve(include).absolutePath();
 
                         var relativePath;
@@ -417,7 +434,7 @@ export class TCKDumper {
 
                         relativePath = relativePath.replace(/\\/g,'/');
 
-                        obj["schemaPath"] = relativePath;
+                        obj["schemaPath"] = relativePath + postfix;
                     }
                 }
             }
@@ -1615,8 +1632,12 @@ class ArrayExpressionTransformer extends BasicTransformation{
         } 
         
         var typePropName = universes.Universe10.TypeDeclaration.properties.type.name;
+        var schemaPropName = universes.Universe10.TypeDeclaration.properties.schema.name;
         var itemsPropName = universes.Universe10.ArrayTypeDeclaration.properties.items.name;
         var tValue = value[typePropName];
+        if(!tValue){
+            tValue = value[schemaPropName];
+        }
         if(tValue.length==1&&util.stringEndsWith(tValue[0],"[]")) {
             if(value[itemsPropName]==null) {
                 value[itemsPropName] = tValue[0].substring(0, tValue[0].length - 2);

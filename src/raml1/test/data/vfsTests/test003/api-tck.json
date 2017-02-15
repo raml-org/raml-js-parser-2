@@ -8,6 +8,8 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "JSON",
+                "schemaPath": "schemas/schema.json",
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
@@ -37,6 +39,8 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
+                "typePropertyKind": "JSON",
+                "schemaPath": "schemas/schema.json",
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],

@@ -3,8 +3,8 @@
     "types": {
       "MyType": {
         "name": "MyType",
-        "displayName": "MyType",
-        "schemaPath": "c2NoZW1lLmpzb24vL2RlZmluaXRpb25zL0lubmVyVHlwZQ.json",
+        "typePropertyKind": "JSON",
+        "schemaPath": "scheme.json#/definitions/InnerType",
         "type": [
           "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
         ],

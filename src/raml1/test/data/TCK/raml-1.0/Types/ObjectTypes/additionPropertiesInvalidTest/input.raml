@@ -1,0 +1,18 @@
+#%RAML 1.0
+
+# Objective: This test covers the case that additionProperties is an object. It
+#            is very common syntax in OAS and JSON, but the only allowed value
+#            in RAML is a boolean.
+# Expected result: Test fails with an error that contains a message that the
+#                  allowed value of 'additionalProperties' is a boolean. Line
+#                  numbers should indicate where it happens.
+
+# tags: type, object, additional property
+
+title: TestRAML
+
+types:
+  Employee:
+    type: object
+    additionalProperties:
+      type: string
