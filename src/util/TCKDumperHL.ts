@@ -1,23 +1,16 @@
 /// <reference path="../../typings/main.d.ts" />
-import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
-import proxy = require("../raml1/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
 import hl = require("../raml1/highLevelAST");
 import ll = require("../raml1/lowLevelAST");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
-import search=require("../search/search-interface");
-import expander=require("../raml1/ast.core/expander");
-import referencePatcher = require("../raml1/ast.core/referencePatcher");
+import expander=require("../raml1/ast.core/expanderLL");
 
-import typeSystem = def.rt;
-import nominals = typeSystem.nominalTypes;
 import universeHelpers = require("../raml1/tools/universeHelpers")
 import universes = require("../raml1/tools/universe")
 import util = require("../util/index")
 
-import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 import tckDumper = require("./TCKDumper");
 import defaultCalculator = require("../raml1/wrapped-ast/defaultCalculator");
 import helpersHL = require("../raml1/wrapped-ast/helpersHL");

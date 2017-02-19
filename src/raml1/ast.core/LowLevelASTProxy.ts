@@ -310,6 +310,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     
     protected isInsideResource:boolean;
 
+    protected nonMergableChildren:{[key:string]:boolean} = {};
+
     adoptedNodes():ll.ILowLevelASTNode[]{
         return this._adoptedNodes;
     }
@@ -350,17 +352,29 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             val = this._originalNode.value(toString);
         }
         if(LowLevelValueTransformingNode.isInstance(val)){
+            var key = (<LowLevelValueTransformingNode>val).key();
+            if(key) {
+                var n:LowLevelCompositeNode = this;
+                while(n.children().length==1&&(n.kind()==yaml.Kind.MAPPING||n.kind()==yaml.Kind.MAP||n.kind()==yaml.Kind.SEQ)){
+                    n = <LowLevelCompositeNode>n.children()[0];
+                    if(n.originalNode().key()==key){
+                        val = n;
+                        break;
+                    }
+                }
+                
+            }
             this._valueOverride = val;
         }
         return val;
     }
 
-    children():ll.ILowLevelASTNode[] {
+    children():LowLevelCompositeNode[] {
 
         if(this._children){
             return this._children;
         }
-        var result = [];
+        var result:LowLevelCompositeNode[] = [];
 
         var canBeMap:boolean = false;
         var canBeSeq = false;
@@ -436,6 +450,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             var isPrimary = x == this.primaryNode();
             for(var y of x.children()){
                 var key = y.originalNode().key();
+                if(this.nonMergableChildren[key]&&(x!=this._originalNode)){
+                    continue;
+                }
                 if(key && x.transformer()){
                     var isAnnotation = key!=null
                         && this._preserveAnnotations
@@ -631,29 +648,16 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
             return new LowLevelCompositeNode(x,this,null,this.ramlVersion);
         });
+        if(this._preserveAnnotations){
+            this._children.forEach(x=>x.preserveAnnotations());
+        }
     }
 
     preserveAnnotations(){
         this._preserveAnnotations = true;
-        // if(!this._preserveAnnotations) {
-        //     if(this.isInsideResource===undefined){
-        //         this.isInsideResource = false;
-        //         if(!this.isResource()){
-        //             var parent = this._parent;
-        //             while (parent) {
-        //                 if ((<LowLevelCompositeNode>parent).isResource()) {
-        //                     this.isInsideResource = true;
-        //                     break;
-        //                 }
-        //                 parent = parent.parent();
-        //             }
-        //         }
-        //     }
-        //     if(this.isInsideResource) {
-        //         this._preserveAnnotations = true;
-        //         //this._children = null;
-        //     }
-        // }
+        if(this._children) {
+            this._children.forEach(x=>x.preserveAnnotations());
+        }
     }
 
     filterChildren(){
@@ -686,6 +690,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         return null;
     }
 
+    takeOnlyOriginalChildrenWithKey(key:string){
+        this.nonMergableChildren[key] = true;
+    }
 
 }
 

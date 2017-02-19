@@ -25,7 +25,7 @@ import universeProvider=require("../definition-system/universeProvider")
 import services=def
 import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
-import expander=require("./expander")
+import expander=require("./expanderLL")
 import builder = require('./builder')
 import search = require("../../search/search-interface")
 import rtypes=def.rt;
@@ -2284,7 +2284,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 paramsMap[ch.key()] = ch.value(true);
             }
             var templateKind = node.definition().isAssignableFrom(universes.Universe10.Trait.name) ? "trait" : "resource type";
-            var unitsChain = expander.toUnits(node);
+            var unitsChain = expander.toUnits(node.lowLevel());
             var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(),unitsChain,paramsMap);
             var parent = node.parent();
             var def = parent?parent.definition():node.definition();

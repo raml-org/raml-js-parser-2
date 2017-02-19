@@ -1355,8 +1355,16 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 return spec[0];
             }
             else {
-                //forcing discrimination
-                this.children();
+                //forcing discrimination for fragments only
+                var u = this.definition() && this.definition().universe();
+                if(u && u.version()=="RAML10"){
+                    if(!this.definition()||!this.definition().isAssignableFrom(def.universesInfo.Universe10.LibraryBase.name)){
+                        this.children();                        
+                    }
+                }
+                else {
+                    this.children();
+                }
 
                 this._wrapperNode = this.buildWrapperNode();
             }
@@ -2160,7 +2168,7 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
     var api = new ASTNodeImpl(ast, null, <any>apiType, null);
     api.setUniverse(localUniverse);
     //forcing discrimination
-    api.children();
+    //api.children();
     return api;
 }
 

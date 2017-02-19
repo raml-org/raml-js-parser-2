@@ -15,9 +15,10 @@ import universeDef = require("../tools/universe");
 import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
-import expander=require("../ast.core/expander")
+import expander=require("../ast.core/expanderLL")
 import proxy = require("../ast.core/LowLevelASTProxy")
 import referencePatcher = require("../ast.core/referencePatcher")
+import referencePatcherLL = require("../ast.core/referencePatcherLL")
 import search=require("../../search/search-interface")
 import ll=require("../lowLevelAST");
 import llImpl=require("../jsyaml/jsyaml2lowLevel");
@@ -128,7 +129,7 @@ export function allTraits(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
     if(a.highLevel().lowLevel().actual().libExpanded){
         return (<RamlWrapperImpl.LibraryBaseImpl>a).traits_original();
     }
-    return <any>findTemplates(a,d=>universeHelpers.isTraitType(d));
+    return <any>findTemplates(a,d=>universeHelpers.isTraitType(d),"Trait");
 }
 
 /**
@@ -148,10 +149,10 @@ export function allResourceTypes(a:RamlWrapper.LibraryBase):RamlWrapper.Resource
     if(a.highLevel().lowLevel().actual().libExpanded){
         return (<RamlWrapperImpl.LibraryBaseImpl>a).resourceTypes_original();
     }
-    return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d));
+    return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d),"ResourceType");
 }
 
-function findTemplates(a:core.BasicNode,filter) {
+function findTemplates(a:core.BasicNode,filter,typeName:string) {
     var arr = search.globalDeclarations(a.highLevel()).filter(x=>filter(x.definition()));
     var ll = a.highLevel().lowLevel();
     var nodePath = ll.includePath();
@@ -167,7 +168,8 @@ function findTemplates(a:core.BasicNode,filter) {
             if(!(proxy.LowLevelProxyNode.isInstance(x.lowLevel()))) {
                 x = exp.createHighLevelNode(x, false);
             }
-            new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
+            //new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
+            new referencePatcherLL.ReferencePatcher().process(x.lowLevel(),ll,typeName,true,true);
         }
         if(p!=nodePath){
             topLevelNode = factory.buildWrapperNode(x,false);

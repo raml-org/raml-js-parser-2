@@ -324,7 +324,7 @@ export class ReferencePatcher{
                                         return;
                                     }
                                     var patchTransformedValue = true;
-                                    if(typeName.indexOf("<<")>=0&&this.isCompoundValue(typeName)){
+                                    if(typeName.indexOf("<<")>=0&&isCompoundValue(typeName)){
                                         patchTransformedValue = false;
                                     }
                                     var patched = this.resolveReferenceValue(
@@ -344,7 +344,7 @@ export class ReferencePatcher{
                             }
                         }
                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
-                            if(stringToPatch.indexOf("<<")>=0&&this.isCompoundValue(stringToPatch)){
+                            if(stringToPatch.indexOf("<<")>=0&&isCompoundValue(stringToPatch)){
                                 stringToPatch = value;
                                 transformer = null;
                             }
@@ -905,20 +905,6 @@ export class ReferencePatcher{
         return result;
     }
 
-    private isCompoundValue(str:string):boolean{
-        var i0 = str.indexOf("<<");
-        if(i0<0){
-            return false;
-        }
-        if(i0!=0){
-            return true;
-        }
-        var i1 = str.indexOf(">>",i0);
-        if(i1+">>".length!=str.length){
-            return true;
-        }
-        return false;
-    }
 }
 
 export enum ParametersEscapingStatus{
@@ -994,7 +980,7 @@ export function unescapeTemplateParameters(str:string,substitutions:{[key:string
 }
 
 
-function checkExpression(value:string) {
+export function checkExpression(value:string) {
     var gotExpression = false;
     for (let i = 0; i < value.length; i++) {
         let ch = value.charAt(i);
@@ -1185,7 +1171,7 @@ class LibModel{
 
 }
 
-type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};
+export type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};
 
 export function getDeclaration(
     elementName:string,
@@ -1241,4 +1227,19 @@ export function getDeclaration(
         }
     }
     return result;
+}
+
+export function isCompoundValue(str:string):boolean{
+    var i0 = str.indexOf("<<");
+    if(i0<0){
+        return false;
+    }
+    if(i0!=0){
+        return true;
+    }
+    var i1 = str.indexOf(">>",i0);
+    if(i1+">>".length!=str.length){
+        return true;
+    }
+    return false;
 }
