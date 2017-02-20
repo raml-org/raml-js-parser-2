@@ -91,12 +91,12 @@
         "start": {
           "line": 17,
           "column": 8,
-          "position": 281
+          "position": 264
         },
         "end": {
           "line": 17,
           "column": 11,
-          "position": 284
+          "position": 267
         }
       }
     },
@@ -108,12 +108,12 @@
         "start": {
           "line": 18,
           "column": 8,
-          "position": 301
+          "position": 283
         },
         "end": {
           "line": 18,
           "column": 10,
-          "position": 303
+          "position": 285
         }
       }
     }
