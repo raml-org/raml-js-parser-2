@@ -1,0 +1,121 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Foo": {
+          "name": "Foo",
+          "displayName": "Foo",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "age": {
+              "name": "age",
+              "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "myApi"
+  },
+  "errors": [
+    {
+      "code": "INTEGER_EXPECTED",
+      "message": "integer is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 8,
+          "position": 281
+        },
+        "end": {
+          "line": 17,
+          "column": 11,
+          "position": 284
+        }
+      }
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "string is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 8,
+          "position": 301
+        },
+        "end": {
+          "line": 18,
+          "column": 10,
+          "position": 303
+        }
+      }
+    }
+  ]
+}
