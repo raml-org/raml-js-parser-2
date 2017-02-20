@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Serialization API",
     "resources": [
@@ -15,29 +13,31 @@
               "userIds": {
                 "name": "userIds",
                 "displayName": "userIds",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
                 "required": true,
                 "description": "A list of userIds",
                 "uniqueItems": true,
-                "items": {
-                  "name": "items",
-                  "displayName": "items",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "minLength": 1,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
+                "items": [
+                  {
+                    "name": "items",
+                    "displayName": "items",
+                    "type": [
+                      "string"
+                    ],
+                    "minLength": 1,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -47,7 +47,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "relativeUri": "/{userIds}",
@@ -62,7 +64,9 @@
             "relativeUriPathSegments": [
               "{userIds}"
             ],
-            "absoluteUri": "/users/{userIds}"
+            "absoluteUri": "/users/{userIds}",
+            "completeRelativeUri": "/users/{userIds}",
+            "parentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -75,9 +79,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

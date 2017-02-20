@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "54",
     "baseUri": "http://myapi.com",
@@ -15,5 +13,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

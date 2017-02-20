@@ -1,91 +1,81 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyArrayType": {
-          "name": "MyArrayType",
-          "displayName": "MyArrayType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "MyArrayType": {
+        "name": "MyArrayType",
+        "displayName": "MyArrayType",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "items": "number"
-        }
+          }
+        },
+        "items": "number",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "p": [
-              1,
-              0,
-              0
-            ]
-          },
-          "properties": {
-            "p": {
-              "name": "p",
-              "displayName": "p",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "MyArrayType"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p": {
+            "name": "p",
+            "displayName": "p",
+            "type": [
+              "MyArrayType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"p\": [\n    1,\n    0,\n    0\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "p": [
                 1,
                 0,
                 0
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "resourceTypes": [
-      {
-        "rt1": {
-          "name": "rt1",
+    },
+    "resourceTypes": {
+      "rt1": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -94,7 +84,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "MyType"
                     ],
@@ -104,21 +93,24 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        }
+        },
+        "name": "rt1"
       }
-    ],
+    },
     "title": "Zero as array element 2",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -126,7 +118,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "MyType"
                     ],
@@ -136,14 +127,16 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "type": "rt1",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -157,9 +150,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

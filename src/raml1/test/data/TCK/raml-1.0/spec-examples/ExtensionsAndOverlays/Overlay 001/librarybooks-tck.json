@@ -1,143 +1,144 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
-    "annotationTypes": [
-      {
-        "monitor": {
-          "name": "monitor",
-          "displayName": "monitor",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "frequency": {
-              "name": "frequency",
-              "displayName": "frequency",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "interval": {
-                  "name": "interval",
-                  "displayName": "interval",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "integer"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+    "annotationTypes": {
+      "monitor": {
+        "name": "monitor",
+        "displayName": "monitor",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "frequency": {
+            "name": "frequency",
+            "displayName": "frequency",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "interval": {
+                "name": "interval",
+                "displayName": "interval",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 },
-                "unitOfMeasure": {
-                  "name": "unitOfMeasure",
-                  "displayName": "unitOfMeasure",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "enum": [
-                    "seconds",
-                    "minutes",
-                    "hours"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "unitOfMeasure": {
+                "name": "unitOfMeasure",
+                "displayName": "unitOfMeasure",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "seconds",
+                  "minutes",
+                  "hours"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "script": {
-              "name": "script",
-              "displayName": "script",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "script": {
+            "name": "script",
+            "displayName": "script",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Book Library API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "monitor": {
+                "name": "monitor",
                 "structuredValue": {
                   "frequency": {
                     "interval": 5,
                     "unitOfMeasure": "minutes"
                   },
                   "script": "randomBooksFetch"
-                },
-                "name": "monitor"
+                }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -151,7 +152,9 @@
         "relativeUriPathSegments": [
           "books"
         ],
-        "absoluteUri": "/books"
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
       }
     ],
     "documentation": [
@@ -167,5 +170,7 @@
     "usage": "Hints for monitoring the library books API",
     "extends": "librarybooks.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

@@ -1,73 +1,71 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "resourceTypes": [
-      {
-        "SomeType": {
-          "name": "SomeType",
+    },
+    "resourceTypes": {
+      "SomeType": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -76,7 +74,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
@@ -86,21 +83,24 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        }
+        },
+        "name": "SomeType"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -108,7 +108,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
@@ -118,14 +117,16 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "type": "SomeType",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -139,9 +140,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

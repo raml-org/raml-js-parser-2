@@ -1,114 +1,93 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "items": [
-              1,
-              2,
-              3
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "array"
             ],
-            "items2": [
-              3,
-              1,
-              4,
-              5
-            ],
-            "items3": [
-              1,
-              2,
-              1
-            ]
-          },
-          "properties": {
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "minItems": 5,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "required": true,
+            "minItems": 5,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "items": "number"
-            },
-            "items2": {
-              "name": "items2",
-              "displayName": "items2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "maxItems": 3,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "number"
-            },
-            "items3": {
-              "name": "items3",
-              "displayName": "items3",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "uniqueItems": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "number"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
               }
-            }
+            },
+            "items": "number",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "structuredExample": {
-            "value": "{\n  \"items\": [\n    1,\n    2,\n    3\n  ],\n  \"items2\": [\n    3,\n    1,\n    4,\n    5\n  ],\n  \"items3\": [\n    1,\n    2,\n    1\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          "items2": {
+            "name": "items2",
+            "displayName": "items2",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "maxItems": 3,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "number",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "items3": {
+            "name": "items3",
+            "displayName": "items3",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "uniqueItems": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "number",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "items": [
                 1,
                 2,
@@ -125,13 +104,19 @@
                 2,
                 1
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

@@ -1,163 +1,158 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "ParentType": {
-          "name": "ParentType",
-          "displayName": "ParentType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "stringProperty": {
-              "name": "stringProperty",
-              "displayName": "stringProperty",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "ParentType": {
+        "name": "ParentType",
+        "displayName": "ParentType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "stringProperty": {
+            "name": "stringProperty",
+            "displayName": "stringProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "kind": {
-              "name": "kind",
-              "displayName": "kind",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "kind": {
+            "name": "kind",
+            "displayName": "kind",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "discriminator": "kind",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "discriminator": "kind",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "ChildType1": {
-          "name": "ChildType1",
-          "displayName": "ChildType1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "ParentType"
-          ],
-          "discriminatorValue": "k1",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "ChildType1": {
+        "name": "ChildType1",
+        "displayName": "ChildType1",
+        "type": [
+          "ParentType"
+        ],
+        "discriminatorValue": "k1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "ChildType2": {
-          "name": "ChildType2",
-          "displayName": "ChildType2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "ParentType"
-          ],
-          "properties": {
-            "stringProperty": {
-              "name": "stringProperty",
-              "displayName": "stringProperty",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "minLength": 3,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "ChildType2": {
+        "name": "ChildType2",
+        "displayName": "ChildType2",
+        "type": [
+          "ParentType"
+        ],
+        "properties": {
+          "stringProperty": {
+            "name": "stringProperty",
+            "displayName": "stringProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "minLength": 3,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "discriminatorValue": "k2",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "discriminatorValue": "k2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
                 "examples": [
                   {
-                    "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  }\n]",
-                    "strict": true,
-                    "name": "ex1",
-                    "structuredValue": [
+                    "value": [
                       {
                         "stringProperty": "ab",
                         "kind": "k1"
                       }
-                    ]
+                    ],
+                    "strict": true,
+                    "name": "ex1"
                   },
                   {
-                    "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k2\"\n  }\n]",
-                    "strict": true,
-                    "name": "ex2",
-                    "structuredValue": [
+                    "value": [
                       {
                         "stringProperty": "ab",
                         "kind": "k2"
                       }
-                    ]
+                    ],
+                    "strict": true,
+                    "name": "ex2"
                   }
                 ],
                 "__METADATA__": {
@@ -167,12 +162,14 @@
                     }
                   }
                 },
-                "items": "ParentType"
+                "items": "ParentType",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -185,10 +182,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

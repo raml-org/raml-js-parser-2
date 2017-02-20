@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -12,55 +10,52 @@
         "value": "lib2.raml"
       }
     ],
-    "traits": [
-      {
-        "lib1.lib2.myTrait": {
-          "body": {
-            "application/json": {
-              "annotations": {
-                "lib1.lib2.MyAnnotation": {
-                  "structuredValue": "stringValue",
-                  "name": "lib1.lib2.MyAnnotation"
-                }
-              },
-              "name": "application/json",
-              "displayName": "application/json",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "lib1.lib2.myTrait": {
+        "body": {
+          "application/json": {
+            "annotations": {
+              "lib1.lib2.MyAnnotation": {
+                "name": "lib1.lib2.MyAnnotation",
+                "structuredValue": "stringValue"
+              }
+            },
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "object"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "name": "lib1.lib2.myTrait",
-          "__METADATA__": {
-            "calculated": true
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
+        },
+        "name": "lib1.lib2.myTrait",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "lib1.rt": {
-          "is": [
-            "lib1.lib2.myTrait"
-          ],
-          "name": "lib1.rt",
-          "__METADATA__": {
-            "calculated": true
-          }
+    },
+    "resourceTypes": {
+      "lib1.rt": {
+        "is": [
+          "lib1.lib2.myTrait"
+        ],
+        "name": "lib1.rt",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
+    },
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -69,19 +64,18 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "annotations": {
                   "lib1.lib2.MyAnnotation": {
-                    "structuredValue": "stringValue",
-                    "name": "lib1.lib2.MyAnnotation"
+                    "name": "lib1.lib2.MyAnnotation",
+                    "structuredValue": "stringValue"
                   }
                 },
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -94,7 +88,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -109,7 +105,7 @@
               }
             }
           }
-        ],
+        },
         "is": [
           "lib1.lib2.myTrait"
         ],
@@ -126,7 +122,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "https://example.com/raml/resource"
+        "absoluteUri": "https://example.com/raml/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -137,5 +135,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

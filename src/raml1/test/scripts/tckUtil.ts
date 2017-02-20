@@ -7,6 +7,7 @@ import hlImpl = require("../../highLevelImpl");
 import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
+import tckDumperHL = require("../../../util/TCKDumperHL");
 
 class MessageMapping{
 
@@ -33,7 +34,7 @@ class MessageMapping{
                 return false;
             }
         }
-        return true;        
+        return true;
     }
 
     private getValues(str:string){
@@ -64,7 +65,7 @@ export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSO
     var count = 0;
     var passed = 0;
     var report:any=[];
-    
+
     var dirs = iterateFolder(folderAbsPath);
     for(var dir of dirs){
         var tests = getTests(dir);
@@ -126,7 +127,7 @@ export function extractContent(folderAbsPath:string):DirectoryContent{
     if(!fs.lstatSync(folderAbsPath).isDirectory()){
         return null;
     }
-    
+
     var ramlFileNames = fs.readdirSync(folderAbsPath).filter(x=>path.extname(x).toLowerCase()==".raml");
     if(ramlFileNames.length==0){
         return null;
@@ -140,7 +141,7 @@ export function extractContent(folderAbsPath:string):DirectoryContent{
             continue;
         }
         var verStr = ramlFirstLine[1];
-        var version = (verStr == "0.8") ? "RAML08" : "RAML10"; 
+        var version = (verStr == "0.8") ? "RAML08" : "RAML10";
         var ramlFileType = "API";
         if(ramlFirstLine.length>2&&ramlFirstLine[2].trim().length>0){
             ramlFileType = ramlFirstLine[2].toUpperCase();
@@ -223,25 +224,25 @@ export class Test{
 
 
 export enum RamlFileKind{
-    API, LIBRARY, EXTENSION, OVERLAY, FRAGMENT 
+    API, LIBRARY, EXTENSION, OVERLAY, FRAGMENT
 }
 
 export class RamlFile{
-    
+
     constructor(
         private _absPath:string,
         private _kind:RamlFileKind,
         private _ver:string,
         private _extends?:string){}
-    
+
     absolutePath():string{
         return this._absPath.replace(/\\/g,'/');
     }
-    
+
     kind():RamlFileKind{
         return this._kind;
     }
-    
+
     version():string{
         return this._ver;
     }
@@ -252,9 +253,9 @@ export class RamlFile{
 }
 
 export class DirectoryContent{
-    
+
     constructor(private dirAbsPath:string, private files:RamlFile[]){}
-    
+
     absolutePath():string{
         return this.dirAbsPath.replace(/\\/g,'/');
     }
@@ -325,7 +326,7 @@ export function defaultJSONPath(apiPath:string) {
 };
 
 function orderExtensionsAndOverlaysByIndex(ramlFiles:RamlFile[]):RamlFile[]{
-    
+
     var indToFileMap:{[key:string]:RamlFile} = {};
     var pathToIndMap:{[key:string]:number} = {};
     for(var rf of ramlFiles){
@@ -353,7 +354,7 @@ export function testAPILibExpand(
     regenerteJSON:boolean=false,
     callTests:boolean=true,
     doAssert:boolean = true){
-    
+
     testAPI(
         apiPath,
         extensions,
@@ -361,7 +362,7 @@ export function testAPILibExpand(
         regenerteJSON,
         callTests,
         doAssert,true);
-    
+
 }
 
 var pathReplacer = function (str1:string,str2:string) {
@@ -391,13 +392,16 @@ var serializeTestJSON = function (tckJsonPath:string, json:any) {
     var replacer = pathReplacer(rootPath,"__$$ROOT_PATH__");
     fs.writeFileSync(tckJsonPath, JSON.stringify(copy, replacer, 2));
 };
-var readTestJSON = function (tckJsonPath:string) {    
+var readTestJSON = function (tckJsonPath:string) {
     var rootPath = "file://"+testUtil.data("").replace(/\\/g,"/");
     var replacer = pathReplacer("__$$ROOT_PATH__",rootPath);
     return JSON.parse(fs.readFileSync(tckJsonPath).toString(),replacer);
 };
-var printTime = function (message) {
+var printTime = function (message,date?:Date) {
     var d = new Date();
+    if(date){
+        d = new Date(d.getTime()-date.getTime());
+    }
     console.log(message + ": " + d.toLocaleString() + "/" + d.getMilliseconds());
 };
 export function testAPI(
@@ -424,7 +428,9 @@ export function testAPI(
     var expanded = api["expand"] ? api["expand"](expandLib) : api;
 
     (<any>expanded).setAttributeDefaults(true);
-    var json = expanded.toJSON({rootNodeDetails:true});
+    var json = expanded.toJSON({
+        rootNodeDetails:true
+    });
 
     if(!tckJsonPath){
         tckJsonPath = defaultJSONPath(apiPath);

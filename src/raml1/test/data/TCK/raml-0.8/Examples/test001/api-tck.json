@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Test",
     "resources": [
       {
         "relativeUri": "/",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -21,7 +19,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "displayName": "/",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -31,10 +29,14 @@
           }
         },
         "relativeUriPathSegments": [],
-        "absoluteUri": "/"
+        "absoluteUri": "/",
+        "completeRelativeUri": "/",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "STRING_EXPECTED_2",

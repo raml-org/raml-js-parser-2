@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "responses": {
               "201": {
                 "code": "201",
@@ -14,10 +12,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "JSON",
-                    "schema": [
-                      "{\"name\": \"someName\"}\n"
-                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -27,14 +21,19 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "{\"name\": \"someName\"}\n"
+                    ],
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
                   }
                 }
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -47,9 +46,13 @@
         "relativeUriPathSegments": [
           "test"
         ],
-        "absoluteUri": "/test"
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

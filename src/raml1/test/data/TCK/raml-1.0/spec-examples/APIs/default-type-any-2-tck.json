@@ -1,13 +1,13 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Default type any with media type",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -15,7 +15,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -28,14 +27,16 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {
@@ -48,9 +49,13 @@
         "relativeUriPathSegments": [
           "customers"
         ],
-        "absoluteUri": "/customers"
+        "absoluteUri": "/customers",
+        "completeRelativeUri": "/customers",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

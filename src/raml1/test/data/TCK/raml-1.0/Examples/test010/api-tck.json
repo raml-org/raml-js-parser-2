@@ -1,90 +1,83 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SmallArray": {
-          "name": "SmallArray",
-          "displayName": "SmallArray",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "minItems": 5,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "SmallArray": {
+        "name": "SmallArray",
+        "displayName": "SmallArray",
+        "type": [
+          "array"
+        ],
+        "minItems": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "items": "string"
-        }
+          }
+        },
+        "items": "string",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "items": [
-              "1",
-              "2",
-              "3"
-            ]
-          },
-          "properties": {
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "SmallArray"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "SmallArray"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"items\": [\n    \"1\",\n    \"2\",\n    \"3\"\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "items": [
                 "1",
                 "2",
                 "3"
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

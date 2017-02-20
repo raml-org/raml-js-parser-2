@@ -1,53 +1,51 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "userPicture": {
-          "name": "userPicture",
-          "displayName": "userPicture",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "file"
-          ],
-          "fileTypes": [
-            "image/jpeg",
-            "image/png"
-          ],
-          "maxLength": 307200,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "userPicture": {
+        "name": "userPicture",
+        "displayName": "userPicture",
+        "type": [
+          "file"
+        ],
+        "fileTypes": [
+          "image/jpeg",
+          "image/png"
+        ],
+        "maxLength": 307200,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "customFile": {
-          "name": "customFile",
-          "displayName": "customFile",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "file"
-          ],
-          "fileTypes": [
-            "*/*"
-          ],
-          "maxLength": 1048576,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "customFile": {
+        "name": "customFile",
+        "displayName": "customFile",
+        "type": [
+          "file"
+        ],
+        "fileTypes": [
+          "*/*"
+        ],
+        "maxLength": 1048576,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "File Type"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

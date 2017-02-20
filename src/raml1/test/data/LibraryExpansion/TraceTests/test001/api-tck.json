@@ -1,114 +1,111 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "lib1.LibType1": {
-          "name": "LibType1",
-          "displayName": "LibType1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "p1": {
-              "name": "p1",
-              "displayName": "p1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "lib1.lib2.LibType2"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "lib1.LibType1": {
+        "name": "LibType1",
+        "displayName": "LibType1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "lib1.lib2.LibType2"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "lib1.lib2.LibType2": {
-          "name": "LibType2",
-          "displayName": "LibType2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "p1": "01/01/1900"
-          },
-          "properties": {
-            "p1": {
-              "name": "p1",
-              "displayName": "p1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "date-only"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "lib1.lib2.LibType2": {
+        "name": "LibType2",
+        "displayName": "LibType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "date-only"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"p1\": \"01/01/1900\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "p1": "01/01/1900"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "p1": "01/01/1900"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "testAPI",
     "version": "v1",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib1.LibType1"
                 ],
@@ -118,12 +115,14 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -136,10 +135,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "INVALID_DATEONLY",

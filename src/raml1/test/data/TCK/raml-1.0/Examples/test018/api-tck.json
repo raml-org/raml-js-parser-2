@@ -1,67 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType1": {
-          "name": "MyType1",
-          "displayName": "MyType1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "example": "d",
-          "minLength": 5,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "string"
+        ],
+        "minLength": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
+          }
+        },
+        "examples": [
+          {
             "value": "d",
             "strict": true,
-            "name": null,
-            "structuredValue": "d"
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "MyType2": {
-          "name": "MyType2",
-          "displayName": "MyType2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "example": "d1111",
-          "maxLength": 3,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "string"
+        ],
+        "maxLength": 3,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
+          }
+        },
+        "examples": [
+          {
             "value": "d1111",
             "strict": true,
-            "name": null,
-            "structuredValue": "d1111"
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

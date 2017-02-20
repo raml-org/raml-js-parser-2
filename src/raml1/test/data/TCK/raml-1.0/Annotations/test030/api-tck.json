@@ -1,20 +1,16 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "cards": {
-          "name": "cards",
-          "displayName": "cards",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "items": {
+    "types": {
+      "cards": {
+        "name": "cards",
+        "displayName": "cards",
+        "type": [
+          "array"
+        ],
+        "items": [
+          {
             "name": "items",
             "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -22,6 +18,7 @@
               "cardId": {
                 "annotations": {
                   "bindingDefinition": {
+                    "name": "bindingDefinition",
                     "structuredValue": [
                       {
                         "method": "GET",
@@ -33,13 +30,11 @@
                         "input": "NONE",
                         "output": "REQUIRED"
                       }
-                    ],
-                    "name": "bindingDefinition"
+                    ]
                   }
                 },
                 "name": "cardId",
                 "displayName": "cardId",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -51,7 +46,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -63,31 +60,33 @@
                   "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "bindingDefinition": {
-          "name": "bindingDefinition",
-          "displayName": "BindingDefinition",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "items": {
+    },
+    "annotationTypes": {
+      "bindingDefinition": {
+        "name": "bindingDefinition",
+        "displayName": "BindingDefinition",
+        "type": [
+          "array"
+        ],
+        "items": [
+          {
             "name": "items",
             "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -95,7 +94,6 @@
               "method": {
                 "name": "method",
                 "displayName": "method",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -114,12 +112,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "input": {
                 "name": "input",
                 "displayName": "input",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -136,12 +135,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "output": {
                 "name": "output",
                 "displayName": "output",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -158,7 +158,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -170,15 +172,21 @@
                   "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {}
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

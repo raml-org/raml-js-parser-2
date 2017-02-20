@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -8,19 +6,17 @@
         "value": "lib.raml"
       }
     ],
-    "types": [
-      {
-        "cards": {
-          "name": "cards",
-          "displayName": "cards",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "items": {
+    "types": {
+      "cards": {
+        "name": "cards",
+        "displayName": "cards",
+        "type": [
+          "array"
+        ],
+        "items": [
+          {
             "name": "items",
             "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -28,6 +24,7 @@
               "cardId": {
                 "annotations": {
                   "lib.bindingDefinition": {
+                    "name": "lib.bindingDefinition",
                     "structuredValue": [
                       {
                         "method": "GET",
@@ -39,13 +36,11 @@
                         "input": "NONE",
                         "output": "REQUIRED"
                       }
-                    ],
-                    "name": "lib.bindingDefinition"
+                    ]
                   }
                 },
                 "name": "cardId",
                 "displayName": "cardId",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -57,7 +52,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -69,19 +66,25 @@
                   "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

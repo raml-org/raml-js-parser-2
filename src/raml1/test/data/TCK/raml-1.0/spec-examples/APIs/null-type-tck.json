@@ -1,83 +1,81 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "NullValue": {
-          "name": "NullValue",
-          "displayName": "NullValue",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "name": "Fred",
-            "comment": null
-          },
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "NullValue": {
+        "name": "NullValue",
+        "displayName": "NullValue",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "comment": {
-              "name": "comment",
-              "displayName": "comment",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "nil"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "comment": {
+            "name": "comment",
+            "displayName": "comment",
+            "type": [
+              "nil"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": null\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "name": "Fred",
-              "comment": null
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "name": "Fred",
+              "comment": null
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Null Type"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

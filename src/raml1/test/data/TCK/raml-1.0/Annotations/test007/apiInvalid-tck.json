@@ -1,65 +1,67 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "x": {
+        "name": "x",
         "structuredValue": {
           "v": [
             "true1",
             false
           ]
-        },
-        "name": "x"
-      }
-    },
-    "annotationTypes": [
-      {
-        "x": {
-          "name": "x",
-          "displayName": "x",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "v": {
-              "name": "v",
-              "displayName": "v",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "boolean"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          }
         }
       }
-    ],
+    },
+    "annotationTypes": {
+      "x": {
+        "name": "x",
+        "displayName": "x",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "v": {
+            "name": "v",
+            "displayName": "v",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "boolean",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
     "title": "WebOfMe",
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

@@ -1,215 +1,202 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SimpleType1": {
-          "name": "SimpleType1",
-          "displayName": "SimpleType1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "property1": {
-              "name": "property1",
-              "displayName": "property1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "SimpleType1": {
+        "name": "SimpleType1",
+        "displayName": "SimpleType1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "property1": {
+            "name": "property1",
+            "displayName": "property1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "property2": {
-              "name": "property2",
-              "displayName": "property2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "property2": {
+            "name": "property2",
+            "displayName": "property2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "SimpleType2": {
-          "name": "SimpleType2",
-          "displayName": "SimpleType2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "property3": {
-              "name": "property3",
-              "displayName": "property3",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "SimpleType2": {
+        "name": "SimpleType2",
+        "displayName": "SimpleType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "property3": {
+            "name": "property3",
+            "displayName": "property3",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "property4": {
-              "name": "property4",
-              "displayName": "property4",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "property4": {
+            "name": "property4",
+            "displayName": "property4",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "SimpleUnion": {
-          "name": "SimpleUnion",
-          "displayName": "SimpleUnion",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "SimpleType1 | SimpleType2"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "SimpleUnion": {
+        "name": "SimpleUnion",
+        "displayName": "SimpleUnion",
+        "type": [
+          "SimpleType1 | SimpleType2"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "TypeWithUnionProps": {
-          "name": "TypeWithUnionProps",
-          "displayName": "TypeWithUnionProps",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "union1": {
-              "property1": "blahblah",
-              "property2": "blahblah"
-            },
-            "union2": {
-              "property3": "blahblah",
-              "property4": "blahblah"
-            }
-          },
-          "properties": {
-            "union1": {
-              "name": "union1",
-              "displayName": "union1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TypeWithUnionProps": {
+        "name": "TypeWithUnionProps",
+        "displayName": "TypeWithUnionProps",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "union1": {
+            "name": "union1",
+            "displayName": "union1",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "union2": {
-              "name": "union2",
-              "displayName": "union2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "union2": {
+            "name": "union2",
+            "displayName": "union2",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"union1\": {\n    \"property1\": \"blahblah\",\n    \"property2\": \"blahblah\"\n  },\n  \"union2\": {\n    \"property3\": \"blahblah\",\n    \"property4\": \"blahblah\"\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "union1": {
                 "property1": "blahblah",
                 "property2": "blahblah"
@@ -218,12 +205,18 @@
                 "property3": "blahblah",
                 "property4": "blahblah"
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

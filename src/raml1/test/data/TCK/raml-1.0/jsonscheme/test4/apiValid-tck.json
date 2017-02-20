@@ -1,44 +1,35 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "JSON",
-          "type": [
-            "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n      \"child\": {\n        \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test4/remoteScheme.json#\"\n      }\n    },\n    \"required\": [ \"child\" ]\n  }\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n      \"child\": {\n        \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test4/remoteScheme.json#\"\n      }\n    },\n    \"required\": [ \"child\" ]\n  }\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Api",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "INPLACE",
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "child": {
-                    "name": "somename"
-                  }
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -46,21 +37,23 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"child\": {\n    \"name\": \"somename\"\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "child": {
-                      "name": "somename"
-                    }
+                "examples": [
+                  {
+                    "value": {
+                      "child": {
+                        "name": "somename"
+                      }
+                    },
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -73,9 +66,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

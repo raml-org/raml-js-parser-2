@@ -1,215 +1,211 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "lat-long": {
-          "name": "lat-long",
-          "displayName": "lat-long",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "lat": {
-              "name": "lat",
-              "displayName": "lat",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "lat-long": {
+        "name": "lat-long",
+        "displayName": "lat-long",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "lat": {
+            "name": "lat",
+            "displayName": "lat",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "long": {
-              "name": "long",
-              "displayName": "long",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "loc": {
-          "name": "loc",
-          "displayName": "loc",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "location": {
-              "name": "location",
-              "displayName": "location",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "paging": {
-          "name": "paging",
-          "displayName": "paging",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "start": {
-              "name": "start",
-              "displayName": "start",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          "long": {
+            "name": "long",
+            "displayName": "long",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "page-size": {
-              "name": "page-size",
-              "displayName": "page-size",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "loc": {
+        "name": "loc",
+        "displayName": "loc",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "location": {
+            "name": "location",
+            "displayName": "location",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "paging": {
+        "name": "paging",
+        "displayName": "paging",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "start": {
+            "name": "start",
+            "displayName": "start",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "page-size": {
+            "name": "page-size",
+            "displayName": "page-size",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Illustrate query parameter variations",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
-              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "paging",
                 "lat-long | loc"
               ],
               "examples": [
                 {
-                  "value": "{\n  \"start\": 2,\n  \"lat\": 12,\n  \"long\": 13\n}",
-                  "strict": true,
-                  "name": "first",
-                  "structuredValue": {
+                  "value": {
                     "start": 2,
                     "lat": 12,
                     "long": 13
-                  }
+                  },
+                  "strict": true,
+                  "name": "first"
                 },
                 {
-                  "value": "{\n  \"start\": 2,\n  \"page-size\": 20,\n  \"location\": \"1,2\"\n}",
-                  "strict": true,
-                  "name": "second",
-                  "structuredValue": {
+                  "value": {
                     "start": 2,
                     "page-size": 20,
                     "location": "1,2"
-                  }
+                  },
+                  "strict": true,
+                  "name": "second"
                 },
                 {
-                  "value": "{\n  \"lat\": 12,\n  \"location\": 2\n}",
-                  "strict": false,
-                  "name": "third",
-                  "structuredValue": {
+                  "value": {
                     "lat": 12,
                     "location": 2
-                  }
+                  },
+                  "strict": false,
+                  "name": "third"
                 }
               ],
               "__METADATA__": {
@@ -218,11 +214,13 @@
                     "calculated": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/locations",
         "displayName": "/locations",
         "__METADATA__": {
@@ -235,9 +233,13 @@
         "relativeUriPathSegments": [
           "locations"
         ],
-        "absoluteUri": "/locations"
+        "absoluteUri": "/locations",
+        "completeRelativeUri": "/locations",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

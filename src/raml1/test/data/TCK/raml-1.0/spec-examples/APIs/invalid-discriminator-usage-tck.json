@@ -1,72 +1,67 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "Dog": {
-          "name": "Dog",
-          "displayName": "Dog",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+      "Dog": {
+        "name": "Dog",
+        "displayName": "Dog",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "PersonOrDog": {
-          "name": "PersonOrDog",
-          "displayName": "PersonOrDog",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "Person | Dog"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "PersonOrDog": {
+        "name": "PersonOrDog",
+        "displayName": "PersonOrDog",
+        "type": [
+          "Person | Dog"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Invalid Discriminator Usage",
     "description": "This RAML illustrates two examples that discriminator is not allowed in any inline\ntype declaration and for union types.\n",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -74,7 +69,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -82,7 +76,6 @@
                       "kind": {
                         "name": "kind",
                         "displayName": "kind",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -96,7 +89,9 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "discriminator": "kind",
@@ -109,14 +104,16 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/inline",
         "displayName": "/inline",
         "__METADATA__": {
@@ -129,10 +126,14 @@
         "relativeUriPathSegments": [
           "inline"
         ],
-        "absoluteUri": "/inline"
+        "absoluteUri": "/inline",
+        "completeRelativeUri": "/inline",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "DISCRIMINATOR_FOR_UNION",

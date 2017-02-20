@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -14,11 +12,13 @@
     "protocols": [
       "HTTPS"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -26,41 +26,8 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
-                    ],
-                    "example": [
-                      {
-                        "id": 1,
-                        "title": "feature1",
-                        "description": "description of feature 1",
-                        "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                      },
-                      {
-                        "id": 2,
-                        "title": "feature2",
-                        "description": "description of feature 2",
-                        "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                      },
-                      {
-                        "id": 3,
-                        "title": "feature3",
-                        "description": "description of feature 3",
-                        "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                      },
-                      {
-                        "id": 4,
-                        "title": "feature4",
-                        "description": "description of feature 4",
-                        "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                      },
-                      {
-                        "id": 5,
-                        "title": "feature5",
-                        "description": "description of feature 4",
-                        "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                      }
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -69,44 +36,47 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "[\n  {\n    \"id\": 1,\n    \"title\": \"feature1\",\n    \"description\": \"description of feature 1\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"feature2\",\n    \"description\": \"description of feature 2\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"feature3\",\n    \"description\": \"description of feature 3\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"feature4\",\n    \"description\": \"description of feature 4\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"feature5\",\n    \"description\": \"description of feature 4\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  }\n]",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": [
-                        {
-                          "id": 1,
-                          "title": "feature1",
-                          "description": "description of feature 1",
-                          "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                        },
-                        {
-                          "id": 2,
-                          "title": "feature2",
-                          "description": "description of feature 2",
-                          "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                        },
-                        {
-                          "id": 3,
-                          "title": "feature3",
-                          "description": "description of feature 3",
-                          "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                        },
-                        {
-                          "id": 4,
-                          "title": "feature4",
-                          "description": "description of feature 4",
-                          "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                        },
-                        {
-                          "id": 5,
-                          "title": "feature5",
-                          "description": "description of feature 4",
-                          "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                        }
-                      ]
-                    },
-                    "items": "Types.Feature"
+                    "examples": [
+                      {
+                        "value": [
+                          {
+                            "id": 1,
+                            "title": "feature1",
+                            "description": "description of feature 1",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 2,
+                            "title": "feature2",
+                            "description": "description of feature 2",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 3,
+                            "title": "feature3",
+                            "description": "description of feature 3",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 4,
+                            "title": "feature4",
+                            "description": "description of feature 4",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 5,
+                            "title": "feature5",
+                            "description": "description of feature 4",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          }
+                        ],
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "items": "Types.Feature",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -123,7 +93,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/features",
         "displayName": "/features",
         "__METADATA__": {
@@ -136,7 +106,9 @@
         "relativeUriPathSegments": [
           "features"
         ],
-        "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features"
+        "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
+        "completeRelativeUri": "/features",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -147,5 +119,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

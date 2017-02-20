@@ -1,71 +1,59 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "A",
-    "traits": [
-      {
-        "SomeTrait": {
-          "queryParameters": {
-            "<<queryParamName>>": {
-              "name": "<<queryParamName>>",
-              "displayName": "<<queryParamName>>",
-              "type": "number",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<queryParamName>>": {
+            "name": "<<queryParamName>>",
+            "displayName": "<<queryParamName>>",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "headers": {
-            "<<headerName>>": {
-              "name": "<<headerName>>",
-              "displayName": "<<headerName>>",
-              "type": "string",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
+          }
+        },
+        "headers": {
+          "<<headerName>>": {
+            "name": "<<headerName>>",
+            "displayName": "<<headerName>>",
+            "type": "string",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "SomeTrait"
-        }
+          }
+        },
+        "name": "SomeTrait"
       }
-    ],
-    "resourceTypes": [
-      {
-        "Resource": {
-          "name": "Resource",
-          "is": [
-            {
-              "SomeTrait": {
-                "queryParamName": "a",
-                "headerName": "c"
-              }
-            }
-          ],
+    },
+    "resourceTypes": {
+      "Resource": {
+        "name": "Resource",
+        "methods": {
           "get": {
             "body": {
               "application/json": {
@@ -96,9 +84,17 @@
             },
             "method": "get"
           }
-        }
+        },
+        "is": [
+          {
+            "SomeTrait": {
+              "queryParamName": "a",
+              "headerName": "c"
+            }
+          }
+        ]
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
@@ -111,8 +107,8 @@
             }
           }
         ],
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -199,7 +195,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -211,9 +207,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

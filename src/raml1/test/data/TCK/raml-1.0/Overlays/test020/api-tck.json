@@ -1,17 +1,14 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "title": "Pet shop",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -19,7 +16,6 @@
                   "name": {
                     "name": "name",
                     "displayName": "name",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -34,7 +30,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -43,12 +41,14 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "resources": [
@@ -65,7 +65,9 @@
             "relativeUriPathSegments": [
               "resource2"
             ],
-            "absoluteUri": "/resource/resource2"
+            "absoluteUri": "/resource/resource2",
+            "completeRelativeUri": "/resource/resource2",
+            "parentUri": "/resource"
           }
         ],
         "__METADATA__": {
@@ -78,11 +80,15 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": [
     {
       "code": "INVALID_OVERLAY_NODE",

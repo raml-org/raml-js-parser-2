@@ -1,42 +1,38 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "A",
-    "traits": [
-      {
-        "SomeTrait": {
-          "queryParameters": {
-            "numericParam": {
-              "name": "numericParam",
-              "displayName": "numericParam",
-              "type": "number",
-              "required": false,
-              "repeat": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "numericParam": {
+            "name": "numericParam",
+            "displayName": "numericParam",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
                 }
               }
             }
-          },
-          "name": "SomeTrait"
-        }
+          }
+        },
+        "name": "SomeTrait"
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -75,7 +71,7 @@
               "SomeTrait"
             ]
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -87,9 +83,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

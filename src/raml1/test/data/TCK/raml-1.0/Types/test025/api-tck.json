@@ -1,45 +1,39 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "schemas": [
-      {
-        "Player2": {
-          "name": "Player2",
-          "displayName": "Player2",
-          "typePropertyKind": "JSON",
-          "type": [
-            "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "Player1": {
+        "name": "Player1",
+        "displayName": "Player1",
+        "type": [
+          "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
-      }
-    ],
-    "types": [
-      {
-        "Player1": {
-          "name": "Player1",
-          "displayName": "Player1",
-          "typePropertyKind": "JSON",
-          "type": [
-            "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "Player2": {
+        "name": "Player2",
+        "displayName": "Player2",
+        "type": [
+          "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Types 002.",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -54,6 +48,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPES_AND_SCHEMAS_ARE_EXCLUSIVE",

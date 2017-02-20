@@ -57,4 +57,6 @@ export interface Options{
      * load the file.
      */
     filePath?:string
+
+    reusedNode?:hl.IHighLevelNode
 }

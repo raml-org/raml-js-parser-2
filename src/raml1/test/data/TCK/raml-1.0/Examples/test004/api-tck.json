@@ -1,205 +1,188 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "URL": {
-          "name": "URL",
-          "displayName": "URL",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "firstName": {
-              "name": "firstName",
-              "displayName": "firstName",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
+    "types": {
+      "URL": {
+        "name": "URL",
+        "displayName": "URL",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "lastName": {
-              "name": "lastName",
-              "displayName": "lastName",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "Brand": {
-          "name": "Brand",
-          "displayName": "Brand",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "name": "Brandicted",
-            "logo": "http://www.domain.com/logo.gif",
-            "followers": [
-              {
-                "firstName": "Fred",
-                "lastName": "Armand"
-              },
-              {
-                "firstName": "Joan",
-                "lastName": "Rivers"
-              }
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "firstName": {
+            "name": "firstName",
+            "displayName": "firstName",
+            "type": [
+              "string"
             ],
-            "X": "x"
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          "lastName": {
+            "name": "lastName",
+            "displayName": "lastName",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "logo": {
-              "name": "logo",
-              "displayName": "logo",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "URL"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
-            "followers": {
-              "name": "followers",
-              "displayName": "followers",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "User"
-            },
-            "/.*/": {
-              "name": "/.*/",
-              "displayName": "/.*/",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Brand": {
+        "name": "Brand",
+        "displayName": "Brand",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ],\n  \"X\": \"x\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          "logo": {
+            "name": "logo",
+            "displayName": "logo",
+            "type": [
+              "URL"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "followers": {
+            "name": "followers",
+            "displayName": "followers",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "User",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "/.*/": {
+            "name": "/.*/",
+            "displayName": "/.*/",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "name": "Brandicted",
               "logo": "http://www.domain.com/logo.gif",
               "followers": [
@@ -213,14 +196,22 @@
                 }
               ],
               "X": "x"
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Testing with Jonathan",
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

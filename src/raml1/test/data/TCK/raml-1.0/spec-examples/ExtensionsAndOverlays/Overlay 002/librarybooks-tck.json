@@ -1,15 +1,13 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "title": "Book Library API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "method": "get"
           }
-        ],
+        },
         "description": "La colección de libros de la biblioteca",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -23,7 +21,9 @@
         "relativeUriPathSegments": [
           "books"
         ],
-        "absoluteUri": "/books"
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
       }
     ],
     "documentation": [
@@ -39,5 +39,7 @@
     "usage": "Spanish localization",
     "extends": "librarybooks.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

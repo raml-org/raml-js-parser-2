@@ -1,41 +1,36 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "resourceTypes": [
-      {
-        "lib.rt": {
-          "type": {
-            "lib.lib.rt": {
-              "param1": "<<param1>>",
-              "param2": "Monkey"
-            }
-          },
-          "name": "rt"
-        }
+    "resourceTypes": {
+      "lib.rt": {
+        "type": {
+          "lib.lib.rt": {
+            "param1": "<<param1>>",
+            "param2": "Monkey"
+          }
+        },
+        "name": "rt"
       },
-      {
-        "lib.lib.rt": {
-          "annotations": {
-            "lib.lib.<<param1>>": {
-              "structuredValue": "stringValue1",
-              "name": "lib.lib.<<param1>>"
-            },
-            "lib.lib.<<param2>>": {
-              "structuredValue": 5,
-              "name": "lib.lib.<<param2>>"
-            },
-            "lib.lib.Monkey": {
-              "structuredValue": true,
-              "name": "lib.lib.Monkey"
-            }
+      "lib.lib.rt": {
+        "annotations": {
+          "lib.lib.<<param1>>": {
+            "name": "lib.lib.<<param1>>",
+            "structuredValue": "stringValue1"
           },
-          "name": "rt",
+          "lib.lib.<<param2>>": {
+            "name": "lib.lib.<<param2>>",
+            "structuredValue": 5
+          },
+          "lib.lib.Monkey": {
+            "name": "lib.lib.Monkey",
+            "structuredValue": true
+          }
+        },
+        "methods": {
           "get": {
             "annotations": {
               "lib.lib.<<param1>>": {
-                "structuredValue": "stringValue2",
-                "name": "lib.lib.<<param1>>"
+                "name": "lib.lib.<<param1>>",
+                "structuredValue": "stringValue2"
               }
             },
             "method": "get"
@@ -43,8 +38,8 @@
           "post": {
             "annotations": {
               "lib.lib.<<param2>>": {
-                "structuredValue": 8,
-                "name": "lib.lib.<<param2>>"
+                "name": "lib.lib.<<param2>>",
+                "structuredValue": 8
               }
             },
             "method": "post"
@@ -52,8 +47,8 @@
           "put": {
             "annotations": {
               "lib.lib.Monkey": {
-                "structuredValue": false,
-                "name": "lib.lib.Monkey"
+                "name": "lib.lib.Monkey",
+                "structuredValue": false
               }
             },
             "method": "put"
@@ -61,139 +56,137 @@
           "delete": {
             "annotations": {
               "lib.lib.<<param1>>": {
-                "structuredValue": "stringValue3",
-                "name": "lib.lib.<<param1>>"
+                "name": "lib.lib.<<param1>>",
+                "structuredValue": "stringValue3"
               },
               "lib.lib.<<param2>>": {
-                "structuredValue": 16,
-                "name": "lib.lib.<<param2>>"
+                "name": "lib.lib.<<param2>>",
+                "structuredValue": 16
               },
               "lib.lib.Monkey": {
-                "structuredValue": true,
-                "name": "lib.lib.Monkey"
+                "name": "lib.lib.Monkey",
+                "structuredValue": true
               }
             },
             "method": "delete"
           }
-        }
+        },
+        "name": "rt"
       }
-    ],
-    "annotationTypes": [
-      {
-        "Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    },
+    "annotationTypes": {
+      "Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "lib.Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "lib.lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "boolean"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "lib.lib.Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "boolean"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
         "annotations": {
           "Monkey": {
-            "structuredValue": "stringValue1",
-            "name": "Monkey"
+            "name": "Monkey",
+            "structuredValue": "stringValue1"
           },
           "lib.Monkey": {
-            "structuredValue": 5,
-            "name": "lib.Monkey"
+            "name": "lib.Monkey",
+            "structuredValue": 5
           },
           "lib.lib.Monkey": {
-            "structuredValue": true,
-            "name": "lib.lib.Monkey"
+            "name": "lib.lib.Monkey",
+            "structuredValue": true
           }
         },
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "Monkey": {
-                "structuredValue": "stringValue2",
-                "name": "Monkey"
+                "name": "Monkey",
+                "structuredValue": "stringValue2"
               }
             },
             "method": "get"
           },
-          {
+          "post": {
             "annotations": {
               "lib.Monkey": {
-                "structuredValue": 8,
-                "name": "lib.Monkey"
+                "name": "lib.Monkey",
+                "structuredValue": 8
               }
             },
             "method": "post"
           },
-          {
+          "put": {
             "annotations": {
               "lib.lib.Monkey": {
-                "structuredValue": false,
-                "name": "lib.lib.Monkey"
+                "name": "lib.lib.Monkey",
+                "structuredValue": false
               }
             },
             "method": "put"
           },
-          {
+          "delete": {
             "annotations": {
               "Monkey": {
-                "structuredValue": "stringValue3",
-                "name": "Monkey"
+                "name": "Monkey",
+                "structuredValue": "stringValue3"
               },
               "lib.Monkey": {
-                "structuredValue": 16,
-                "name": "lib.Monkey"
+                "name": "lib.Monkey",
+                "structuredValue": 16
               },
               "lib.lib.Monkey": {
-                "structuredValue": true,
-                "name": "lib.lib.Monkey"
+                "name": "lib.lib.Monkey",
+                "structuredValue": true
               }
             },
             "method": "delete"
           }
-        ],
+        },
         "type": {
           "lib.rt": {
             "param1": "Monkey"
@@ -211,9 +204,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

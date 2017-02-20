@@ -1,42 +1,38 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "example": [
-            100500,
-            "not number"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "structuredExample": {
-            "value": "[\n  100500,\n  \"not number\"\n]",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
+          }
+        },
+        "examples": [
+          {
+            "value": [
               100500,
               "not number"
-            ]
-          },
-          "items": "number"
-        }
+            ],
+            "strict": true,
+            "name": null
+          }
+        ],
+        "items": "number",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

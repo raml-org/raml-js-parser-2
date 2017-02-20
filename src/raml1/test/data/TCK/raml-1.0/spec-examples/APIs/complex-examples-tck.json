@@ -1,169 +1,165 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "name": "Bob",
-            "lastname": "Marley"
-          },
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "lastname": {
-              "name": "lastname",
-              "displayName": "lastname",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "lastname": {
+            "name": "lastname",
+            "displayName": "lastname",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"Bob\",\n  \"lastname\": \"Marley\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "name": "Bob",
               "lastname": "Marley"
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "Org": {
-          "name": "Org",
-          "displayName": "Org",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "Org": {
+        "name": "Org",
+        "displayName": "Org",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "address": {
-              "name": "address",
-              "displayName": "address",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "value": {
-              "name": "value",
-              "displayName": "value",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
+          "address": {
+            "name": "address",
+            "displayName": "address",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "value": {
+            "name": "value",
+            "displayName": "value",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API with Examples",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "headers": {
               "UserID": {
                 "name": "UserID",
                 "displayName": "UserID",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
-                "example": "SWED-123",
                 "required": true,
                 "description": "the identifier for the user who posts a new organization",
                 "__METADATA__": {
@@ -176,26 +172,24 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "SWED-123",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "SWED-123"
-                }
+                "examples": [
+                  {
+                    "value": "SWED-123",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Org"
                 ],
-                "example": {
-                  "name": "Doe Enterprise",
-                  "value": "Silver"
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -203,20 +197,23 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"name\": \"Doe Enterprise\",\n  \"value\": \"Silver\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "name": "Doe Enterprise",
-                    "value": "Silver"
+                "examples": [
+                  {
+                    "value": {
+                      "name": "Doe Enterprise",
+                      "value": "Silver"
+                    },
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           },
-          {
+          "get": {
             "responses": {
               "201": {
                 "code": "201",
@@ -224,28 +221,25 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Org"
                     ],
                     "examples": [
                       {
-                        "value": "{\n  \"name\": \"Acme\"\n}",
-                        "strict": true,
-                        "name": "acme",
-                        "structuredValue": {
+                        "value": {
                           "name": "Acme"
-                        }
+                        },
+                        "strict": true,
+                        "name": "acme"
                       },
                       {
-                        "value": "{\n  \"name\": \"Software Corp\",\n  \"address\": \"35 Central Street\",\n  \"value\": \"Gold\"\n}",
-                        "strict": true,
-                        "name": "softwareCorp",
-                        "structuredValue": {
+                        "value": {
                           "name": "Software Corp",
                           "address": "35 Central Street",
                           "value": "Gold"
-                        }
+                        },
+                        "strict": true,
+                        "name": "softwareCorp"
                       }
                     ],
                     "__METADATA__": {
@@ -254,7 +248,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -262,7 +258,7 @@
             "description": "Returns an organization entity.",
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/organization",
         "displayName": "/organization",
         "__METADATA__": {
@@ -275,9 +271,13 @@
         "relativeUriPathSegments": [
           "organization"
         ],
-        "absoluteUri": "/organization"
+        "absoluteUri": "/organization",
+        "completeRelativeUri": "/organization",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,96 +1,94 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "t1": {
-          "name": "t1",
-          "displayName": "t1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"prop\": \"stringValue\"\n}",
-              "strict": true,
-              "name": "e1",
-              "displayName": "myExample",
-              "structuredValue": {
-                "prop": "stringValue"
-              },
-              "scalarsAnnotations": {
-                "displayName": [
-                  {
-                    "structuredValue": "asdfg",
-                    "name": "a"
-                  }
-                ]
-              }
-            }
-          ],
-          "properties": {
-            "prop": {
-              "name": "prop",
-              "displayName": "prop",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "prop": {
+            "name": "prop",
+            "displayName": "prop",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "prop": "stringValue"
+            },
+            "strict": true,
+            "name": "e1",
+            "scalarsAnnotations": {
+              "displayName": [
+                {
+                  "structuredValue": "asdfg",
+                  "name": "a"
+                }
+              ]
+            },
+            "displayName": "myExample"
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "a": {
-          "name": "a",
-          "displayName": "a",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "minLength": 8,
-          "maxLength": 64,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "testAPI",
     "version": "v1"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MINMAX_RESTRICTION_VIOLATION",

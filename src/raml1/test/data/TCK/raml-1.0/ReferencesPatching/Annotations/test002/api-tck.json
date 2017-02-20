@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -8,64 +6,60 @@
         "value": "lib.raml"
       }
     ],
-    "traits": [
-      {
-        "lib.libTrait1": {
-          "annotations": {
-            "lib.MyAnnotation": {
-              "structuredValue": "stringValueFromLibTrait1",
-              "name": "lib.MyAnnotation"
-            }
-          },
-          "name": "lib.libTrait1",
-          "__METADATA__": {
-            "calculated": true
+    "traits": {
+      "lib.libTrait1": {
+        "annotations": {
+          "lib.MyAnnotation": {
+            "name": "lib.MyAnnotation",
+            "structuredValue": "stringValueFromLibTrait1"
           }
+        },
+        "name": "lib.libTrait1",
+        "__METADATA__": {
+          "calculated": true
         }
       },
-      {
-        "lib.libTrait2": {
-          "annotations": {
-            "lib.MyAnnotation": {
-              "structuredValue": "stringValueFromLibTrait2",
-              "name": "lib.MyAnnotation"
-            }
-          },
-          "name": "lib.libTrait2",
-          "__METADATA__": {
-            "calculated": true
+      "lib.libTrait2": {
+        "annotations": {
+          "lib.MyAnnotation": {
+            "name": "lib.MyAnnotation",
+            "structuredValue": "stringValueFromLibTrait2"
           }
+        },
+        "name": "lib.libTrait2",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
-    "resourceTypes": [
-      {
-        "lib.libResourceType": {
-          "is": [
-            "lib.libTrait2"
-          ],
-          "name": "lib.libResourceType",
-          "__METADATA__": {
-            "calculated": true
-          },
+    },
+    "resourceTypes": {
+      "lib.libResourceType": {
+        "methods": {
           "post": {
             "is": [
               "lib.libTrait1"
             ],
             "method": "post"
           }
+        },
+        "is": [
+          "lib.libTrait2"
+        ],
+        "name": "lib.libResourceType",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
+    },
     "title": "RAML spec",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "lib.MyAnnotation": {
-                "structuredValue": "stringValueFromLibTrait1",
-                "name": "lib.MyAnnotation"
+                "name": "lib.MyAnnotation",
+                "structuredValue": "stringValueFromLibTrait1"
               }
             },
             "is": [
@@ -73,11 +67,11 @@
             ],
             "method": "get"
           },
-          {
+          "post": {
             "annotations": {
               "lib.MyAnnotation": {
-                "structuredValue": "stringValueFromLibTrait2",
-                "name": "lib.MyAnnotation"
+                "name": "lib.MyAnnotation",
+                "structuredValue": "stringValueFromLibTrait2"
               }
             },
             "is": [
@@ -85,7 +79,7 @@
             ],
             "method": "post"
           }
-        ],
+        },
         "is": [
           "lib.libTrait2"
         ],
@@ -94,7 +88,6 @@
           "id": {
             "name": "id",
             "displayName": "id",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -112,7 +105,9 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "relativeUri": "/{id}",
@@ -127,9 +122,13 @@
         "relativeUriPathSegments": [
           "{id}"
         ],
-        "absoluteUri": "/{id}"
+        "absoluteUri": "/{id}",
+        "completeRelativeUri": "/{id}",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

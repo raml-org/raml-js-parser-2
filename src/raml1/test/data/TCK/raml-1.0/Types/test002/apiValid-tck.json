@@ -1,110 +1,105 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "name": "somestring"
-          },
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"somestring\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "name": "somestring"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "name": "somestring"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "AnotherType": {
-          "name": "AnotherType",
-          "displayName": "AnotherType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "SomeType"
-          ],
-          "example": {
-            "name": "somestring",
-            "age": 11
-          },
-          "properties": {
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "AnotherType": {
+        "name": "AnotherType",
+        "displayName": "AnotherType",
+        "type": [
+          "SomeType"
+        ],
+        "properties": {
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"name\": \"somestring\",\n  \"age\": 11\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "name": "somestring",
               "age": 11
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

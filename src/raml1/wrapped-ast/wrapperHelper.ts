@@ -15,9 +15,10 @@ import universeDef = require("../tools/universe");
 import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
-import expander=require("../ast.core/expander")
+import expander=require("../ast.core/expanderLL")
 import proxy = require("../ast.core/LowLevelASTProxy")
 import referencePatcher = require("../ast.core/referencePatcher")
+import referencePatcherLL = require("../ast.core/referencePatcherLL")
 import search=require("../../search/search-interface")
 import ll=require("../lowLevelAST");
 import llImpl=require("../jsyaml/jsyaml2lowLevel");
@@ -27,6 +28,7 @@ import ramlservices=defs
 import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
+import helpersHL = require("./helpersHL");
 import builder = require("../ast.core/builder");
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
@@ -98,23 +100,7 @@ export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
 
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
 export function absoluteUri(res:RamlWrapper.Resource):string{
-    var uri = '';
-    var parent:any = res;
-    do{
-        res = <RamlWrapper.Resource>parent;//(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
-        uri = res.relativeUri().value() + uri;
-        parent = res.parent();
-    }
-    while (parent.definition().key().name==universes.Universe10.Resource.name);
-    uri = uri.replace(/\/\//g,'/');
-    var buri=(<RamlWrapper.Api>parent).baseUri();
-    var base =buri?buri.value():"";
-    base = base ? base : '';
-    if(util.stringEndsWith(base,'/')){
-        uri = uri.substring(1);
-    }
-    uri = base + uri;
-    return uri;
+    return helpersHL.absoluteUri(res.highLevel());
 }
 //__$helperMethod__ validate an instance against type
 export function validateInstance(res:RamlWrapper.TypeDeclaration, value: any):string[]{
@@ -143,7 +129,7 @@ export function allTraits(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
     if(a.highLevel().lowLevel().actual().libExpanded){
         return (<RamlWrapperImpl.LibraryBaseImpl>a).traits_original();
     }
-    return <any>findTemplates(a,d=>universeHelpers.isTraitType(d));
+    return <any>findTemplates(a,d=>universeHelpers.isTraitType(d),"Trait");
 }
 
 /**
@@ -163,17 +149,17 @@ export function allResourceTypes(a:RamlWrapper.LibraryBase):RamlWrapper.Resource
     if(a.highLevel().lowLevel().actual().libExpanded){
         return (<RamlWrapperImpl.LibraryBaseImpl>a).resourceTypes_original();
     }
-    return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d));
+    return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d),"ResourceType");
 }
 
-function findTemplates(a:core.BasicNode,filter) {
+function findTemplates(a:core.BasicNode,filter,typeName:string) {
     var arr = search.globalDeclarations(a.highLevel()).filter(x=>filter(x.definition()));
     var ll = a.highLevel().lowLevel();
     var nodePath = ll.includePath();
     if(!nodePath){
         nodePath = ll.unit().path();
     }
-    var isProxy = proxy.LowLevelProxyNode.isInstance(a.highLevel().lowLevel());
+    var isProxy = !universeHelpers.isOverlayType(a.highLevel().definition());
     var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var topLevelArr = arr.map(x=>{
         var topLevelNode:core.BasicNode;
@@ -182,7 +168,8 @@ function findTemplates(a:core.BasicNode,filter) {
             if(!(proxy.LowLevelProxyNode.isInstance(x.lowLevel()))) {
                 x = exp.createHighLevelNode(x, false);
             }
-            new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
+            //new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
+            new referencePatcherLL.ReferencePatcher().process(x.lowLevel(),ll,typeName,true,true);
         }
         if(p!=nodePath){
             topLevelNode = factory.buildWrapperNode(x,false);
@@ -415,13 +402,7 @@ export function uriParametersPrimary(resource:RamlWrapper.ResourceBase):RamlWrap
  */
 export function uriParameters(resource:RamlWrapper.ResourceBase):RamlWrapper.TypeDeclaration[]{
 
-    var params = (<RamlWrapperImpl.ResourceBaseImpl>resource).uriParameters_original();
-    if(!(RamlWrapperImpl.ResourceImpl.isInstance(resource))){
-        return params;
-    }
-    var uri = (<RamlWrapper.Resource>resource).relativeUri().value();
-    var propName = universes.Universe10.ResourceBase.properties.uriParameters.name;
-    return extractParams(params, uri, resource, propName);
+    return helpersHL.uriParameters(resource.highLevel()).map(x=><RamlWrapper.TypeDeclaration>x.wrapperNode());
 }
 
 /**
@@ -458,11 +439,7 @@ export function baseUriParametersPrimary(api:RamlWrapper.Api):RamlWrapper.TypeDe
  */
 export function baseUriParameters(api:RamlWrapper.Api):RamlWrapper.TypeDeclaration[]{
 
-    var uri = api.baseUri() ? api.baseUri().value() : '';
-    var params = (<RamlWrapperImpl.ApiImpl>api).baseUriParameters_original();
-    var propName = universes.Universe10.Api.properties.baseUriParameters.name;
-
-    return extractParams(params, uri, api, propName);
+    return helpersHL.baseUriParameters(api.highLevel()).map(x=><RamlWrapper.TypeDeclaration>x.wrapperNode());
 }
 
 /**

@@ -1,71 +1,71 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "a1": {
-          "name": "a1",
-          "displayName": "a1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "allowedTargets": [
-            "Example",
-            "Resource"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "a1": {
+        "name": "a1",
+        "displayName": "a1",
+        "type": [
+          "string"
+        ],
+        "allowedTargets": [
+          "Example",
+          "Resource"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "a2": {
-          "name": "a2",
-          "displayName": "a2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "allowedTargets": [
-            "Method"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+      "a2": {
+        "name": "a2",
+        "displayName": "a2",
+        "type": [
+          "string"
+        ],
+        "allowedTargets": [
+          "Method"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "examples": [
                   {
+                    "value": {
+                      "prop": "stringValue"
+                    },
+                    "strict": true,
+                    "name": "ex1",
                     "annotations": {
                       "a1": {
                         "structuredValue": "stringValue",
@@ -75,12 +75,6 @@
                         "structuredValue": "stringValue",
                         "name": "a2"
                       }
-                    },
-                    "value": "{\n  \"prop\": \"stringValue\"\n}",
-                    "strict": true,
-                    "name": "ex1",
-                    "structuredValue": {
-                      "prop": "stringValue"
                     }
                   }
                 ],
@@ -93,12 +87,14 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {
@@ -111,10 +107,14 @@
         "relativeUriPathSegments": [
           "g"
         ],
-        "absoluteUri": "/g"
+        "absoluteUri": "/g",
+        "completeRelativeUri": "/g",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "INVALID_ANNOTATION_LOCATION",

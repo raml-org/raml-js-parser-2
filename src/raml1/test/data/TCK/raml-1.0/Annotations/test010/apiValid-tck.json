@@ -1,34 +1,32 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "suborg": {
-          "name": "suborg",
-          "displayName": "suborg",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "suborg": {
+        "name": "suborg",
+        "displayName": "suborg",
+        "type": [
+          "object"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Annotation with arbitrary properties",
     "resources": [
       {
         "annotations": {
           "suborg": {
+            "name": "suborg",
             "structuredValue": {
               "manager": {
                 "name": "Tom"
@@ -36,8 +34,7 @@
               "superintendent": {
                 "name": "Bob"
               }
-            },
-            "name": "suborg"
+            }
           }
         },
         "relativeUri": "/assets",
@@ -52,11 +49,14 @@
         "relativeUriPathSegments": [
           "assets"
         ],
-        "absoluteUri": "/assets"
+        "absoluteUri": "/assets",
+        "completeRelativeUri": "/assets",
+        "parentUri": ""
       },
       {
         "annotations": {
           "suborg": {
+            "name": "suborg",
             "structuredValue": {
               "manager": {
                 "name": "Tom"
@@ -64,8 +64,7 @@
               "superintendent": {
                 "name": "Bob"
               }
-            },
-            "name": "suborg"
+            }
           }
         },
         "relativeUri": "/foods",
@@ -80,9 +79,13 @@
         "relativeUriPathSegments": [
           "foods"
         ],
-        "absoluteUri": "/foods"
+        "absoluteUri": "/foods",
+        "completeRelativeUri": "/foods",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

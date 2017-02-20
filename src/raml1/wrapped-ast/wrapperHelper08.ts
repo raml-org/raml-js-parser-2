@@ -10,7 +10,7 @@ import hlimpl = require('../highLevelImpl');
 
 import defs = require('raml-definition-system');
 import universes=require("../tools/universe")
-import expander=require("../ast.core/expander")
+import expander=require("../ast.core/expanderLL")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import linter=require("../ast.core/linter")
 import Opt = require('../../Opt')

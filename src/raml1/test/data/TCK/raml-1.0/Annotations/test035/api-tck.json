@@ -1,40 +1,37 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "deprecated": {
-          "name": "deprecated",
-          "displayName": "deprecated",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "nil"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Illustrating annotations",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "deprecated": {
-                "structuredValue": null,
-                "name": "deprecated"
+                "name": "deprecated",
+                "structuredValue": null
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -47,9 +44,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

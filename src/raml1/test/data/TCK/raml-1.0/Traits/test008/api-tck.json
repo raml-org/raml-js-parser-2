@@ -1,61 +1,77 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "box": {
-          "queryParameters": {
-            "param": {
-              "name": "param",
-              "displayName": "param",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "box": {
+        "queryParameters": {
+          "param": {
+            "name": "param",
+            "displayName": "param",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "name": "box"
-        }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "box"
       },
-      {
-        "container": {
-          "headers": {
-            "auth": {
-              "name": "auth",
-              "displayName": "auth",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "container": {
+        "headers": {
+          "auth": {
+            "name": "auth",
+            "displayName": "auth",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "queryString": {
+          "name": "queryString",
+          "displayName": "queryString",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
               }
             }
           },
-          "queryString": {
-            "name": "queryString",
-            "displayName": "queryString",
-            "typePropertyKind": "TYPE_EXPRESSION",
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        },
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
             "type": [
               "object"
             ],
@@ -68,37 +84,21 @@
                   "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "is": [
-            "box"
-          ],
-          "name": "container"
-        }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "is": [
+          "box"
+        ],
+        "name": "container"
       }
-    ],
+    },
     "title": "Traits"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "PROPERTY_ALREADY_SPECIFIED",

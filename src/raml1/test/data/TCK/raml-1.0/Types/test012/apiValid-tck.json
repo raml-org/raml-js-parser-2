@@ -1,84 +1,66 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "selfReference": [
-              {
-                "selfReference": [
-                  {
-                    "selfReference": [],
-                    "someProperty": "stringValue"
-                  }
-                ],
-                "someProperty": "stringValue"
-              }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "selfReference": {
+            "name": "selfReference",
+            "displayName": "selfReference",
+            "type": [
+              "array"
             ],
-            "someProperty": "stringValue"
-          },
-          "properties": {
-            "selfReference": {
-              "name": "selfReference",
-              "displayName": "selfReference",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "items": "SomeType"
+              }
             },
-            "someProperty": {
-              "name": "someProperty",
-              "displayName": "someProperty",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "items": "SomeType",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "someProperty": {
+            "name": "someProperty",
+            "displayName": "someProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "additionalProperties": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "additionalProperties": false,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty\": \"stringValue\"\n        }\n      ],\n      \"someProperty\": \"stringValue\"\n    }\n  ],\n  \"someProperty\": \"stringValue\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "selfReference": [
                 {
                   "selfReference": [
@@ -91,12 +73,18 @@
                 }
               ],
               "someProperty": "stringValue"
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,134 +1,120 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "lib0.MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "prop": {
-              "name": "prop",
-              "displayName": "prop",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "lib0.MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "prop": {
+            "name": "prop",
+            "displayName": "prop",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "lib.MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "lib.MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "types2.MyObjectType": {
-          "name": "MyObjectType",
-          "displayName": "MyObjectType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "integerProperty": {
-              "name": "integerProperty",
-              "displayName": "integerProperty",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "integer"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "types2.MyObjectType": {
+        "name": "MyObjectType",
+        "displayName": "MyObjectType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "integerProperty": {
+            "name": "integerProperty",
+            "displayName": "integerProperty",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "resourceTypes": [
-      {
-        "rt": {
-          "name": "rt",
+    },
+    "resourceTypes": {
+      "rt": {
+        "methods": {
           "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": true
-                  }
-                },
                 "properties": {
                   "ownLibProperty": {
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib0.MyType"
                     ],
@@ -142,12 +128,13 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   "rootLibProperty": {
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types2.MyObjectType"
                     ],
@@ -161,7 +148,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -174,40 +163,42 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": true\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "ownLibProperty": {
-                      "prop": "stringValue"
+                "examples": [
+                  {
+                    "value": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": true
+                      }
                     },
-                    "rootLibProperty": {
-                      "integerProperty": true
-                    }
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        }
+        },
+        "name": "rt"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "put": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.MyType"
                 ],
-                "example": "stringValue",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -215,38 +206,31 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "stringValue",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "stringValue"
-                }
+                "examples": [
+                  {
+                    "value": "stringValue",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "put"
           },
-          {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": true
-                  }
-                },
                 "properties": {
                   "ownLibProperty": {
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib0.MyType"
                     ],
@@ -260,12 +244,13 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   "rootLibProperty": {
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types2.MyObjectType"
                     ],
@@ -279,7 +264,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -292,24 +279,27 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": true\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "ownLibProperty": {
-                      "prop": "stringValue"
+                "examples": [
+                  {
+                    "value": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": true
+                      }
                     },
-                    "rootLibProperty": {
-                      "integerProperty": true
-                    }
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "type": "rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -323,10 +313,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "INTEGER_EXPECTED",

@@ -1,82 +1,83 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "annotations": {
       "test": {
+        "name": "test",
         "structuredValue": {
           "q": true
-        },
-        "name": "test"
+        }
       }
     },
-    "annotationTypes": [
-      {
-        "test": {
-          "name": "test",
-          "displayName": "test",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "q": {
-              "name": "q",
-              "displayName": "q",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "boolean"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "annotationTypes": {
+      "test": {
+        "name": "test",
+        "displayName": "test",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "q": {
+            "name": "q",
+            "displayName": "q",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "enum": [
-                "W",
-                "A"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "enum": [
+              "W",
+              "A"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "H"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

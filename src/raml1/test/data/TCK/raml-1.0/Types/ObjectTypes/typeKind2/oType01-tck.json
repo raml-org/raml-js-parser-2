@@ -1,17 +1,13 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Initial_comments": {
-          "name": "Initial_comments",
-          "displayName": "Initial_comments",
-          "typePropertyKind": "INPLACE",
-          "type": {
+    "types": {
+      "Initial_comments": {
+        "name": "Initial_comments",
+        "displayName": "Initial_comments",
+        "type": [
+          {
             "name": "type",
             "displayName": "type",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -19,7 +15,6 @@
               "comment_id": {
                 "name": "comment_id",
                 "displayName": "comment_id",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -33,12 +28,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "initial_comments": {
                 "name": "initial_comments",
                 "displayName": "initial_comments",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -52,7 +48,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -64,19 +62,25 @@
                   "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "INPLACE"
       }
-    ],
+    },
     "title": "My API With Types"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,28 +1,27 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
-    "schemas": [
-      {
-        "testSchema": {
-          "name": "testSchema",
-          "displayName": "testSchema",
-          "typePropertyKind": "JSON",
-          "type": [
-            "{\n\n}\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "title": "Pet Shop Overlay",
+    "extends": "api.raml",
+    "types": {
+      "testSchema": {
+        "name": "testSchema",
+        "displayName": "testSchema",
+        "type": [
+          "{\n\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       }
-    ],
-    "title": "Pet Shop Overlay",
-    "extends": "api.raml"
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

@@ -1,35 +1,32 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "schema": [
-            null
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          null
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "INPLACE"
       }
-    ],
+    },
     "title": "Types / Schema mutual exclusive",
     "description": "This RAML illustrates an invalid case where type and schema has been used on the same node.",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -37,10 +34,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "schema": [
-                      null
-                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -50,14 +43,19 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      null
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "INPLACE"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -70,10 +68,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "SCHEMA_AND_TYPE",

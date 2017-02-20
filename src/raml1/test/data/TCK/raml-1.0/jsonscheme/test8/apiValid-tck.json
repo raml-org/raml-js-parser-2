@@ -1,46 +1,36 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "JSON",
-          "schemaPath": "subdir/scheme.json",
-          "type": [
-            "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "schemaPath": "subdir/scheme.json",
+        "type": [
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Api",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "INPLACE",
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "parentName": "somename",
-                  "child": {
-                    "childName": "anothernames"
-                  }
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -48,22 +38,24 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName\": \"anothernames\"\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "parentName": "somename",
-                    "child": {
-                      "childName": "anothernames"
-                    }
+                "examples": [
+                  {
+                    "value": {
+                      "parentName": "somename",
+                      "child": {
+                        "childName": "anothernames"
+                      }
+                    },
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -76,9 +68,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

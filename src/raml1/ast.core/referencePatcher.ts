@@ -4,6 +4,7 @@ import hl=require("../highLevelAST");
 import hlimpl=require("../highLevelImpl");
 import yaml=require("yaml-ast-parser");
 import jsyaml=require("../jsyaml/jsyaml2lowLevel");
+import json=require("../jsyaml/json2lowLevel");
 import util=require("../../util/index");
 import proxy=require("./LowLevelASTProxy");
 import universeDef=require("../tools/universe");
@@ -13,6 +14,7 @@ import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import typeExpressions = def.rt.typeExpressions;
 import expander=require("./expander");
+import builder = require("./builder");
 
 export enum PatchMode{
     DEFAULT, PATH
@@ -40,13 +42,12 @@ export class ReferencePatcher{
             this.patchNodeName(hlNode,rootNode.lowLevel().unit(),resolver);
         }
         if(removeUses){
-            this.removeUses(hlNode.lowLevel());
+            this.removeUses(hlNode);
         }
         else {
-            this.patchUses(hlNode.lowLevel(), resolver);
+            this.patchUses(hlNode, resolver);
         }
         this.resetTypes(hlNode);
-        hlNode.resetChildren();
         hlNode.lowLevel()["libProcessed"] = true;
     }
 
@@ -56,6 +57,10 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver=new namespaceResolver.NamespaceResolver(),
         units:ll.ICompilationUnit[] = [ rootNode.lowLevel().unit() ]){
 
+        if( (<hlimpl.BasicASTNode><any>node).isReused()){
+            return;
+        }
+
         var isNode:proxy.LowLevelCompositeNode;
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
@@ -64,15 +69,19 @@ export class ReferencePatcher{
             }
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
             var traitNodes = node.attributes(isPropertyName);
-            cNode.preserveAnnotations();
-            node.resetChildren();
             if(traitNodes.length!=0) {                                
                 isNode = patchMethodIs(node,traitNodes.map(x=>x.lowLevel()).map(x=>{
+                    if(!proxy.LowLevelProxyNode.isInstance(x)){
+                        return {
+                            node: x,
+                            transformer: null
+                        }
+                    }
                     return{
                         node: x,
                         transformer: (<proxy.LowLevelProxyNode>x).transformer()
                     };
-                }));
+                }),units[0].absolutePath());
             }
         }
 
@@ -97,7 +106,34 @@ export class ReferencePatcher{
         }
         if(isNode){
             isNode.filterChildren();
+            var directChildren = node.directChildren();
+            if(directChildren){
+                (<hlimpl.ASTNodeImpl>node)._children = this.filterTraitReferences(directChildren);
+            }
+            var mergedChildren = node.children();
+            if(mergedChildren) {
+                (<hlimpl.ASTNodeImpl>node)._mergedChildren = this.filterTraitReferences(mergedChildren);
+            }
         }
+    }
+    
+    private filterTraitReferences(children:hl.IParseResult[]):hl.IParseResult[]{
+        var newChildren:hl.IParseResult[] = [];
+        var map = {};
+        for(var ch of children){
+            var p = ch.property();
+            if(!p||!universeHelpers.isIsProperty(p)){
+                newChildren.push(ch);
+                continue;
+            }
+            var key = JSON.stringify(json.serialize(ch.lowLevel()));
+            if(map[key]){
+                continue;
+            }
+            map[key] = true;
+            newChildren.push(ch);
+        }
+        return newChildren;
     }
 
     patchReferenceAttr(
@@ -288,7 +324,7 @@ export class ReferencePatcher{
                                         return;
                                     }
                                     var patchTransformedValue = true;
-                                    if(typeName.indexOf("<<")>=0&&this.isCompoundValue(typeName)){
+                                    if(typeName.indexOf("<<")>=0&&isCompoundValue(typeName)){
                                         patchTransformedValue = false;
                                     }
                                     var patched = this.resolveReferenceValue(
@@ -308,7 +344,7 @@ export class ReferencePatcher{
                             }
                         }
                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
-                            if(stringToPatch.indexOf("<<")>=0&&this.isCompoundValue(stringToPatch)){
+                            if(stringToPatch.indexOf("<<")>=0&&isCompoundValue(stringToPatch)){
                                 stringToPatch = value;
                                 transformer = null;
                             }
@@ -410,6 +446,7 @@ export class ReferencePatcher{
         var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],range);
         if(patched != null){
             llNode.setKeyOverride(patched.value());
+            (<hlimpl.ASTNodeImpl>hlNode).resetIDs();
         }
     }
 
@@ -484,7 +521,9 @@ export class ReferencePatcher{
         return new PatchedReference(newNS,plainName,collectionName,referencedUnit,this.mode);
     }
 
-    patchUses(node:ll.ILowLevelASTNode,resolver:namespaceResolver.NamespaceResolver){
+    private patchUses(hlNode:hl.IHighLevelNode,resolver:namespaceResolver.NamespaceResolver){
+        var node = hlNode.lowLevel();
+        hlNode.children();
         if(!(proxy.LowLevelCompositeNode.isInstance(node))){
             return;
         }
@@ -500,8 +539,8 @@ export class ReferencePatcher{
 
         var cNode = <proxy.LowLevelCompositeNode>node;
         var originalChildren = node.children();
-        var usesNodes = originalChildren.filter(x=>
-        x.key()==universeDef.Universe10.FragmentDeclaration.properties.uses.name);
+        var usesPropName = universeDef.Universe10.FragmentDeclaration.properties.uses.name;
+        var usesNodes = originalChildren.filter(x=>x.key()== usesPropName);
 
         var oNode = toOriginal(node);
         var yamlNode = oNode;
@@ -513,10 +552,7 @@ export class ReferencePatcher{
         var extendedUsesInfos = Object.keys(extendedUnitMap).map(x=>extendedUnitMap[x])
             .filter(x=>!unitMap[x.absolutePath()]/*&&this.usedNamespaces[x.namespace()]*/);
 
-        var u = node.unit();
-        var unitPath = u.absolutePath();
-
-
+        var unitPath = unit.absolutePath();
         var existingLibs = {};
         var usesNode:proxy.LowLevelCompositeNode;
         if(usesNodes.length>0){
@@ -528,7 +564,23 @@ export class ReferencePatcher{
             newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
             newUses.setUnit(yamlNode.unit());
             usesNode = cNode.replaceChild(null,newUses);
-        }        
+        }
+        var usesProp = hlNode.definition().property(usesPropName);
+        var usesType = usesProp.range(); 
+        var directChildren = (<hlimpl.ASTNodeImpl>hlNode)._children.filter(x=>{
+            if(x.lowLevel().unit().absolutePath()==unitPath){
+                return true;
+            }
+            var p = x.property();
+            return !p||!universeHelpers.isUsesProperty(p)
+        });
+        var mergedChildren = (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren.filter(x=>{
+            if(x.lowLevel().unit().absolutePath()==unitPath){
+                return true;
+            }
+            var p = x.property();
+            return !p||!universeHelpers.isUsesProperty(p)
+        });;        
         for (var ui of usesInfos.concat(extendedUsesInfos)) {
             var up = ui.absolutePath();
             if(existingLibs[ui.namespace()]){
@@ -537,11 +589,17 @@ export class ReferencePatcher{
             var ip = ui.includePath;
             var mapping = jsyaml.createMapping(ui.namespace(), ip);
             mapping.setUnit(yamlNode.unit());
+            var hlUses = new hlimpl.ASTNodeImpl(mapping,hlNode,usesType,usesProp);
+            directChildren.push(hlUses);
+            mergedChildren.push(hlUses);
             usesNode.replaceChild(null,mapping);
         }
+        (<hlimpl.ASTNodeImpl>hlNode)._children  = directChildren;
+        (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = mergedChildren;
     }
 
-    removeUses(node:ll.ILowLevelASTNode){
+    removeUses(hlNode:hl.IHighLevelNode){
+        var node = hlNode.lowLevel();
         if(!(proxy.LowLevelCompositeNode.isInstance(node))){
             return;
         }
@@ -552,11 +610,25 @@ export class ReferencePatcher{
         if(usesNodes.length>0){
             cNode.removeChild(usesNodes[0]);
         }
+        (<hlimpl.ASTNodeImpl>hlNode)._children = hlNode.directChildren().filter(x=>{
+            var p = x.property();
+            return p == null || !universeHelpers.isUsesProperty(p);
+        });
+        (<hlimpl.ASTNodeImpl>hlNode)._mergedChildren = hlNode.children().filter(x=>{
+            var p = x.property();
+            return p == null || !universeHelpers.isUsesProperty(p);
+        });
     }
 
     resetTypes(hlNode:hl.IHighLevelNode) {
         for(var ch of hlNode.elements()){
             this.resetTypes(ch);
+        }
+        for(var attr of hlNode.attrs()){
+            var aVal = attr.value();
+            if(hlimpl.StructuredValue.isInstance(aVal)){
+                (<hlimpl.StructuredValue>aVal).resetHighLevelNode();
+            }
         }
         delete hlNode.lowLevel().actual().types;
         delete hlNode["_ptype"];
@@ -671,14 +743,12 @@ export class ReferencePatcher{
                 for (var cName of Object.keys(libModel)) {
                     var collection:ElementsCollection = <ElementsCollection>libModel[cName];
                     if (ElementsCollection.isInstance(collection)) {
-                        gotContribution = this.contributeCollection(
-                                <proxy.LowLevelCompositeNode>api.lowLevel(),
-                                collection) || gotContribution;
+                        gotContribution = this.contributeCollection(api,collection) || gotContribution;
                     }
                 }
             }
-            this.resetTypes(api);
             api.resetChildren();
+            this.resetTypes(api);
             if (gotContribution) {
                 var gotPatch = false;
                 do {
@@ -688,10 +758,9 @@ export class ReferencePatcher{
                 this.removeUnusedDependencies(api);
             }
         }
-        this.removeUses(api.lowLevel());
+        this.removeUses(api);
         api.lowLevel().actual().libExpanded = true;
         this.resetTypes(api);
-        api.resetChildren();
     }
 
     private patchDependencies(api:hl.IHighLevelNode):boolean {
@@ -702,7 +771,7 @@ export class ReferencePatcher{
                 continue;
             }
             var chNode = ch.asElement();
-            this.removeUses(chNode.lowLevel());
+            this.removeUses(chNode);
             var chPath = ch.lowLevel().unit().absolutePath();
             if (chPath == apiPath && ch.lowLevel().includePath() == null) {
                 continue;
@@ -729,26 +798,60 @@ export class ReferencePatcher{
     private removeUnusedDependencies(api:hl.IHighLevelNode) {
         var llNode = <proxy.LowLevelCompositeNode>api.lowLevel();
         var apiPath = llNode.unit().absolutePath();
-        var children = [].concat(api.children());
-        for (var ch of children) {
+
+        var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
+        //var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
+        var newDirectChildren:hl.IParseResult[] = [];
+        //var newMergedChildren:hl.IParseResult[] = [];
+        for(var ch of directChildren){
             var chLl = ch.lowLevel();
             if (ch.isElement()&&chLl["libProcessed"]) {
+                newDirectChildren.push(ch);
                 continue;
             }
             var chPath = chLl.unit().absolutePath();
             if (chPath == apiPath) {
+                newDirectChildren.push(ch);
                 continue;
             }
             (<proxy.LowLevelCompositeNode>chLl.parent()).removeChild(chLl);
         }
+        // var extensionPaths = {};
+        // var master = api;
+        // while(master){
+        //     var mPath = master.lowLevel().unit().absolutePath();
+        //     if(extensionPaths[mPath]){
+        //         break;
+        //     }
+        //     extensionPaths[mPath] = true;
+        //     var mNode = master.getMaster();
+        //     master = mNode && mNode.asElement();
+        // }
+        // for(var ch of mergedChildren){
+        //     var chLl = ch.lowLevel();
+        //     if (ch.isElement()&&chLl["libProcessed"]) {
+        //         newMergedChildren.push(ch);
+        //         continue;
+        //     }
+        //     var chPath = chLl.unit().absolutePath();
+        //     if (extensionPaths[chPath]) {
+        //         newMergedChildren.push(ch);
+        //         continue;
+        //     }
+        // }
+        (<hlimpl.ASTNodeImpl>api)._children = newDirectChildren;
+        (<hlimpl.ASTNodeImpl>api)._mergedChildren = null;
     }
 
-    private contributeCollection(llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
+    private contributeCollection(api:hl.IHighLevelNode, collection:ElementsCollection):boolean {
 
+        var llApi = <proxy.LowLevelCompositeNode>api.lowLevel();
         if(collection.array.length==0){
             return false;
         }
         var name = collection.name;
+        var prop = api.definition().property(name);
+        var propRange = prop.range();
         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
             llApi.children(),
             x=>x.key()==name);
@@ -757,6 +860,8 @@ export class ReferencePatcher{
             llNode = llApi.replaceChild(null,n);
         }
         var result = false;
+        var directChildren = (<hlimpl.ASTNodeImpl>api)._children;
+        var mergedChildren = (<hlimpl.ASTNodeImpl>api)._mergedChildren;
         for(var e of collection.array){
             if(llNode.children().some(x=>{
                     var oNode = toOriginal(x);
@@ -767,7 +872,12 @@ export class ReferencePatcher{
                 })){
                 continue;
             }
-            llNode.replaceChild(null,e.lowLevel());
+            var newLlNode = llNode.replaceChild(null,e.lowLevel());
+            var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,propRange,prop);
+            directChildren.push(newHLNode);
+            if(mergedChildren){
+                mergedChildren.push(newHLNode);
+            }
             result = true;
         }
         return result;
@@ -795,27 +905,13 @@ export class ReferencePatcher{
         return result;
     }
 
-    private isCompoundValue(str:string):boolean{
-        var i0 = str.indexOf("<<");
-        if(i0<0){
-            return false;
-        }
-        if(i0!=0){
-            return true;
-        }
-        var i1 = str.indexOf(">>",i0);
-        if(i1+">>".length!=str.length){
-            return true;
-        }
-        return false;
-    }
 }
 
-enum ParametersEscapingStatus{
+export enum ParametersEscapingStatus{
     OK, NOT_REQUIRED, ERROR
 }
 
-interface EscapeData{
+export interface EscapeData{
     resultingString?: string,
     substitutions?: {[key:string]:string},
     status: ParametersEscapingStatus
@@ -823,7 +919,7 @@ interface EscapeData{
 
 var PARAM_OCCURENCE_STR = "__P_A_R_A_M_E_T_E_R__";
 
-function escapeTemplateParameters(str:string):EscapeData{
+export function escapeTemplateParameters(str:string):EscapeData{
     if(str==null||typeof str != "string"){
         return { status: ParametersEscapingStatus.NOT_REQUIRED }
     }
@@ -853,7 +949,7 @@ function escapeTemplateParameters(str:string):EscapeData{
     };
 }
 
-function unescapeTemplateParameters(str:string,substitutions:{[key:string]:string}):EscapeData{
+export function unescapeTemplateParameters(str:string,substitutions:{[key:string]:string}):EscapeData{
     if(str==null){
         return { status: ParametersEscapingStatus.NOT_REQUIRED };
     }
@@ -884,7 +980,7 @@ function unescapeTemplateParameters(str:string,substitutions:{[key:string]:strin
 }
 
 
-function checkExpression(value:string) {
+export function checkExpression(value:string) {
     var gotExpression = false;
     for (let i = 0; i < value.length; i++) {
         let ch = value.charAt(i);
@@ -900,7 +996,8 @@ function checkExpression(value:string) {
 export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     node:ll.ILowLevelASTNode,
     transformer:proxy.ValueTransformer
-}[]):proxy.LowLevelCompositeNode{
+}[],
+rootPath:string):proxy.LowLevelCompositeNode{
     
     var llMethod = <proxy.LowLevelCompositeNode>node.lowLevel();
     var ramlVersion = node.definition().universe().version();
@@ -917,7 +1014,8 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
         isNode = (<proxy.LowLevelCompositeNode>llMethod).replaceChild(null,newLLIsNode);
     }
     var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
-    var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
+    var childrenToPreserve = (originalIsNode != null && (originalIsNode.unit().absolutePath() == rootPath))
+        ? originalIsNode.children() : [];
 
     var newTraits = childrenToPreserve.concat(traits.map(x=>{
         var llChNode = prepareTraitRefNode(x.node,isNode);
@@ -929,6 +1027,29 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     })).filter(x=>x!=null);
     isNode.setChildren(newTraits);
     isNode.filterChildren();
+    newTraits = isNode.children();
+    var directChildren = node.directChildren();
+    var isProp = node.definition().property("is");
+    var isPropRange = isProp.range();
+    if(directChildren){
+        directChildren = directChildren.filter(x=>{
+            var p = x.property();
+            return p==null || !universeHelpers.isIsProperty(p); 
+        });        
+        (<hlimpl.ASTNodeImpl>node)._children = directChildren.concat(newTraits.map(x=>
+            new hlimpl.ASTPropImpl(x,node,isPropRange,isProp)
+        ));
+    }
+    var mergedChildren = node.children();
+    if(mergedChildren) {
+        mergedChildren = mergedChildren.filter(x=>{
+            var p = x.property();
+            return p==null || !universeHelpers.isIsProperty(p);
+        });
+        (<hlimpl.ASTNodeImpl>node)._mergedChildren = mergedChildren.concat(newTraits.map(x=>
+            new hlimpl.ASTPropImpl(x,node,isPropRange,isProp)
+        ));
+    }
     return isNode;
 }
 
@@ -1050,7 +1171,7 @@ class LibModel{
 
 }
 
-type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};
+export type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};
 
 export function getDeclaration(
     elementName:string,
@@ -1106,4 +1227,19 @@ export function getDeclaration(
         }
     }
     return result;
+}
+
+export function isCompoundValue(str:string):boolean{
+    var i0 = str.indexOf("<<");
+    if(i0<0){
+        return false;
+    }
+    if(i0!=0){
+        return true;
+    }
+    var i1 = str.indexOf(">>",i0);
+    if(i1+">>".length!=str.length){
+        return true;
+    }
+    return false;
 }

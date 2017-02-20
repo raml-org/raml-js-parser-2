@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Api",
     "baseUri": "/segment1/{param1}/{param2}",
@@ -8,7 +6,6 @@
       "param1": {
         "name": "param1",
         "displayName": "param1",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -22,12 +19,13 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "param2": {
         "name": "param2",
         "displayName": "param2",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -45,12 +43,13 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "param3": {
         "name": "param3",
         "displayName": "param3",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -64,7 +63,9 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -78,6 +79,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "PROPERTY_UNUSED",

@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Example API",
     "baseUri": "http://example.com",
@@ -39,8 +37,8 @@
                 }
               }
             },
-            "methods": [
-              {
+            "methods": {
+              "post": {
                 "body": {
                   "application/x-www-form-urlencoded": {
                     "name": "application/x-www-form-urlencoded",
@@ -128,7 +126,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/{resourceId}",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -140,7 +138,9 @@
             "relativeUriPathSegments": [
               "{resourceId}"
             ],
-            "absoluteUri": "http://example.com/resource/{resourceId}"
+            "absoluteUri": "http://example.com/resource/{resourceId}",
+            "completeRelativeUri": "/resource/{resourceId}",
+            "parentUri": "/resource"
           }
         ],
         "displayName": "/resource",
@@ -154,7 +154,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "http://example.com/resource"
+        "absoluteUri": "http://example.com/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -165,5 +167,7 @@
       }
     }
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": []
 }

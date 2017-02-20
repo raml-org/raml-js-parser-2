@@ -1,19 +1,17 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Extension",
   "specification": {
     "title": "Book Library API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "description": "Add a new book to the collection",
             "method": "post"
           },
-          {
+          "get": {
             "method": "get"
           }
-        ],
+        },
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -27,7 +25,9 @@
         "relativeUriPathSegments": [
           "books"
         ],
-        "absoluteUri": "/books"
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
       }
     ],
     "documentation": [
@@ -43,5 +43,7 @@
     "usage": "Add administrative functionality",
     "extends": "librarybooks.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
   "errors": []
 }

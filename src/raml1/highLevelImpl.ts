@@ -95,6 +95,12 @@ export class BasicASTNode implements hl.IParseResult {
 
     private static CLASS_IDENTIFIER = "highLevelImpl.BasicASTNode";
 
+    protected _reuseMode:boolean;
+
+    protected _isReused:boolean;
+
+    protected _jsonCache:any;
+
     public static isInstance(instance : any) : instance is BasicASTNode {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
@@ -342,6 +348,11 @@ export class BasicASTNode implements hl.IParseResult {
     }
     cachedId: string
     cachedFullId: string
+    
+    resetIDs(){
+        this.cachedId = null;
+        this.cachedFullId = null;
+    }
 
     fullLocalId() : string {
         if (this.cachedFullId){
@@ -370,6 +381,31 @@ export class BasicASTNode implements hl.IParseResult {
 
     property():hl.IProperty{
         return null;
+    }
+
+    reuseMode():boolean{
+        return this._reuseMode;
+    }
+
+    setReuseMode(val:boolean){
+        this._reuseMode = val;
+    }
+
+    isReused(){
+        return this._isReused;
+    }
+
+    setReused(val:boolean){
+        this._isReused = val;
+        this.children().forEach(x=>(<BasicASTNode>x).setReused(val));
+    }
+
+    setJSON(val:any){
+        this._jsonCache = val;
+    }
+
+    getJSON(){
+        return this._jsonCache;
     }
 }
 
@@ -477,6 +513,20 @@ export class StructuredValue implements hl.IStructuredValue{
         }
         return null;
     }
+    
+    resetHighLevelNode(){
+        this._hl = null;
+    }
+}
+
+/**
+ * Instanceof for StructuredValue class
+ * @param node
+ * @returns
+ */
+export function isStructuredValue(node : any) : node is StructuredValue {
+    var anyNode = <any>node;
+    return anyNode && anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
 }
 
 export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
@@ -855,6 +905,16 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
 }
 
+/**
+ * Instanceof for ASTPropImpl class
+ * @param node
+ * @returns
+ */
+export function isASTPropImpl(node : any) : node is ASTPropImpl {
+    var anyNode = <any>node;
+    return anyNode && anyNode.isString && anyNode.isFromKey && anyNode.isEmbedded;
+}
+
 var nodeBuilder=new builder.BasicNodeBuilder()
 
 export enum OverlayMergeMode {
@@ -1074,6 +1134,16 @@ export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
         return null;
     }
 }
+export function auxiliaryTypeForExample(node:hl.IHighLevelNode) {
+    var typeYamlNode = yaml.newMap([yaml.newMapping(yaml.newScalar("example"), node.lowLevel().actual())]);
+    var typesNode = yaml.newMapping(yaml.newScalar("types")
+        , yaml.newMap([yaml.newMapping(yaml.newScalar("__AUX_TYPE__"), typeYamlNode)]));
+    var yamlNode = yaml.newMap([typesNode]);
+    var llNode = new jsyaml.ASTNode(yamlNode, node.lowLevel().unit(), null, null, null);
+    var types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(llNode, node));
+    var nominal = rTypes.toNominal(types.types()[0], x=>null);
+    return nominal;
+};
 export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelNode{
 
 
@@ -1253,6 +1323,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
      */
     private slave : hl.IParseResult;
 
+    private _reusedNode: IHighLevelNode;
+
     constructor(node:ll.ILowLevelASTNode, parent:hl.IHighLevelNode,private _def:hl.INodeDefinition,private _prop:hl.IProperty){
         super(node,parent)
         if(node) {
@@ -1278,19 +1350,21 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     wrapperNode():ParserCore.BasicNode{
         if(!this._wrapperNode){
             if(universeHelpers.isExampleSpecType(this.definition())){
-                var typeYamlNode = yaml.newMap([yaml.newMapping(yaml.newScalar("example"),this.lowLevel().actual())]);
-                var typesNode = yaml.newMapping(yaml.newScalar("types")
-                    ,yaml.newMap([yaml.newMapping(yaml.newScalar("__AUX_TYPE__"),typeYamlNode)]));
-                var yamlNode = yaml.newMap([typesNode]);
-                var llNode = new jsyaml.ASTNode(yamlNode,this.lowLevel().unit(),null,null,null);
-                var types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(llNode,this));
-                var nominal = rTypes.toNominal(types.types()[0],x=>null);
+                var nominal = auxiliaryTypeForExample(this);
                 var spec = wrapperHelper.examplesFromNominal(nominal,this,true,false);
                 return spec[0];
             }
             else {
-                //forcing discrimination
-                this.children();
+                //forcing discrimination for fragments only
+                var u = this.definition() && this.definition().universe();
+                if(u && u.version()=="RAML10"){
+                    if(!this.definition()||!this.definition().isAssignableFrom(def.universesInfo.Universe10.LibraryBase.name)){
+                        this.children();                        
+                    }
+                }
+                else {
+                    this.children();
+                }
 
                 this._wrapperNode = this.buildWrapperNode();
             }
@@ -1873,6 +1947,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
         if (this._node) {
             this._children = nodeBuilder.process(this, this._node.children());
+            this._mergedChildren = null;
             return this._children;
 
         }
@@ -2007,6 +2082,26 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         });
         return result;
     }
+
+    setReuseMode(val:boolean){
+        this._reuseMode = val;
+        if(this._children && this.lowLevel().valueKind()!=yaml.Kind.SEQ){
+            this._children.forEach(x=>(<BasicASTNode>x).setReuseMode(val));
+        }
+    }
+
+    reusedNode(): hl.IHighLevelNode{
+        return this._reusedNode;
+    }
+
+    setReusedNode(n:hl.IHighLevelNode){
+        this._reusedNode = n;
+    }
+    
+    resetRuntimeTypes(){
+        delete this._associatedDef;
+        this.elements().forEach(x=>(<ASTNodeImpl>x).resetRuntimeTypes());
+    }
 }
 
 export var universeProvider = require("./definition-system/universeProvider");
@@ -2073,7 +2168,7 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
     var api = new ASTNodeImpl(ast, null, <any>apiType, null);
     api.setUniverse(localUniverse);
     //forcing discrimination
-    api.children();
+    //api.children();
     return api;
 }
 
@@ -2289,4 +2384,69 @@ export function applyNodeAnnotationValidationPlugins(
         }
     }
     return result;
+}
+
+export function toParserErrors(issues:hl.ValidationIssue[],node:hl.IHighLevelNode):hl.RamlParserError[]{
+
+    var rawResult = issues.map(x=>basicError(x,node));
+    var result:hl.RamlParserError[] = filterErrors(rawResult);
+    return result;
+}
+
+function filterErrors(rawErrors:hl.RamlParserError[]):hl.RamlParserError[] {
+    var result:hl.RamlParserError[] = [];
+    var errorsMap = {};
+
+    rawErrors.map(x=>{errorsMap[JSON.stringify(x)] = x});
+    var keys: string[] = Object.keys(errorsMap);
+    for (var i = 0; i < keys.length; i++){
+        result.push(errorsMap[keys[i]]);
+    }
+    return result;
+}
+
+function basicError(x:hl.ValidationIssue,node:hl.IHighLevelNode):hl.RamlParserError {
+    var lineMapper = (x.node && x.node.lowLevel() && x.node.lowLevel().unit().lineMapper())
+        || node.lowLevel().unit().lineMapper();
+
+    var startPoint = null;
+    try {
+        startPoint = lineMapper.position(x.start);
+    }
+    catch (e) {
+        console.warn(e);
+    }
+
+    var endPoint = null;
+    try {
+        endPoint = lineMapper.position(x.end);
+    }
+    catch (e) {
+        console.warn(e);
+    }
+
+    var path:string;
+    if (x.path) {
+        path = x.path;
+    }
+    else if (x.node) {
+        path = x.node.lowLevel().unit().path();
+    }
+    else {
+        path = search.declRoot(node).lowLevel().unit().path();
+    }
+    var eObj:any = {
+        code: x.code,
+        message: x.message,
+        path: path,
+        range: {
+            start: startPoint,
+            end: endPoint
+        },
+        isWarning: x.isWarning
+    };
+    if(x.extras && x.extras.length>0){
+        eObj.trace = x.extras.map(y=>basicError(y,node));
+    }
+    return eObj;
 }

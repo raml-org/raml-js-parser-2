@@ -881,7 +881,7 @@ describe('XSD schemes tests', function () {
     })
     it("Inlining schemas in JSON for RAML 0.8" ,function() {
         var api=util.loadApi(util.data("parser/schemas/RAML08SchemasInlining/api.raml"));
-        var json = api.wrapperNode().toJSON({ rootNodeDetails: true, dumpSchemaContents: true });
+        var json = api.wrapperNode().toJSON({ rootNodeDetails: true, dumpSchemaContents: true, serializeMetadata: true });
         util.compareToFileObject(json,util.data("parser/schemas/RAML08SchemasInlining/api-tck.json"));
     })
 });

@@ -1,742 +1,744 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Zip": {
-          "name": "Zip",
-          "displayName": "Zip",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
-          ],
-          "example": 630128,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "Zip": {
+        "name": "Zip",
+        "displayName": "Zip",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "structuredExample": {
-            "value": "630128",
-            "strict": true,
-            "name": null,
-            "structuredValue": 630128
           }
-        }
-      },
-      {
-        "Address": {
-          "name": "Address",
-          "displayName": "Address",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "country": "US",
-            "city": "SF",
-            "street": "Geary Street",
-            "house": "77, Suite 400",
-            "zip": 94108
-          },
-          "properties": {
-            "country": {
-              "name": "country",
-              "displayName": "country",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "US",
-                "ARG",
-                "RUS",
-                "GB"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "city": {
-              "name": "city",
-              "displayName": "city",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "street": {
-              "name": "street",
-              "displayName": "street",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "house": {
-              "name": "house",
-              "displayName": "house",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "zip": {
-              "name": "zip",
-              "displayName": "zip",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "Zip"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
+        },
+        "examples": [
+          {
+            "value": 630128,
             "strict": true,
-            "name": null,
-            "structuredValue": {
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Address": {
+        "name": "Address",
+        "displayName": "Address",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "country": {
+            "name": "country",
+            "displayName": "country",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "US",
+              "ARG",
+              "RUS",
+              "GB"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "city": {
+            "name": "city",
+            "displayName": "city",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "street": {
+            "name": "street",
+            "displayName": "street",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "house": {
+            "name": "house",
+            "displayName": "house",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "zip": {
+            "name": "zip",
+            "displayName": "zip",
+            "type": [
+              "Zip"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "country": "US",
               "city": "SF",
               "street": "Geary Street",
               "house": "77, Suite 400",
               "zip": 94108
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Email": {
+        "name": "Email",
+        "displayName": "Email",
+        "type": [
+          "string"
+        ],
+        "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
+        "minLength": 15,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
-      },
-      {
-        "Email": {
-          "name": "Email",
-          "displayName": "Email",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "example": "press@mulesoft.com",
-          "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
-          "minLength": 15,
-          "maxLength": 64,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
+        },
+        "examples": [
+          {
             "value": "press@mulesoft.com",
             "strict": true,
-            "name": null,
-            "structuredValue": "press@mulesoft.com"
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "facets": {
-            "role": {
-              "name": "role",
-              "displayName": "role",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "default": "user",
-              "enum": [
-                "user",
-                "manager",
-                "admin",
-                "super-admin"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
-              "strict": true,
-              "name": "value1",
-              "structuredValue": {
-                "id": 11,
-                "name": "John Johnson",
-                "email": "press@mulesoft.com",
-                "phone": "+7-913-111-1111",
-                "address": {
-                  "country": "RUS",
-                  "city": "Novosibirsk",
-                  "zip": 630090
-                }
-              }
-            },
-            {
-              "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
-              "strict": true,
-              "name": "value2",
-              "structuredValue": {
-                "id": 12,
-                "name": "John Johnson",
-                "email": "press1@mulesoft.com",
-                "phone": "+1-222-222-2222",
-                "address": {
-                  "country": "US",
-                  "city": "SF",
-                  "zip": 123456
-                }
-              }
-            }
-          ],
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "email": {
-              "name": "email",
-              "displayName": "email",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "Email"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "phone": {
-              "name": "phone",
-              "displayName": "phone",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "pattern": "\\+\\d{1}\\-\\d{3}\\-\\d{3}\\-\\d{4}",
-              "minLength": 15,
-              "maxLength": 15,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "address": {
-              "name": "address",
-              "displayName": "address",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "Address"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "Manager": {
-          "name": "Manager",
-          "displayName": "Manager",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "User"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  },\n  \"managerId\": 77\n}",
-              "strict": true,
-              "name": "manager1",
-              "structuredValue": {
-                "id": 11,
-                "name": "John Johnson",
-                "email": "press@mulesoft.com",
-                "phone": "+7-913-111-1111",
-                "address": {
-                  "country": "RUS",
-                  "city": "Novosibirsk",
-                  "zip": 630090
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "facets": {
+          "role": {
+            "name": "role",
+            "displayName": "role",
+            "type": [
+              "string"
+            ],
+            "default": "user",
+            "enum": [
+              "user",
+              "manager",
+              "admin",
+              "super-admin"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 },
-                "managerId": 77
+                "type": {
+                  "insertedAsDefault": true
+                }
               }
             },
-            {
-              "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  },\n  \"managerId\": 88\n}",
-              "strict": true,
-              "name": "manager2",
-              "structuredValue": {
-                "id": 12,
-                "name": "John Johnson",
-                "email": "press1@mulesoft.com",
-                "phone": "+1-222-222-2222",
-                "address": {
-                  "country": "US",
-                  "city": "SF",
-                  "zip": 123456
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": {
+              "id": 11,
+              "name": "John Johnson",
+              "email": "press@mulesoft.com",
+              "phone": "+7-913-111-1111",
+              "address": {
+                "country": "RUS",
+                "city": "Novosibirsk",
+                "zip": 630090
+              }
+            },
+            "strict": true,
+            "name": "value1"
+          },
+          {
+            "value": {
+              "id": 12,
+              "name": "John Johnson",
+              "email": "press1@mulesoft.com",
+              "phone": "+1-222-222-2222",
+              "address": {
+                "country": "US",
+                "city": "SF",
+                "zip": 123456
+              }
+            },
+            "strict": true,
+            "name": "value2"
+          }
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 },
-                "managerId": 88
-              }
-            }
-          ],
-          "properties": {
-            "managerId": {
-              "name": "managerId",
-              "displayName": "managerId",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "fixedFacets": {
-            "role": "manager"
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "email": {
+            "name": "email",
+            "displayName": "email",
+            "type": [
+              "Email"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "phone": {
+            "name": "phone",
+            "displayName": "phone",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "pattern": "\\+\\d{1}\\-\\d{3}\\-\\d{3}\\-\\d{4}",
+            "minLength": 15,
+            "maxLength": 15,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "address": {
+            "name": "address",
+            "displayName": "address",
+            "type": [
+              "Address"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "Admin": {
-          "name": "Admin",
-          "displayName": "Admin",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "User"
-          ],
-          "properties": {
-            "adminId": {
-              "name": "adminId",
-              "displayName": "adminId",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "fixedFacets": {
-            "role": "admin"
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "SuperAdmin": {
-          "name": "SuperAdmin",
-          "displayName": "SuperAdmin",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "Admin"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "Team": {
-          "name": "Team",
-          "displayName": "Team",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "title": {
-              "name": "title",
-              "displayName": "title",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "pattern": "/[A-Z][a-z]*/",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "manager": {
-              "name": "manager",
-              "displayName": "manager",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "Manager"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "admin": {
-              "name": "admin",
-              "displayName": "admin",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "Admin|SuperAdmin"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "members": {
-              "name": "members",
-              "displayName": "members",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
+      "Manager": {
+        "name": "Manager",
+        "displayName": "Manager",
+        "type": [
+          "User"
+        ],
+        "examples": [
+          {
+            "value": {
+              "id": 11,
+              "name": "John Johnson",
+              "email": "press@mulesoft.com",
+              "phone": "+7-913-111-1111",
+              "address": {
+                "country": "RUS",
+                "city": "Novosibirsk",
+                "zip": 630090
               },
-              "items": "(User|Team)"
+              "managerId": 77
             },
-            "info": {
-              "name": "info",
-              "displayName": "info",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "address": {
-                  "name": "address",
-                  "displayName": "address",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "Address"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+            "strict": true,
+            "name": "manager1"
+          },
+          {
+            "value": {
+              "id": 12,
+              "name": "John Johnson",
+              "email": "press1@mulesoft.com",
+              "phone": "+1-222-222-2222",
+              "address": {
+                "country": "US",
+                "city": "SF",
+                "zip": 123456
+              },
+              "managerId": 88
+            },
+            "strict": true,
+            "name": "manager2"
+          }
+        ],
+        "properties": {
+          "managerId": {
+            "name": "managerId",
+            "displayName": "managerId",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "role": "manager"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Admin": {
+        "name": "Admin",
+        "displayName": "Admin",
+        "type": [
+          "User"
+        ],
+        "properties": {
+          "adminId": {
+            "name": "adminId",
+            "displayName": "adminId",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "role": "admin"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "SuperAdmin": {
+        "name": "SuperAdmin",
+        "displayName": "SuperAdmin",
+        "type": [
+          "Admin"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Team": {
+        "name": "Team",
+        "displayName": "Team",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "pattern": "/[A-Z][a-z]*/",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "manager": {
+            "name": "manager",
+            "displayName": "manager",
+            "type": [
+              "Manager"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "admin": {
+            "name": "admin",
+            "displayName": "admin",
+            "type": [
+              "Admin|SuperAdmin"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "members": {
+            "name": "members",
+            "displayName": "members",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "User|Team",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "info": {
+            "name": "info",
+            "displayName": "info",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "address": {
+                "name": "address",
+                "displayName": "address",
+                "type": [
+                  "Address"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 },
-                "email": {
-                  "name": "email",
-                  "displayName": "email",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "Email"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "email": {
+                "name": "email",
+                "displayName": "email",
+                "type": [
+                  "Email"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 },
-                "size": {
-                  "name": "size",
-                  "displayName": "size",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "number"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "size": {
+                "name": "size",
+                "displayName": "size",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "TCK Sample. RAML 1.0 Types 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
@@ -744,7 +746,6 @@
       "version": {
         "name": "version",
         "displayName": "version",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -768,7 +769,9 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -776,8 +779,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -785,7 +788,6 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -796,7 +798,9 @@
                         }
                       }
                     },
-                    "items": "Team"
+                    "items": "Team",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -813,7 +817,7 @@
               }
             }
           },
-          {
+          "post": {
             "responses": {
               "204": {
                 "code": "204",
@@ -821,20 +825,21 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
-                    "fixedFacets": {
-                      "role": "admin"
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "fixedFacets": {
+                      "role": "admin"
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -843,7 +848,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
@@ -851,7 +855,6 @@
                   "title": {
                     "name": "title",
                     "displayName": "title",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -869,7 +872,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "__METADATA__": {
@@ -881,7 +886,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -897,13 +904,13 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams",
         "displayName": "/teams",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -911,7 +918,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "Team"
                         ],
@@ -921,7 +927,9 @@
                               "calculated": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     }
                   },
@@ -931,7 +939,6 @@
                       "text/plain": {
                         "name": "text/plain",
                         "displayName": "text/plain",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "object"
                         ],
@@ -944,7 +951,9 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     }
                   }
@@ -961,12 +970,11 @@
                   }
                 }
               }
-            ],
+            },
             "uriParameters": {
               "id": {
                 "name": "id",
                 "displayName": "id",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -984,7 +992,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "relativeUri": "/{id}",
@@ -999,7 +1009,9 @@
             "relativeUriPathSegments": [
               "{id}"
             ],
-            "absoluteUri": "http://api.samplehost.com/{version}/teams/{id}"
+            "absoluteUri": "http://api.samplehost.com/{version}/teams/{id}",
+            "completeRelativeUri": "/teams/{id}",
+            "parentUri": "/teams"
           }
         ],
         "__METADATA__": {
@@ -1012,11 +1024,13 @@
         "relativeUriPathSegments": [
           "teams"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams",
+        "completeRelativeUri": "/teams",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -1024,7 +1038,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -1035,7 +1048,9 @@
                         }
                       }
                     },
-                    "items": "User"
+                    "items": "User",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -1052,7 +1067,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -1065,11 +1080,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/users"
+        "absoluteUri": "http://api.samplehost.com/{version}/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -1077,20 +1094,21 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
-                    "fixedFacets": {
-                      "role": "admin"
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "fixedFacets": {
+                      "role": "admin"
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -1107,12 +1125,11 @@
               }
             }
           }
-        ],
+        },
         "uriParameters": {
           "id": {
             "name": "id",
             "displayName": "id",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -1130,7 +1147,9 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "relativeUri": "/users/{id}",
@@ -1146,7 +1165,9 @@
           "users",
           "{id}"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/users/{id}"
+        "absoluteUri": "http://api.samplehost.com/{version}/users/{id}",
+        "completeRelativeUri": "/users/{id}",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -1157,5 +1178,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

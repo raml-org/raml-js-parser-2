@@ -1,47 +1,41 @@
 {
+  "specification": {
+    "types": {
+      "Foo": {
+        "name": "Foo",
+        "displayName": "Foo",
+        "type": [
+          "integer|number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Bar": {
+        "name": "Bar",
+        "displayName": "Bar",
+        "type": [
+          "Foo"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
   "ramlVersion": "RAML10",
   "type": "Library",
-  "specification": {
-    "types": [
-      {
-        "Foo": {
-          "name": "Foo",
-          "displayName": "Foo",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "integer|number"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "Bar": {
-          "name": "Bar",
-          "displayName": "Bar",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "Foo"
-          ],
-          "fixedFacets": {
-            "maximum": 2,
-            "minimum": 1
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      }
-    ]
-  },
   "errors": []
 }

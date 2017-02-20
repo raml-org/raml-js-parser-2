@@ -45,16 +45,10 @@
         },
         "TraitFragment": {
             "type": "object",
-            "properties": {
-                "undefined": {
-                    "allOf":[
-                        {"$ref": "common.json#/definitions/FragmentDeclaration"},
-                        {"$ref": "#/definitions/Trait10"}
-                    ],
-                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
-                }
-            },
-            "additionalProperties": false
+            "allOf":[
+                {"$ref": "common.json#/definitions/FragmentDeclaration"},
+                {"$ref": "#/definitions/Trait10"}
+            ]
         },
         "Method10": {
             "allOf": [
@@ -65,6 +59,10 @@
                             "type": "string",
                             "description": "Method that can be called"
                         }
+                    },
+                    "allUriParameters": {
+                        "type": "array",
+                        "items": {"$ref": "datamodel.json#/definitions/Type"}
                     }
                 }
             ],

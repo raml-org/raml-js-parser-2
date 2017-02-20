@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "API Using media type in the URL",
     "version": "v1",
@@ -10,7 +8,6 @@
           "ext": {
             "name": "ext",
             "displayName": "ext",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -32,7 +29,9 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "relativeUri": "/users{ext}",
@@ -47,9 +46,13 @@
         "relativeUriPathSegments": [
           "users{ext}"
         ],
-        "absoluteUri": "/users{ext}"
+        "absoluteUri": "/users{ext}",
+        "completeRelativeUri": "/users{ext}",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

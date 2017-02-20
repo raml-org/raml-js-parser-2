@@ -1,132 +1,127 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "helloNightmare": {
-          "queryParameters": {
-            "nightMare": {
-              "name": "nightMare",
-              "displayName": "nightMare",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "helloNightmare": {
+        "queryParameters": {
+          "nightMare": {
+            "name": "nightMare",
+            "displayName": "nightMare",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "<<isRequired>>": "<<value>>"
-            }
-          },
-          "name": "helloNightmare"
-        }
-      }
-    ],
-    "annotationTypes": [
-      {
-        "searchable": {
-          "name": "searchable",
-          "displayName": "searchable",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "nil"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "<<isRequired>>": "<<value>>"
+          }
+        },
+        "name": "helloNightmare"
+      }
+    },
+    "annotationTypes": {
+      "searchable": {
+        "name": "searchable",
+        "displayName": "searchable",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "sortable": {
-          "name": "sortable",
-          "displayName": "sortable",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "default": {
-              "name": "default",
-              "displayName": "default",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "low",
-                "medium",
-                "high"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+      "sortable": {
+        "name": "sortable",
+        "displayName": "sortable",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "default": {
+            "name": "default",
+            "displayName": "default",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "searchable": {
-                "structuredValue": null,
-                "name": "searchable"
+                "name": "searchable",
+                "structuredValue": "someValue"
               }
             },
             "queryParameters": {
               "kind": {
                 "annotations": {
                   "sortable": {
+                    "name": "sortable",
                     "structuredValue": {
                       "default": "low"
-                    },
-                    "name": "sortable"
+                    }
                   },
                   "searchable": {
-                    "structuredValue": null,
-                    "name": "searchable"
+                    "name": "searchable",
+                    "structuredValue": null
                   }
                 },
                 "name": "kind",
                 "displayName": "kind",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -143,7 +138,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "responses": {
@@ -153,7 +150,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -166,14 +162,16 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/animals",
         "displayName": "/animals",
         "__METADATA__": {
@@ -186,10 +184,14 @@
         "relativeUriPathSegments": [
           "animals"
         ],
-        "absoluteUri": "/animals"
+        "absoluteUri": "/animals",
+        "completeRelativeUri": "/animals",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "NULL_EXPECTED",

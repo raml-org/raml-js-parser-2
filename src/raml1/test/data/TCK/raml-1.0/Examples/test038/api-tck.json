@@ -1,73 +1,69 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "hello": {
-              "name": "hello",
-              "displayName": "hello",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "FOO",
-                "BAR",
-                "BAZ"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "hello": {
+            "name": "hello",
+            "displayName": "hello",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "aParam": {
                 "name": "aParam",
                 "displayName": "aParam",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
                 "default": "FOO",
-                "example": "FOO",
                 "required": true,
                 "enum": [
                   "FOO",
@@ -87,17 +83,20 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "FOO",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "FOO"
-                }
+                "examples": [
+                  {
+                    "value": "FOO",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/s",
         "displayName": "/s",
         "__METADATA__": {
@@ -110,9 +109,13 @@
         "relativeUriPathSegments": [
           "s"
         ],
-        "absoluteUri": "/s"
+        "absoluteUri": "/s",
+        "completeRelativeUri": "/s",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

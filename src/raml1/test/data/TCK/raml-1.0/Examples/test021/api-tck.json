@@ -1,91 +1,88 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType1": {
-          "name": "MyType1",
-          "displayName": "MyType1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "example": "d5",
-          "pattern": ".5",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "string"
+        ],
+        "pattern": ".5",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "structuredExample": {
+          }
+        },
+        "examples": [
+          {
             "value": "d5",
             "strict": true,
-            "name": null,
-            "structuredValue": "d5"
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "MyType2": {
-          "name": "MyType2",
-          "displayName": "MyType2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "z": ".3"
-          },
-          "properties": {
-            "z": {
-              "name": "z",
-              "displayName": "z",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "MyType1"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MyType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"z\": \".3\"\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "z": ".3"
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "z": ".3"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Test API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "PATTERN_VIOLATION",

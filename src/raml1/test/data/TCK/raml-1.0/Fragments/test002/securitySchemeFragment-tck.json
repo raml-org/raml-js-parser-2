@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "OAuth2SecurityScheme",
   "specification": {
     "type": "OAuth 2.0",
     "settings": {
@@ -14,5 +12,7 @@
       ]
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "OAuth2SecurityScheme",
   "errors": []
 }

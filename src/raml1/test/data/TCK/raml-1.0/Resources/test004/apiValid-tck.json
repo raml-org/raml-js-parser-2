@@ -1,66 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "User": {
-          "name": "User",
-          "displayName": "User",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API",
     "baseUri": "/some/base/uri",
     "protocols": [
@@ -68,8 +67,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -77,14 +76,9 @@
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "User"
                     ],
-                    "example": {
-                      "name": "john",
-                      "age": 34
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -92,15 +86,18 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"name\": \"john\",\n  \"age\": 34\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "name": "john",
-                        "age": 34
+                    "examples": [
+                      {
+                        "value": {
+                          "name": "john",
+                          "age": 34
+                        },
+                        "strict": true,
+                        "name": null
                       }
-                    }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -117,12 +114,11 @@
               }
             }
           }
-        ],
+        },
         "uriParameters": {
           "blah": {
             "name": "blah",
             "displayName": "blah",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -136,7 +132,9 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "relativeUri": "/someChildUri/{blah}",
@@ -152,7 +150,9 @@
           "someChildUri",
           "{blah}"
         ],
-        "absoluteUri": "/some/base/uri/someChildUri/{blah}"
+        "absoluteUri": "/some/base/uri/someChildUri/{blah}",
+        "completeRelativeUri": "/someChildUri/{blah}",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -163,5 +163,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

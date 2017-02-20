@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Test APi",
     "resources": [
       {
         "relativeUri": "/g",
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -20,7 +18,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "displayName": "/g",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -32,10 +30,14 @@
         "relativeUriPathSegments": [
           "g"
         ],
-        "absoluteUri": "/g"
+        "absoluteUri": "/g",
+        "completeRelativeUri": "/g",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "MEDIATYPE_EXCEPTION",

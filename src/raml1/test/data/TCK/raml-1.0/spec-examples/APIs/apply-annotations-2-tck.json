@@ -1,37 +1,36 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "testHarness": {
-          "name": "testHarness",
-          "displayName": "testHarness",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "annotationTypes": {
+      "testHarness": {
+        "name": "testHarness",
+        "displayName": "testHarness",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Testing annotations",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "annotations": {
           "testHarness": {
-            "structuredValue": "usersTest",
-            "name": "testHarness"
+            "name": "testHarness",
+            "structuredValue": "usersTest"
           }
         },
         "relativeUri": "/users",
@@ -46,9 +45,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

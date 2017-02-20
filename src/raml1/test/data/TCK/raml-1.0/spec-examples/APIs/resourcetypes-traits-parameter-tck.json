@@ -1,79 +1,73 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "secured": {
-          "queryParameters": {
-            "<<tokenName>>": {
-              "name": "<<tokenName>>",
-              "displayName": "<<tokenName>>",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "A valid <<tokenName>> is required",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "<<tokenName>>": {
+            "name": "<<tokenName>>",
+            "displayName": "<<tokenName>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "A valid <<tokenName>> is required",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "name": "secured"
-        }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "secured"
       },
-      {
-        "paged": {
-          "queryParameters": {
-            "numPages": {
-              "name": "numPages",
-              "displayName": "numPages",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "The number of pages to return, not to exceed <<maxPages>>",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "paged": {
+        "queryParameters": {
+          "numPages": {
+            "name": "numPages",
+            "displayName": "numPages",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "The number of pages to return, not to exceed <<maxPages>>",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "name": "paged"
-        }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "paged"
       }
-    ],
-    "resourceTypes": [
-      {
-        "searchableCollection": {
-          "name": "searchableCollection",
+    },
+    "resourceTypes": {
+      "searchableCollection": {
+        "methods": {
           "get": {
             "queryParameters": {
               "<<queryParamName>>": {
                 "name": "<<queryParamName>>",
                 "displayName": "<<queryParamName>>",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -91,12 +85,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "<<fallbackParamName>>": {
                 "name": "<<fallbackParamName>>",
                 "displayName": "<<fallbackParamName>>",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -114,25 +109,27 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "get"
           }
-        }
+        },
+        "name": "searchableCollection"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "title": {
                 "name": "title",
                 "displayName": "title",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -150,12 +147,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "digest_all_fields": {
                 "name": "digest_all_fields",
                 "displayName": "digest_all_fields",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -173,12 +171,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -196,12 +195,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "numPages": {
                 "name": "numPages",
                 "displayName": "numPages",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -219,7 +219,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "is": [
@@ -236,7 +238,7 @@
             ],
             "method": "get"
           }
-        ],
+        },
         "type": {
           "searchableCollection": {
             "queryParamName": "title",
@@ -255,9 +257,13 @@
         "relativeUriPathSegments": [
           "books"
         ],
-        "absoluteUri": "/books"
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -124,6 +124,17 @@ export interface ValueMetadata{
 
     toJSON():any;
 }
+
+export interface LoadOptions {
+    
+    expandLibraries?:boolean
+}
+
+export interface ApiLoadingError extends Error{
+
+    parserErrors:RamlParserError[]
+}
+
 export interface RamlParserError {
 
     /**
@@ -327,6 +338,10 @@ export interface IParseResult {
      * RAML version
      */
     version();
+    
+    setJSON(val:any);
+    
+    getJSON():any;
 }
 
 export function isParseResult(object : any) : object is IParseResult {

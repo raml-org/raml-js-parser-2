@@ -1,202 +1,202 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "TestType": {
-          "name": "TestType",
-          "displayName": "TestType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "TestType": {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "name2": {
-              "name": "name2",
-              "displayName": "name2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name2": {
+            "name": "name2",
+            "displayName": "name2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "name3": {
-              "name": "name3",
-              "displayName": "name3",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "TestType4"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name3": {
+            "name": "name3",
+            "displayName": "name3",
+            "type": [
+              "TestType4"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "TestType2": {
-          "name": "TestType2",
-          "displayName": "TestType2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "TestType"
-          ],
-          "properties": {
-            "name4": {
-              "name": "name4",
-              "displayName": "name4",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TestType2": {
+        "name": "TestType2",
+        "displayName": "TestType2",
+        "type": [
+          "TestType"
+        ],
+        "properties": {
+          "name4": {
+            "name": "name4",
+            "displayName": "name4",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "TestType3": {
-          "name": "TestType3",
-          "displayName": "TestType3",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "TestType2"
-          ],
-          "properties": {
-            "name5": {
-              "name": "name5",
-              "displayName": "name5",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TestType3": {
+        "name": "TestType3",
+        "displayName": "TestType3",
+        "type": [
+          "TestType2"
+        ],
+        "properties": {
+          "name5": {
+            "name": "name5",
+            "displayName": "name5",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "TestType4": {
-          "name": "TestType4",
-          "displayName": "TestType4",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "proppp": {
-              "name": "proppp",
-              "displayName": "proppp",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "TestType4": {
+        "name": "TestType4",
+        "displayName": "TestType4",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "proppp": {
+            "name": "proppp",
+            "displayName": "proppp",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Blah",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
@@ -204,7 +204,6 @@
       "version": {
         "name": "version",
         "displayName": "version",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -228,7 +227,9 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -240,13 +241,12 @@
         "displayName": "/test",
         "resources": [
           {
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "queryParameters": {
                   "bbb": {
                     "name": "bbb",
                     "displayName": "bbb",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "number"
                     ],
@@ -260,14 +260,15 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "headers": {
                   "blah": {
                     "name": "blah",
                     "displayName": "blah",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -281,7 +282,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 },
                 "responses": {
@@ -291,10 +294,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "typePropertyKind": "JSON",
-                        "schema": [
-                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
-                        ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
@@ -304,7 +303,12 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "type": [
+                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
+                        ],
+                        "mediaType": "application/json",
+                        "typePropertyKind": "JSON"
                       }
                     }
                   },
@@ -314,10 +318,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "typePropertyKind": "JSON",
-                        "schema": [
-                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
-                        ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
@@ -327,7 +327,12 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "type": [
+                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
+                        ],
+                        "mediaType": "application/json",
+                        "typePropertyKind": "JSON"
                       }
                     }
                   },
@@ -337,7 +342,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "TestType"
                         ],
@@ -348,11 +352,15 @@
                             }
                           }
                         },
-                        "structuredExample": {
-                          "value": "{\n  \"name\" : \"blah\",\n  \"name2\" : \"blah\",\n  \"name3\" : {\n      proppp: \"123245\"\n  }\n}\n",
-                          "strict": true,
-                          "name": null
-                        }
+                        "examples": [
+                          {
+                            "value": null,
+                            "strict": true,
+                            "name": null
+                          }
+                        ],
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     }
                   }
@@ -369,7 +377,7 @@
                   }
                 }
               }
-            ],
+            },
             "relativeUri": "/helloWorldddd1234ddd2",
             "displayName": "/helloWorldddd1234ddd2",
             "__METADATA__": {
@@ -382,7 +390,9 @@
             "relativeUriPathSegments": [
               "helloWorldddd1234ddd2"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2"
+            "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
+            "completeRelativeUri": "/test/helloWorldddd1234ddd2",
+            "parentUri": "/test"
           }
         ],
         "__METADATA__": {
@@ -395,7 +405,9 @@
         "relativeUriPathSegments": [
           "test"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/test"
+        "absoluteUri": "https://api.instagram.com/{version}/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -406,6 +418,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "CAN_NOT_PARSE_JSON",

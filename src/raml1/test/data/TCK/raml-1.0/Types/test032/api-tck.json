@@ -1,34 +1,31 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "object"
                 ],
                 "examples": [
                   {
-                    "value": "{\n  \"p1\": 5\n}",
-                    "strict": true,
-                    "structuredValue": {
+                    "value": {
                       "p1": 5
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   },
                   {
-                    "value": "{\n  \"p1\": 8\n}",
-                    "strict": true,
-                    "structuredValue": {
+                    "value": {
                       "p1": 8
-                    }
+                    },
+                    "strict": true,
+                    "name": null
                   }
                 ],
                 "__METADATA__": {
@@ -40,12 +37,14 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -58,10 +57,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MAP_EXPECTED",

@@ -1,198 +1,201 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MM": {
-          "name": "MM",
-          "displayName": "MM",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "a": {
-              "name": "a",
-              "displayName": "a",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "items": {
-              "name": "items",
-              "displayName": "items",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "VV"
-            }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            },
+            "items": "VV",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "VV": {
-          "name": "VV",
-          "displayName": "VV",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "c": {
-              "name": "c",
-              "displayName": "c",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "VV": {
+        "name": "VV",
+        "displayName": "VV",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "c": {
+            "name": "c",
+            "displayName": "c",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "b": {
-              "name": "b",
-              "displayName": "b",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "b": {
+            "name": "b",
+            "displayName": "b",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "c1": {
-              "name": "c1",
-              "displayName": "c1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "c1": {
+            "name": "c1",
+            "displayName": "c1",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "qq": {
-          "name": "qq",
-          "displayName": "qq",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "z": {
-              "name": "z",
-              "displayName": "z",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "MM"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "qq": {
+        "name": "qq",
+        "displayName": "qq",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MM"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "WebOfMe",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -200,22 +203,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "schema": [
-                      "MM"
-                    ],
-                    "example": {
-                      "a": 3,
-                      "items": [
-                        {
-                          "c": 3
-                        },
-                        {
-                          "b": "4",
-                          "c1": "3"
-                        }
-                      ]
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -226,30 +213,36 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"a\": 3,\n  \"items\": [\n    {\n      \"c\": 3\n    },\n    {\n      \"b\": \"4\",\n      \"c1\": \"3\"\n    }\n  ]\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "a": 3,
-                        "items": [
-                          {
-                            "c": 3
-                          },
-                          {
-                            "b": "4",
-                            "c1": "3"
-                          }
-                        ]
+                    "examples": [
+                      {
+                        "value": {
+                          "a": 3,
+                          "items": [
+                            {
+                              "c": 3
+                            },
+                            {
+                              "b": "4",
+                              "c1": "3"
+                            }
+                          ]
+                        },
+                        "strict": true,
+                        "name": null
                       }
-                    }
+                    ],
+                    "type": [
+                      "MM"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -262,10 +255,14 @@
         "relativeUriPathSegments": [
           "test"
         ],
-        "absoluteUri": "/test"
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "REQUIRED_PROPERTY_MISSING",

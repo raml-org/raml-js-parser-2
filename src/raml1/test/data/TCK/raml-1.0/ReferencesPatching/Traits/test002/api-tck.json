@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -12,36 +10,35 @@
         "value": "libraries/annotations.raml"
       }
     ],
-    "traits": [
-      {
-        "tr": {
-          "annotations": {
-            "lib2.MyAnnotation": {
-              "structuredValue": "stringValue",
-              "name": "lib2.MyAnnotation"
-            }
-          },
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "typesLib.LibType"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+    "traits": {
+      "tr": {
+        "annotations": {
+          "lib2.MyAnnotation": {
+            "name": "lib2.MyAnnotation",
+            "structuredValue": "stringValue"
+          }
+        },
+        "body": {
+          "application/json": {
+            "name": "application/json",
+            "displayName": "application/json",
+            "type": [
+              "typesLib.LibType"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
               }
-            }
-          },
-          "name": "tr"
-        }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "tr"
       }
-    ],
+    },
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -50,26 +47,21 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "annotations": {
               "lib2.MyAnnotation": {
-                "structuredValue": "stringValue",
-                "name": "lib2.MyAnnotation"
+                "name": "lib2.MyAnnotation",
+                "structuredValue": "stringValue"
               }
             },
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "typesLib.LibType"
                 ],
-                "example": {
-                  "p1": "stringValue",
-                  "p2": 10
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -77,15 +69,18 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "p1": "stringValue",
-                    "p2": 10
+                "examples": [
+                  {
+                    "value": {
+                      "p1": "stringValue",
+                      "p2": 10
+                    },
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -100,7 +95,7 @@
               }
             }
           }
-        ],
+        },
         "is": [
           "tr"
         ],
@@ -116,7 +111,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "https://example.com/raml/resource"
+        "absoluteUri": "https://example.com/raml/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -127,5 +124,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

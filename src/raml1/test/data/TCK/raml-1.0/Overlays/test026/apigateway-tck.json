@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "uses": [
       {
@@ -8,57 +6,59 @@
         "value": "aws-lib.raml"
       }
     ],
-    "securitySchemes": [
-      {
-        "key": {
-          "name": "key",
-          "type": "Pass Through",
-          "describedBy": {
-            "headers": {
-              "x-api-key": {
-                "name": "x-api-key",
-                "displayName": "x-api-key",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+    "securitySchemes": {
+      "key": {
+        "name": "key",
+        "type": "Pass Through",
+        "describedBy": {
+          "headers": {
+            "x-api-key": {
+              "name": "x-api-key",
+              "displayName": "x-api-key",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
           }
         }
       }
-    ],
+    },
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",
     "protocols": [
       "HTTPS"
     ],
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "AWS.amazon-apigateway-auth": {
-                "structuredValue": "aws_iam",
-                "name": "AWS.amazon-apigateway-auth"
+                "name": "AWS.amazon-apigateway-auth",
+                "structuredValue": "aws_iam"
               },
               "AWS.amazon-apigateway-integration": {
+                "name": "AWS.amazon-apigateway-integration",
                 "structuredValue": {
                   "type": "aws",
                   "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
@@ -96,15 +96,13 @@
                       }
                     }
                   }
-                },
-                "name": "AWS.amazon-apigateway-integration"
+                }
               }
             },
             "queryParameters": {
               "latitude": {
                 "name": "latitude",
                 "displayName": "latitude",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -117,12 +115,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "longitude": {
                 "name": "longitude",
                 "displayName": "longitude",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "number"
                 ],
@@ -135,7 +134,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -150,14 +151,16 @@
               }
             }
           }
-        ],
+        },
         "description": "The Products endpoint returns information about the *Uber* products\noffered at a given location. The response includes the display name\nand other details about each product, and lists the products in the\nproper display order.\n",
         "relativeUri": "/products",
         "displayName": "Product Types",
         "relativeUriPathSegments": [
           "products"
         ],
-        "absoluteUri": "https://api.uber.com/products"
+        "absoluteUri": "https://api.uber.com/products",
+        "completeRelativeUri": "/products",
+        "parentUri": ""
       }
     ],
     "extends": "apigateway.raml",
@@ -169,5 +172,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

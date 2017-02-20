@@ -7,9 +7,6 @@ import yaml=require("yaml-ast-parser");
 import util=require("../../util/index");
 import proxy=require("./LowLevelASTProxy");
 import RamlWrapper=require("../artifacts/raml10parserapi");
-import RamlWrapperImpl=require("../artifacts/raml10parser");
-import RamlWrapper08=require("../artifacts/raml08parserapi");
-import RamlWrapper08Impl=require("../artifacts/raml08parser");
 import wrapperHelper=require("../wrapped-ast/wrapperHelper");
 import wrapperHelper08=require("../wrapped-ast/wrapperHelper08");
 import pluralize = require("pluralize")
@@ -20,21 +17,53 @@ import referencePatcher = require("./referencePatcher");
 import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
+import search = require("../../search/search-interface");
 
 var changeCase = require('change-case');
 
 export function expandTraitsAndResourceTypes<T>(api:T):T{
+
+    if(!core.BasicNodeImpl.isInstance(api)){
     // if(!((<any>api).kind
     //     && ((<any>api).kind() == "Api" || (<any>api).kind() == "Overlay" || (<any>api).kind() == "Extension"))){
-    if(!(api instanceof RamlWrapperImpl.ApiImpl || api instanceof RamlWrapper08Impl.ApiImpl)){
         return null;
     }
+    var apiNode = <core.BasicNodeImpl><any>api;
+    var hlNode = expandTraitsAndResourceTypesHL(apiNode.highLevel());
+    if(!hlNode){
+        return null;
+    }
+    var result = <core.BasicNodeImpl>hlNode.wrapperNode();
+    result.setAttributeDefaults(apiNode.getDefaultsCalculator().isEnabled());
+    return <T><any>result;
+}
 
-    return <T><any>new TraitsAndResourceTypesExpander()
-.expandTraitsAndResourceTypes(<RamlWrapper.Api|RamlWrapper08.Api><any>api);
+export function expandTraitsAndResourceTypesHL(api:hl.IHighLevelNode):hl.IHighLevelNode{
+    if(api==null){
+        return null;
+    }
+    var definition = api.definition();
+    if(!(definition&&universeHelpers.isApiSibling(definition))){
+        return null;
+    }
+    var result = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api);
+    return result;
 }
 
 export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
+    if(!api){
+        return null;
+    }
+    var hlNode = expandLibrariesHL(api.highLevel());
+    if(!hlNode){
+        return null;
+    }
+    var result = <RamlWrapper.Api>hlNode.wrapperNode();
+    (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());
+    return result;
+}
+
+export function expandLibrariesHL(api:hl.IHighLevelNode):hl.IHighLevelNode{
     return new LibraryExpander().expandLibraries(api);
 }
 
@@ -44,7 +73,7 @@ export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:
     if(!masterApi) throw new Error("couldn't load api from " + masterUnit.absolutePath());
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
-        return <hl.IHighLevelNode>masterApi;
+        return masterApi.asElement();
     }
 
     var highLevelNodes:hlimpl.ASTNodeImpl[] = [];
@@ -58,25 +87,28 @@ export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:
         highLevelNodes.push(<hlimpl.ASTNodeImpl>hlNode);
     }
 
-    var lastExtensionOrOverlay = mergeHighLevelNodes(masterApi, highLevelNodes, mergeMode);
+    var lastExtensionOrOverlay = mergeHighLevelNodes(masterApi.asElement(), highLevelNodes, mergeMode);
     return lastExtensionOrOverlay;
 }
 
 function mergeHighLevelNodes(
-    masterApi,
-    highLevelNodes,
+    masterApi:hl.IHighLevelNode,
+    highLevelNodes:hl.IHighLevelNode[],
     mergeMode,
     rp:referencePatcher.ReferencePatcher = null,
-    expand = false):hlimpl.ASTNodeImpl {
+    expand = false):hl.IHighLevelNode {
 
+    var expander:TraitsAndResourceTypesExpander;
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
         
         
 
         if(expand&&(proxy.LowLevelProxyNode.isInstance(currentMaster.lowLevel()))) {
-            currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
-                currentMaster, rp, masterApi.wrapperNode()).highLevel();
+            if(!expander){
+                expander = new TraitsAndResourceTypesExpander();
+            }
+            expander.expandHighLevelNode(currentMaster, rp, masterApi);
         }
         (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster);
         (<hlimpl.ASTNodeImpl>currentApi).setMergeMode(mergeMode);
@@ -88,22 +120,18 @@ function mergeHighLevelNodes(
 
 export class TraitsAndResourceTypesExpander {
 
-    private globalTraits:(RamlWrapper.Trait|RamlWrapper08.Trait)[];
-
-    private globalResourceTypes:(RamlWrapper.ResourceType|RamlWrapper08.ResourceType)[];
-
     private ramlVersion:string;
 
     private namespaceResolver:namespaceResolver.NamespaceResolver = new namespaceResolver.NamespaceResolver();
 
     expandTraitsAndResourceTypes(
-        api:RamlWrapper.Api|RamlWrapper08.Api,
+        api:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher = null,
-        forceProxy:boolean=false):RamlWrapper.Api|RamlWrapper08.Api {
+        forceProxy:boolean=false):hl.IHighLevelNode {
 
         this.init(api);
 
-        var llNode = api.highLevel().lowLevel();
+        var llNode = api.lowLevel();
         if(!llNode) {
             return api;
         }
@@ -111,55 +139,54 @@ export class TraitsAndResourceTypesExpander {
             return api;
         }
 
-        var unit = llNode.unit();
+        var unit = api.lowLevel().unit();
+        
+        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api,false,rp);
+        if (api.definition().key()==universeDef.Universe10.Overlay){
+            return hlNode;
+        }
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
-        var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
-        if (!(hasTemplates||hasFragments)&&!forceProxy){
+        var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments);
+        if (!result){
             return api;
         }
-
-        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel(),false,rp);
-        if (api.definition().key()==universeDef.Universe10.Overlay){
-            return <RamlWrapper.Api>hlNode.wrapperNode();
-        }
-        var result = this.expandHighLevelNode(hlNode, rp, <core.BasicNodeImpl><any>api);
         return result;
     }
 
-    init(api:RamlWrapper08.Api|RamlWrapper.Api) {
-        this.ramlVersion = api.highLevel().definition().universe().version();
-
-        this.globalTraits = this.ramlVersion == "RAML10"
-            ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
-            : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
-
-        this.globalResourceTypes = this.ramlVersion == "RAML10"
-            ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
-            : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
+    init(api:hl.IHighLevelNode) {
+        this.ramlVersion = api.definition().universe().version();
     }
 
     expandHighLevelNode(
         hlNode:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher,
-        api:core.BasicNodeImpl) {
+        api:hl.IHighLevelNode,
+        forceExpand=false) {
 
-        this.init(<any>api);
-        var result:RamlWrapper.Api|RamlWrapper08.Api = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
+        this.init(hlNode);        
 
-        (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());
+        (<hlimpl.ASTNodeImpl>hlNode).setMergeMode((<hlimpl.ASTNodeImpl>api).getMergeMode());
 
-        (<hlimpl.ASTNodeImpl>result.highLevel()).setMergeMode(
-            (<hlimpl.ASTNodeImpl>api.highLevel()).getMergeMode());
-
-        var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
-        resources.forEach(x=>this.processResource(x));
-
+        var resources = hlNode.elementsOfKind("resources");
+        var templateApplied = false;
+        resources.forEach(x=> templateApplied = this.processResource(x)||templateApplied);
+        if(!(templateApplied||forceExpand)){
+            return null;
+        }
+        if(hlimpl.ASTNodeImpl.isInstance(hlNode)) {
+            var hnode = <hlimpl.ASTNodeImpl>hlNode;  
+            if(checkReusability(hnode)) {
+                hnode.setReuseMode(true);
+            }
+        }
         if (this.ramlVersion=="RAML10") {
             rp = rp || new referencePatcher.ReferencePatcher();
             rp.process(hlNode);
             hlNode.lowLevel().actual().referencePatcher = rp;
         }
-        return result;
+        //var result = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
+        //(<any>result).setAttributeDefaults((<any>api.wrapperNode()).getDefaultsCalculator().isEnabled());
+        return hlNode;
     }
 
     private getTemplate<T extends core.BasicNode>(
@@ -192,7 +219,7 @@ export class TraitsAndResourceTypesExpander {
         _api:hl.IHighLevelNode,
         merge:boolean=true,
         rp:referencePatcher.ReferencePatcher = null,
-        forceProxy=false):hlimpl.ASTNodeImpl {
+        forceProxy=false):hl.IHighLevelNode {
 
         var api = <hlimpl.ASTNodeImpl>_api;
         var highLevelNodes:hlimpl.ASTNodeImpl[] = [];
@@ -227,29 +254,37 @@ export class TraitsAndResourceTypesExpander {
         var masterApi = highLevelNodes.pop();
         highLevelNodes = highLevelNodes.reverse();
         var mergeMode = api.getMergeMode();
-        return mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode, rp, forceProxy);
+        var result = mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode, rp, forceProxy);
+        (<hlimpl.ASTNodeImpl>result).setReusedNode(api.reusedNode());
+        return result;
     }
 
-    private processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource,_nodes:hl.IParseResult[]=[]) {
-        var nodes = _nodes.concat(resource.highLevel());
+    private processResource(resource:hl.IHighLevelNode,_nodes:hl.IParseResult[]=[]):boolean {
+        var result = false;
+        var nodes = _nodes.concat(resource);
 
         var resourceData:ResourceGenericData[] = this.collectResourceData(resource,resource,undefined,undefined,nodes);
 
 
-        var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
+        var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.lowLevel();
+        if(!proxy.LowLevelProxyNode.isInstance(resourceLowLevel)){
+            return result;
+        }
+        resourceLowLevel.preserveAnnotations();
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
-            var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.highLevel().lowLevel();
+            var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.lowLevel();
             var resourceTypeTransformer = x.resourceType.transformer;
             resourceTypeTransformer.owner = resource;
-            resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer)
+            resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer);
+            result = true;
         });
 
-        var methods:(RamlWrapper.Method|RamlWrapper08.Method)[] = resource.methods();
+        var methods = resource.elementsOfKind("methods");
         
         methods.forEach(m=> {
 
-            var methodLowLevel = <proxy.LowLevelCompositeNode>m.highLevel().lowLevel();
-            var name = m.method();
+            var methodLowLevel = <proxy.LowLevelCompositeNode>m.lowLevel();
+            var name = m.attr("method").value();
             var allTraits:GenericData[]=[]
             resourceData.forEach(x=>{
 
@@ -257,10 +292,11 @@ export class TraitsAndResourceTypesExpander {
                 if(methodTraits){
                     allTraits = allTraits.concat(methodTraits);
                     methodTraits.forEach(x=>{
-                        var traitLowLevel = x.node.highLevel().lowLevel();
+                        var traitLowLevel = x.node.lowLevel();
                         var traitTransformer = x.transformer;
                         traitTransformer.owner = m;
                         methodLowLevel.adopt(traitLowLevel,traitTransformer);
+                        result = true;
                     });
                 }
 
@@ -268,10 +304,11 @@ export class TraitsAndResourceTypesExpander {
                 if(resourceTraits){
                     allTraits = allTraits.concat(resourceTraits);
                     resourceTraits.forEach(x=> {
-                        var traitLowLevel = x.node.highLevel().lowLevel();
+                        var traitLowLevel = x.node.lowLevel();
                         var traitTransformer = x.transformer;
                         traitTransformer.owner = m;
                         methodLowLevel.adopt(traitLowLevel, traitTransformer);
+                        result = true;
                     });
                 }                
             });
@@ -280,36 +317,37 @@ export class TraitsAndResourceTypesExpander {
             // }
         });
 
-        var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
-        resources.forEach(x=>this.processResource(x,nodes));
+        var resources = resource.elementsOfKind("resources");
+        resources.forEach(x=>result = this.processResource(x,nodes) || result);
+        return result;
     }
 
     private collectResourceData(
-        original:RamlWrapper.Resource|RamlWrapper08.Resource,
-        obj:RamlWrapper.Resource|RamlWrapper.ResourceType|RamlWrapper08.Resource|RamlWrapper08.ResourceType,
+        original:hl.IHighLevelNode,
+        obj:hl.IHighLevelNode,
         arr:ResourceGenericData[] = [],
         transformer?:ValueTransformer,
         nodesChain:hl.IParseResult[]=[],
         occuredResourceTypes:{[key:string]:boolean}={}):ResourceGenericData[]
         
     {
-        nodesChain = nodesChain.concat([obj.highLevel()]);
+        nodesChain = nodesChain.concat([obj]);
         var ownTraits = this.extractTraits(obj,transformer,nodesChain);
 
         var methodTraitsMap:{[key:string]:GenericData[]} = {};
-        var methods:(RamlWrapper.Method|RamlWrapper08.Method)[] = obj.methods();
+        var methods = obj.elementsOfKind("methods");
         methods.forEach(x=>{
             var methodTraits = this.extractTraits(x,transformer,nodesChain);
             if(methodTraits&&methodTraits.length>0){
-                methodTraitsMap[x.method()] = methodTraits;
+                methodTraitsMap[x.attr("method").value()] = methodTraits;
             }
         });
 
         var rtData:GenericData;
-        var rtRef:RamlWrapper.ResourceTypeRef|RamlWrapper08.ResourceTypeRef = obj.type();
+        var rtRef = obj.attr("type");
         if(rtRef!=null) {
             var units = toUnits1(nodesChain);
-            rtData = this.readGenerictData(original, rtRef, obj.highLevel(), 'resource type', transformer, units);
+            rtData = this.readGenerictData(original, rtRef, obj, 'resource type', transformer, units);
         }
 
         var result = {
@@ -320,8 +358,8 @@ export class TraitsAndResourceTypesExpander {
         arr.push(result);
 
         if(rtData) {
-            var rt = <RamlWrapper.ResourceType|RamlWrapper08.ResourceType>rtData.node;
-            var qName = hlimpl.qName(rt.highLevel(),original.highLevel());
+            var rt = rtData.node;
+            var qName = hlimpl.qName(rt,original);
             if(!occuredResourceTypes[qName]) {
                 occuredResourceTypes[qName] = true;
                 this.collectResourceData(
@@ -334,13 +372,12 @@ export class TraitsAndResourceTypesExpander {
         return arr;
     }
 
-    private extractTraits(obj:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Resource|RamlWrapper.Method
-        |RamlWrapper08.ResourceType|RamlWrapper08.Resource|RamlWrapper08.Method,
+    private extractTraits(obj:hl.IHighLevelNode,
                   _transformer:ValueTransformer,
                   nodesChain:hl.IParseResult[],
                   occuredTraits:{[key:string]:boolean} = {}):GenericData[]
     {
-        nodesChain = nodesChain.concat([obj.highLevel()]);
+        nodesChain = nodesChain.concat([obj]);
         var arr:GenericData[] = [];
         for (var i = -1; i < arr.length ; i++){
 
@@ -349,13 +386,10 @@ export class TraitsAndResourceTypesExpander {
             var units = gd ? gd.unitsChain : toUnits1(nodesChain);
             var transformer:ValueTransformer = gd ? gd.transformer : _transformer;
 
-            if(!_obj['is']){
-                continue;
-            }
-            (<any>_obj).is().forEach(x=> {
-                var unitsChain = toUnits2(units,x.highLevel());
+            _obj.attributes("is").forEach(x=> {
+                var unitsChain = toUnits2(units,x);
                 var traitData = this.readGenerictData(obj,
-                    x, _obj.highLevel(), 'trait', transformer,unitsChain);
+                    x, _obj, 'trait', transformer,unitsChain);
 
                 if (traitData) {
                     var name = traitData.name;
@@ -369,125 +403,121 @@ export class TraitsAndResourceTypesExpander {
         return arr;
     }
 
-    private readGenerictData(r:core.BasicNode,obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
+    private readGenerictData(r:hl.IHighLevelNode,obj:hl.IAttribute,
                      context:hl.IHighLevelNode,
                      template:string,
                      transformer:ValueTransformer,
                      unitsChain:ll.ICompilationUnit[]=[]):GenericData {
 
         var value = <any>obj.value();
+        var sv:hlimpl.StructuredValue;
+        var name:string;
         var propName = pluralize.plural(changeCase.camelCase(template));
         if (typeof(value) == 'string') {
-            if (transformer) {
-                value = transformer.transform(value).value;
-            }
-            var _node = referencePatcher.getDeclaration(value,propName,this.namespaceResolver,unitsChain);
-            if (_node) {
-                var node = <any>_node.wrapperNode();
-                return {
-                    name: value,
-                    transformer: null,
-                    parentTransformer: transformer,
-                    node: node,
-                    ref:obj,
-                    unitsChain: unitsChain
-                };
-            }
+            name = value;
         }
         else if (hlimpl.StructuredValue.isInstance(value)) {
-            var sv = <hlimpl.StructuredValue>value;
-            var name = sv.valueName();
-            if (transformer) {
-                name = transformer.transform(name).value;
-            }
-            var scalarParams:{[key:string]:string} = {};
-            var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
+            sv = <hlimpl.StructuredValue>value;
+            name = sv.valueName();
+        }
+        else{
+            return null;
+        }
 
-            var _node = referencePatcher.getDeclaration(name,propName,this.namespaceResolver,unitsChain);
-            if (_node) {
-                var node = <any>_node.wrapperNode();
+        if (transformer) {
+            name = transformer.transform(name).value;
+        }
+        var scalarParams:{[key:string]:string} = {};
+        var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
+
+        var node = referencePatcher.getDeclaration(name, propName, this.namespaceResolver, unitsChain);
+        if (node) {
+            var ds = new DefaultTransformer(<any>r, null, unitsChain);
+            if (sv) {
                 if (this.ramlVersion == 'RAML08') {
                     sv.children().forEach(x=>scalarParams[x.valueName()] = x.lowLevel().value());
                 }
                 else {
-                    sv.children().forEach(x=>{
+                    sv.children().forEach(x=> {
                         var llNode = x.lowLevel();
-                        if(llNode.valueKind()==yaml.Kind.SCALAR) {
+                        if (llNode.valueKind() == yaml.Kind.SCALAR) {
                             scalarParams[x.valueName()] = llNode.value();
                         }
-                        else if (llNode.valueKind()==yaml.Kind.INCLUDE_REF){
-                            if(llNode.children().length==0){
-                                scalarParams[x.valueName()] = llNode.value();    
+                        else if (llNode.valueKind() == yaml.Kind.INCLUDE_REF) {
+                            if (llNode.children().length == 0) {
+                                scalarParams[x.valueName()] = llNode.value();
                             }
-                            else{
+                            else {
                                 structuredParams[x.valueName()] = llNode;
                             }
                         }
-                        else{
+                        else {
                             structuredParams[x.valueName()] = llNode;
                         }
                     });
-                } 
-                var ds=new DefaultTransformer(<any>r,null,unitsChain);
-                Object.keys(scalarParams).forEach(x=>{
-                    var q=ds.transform(scalarParams[x]);
+                }
+                Object.keys(scalarParams).forEach(x=> {
+                    var q = ds.transform(scalarParams[x]);
                     //if (q.value){
-                        if (q) {
-                            if (typeof q!=="object") {
-                                scalarParams[x] = q;
-                            }
+                    if (q) {
+                        if (typeof q !== "object") {
+                            scalarParams[x] = q;
                         }
+                    }
                     //}
                 });
-                var valTransformer = new ValueTransformer(template, name, unitsChain, scalarParams, structuredParams,transformer);
-                var resourceTypeTransformer = new DefaultTransformer(null,valTransformer,unitsChain);
-                return {
-                    name: name,
-                    transformer: resourceTypeTransformer,
-                    parentTransformer: transformer,
-                    node: node,
-                    ref:obj,
-                    unitsChain: unitsChain
-                };
             }
+
+
+            var valTransformer = new ValueTransformer(template, name, unitsChain, scalarParams, structuredParams, transformer);
+            var resourceTypeTransformer = new DefaultTransformer(null, valTransformer, unitsChain);
+            return {
+                name: name,
+                transformer: resourceTypeTransformer,
+                parentTransformer: transformer,
+                node: node,
+                ref: obj,
+                unitsChain: unitsChain
+            };
         }
+
         return null;
     }
-
-    private appendTraitReferences(
-        m:RamlWrapper.Method|RamlWrapper08.Method,
-        traits:GenericData[]){
-        
-        if(traits.length==0){
-            return;
-        }
-
-        var traitsData = traits.map(x=>{
-            return {
-                node: x.ref.highLevel().lowLevel(),
-                transformer: x.parentTransformer
-            };
-        });
-        referencePatcher.patchMethodIs(m.highLevel(),traitsData);
-    }
+    //
+    // private appendTraitReferences(
+    //     m:hl.IHighLevelNode,
+    //     traits:GenericData[]){
+    //    
+    //     if(traits.length==0){
+    //         return;
+    //     }
+    //
+    //     var traitsData = traits.map(x=>{
+    //         return {
+    //             node: x.ref.lowLevel(),
+    //             transformer: x.parentTransformer
+    //         };
+    //     });
+    //     referencePatcher.patchMethodIs(m,traitsData);
+    // }
 }
 
 export class LibraryExpander{
 
-    expandLibraries(_api:RamlWrapper.Api):RamlWrapper.Api{
+    expandLibraries(_api:hl.IHighLevelNode):hl.IHighLevelNode{
         var api = _api;
         if(api==null){
             return null;
         }
-        if(proxy.LowLevelCompositeNode.isInstance(api.highLevel().lowLevel())){
-            api = <RamlWrapper.Api>api.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();            
+        if(proxy.LowLevelCompositeNode.isInstance(api.lowLevel())){
+            api = api.lowLevel().unit().highLevel().asElement();
         }
         var expander = new TraitsAndResourceTypesExpander();
         var rp = new referencePatcher.ReferencePatcher();
-        var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api.highLevel(),true,rp,true);
+        var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api,true,rp,true);
 
-        var result = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);
-        this.processNode(rp,result.highLevel());
+        var result = expander.expandHighLevelNode(hlNode, rp, api,true);
+        this.processNode(rp,result);
         return result;
     }
     
@@ -820,18 +850,12 @@ export class ValueTransformer implements proxy.ValueTransformer{
 export class DefaultTransformer extends ValueTransformer{
 
     constructor(
-        owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase,
-        delegate: ValueTransformer,
+        public owner:hl.IHighLevelNode,
+        public delegate: ValueTransformer,
         unitsChain:ll.ICompilationUnit[]
     ){
         super(delegate!=null?delegate.templateKind:"",delegate!=null?delegate.templateName:"",unitsChain);
-        this.owner = owner;
-        this.delegate = delegate;
     }
-
-    owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase;
-
-    delegate:ValueTransformer;
 
     transform(
         obj:any,
@@ -870,7 +894,7 @@ export class DefaultTransformer extends ValueTransformer{
         var methodName:string;
         var resourcePath:string = "";
         var resourcePathName:string;
-        var ll=this.owner.highLevel().lowLevel();
+        var ll=this.owner.lowLevel();
         var node = ll;
         var last=null;
         while(node){
@@ -925,10 +949,9 @@ export class DefaultTransformer extends ValueTransformer{
 
 interface GenericData{
 
-    node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Resource|RamlWrapper.Method
-        |RamlWrapper08.Trait|RamlWrapper08.ResourceType|RamlWrapper08.Resource|RamlWrapper08.Method;
+    node:hl.IHighLevelNode;
     
-    ref:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef;
+    ref:hl.IAttribute;
 
     name:string;
 
@@ -949,3 +972,58 @@ interface ResourceGenericData{
 }
 
 var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
+
+function checkReusability(hnode:hlimpl.ASTNodeImpl){
+    var rNode = hnode.reusedNode();
+    if(!rNode) {
+        return false;
+    }
+    var s1 = hnode.lowLevel().unit().contents();
+    var s2 = rNode.lowLevel().unit().contents();
+    var l = Math.min(s1.length,s2.length);
+    var pos = -1;
+    for(var i = 0 ; i < l ; i++){
+        if(s1.charAt(i)!=s2.charAt(i)){
+            pos = i;
+            break;
+        }
+    }
+    if(pos<0&&s1.length!=s2.length){
+        pos = l;
+    }
+    var editedNode = search.deepFindNode(hnode,pos,pos+1);
+    if(!editedNode){
+        return true;
+    }
+    if(editedNode.lowLevel().unit().absolutePath() != hnode.lowLevel().unit().absolutePath()){
+        return true;
+    }
+    if(editedNode.isAttr()){
+        var parent = editedNode.parent();
+        if(universeHelpers.isTypeDeclarationDescendant(parent.definition())){
+            return false;
+        }
+        var pProp = parent.property();
+        if(!pProp){
+            return true;
+        }
+        var propRange = pProp.range();
+        if(universeHelpers.isResourceTypeRefType(propRange)||universeHelpers.isTraitRefType(propRange)){
+            return false;
+        }
+    }
+    else if(editedNode.isElement()){
+        var el = editedNode.asElement();
+        if(universeHelpers.isTypeDeclarationDescendant(el.definition())){
+            return false;
+        }
+    }
+    var p = editedNode.parent();
+    while(p){
+        var pDef = p.definition();
+        if(universeHelpers.isResourceTypeType(pDef)||universeHelpers.isTraitType(pDef)){
+            return false;
+        }
+    }
+    return true;
+}

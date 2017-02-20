@@ -1,117 +1,109 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "traits": [
-      {
-        "secured": {
-          "headers": {
-            "access_token": {
-              "name": "access_token",
-              "displayName": "access_token",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "example": "5757gh76",
-              "required": true,
-              "description": "Access Token",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+    "traits": {
+      "secured": {
+        "headers": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "Access Token",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
-              },
-              "structuredExample": {
+              }
+            },
+            "examples": [
+              {
                 "value": "5757gh76",
                 "strict": true,
-                "name": null,
-                "structuredValue": "5757gh76"
+                "name": null
               }
-            }
-          },
-          "description": "Some requests require authentication.",
-          "name": "secured",
-          "usage": "Apply this to any method that needs to be secured"
-        }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "description": "Some requests require authentication.",
+        "name": "secured",
+        "usage": "Apply this to any method that needs to be secured"
       },
-      {
-        "paged": {
-          "headers": {
-            "page": {
-              "name": "page",
-              "displayName": "page",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "integer"
-              ],
-              "example": 2,
-              "required": true,
-              "description": "Current page number.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+      "paged": {
+        "headers": {
+          "page": {
+            "name": "page",
+            "displayName": "page",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Current page number.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
-              },
-              "structuredExample": {
-                "value": "2",
-                "strict": true,
-                "name": null,
-                "structuredValue": 2
               }
-            }
-          },
-          "description": "Some responses require paging.",
-          "name": "paged",
-          "usage": "Apply this to any method that needs to be paged"
-        }
+            },
+            "examples": [
+              {
+                "value": 2,
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "description": "Some responses require paging.",
+        "name": "paged",
+        "usage": "Apply this to any method that needs to be paged"
       },
-      {
-        "rateLimited": {
-          "headers": {
-            "limit": {
-              "name": "limit",
-              "displayName": "limit",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "integer"
-              ],
-              "example": 5000,
-              "required": true,
-              "description": "The limit.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+      "rateLimited": {
+        "headers": {
+          "limit": {
+            "name": "limit",
+            "displayName": "limit",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "The limit.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
-              },
-              "structuredExample": {
-                "value": "5000",
-                "strict": true,
-                "name": null,
-                "structuredValue": 5000
               }
-            }
-          },
-          "description": "Some requests require rate limiting.",
-          "name": "rateLimited",
-          "usage": "Apply this to any method that needs to be rate limited"
-        }
+            },
+            "examples": [
+              {
+                "value": 5000,
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "description": "Some requests require rate limiting.",
+        "name": "rateLimited",
+        "usage": "Apply this to any method that needs to be rate limited"
       }
-    ],
-    "resourceTypes": [
-      {
-        "collection": {
-          "description": "A collection resource",
-          "name": "collection",
-          "usage": "Use this to describe a resource that lists items",
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "description": "Retrieve all items",
             "method": "get"
@@ -124,7 +116,6 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -141,7 +132,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -149,35 +142,36 @@
             "description": "Add an item",
             "method": "post"
           }
-        }
+        },
+        "description": "A collection resource",
+        "name": "collection",
+        "usage": "Use this to describe a resource that lists items"
       },
-      {
-        "member": {
-          "description": "A single <<resourcePathName | !singularize>>",
-          "name": "member",
-          "usage": "This resourceType should be used for any specific member of a collection",
+      "member": {
+        "methods": {
           "get": {
             "description": "Get a <<resourcePathName | !singularize>>",
             "method": "get"
           }
-        }
+        },
+        "description": "A single <<resourcePathName | !singularize>>",
+        "name": "member",
+        "usage": "This resourceType should be used for any specific member of a collection"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "headers": {
               "page": {
                 "name": "page",
                 "displayName": "page",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
-                "example": 2,
                 "required": true,
                 "description": "Current page number.",
                 "__METADATA__": {
@@ -187,21 +181,22 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "2",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": 2
-                }
+                "examples": [
+                  {
+                    "value": 2,
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "limit": {
                 "name": "limit",
                 "displayName": "limit",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
-                "example": 5000,
                 "required": true,
                 "description": "The limit.",
                 "__METADATA__": {
@@ -211,21 +206,22 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "5000",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": 5000
-                }
+                "examples": [
+                  {
+                    "value": 5000,
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
-                "example": "5757gh76",
                 "required": true,
                 "description": "Access Token",
                 "__METADATA__": {
@@ -238,12 +234,15 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "5757gh76",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "5757gh76"
-                }
+                "examples": [
+                  {
+                    "value": "5757gh76",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "is": [
@@ -253,16 +252,14 @@
             "description": "Retrieve all items",
             "method": "get"
           },
-          {
+          "post": {
             "headers": {
               "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
-                "example": "5757gh76",
                 "required": true,
                 "description": "Access Token",
                 "__METADATA__": {
@@ -275,12 +272,15 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "5757gh76",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "5757gh76"
-                }
+                "examples": [
+                  {
+                    "value": "5757gh76",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "responses": {
@@ -290,7 +290,6 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -307,7 +306,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -315,7 +316,7 @@
             "description": "Add an item",
             "method": "post"
           }
-        ],
+        },
         "is": [
           "secured"
         ],
@@ -333,9 +334,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

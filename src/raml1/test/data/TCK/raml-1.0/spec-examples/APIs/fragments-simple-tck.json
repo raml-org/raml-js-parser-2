@@ -1,13 +1,8 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "resourceTypes": [
-      {
-        "collection": {
-          "description": "A collection resource",
-          "name": "collection",
-          "usage": "Use this to describe a resource that lists items",
+    "resourceTypes": {
+      "collection": {
+        "methods": {
           "get": {
             "description": "Retrieve all items",
             "method": "get"
@@ -20,7 +15,6 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -37,7 +31,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -45,18 +41,21 @@
             "description": "Add an item",
             "method": "post"
           }
-        }
+        },
+        "description": "A collection resource",
+        "name": "collection",
+        "usage": "Use this to describe a resource that lists items"
       }
-    ],
+    },
     "title": "Products API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "description": "Retrieve all items",
             "method": "get"
           },
-          {
+          "post": {
             "responses": {
               "201": {
                 "code": "201",
@@ -64,7 +63,6 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
@@ -81,7 +79,9 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -89,7 +89,7 @@
             "description": "Add an item",
             "method": "post"
           }
-        ],
+        },
         "type": "collection",
         "description": "All products",
         "relativeUri": "/products",
@@ -104,9 +104,13 @@
         "relativeUriPathSegments": [
           "products"
         ],
-        "absoluteUri": "/products"
+        "absoluteUri": "/products",
+        "completeRelativeUri": "/products",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -2648,8 +2648,28 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         }        
         return false;
     }
+    private valComputed = [false,false];
+
+    private _val:any[] = [undefined,undefined];
 
     value(toString?:boolean):any {
+        if(toString){
+            if(!this.valComputed[0]){
+                this._val[0] = this._value(true);
+                this.valComputed[0] = true;
+            }
+            return this._val[0];
+        }
+        else{
+            if(!this.valComputed[1]){
+                this._val[1] = this._value(false);
+                this.valComputed[1] = true;
+            }
+            return this._val[1];
+        }
+    }
+
+    private _value(toString?:boolean):any {
         if (!this._node){
             return "";
         }
@@ -3267,6 +3287,16 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         //if(this._unit) return this._unit;
         //if(!this.parent()) return null;
         //return this.parent().unit();
+    }
+
+    containingUnit():lowlevel.ICompilationUnit{
+        if(this.valueKind()==yaml.Kind.INCLUDE_REF){
+            return this.unit().resolve(this._node.value.value);
+        }
+        if(this.kind()==yaml.Kind.INCLUDE_REF){
+            return this.unit().resolve(this._node.value);
+        }
+        return this._unit;
     }
 
     includeBaseUnit():lowlevel.ICompilationUnit {

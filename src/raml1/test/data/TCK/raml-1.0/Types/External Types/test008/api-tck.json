@@ -1,84 +1,78 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "mySchema": {
-          "name": "mySchema",
-          "displayName": "mySchema",
-          "typePropertyKind": "JSON",
-          "type": [
-            "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "mySchema": {
+        "name": "mySchema",
+        "displayName": "mySchema",
+        "type": [
+          "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       },
-      {
-        "z2": {
-          "name": "z2",
-          "displayName": "z2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "c": {
-              "i": 2
-            }
-          },
-          "properties": {
-            "c": {
-              "name": "c",
-              "displayName": "c",
-              "typePropertyKind": "INPLACE",
-              "type": [
-                "mySchema"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+      "z2": {
+        "name": "z2",
+        "displayName": "z2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "c": {
+            "name": "c",
+            "displayName": "c",
+            "type": [
+              "mySchema"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/json"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"c\": {\n    \"i\": 2\n  }\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "c": {
                 "i": 2
               }
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "A"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "EXTERNAL_IN_PROPERTY_DEFINITION",

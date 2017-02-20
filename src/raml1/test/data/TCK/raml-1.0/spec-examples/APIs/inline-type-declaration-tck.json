@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Inline type declaration",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -14,7 +12,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -22,7 +19,6 @@
                       "firstname": {
                         "name": "firstname",
                         "displayName": "firstname",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -36,12 +32,13 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       "lastname": {
                         "name": "lastname",
                         "displayName": "lastname",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -55,12 +52,13 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
                       "age": {
                         "name": "age",
                         "displayName": "age",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -74,7 +72,9 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "__METADATA__": {
@@ -83,19 +83,20 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "uriParameters": {
           "id": {
             "name": "id",
             "displayName": "id",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
@@ -113,7 +114,9 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
         "relativeUri": "/users/{id}",
@@ -129,9 +132,13 @@
           "users",
           "{id}"
         ],
-        "absoluteUri": "/users/{id}"
+        "absoluteUri": "/users/{id}",
+        "completeRelativeUri": "/users/{id}",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

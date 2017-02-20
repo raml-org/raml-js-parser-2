@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "GitHub API",
     "version": "v3",
@@ -9,7 +7,6 @@
       "version": {
         "name": "version",
         "displayName": "version",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -33,7 +30,9 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -41,17 +40,15 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "page": {
                 "name": "page",
                 "displayName": "page",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
-                "example": 1,
                 "required": true,
                 "description": "Specify the page that you want to retrieve",
                 "__METADATA__": {
@@ -61,22 +58,23 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "1",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": 1
-                }
+                "examples": [
+                  {
+                    "value": 1,
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "per_page": {
                 "name": "per_page",
                 "displayName": "per_page",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
                 "default": 30,
-                "example": 50,
                 "required": true,
                 "description": "Specify the amount of items that will be retrieved per page",
                 "minimum": 10,
@@ -91,12 +89,15 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "50",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": 50
-                }
+                "examples": [
+                  {
+                    "value": 50,
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -112,7 +113,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -125,7 +126,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "https://api.github.com/{version}/users"
+        "absoluteUri": "https://api.github.com/{version}/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -136,5 +139,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

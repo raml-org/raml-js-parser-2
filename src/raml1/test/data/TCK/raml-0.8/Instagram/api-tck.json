@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Instagram",
     "version": "v1",
@@ -100,22 +98,306 @@
         "subscriptionsDelete": "{\n  \"required\" : true ,\n  \"$schema\" : \"http://json-schema.org/draft-03/schema\" ,\n  \"type\" : \"object\" ,\n  \"properties\" : {\n    \"meta\" : {\n      \"type\" : \"object\" ,\n      \"required\" : false ,\n      \"properties\" : {\n        \"code\" : {\n          \"type\" : \"number\" ,\n          \"required\" : false\n        }\n      }\n    } ,\n    \"data\" : {\n      \"type\" : \"object\" ,\n      \"required\" : false\n    }\n  }\n}"
       }
     ],
-    "traits": [
-      {
-        "acceptCallback": {
+    "traits": {
+      "acceptCallback": {
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "queryParameters": {
+          "callback": {
+            "name": "callback",
+            "displayName": "callback",
+            "type": "string",
+            "required": false,
+            "example": "callbackFunction",
+            "repeat": false,
+            "description": "Callback function name. All output will be wrapper under this function name.\n",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "acceptCallback",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      "limitableByGeoPoint": {
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "queryParameters": {
+          "lat": {
+            "name": "lat",
+            "displayName": "lat",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "description": "Latitude of the center search coordinate. If used, lng is required.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "lng": {
+            "name": "lng",
+            "displayName": "lng",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "description": "Longitude of the center search coordinate. If used, lat is required.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "distance": {
+            "name": "distance",
+            "displayName": "distance",
+            "type": "integer",
+            "required": false,
+            "default": 1000,
+            "repeat": false,
+            "description": "Default is 1000m (distance=1000), max distance is 5000.",
+            "maximum": 5000,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "limitableByGeoPoint",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      "limitable": {
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "queryParameters": {
+          "count": {
+            "name": "count",
+            "displayName": "count",
+            "type": "integer",
+            "required": false,
+            "example": "1",
+            "repeat": false,
+            "description": "Number of items you would like to receive.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "limitable",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      "limitableByTime": {
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "queryParameters": {
+          "max_timestamp": {
+            "name": "max_timestamp",
+            "displayName": "max_timestamp",
+            "type": "integer",
+            "required": false,
+            "repeat": false,
+            "description": "Return media before this UNIX timestamp.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "min_timestamp": {
+            "name": "min_timestamp",
+            "displayName": "min_timestamp",
+            "type": "integer",
+            "required": false,
+            "repeat": false,
+            "description": "Return media after this UNIX timestamp.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "limitableByTime",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      "limitableById": {
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "queryParameters": {
+          "min_id": {
+            "name": "min_id",
+            "displayName": "min_id",
+            "type": "integer",
+            "required": false,
+            "repeat": false,
+            "description": "Return media later than this min_id.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "max_id": {
+            "name": "max_id",
+            "displayName": "max_id",
+            "type": "integer",
+            "required": false,
+            "repeat": false,
+            "description": "Return media earlier than this max_id.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "limitableById",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "securedBy": [
+      "oauth_2_0",
+      "clientId"
+    ],
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+        "describedBy": {
           "securedBy": [
             "oauth_2_0",
             "clientId"
           ],
           "queryParameters": {
-            "callback": {
-              "name": "callback",
-              "displayName": "callback",
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
               "type": "string",
               "required": false,
-              "example": "callbackFunction",
               "repeat": false,
-              "description": "Callback function name. All output will be wrapper under this function name.\n",
+              "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -134,7 +416,6 @@
               }
             }
           },
-          "name": "acceptCallback",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "securedBy": {
@@ -142,70 +423,47 @@
               }
             }
           }
+        },
+        "settings": {
+          "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+          "authorizationUri": "https://api.instagram.com/oauth/authorize",
+          "authorizationGrants": [
+            "code",
+            "token"
+          ],
+          "scopes": [
+            "basic",
+            "comments",
+            "relationships",
+            "likes"
+          ]
         }
       },
-      {
-        "limitableByGeoPoint": {
+      "clientId": {
+        "name": "clientId",
+        "type": "x-customHeader",
+        "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
+        "describedBy": {
           "securedBy": [
             "oauth_2_0",
             "clientId"
           ],
           "queryParameters": {
-            "lat": {
-              "name": "lat",
-              "displayName": "lat",
-              "type": "number",
+            "client_id": {
+              "name": "client_id",
+              "displayName": "client_id",
+              "type": "string",
               "required": false,
+              "example": "9e0dbc0a3b8d436ca65ae2df9825c893",
               "repeat": false,
-              "description": "Latitude of the center search coordinate. If used, lng is required.",
+              "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
                   },
-                  "required": {
+                  "type": {
                     "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "lng": {
-              "name": "lng",
-              "displayName": "lng",
-              "type": "number",
-              "required": false,
-              "repeat": false,
-              "description": "Longitude of the center search coordinate. If used, lat is required.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "distance": {
-              "name": "distance",
-              "displayName": "distance",
-              "type": "integer",
-              "required": false,
-              "default": 1000,
-              "repeat": false,
-              "description": "Default is 1000m (distance=1000), max distance is 5000.",
-              "maximum": 5000,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -217,167 +475,6 @@
               }
             }
           },
-          "name": "limitableByGeoPoint",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "limitable": {
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "queryParameters": {
-            "count": {
-              "name": "count",
-              "displayName": "count",
-              "type": "integer",
-              "required": false,
-              "example": "1",
-              "repeat": false,
-              "description": "Number of items you would like to receive.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "name": "limitable",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "limitableByTime": {
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "queryParameters": {
-            "max_timestamp": {
-              "name": "max_timestamp",
-              "displayName": "max_timestamp",
-              "type": "integer",
-              "required": false,
-              "repeat": false,
-              "description": "Return media before this UNIX timestamp.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "min_timestamp": {
-              "name": "min_timestamp",
-              "displayName": "min_timestamp",
-              "type": "integer",
-              "required": false,
-              "repeat": false,
-              "description": "Return media after this UNIX timestamp.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "name": "limitableByTime",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "limitableById": {
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "queryParameters": {
-            "min_id": {
-              "name": "min_id",
-              "displayName": "min_id",
-              "type": "integer",
-              "required": false,
-              "repeat": false,
-              "description": "Return media later than this min_id.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "max_id": {
-              "name": "max_id",
-              "displayName": "max_id",
-              "type": "integer",
-              "required": false,
-              "repeat": false,
-              "description": "Return media earlier than this max_id.",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "name": "limitableById",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "securedBy": {
@@ -387,135 +484,11 @@
           }
         }
       }
-    ],
-    "securedBy": [
-      "oauth_2_0",
-      "clientId"
-    ],
-    "securitySchemes": [
-      {
-        "oauth_2_0": {
-          "name": "oauth_2_0",
-          "type": "OAuth 2.0",
-          "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
-          "describedBy": {
-            "securedBy": [
-              "oauth_2_0",
-              "clientId"
-            ],
-            "queryParameters": {
-              "access_token": {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": "string",
-                "required": false,
-                "repeat": false,
-                "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "securedBy": {
-                  "calculated": true
-                }
-              }
-            }
-          },
-          "settings": {
-            "accessTokenUri": "https://api.instagram.com/oauth/access_token",
-            "authorizationUri": "https://api.instagram.com/oauth/authorize",
-            "authorizationGrants": [
-              "code",
-              "token"
-            ],
-            "scopes": [
-              "basic",
-              "comments",
-              "relationships",
-              "likes"
-            ]
-          }
-        }
-      },
-      {
-        "clientId": {
-          "name": "clientId",
-          "type": "x-customHeader",
-          "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
-          "describedBy": {
-            "securedBy": [
-              "oauth_2_0",
-              "clientId"
-            ],
-            "queryParameters": {
-              "client_id": {
-                "name": "client_id",
-                "displayName": "client_id",
-                "type": "string",
-                "required": false,
-                "example": "9e0dbc0a3b8d436ca65ae2df9825c893",
-                "repeat": false,
-                "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "securedBy": {
-                  "calculated": true
-                }
-              }
-            }
-          }
-        }
-      }
-    ],
-    "resourceTypes": [
-      {
-        "usersListing": {
-          "name": "usersListing",
-          "type": "base",
-          "securedBy": [
-            {
-              "oauth_2_0": {
-                "scopes": [
-                  "relationships"
-                ],
-                "clientId": []
-              }
-            }
-          ],
+    },
+    "resourceTypes": {
+      "usersListing": {
+        "name": "usersListing",
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -549,23 +522,22 @@
               }
             }
           }
-        }
-      },
-      {
-        "mediaSearch": {
-          "name": "mediaSearch",
-          "type": "base",
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+        },
+        "type": "base",
+        "securedBy": [
+          {
+            "oauth_2_0": {
+              "scopes": [
+                "relationships"
+              ],
+              "clientId": []
             }
-          },
+          }
+        ]
+      },
+      "mediaSearch": {
+        "name": "mediaSearch",
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -593,22 +565,23 @@
               }
             }
           }
+        },
+        "type": "base",
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       },
-      {
-        "secured": {
-          "name": "secured",
-          "type": "base",
-          "securedBy": [
-            {
-              "oauth_2_0": {
-                "scopes": [
-                  "<<scope>>"
-                ],
-                "clientId": []
-              }
-            }
-          ],
+      "secured": {
+        "name": "secured",
+        "methods": {
           "delete": {
             "responses": {
               "200": {
@@ -665,22 +638,22 @@
               "optional": true
             }
           }
-        }
-      },
-      {
-        "base": {
-          "name": "base",
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
+        },
+        "type": "base",
+        "securedBy": [
+          {
+            "oauth_2_0": {
+              "scopes": [
+                "<<scope>>"
+              ],
+              "clientId": []
             }
-          },
+          }
+        ]
+      },
+      "base": {
+        "name": "base",
+        "methods": {
           "delete": {
             "responses": {
               "503": {
@@ -748,23 +721,22 @@
               }
             }
           }
+        },
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       },
-      {
-        "feedsListing": {
-          "name": "feedsListing",
-          "type": "base",
-          "securedBy": [
-            "oauth_2_0",
-            "clientId"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "securedBy": {
-                "calculated": true
-              }
-            }
-          },
+      "feedsListing": {
+        "name": "feedsListing",
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -792,9 +764,21 @@
               }
             }
           }
+        },
+        "type": "base",
+        "securedBy": [
+          "oauth_2_0",
+          "clientId"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
         }
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/media",
@@ -836,8 +820,8 @@
                 }
               }
             },
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -928,7 +912,7 @@
                   }
                 }
               }
-            ],
+            },
             "resources": [
               {
                 "relativeUri": "/comments",
@@ -947,8 +931,8 @@
                     }
                   }
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -1045,7 +1029,7 @@
                       }
                     }
                   },
-                  {
+                  "post": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -1113,7 +1097,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "resources": [
                   {
                     "relativeUri": "/{commentId}",
@@ -1155,8 +1139,8 @@
                         }
                       }
                     },
-                    "methods": [
-                      {
+                    "methods": {
+                      "delete": {
                         "responses": {
                           "200": {
                             "code": "200",
@@ -1197,7 +1181,7 @@
                           }
                         }
                       }
-                    ],
+                    },
                     "displayName": "/{commentId}",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1209,7 +1193,9 @@
                     "relativeUriPathSegments": [
                       "{commentId}"
                     ],
-                    "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}"
+                    "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}",
+                    "completeRelativeUri": "/media/{mediaId}/comments/{commentId}",
+                    "parentUri": "/media/{mediaId}/comments"
                   }
                 ],
                 "displayName": "/comments",
@@ -1223,7 +1209,9 @@
                 "relativeUriPathSegments": [
                   "comments"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
+                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments",
+                "completeRelativeUri": "/media/{mediaId}/comments",
+                "parentUri": "/media/{mediaId}"
               },
               {
                 "relativeUri": "/likes",
@@ -1242,8 +1230,8 @@
                     }
                   }
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -1340,7 +1328,7 @@
                       }
                     }
                   },
-                  {
+                  "post": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -1381,7 +1369,7 @@
                       }
                     }
                   },
-                  {
+                  "delete": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -1425,7 +1413,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/likes",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -1437,7 +1425,9 @@
                 "relativeUriPathSegments": [
                   "likes"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
+                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/likes",
+                "completeRelativeUri": "/media/{mediaId}/likes",
+                "parentUri": "/media/{mediaId}"
               }
             ],
             "displayName": "/{mediaId}",
@@ -1454,7 +1444,9 @@
             "relativeUriPathSegments": [
               "{mediaId}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}"
+            "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}",
+            "completeRelativeUri": "/media/{mediaId}",
+            "parentUri": "/media"
           },
           {
             "relativeUri": "/search",
@@ -1463,8 +1455,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -1664,7 +1656,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/search",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -1679,7 +1671,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/media/search"
+            "absoluteUri": "https://api.instagram.com/{version}/media/search",
+            "completeRelativeUri": "/media/search",
+            "parentUri": "/media"
           },
           {
             "relativeUri": "/popular",
@@ -1688,8 +1682,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -1780,7 +1774,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/popular",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -1795,7 +1789,9 @@
             "relativeUriPathSegments": [
               "popular"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/media/popular"
+            "absoluteUri": "https://api.instagram.com/{version}/media/popular",
+            "completeRelativeUri": "/media/popular",
+            "parentUri": "/media"
           }
         ],
         "displayName": "/media",
@@ -1812,7 +1808,9 @@
         "relativeUriPathSegments": [
           "media"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/media"
+        "absoluteUri": "https://api.instagram.com/{version}/media",
+        "completeRelativeUri": "/media",
+        "parentUri": ""
       },
       {
         "relativeUri": "/tags",
@@ -1854,8 +1852,8 @@
                 }
               }
             },
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -1946,7 +1944,7 @@
                   }
                 }
               }
-            ],
+            },
             "resources": [
               {
                 "relativeUri": "/media/recent",
@@ -1955,8 +1953,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2090,7 +2088,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/media/recent",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -2106,7 +2104,9 @@
                   "media",
                   "recent"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent"
+                "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent",
+                "completeRelativeUri": "/tags/{tagName}/media/recent",
+                "parentUri": "/tags/{tagName}"
               }
             ],
             "displayName": "/{tagName}",
@@ -2123,7 +2123,9 @@
             "relativeUriPathSegments": [
               "{tagName}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}"
+            "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}",
+            "completeRelativeUri": "/tags/{tagName}",
+            "parentUri": "/tags"
           },
           {
             "relativeUri": "/search",
@@ -2132,8 +2134,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -2246,7 +2248,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/search",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -2261,7 +2263,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/tags/search"
+            "absoluteUri": "https://api.instagram.com/{version}/tags/search",
+            "completeRelativeUri": "/tags/search",
+            "parentUri": "/tags"
           }
         ],
         "displayName": "/tags",
@@ -2278,7 +2282,9 @@
         "relativeUriPathSegments": [
           "tags"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/tags"
+        "absoluteUri": "https://api.instagram.com/{version}/tags",
+        "completeRelativeUri": "/tags",
+        "parentUri": ""
       },
       {
         "relativeUri": "/users",
@@ -2320,8 +2326,8 @@
                 }
               }
             },
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -2412,7 +2418,7 @@
                   }
                 }
               }
-            ],
+            },
             "resources": [
               {
                 "relativeUri": "/follows",
@@ -2427,8 +2433,8 @@
                     }
                   }
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2525,7 +2531,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/follows",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -2537,7 +2543,9 @@
                 "relativeUriPathSegments": [
                   "follows"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows",
+                "completeRelativeUri": "/users/{userId}/follows",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/followed-by",
@@ -2552,8 +2560,8 @@
                     }
                   }
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2650,7 +2658,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/followed-by",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -2662,7 +2670,9 @@
                 "relativeUriPathSegments": [
                   "followed-by"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by",
+                "completeRelativeUri": "/users/{userId}/followed-by",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/media/recent",
@@ -2671,8 +2681,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2849,7 +2859,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/media/recent",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -2865,7 +2875,9 @@
                   "media",
                   "recent"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent",
+                "completeRelativeUri": "/users/{userId}/media/recent",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/relationship",
@@ -2884,8 +2896,8 @@
                     }
                   }
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -2982,7 +2994,7 @@
                       }
                     }
                   },
-                  {
+                  "post": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -3061,7 +3073,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/relationship",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -3073,7 +3085,9 @@
                 "relativeUriPathSegments": [
                   "relationship"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/relationship",
+                "completeRelativeUri": "/users/{userId}/relationship",
+                "parentUri": "/users/{userId}"
               }
             ],
             "displayName": "/{userId}",
@@ -3090,7 +3104,9 @@
             "relativeUriPathSegments": [
               "{userId}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/users/{userId}"
+            "absoluteUri": "https://api.instagram.com/{version}/users/{userId}",
+            "completeRelativeUri": "/users/{userId}",
+            "parentUri": "/users"
           },
           {
             "relativeUri": "/search",
@@ -3105,8 +3121,8 @@
                 }
               }
             ],
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -3225,7 +3241,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/search",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -3237,7 +3253,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/users/search"
+            "absoluteUri": "https://api.instagram.com/{version}/users/search",
+            "completeRelativeUri": "/users/search",
+            "parentUri": "/users"
           },
           {
             "relativeUri": "/self",
@@ -3256,8 +3274,8 @@
                 }
               }
             ],
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -3354,7 +3372,7 @@
                   }
                 }
               }
-            ],
+            },
             "resources": [
               {
                 "relativeUri": "/feed",
@@ -3363,8 +3381,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -3498,7 +3516,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/feed",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -3513,7 +3531,9 @@
                 "relativeUriPathSegments": [
                   "feed"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/self/feed"
+                "absoluteUri": "https://api.instagram.com/{version}/users/self/feed",
+                "completeRelativeUri": "/users/self/feed",
+                "parentUri": "/users/self"
               },
               {
                 "relativeUri": "/requested-by",
@@ -3535,8 +3555,8 @@
                     }
                   }
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -3640,7 +3660,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/requested-by",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -3652,7 +3672,9 @@
                 "relativeUriPathSegments": [
                   "requested-by"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by"
+                "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by",
+                "completeRelativeUri": "/users/self/requested-by",
+                "parentUri": "/users/self"
               },
               {
                 "relativeUri": "/media/liked",
@@ -3661,8 +3683,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -3775,7 +3797,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/media/liked",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -3791,7 +3813,9 @@
                   "media",
                   "liked"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/self/media/liked"
+                "absoluteUri": "https://api.instagram.com/{version}/users/self/media/liked",
+                "completeRelativeUri": "/users/self/media/liked",
+                "parentUri": "/users/self"
               }
             ],
             "displayName": "/self",
@@ -3805,7 +3829,9 @@
             "relativeUriPathSegments": [
               "self"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/users/self"
+            "absoluteUri": "https://api.instagram.com/{version}/users/self",
+            "completeRelativeUri": "/users/self",
+            "parentUri": "/users"
           }
         ],
         "displayName": "/users",
@@ -3822,7 +3848,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/users"
+        "absoluteUri": "https://api.instagram.com/{version}/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       },
       {
         "relativeUri": "/locations",
@@ -3860,8 +3888,8 @@
                 }
               }
             },
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -3952,7 +3980,7 @@
                   }
                 }
               }
-            ],
+            },
             "resources": [
               {
                 "relativeUri": "/media/recent",
@@ -3961,8 +3989,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "methods": [
-                  {
+                "methods": {
+                  "get": {
                     "responses": {
                       "200": {
                         "code": "200",
@@ -4139,7 +4167,7 @@
                       }
                     }
                   }
-                ],
+                },
                 "displayName": "/media/recent",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -4155,7 +4183,9 @@
                   "media",
                   "recent"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent"
+                "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent",
+                "completeRelativeUri": "/locations/{locId}/media/recent",
+                "parentUri": "/locations/{locId}"
               }
             ],
             "displayName": "/{locId}",
@@ -4172,7 +4202,9 @@
             "relativeUriPathSegments": [
               "{locId}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}"
+            "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}",
+            "completeRelativeUri": "/locations/{locId}",
+            "parentUri": "/locations"
           },
           {
             "relativeUri": "/search",
@@ -4181,8 +4213,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "methods": [
-              {
+            "methods": {
+              "get": {
                 "responses": {
                   "200": {
                     "code": "200",
@@ -4387,7 +4419,7 @@
                   }
                 }
               }
-            ],
+            },
             "displayName": "/search",
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -4402,7 +4434,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/locations/search"
+            "absoluteUri": "https://api.instagram.com/{version}/locations/search",
+            "completeRelativeUri": "/locations/search",
+            "parentUri": "/locations"
           }
         ],
         "displayName": "/locations",
@@ -4419,7 +4453,9 @@
         "relativeUriPathSegments": [
           "locations"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/locations"
+        "absoluteUri": "https://api.instagram.com/{version}/locations",
+        "completeRelativeUri": "/locations",
+        "parentUri": ""
       },
       {
         "relativeUri": "/geographies/{geoId}/media/recent",
@@ -4454,8 +4490,8 @@
             }
           }
         },
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200"
@@ -4560,7 +4596,7 @@
               }
             }
           }
-        ],
+        },
         "displayName": "/geographies/{geoId}/media/recent",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -4578,7 +4614,9 @@
           "media",
           "recent"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent"
+        "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent",
+        "completeRelativeUri": "/geographies/{geoId}/media/recent",
+        "parentUri": ""
       },
       {
         "relativeUri": "/subscriptions",
@@ -4587,8 +4625,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -4717,7 +4755,7 @@
               }
             }
           },
-          {
+          "post": {
             "responses": {
               "200": {
                 "code": "200",
@@ -4963,7 +5001,7 @@
               }
             }
           },
-          {
+          "delete": {
             "responses": {
               "200": {
                 "code": "200",
@@ -5096,7 +5134,7 @@
               }
             }
           }
-        ],
+        },
         "displayName": "/subscriptions",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -5111,7 +5149,9 @@
         "relativeUriPathSegments": [
           "subscriptions"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/subscriptions"
+        "absoluteUri": "https://api.instagram.com/{version}/subscriptions",
+        "completeRelativeUri": "/subscriptions",
+        "parentUri": ""
       }
     ],
     "documentation": [
@@ -5132,6 +5172,8 @@
       }
     }
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "EXAMPLE_SCHEMA_FAILURE",

@@ -1,175 +1,171 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "deprecated": {
-          "name": "deprecated",
-          "displayName": "deprecated",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "nil"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "experimental": {
-          "name": "experimental",
-          "displayName": "experimental",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "nil | string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "experimental": {
+        "name": "experimental",
+        "displayName": "experimental",
+        "type": [
+          "nil | string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "feedbackRequested": {
-          "name": "feedbackRequested",
-          "displayName": "feedbackRequested",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string?"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "feedbackRequested": {
+        "name": "feedbackRequested",
+        "displayName": "feedbackRequested",
+        "type": [
+          "string?"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "testHarness": {
-          "name": "testHarness",
-          "displayName": "testHarness",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "testHarness": {
+        "name": "testHarness",
+        "displayName": "testHarness",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "badge": {
-          "name": "badge",
-          "displayName": "badge",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+      "badge": {
+        "name": "badge",
+        "displayName": "badge",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "clearanceLevel": {
-          "name": "clearanceLevel",
-          "displayName": "clearanceLevel",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "level": {
-              "name": "level",
-              "displayName": "level",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "enum": [
-                "low",
-                "medium",
-                "high"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+      "clearanceLevel": {
+        "name": "clearanceLevel",
+        "displayName": "clearanceLevel",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "level": {
+            "name": "level",
+            "displayName": "level",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "signature": {
-              "name": "signature",
-              "displayName": "signature",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "pattern": "\\d{3}-\\w{12}",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "signature": {
+            "name": "signature",
+            "displayName": "signature",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "pattern": "\\d{3}-\\w{12}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Illustrating annotations",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
         "annotations": {
           "experimental": {
-            "structuredValue": null,
-            "name": "experimental"
+            "name": "experimental",
+            "structuredValue": null
           },
           "feedbackRequested": {
-            "structuredValue": null,
-            "name": "feedbackRequested"
+            "name": "feedbackRequested",
+            "structuredValue": null
           }
         },
         "relativeUri": "/groups",
@@ -184,40 +180,42 @@
         "relativeUriPathSegments": [
           "groups"
         ],
-        "absoluteUri": "/groups"
+        "absoluteUri": "/groups",
+        "completeRelativeUri": "/groups",
+        "parentUri": ""
       },
       {
         "annotations": {
           "testHarness": {
-            "structuredValue": "usersTest",
-            "name": "testHarness"
+            "name": "testHarness",
+            "structuredValue": "usersTest"
           },
           "badge": {
-            "structuredValue": "tested.gif",
-            "name": "badge"
+            "name": "badge",
+            "structuredValue": "tested.gif"
           },
           "clearanceLevel": {
+            "name": "clearanceLevel",
             "structuredValue": {
               "level": "high",
               "signature": "230-ghtwvfrs1itr"
-            },
-            "name": "clearanceLevel"
+            }
           }
         },
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "deprecated": {
-                "structuredValue": null,
-                "name": "deprecated"
+                "name": "deprecated",
+                "structuredValue": null
               },
               "experimental": {
-                "structuredValue": null,
-                "name": "experimental"
+                "name": "experimental",
+                "structuredValue": null
               },
               "feedbackRequested": {
-                "structuredValue": null,
-                "name": "feedbackRequested"
+                "name": "feedbackRequested",
+                "structuredValue": "Feedback committed!"
               }
             },
             "responses": {
@@ -227,7 +225,7 @@
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -240,9 +238,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

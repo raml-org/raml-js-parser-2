@@ -1,13 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "baseUri": "api.example.com/{mediaType}",
     "baseUriParameters": {
       "mediaType": {
         "name": "mediaType",
         "displayName": "mediaType",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -25,15 +22,21 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
       "HTTP",
       "HTTPS"
     ],
-    "mediaType": "application/json"
+    "mediaType": [
+      "application/json"
+    ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "MISSING_REQUIRED_PROPERTY",

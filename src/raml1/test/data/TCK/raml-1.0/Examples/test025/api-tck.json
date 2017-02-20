@@ -1,396 +1,367 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "Header": {
-          "name": "Header",
-          "displayName": "Header",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Header": {
+        "name": "Header",
+        "displayName": "Header",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "value": {
+            "name": "value",
+            "displayName": "value",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Message": {
+        "name": "Message",
+        "displayName": "Message",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "payload": {
+            "name": "payload",
+            "displayName": "payload",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "mimeType": {
+                "name": "mimeType",
+                "displayName": "mimeType",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "filename": {
+                "name": "filename",
+                "displayName": "filename",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "headers": {
+                "name": "headers",
+                "displayName": "headers",
+                "type": [
+                  "array"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "Header",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "body": {
+                "name": "body",
+                "displayName": "body",
+                "type": [
+                  "object"
+                ],
+                "required": false,
+                "properties": {
+                  "size": {
+                    "name": "size",
+                    "displayName": "size",
+                    "type": [
+                      "number"
+                    ],
+                    "required": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "data": {
+                    "name": "data",
+                    "displayName": "data",
+                    "type": [
+                      "string"
+                    ],
+                    "required": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "parts": {
+                "name": "parts",
+                "displayName": "parts",
+                "type": [
+                  "array"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "Message",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "sizeEstimate": {
+            "name": "sizeEstimate",
+            "displayName": "sizeEstimate",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Thread": {
+        "name": "Thread",
+        "displayName": "Thread",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "historyId": {
+            "name": "historyId",
+            "displayName": "historyId",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "messages": {
+            "name": "messages",
+            "displayName": "messages",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "Message",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
             "value": {
-              "name": "value",
-              "displayName": "value",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "Message": {
-          "name": "Message",
-          "displayName": "Message",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "payload": {
-              "name": "payload",
-              "displayName": "payload",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "required": false,
-              "properties": {
-                "mimeType": {
-                  "name": "mimeType",
-                  "displayName": "mimeType",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "filename": {
-                  "name": "filename",
-                  "displayName": "filename",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "headers": {
-                  "name": "headers",
-                  "displayName": "headers",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "array"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "items": "Header"
-                },
-                "body": {
-                  "name": "body",
-                  "displayName": "body",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "object"
-                  ],
-                  "required": false,
-                  "properties": {
-                    "size": {
-                      "name": "size",
-                      "displayName": "size",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "type": [
-                        "number"
-                      ],
-                      "required": false,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    },
-                    "data": {
-                      "name": "data",
-                      "displayName": "data",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "type": [
-                        "string"
-                      ],
-                      "required": false,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "parts": {
-                  "name": "parts",
-                  "displayName": "parts",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "array"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "items": "Message"
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "sizeEstimate": {
-              "name": "sizeEstimate",
-              "displayName": "sizeEstimate",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "Thread": {
-          "name": "Thread",
-          "displayName": "Thread",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "id": "146df5d64e5cb7dc",
-            "historyId": "535370",
-            "messages": [
-              {
-                "id": "146df5d64e5cb7dc",
-                "payload": {
-                  "mimeType": "text/plain",
-                  "filename": "",
-                  "headers": [
-                    {
-                      "name": "Received",
-                      "value": "from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700"
-                    },
-                    {
-                      "name": "Date",
-                      "value": "Fri, 27 Jun 2014 15:06:18 -0700"
-                    },
-                    {
-                      "name": "Message-Id",
-                      "value": "<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>"
-                    },
-                    {
-                      "name": "From",
-                      "value": "someaccount@gmail.com"
-                    }
-                  ],
-                  "body": {
-                    "size": 1,
-                    "data": ""
-                  }
-                },
-                "sizeEstimate": 331
-              }
-            ]
-          },
-          "properties": {
-            "id": {
-              "name": "id",
-              "displayName": "id",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "historyId": {
-              "name": "historyId",
-              "displayName": "historyId",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "messages": {
-              "name": "messages",
-              "displayName": "messages",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "Message"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"id\": \"146df5d64e5cb7dc\",\n  \"historyId\": \"535370\",\n  \"messages\": [\n    {\n      \"id\": \"146df5d64e5cb7dc\",\n      \"payload\": {\n        \"mimeType\": \"text/plain\",\n        \"filename\": \"\",\n        \"headers\": [\n          {\n            \"name\": \"Received\",\n            \"value\": \"from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700\"\n          },\n          {\n            \"name\": \"Date\",\n            \"value\": \"Fri, 27 Jun 2014 15:06:18 -0700\"\n          },\n          {\n            \"name\": \"Message-Id\",\n            \"value\": \"<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>\"\n          },\n          {\n            \"name\": \"From\",\n            \"value\": \"someaccount@gmail.com\"\n          }\n        ],\n        \"body\": {\n          \"size\": 1,\n          \"data\": \"\"\n        }\n      },\n      \"sizeEstimate\": 331\n    }\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
               "id": "146df5d64e5cb7dc",
               "historyId": "535370",
               "messages": [
@@ -425,12 +396,18 @@
                   "sizeEstimate": 331
                 }
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "usage": "Gmail types"
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": []
 }

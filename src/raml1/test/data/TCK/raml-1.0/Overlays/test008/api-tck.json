@@ -1,107 +1,107 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
-    "traits": [
-      {
-        "FilterableByPrice": {
-          "annotations": {
-            "Test3": {
-              "structuredValue": {
-                "name": "Blah"
-              },
-              "name": "Test3"
+    "traits": {
+      "FilterableByPrice": {
+        "annotations": {
+          "Test3": {
+            "name": "Test3",
+            "structuredValue": {
+              "name": "Blah"
             }
-          },
-          "queryParameters": {
-            "priceLessThen": {
-              "name": "priceLessThen",
-              "displayName": "priceLessThen",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          }
+        },
+        "queryParameters": {
+          "priceLessThen": {
+            "name": "priceLessThen",
+            "displayName": "priceLessThen",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "priceMoreThen": {
-              "name": "priceMoreThen",
-              "displayName": "priceMoreThen",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "priceMoreThen": {
+            "name": "priceMoreThen",
+            "displayName": "priceMoreThen",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "name": "FilterableByPrice"
-        }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "FilterableByPrice"
       }
-    ],
-    "annotationTypes": [
-      {
-        "Test3": {
-          "name": "Test3",
-          "displayName": "Test3",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "Test3": {
+        "name": "Test3",
+        "displayName": "Test3",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Pet Shop Overlay",
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

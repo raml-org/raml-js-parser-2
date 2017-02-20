@@ -1,46 +1,36 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "JSON",
-          "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test11/remoteScheme.json",
-          "type": [
-            "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            },\n            \"required\" : [ \"innerTypeName\" ]\n        }\n    },\n    \"required\" : [ \"name\" ]\n}"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test11/remoteScheme.json",
+        "type": [
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            },\n            \"required\" : [ \"innerTypeName\" ]\n        }\n    },\n    \"required\" : [ \"name\" ]\n}"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Api",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "INPLACE",
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "name": "somename",
-                  "child": {
-                    "innerTypeName1": "anothername"
-                  }
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -48,22 +38,24 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"name\": \"somename\",\n  \"child\": {\n    \"innerTypeName1\": \"anothername\"\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "name": "somename",
-                    "child": {
-                      "innerTypeName1": "anothername"
-                    }
+                "examples": [
+                  {
+                    "value": {
+                      "name": "somename",
+                      "child": {
+                        "innerTypeName1": "anothername"
+                      }
+                    },
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -76,10 +68,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "EXAMPLE_SCHEMA_FAILURE",

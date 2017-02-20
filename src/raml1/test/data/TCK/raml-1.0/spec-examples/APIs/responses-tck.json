@@ -1,79 +1,80 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Invoice": {
-          "name": "Invoice",
-          "displayName": "Invoice",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "amount": {
-              "name": "amount",
-              "displayName": "amount",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "minimum": 0,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Invoice": {
+        "name": "Invoice",
+        "displayName": "Invoice",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "amount": {
+            "name": "amount",
+            "displayName": "amount",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "minimum": 0,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "vendorName": {
-              "name": "vendorName",
-              "displayName": "vendorName",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "vendorName": {
+            "name": "vendorName",
+            "displayName": "vendorName",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Example with responses",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -81,7 +82,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "Invoice"
                     ],
@@ -89,7 +89,6 @@
                       "id": {
                         "name": "id",
                         "displayName": "id",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -103,7 +102,9 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "__METADATA__": {
@@ -112,14 +113,16 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           },
-          {
+          "post": {
             "responses": {
               "201": {
                 "code": "201",
@@ -127,11 +130,9 @@
                   {
                     "name": "Location",
                     "displayName": "Location",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "string"
                     ],
-                    "example": "/invoices/45612",
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -146,12 +147,15 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "/invoices/45612",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": "/invoices/45612"
-                    }
+                    "examples": [
+                      {
+                        "value": "/invoices/45612",
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "body": {
@@ -169,7 +173,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
                   },
                   "text/xml": {
                     "name": "text/xml",
@@ -185,7 +191,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/xml",
+                    "typePropertyKind": "XML"
                   }
                 }
               },
@@ -195,18 +203,13 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
-                    "example": {
-                      "error": "Amount cannot be negative"
-                    },
                     "properties": {
                       "error": {
                         "name": "error",
                         "displayName": "error",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "string"
                         ],
@@ -223,7 +226,9 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "__METADATA__": {
@@ -236,14 +241,17 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"error\": \"Amount cannot be negative\"\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "error": "Amount cannot be negative"
+                    "examples": [
+                      {
+                        "value": {
+                          "error": "Amount cannot be negative"
+                        },
+                        "strict": true,
+                        "name": null
                       }
-                    }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -252,7 +260,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Invoice"
                 ],
@@ -262,12 +269,14 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/invoices",
         "displayName": "/invoices",
         "__METADATA__": {
@@ -280,9 +289,13 @@
         "relativeUriPathSegments": [
           "invoices"
         ],
-        "absoluteUri": "/invoices"
+        "absoluteUri": "/invoices",
+        "completeRelativeUri": "/invoices",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

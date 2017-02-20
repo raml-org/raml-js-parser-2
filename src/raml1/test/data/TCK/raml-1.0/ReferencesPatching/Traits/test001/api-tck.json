@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -8,38 +6,37 @@
         "value": "lib.raml"
       }
     ],
-    "traits": [
-      {
-        "lib.libTrait1": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "lib.LibType"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
+    "traits": {
+      "lib.libTrait1": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib.LibType"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             }
-          },
-          "name": "lib.libTrait1",
-          "__METADATA__": {
-            "calculated": true
           }
+        },
+        "name": "lib.libTrait1",
+        "__METADATA__": {
+          "calculated": true
         }
       }
-    ],
+    },
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -48,8 +45,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -57,7 +54,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "lib.LibType"
                     ],
@@ -67,7 +63,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -87,7 +85,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -100,7 +98,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "https://example.com/raml/resource"
+        "absoluteUri": "https://example.com/raml/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -111,5 +111,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

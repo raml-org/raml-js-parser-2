@@ -1,17 +1,12 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "resourceTypes": [
-      {
-        "rt1": {
-          "type": "rt2",
-          "name": "rt1"
-        }
+    "resourceTypes": {
+      "rt1": {
+        "type": "rt2",
+        "name": "rt1"
       },
-      {
-        "rt2": {
-          "name": "rt2",
+      "rt2": {
+        "methods": {
           "get": {
             "responses": {
               "200": {
@@ -22,7 +17,7 @@
                     "displayName": "application/json",
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemes1/subdir/scheme1.json#/definitions/Type1",
-                    "schema": [
+                    "type": [
                       "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
                     ],
                     "__METADATA__": {
@@ -34,21 +29,27 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                    ],
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
                   }
                 }
               }
             },
             "method": "get"
           }
-        }
+        },
+        "name": "rt2"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -58,16 +59,9 @@
                     "displayName": "application/json",
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemes1/subdir/scheme1.json#/definitions/Type1",
-                    "schema": [
+                    "type": [
                       "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
                     ],
-                    "example": {
-                      "p1": "p1Value",
-                      "p2": {
-                        "q1": "q1Value",
-                        "q2": 12
-                      }
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -78,25 +72,31 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"p1\": \"p1Value\",\n  \"p2\": {\n    \"q1\": \"q1Value\",\n    \"q2\": 12\n  }\n}\n",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "p1": "p1Value",
-                        "p2": {
-                          "q1": "q1Value",
-                          "q2": 12
-                        }
+                    "examples": [
+                      {
+                        "value": {
+                          "p1": "p1Value",
+                          "p2": {
+                            "q1": "q1Value",
+                            "q2": 12
+                          }
+                        },
+                        "strict": true,
+                        "name": null
                       }
-                    }
+                    ],
+                    "type": [
+                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                    ],
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "type": "rt1",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -110,9 +110,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

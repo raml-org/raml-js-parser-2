@@ -1,139 +1,132 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "myDate": {
-          "annotations": {
-            "reader": {
-              "structuredValue": "myReaader.ts",
-              "name": "reader"
-            },
-            "writer": {
-              "structuredValue": "myWiter.ts",
-              "name": "writer"
-            }
+    "types": {
+      "myDate": {
+        "annotations": {
+          "reader": {
+            "name": "reader",
+            "structuredValue": "myReaader.ts"
           },
-          "name": "myDate",
-          "displayName": "myDate",
-          "facets": {
-            "format": {
-              "name": "format",
-              "displayName": "format",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
+          "writer": {
+            "name": "writer",
+            "structuredValue": "myWiter.ts"
+          }
+        },
+        "name": "myDate",
+        "displayName": "myDate",
+        "facets": {
+          "format": {
+            "name": "format",
+            "displayName": "format",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
                 }
               }
-            }
-          },
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "year": {
-          "name": "year",
-          "displayName": "year",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "myDate"
-          ],
-          "fixedFacets": {
-            "format": "YYYY"
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "year": {
+        "name": "year",
+        "displayName": "year",
+        "type": [
+          "myDate"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "fixedFacets": {
+          "format": "YYYY"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "yee": {
-          "name": "yee",
-          "displayName": "yee",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "year"
-          ],
-          "fixedFacets": {
-            "format": 1332
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "yee": {
+        "name": "yee",
+        "displayName": "yee",
+        "type": [
+          "year"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "fixedFacets": {
+          "format": 1332
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "reader": {
-          "name": "reader",
-          "displayName": "reader",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    },
+    "annotationTypes": {
+      "reader": {
+        "name": "reader",
+        "displayName": "reader",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "writer": {
-          "name": "writer",
-          "displayName": "writer",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "writer": {
+        "name": "writer",
+        "displayName": "writer",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "A",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryParameters": {
               "y": {
                 "name": "y",
                 "displayName": "y",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "year"
                 ],
@@ -147,12 +140,14 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/q",
         "displayName": "/q",
         "__METADATA__": {
@@ -165,10 +160,14 @@
         "relativeUriPathSegments": [
           "q"
         ],
-        "absoluteUri": "/q"
+        "absoluteUri": "/q",
+        "completeRelativeUri": "/q",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

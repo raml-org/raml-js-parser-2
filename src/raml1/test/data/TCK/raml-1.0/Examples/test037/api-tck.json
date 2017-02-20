@@ -1,88 +1,82 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "GeoPoint": {
-          "name": "GeoPoint",
-          "displayName": "GeoPoint",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
-          ],
-          "example": 100,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "GeoPoint": {
+        "name": "GeoPoint",
+        "displayName": "GeoPoint",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "structuredExample": {
-            "value": "100",
-            "strict": true,
-            "name": null,
-            "structuredValue": 100
           }
-        }
-      },
-      {
-        "GeoPoints": {
-          "name": "GeoPoints",
-          "displayName": "GeoPoints",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "example": [
-            100,
-            10
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "[\n  100,\n  10\n]",
+        },
+        "examples": [
+          {
+            "value": 100,
             "strict": true,
-            "name": null,
-            "structuredValue": [
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "GeoPoints": {
+        "name": "GeoPoints",
+        "displayName": "GeoPoints",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": [
               100,
               10
-            ]
-          },
-          "items": "number"
-        }
-      },
-      {
-        "Bool": {
-          "name": "Bool",
-          "displayName": "Bool",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "boolean"
-          ],
-          "example": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "true",
+            ],
             "strict": true,
-            "name": null,
-            "structuredValue": true
+            "name": null
           }
-        }
+        ],
+        "items": "number",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Bool": {
+        "name": "Bool",
+        "displayName": "Bool",
+        "type": [
+          "boolean"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": true,
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ]
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": []
 }

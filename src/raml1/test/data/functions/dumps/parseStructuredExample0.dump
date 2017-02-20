@@ -11,5 +11,6 @@
 				"calculated": true
 			}
 		}
-	}
+	},
+	"mediaType": "application/xml"
 }

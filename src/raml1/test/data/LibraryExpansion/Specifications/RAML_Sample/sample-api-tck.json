@@ -1,212 +1,13 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "dataTypes.Customer": {
-          "name": "Customer",
-          "displayName": "Customer",
-          "typePropertyKind": "INPLACE",
-          "properties": {
-            "name": {
-              "name": "name",
-              "displayName": "name",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "age": {
-              "name": "age",
-              "displayName": "age",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              }
-            },
-            "email": {
-              "name": "email",
-              "displayName": "email",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "mobile": {
-              "name": "mobile",
-              "displayName": "mobile",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "addresses": {
-              "name": "addresses",
-              "displayName": "addresses",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "required": false,
-              "properties": {
-                "addressType": {
-                  "name": "addressType",
-                  "displayName": "addressType",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "enum": [
-                    "postal",
-                    "business"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "line1": {
-                  "name": "line1",
-                  "displayName": "line1",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "line2": {
-                  "name": "line2",
-                  "displayName": "line2",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "suburb": {
-                  "name": "suburb",
-                  "displayName": "suburb",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                },
-                "postcode": {
-                  "name": "postcode",
-                  "displayName": "postcode",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "number"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  }
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  }
-                }
-              }
-            }
-          },
-          "type": {
+    "types": {
+      "dataTypes.Customer": {
+        "name": "Customer",
+        "displayName": "Customer",
+        "type": [
+          {
             "name": "type",
             "displayName": "type",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "object"
             ],
@@ -214,7 +15,6 @@
               "id": {
                 "name": "id",
                 "displayName": "id",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -228,12 +28,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "eTag": {
                 "name": "eTag",
                 "displayName": "eTag",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -247,7 +48,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "__METADATA__": {
@@ -256,18 +59,227 @@
                   "calculated": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "email": {
+            "name": "email",
+            "displayName": "email",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "mobile": {
+            "name": "mobile",
+            "displayName": "mobile",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "addresses": {
+            "name": "addresses",
+            "displayName": "addresses",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "addressType": {
+                "name": "addressType",
+                "displayName": "addressType",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "postal",
+                  "business"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "line1": {
+                "name": "line1",
+                "displayName": "line1",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "line2": {
+                "name": "line2",
+                "displayName": "line2",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "suburb": {
+                "name": "suburb",
+                "displayName": "suburb",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "postcode": {
+                "name": "postcode",
+                "displayName": "postcode",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "INPLACE"
       }
-    ],
+    },
     "title": "sample-api",
     "version": "v0.1",
     "baseUri": "http://api.samplehost.com",
@@ -276,8 +288,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -285,39 +297,27 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
-                    "example": [
+                    "items": [
                       {
-                        "id": "ID124",
-                        "eTag": "13298308323",
-                        "name": "Smith",
-                        "age": 30,
-                        "addresses": {
-                          "addressType": "postal",
-                          "line1": "Walker Street",
-                          "suburb": "Sydney",
-                          "postcode": 1234
-                        }
+                        "name": "items",
+                        "displayName": "items",
+                        "type": [
+                          "dataTypes.Customer"
+                        ],
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     ],
-                    "items": {
-                      "name": "items",
-                      "displayName": "items",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "type": [
-                        "dataTypes.Customer"
-                      ],
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          }
-                        }
-                      }
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -325,25 +325,28 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "[{\n  \"id\": \"ID124\",\n  \"eTag\": \"13298308323\",\n  \"name\" : \"Smith\",\n  \"age\" : 30,\n  \"addresses\" : {\n    \"addressType\" : \"postal\",\n    \"line1\" : \"Walker Street\",\n    \"suburb\" : \"Sydney\",\n    \"postcode\" : 1234\n    }\n}]\n",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": [
-                        {
-                          "id": "ID124",
-                          "eTag": "13298308323",
-                          "name": "Smith",
-                          "age": 30,
-                          "addresses": {
-                            "addressType": "postal",
-                            "line1": "Walker Street",
-                            "suburb": "Sydney",
-                            "postcode": 1234
+                    "examples": [
+                      {
+                        "value": [
+                          {
+                            "id": "ID124",
+                            "eTag": "13298308323",
+                            "name": "Smith",
+                            "age": 30,
+                            "addresses": {
+                              "addressType": "postal",
+                              "line1": "Walker Street",
+                              "suburb": "Sydney",
+                              "postcode": 1234
+                            }
                           }
-                        }
-                      ]
-                    }
+                        ],
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -360,7 +363,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {
@@ -373,7 +376,9 @@
         "relativeUriPathSegments": [
           "customers"
         ],
-        "absoluteUri": "http://api.samplehost.com/customers"
+        "absoluteUri": "http://api.samplehost.com/customers",
+        "completeRelativeUri": "/customers",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -384,5 +389,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

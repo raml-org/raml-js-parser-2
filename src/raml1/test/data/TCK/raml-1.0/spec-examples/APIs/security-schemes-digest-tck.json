@@ -1,16 +1,12 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "securitySchemes": [
-      {
-        "digest": {
-          "name": "digest",
-          "type": "Digest Authentication",
-          "description": "This API supports DigestSecurityScheme Authentication.\n"
-        }
+    "securitySchemes": {
+      "digest": {
+        "name": "digest",
+        "type": "Digest Authentication",
+        "description": "This API supports DigestSecurityScheme Authentication.\n"
       }
-    ],
+    },
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
@@ -18,7 +14,6 @@
       "version": {
         "name": "version",
         "displayName": "version",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -42,7 +37,9 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -56,5 +53,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

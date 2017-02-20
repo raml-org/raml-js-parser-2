@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "API",
     "resources": [
@@ -18,10 +16,14 @@
           "root",
           "{id"
         ],
-        "absoluteUri": "/root/{id"
+        "absoluteUri": "/root/{id",
+        "completeRelativeUri": "/root/{id",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "URI_EXCEPTION",

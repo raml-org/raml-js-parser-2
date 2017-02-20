@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "this is a very long title, it should fail the length validation for titles with an exception clearly marking it so",
     "baseUri": "http://myapi.com",
@@ -15,5 +13,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

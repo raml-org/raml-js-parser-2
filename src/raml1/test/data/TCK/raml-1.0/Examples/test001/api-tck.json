@@ -1,67 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MM": {
-          "name": "MM",
-          "displayName": "MM",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "a": 5
-          },
-          "properties": {
-            "a": {
-              "name": "a",
-              "displayName": "a",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"a\": 5\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "a": 5
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "a": 5
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "WebOfMe",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -69,7 +67,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
@@ -77,7 +74,6 @@
                       "x": {
                         "name": "x",
                         "displayName": "x",
-                        "typePropertyKind": "TYPE_EXPRESSION",
                         "type": [
                           "number"
                         ],
@@ -91,7 +87,9 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
                     "__METADATA__": {
@@ -104,18 +102,22 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{ d\":5 ,\"r\":2 }\n",
-                      "strict": true,
-                      "name": null
-                    }
+                    "examples": [
+                      {
+                        "value": null,
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {
@@ -128,10 +130,14 @@
         "relativeUriPathSegments": [
           "hello"
         ],
-        "absoluteUri": "/hello"
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "CAN_NOT_PARSE_JSON",

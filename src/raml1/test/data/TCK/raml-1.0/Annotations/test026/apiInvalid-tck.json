@@ -1,43 +1,39 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "a1": {
-          "name": "a1",
-          "displayName": "a1",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "annotationTypes": {
+      "a1": {
+        "name": "a1",
+        "displayName": "a1",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "a2": {
-          "name": "a2",
-          "displayName": "a2",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "boolean"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "a2": {
+        "name": "a2",
+        "displayName": "a2",
+        "type": [
+          "boolean"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
@@ -47,24 +43,28 @@
         "scalarsAnnotations": {
           "description": [
             {
-              "structuredValue": 5,
-              "name": "a1"
+              "name": "a1",
+              "structuredValue": 5
             }
           ],
           "displayName": [
             {
-              "structuredValue": "value1",
-              "name": "a2"
+              "name": "a2",
+              "structuredValue": "value1"
             }
           ]
         },
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "TYPE_EXPECTED",

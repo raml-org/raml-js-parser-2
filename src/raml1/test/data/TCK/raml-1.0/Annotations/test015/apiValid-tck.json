@@ -1,77 +1,74 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "p1": {
-              "name": "p1",
-              "displayName": "p1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "meta": {
-          "name": "meta",
-          "displayName": "Resource metadata",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "description": "Metadata for this resource",
-          "allowedTargets": [
-            "Resource"
-          ],
-          "minLength": 10,
-          "__METADATA__": {
-            "primitiveValuesMeta": {}
-          }
-        }
+    },
+    "annotationTypes": {
+      "meta": {
+        "name": "meta",
+        "displayName": "Resource metadata",
+        "type": [
+          "string"
+        ],
+        "description": "Metadata for this resource",
+        "allowedTargets": [
+          "Resource"
+        ],
+        "minLength": 10,
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Annotations 14",
     "resources": [
       {
         "annotations": {
           "meta": {
-            "structuredValue": "users100500.gif",
-            "name": "meta"
+            "name": "meta",
+            "structuredValue": "users100500.gif"
           }
         },
         "relativeUri": "/users",
@@ -86,9 +83,13 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

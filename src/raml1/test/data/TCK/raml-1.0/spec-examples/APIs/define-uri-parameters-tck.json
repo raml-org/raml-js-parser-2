@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "GitHub API",
     "version": "v3",
@@ -23,7 +21,9 @@
         "relativeUriPathSegments": [
           "user"
         ],
-        "absoluteUri": "https://api.github.com/user"
+        "absoluteUri": "https://api.github.com/user",
+        "completeRelativeUri": "/user",
+        "parentUri": ""
       },
       {
         "description": "All users",
@@ -36,7 +36,6 @@
               "userId": {
                 "name": "userId",
                 "displayName": "userId",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "integer"
                 ],
@@ -51,7 +50,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "relativeUri": "/{userId}",
@@ -66,7 +67,9 @@
             "relativeUriPathSegments": [
               "{userId}"
             ],
-            "absoluteUri": "https://api.github.com/users/{userId}"
+            "absoluteUri": "https://api.github.com/users/{userId}",
+            "completeRelativeUri": "/users/{userId}",
+            "parentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -79,7 +82,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "https://api.github.com/users"
+        "absoluteUri": "https://api.github.com/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -90,5 +95,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

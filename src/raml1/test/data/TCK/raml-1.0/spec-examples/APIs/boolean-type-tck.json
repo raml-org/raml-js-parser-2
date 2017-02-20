@@ -1,27 +1,26 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "IsMarried": {
-          "name": "IsMarried",
-          "displayName": "IsMarried",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "boolean"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "IsMarried": {
+        "name": "IsMarried",
+        "displayName": "IsMarried",
+        "type": [
+          "boolean"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Boolean Type"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

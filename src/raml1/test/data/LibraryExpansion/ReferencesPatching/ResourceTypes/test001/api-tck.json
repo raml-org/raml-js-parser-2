@@ -1,81 +1,72 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "object"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "lib.Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "lib.lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "boolean"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "lib.lib.Monkey": {
+        "name": "Monkey",
+        "displayName": "Monkey",
+        "type": [
+          "boolean"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "resourceTypes": [
-      {
-        "lib.rt": {
-          "type": {
-            "lib.lib.rt": {
-              "param1": "<<param1>>",
-              "param2": "Monkey"
-            }
-          },
-          "name": "rt"
-        }
+    },
+    "resourceTypes": {
+      "lib.rt": {
+        "type": {
+          "lib.lib.rt": {
+            "param1": "<<param1>>",
+            "param2": "Monkey"
+          }
+        },
+        "name": "rt"
       },
-      {
-        "lib.lib.rt": {
-          "name": "rt",
+      "lib.lib.rt": {
+        "methods": {
           "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param1>>"
                 ],
@@ -85,12 +76,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param2>>"
                 ],
@@ -100,12 +92,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "text/plain": {
                 "name": "text/plain",
                 "displayName": "text/plain",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.lib.Monkey"
                 ],
@@ -115,12 +108,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<param1>> | <<param2>> | lib.lib.Monkey"
                 ],
@@ -130,24 +124,26 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        }
+        },
+        "name": "rt"
       }
-    ],
+    },
     "title": "Test API",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Monkey"
                 ],
@@ -157,12 +153,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.Monkey"
                 ],
@@ -172,12 +169,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "text/plain": {
                 "name": "text/plain",
                 "displayName": "text/plain",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "lib.lib.Monkey"
                 ],
@@ -187,12 +185,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "atom/xml": {
                 "name": "atom/xml",
                 "displayName": "atom/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Monkey | lib.Monkey | lib.lib.Monkey"
                 ],
@@ -202,12 +201,14 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "type": {
           "lib.rt": {
             "param1": "Monkey"
@@ -225,9 +226,13 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

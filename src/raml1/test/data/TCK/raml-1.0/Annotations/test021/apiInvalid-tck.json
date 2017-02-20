@@ -1,60 +1,57 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "annotationTypes": [
-      {
-        "TestAnnotation": {
-          "name": "TestAnnotation",
-          "displayName": "TestAnnotation",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "allowedTargets": [
-            "SecuritySchemeSettings"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "annotationTypes": {
+      "TestAnnotation": {
+        "name": "TestAnnotation",
+        "displayName": "TestAnnotation",
+        "type": [
+          "string"
+        ],
+        "allowedTargets": [
+          "SecuritySchemeSettings"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "securitySchemes": [
-      {
-        "TestScheme": {
+    },
+    "securitySchemes": {
+      "TestScheme": {
+        "annotations": {
+          "TestAnnotation": {
+            "name": "TestAnnotation",
+            "structuredValue": "stringValue1"
+          }
+        },
+        "name": "TestScheme",
+        "type": "OAuth 1.0",
+        "settings": {
           "annotations": {
             "TestAnnotation": {
-              "structuredValue": "stringValue1",
-              "name": "TestAnnotation"
+              "name": "TestAnnotation",
+              "structuredValue": "stringValue2"
             }
           },
-          "name": "TestScheme",
-          "type": "OAuth 1.0",
-          "settings": {
-            "annotations": {
-              "TestAnnotation": {
-                "structuredValue": "stringValue2",
-                "name": "TestAnnotation"
-              }
-            },
-            "requestTokenUri": "https://example.com/requesttoken",
-            "authorizationUri": "https://example.com/authorize",
-            "tokenCredentialsUri": "https://example.com/credentials"
-          }
+          "requestTokenUri": "https://example.com/requesttoken",
+          "authorizationUri": "https://example.com/authorize",
+          "tokenCredentialsUri": "https://example.com/credentials"
         }
       }
-    ],
+    },
     "title": "Test",
     "baseUri": "http://myapi.org",
     "protocols": [
       "HTTP"
     ],
-    "mediaType": "multipart/form-data",
+    "mediaType": [
+      "multipart/form-data"
+    ],
     "__METADATA__": {
       "primitiveValuesMeta": {
         "protocols": {
@@ -63,6 +60,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "INVALID_ANNOTATION_LOCATION",

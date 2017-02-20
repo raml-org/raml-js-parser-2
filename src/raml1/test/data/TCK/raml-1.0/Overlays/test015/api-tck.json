@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "title": "Pet Shop Overlay",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -14,13 +12,9 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
-                    "example": {
-                      "content": 9
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -31,21 +25,24 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"content\": 9\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "content": 9
+                    "examples": [
+                      {
+                        "value": {
+                          "content": 9
+                        },
+                        "strict": true,
+                        "name": null
                       }
-                    }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -58,10 +55,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

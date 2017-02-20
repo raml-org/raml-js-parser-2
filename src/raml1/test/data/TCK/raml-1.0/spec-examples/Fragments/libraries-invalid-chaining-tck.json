@@ -1,14 +1,6 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "ResourceType",
   "specification": {
-    "undefined": {
-      "uses": [
-        {
-          "key": "files",
-          "value": "libraries/files.raml"
-        }
-      ],
+    "methods": {
       "get": {
         "responses": {
           "200": {
@@ -17,7 +9,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "files.file-type.File"
                 ],
@@ -27,7 +18,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             }
           }
@@ -37,8 +30,16 @@
         ],
         "method": "get"
       }
-    }
+    },
+    "uses": [
+      {
+        "key": "files",
+        "value": "libraries/files.raml"
+      }
+    ]
   },
+  "ramlVersion": "RAML10",
+  "type": "ResourceType",
   "errors": [
     {
       "code": "INHERITING_UNKNOWN_TYPE",

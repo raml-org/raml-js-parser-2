@@ -1,31 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "schemas": [
-      {
-        "TestSchema": {
-          "name": "TestSchema",
-          "displayName": "TestSchema",
-          "typePropertyKind": "JSON",
-          "type": [
-            "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"type\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      }
-    ],
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "responses": {
               "203": {
                 "code": "203",
@@ -33,11 +12,9 @@
                   {
                     "name": "Retry-After",
                     "displayName": "Retry-After",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "integer"
                     ],
-                    "example": 10,
                     "required": true,
                     "description": "Number of seconds to wait.\n",
                     "__METADATA__": {
@@ -47,12 +24,15 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "10",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": 10
-                    }
+                    "examples": [
+                      {
+                        "value": 10,
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ]
               }
@@ -61,9 +41,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "schema": [
-                  "TestSchema"
-                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -73,12 +50,16 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "TestSchema"
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -91,9 +72,31 @@
         "relativeUriPathSegments": [
           "test"
         ],
-        "absoluteUri": "/test"
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
       }
-    ]
+    ],
+    "types": {
+      "TestSchema": {
+        "name": "TestSchema",
+        "displayName": "TestSchema",
+        "type": [
+          "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"type\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      }
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

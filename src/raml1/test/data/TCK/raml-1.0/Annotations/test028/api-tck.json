@@ -1,221 +1,222 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "baseAnnotation": {
-          "name": "baseAnnotation",
-          "displayName": "baseAnnotation",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "baseProperty1": {
-              "name": "baseProperty1",
-              "displayName": "baseProperty1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "object"
-              ],
-              "required": true,
-              "properties": {
-                "field1": {
-                  "name": "field1",
-                  "displayName": "field1",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "string"
-                  ],
-                  "required": false,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+    "types": {
+      "baseAnnotation": {
+        "name": "baseAnnotation",
+        "displayName": "baseAnnotation",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "baseProperty1": {
+            "name": "baseProperty1",
+            "displayName": "baseProperty1",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "field1": {
+                "name": "field1",
+                "displayName": "field1",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
                 },
-                "field2": {
-                  "name": "field2",
-                  "displayName": "field2",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "number"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "field2": {
+                "name": "field2",
+                "displayName": "field2",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
                     }
                   }
-                }
-              },
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "baseProperty2": {
-              "name": "baseProperty2",
-              "displayName": "baseProperty2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "baseProperty2": {
+            "name": "baseProperty2",
+            "displayName": "baseProperty2",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "MyType": {
-          "annotations": {
-            "childAnnotation": {
-              "structuredValue": {
-                "baseProperty1": {
-                  "field1": "field1_value",
-                  "field2": 15
-                },
-                "baseProperty2": "baseProperty2_value",
-                "childProperty1": "enum_value1",
-                "childProperty2": 17
+      "MyType": {
+        "annotations": {
+          "childAnnotation": {
+            "name": "childAnnotation",
+            "structuredValue": {
+              "baseProperty1": {
+                "field1": "field1_value",
+                "field2": 15
               },
-              "name": "childAnnotation"
-            }
-          },
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+              "baseProperty2": "baseProperty2_value",
+              "childProperty1": "enum_value1",
+              "childProperty2": 17
             }
           }
-        }
+        },
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "childAnnotation": {
-          "name": "childAnnotation",
-          "displayName": "childAnnotation",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "baseAnnotation"
-          ],
-          "properties": {
-            "childProperty1": {
-              "name": "childProperty1",
-              "displayName": "childProperty1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "default": "enum_defaultValue",
-              "required": true,
-              "enum": [
-                "enum_defaultValue",
-                "enum_value1",
-                "enum_value2"
-              ],
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    },
+    "annotationTypes": {
+      "childAnnotation": {
+        "name": "childAnnotation",
+        "displayName": "childAnnotation",
+        "type": [
+          "baseAnnotation"
+        ],
+        "properties": {
+          "childProperty1": {
+            "name": "childProperty1",
+            "displayName": "childProperty1",
+            "type": [
+              "string"
+            ],
+            "default": "enum_defaultValue",
+            "required": true,
+            "enum": [
+              "enum_defaultValue",
+              "enum_value1",
+              "enum_value2"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "childProperty2": {
-              "name": "childProperty2",
-              "displayName": "childProperty2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "default": 22,
-              "required": false,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "childProperty2": {
+            "name": "childProperty2",
+            "displayName": "childProperty2",
+            "type": [
+              "number"
+            ],
+            "default": 22,
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "TCK Sample. RAML 1.0 Annotations 002.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
@@ -223,7 +224,6 @@
       "version": {
         "name": "version",
         "displayName": "version",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -247,7 +247,9 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -255,17 +257,17 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "annotations": {
               "childAnnotation": {
+                "name": "childAnnotation",
                 "structuredValue": {
                   "baseProperty1": {
                     "field2": 19
                   },
                   "childProperty1": "enum_value2"
-                },
-                "name": "childAnnotation"
+                }
               }
             },
             "protocols": [
@@ -280,7 +282,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/helloWorld",
         "displayName": "/helloWorld",
         "__METADATA__": {
@@ -293,7 +295,9 @@
         "relativeUriPathSegments": [
           "helloWorld"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/helloWorld"
+        "absoluteUri": "http://api.samplehost.com/{version}/helloWorld",
+        "completeRelativeUri": "/helloWorld",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -304,5 +308,7 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

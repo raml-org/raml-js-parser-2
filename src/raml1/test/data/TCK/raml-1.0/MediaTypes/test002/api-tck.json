@@ -1,29 +1,26 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Person": {
-          "name": "Person",
-          "displayName": "Person",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "New API",
     "mediaType": [
       "application/json",
@@ -31,8 +28,8 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -40,7 +37,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -51,12 +47,13 @@
                         }
                       }
                     },
-                    "items": "Person"
+                    "items": "Person",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "array"
                     ],
@@ -67,14 +64,16 @@
                         }
                       }
                     },
-                    "items": "Person"
+                    "items": "Person",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/list",
         "displayName": "/list",
         "__METADATA__": {
@@ -87,16 +86,17 @@
         "relativeUriPathSegments": [
           "list"
         ],
-        "absoluteUri": "/list"
+        "absoluteUri": "/list",
+        "completeRelativeUri": "/list",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Person"
                 ],
@@ -106,12 +106,13 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Person"
                 ],
@@ -121,12 +122,14 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "relativeUri": "/send",
         "displayName": "/send",
         "__METADATA__": {
@@ -139,9 +142,13 @@
         "relativeUriPathSegments": [
           "send"
         ],
-        "absoluteUri": "/send"
+        "absoluteUri": "/send",
+        "completeRelativeUri": "/send",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -15,6 +15,7 @@ import universes=require("../tools/universe")
 import universeHelpers=require("../tools/universeHelpers")
 import services=defs
 import ramlTypes=defs.rt;
+import tckDumperHL = require("../../util/TCKDumperHL");
 var messageRegistry = require("../../../resources/errorMessages");
 
 var mediaTypeParser = require("media-typer");
@@ -349,7 +350,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             return res;
         }
 
+        var rootUnit = aNode.root().lowLevel().unit();
         childrenToAdopt.forEach(x=> {
+
             if(km.canBeValue && this.isTypeDeclarationShortcut(aNode, km.canBeValue)) {
                 res.push(new hlimpl.ASTPropImpl(x, aNode, km.canBeValue.range(), km.canBeValue));
 
@@ -380,11 +383,57 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     multyValue = true;
                     um = true;
                 }
+                var xChildren:ll.ILowLevelASTNode[];
+                var gotReuse = false;
+                if(aNode.reuseMode()&&x.valueKind()!=yaml.Kind.SEQ) {
+                    var rNode = aNode.reusedNode();
+                    if(rNode) {
+                        var arr = [x];
+                        var llParent = aNode.lowLevel();
+                        if (!p.isMerged() && multyValue) {
+                            xChildren = [];
+                            arr = x.children();
+                            llParent = x;
+                        }
+                        for(var ch1 of arr) {
+                            var cUnit = ch1.containingUnit();
+                            if (cUnit && cUnit.absolutePath() != rootUnit.absolutePath()) {
+                                var rChild = _.find(rNode.children(), ch2=>ch2.lowLevel().key() == ch1.key());
+                                if (rChild) {
+                                    gotReuse = true;
+                                    res.push(rChild);
+                                    (<hlimpl.BasicASTNode>rChild).setReused(true);
+                                    rChild.setParent(aNode);
+                                    if(rChild.isElement()) {
+                                        (<hlimpl.ASTNodeImpl>rChild).resetRuntimeTypes();
+                                    }
+                                    if (aNode.isExpanded()) {
+                                        (<proxy.LowLevelCompositeNode>llParent)
+                                            .replaceChild(ch1, rChild.lowLevel());
+                                        
+                                        (<proxy.LowLevelCompositeNode>rChild.lowLevel()).setTransformer(
+                                            (<proxy.LowLevelCompositeNode>llParent).transformer());
+                                    }
+                                    continue;
+                                }
+                            }
+                            if(xChildren) {
+                                xChildren.push(ch1);
+                            }
+                        }
+                    }
+                }
+                if(!xChildren){
+                    if(gotReuse){
+                        return;
+                    }
+                    xChildren = x.children();
+                }
                 //TODO DESCRIMINATORS
                 if (range.hasValueTypeInHierarchy()) {
 
 
-                    var ch = x.children();
+                    var ch = xChildren;
                     var seq = (x.valueKind() == yaml.Kind.SEQ);
                     if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
                         if(ch.length > 1 && universeHelpers.isTypeDeclarationSibling(aNode.definition())
@@ -434,7 +483,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                             }
                                         }
 
-                                        if (x.children().length==0&&p.groupName()=="enum"){
+                                        if (xChildren.length==0&&p.groupName()=="enum"){
                                             attrNode.errorMessage = {
                                                 entry: messageRegistry.ENUM_IS_EMPTY,
                                                 parameters: {}
@@ -491,7 +540,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                         if (multyValue) {
                             if (p.getAdapter(services.RAMLPropertyService).isEmbedMap()) {
 
-                                var chld = x.children();
+                                var chld = xChildren;
                                 var newChld:ll.ILowLevelASTNode[]=[];
                                 var hasSequenceComposition=false;
                                 chld.forEach(n=>{
@@ -580,7 +629,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                             for (var pos=0;pos<actualValue.length;pos++) {
                                                 var vl=actualValue[pos];
                                                 if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
-                                                    var exists=_.find(x.children(), x=>x.key() == vl);
+                                                    var exists=_.find(xChildren, x=>x.key() == vl);
                                                     
                                                     var originalParent: any = x;
                                                     
@@ -669,7 +718,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                     }
                                 }
                                 var parsed:hlimpl.ASTNodeImpl[] = []
-                                if (x.children().length==0){
+                                if (xChildren.length==0){
                                     if (x.valueKind()==yaml.Kind.SEQ){
 
                                         if (p.range().key()==universes.Universe08.Parameter){
@@ -696,7 +745,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                 }
                                 else {
-                                    x.children().forEach(y=> {
+                                    xChildren.forEach(y=> {
                                         if (filter[y.key()]) {
                                             return;
                                         }
@@ -751,7 +800,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                             }
                         }
                         else {
-                            //var y=x.children()[0];
+                            //var y=xChildren[0];
                             rs.push(new hlimpl.ASTNodeImpl(x, aNode, <any> range, p));
                         }
                     }
@@ -784,6 +833,21 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
             }
         })
+        var rNode = aNode.reusedNode();
+        if(rNode&&aNode.lowLevel().valueKind()!=yaml.Kind.SEQ){
+            var cObj = {};
+            rNode.elements().forEach(x=>cObj[x.property().nameId()+"_"+x.lowLevel().key()]=x);
+            rNode.attrs().forEach(x=>cObj[x.property().nameId()+"_"+x.lowLevel().key()]=x);
+            res.filter(ch=>ch.isElement()||ch.isAttr()).forEach(ch=>{
+                var rChild = cObj[ch.property().nameId()+"_"+ch.lowLevel().key()];
+                if(rChild && rChild != ch){
+                    if(ch.isElement()&&ch.lowLevel().parent().valueKind()!=yaml.Kind.SEQ) {
+                        (<hlimpl.ASTNodeImpl>ch).setReusedNode(rChild);
+                        (<hlimpl.ASTNodeImpl>ch).setReuseMode(aNode.reuseMode());
+                    }
+                }
+            });
+        }
         return res;
     }
 }
@@ -901,7 +965,7 @@ function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingTy
         <def.Universe>nodeReferencingType.definition().universe(),"","");
 
     var parsedRType=nodeReferencingType.parsedType();
-
+    patchedType.addAdapter(parsedRType);
     parsedRType.allFacets().forEach(facet=>{
         if (facet.kind() == defs.tsInterfaces.MetaInformationKind.FacetDeclaration) {
 

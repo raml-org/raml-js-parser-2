@@ -1,67 +1,65 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MM": {
-          "name": "MM",
-          "displayName": "MM",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "a": 5
-          },
-          "properties": {
-            "a": {
-              "name": "a",
-              "displayName": "a",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"a\": 5\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "a": 5
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "a": 5
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "WebOfMe",
-    "mediaType": "application/json",
+    "mediaType": [
+      "application/json"
+    ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -69,14 +67,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "JSON",
-                    "schema": [
-                      "{\n  \"required\": [\"message\"],\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
-                    ],
-                    "example": {
-                      "message": 4,
-                      "vlue": 3
-                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -87,22 +77,28 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"message\": 4,\n  \"vlue\": 3\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "message": 4,
-                        "vlue": 3
+                    "examples": [
+                      {
+                        "value": {
+                          "message": 4,
+                          "vlue": 3
+                        },
+                        "strict": true,
+                        "name": null
                       }
-                    }
+                    ],
+                    "type": [
+                      "{\n  \"required\": [\"message\"],\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
+                    ],
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {
@@ -115,10 +111,14 @@
         "relativeUriPathSegments": [
           "hello"
         ],
-        "absoluteUri": "/hello"
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "EXAMPLE_SCHEMA_FAILURE",

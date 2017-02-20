@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "test",
     "resources": [
       {
         "relativeUri": "/test",
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "queryParameters": {
               "limit": {
                 "name": "limit",
@@ -33,7 +31,7 @@
             },
             "method": "post"
           }
-        ],
+        },
         "displayName": "/test",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -45,10 +43,14 @@
         "relativeUriPathSegments": [
           "test"
         ],
-        "absoluteUri": "/test"
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "INTEGER_EXPECTED",

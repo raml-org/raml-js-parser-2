@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "Test",
     "baseUri": "http://{a}.myapi.org",
@@ -9,7 +7,6 @@
         {
           "name": "a",
           "displayName": "second",
-          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
@@ -21,12 +18,13 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
         },
         {
           "name": "a",
           "displayName": "2",
-          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "integer"
           ],
@@ -38,7 +36,9 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
         }
       ]
     },
@@ -53,6 +53,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "SEQUENCE_NOT_ALLOWED_10",

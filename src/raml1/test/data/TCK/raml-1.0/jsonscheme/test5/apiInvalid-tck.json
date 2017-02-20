@@ -1,43 +1,37 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "JSON",
-          "schemaPath": "scheme.json#/definitions/InnerType",
-          "type": [
-            "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "typePropertyKind": "JSON",
+        "schemaPath": "scheme.json#/definitions/InnerType",
+        "type": [
+          "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Api",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "INPLACE",
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "innerTypeName1": "somename"
-                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -45,19 +39,21 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"innerTypeName1\": \"somename\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "innerTypeName1": "somename"
+                "examples": [
+                  {
+                    "value": {
+                      "innerTypeName1": "somename"
+                    },
+                    "strict": true,
+                    "name": null
                   }
-                }
+                ],
+                "mediaType": "application/json"
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -70,10 +66,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "EXAMPLE_SCHEMA_FAILURE",

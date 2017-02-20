@@ -1,97 +1,81 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SimpleUnion": {
-          "name": "SimpleUnion",
-          "displayName": "SimpleUnion",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string[] | number[]"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "SimpleUnion": {
+        "name": "SimpleUnion",
+        "displayName": "SimpleUnion",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "items": "string[] | number",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "TypeWithUnionProps": {
-          "name": "TypeWithUnionProps",
-          "displayName": "TypeWithUnionProps",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "example": {
-            "unionArray1": [
-              1,
-              2,
-              3
+      "TypeWithUnionProps": {
+        "name": "TypeWithUnionProps",
+        "displayName": "TypeWithUnionProps",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "unionArray1": {
+            "name": "unionArray1",
+            "displayName": "unionArray1",
+            "type": [
+              "SimpleUnion"
             ],
-            "unionArray2": [
-              "blah",
-              "blah",
-              "blah"
-            ]
-          },
-          "properties": {
-            "unionArray1": {
-              "name": "unionArray1",
-              "displayName": "unionArray1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "unionArray2": {
-              "name": "unionArray2",
-              "displayName": "unionArray2",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "SimpleUnion"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "unionArray2": {
+            "name": "unionArray2",
+            "displayName": "unionArray2",
+            "type": [
+              "SimpleUnion"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
-            "strict": true,
-            "name": null,
-            "structuredValue": {
+          }
+        },
+        "examples": [
+          {
+            "value": {
               "unionArray1": [
                 1,
                 2,
@@ -102,12 +86,18 @@
                 "blah",
                 "blah"
               ]
-            }
+            },
+            "strict": true,
+            "name": null
           }
-        }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

@@ -1,97 +1,82 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "Email": {
-          "name": "Email",
-          "displayName": "Email",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "subject": {
-              "name": "subject",
-              "displayName": "subject",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "Email": {
+        "name": "Email",
+        "displayName": "Email",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "subject": {
+            "name": "subject",
+            "displayName": "subject",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
             },
-            "body": {
-              "name": "body",
-              "displayName": "body",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "body": {
+            "name": "body",
+            "displayName": "body",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "Emails": {
-          "name": "Emails",
-          "displayName": "Emails",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "array"
-          ],
-          "example": [
-            {
-              "subject": "My Email 1",
-              "body": "This is the text for email 1."
-            },
-            {
-              "subject": "My Email 2",
-              "body": "This is the text for email 2."
+      "Emails": {
+        "name": "Emails",
+        "displayName": "Emails",
+        "type": [
+          "array"
+        ],
+        "uniqueItems": true,
+        "minItems": 1,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
-          ],
-          "uniqueItems": true,
-          "minItems": 1,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "[\n  {\n    \"subject\": \"My Email 1\",\n    \"body\": \"This is the text for email 1.\"\n  },\n  {\n    \"subject\": \"My Email 2\",\n    \"body\": \"This is the text for email 2.\"\n  }\n]",
-            "strict": true,
-            "name": null,
-            "structuredValue": [
+          }
+        },
+        "examples": [
+          {
+            "value": [
               {
                 "subject": "My Email 1",
                 "body": "This is the text for email 1."
@@ -100,13 +85,19 @@
                 "subject": "My Email 2",
                 "body": "This is the text for email 2."
               }
-            ]
-          },
-          "items": "Email"
-        }
+            ],
+            "strict": true,
+            "name": null
+          }
+        ],
+        "items": "Email",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Simple Array Type with Example"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

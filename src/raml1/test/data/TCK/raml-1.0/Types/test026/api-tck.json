@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "title": "TCK Sample. RAML 1.0 Types 003.",
     "version": "v1",
@@ -9,7 +7,6 @@
       "version": {
         "name": "version",
         "displayName": "version",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
@@ -33,7 +30,9 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "protocols": [
@@ -41,78 +40,84 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "INPLACE",
-                "type": {
-                  "name": "type",
-                  "displayName": "type",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "object"
-                  ],
-                  "properties": {
-                    "prop1": {
-                      "name": "prop1",
-                      "displayName": "prop1",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
+                "type": [
+                  {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": {
+                      "prop1": {
+                        "name": "prop1",
+                        "displayName": "prop1",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
                           }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      },
+                      "prop2": {
+                        "name": "prop2",
+                        "displayName": "prop2",
+                        "type": [
+                          "number"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
                         }
                       }
                     },
-                    "prop2": {
-                      "name": "prop2",
-                      "displayName": "prop2",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "type": [
-                        "number"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "type": {
-                        "insertedAsDefault": true
-                      }
-                    }
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "INPLACE"
               }
             },
             "protocols": [
@@ -127,7 +132,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams",
         "displayName": "/teams",
         "__METADATA__": {
@@ -140,16 +145,17 @@
         "relativeUriPathSegments": [
           "teams"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams",
+        "completeRelativeUri": "/teams",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string",
                   "number"
@@ -160,7 +166,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -175,7 +183,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams2",
         "displayName": "/teams2",
         "__METADATA__": {
@@ -188,20 +196,17 @@
         "relativeUriPathSegments": [
           "teams2"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams2"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams2",
+        "completeRelativeUri": "/teams2",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "schema": [
-                  "string",
-                  "number"
-                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -211,7 +216,13 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "string",
+                  "number"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -226,7 +237,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams3",
         "displayName": "/teams3",
         "__METADATA__": {
@@ -239,19 +250,17 @@
         "relativeUriPathSegments": [
           "teams3"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams3"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams3",
+        "completeRelativeUri": "/teams3",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "schema": [
-                  "string"
-                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -261,7 +270,12 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "string"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -276,7 +290,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams4",
         "displayName": "/teams4",
         "__METADATA__": {
@@ -289,16 +303,17 @@
         "relativeUriPathSegments": [
           "teams4"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams4"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams4",
+        "completeRelativeUri": "/teams4",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
@@ -308,7 +323,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -323,7 +340,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams5",
         "displayName": "/teams5",
         "__METADATA__": {
@@ -336,26 +353,29 @@
         "relativeUriPathSegments": [
           "teams5"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams5"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams5",
+        "completeRelativeUri": "/teams5",
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "body": {
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "schema": [
-                  "number"
-                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "number"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "protocols": [
@@ -370,7 +390,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/teams6",
         "displayName": "/teams6",
         "__METADATA__": {
@@ -383,7 +403,9 @@
         "relativeUriPathSegments": [
           "teams6"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams6"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams6",
+        "completeRelativeUri": "/teams6",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -394,6 +416,8 @@
       }
     }
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "RESTRICTIONS_CONFLICT",

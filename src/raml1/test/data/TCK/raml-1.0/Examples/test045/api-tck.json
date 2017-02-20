@@ -1,92 +1,85 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "dept_code": {
-          "name": "dept_code",
-          "displayName": "dept_code",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "pattern": "^\\d+\\-\\w+$",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+    "types": {
+      "dept_code": {
+        "name": "dept_code",
+        "displayName": "dept_code",
+        "type": [
+          "string"
+        ],
+        "pattern": "^\\d+\\-\\w+$",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "traits": [
-      {
-        "chargeable": {
-          "headers": {
-            "X-Dept": {
-              "name": "X-Dept",
-              "displayName": "X-Dept",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "array"
-              ],
-              "examples": [
-                {
-                  "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
-                  "strict": true,
-                  "name": "one_dept",
-                  "structuredValue": [
-                    "230-OCTO",
-                    "InvalidHere"
-                  ]
+    },
+    "traits": {
+      "chargeable": {
+        "headers": {
+          "X-Dept": {
+            "name": "X-Dept",
+            "displayName": "X-Dept",
+            "type": [
+              "array"
+            ],
+            "examples": [
+              {
+                "value": [
+                  "230-OCTO",
+                  "InvalidHere"
+                ],
+                "strict": true,
+                "name": "one_dept"
+              }
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "items": "dept_code"
-            }
-          },
-          "name": "chargeable"
-        }
+              }
+            },
+            "items": "dept_code",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "chargeable"
       }
-    ],
+    },
     "title": "Test named parameters",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "headers": {
               "X-Dept": {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "array"
                 ],
                 "examples": [
                   {
-                    "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
-                    "strict": true,
-                    "name": "one_dept",
-                    "structuredValue": [
+                    "value": [
                       "230-OCTO",
                       "InvalidHere"
-                    ]
+                    ],
+                    "strict": true,
+                    "name": "one_dept"
                   }
                 ],
                 "required": true,
@@ -100,7 +93,9 @@
                     }
                   }
                 },
-                "items": "dept_code"
+                "items": "dept_code",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "is": [
@@ -108,7 +103,7 @@
             ],
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -121,10 +116,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "PATTERN_VIOLATION",

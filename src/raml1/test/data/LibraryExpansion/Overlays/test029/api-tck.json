@@ -1,214 +1,212 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "annotations": {
       "library.highLevelApiDescription": {
-        "structuredValue": null,
-        "name": "library.highLevelApiDescription"
+        "name": "library.highLevelApiDescription",
+        "structuredValue": null
       },
       "library.apiLogo": {
-        "structuredValue": null,
-        "name": "library.apiLogo"
+        "name": "library.apiLogo",
+        "structuredValue": null
       },
       "library.specAuthor": {
-        "structuredValue": "mulesoft.com",
-        "name": "library.specAuthor"
+        "name": "library.specAuthor",
+        "structuredValue": "mulesoft.com"
       },
       "library.devPortal": {
-        "structuredValue": null,
-        "name": "library.devPortal"
+        "name": "library.devPortal",
+        "structuredValue": null
       },
       "library.extraResources": {
+        "name": "library.extraResources",
         "structuredValue": [
           {
             "title": "API Notebook",
             "type": "notebook",
             "uri": "blah"
           }
-        ],
-        "name": "library.extraResources"
+        ]
       }
     },
-    "types": [
-      {
-        "library.apiResource": {
-          "name": "apiResource",
-          "displayName": "apiResource",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "title": {
-              "name": "title",
-              "displayName": "title",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "library.apiResource": {
+        "name": "apiResource",
+        "displayName": "apiResource",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "uri": {
+            "name": "uri",
+            "displayName": "uri",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             },
             "type": {
-              "name": "type",
-              "displayName": "type",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            },
-            "uri": {
-              "name": "uri",
-              "displayName": "uri",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "library.highLevelApiDescription": {
-          "name": "highLevelApiDescription",
-          "displayName": "Api Description",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "description": "Description of the RAML API spec.",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {}
-          }
-        }
+    },
+    "annotationTypes": {
+      "library.highLevelApiDescription": {
+        "name": "highLevelApiDescription",
+        "displayName": "Api Description",
+        "type": [
+          "string"
+        ],
+        "description": "Description of the RAML API spec.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "library.apiLogo": {
-          "name": "apiLogo",
-          "displayName": "Logo",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "description": "Service logo.",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {}
-          }
-        }
+      "library.apiLogo": {
+        "name": "apiLogo",
+        "displayName": "Logo",
+        "type": [
+          "string"
+        ],
+        "description": "Service logo.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "library.specAuthor": {
-          "name": "specAuthor",
-          "displayName": "Spec Author",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "description": "Author of the RAML spec.",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {}
-          }
-        }
+      "library.specAuthor": {
+        "name": "specAuthor",
+        "displayName": "Spec Author",
+        "type": [
+          "string"
+        ],
+        "description": "Author of the RAML spec.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "library.devPortal": {
-          "name": "devPortal",
-          "displayName": "Developer Portal",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "description": "URL to the developer portal",
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {}
-          }
-        }
+      "library.devPortal": {
+        "name": "devPortal",
+        "displayName": "Developer Portal",
+        "type": [
+          "string"
+        ],
+        "description": "URL to the developer portal",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "library.extraResources": {
-          "name": "extraResources",
-          "displayName": "extraResources",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "library.apiResource[]"
-          ],
-          "allowedTargets": [
-            "API",
-            "Overlay"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "library.extraResources": {
+        "name": "extraResources",
+        "displayName": "extraResources",
+        "type": [
+          "array"
+        ],
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "items": "library.apiResource",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Api",
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": [
     {
       "code": "NULL_NOT_ALLOWED",

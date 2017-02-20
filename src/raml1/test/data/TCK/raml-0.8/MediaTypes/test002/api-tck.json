@@ -1,13 +1,11 @@
 {
-  "ramlVersion": "RAML08",
-  "type": "Api",
   "specification": {
     "title": "Test Api",
     "resources": [
       {
         "relativeUri": "/rere",
-        "methods": [
-          {
+        "methods": {
+          "put": {
             "responses": {
               "200": {
                 "code": "200",
@@ -25,7 +23,7 @@
             },
             "method": "put"
           }
-        ],
+        },
         "displayName": "/rere",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -37,10 +35,14 @@
         "relativeUriPathSegments": [
           "rere"
         ],
-        "absoluteUri": "/rere"
+        "absoluteUri": "/rere",
+        "completeRelativeUri": "/rere",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML08",
+  "type": "Api",
   "errors": [
     {
       "code": "FORM_IN_RESPONSE",

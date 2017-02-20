@@ -1,79 +1,76 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
-    "types": [
-      {
-        "SomeType": {
-          "name": "SomeType",
-          "displayName": "SomeType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object | SomeUnion"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object | SomeUnion"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "SomeUnion": {
-          "name": "SomeUnion",
-          "displayName": "SomeUnion",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "AnotherType[] | OneMoreType[]"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "SomeUnion": {
+        "name": "SomeUnion",
+        "displayName": "SomeUnion",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "items": "AnotherType[] | OneMoreType",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "AnotherType": {
-          "name": "AnotherType",
-          "displayName": "AnotherType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "SomeType"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "AnotherType": {
+        "name": "AnotherType",
+        "displayName": "AnotherType",
+        "type": [
+          "SomeType"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "OneMoreType": {
-          "name": "OneMoreType",
-          "displayName": "OneMoreType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "AnotherType"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
+      "OneMoreType": {
+        "name": "OneMoreType",
+        "displayName": "OneMoreType",
+        "type": [
+          "AnotherType"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "RECURRENT_DEFINITION",

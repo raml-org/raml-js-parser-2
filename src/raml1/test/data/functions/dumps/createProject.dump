@@ -1,73 +1,72 @@
 {
-	"types": [
-		{
-			"SomeType": {
-				"name": "SomeType",
-				"displayName": "SomeType",
-				"typePropertyKind": "TYPE_EXPRESSION",
-				"type": [
-					"object"
-				],
-				"properties": {
-					"prop": {
-						"name": "prop",
-						"displayName": "prop",
-						"typePropertyKind": "TYPE_EXPRESSION",
-						"type": [
-							"string"
-						],
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
+	"types": {
+		"SomeType": {
+			"name": "SomeType",
+			"displayName": "SomeType",
+			"type": [
+				"object"
+			],
+			"properties": {
+				"prop": {
+					"name": "prop",
+					"displayName": "prop",
+					"type": [
+						"string"
+					],
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
 							}
 						}
-					}
-				},
-				"__METADATA__": {
-					"primitiveValuesMeta": {
-						"displayName": {
-							"calculated": true
-						}
+					},
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
+				}
+			},
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
 					}
 				}
-			}
+			},
+			"mediaType": "application/raml+yaml",
+			"typePropertyKind": "TYPE_EXPRESSION"
 		}
-	],
-	"traits": [
-		{
-			"SomeTrait": {
-				"body": {
-					"application/json": {
-						"name": "application/json",
-						"displayName": "application/json",
-						"typePropertyKind": "TYPE_EXPRESSION",
-						"type": [
-							"SomeType"
-						],
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								}
+	},
+	"traits": {
+		"SomeTrait": {
+			"body": {
+				"application/json": {
+					"name": "application/json",
+					"displayName": "application/json",
+					"type": [
+						"SomeType"
+					],
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
 							}
 						}
-					}
-				},
-				"name": "SomeTrait"
-			}
+					},
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
+				}
+			},
+			"name": "SomeTrait"
 		}
-	],
+	},
 	"title": "Test",
 	"resources": [
 		{
-			"methods": [
-				{
+			"methods": {
+				"get": {
 					"responses": {
 						"200": {
 							"code": "200",
@@ -75,13 +74,9 @@
 								"application/xml": {
 									"name": "application/xml",
 									"displayName": "application/xml",
-									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"SomeType"
 									],
-									"example": {
-										"prop": "aaa"
-									},
 									"__METADATA__": {
 										"primitiveValuesMeta": {
 											"displayName": {
@@ -89,21 +84,24 @@
 											}
 										}
 									},
-									"structuredExample": {
-										"value": "{\n  \"prop\": \"aaa\"\n}",
-										"strict": true,
-										"name": null,
-										"structuredValue": {
-											"prop": "aaa"
+									"examples": [
+										{
+											"value": {
+												"prop": "aaa"
+											},
+											"strict": true,
+											"name": null
 										}
-									}
+									],
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								}
 							}
 						}
 					},
 					"method": "get"
 				}
-			],
+			},
 			"is": [
 				"SomeTrait"
 			],
@@ -119,7 +117,9 @@
 			"relativeUriPathSegments": [
 				"res"
 			],
-			"absoluteUri": "/res"
+			"absoluteUri": "/res",
+			"completeRelativeUri": "/res",
+			"parentUri": ""
 		}
 	]
 }

@@ -1,12 +1,10 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Overlay",
   "specification": {
     "title": "Pet Shop Overlay",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "responses": {
               "200": {
                 "code": "200",
@@ -14,26 +12,23 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "object"
                     ],
                     "examples": [
                       {
-                        "value": "{\n  \"name\": 7\n}",
-                        "strict": true,
-                        "name": "test",
-                        "structuredValue": {
+                        "value": {
                           "name": 7
-                        }
+                        },
+                        "strict": true,
+                        "name": "test"
                       },
                       {
-                        "value": "{\n  \"name\": 8\n}",
-                        "strict": true,
-                        "name": "test2",
-                        "structuredValue": {
+                        "value": {
                           "name": 8
-                        }
+                        },
+                        "strict": true,
+                        "name": "test2"
                       }
                     ],
                     "__METADATA__": {
@@ -45,14 +40,16 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
             },
             "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -65,10 +62,14 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "extends": "api.raml"
   },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
   "errors": []
 }

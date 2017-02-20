@@ -1,100 +1,103 @@
 {
-	"types": [
-		{
-			"Person": {
-				"name": "Person",
-				"displayName": "Person",
-				"typePropertyKind": "TYPE_EXPRESSION",
-				"type": [
-					"object"
-				],
-				"properties": {
-					"firstname": {
-						"name": "firstname",
-						"displayName": "firstname",
-						"typePropertyKind": "TYPE_EXPRESSION",
-						"type": [
-							"string"
-						],
-						"required": true,
-						"description": "example description",
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
+	"types": {
+		"Person": {
+			"name": "Person",
+			"displayName": "Person",
+			"type": [
+				"object"
+			],
+			"properties": {
+				"firstname": {
+					"name": "firstname",
+					"displayName": "firstname",
+					"type": [
+						"string"
+					],
+					"required": true,
+					"description": "example description",
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
 							}
 						}
 					},
-					"lastname": {
-						"name": "lastname",
-						"displayName": "lastname",
-						"typePropertyKind": "TYPE_EXPRESSION",
-						"type": [
-							"string"
-						],
-						"required": false,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								}
-							}
-						}
-					},
-					"addresses": {
-						"name": "addresses",
-						"displayName": "addresses",
-						"typePropertyKind": "TYPE_EXPRESSION",
-						"type": [
-							"array"
-						],
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
-							}
-						},
-						"items": "string"
-					},
-					"age": {
-						"name": "age",
-						"displayName": "age",
-						"typePropertyKind": "TYPE_EXPRESSION",
-						"type": [
-							"number"
-						],
-						"required": true,
-						"__METADATA__": {
-							"primitiveValuesMeta": {
-								"displayName": {
-									"calculated": true
-								},
-								"required": {
-									"insertedAsDefault": true
-								}
-							}
-						}
-					}
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
 				},
-				"__METADATA__": {
-					"primitiveValuesMeta": {
-						"displayName": {
-							"calculated": true
+				"lastname": {
+					"name": "lastname",
+					"displayName": "lastname",
+					"type": [
+						"string"
+					],
+					"required": false,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							}
 						}
+					},
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
+				},
+				"addresses": {
+					"name": "addresses",
+					"displayName": "addresses",
+					"type": [
+						"array"
+					],
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
+							}
+						}
+					},
+					"items": "string",
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
+				},
+				"age": {
+					"name": "age",
+					"displayName": "age",
+					"type": [
+						"number"
+					],
+					"required": true,
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"displayName": {
+								"calculated": true
+							},
+							"required": {
+								"insertedAsDefault": true
+							}
+						}
+					},
+					"mediaType": "application/raml+yaml",
+					"typePropertyKind": "TYPE_EXPRESSION"
+				}
+			},
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
 					}
 				}
-			}
+			},
+			"mediaType": "application/raml+yaml",
+			"typePropertyKind": "TYPE_EXPRESSION"
 		}
-	],
+	},
 	"title": "API with Types",
 	"baseUri": "/media",
 	"protocols": [
@@ -102,8 +105,8 @@
 	],
 	"resources": [
 		{
-			"methods": [
-				{
+			"methods": {
+				"get": {
 					"responses": {
 						"200": {
 							"code": "200",
@@ -111,24 +114,13 @@
 								"application/xml": {
 									"name": "application/xml",
 									"displayName": "application/xml",
-									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"Person"
 									],
-									"example": {
-										"lastname": "arkhipenko",
-										"firstname": "nicolas",
-										"juan": "juan",
-										"addresses": [
-											"myadress"
-										],
-										"age": 123
-									},
 									"properties": {
 										"juan": {
 											"name": "juan",
 											"displayName": "juan",
-											"typePropertyKind": "TYPE_EXPRESSION",
 											"type": [
 												"string"
 											],
@@ -142,7 +134,9 @@
 														"insertedAsDefault": true
 													}
 												}
-											}
+											},
+											"mediaType": "application/raml+yaml",
+											"typePropertyKind": "TYPE_EXPRESSION"
 										}
 									},
 									"__METADATA__": {
@@ -152,21 +146,24 @@
 											}
 										}
 									},
-									"structuredExample": {
-										"value": "{\n  \"lastname\": \"arkhipenko\",\n  \"firstname\": \"nicolas\",\n  \"juan\": \"juan\",\n  \"addresses\": [\n    \"myadress\"\n  ],\n  \"age\": 123\n}",
-										"strict": true,
-										"name": null,
-										"structuredValue": {
-											"lastname": "arkhipenko",
-											"firstname": "nicolas",
-											"juan": "juan",
-											"addresses": [
-												"myadress"
-											],
-											"age": 123
-										},
-										"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
-									}
+									"examples": [
+										{
+											"value": {
+												"lastname": "arkhipenko",
+												"firstname": "nicolas",
+												"juan": "juan",
+												"addresses": [
+													"myadress"
+												],
+												"age": 123
+											},
+											"strict": true,
+											"name": null,
+											"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
+										}
+									],
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								}
 							}
 						}
@@ -175,7 +172,6 @@
 						"application/json": {
 							"name": "application/json",
 							"displayName": "application/json",
-							"typePropertyKind": "TYPE_EXPRESSION",
 							"type": [
 								"object"
 							],
@@ -183,7 +179,6 @@
 								"developer": {
 									"name": "developer",
 									"displayName": "developer",
-									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -197,12 +192,13 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								},
 								"test": {
 									"name": "test",
 									"displayName": "test",
-									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -216,12 +212,13 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								},
 								"animal": {
 									"name": "animal",
 									"displayName": "animal",
-									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -235,12 +232,13 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								},
 								"car": {
 									"name": "car",
 									"displayName": "car",
-									"typePropertyKind": "TYPE_EXPRESSION",
 									"type": [
 										"string"
 									],
@@ -254,7 +252,9 @@
 												"insertedAsDefault": true
 											}
 										}
-									}
+									},
+									"mediaType": "application/raml+yaml",
+									"typePropertyKind": "TYPE_EXPRESSION"
 								}
 							},
 							"__METADATA__": {
@@ -263,7 +263,9 @@
 										"calculated": true
 									}
 								}
-							}
+							},
+							"mediaType": "application/raml+yaml",
+							"typePropertyKind": "TYPE_EXPRESSION"
 						}
 					},
 					"protocols": [
@@ -278,7 +280,7 @@
 						}
 					}
 				}
-			],
+			},
 			"relativeUri": "/users",
 			"displayName": "/users",
 			"__METADATA__": {
@@ -291,7 +293,9 @@
 			"relativeUriPathSegments": [
 				"users"
 			],
-			"absoluteUri": "/media/users"
+			"absoluteUri": "/media/users",
+			"completeRelativeUri": "/users",
+			"parentUri": ""
 		}
 	],
 	"__METADATA__": {

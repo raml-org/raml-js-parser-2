@@ -1,67 +1,67 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Library",
   "specification": {
-    "types": [
-      {
-        "MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "object"
-          ],
-          "examples": [
-            {
-              "value": "{\n  \"p1\": 5\n}",
-              "strict": true,
-              "structuredValue": {
-                "p1": 5
-              }
-            },
-            {
-              "value": "{\n  \"p1\": 8\n}",
-              "strict": true,
-              "structuredValue": {
-                "p1": 8
-              }
-            }
-          ],
-          "properties": {
-            "p1": {
-              "name": "p1",
-              "displayName": "p1",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "type": [
-                "number"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
               }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
             }
           }
-        }
+        },
+        "examples": [
+          {
+            "value": {
+              "p1": 5
+            },
+            "strict": true,
+            "name": null
+          },
+          {
+            "value": {
+              "p1": 8
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ]
+    }
   },
+  "ramlVersion": "RAML10",
+  "type": "Library",
   "errors": [
     {
       "code": "MAP_EXPECTED",
