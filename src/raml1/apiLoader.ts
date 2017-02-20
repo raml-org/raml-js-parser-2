@@ -14,6 +14,7 @@ import hlimpl=require("../raml1/highLevelImpl")
 import ll=require("../raml1/lowLevelAST")
 import llimpl=require("../raml1/jsyaml/jsyaml2lowLevel")
 import expander=require("../raml1/ast.core/expander")
+import expanderLL=require("../raml1/ast.core/expanderLL")
 import util=require("../util/index")
 import universeDef=require("../raml1/tools/universe")
 import parserCore=require('../raml1/wrapped-ast/parserCore')
@@ -31,10 +32,10 @@ export function load(ramlPath:string,options?:hl.LoadOptions):Promise<Object>{
     return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
         if(options.expandLibraries) {
-            expanded = expander.expandLibrariesHL(hlNode);
+            expanded = expanderLL.expandLibrariesHL(hlNode);
         }
         else{
-            expanded = expander.expandTraitsAndResourceTypesHL(hlNode);
+            expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode);
         }
         return tckDumperHL.dump(expanded,{
             rootNodeDetails: true,
