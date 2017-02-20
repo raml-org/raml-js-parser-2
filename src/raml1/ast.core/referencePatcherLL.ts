@@ -32,28 +32,34 @@ function initTransitions(){
         var tr = new Transition(key,trSchema,transitionsMap);
         transitionsMap[key] = tr;
     }
+    var factory = new ReferencePatcherActionsAndConditionsFactory();
     for(var key of Object.keys(transitionsMap)){
-        transitionsMap[key].init();
+        transitionsMap[key].init(factory);
     }
 }
 
-const transitions = {
+export const transitions = {
 
     "Api" : {
         "traits" : {
-            "/.+/" : "$Trait"
+            "$action" : "$Trait",
+            "$toChildren" : true
         },
         "resourceTypes" : {
-            "/.+/" : "$ResourceType"
+            "$action" : "$ResourceType",
+            "$toChildren" : true
         },
         "types" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "annotationTypes" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "baseUriParameters" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "securedBy" : "$SecuritySchemeReferences",
         "/\/.+/" : "$Resource",
@@ -72,7 +78,8 @@ const transitions = {
             "$action": "##patchResourceTypeReference"
         },
         "uriParameters" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "securedBy" : "$SecuritySchemeReferences",
         "/\\(.+\\)/" : "$Annotation",
@@ -82,14 +89,17 @@ const transitions = {
     "Method" : {
         "body" : "$Body",
         "responses" : {
-            "/\\d{3,3}/" : "$Response"
+            "$action" : "$Response",
+            "$toChildren" : true
         },
         "is" : "$TraitReferences",
         "queryParameters" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "headers" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "securedBy" : "$SecuritySchemeReferences",
         "/\\(.+\\)/" : "$Annotation",
@@ -108,7 +118,8 @@ const transitions = {
             "$action": "##patchResourceTypeReference"
         },
         "uriParameters" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "securedBy" : "$SecuritySchemeReferences",
         "/\\(.+\\)/" : "$Annotation"
@@ -119,10 +130,12 @@ const transitions = {
             "/\\d{3,3}/" : "$Response"
         },
         "queryParameters" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "headers" : {
-            "/.+/" : "$TypeDeclaration"
+            "$action" : "$TypeDeclaration",
+            "$toChildren" : true
         },
         "securedBy" : "$SecuritySchemeReferences",
         "/\\(.+\\)/" : "$Annotation"
@@ -140,7 +153,8 @@ const transitions = {
                 "$action" : "$TypeDeclaration"
             },
             {
-                "/.+/" : "$TypeDeclaration"
+                "$action" : "$TypeDeclaration",
+                "$toChildren" : true
             }
         ]
     },
@@ -166,7 +180,8 @@ const transitions = {
                     "/.+/" : "$TypeDeclaration"
                 },
                 "facets" : {
-                    "/.+/" : "$TypeDeclaration"
+                    "$action" : "$TypeDeclaration",
+                    "$toChildren" : true
                 },
                 "/\\(.+\\)/" : "$Annotation"
             }
@@ -190,13 +205,13 @@ export class Scope{
     hasRootMediaType:boolean;
 }
 
-type TransitionMap = {[key:string]:Transition};
+export type TransitionMap = {[key:string]:Transition};
 
 export enum TransitionKind{
     BASIC, ONE_OF, ACTION, MIXED
 }
 
-class Transition{
+export class Transition{
 
     constructor(public title:string, public localMap:any,public globalMap:TransitionMap){}
 
@@ -207,7 +222,7 @@ class Transition{
         transition:Transition
     }[];
 
-    conditions:string[];
+    conditions:Condition[];
 
     children:Transition[];
 
@@ -284,62 +299,29 @@ class Transition{
         }
         let result = true;
         for(var condition of this.conditions){
-            if(condition == "isScalar"){
-                result = result && (node.kind() == yaml.Kind.SCALAR||node.valueKind() == yaml.Kind.SCALAR);
-                if(result) {
-                    var value = node.value(true);
-                    if (!value) {
-                        result = false;
-                    }
-                    else if (typeof value == "string") {
-                        value = value.trim();
-                        if (!value) {
-                            result = false;
-                        }
-                        else {
-                            var ch0 = value[0];
-                            var ch1 = value[value.length - 1];
-                            if ((ch0 === "{" && ch1 == "}") || (ch0 === "<" && ch1 == ">")) {
-                                result = false;
-                            }
-                        }
-                    }
-                }
-                else{
-                    result = false;
-                }
-            }
-            else if(condition == "isArray"){
-                result = node.valueKind() == yaml.Kind.SEQ;
-            }
-            else if(condition=="isBodyWithDefaultMediaType"){
-                if(state.globalScope.hasRootMediaType) {
-                    result = result && (_.find(node.children(), x=>x.key() && x.key().indexOf("/") >= 0) == null);
-                }
-                else{
-                    result = false;
-                }
-            }
+            result = result && condition(node,state);
         }
         return result;
     }
 
-    init(){
+    init(factory:ActionsAndCondtionsFactory){
 
-        this.conditions = this.localMap["$conditions"];
+        this.conditions = this.localMap["$conditions"]
+            && this.localMap["$conditions"].map(x=>factory.condition(x));
+
+        if(this.localMap["$toChildren"]){
+            this.applyToChildren = true;
+        }
 
         var oneOf = this.localMap["oneOf"];
         if(oneOf){
             this.kind = TransitionKind.ONE_OF;
             this.children = oneOf.map((x,i)=>new Transition(`${this.title}[${i}]`,x,this.globalMap));
-            this.children.forEach(x=>x.init());
+            this.children.forEach(x=>x.init(factory));
         }
         else{
             var actionName = this.localMap["$action"];
-            if(actionName){
-                if(this.localMap["$toChildren"]){
-                    this.applyToChildren = true;
-                }
+            if(actionName){                
                 if(Object.keys(this.localMap).filter(x=>x.charAt(0)!="$").length==0) {
                     this.kind = TransitionKind.ACTION;
                 }
@@ -347,24 +329,7 @@ class Transition{
                     this.kind = TransitionKind.MIXED;
                 }
                 if(util.stringStartsWith(actionName,"##")) {
-                    if (actionName == "##patch") {
-                        this.action = patchTypeAction;
-                    }
-                    else if (actionName == "##patchTraitReference") {
-                        this.action = patchTraitsAction;
-                    }
-                    else if (actionName == "##patchResourceTypeReference") {
-                        this.action = patchResourceTypesAction;
-                    }
-                    else if (actionName == "##patchAnnotationName") {
-                        this.action = patchAnnotationNameAction;
-                    }
-                    else if (actionName == "##patchSecuritySchemeReference") {
-                        this.action = patchSecuritySchemeReferenceAction;
-                    }
-                    else if (actionName == "##filterTraits") {
-                        this.action = filterTraits;
-                    }
+                    this.action = factory.action(actionName);
                 }
                 else if(actionName.charAt(0)=="$"){
                     this.children = [ this.globalMap[actionName.substring(1)] ];
@@ -395,7 +360,7 @@ class Transition{
                 }
                 else if (typeof trObj == "object" && !Array.isArray(trObj)) {
                     tr = new Transition(`${this.title}.${key}`,trObj, this.globalMap);
-                    tr.init();
+                    tr.init(factory);
                 }
                 if (!tr) {
                     continue;
@@ -426,6 +391,10 @@ export class State{
     }
 
     units:ll.ICompilationUnit[];
+    
+    meta:any = {};
+
+    registerOnly = false;
 
     lastUnit():ll.ICompilationUnit{
         return this.units[this.units.length-1];
@@ -465,10 +434,91 @@ export class State{
 
 }
 
-interface Action{
+export interface Action{
     (node:ll.ILowLevelASTNode,state:State):boolean
 }
 
+export interface Condition{
+    (node:ll.ILowLevelASTNode,state:State):boolean
+}
+
+export interface ActionsAndCondtionsFactory{
+    
+    action(name:string):Action
+    
+    condition(name:string):Condition    
+}
+
+export class ReferencePatcherActionsAndConditionsFactory implements ActionsAndCondtionsFactory{
+
+    action(actionName:string):Action{
+        var action:Action;
+        if (actionName == "##patch") {
+            action = patchTypeAction;
+        }
+        else if (actionName == "##patchTraitReference") {
+            action = patchTraitReferenceAction;
+        }
+        else if (actionName == "##patchResourceTypeReference") {
+            action = patchResourceTypeReferenceAction;
+        }
+        else if (actionName == "##patchAnnotationName") {
+            action = patchAnnotationNameAction;
+        }
+        else if (actionName == "##patchSecuritySchemeReference") {
+            action = patchSecuritySchemeReferenceAction;
+        }
+        else if (actionName == "##filterTraits") {
+            action = filterTraits;
+        }
+        return action;
+    }
+
+    condition(name:string):Condition{
+        if(name == "isScalar"){
+            return isScalarCondition;
+        }
+        else if(name == "isArray"){
+            return isArrayCondition;
+        }
+        else if(name=="isBodyWithDefaultMediaType"){
+            return isBodyWithDefaultMediaTypeCondition;
+        }
+        return null;
+    }
+    
+}
+
+function isScalarCondition(node:ll.ILowLevelASTNode, state:State){
+    var result = node.kind() == yaml.Kind.SCALAR||node.valueKind() == yaml.Kind.SCALAR;
+    if(result) {
+        var value = node.value(true);
+        if (!value) {
+            result = false;
+        }
+        else if (typeof value == "string") {
+            value = value.trim();
+            if (!value) {
+                result = false;
+            }
+        }
+    }
+    else{
+        result = false;
+    }
+    return result;
+}
+
+function isArrayCondition(node:ll.ILowLevelASTNode, state:State){
+    return node.valueKind() == yaml.Kind.SEQ;
+}
+
+function isBodyWithDefaultMediaTypeCondition(node:ll.ILowLevelASTNode, state:State){
+    if(state.globalScope && state.globalScope.hasRootMediaType) {
+        return _.find(node.children(), x=>x.key() && x.key().indexOf("/") >= 0) == null;
+    }
+    return false;
+}
 
 
 function patchTypeAction(node:ll.ILowLevelASTNode,state:State){
@@ -476,7 +526,8 @@ function patchTypeAction(node:ll.ILowLevelASTNode,state:State){
     return false;
 }
 
-function patchTraitsAction(node:ll.ILowLevelASTNode,state:State){
+function patchTraitReferenceAction(node:ll.ILowLevelASTNode, state:State){
+    state.meta.templatesCollection = def.universesInfo.Universe10.LibraryBase.properties.traits.name;
     if(node.kind()!=yaml.Kind.SCALAR){
         if(node.key()==null){
             node = node.children()[0];
@@ -486,7 +537,8 @@ function patchTraitsAction(node:ll.ILowLevelASTNode,state:State){
     return false;
 }
 
-function patchResourceTypesAction(node:ll.ILowLevelASTNode,state:State){
+function patchResourceTypeReferenceAction(node:ll.ILowLevelASTNode, state:State){
+    state.meta.templatesCollection = def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name;
     var children = node.children();
     if(children.length>0){
         state.referencePatcher.patchReference(children[0],state,"resourceTypes");        
@@ -495,7 +547,9 @@ function patchResourceTypesAction(node:ll.ILowLevelASTNode,state:State){
         var pNode = (<proxy.LowLevelCompositeNode>node);
         var pScalar = new proxy.LowLevelCompositeNode(jsyaml.createScalar(node.value()),null,pNode.transformer(),"RAML10",true);
         state.referencePatcher.patchReference(pScalar,state,"resourceTypes");
-        pNode.setValueOverride(pScalar.value());
+        if(!state.registerOnly) {
+            pNode.setValueOverride(pScalar.value());
+        }
     }
     //state.referencePatcher.patchReference(children[0],state,"resourceTypes");
     return false;
@@ -509,7 +563,9 @@ function patchAnnotationNameAction(node:ll.ILowLevelASTNode, state:State){
         key.substring(1,key.length-1),state,<expander.DefaultTransformer>transformer,"annotationTypes");
     if(patchedReference) {
         state.referencePatcher.registerPatchedReference(patchedReference);
-        pNode.setKeyOverride(`(${patchedReference.value()})`);
+        if(!state.registerOnly) {
+            pNode.setKeyOverride(`(${patchedReference.value()})`);
+        }
     }
     return false;
 }
@@ -578,6 +634,11 @@ export class ReferencePatcher {
 
         var llNode = <proxy.LowLevelProxyNode>node;
         var value = node.value(true).toString();
+        var ch0 = value[0];
+        var ch1 = value[value.length - 1];
+        if ((ch0 === "{" && ch1 == "}") || (ch0 === "<" && ch1 == ">")) {
+            return;
+        }
 
         var gotExpression = referencePatcherHL.checkExpression(value);
         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
@@ -672,7 +733,7 @@ export class ReferencePatcher {
                 newValue = patched.value();
             }
         }
-        if (newValue != null) {
+        if (newValue != null && !state.registerOnly) {
             llNode.setValueOverride(newValue);
         }
         if (appendedAttrUnit) {
@@ -827,7 +888,9 @@ export class ReferencePatcher {
             if (isAnnotation) {
                 patchedValue = `(${patchedValue})`;
             }
-            llNode.setKeyOverride(patchedValue);
+            if(!state.registerOnly) {
+                llNode.setKeyOverride(patchedValue);
+            }
         }
     }
 
@@ -846,9 +909,11 @@ export class ReferencePatcher {
                 stringToPatch = actualNode.value();
             }
             var newValue = this.resolveReferenceValue(stringToPatch,state,transformer,collectionName);
-            if(newValue!=null){
+            if(newValue!=null) {
                 var newValue1 = newValue.value();
-                llNode.setValueOverride(newValue1);
+                if (!state.registerOnly){
+                    llNode.setValueOverride(newValue1);
+                }
                 this.registerPatchedReference(newValue);
             }
         }
@@ -875,8 +940,50 @@ export class ReferencePatcher {
                 var newValue = this.resolveReferenceValue(stringToPatch,state,transformer,collectionName);
                 if(newValue!=null) {
                     var newValue1 = /*isAnnotation ? `(${newValue.value()})` :*/ newValue.value();
-                    (<proxy.LowLevelProxyNode>attr).setKeyOverride(newValue1);
+                    if(!state.registerOnly) {
+                        (<proxy.LowLevelProxyNode>attr).setKeyOverride(newValue1);
+                    }
                     this.registerPatchedReference(newValue);
+                }
+                var templatesCollection = state.meta.templatesCollection;
+                if(templatesCollection) {
+                    if (newValue == null && stringToPatch.indexOf(".") < 0) {
+                        newValue = new referencePatcherHL.PatchedReference(
+                            "", stringToPatch, templatesCollection, state.rootUnit, referencePatcherHL.PatchMode.DEFAULT);
+                    }
+                    if (newValue) {
+                        let nsMap = state.resolver.expandedNSMap(state.rootUnit);
+                        if (nsMap) {
+                            let referencedUnit = state.rootUnit;
+                            if(newValue.namespace()){
+                                var uInfo = nsMap[newValue.namespace()];
+                                referencedUnit = uInfo ? uInfo.unit : null;
+                            }
+                            if (referencedUnit) {
+                                let uModel = state.resolver.unitModel(referencedUnit);
+                                let templateCollection = <namespaceResolver.ElementsCollection>
+                                    (<any>uModel)[templatesCollection];
+                                if (templateCollection) {
+                                    var tModel = templateCollection.getTemplateModel(newValue.name());
+                                    if (tModel) {
+                                        var typesTransition = transitionsMap[def.universesInfo.Universe10.TypeDeclaration.name];
+                                        for (var aCh of attr.children()) {
+                                            if (tModel.typeValuedParameters[aCh.key()]) {
+                                                var state1 = new State(
+                                                    state.referencePatcher,
+                                                    state.rootUnit,
+                                                    state.globalScope,
+                                                    state.resolver);
+                                                state1.units = state.units;
+                                                state1.registerOnly = true;
+                                                typesTransition.processNode(aCh, state1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             // attr = attr.children()[0];

@@ -6,15 +6,19 @@ import universes = require("../tools/universe");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel")
 import yaml = require("yaml-ast-parser")
 import universeHelpers = require("../tools/universeHelpers");
+import referencepatcherLL = require("./referencePatcherLL");
 
 import resourceRegistry = require('../jsyaml/resourceRegistry');
 import hlImpl = require("../highLevelImpl");
 import def = require("raml-definition-system");
 import _ = require("underscore");
+import util = require("../../util/index");
 
 export class NamespaceResolver{
 
     private expandedAbsToNsMap:{[key:string]:{[key:string]:UsesInfo}} = {};
+
+    private _expandedNSMap:{[key:string]:{[key:string]:UsesInfo}} = {};
 
     private byPathMap:{[key:string]:{[key:string]:UsesInfo}} = {};
 
@@ -36,6 +40,26 @@ export class NamespaceResolver{
         }
         var usesInfo = unitMap[toPath];
         return usesInfo;
+    }
+
+    expandedNSMap(unit:ll.ICompilationUnit) {
+        var aPath = unit.absolutePath();
+        let result = this._expandedNSMap[aPath];
+        if(result===undefined) {
+            var pm = this.expandedPathMap(unit);
+            if (!pm) {
+                result = null;
+            }
+            else{
+                result = {};
+                for(var ap of Object.keys(pm)){
+                    var uInfo = pm[ap];
+                    result[uInfo.namespace()] = uInfo;
+                }
+            }
+            this._expandedNSMap[aPath] = result;
+        }
+        return result;
     }
 
     expandedPathMap(unit:ll.ICompilationUnit) {
@@ -64,7 +88,7 @@ export class NamespaceResolver{
             if (node && node.kind() != yaml.Kind.SCALAR) {
 
                 var fLine = hlImpl.ramlFirstLine(u.contents());
-                if (fLine.length == 3 && (
+                if (fLine && fLine.length == 3 && (
                     fLine[2] == def.universesInfo.Universe10.Overlay.name ||
                     fLine[2] == def.universesInfo.Universe10.Extension.name)) {
                     var eNode = _.find(node.children(), x=>x.key()==universes.Universe10.Extension.properties.extends.name);
@@ -381,9 +405,12 @@ export class ElementsCollection{
 
     map:{[key:string]:ll.ILowLevelASTNode} = {};
 
+    templateModels:{[key:string]:TemplateModel};
+
     addElement(node:ll.ILowLevelASTNode){
         this.array.push(node);
         this.map[node.key()] = node;
+        this.addTemplateModel(node);
     }
     
     hasElement(name:string):boolean{
@@ -392,6 +419,34 @@ export class ElementsCollection{
 
     getElement(name:string):ll.ILowLevelASTNode{
         return this.map[name];
+    }
+
+    getTemplateModel(name:string){
+        if(!this.templateModels){
+            return null;
+        }
+        return this.templateModels[name];
+    }
+
+    private addTemplateModel(node:ll.ILowLevelASTNode){
+        let kind:string;
+        if(this.name == def.universesInfo.Universe10.LibraryBase.properties.traits.name){
+            kind = def.universesInfo.Universe10.Trait.name;
+        }
+        else if(this.name == def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
+            kind = def.universesInfo.Universe10.ResourceType.name;
+        }
+        if(!kind){
+            return;
+        }
+        var name = node.key();
+        let tm = toTemplateModel(name,kind,node);
+        if(tm){
+            if(!this.templateModels){
+                this.templateModels = {};
+            }
+            this.templateModels[name] = tm;
+        }
     }
 }
 
@@ -458,6 +513,29 @@ export class UnitModel{
     }
 }
 
+function toTemplateModel(name:string,kind:string,node:ll.ILowLevelASTNode):TemplateModel{
+
+    initTransitions();
+    let tr = transitionsMap[kind];
+    if(!tr){
+        return null;
+    }
+    let state = new referencepatcherLL.State(null,node.unit(),null,null);
+    tr.processNode(node, state);
+    if(Object.keys(state.meta).length>0){
+        return new TemplateModel(name,kind,node,state.meta);
+    }
+    return null;
+
+}
+
+
+export class TemplateModel{
+
+    constructor(public name:string, kind:string, public node:ll.ILowLevelASTNode, public typeValuedParameters:any){}
+
+}
+
 
 var libTypeDescendants:{[key:string]:boolean};
 function isLibraryBaseDescendant(unit:ll.ICompilationUnit){
@@ -477,4 +555,62 @@ function isLibraryBaseDescendant(unit:ll.ICompilationUnit){
         [libType].concat(libType.allSubTypes()).forEach(x=>libTypeDescendants[x.nameId()]=true);
     }
     return libTypeDescendants[typeName];
+}
+
+var transitionsMap: referencepatcherLL.TransitionMap;
+
+function initTransitions(){
+
+    if(transitionsMap){
+        return;
+    }
+    transitionsMap = {};
+    for(var key of Object.keys(referencepatcherLL.transitions)){
+        var trSchema = referencepatcherLL.transitions[key];
+        var tr = new referencepatcherLL.Transition(key,trSchema,transitionsMap);
+        transitionsMap[key] = tr;
+    }
+    var factory = new NamespaceResolverActionsAndConditionsFactory();
+    for(var key of Object.keys(transitionsMap)){
+        transitionsMap[key].init(factory);
+    }
+}
+
+export class NamespaceResolverActionsAndConditionsFactory implements referencepatcherLL.ActionsAndCondtionsFactory{
+    
+    parent = new referencepatcherLL.ReferencePatcherActionsAndConditionsFactory()
+
+    action(actionName:string):referencepatcherLL.Action{
+        var action:referencepatcherLL.Action;
+        if (actionName == "##patch") {
+            action = checkTypeValue;
+        }
+        else {
+            action = dummyAction;
+        }
+        return action;
+    }
+
+    condition(name:string):referencepatcherLL.Condition{
+        return this.parent.condition(name);
+    }
+
+}
+
+function checkTypeValue(node:ll.ILowLevelASTNode,state:referencepatcherLL.State){
+    var value = node.value();
+    if(typeof value != "string"){
+        return false;
+    }
+    if(util.stringStartsWith(value,"<<")&&util.stringEndsWith(value,">>")){
+        value = value.substring("<<".length,value.length-">>".length);
+        if(value.indexOf("<<")<0){
+            state.meta[value] = true;
+        }
+    }
+    return false;
+}
+
+function dummyAction(node:ll.ILowLevelASTNode,state:referencepatcherLL.State){
+    return false;
 }
