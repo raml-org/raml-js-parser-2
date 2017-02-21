@@ -110,9 +110,9 @@ export function loadRAML(ramlPath:string,arg1?:string[]|parserCoreApi.Options,ar
 export function loadRAMLHL(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : Opt<hl.IHighLevelNode> {
     var hlNode = loadRAMLInternalHL(ramlPath, arg1, arg2);
     if(!hlNode){
-        return Opt.empty<hl.BasicNode>();
+        return Opt.empty<hl.IHighLevelNode>();
     }
-    return new Opt<hl.BasicNode>(hlNode);
+    return new Opt<hl.IHighLevelNode>(hlNode);
 }
 
 
