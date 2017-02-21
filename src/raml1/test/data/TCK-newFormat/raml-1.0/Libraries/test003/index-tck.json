@@ -1,0 +1,63 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "files",
+        "value": "libraries/files.raml"
+      }
+    ],
+    "traits": {
+      "files.hello": {
+        "name": "files.hello",
+        "__METADATA__": {
+          "calculated": true
+        }
+      }
+    },
+    "resourceTypes": {
+      "file": {
+        "methods": {
+          "get": {
+            "is": [
+              "files.hello"
+            ],
+            "method": "get"
+          }
+        },
+        "name": "file"
+      }
+    },
+    "title": "Files API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "is": [
+              "files.hello"
+            ],
+            "method": "get"
+          }
+        },
+        "type": "file",
+        "relativeUri": "/files",
+        "displayName": "/files",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "files"
+        ],
+        "absoluteUri": "/files",
+        "completeRelativeUri": "/files",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

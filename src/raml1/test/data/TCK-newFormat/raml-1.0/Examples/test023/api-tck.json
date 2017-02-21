@@ -1,0 +1,141 @@
+{
+  "specification": {
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "a": 5
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "WebOfMe",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "message": 4,
+                          "vlue": 3
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "type": [
+                      "{\n  \"required\": [\"message\"],\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
+                    ],
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/hello",
+        "displayName": "/hello",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hello"
+        ],
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "EXAMPLE_SCHEMA_FAILURE",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Additional properties not allowed: vlue vlue",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 26,
+          "column": 12,
+          "position": 573
+        },
+        "end": {
+          "line": 26,
+          "column": 19,
+          "position": 580
+        }
+      }
+    }
+  ]
+}

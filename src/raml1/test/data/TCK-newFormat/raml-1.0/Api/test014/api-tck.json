@@ -1,0 +1,27 @@
+{
+  "specification": {
+    "title": "MyApi",
+    "version": "v1"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_NODE",
+      "message": "Unknown node: '[12]'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 0,
+          "position": 36
+        },
+        "end": {
+          "line": 3,
+          "column": 5,
+          "position": 41
+        }
+      }
+    }
+  ]
+}

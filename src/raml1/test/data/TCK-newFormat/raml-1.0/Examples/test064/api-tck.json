@@ -1,0 +1,110 @@
+{
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": {
+                      "body": {
+                        "name": "body",
+                        "displayName": "body",
+                        "type": [
+                          "object"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "body": {
+                            "id": 7
+                          }
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/login",
+        "displayName": "/login",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "login"
+        ],
+        "absoluteUri": "/login",
+        "completeRelativeUri": "/login",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_PROPERTY",
+      "message": "Unknown property: 'id'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 16,
+          "position": 271
+        },
+        "end": {
+          "line": 16,
+          "column": 18,
+          "position": 273
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

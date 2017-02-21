@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: test API
+baseUri: https://example.com
+mediaType: application/json
+
+uses:
+  defaultResponses:  libraries/responseBase.raml
+
+resourceTypes:
+  collection: !include resourceTypes/collection.raml
+
+/alpha:
+  /letters:
+    type: { collection: { parentType: alpha } }

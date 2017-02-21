@@ -1,0 +1,84 @@
+{
+  "specification": {
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "number"
+        ],
+        "minimum": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": 5,
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MyType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "z": 5
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,10 @@
+#%RAML 1.0 DataType
+type: object
+required: false
+properties:
+  addressType:
+    enum: ['postal', 'business']
+  line1: string
+  line2?: string
+  suburb: string
+  postcode: number

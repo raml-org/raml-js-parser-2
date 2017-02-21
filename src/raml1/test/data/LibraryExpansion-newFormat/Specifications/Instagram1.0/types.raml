@@ -1,0 +1,794 @@
+#%RAML 1.0  Library
+types:
+    Location:
+      type: object
+      properties:
+        id?: string
+        name?: string
+        latitude?: number
+        longitude?: number
+        street_address?: string
+      example:
+        id: "1"
+        name: "John"
+        latitude: 34.016242
+        longitude: -95.800781
+        street_address: ""
+    Meta:
+      type: object
+      properties:
+        code: number
+      example:
+        code: 200
+    Locations:
+      type: OkStatus
+      properties:
+        data?: Location[]
+      example:
+        meta:
+          code: 200
+        data:
+          - id: "1"
+            name: "John"
+            latitude: 34.016242
+            longitude: -95.800781
+    Counts:
+      type: object
+      properties:
+        media?: integer
+        follows?: integer
+        followed_by?: integer
+      example:
+        media: 2
+        follows: 3
+        followed_by: 5
+    UserAccount:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id?: string
+            username?: string
+            full_name?: string
+            profile_picture?: string
+            bio?: string
+            website?: string
+            count?: Counts
+      example:
+        data:
+          id: "1"
+          username: "John"
+          full_name: "John Smith"
+          profile_picture: "URL"
+          website: "example.org"
+          count:
+            media: 2
+            follows: 3
+            followed_by: 5
+    User:
+      type: object
+      properties:
+        id?: string
+        username?: string
+        full_name?: string
+        profile_picture?:
+        bio?: string
+        website?: string
+        count?: Counts
+      example:
+        id: "1"
+        username: "John"
+        full_name: "John Smith"
+        profile_picture: "URL"
+        website: "example.org"
+        count:
+          media: 2
+          follows: 3
+          followed_by: 5
+    SubscriptionPost:
+      type: OkStatus
+      properties:
+        data?:
+          type: object
+          properties:
+            object?: string
+            object_id?: string
+            aspect?: string
+            callback_url?: string
+            type?: string
+            id?: string
+            lat?: number
+            lng?: number
+            radius?: number
+      example:
+        meta:
+          code: 200
+        data:
+          object_id: "25"
+          callback_url: "url"
+          id: "22"
+          lat: 34.016242
+          lng: -95.800781
+          radius: 20
+    SubscriptionData:
+      type: object
+      properties:
+        id?: string
+        type?: string
+        object?: string
+        aspect?: string
+        callback_url?: string
+        object_id?: string
+      example:
+        object_id: "25"
+        callback_url: "url"
+        id: "22"
+    SubscriptionsGet:
+      type: OkStatus
+      properties:
+        data?:
+          type: SubscriptionData[]
+      example:
+        meta:
+          code: 200
+        data:
+          - object_id: "25"
+            callback_url: "url"
+            id: "22"
+    SubscriptionsDelete:
+       type: OkStatus
+       properties:
+         data?:
+           type: SubscriptionData
+       example:
+         meta:
+           code: 200
+         data:
+           object_id: "25"
+           callback_url: "url"
+           id: "22"
+    Tag:
+      type: object
+      properties:
+        data?:
+          type: object
+          properties:
+            media_count?: integer
+            name?: string
+      example:
+        data:
+          media_count: 2
+          name: forest
+    SerachTagItem:
+      type: object
+      properties:
+        media_count?: integer
+        name?: string
+      example:
+        media_count: 2
+        name: forest
+    TagsSearch:
+      type: OkStatus
+      properties:
+        data?: SerachTagItem[]
+      example:
+        meta:
+          code: 200
+        data:
+          - media_count: 2
+            name: forest
+    MediaLike:
+      type: object
+      properties:
+        first_name?: string
+        last_name?: string
+        id?: string
+        type?: string
+      example:
+        first_name: "John"
+        last_name: "Smith"
+        id: "2"
+        type: "string"
+    MediaLikes:
+      type: object
+      properties:
+        data?: MediaLike[]
+      example:
+        data:
+          - first_name: "John"
+            last_name: "Smith"
+            id: "2"
+            type: "string"
+    Comment:
+      type: object
+      properties:
+        created_time?: string
+        text?: string
+        from?:
+          type: User
+          properties:
+            type?: string
+        id?: string
+      example:
+        created_time: "1382576494"
+        text: "text"
+        from:
+            username: "John"
+            id: "2000"
+            full_name: "John Smith"
+        id: "200"
+    MediaComment:
+      type: OkStatus
+      properties:
+        data: Comment[]
+      example:
+        meta:
+          code: 200
+        data:
+        - created_time: "1382576494"
+          text: "text"
+          from:
+            username: "John"
+            id: "2000"
+            full_name: "John Smith"
+          id: "200"
+    Oembed:
+      type: object
+      properties:
+        author_id?: integer
+        author_name?: string
+        author_url?: string
+        heght?: integer
+        media_id?: string
+        provider_name?: string
+        provider_url?: string
+        title?: string
+        type?: string
+        url?: string
+        version?: string
+        width?: integer
+      example:
+        author_id: 20
+        author_name: "John"
+        author_url: "URL"
+        heght: 400
+        media_id: "29"
+        provider_name: "Alex"
+        provider_url: "URL"
+        title: "Photos"
+        type: "media"
+        url: "URL"
+        version: "2.11"
+        width: 600
+    RelationshipsPost:
+      type: OkStatus
+      properties:
+        data?:
+          type: object
+          properties:
+            outgoing_status?: string
+      example:
+        meta:
+          code: 200
+        data:
+          outgoing_status: "none"
+    Relationships:
+      type: OkStatus
+      properties:
+        data?:
+          type: object
+          properties:
+            outgoing_status?: string
+            incoming_status?: string
+      example:
+        meta:
+          code: 200
+        data:
+          outgoing_status: "none"
+          incoming_status: "requested_by"
+    RequestedBy:
+      type: OkStatus
+      properties:
+        data:
+          type: object
+          properties:
+            username: string
+            profile_picture: string
+            id: string
+      example:
+        meta:
+          code: 200
+        data:
+          username: "John"
+          profile_picture: "URL"
+          id: "25"
+    UsersItem:
+      type: object
+      properties:
+        username: string
+        first_name: string
+        profile_picture: string
+        id: string
+        last_name: string
+      example:
+        username: "John"
+        first_name: "John"
+        profile_picture: "URL"
+        id: "25"
+        last_name: "Smith"
+    Users:
+      type: object
+      properties:
+        data: UsersItem[]
+      example:
+        data:
+          - username: "John"
+            first_name: "John"
+            profile_picture: "URL"
+            id: "25"
+            last_name: "Smith"
+    OkStatus:
+      type: object
+      properties:
+        meta?: Meta
+        data?: any | nil
+      example:
+        meta:
+          code: 200
+    Likes:
+      type: object
+      properties:
+        count?: number
+        data?: User[]
+      example:
+        count: 42
+        data:
+            - id: "1"
+              username: "John"
+              full_name: "John Smith"
+              profile_picture: "URL"
+              website: "example.org"
+              count:
+                media: 2
+                follows: 3
+                followed_by: 5
+    Resolution:
+      type: object
+      properties:
+        url?: string
+        width?: number
+        height?: number
+      example:
+        url: "URL"
+        width: 400
+        height: 600
+    Image:
+      type: object
+      properties:
+        low_resolution?: Resolution
+        thumbnail?: Resolution
+        standard_resolution?: Resolution
+      example:
+        low_resolution:
+          url: "URL"
+          width: 200
+          height: 400
+        thumbnail:
+          url: "URL"
+          width: 400
+          height: 600
+        standard_resolution:
+          url: "URL"
+          width: 600
+          height: 800
+    TagsRecentMedia:
+      type: object
+      properties:
+        data?: TagsRecentMediaItem []
+      example:
+        data:
+          - type: "photo"
+            tags:
+              - "forest"
+              - "flovers"
+            comments:
+              data:
+                - created_time: "1382576494"
+                  text: "text"
+                  from:
+                    username: "John"
+                    id: "2000"
+                    full_name: "John Smith"
+                  id: "200"
+              count: 1
+            caption: null
+            likes:
+              count: 42
+              data:
+                - id: "1"
+                  username: "John"
+                  full_name: "John Smith"
+                  profile_picture: "URL"
+                  website: "example.org"
+                  count:
+                    media: 2
+                    follows: 3
+                    followed_by: 5
+            link: "link"
+            created_time: "1386312776"
+            id: "id"
+            location: null
+    TagsRecentMediaItem:
+      type: object
+      properties:
+        type?: string
+        users_in_photo?: UsersInPhoto[]
+        filter?: string
+        tags?: string[]
+        comments?:
+          type: object
+          properties:
+            data?: Comment[]
+            count?: number
+        caption?: nil | Comment
+        likes?: Likes
+        link?: string
+        created_time?: string
+        images?: Image
+        id?: string
+        location?: nil | Location
+      example:
+        type: "photo"
+        tags:
+          - "forest"
+          - "flovers"
+        comments:
+          data:
+            - created_time: "1382576494"
+              text: "text"
+              from:
+                username: "John"
+                id: "2000"
+                full_name: "John Smith"
+              id: "200"
+          count: 2
+        caption:
+          created_time: "1382576494"
+          text: "text"
+          from:
+            username: "John"
+            id: "2000"
+        likes:
+          count: 42
+          data:
+            - id: "1"
+              username: "John"
+              full_name: "John Smith"
+              profile_picture: "URL"
+              website: "example.org"
+              count:
+                media: 2
+                follows: 3
+                followed_by: 5
+        link: "link"
+        created_time: "1386312776"
+
+        id: "id"
+        location:
+          latitude: 37.778720183610183
+          longitude: -122.3962783813477
+          id: "520640"
+          street_address: ""
+          name: Le Truc
+    UsersInPhoto:
+      type: object
+      properties:
+        user: User
+        position:
+          type: object
+          properties:
+            x: number
+            y: number
+      example:
+        user:
+          id: "1"
+          username: "John"
+          full_name: "John Smith"
+          profile_picture: "URL"
+          website: "example.org"
+          count:
+            media: 2
+            follows: 3
+            followed_by: 5
+        position:
+          x: 275
+          y: 705
+    Media:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            users_in_photo: UsersInPhoto []
+            filter: string
+            tags?: string []
+            comments:
+              type: object
+              properties:
+                data?: Comment[]
+                count?: number
+            caption: nil | Comment
+            likes: Likes
+            link: string
+            user: User
+            created_time: string
+            id: string
+            location: Location | nil
+      example:
+        data:
+          users_in_photo:
+            - user:
+                id: "1"
+                username: "John"
+                full_name: "John Smith"
+                profile_picture: "URL"
+                website: "example.org"
+                count:
+                  media: 2
+                  follows: 3
+                  followed_by: 5
+              position:
+                x: 275
+                y: 705
+          filter: "filter"
+          tags:
+            - "forest"
+            - "animals"
+          comments:
+            data:
+              - created_time: "1382576494"
+                text: "text"
+                from:
+                  username: "John"
+                  id: "2000"
+                  full_name: "John Smith"
+                id: "200"
+          caption:
+            created_time: "1296710352"
+            text: Inside le truc #foodtruck
+            from:
+              username: kevin
+              full_name: Kevin Systrom
+              type: user
+              id: "3"
+            id: "26621408"
+          likes:
+            count: 42
+            data:
+              - id: "1"
+                username: "John"
+                full_name: "John Smith"
+                profile_picture: "URL"
+                website: "example.org"
+                count:
+                  media: 2
+                  follows: 3
+                  followed_by: 5
+          link: "link"
+          created_time: "1386312776"
+          id: "id"
+          location: null
+          user:
+            id: "1"
+            username: "John"
+            full_name: "John Smith"
+            profile_picture: "URL"
+            website: "example.org"
+            count:
+              media: 2
+              follows: 3
+              followed_by: 5
+    MediaSearchFirstType:
+      type: object
+      properties:
+        distance: number
+        type?: string
+        users_in_photo: UsersInPhoto[]
+        filter: string
+        tags: string[]
+        comments:
+          type: object
+          properties:
+            data?: Comment[]
+            count?: number
+        caption: nil | Comment
+        likes: Likes
+        link: string
+        user: User
+        created_time: string
+        id: string
+        images?: Image
+        location: nil | Location
+      example:
+        distance: 50
+        users_in_photo:
+          - user:
+              id: "1"
+              username: "John"
+              full_name: "John Smith"
+              profile_picture: "URL"
+              website: "example.org"
+              count:
+                media: 2
+                follows: 3
+                followed_by: 5
+            position:
+              x: 275
+              y: 705
+        filter: "filter"
+        tags:
+          - "forest"
+          - "animals"
+        comments:
+          data:
+            - created_time: "1382576494"
+              text: "text"
+              from:
+                username: "John"
+                id: "2000"
+                full_name: "John Smith"
+              id: "200"
+        caption: null
+        likes:
+          count: 42
+          data:
+            - id: "1"
+              username: "John"
+              full_name: "John Smith"
+              profile_picture: "URL"
+              website: "example.org"
+              count:
+                media: 2
+                follows: 3
+                followed_by: 5
+        link: "link"
+        created_time: "1386312776"
+        id: "id"
+        location:
+          id: "833"
+          latitude: 37.77956
+          longitude: -122.4138
+          name: "Civic Center BART"
+        user:
+          id: "1"
+          username: "John"
+          full_name: "John Smith"
+          profile_picture: "URL"
+          website: "example.org"
+          count:
+            media: 2
+            follows: 3
+            followed_by: 5
+    MediaSearchSecondType:
+      type: object
+      properties:
+        distance: number
+        videos:
+          type: object
+          properties:
+            low_resolution:
+              type: object
+              properties:
+                url: string
+                width: integer
+                height: integer
+            standard_resolution?:
+              type: object
+              properties:
+                url: string
+                width: integer
+                height: integer
+            users_in_photo: UsersInPhoto[]
+            type?: string
+            filter: string
+            tags: string[]
+            comments:
+              type: object
+              properties:
+                data?: Comment[]
+                count?: number
+            caption: nil | Comment
+            likes: Likes
+            link: string
+            user: User
+            created_time: string
+            id: string
+            images?: Image
+            location: nil | Location
+      example:
+        distance: 50
+        videos:
+          low_resolution:
+              url: "URL"
+              width: 200
+              height: 400
+          standard_resolution:
+              url: "URL"
+              width: 400
+              height: 600
+          users_in_photo:
+            - user:
+                id: "1"
+                username: "John"
+                full_name: "John Smith"
+                profile_picture: "URL"
+                website: "example.org"
+                count:
+                  media: 2
+                  follows: 3
+                  followed_by: 5
+              position:
+                x: 275
+                y: 705
+          filter: "filter"
+          tags:
+            - "forest"
+            - "animals"
+          comments:
+            data:
+              - created_time: "1382576494"
+                text: "text"
+                from:
+                  username: "John"
+                  id: "2000"
+                  full_name: "John Smith"
+                id: "200"
+          caption:
+            created_time: "1296710352"
+            text: Inside le truc #foodtruck
+            from:
+              username: kevin
+              full_name: Kevin Systrom
+              type: user
+              id: "3"
+            id: "26621408"
+          likes:
+            count: 42
+            data:
+              - id: "1"
+                username: "John"
+                full_name: "John Smith"
+                profile_picture: "URL"
+                website: "example.org"
+                count:
+                  media: 2
+                  follows: 3
+                  followed_by: 5
+          link: "link"
+          created_time: "1386312776"
+          id: "id"
+          location:
+            latitude: 37.778720183610183
+            longitude: -122.3962783813477
+            id: "520640"
+            street_address: ""
+            name: "Le Truc"
+          user:
+            id: "1"
+            username: "John"
+            full_name: "John Smith"
+            profile_picture: "URL"
+            website: "example.org"
+            count:
+              media: 2
+              follows: 3
+              followed_by: 5
+    MediaSearch:
+      type: OkStatus
+      properties:
+        data: MediaSearchFirstType | MediaSearchSecondType
+    MediaSearchArray:
+      type: OkStatus
+      properties:
+        data: (MediaSearchFirstType | MediaSearchSecondType)[]

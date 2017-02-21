@@ -1,0 +1,176 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "monitor": {
+        "name": "monitor",
+        "displayName": "monitor",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "frequency": {
+            "name": "frequency",
+            "displayName": "frequency",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "interval": {
+                "name": "interval",
+                "displayName": "interval",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "unitOfMeasure": {
+                "name": "unitOfMeasure",
+                "displayName": "unitOfMeasure",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "seconds",
+                  "minutes",
+                  "hours"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "script": {
+            "name": "script",
+            "displayName": "script",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Book Library API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "annotations": {
+              "monitor": {
+                "name": "monitor",
+                "structuredValue": {
+                  "frequency": {
+                    "interval": 5,
+                    "unitOfMeasure": "minutes"
+                  },
+                  "script": "randomBooksFetch"
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "description": "The collection of library books",
+        "relativeUri": "/books",
+        "displayName": "/books",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "books"
+        ],
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
+      }
+    ],
+    "documentation": [
+      {
+        "title": "Introduction",
+        "content": "Automated access to books"
+      },
+      {
+        "title": "Licensing",
+        "content": "Please respect copyrights on our books."
+      }
+    ],
+    "usage": "Hints for monitoring the library books API",
+    "extends": "librarybooks.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": []
+}

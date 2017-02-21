@@ -1,0 +1,13 @@
+{
+  "specification": {
+    "value": {
+      "property1": "string value",
+      "property2": 1
+    },
+    "strict": true,
+    "name": null
+  },
+  "ramlVersion": "RAML10",
+  "type": "ExampleSpec",
+  "errors": []
+}

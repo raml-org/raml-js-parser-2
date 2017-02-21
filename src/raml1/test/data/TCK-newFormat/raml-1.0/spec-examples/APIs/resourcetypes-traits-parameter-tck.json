@@ -1,0 +1,269 @@
+{
+  "specification": {
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "<<tokenName>>": {
+            "name": "<<tokenName>>",
+            "displayName": "<<tokenName>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "A valid <<tokenName>> is required",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "secured"
+      },
+      "paged": {
+        "queryParameters": {
+          "numPages": {
+            "name": "numPages",
+            "displayName": "numPages",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "The number of pages to return, not to exceed <<maxPages>>",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "paged"
+      }
+    },
+    "resourceTypes": {
+      "searchableCollection": {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "<<queryParamName>>": {
+                "name": "<<queryParamName>>",
+                "displayName": "<<queryParamName>>",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Return <<resourcePathName>> that have their <<queryParamName>> matching the given value",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "<<fallbackParamName>>": {
+                "name": "<<fallbackParamName>>",
+                "displayName": "<<fallbackParamName>>",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "If no values match the value given for <<queryParamName>>, use <<fallbackParamName>> instead",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "searchableCollection"
+      }
+    },
+    "title": "Example API",
+    "version": "v1",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "title": {
+                "name": "title",
+                "displayName": "title",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Return books that have their title matching the given value",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "digest_all_fields": {
+                "name": "digest_all_fields",
+                "displayName": "digest_all_fields",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "If no values match the value given for title, use digest_all_fields instead",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "A valid access_token is required",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "numPages": {
+                "name": "numPages",
+                "displayName": "numPages",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "The number of pages to return, not to exceed 10",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "is": [
+              {
+                "secured": {
+                  "tokenName": "access_token"
+                }
+              },
+              {
+                "paged": {
+                  "maxPages": 10
+                }
+              }
+            ],
+            "method": "get"
+          }
+        },
+        "type": {
+          "searchableCollection": {
+            "queryParamName": "title",
+            "fallbackParamName": "digest_all_fields"
+          }
+        },
+        "relativeUri": "/books",
+        "displayName": "/books",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "books"
+        ],
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

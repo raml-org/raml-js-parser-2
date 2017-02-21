@@ -1,0 +1,398 @@
+{
+  "specification": {
+    "types": {
+      "lib0.MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "prop": {
+            "name": "prop",
+            "displayName": "prop",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "lib.MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types2.MyObjectType": {
+        "name": "MyObjectType",
+        "displayName": "MyObjectType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "integerProperty": {
+            "name": "integerProperty",
+            "displayName": "integerProperty",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "resourceTypes": {
+      "rt": {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "ownLibProperty": {
+                    "name": "ownLibProperty",
+                    "displayName": "ownLibProperty",
+                    "type": [
+                      "lib0.MyType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "rootLibProperty": {
+                    "name": "rootLibProperty",
+                    "displayName": "rootLibProperty",
+                    "type": [
+                      "types2.MyObjectType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": true
+                      }
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "name": "rt"
+      }
+    },
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": {
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib.MyType"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": "stringValue",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "put"
+          },
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "ownLibProperty": {
+                    "name": "ownLibProperty",
+                    "displayName": "ownLibProperty",
+                    "type": [
+                      "lib0.MyType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "rootLibProperty": {
+                    "name": "rootLibProperty",
+                    "displayName": "rootLibProperty",
+                    "type": [
+                      "types2.MyObjectType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": true
+                      }
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "type": "rt",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INTEGER_EXPECTED",
+      "message": "integer is expected",
+      "path": "fragments/rt.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 10,
+          "position": 292
+        },
+        "end": {
+          "line": 15,
+          "column": 25,
+          "position": 307
+        }
+      },
+      "trace": [
+        {
+          "code": "ERROR_IN_INCLUDED_FILE",
+          "message": "Error in the included file: integer is expected",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 8,
+              "column": 2,
+              "position": 102
+            },
+            "end": {
+              "line": 8,
+              "column": 4,
+              "position": 104
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "INTEGER_EXPECTED",
+      "message": "integer is expected",
+      "path": "fragments/rt.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 10,
+          "position": 292
+        },
+        "end": {
+          "line": 15,
+          "column": 25,
+          "position": 307
+        }
+      },
+      "trace": [
+        {
+          "code": "INTEGER_EXPECTED",
+          "message": "integer is expected",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 10,
+              "column": 0,
+              "position": 136
+            },
+            "end": {
+              "line": 10,
+              "column": 9,
+              "position": 145
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

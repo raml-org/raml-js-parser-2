@@ -1,0 +1,26 @@
+{
+  "specification": {
+    "title": "test"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "PROPERTY_MUST_BE_A_MAP_10",
+      "message": "'resourceTypes' should be a map in RAML 1.0",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 2,
+          "column": 0,
+          "position": 23
+        },
+        "end": {
+          "line": 2,
+          "column": 13,
+          "position": 36
+        }
+      }
+    }
+  ]
+}

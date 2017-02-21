@@ -1,0 +1,59 @@
+{
+  "specification": {
+    "baseUri": "api.example.com/{mediaType}",
+    "baseUriParameters": {
+      "mediaType": {
+        "name": "mediaType",
+        "displayName": "mediaType",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTP",
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MISSING_REQUIRED_PROPERTY",
+      "message": "Missing required property 'title'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "position": 11
+        },
+        "end": {
+          "line": 5,
+          "column": 27,
+          "position": 105
+        }
+      }
+    }
+  ]
+}

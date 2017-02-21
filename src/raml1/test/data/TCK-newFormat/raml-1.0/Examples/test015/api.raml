@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Test API
+types:
+  MyType1:
+    properties:
+      /.*/: string
+    maxProperties: 1
+    example:
+      d: "a"
+      dd: "2"
+  MyType2:
+    type: MyType1
+    example:
+      x: "3"

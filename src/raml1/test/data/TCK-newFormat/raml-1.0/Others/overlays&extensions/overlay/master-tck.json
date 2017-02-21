@@ -1,0 +1,51 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "decls",
+        "value": "lib/decls.raml"
+      }
+    ],
+    "title": "Slave RAML",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "annotations": {
+              "decls.important": {
+                "name": "decls.important",
+                "structuredValue": null
+              }
+            },
+            "responses": {
+              "200": {
+                "code": "200"
+              }
+            },
+            "description": "describing your method here\n",
+            "method": "get"
+          }
+        },
+        "relativeUri": "/elements",
+        "displayName": "/elements",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "elements"
+        ],
+        "absoluteUri": "/elements",
+        "completeRelativeUri": "/elements",
+        "parentUri": ""
+      }
+    ],
+    "extends": "master.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": []
+}

@@ -1,0 +1,411 @@
+{
+  "specification": {
+    "types": {
+      "Type1": {
+        "name": "Type1",
+        "displayName": "Type1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "propertyFromType1": {
+            "name": "propertyFromType1",
+            "displayName": "propertyFromType1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Type2": {
+        "name": "Type2",
+        "displayName": "Type2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "propertyFromType2": {
+            "name": "propertyFromType2",
+            "displayName": "propertyFromType2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "resourceTypes": {
+      "ResourceTypeWithParams": {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "<<bodyTypeParam>>"
+                ],
+                "properties": {
+                  "extraProperty": {
+                    "name": "extraProperty",
+                    "displayName": "extraProperty",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "extraProperty1": "stringValue1"
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": "<<resourceTypeParam>>",
+        "name": "ResourceTypeWithParams"
+      },
+      "ResourceType1": {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "propertyFromResourceType1": {
+                    "name": "propertyFromResourceType1",
+                    "displayName": "propertyFromResourceType1",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "ResourceType1"
+      },
+      "ResourceType2": {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "propertyFromResourceType2": {
+                    "name": "propertyFromResourceType2",
+                    "displayName": "propertyFromResourceType2",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "ResourceType2"
+      }
+    },
+    "title": "API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "Type1"
+                ],
+                "properties": {
+                  "extraProperty": {
+                    "name": "extraProperty",
+                    "displayName": "extraProperty",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "propertyFromResourceType1": {
+                    "name": "propertyFromResourceType1",
+                    "displayName": "propertyFromResourceType1",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "propertyFromType1": "stringValue2",
+                      "propertyFromResourceType1": "stringValue3",
+                      "extraProperty1": "stringValue1"
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": {
+          "ResourceTypeWithParams": {
+            "resourceTypeParam": "ResourceType1",
+            "bodyTypeParam": "Type1"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_PROPERTY",
+      "message": "Unknown property: 'extraProperty1'",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 21,
+          "column": 12,
+          "position": 386
+        },
+        "end": {
+          "line": 21,
+          "column": 26,
+          "position": 400
+        }
+      },
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "UNKNOWN_PROPERTY",
+          "message": "Unknown property: 'extraProperty1'",
+          "path": "apiInvalid.raml",
+          "range": {
+            "start": {
+              "line": 42,
+              "column": 10,
+              "position": 848
+            },
+            "end": {
+              "line": 42,
+              "column": 17,
+              "position": 855
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    },
+    {
+      "code": "REQUIRED_PROPERTY_MISSING",
+      "message": "Required property 'extraProperty' is missing",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 42,
+          "column": 10,
+          "position": 848
+        },
+        "end": {
+          "line": 42,
+          "column": 17,
+          "position": 855
+        }
+      }
+    }
+  ]
+}

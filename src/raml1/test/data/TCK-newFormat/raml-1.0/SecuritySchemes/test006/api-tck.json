@@ -1,0 +1,53 @@
+{
+  "specification": {
+    "securitySchemes": {
+      "OauthSecurity": {
+        "name": "OauthSecurity",
+        "type": "OAuth 2.0",
+        "description": "New Oauth security system. Do not use MediaSecurity or LegacySecurity.",
+        "settings": {
+          "accessTokenUri": "https://oauth.simple.api/token",
+          "authorizationUri": "https://oauth.simple.api/authorization",
+          "authorizationGrants": [
+            "authorization_code"
+          ],
+          "scopes": [
+            "admin",
+            "user"
+          ]
+        }
+      }
+    },
+    "title": "test API",
+    "securedBy": [
+      {
+        "OauthSecurity": {
+          "scopes": [
+            "hello"
+          ]
+        }
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INVALID_SECURITY_SCHEME_SCOPE",
+      "message": "The 'hello' scope is not allowed for the 'OauthSecurity' security scheme. Allowed scopes are: 'admin', 'user'.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 40,
+          "position": 426
+        },
+        "end": {
+          "line": 14,
+          "column": 45,
+          "position": 431
+        }
+      }
+    }
+  ]
+}

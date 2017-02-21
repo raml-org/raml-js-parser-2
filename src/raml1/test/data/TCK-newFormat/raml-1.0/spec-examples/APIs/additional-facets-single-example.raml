@@ -1,0 +1,25 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates an example on how to use a single example with additional facets
+# Expected result: no error message
+
+# tags: example, facets
+
+title: Single example with additional facets
+
+annotationTypes:
+  pii: boolean
+
+types:
+  Message:
+    properties:
+      title?: string
+      body?: string
+      name?: string
+      comment?: string
+    example:
+      (pii): true
+      strict: false
+      value:
+        title: Attention needed
+        body: You have been added to group 274

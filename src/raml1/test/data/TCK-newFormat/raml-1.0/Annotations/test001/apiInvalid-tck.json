@@ -1,0 +1,102 @@
+{
+  "specification": {
+    "annotations": {
+      "test": {
+        "name": "test",
+        "structuredValue": {
+          "q": true,
+          "items": "E"
+        }
+      }
+    },
+    "annotationTypes": {
+      "test": {
+        "name": "test",
+        "displayName": "test",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "q": {
+            "name": "q",
+            "displayName": "q",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "W",
+              "A"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "H"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "ENUM_RESTRICTION",
+      "message": "value should be one of: 'W', 'A'",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 6,
+          "position": 161
+        },
+        "end": {
+          "line": 11,
+          "column": 11,
+          "position": 166
+        }
+      }
+    }
+  ]
+}

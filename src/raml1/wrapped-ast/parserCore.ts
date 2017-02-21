@@ -270,16 +270,7 @@ export class BasicNodeImpl implements hl.BasicNode{
      * @return Array of errors
      **/
     errors():RamlParserError[]{
-
-        var issues = [];
-        var highLevelErrors=this._node.errors()
-        if(highLevelErrors!=null) {
-            issues = issues.concat(highLevelErrors);
-        }
-        
-        var rawResult = issues.map(x=>this.basicError(x));
-        var result:RamlParserError[] = this.filterErrors(rawResult);
-        return result;
+        return errors(this._node);
     }
 
     private filterErrors(rawErrors):RamlParserError[] {
@@ -297,52 +288,6 @@ export class BasicNodeImpl implements hl.BasicNode{
         //console.log("result:" + JSON.stringify(result, null, 4));
 
         return result;
-    }
-
-    private basicError(x:hl.ValidationIssue):RamlParserError {
-        var lineMapper = (x.node && x.node.lowLevel() && x.node.lowLevel().unit().lineMapper())
-            || this._node.lowLevel().unit().lineMapper();
-
-        var startPoint = null;
-        try {
-            startPoint = lineMapper.position(x.start);
-        }
-        catch (e) {
-            console.warn(e);
-        }
-
-        var endPoint = null;
-        try {
-            endPoint = lineMapper.position(x.end);
-        }
-        catch (e) {
-            console.warn(e);
-        }
-
-        var path:string;
-        if (x.path) {
-            path = x.path;
-        }
-        else if (x.node) {
-            path = x.node.lowLevel().unit().path();
-        }
-        else {
-            path = search.declRoot(this.highLevel()).lowLevel().unit().path();
-        }
-        var eObj:any = {
-            code: x.code,
-            message: x.message,
-            path: path,
-            range: {
-                start: startPoint,
-                end: endPoint
-            },
-            isWarning: x.isWarning
-        };
-        if(x.extras && x.extras.length>0){
-            eObj.trace = x.extras.map(y=>this.basicError(y));
-        }
-        return eObj;
     }
 
     /**
@@ -840,4 +785,84 @@ export function attributesToValues(attrs:hl.IAttribute[], constr?:(attr:hl.IAttr
     else{
         return attrs.map(x=>x.value());
     }
+}
+
+/**
+ * @hidden
+ */
+export function errors(_node:hl.IHighLevelNode):RamlParserError[]{
+
+    var issues = [];
+    var highLevelErrors=_node.errors()
+    if(highLevelErrors!=null) {
+        issues = issues.concat(highLevelErrors);
+    }
+
+    var rawResult = issues.map(x=>basicError(_node,x));
+    var result:RamlParserError[] = filterErrors(rawResult);
+    return result;
+}
+
+/**
+ * @hidden
+ */
+export function filterErrors(rawErrors:RamlParserError[]):RamlParserError[] {
+    var result:RamlParserError[] = [];
+    var errorsMap = {};
+
+    rawErrors.map(x=>{errorsMap[JSON.stringify(x)] = x});
+    var keys: string[] = Object.keys(errorsMap);
+    for (var i = 0; i < keys.length; i++){
+        result.push(errorsMap[keys[i]]);
+    }
+    return result;
+}
+
+/**
+ * @hidden
+ */
+export function basicError(_node:hl.IHighLevelNode,x:hl.ValidationIssue):RamlParserError {
+    var lineMapper = (x.node && x.node.lowLevel() && x.node.lowLevel().unit().lineMapper())
+        || _node.lowLevel().unit().lineMapper();
+
+    var startPoint = null;
+    try {
+        startPoint = lineMapper.position(x.start);
+    }
+    catch (e) {
+        console.warn(e);
+    }
+
+    var endPoint = null;
+    try {
+        endPoint = lineMapper.position(x.end);
+    }
+    catch (e) {
+        console.warn(e);
+    }
+
+    var path:string;
+    if (x.path) {
+        path = x.path;
+    }
+    else if (x.node) {
+        path = x.node.lowLevel().unit().path();
+    }
+    else {
+        path = search.declRoot(_node).lowLevel().unit().path();
+    }
+    var eObj:any = {
+        code: x.code,
+        message: x.message,
+        path: path,
+        range: {
+            start: startPoint,
+            end: endPoint
+        },
+        isWarning: x.isWarning
+    };
+    if(x.extras && x.extras.length>0){
+        eObj.trace = x.extras.map(y=>basicError(_node,y));
+    }
+    return eObj;
 }

@@ -1,0 +1,145 @@
+{
+  "specification": {
+    "traits": {
+      "trait1": {
+        "queryParameters": {
+          "param1": {
+            "name": "param1",
+            "displayName": "param1",
+            "type": [
+              "<<type1>>"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "trait1"
+      }
+    },
+    "title": "TCK test. Trait 002",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "prop": "value"
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "is": [
+              {
+                "trait1": {
+                  "type1": "number",
+                  "body1": {
+                    "application/json": {
+                      "example": "{\n  \"prop\": \"value\"\n}\n"
+                    }
+                  }
+                }
+              }
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "http://api.samplehost.com/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

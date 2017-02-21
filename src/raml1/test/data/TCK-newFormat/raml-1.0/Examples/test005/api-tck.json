@@ -1,0 +1,96 @@
+{
+  "specification": {
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "c": {
+            "name": "c",
+            "displayName": "c",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "y": {
+            "name": "y",
+            "displayName": "y",
+            "type": [
+              "boolean"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "c": "A",
+              "y": 3
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "boolean is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 6,
+          "position": 143
+        },
+        "end": {
+          "line": 10,
+          "column": 7,
+          "position": 144
+        }
+      }
+    }
+  ]
+}

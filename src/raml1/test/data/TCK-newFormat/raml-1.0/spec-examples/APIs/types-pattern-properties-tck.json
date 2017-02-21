@@ -1,0 +1,86 @@
+{
+  "specification": {
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "/^note\\d+$/": {
+            "name": "/^note\\d+$/",
+            "displayName": "/^note\\d+$/",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "My API With Types",
+    "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

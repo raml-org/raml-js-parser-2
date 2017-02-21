@@ -1,0 +1,19 @@
+{
+  "specification": {
+    "title": "54",
+    "baseUri": "http://myapi.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

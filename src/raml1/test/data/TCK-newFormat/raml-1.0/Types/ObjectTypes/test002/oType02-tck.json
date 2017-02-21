@@ -1,0 +1,96 @@
+{
+  "specification": {
+    "types": {
+      "Initial_comments": {
+        "name": "Initial_comments",
+        "displayName": "Initial_comments",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "comment_id": {
+            "name": "comment_id",
+            "displayName": "comment_id",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "initial_comments": {
+            "name": "initial_comments",
+            "displayName": "initial_comments",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "minProperties": 2,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "initial_comments": "oo"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "My API With Types"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'Initial_comments.minProperties=2' i.e. object properties count should not be less than 2",
+      "path": "oType02.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 4,
+          "position": 179
+        },
+        "end": {
+          "line": 9,
+          "column": 11,
+          "position": 186
+        }
+      }
+    }
+  ]
+}

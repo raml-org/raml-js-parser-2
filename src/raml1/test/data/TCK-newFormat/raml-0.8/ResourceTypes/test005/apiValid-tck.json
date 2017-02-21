@@ -1,0 +1,302 @@
+{
+  "specification": {
+    "title": "A",
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<propertyName1>>": {
+            "name": "<<propertyName1>>",
+            "displayName": "<<propertyName1>>",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "<<propertyName2>>": {
+            "name": "<<propertyName2>>",
+            "displayName": "<<propertyName2>>",
+            "type": "boolean",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "<<propertyName3>>": {
+            "name": "<<propertyName3>>",
+            "displayName": "<<propertyName3>>",
+            "type": "string",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "SomeTrait"
+      }
+    },
+    "resourceTypes": {
+      "Resource1": {
+        "name": "Resource1",
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "formParameters": {
+                  "formParam": {
+                    "name": "formParam",
+                    "displayName": "formParam",
+                    "type": "number",
+                    "required": false,
+                    "repeat": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "is": [
+          {
+            "SomeTrait": {
+              "propertyName1": "a",
+              "propertyName2": "b",
+              "propertyName3": "c"
+            }
+          }
+        ]
+      },
+      "Resource2": {
+        "name": "Resource2",
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "formParameters": {
+                  "formParam": {
+                    "name": "formParam",
+                    "displayName": "formParam",
+                    "type": "boolean",
+                    "required": false,
+                    "repeat": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "is": [
+          {
+            "SomeTrait": {
+              "propertyName1": "c",
+              "propertyName2": "a",
+              "propertyName3": "b"
+            }
+          }
+        ]
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "type": "Resource2",
+        "is": [
+          {
+            "SomeTrait": {
+              "propertyName1": "c",
+              "propertyName2": "a",
+              "propertyName3": "b"
+            }
+          }
+        ],
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "formParameters": {
+                  "formParam": {
+                    "name": "formParam",
+                    "displayName": "formParam",
+                    "type": "boolean",
+                    "required": false,
+                    "example": "false",
+                    "repeat": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "queryParameters": {
+              "a": {
+                "name": "a",
+                "displayName": "a",
+                "type": "boolean",
+                "required": false,
+                "example": "true",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "b": {
+                "name": "b",
+                "displayName": "b",
+                "type": "string",
+                "required": false,
+                "example": "stringValue",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "c": {
+                "name": "c",
+                "displayName": "c",
+                "type": "number",
+                "required": false,
+                "example": "11",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

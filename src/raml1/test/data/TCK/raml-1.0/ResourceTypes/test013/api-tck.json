@@ -32,6 +32,34 @@
     ],
     "traits": [
       {
+        "hasResponseCollection": {
+          "responses": {
+            "200": {
+              "code": "200",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "<<resourcePathName|!uppercamelcase>>"
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "name": "hasResponseCollection",
+          "usage": "Use this trait for resources whose response body is a collection of items"
+        }
+      },
+      {
         "lib.hasResponseCollection": {
           "responses": {
             "200": {
@@ -60,34 +88,6 @@
           "__METADATA__": {
             "calculated": true
           }
-        }
-      },
-      {
-        "hasResponseCollection": {
-          "responses": {
-            "200": {
-              "code": "200",
-              "body": {
-                "application/json": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "type": [
-                    "<<resourcePathName|!uppercamelcase>>"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "name": "hasResponseCollection",
-          "usage": "Use this trait for resources whose response body is a collection of items"
         }
       }
     ],

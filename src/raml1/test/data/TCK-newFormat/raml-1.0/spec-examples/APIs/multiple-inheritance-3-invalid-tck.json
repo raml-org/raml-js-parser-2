@@ -1,0 +1,79 @@
+{
+  "specification": {
+    "types": {
+      "Number1": {
+        "name": "Number1",
+        "displayName": "Number1",
+        "type": [
+          "number"
+        ],
+        "minimum": 4,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Number2": {
+        "name": "Number2",
+        "displayName": "Number2",
+        "type": [
+          "number"
+        ],
+        "maximum": 2,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Number3": {
+        "name": "Number3",
+        "displayName": "Number3",
+        "type": [
+          "Number1",
+          "Number2"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Mulitple Inheritance using facets"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "RESTRICTIONS_CONFLICT",
+      "message": "Restrictions conflict in type 'Number3': ['Number2.maximum=2' is less than 'Number1.minimum=4'. The minimum cannot be higher than the maximum.]",
+      "path": "multiple-inheritance-3-invalid.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 2,
+          "position": 427
+        },
+        "end": {
+          "line": 15,
+          "column": 9,
+          "position": 434
+        }
+      }
+    }
+  ]
+}

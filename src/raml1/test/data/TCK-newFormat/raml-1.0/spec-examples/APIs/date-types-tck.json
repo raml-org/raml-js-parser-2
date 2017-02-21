@@ -1,0 +1,127 @@
+{
+  "specification": {
+    "types": {
+      "birthday": {
+        "name": "birthday",
+        "displayName": "birthday",
+        "type": [
+          "date-only"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": "2015-05-23",
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "lunchtime": {
+        "name": "lunchtime",
+        "displayName": "lunchtime",
+        "type": [
+          "time-only"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": "12:30:00",
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "fireworks": {
+        "name": "fireworks",
+        "displayName": "fireworks",
+        "type": [
+          "datetime-only"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": "2015-07-04T21:00:00",
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "created": {
+        "name": "created",
+        "displayName": "created",
+        "type": [
+          "datetime"
+        ],
+        "format": "rfc3339",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": "2016-02-28T16:41:41.090Z",
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "If-Modified-Since": {
+        "name": "If-Modified-Since",
+        "displayName": "If-Modified-Since",
+        "type": [
+          "datetime"
+        ],
+        "format": "rfc2616",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": "Sun, 28 Feb 2016 16:41:41 GMT",
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Date Types"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

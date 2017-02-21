@@ -1,0 +1,56 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Illustrating annotations",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "annotations": {
+              "deprecated": {
+                "name": "deprecated",
+                "structuredValue": null
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

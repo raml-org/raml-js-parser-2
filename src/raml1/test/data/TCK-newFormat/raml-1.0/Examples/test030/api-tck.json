@@ -1,0 +1,368 @@
+{
+  "specification": {
+    "types": {
+      "amazon-apigateway-auth-type": {
+        "name": "amazon-apigateway-auth-type",
+        "displayName": "amazon-apigateway-auth-type",
+        "type": [
+          "string"
+        ],
+        "enum": [
+          "aws_iam"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "amazon-apigateway-integration-lambda": {
+        "name": "amazon-apigateway-integration-lambda",
+        "displayName": "amazon-apigateway-integration-lambda",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "lambda"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "amazon-apigateway-integration-HTTP": {
+        "name": "amazon-apigateway-integration-HTTP",
+        "displayName": "amazon-apigateway-integration-HTTP",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "HTTP"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "amazon-apigateway-integration-mock": {
+        "name": "amazon-apigateway-integration-mock",
+        "displayName": "amazon-apigateway-integration-mock",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "mock"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "amazon-apigateway-integration-aws": {
+        "name": "amazon-apigateway-integration-aws",
+        "displayName": "amazon-apigateway-integration-aws",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "aws"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "amazon-apigateway-integration": {
+        "name": "amazon-apigateway-integration",
+        "displayName": "amazon-apigateway-integration",
+        "type": [
+          "amazon-apigateway-integration-lambda | amazon-apigateway-integration-HTTP | amazon-apigateway-integration-mock | amazon-apigateway-integration-aws"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "amazon-apigateway-auth": {
+        "name": "amazon-apigateway-auth",
+        "displayName": "amazon-apigateway-auth",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "value": {
+            "name": "value",
+            "displayName": "value",
+            "type": [
+              "amazon-apigateway-auth-type"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "amazon-apigateway-integration": {
+        "name": "amazon-apigateway-integration",
+        "displayName": "amazon-apigateway-integration",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "value": {
+            "name": "value",
+            "displayName": "value",
+            "type": [
+              "amazon-apigateway-integration"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "securitySchemes": {
+      "key": {
+        "name": "key",
+        "type": "Pass Through",
+        "describedBy": {
+          "headers": {
+            "x-api-key": {
+              "name": "x-api-key",
+              "displayName": "x-api-key",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          }
+        }
+      }
+    },
+    "title": "API Gateway Test API",
+    "version": "1.0.0",
+    "baseUri": "https://api.uber.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

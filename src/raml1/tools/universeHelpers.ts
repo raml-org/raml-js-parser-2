@@ -7,7 +7,7 @@ export function isDocumentationProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.Api.properties.documentation.name ||
         p.nameId() === universe.Universe08.Api.properties.documentation.name;
 }
@@ -26,7 +26,7 @@ export function isUsageProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return isUsagePropertyName(p.nameId());
 }
 
@@ -34,7 +34,7 @@ export function isMasterRefProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() == universe.Universe10.Overlay.properties.extends.name ||
         p.nameId() == universe.Universe10.Extension.properties.extends.name;
 }
@@ -138,7 +138,7 @@ export function isAnnotationsProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.Api.properties.annotations.name ||
     //p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.annotations.name ||
     p.nameId() === universe.Universe10.TypeDeclaration.properties.annotations.name ||
@@ -157,7 +157,7 @@ export function isIsProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.MethodBase.properties.is.name ||
     p.nameId() === universe.Universe08.Method.properties.is.name ||
     p.nameId() === universe.Universe10.ResourceBase.properties.is.name ||
@@ -169,7 +169,7 @@ export function isSecuredByProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.Api.properties.securedBy.name ||
     p.nameId() === universe.Universe08.Api.properties.securedBy.name ||
     p.nameId() === universe.Universe10.MethodBase.properties.securedBy.name ||
@@ -200,7 +200,7 @@ export function isTypeProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.type.name ||
     p.nameId() === universe.Universe08.AbstractSecurityScheme.properties.type.name ||
     p.nameId() === universe.Universe08.ResourceType.properties.type.name ||
@@ -372,7 +372,7 @@ export function isEnumProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.StringTypeDeclaration.properties.enum.name
         ||p.nameId() === universe.Universe10.NumberTypeDeclaration.properties.enum.name
         ||p.nameId() === universe.Universe08.StringTypeDeclaration.properties.enum.name;
@@ -417,7 +417,7 @@ export function isRAMLVersionProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe08.Api.properties.RAMLVersion.name ||
         p.nameId() === universe.Universe10.Api.properties.RAMLVersion.name;
 
@@ -427,7 +427,7 @@ export function isUsesProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.FragmentDeclaration.properties.uses.name;
 }
 
@@ -435,7 +435,7 @@ export function isAnnotationTypesProperty(p:hl.IProperty) : boolean {
     if(!p) {
         return false;
     }
-    
+
     return p.nameId() === universe.Universe10.LibraryBase.properties.annotationTypes.name;
 }
 
@@ -585,6 +585,10 @@ export function isObjectTypeDeclarationSibling(type: hl.INodeDefinition | hl.ITy
 
 export function isTypeDeclarationDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.isAssignableFrom(universe.Universe10.TypeDeclaration.name);
+}
+
+export function isStringTypeDeclarationDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.isAssignableFrom(universe.Universe10.StringTypeDeclaration.name);
 }
 
 /**

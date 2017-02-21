@@ -1,0 +1,43 @@
+#%RAML 1.0
+
+# Objective: The following example illustrates some possible responses.
+# Expected result: no error message
+
+# tags: response, headers, body, http codes
+
+title: Example with responses
+mediaType: application/json
+types:
+  Invoice:
+    properties:
+      amount:
+        type: number
+        minimum: 0
+      vendorName:
+/invoices:
+  get:
+    responses:
+      200:
+        body:
+          type: Invoice
+          properties:
+            id: number
+  post:
+    body:
+      type: Invoice
+    responses:
+      201:
+        headers:
+          Location:
+            example: /invoices/45612
+        body:
+          application/json:
+            type: !include schemas/invoice.json
+          text/xml:
+            type: !include schemas/invoice.xsd
+      422:
+        body:
+          properties:
+            error:
+          example:
+            error: Amount cannot be negative

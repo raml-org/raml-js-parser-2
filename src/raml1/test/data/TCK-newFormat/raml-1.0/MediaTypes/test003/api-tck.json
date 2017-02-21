@@ -1,0 +1,12 @@
+{
+  "specification": {
+    "title": "Test Api",
+    "mediaType": [
+      "application/xml",
+      "application/json"
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,15 @@
+#%RAML 1.0
+#successful test for 'minLength'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    minLength:
+      value: 5
+      (a): abcdefghijkl

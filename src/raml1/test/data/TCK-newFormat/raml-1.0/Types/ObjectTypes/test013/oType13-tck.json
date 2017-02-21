@@ -1,0 +1,100 @@
+{
+  "specification": {
+    "types": {
+      "Method": {
+        "name": "Method",
+        "displayName": "Method",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Resource": {
+        "name": "Resource",
+        "displayName": "Resource",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "/post|get|put/": {
+            "name": "/post|get|put/",
+            "displayName": "/post|get|put/",
+            "type": [
+              "Method"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "put": {
+                "name": "update method"
+              },
+              "post": {
+                "name": "create method"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "My API With Types"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,95 @@
+{
+  "specification": {
+    "title": "Pet shop",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "method": "post"
+          },
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "name": {
+                    "name": "name",
+                    "displayName": "name",
+                    "type": [
+                      "string"
+                    ],
+                    "default": "Blah",
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "extends": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": [
+    {
+      "code": "INVALID_OVERLAY_NODE",
+      "message": "The './resource.post' node does not match any node of the master api.",
+      "path": "NewOverlay.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 51
+        },
+        "end": {
+          "line": 4,
+          "column": 6,
+          "position": 55
+        }
+      }
+    }
+  ]
+}

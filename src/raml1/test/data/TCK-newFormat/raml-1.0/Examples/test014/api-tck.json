@@ -1,0 +1,105 @@
+{
+  "specification": {
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "/.*/": {
+            "name": "/.*/",
+            "displayName": "/.*/",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "minProperties": 2,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "d": "a",
+              "dd": "2"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "MyType1"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "x": "3"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'MyType1.minProperties=2' i.e. object properties count should not be less than 2",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 4,
+          "position": 174
+        },
+        "end": {
+          "line": 12,
+          "column": 11,
+          "position": 181
+        }
+      }
+    }
+  ]
+}

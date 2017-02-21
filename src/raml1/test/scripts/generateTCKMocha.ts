@@ -58,3 +58,20 @@ tckUtil.generateMochaSuite(
     true
 );
 
+tckUtil.generateMochaSuite(
+    path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/TCK-newFormat"),
+    path.resolve(tckUtil.projectFolder(),"src/raml1/test/TCK2-newFormat.ts"),
+    dataRoot,
+    'Complete TCK Test Set For New JSON Format',
+    false,
+    true
+);
+
+tckUtil.generateMochaSuite(
+    path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/LibraryExpansion-newFormat"),
+    path.resolve(tckUtil.projectFolder(),"src/raml1/test/libraryExpansion-newFormat.ts"),
+    dataRoot,
+    'Library Expansion Tests For NEW JSON FOrmat',
+    true,
+    true
+);

@@ -1,0 +1,95 @@
+{
+  "specification": {
+    "title": "A",
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "numericParam": {
+            "name": "numericParam",
+            "displayName": "numericParam",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "SomeTrait"
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
+                  }
+                }
+              }
+            },
+            "queryParameters": {
+              "numericParam": {
+                "name": "numericParam",
+                "displayName": "numericParam",
+                "type": "number",
+                "required": false,
+                "example": "111",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get",
+            "is": [
+              "SomeTrait"
+            ]
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

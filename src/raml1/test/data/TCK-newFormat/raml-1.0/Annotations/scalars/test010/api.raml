@@ -1,0 +1,17 @@
+#%RAML 1.0
+#failure test for 'description'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      prop:
+        description:
+          value: the property
+          (a): abcdefg

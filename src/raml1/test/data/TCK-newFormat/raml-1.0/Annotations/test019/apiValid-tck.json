@@ -1,0 +1,50 @@
+{
+  "specification": {
+    "annotations": {
+      "amazon-apigateway-integration": {
+        "name": "amazon-apigateway-integration",
+        "structuredValue": 1
+      }
+    },
+    "types": {
+      "amazon-apigateway-integration": {
+        "name": "amazon-apigateway-integration",
+        "displayName": "amazon-apigateway-integration",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "amazon-apigateway-integration": {
+        "name": "amazon-apigateway-integration",
+        "displayName": "amazon-apigateway-integration",
+        "type": [
+          "amazon-apigateway-integration"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "usage": "Data types and annotation types for AWS API Gateway"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": []
+}

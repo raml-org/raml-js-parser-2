@@ -1,0 +1,28 @@
+{
+  "specification": {
+    "title": "Description test",
+    "resources": [
+      {
+        "description": "*test*\n**test**\n***test***\n`test`\n~~test~~\n* test\n- test\n+ test\n\n# test\n### test\ntest\n====\ntest\n----\n[test text](http://www.example.com)\n",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

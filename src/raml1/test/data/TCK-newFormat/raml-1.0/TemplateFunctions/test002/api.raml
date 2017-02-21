@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: testAPI
+
+resourceTypes:
+  collection:
+    post:
+      description: Create a <<resourcePathName|!singularize|!uppercamelcase>>
+
+/users:
+  type: collection

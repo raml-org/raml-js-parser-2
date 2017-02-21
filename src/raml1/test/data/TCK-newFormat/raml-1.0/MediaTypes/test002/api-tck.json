@@ -1,0 +1,154 @@
+{
+  "specification": {
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "New API",
+    "mediaType": [
+      "application/json",
+      "application/xml"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "array"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "items": "Person",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "application/xml": {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "type": [
+                      "array"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "items": "Person",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/list",
+        "displayName": "/list",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "list"
+        ],
+        "absoluteUri": "/list",
+        "completeRelativeUri": "/list",
+        "parentUri": ""
+      },
+      {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "Person"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "Person"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/send",
+        "displayName": "/send",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "send"
+        ],
+        "absoluteUri": "/send",
+        "completeRelativeUri": "/send",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

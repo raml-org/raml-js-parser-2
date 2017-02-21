@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: test API
+
+types:
+  ParentType:
+    properties:
+      stringProperty: string
+      kind: string
+    discriminator: kind
+
+  ChildType1:
+    type: ParentType
+    discriminatorValue: k1
+
+  ChildType2:
+    type: ParentType
+    discriminatorValue: k2
+    properties:
+      stringProperty:
+        type: string
+        minLength: 3
+
+/resource:
+  post:
+    body:
+      application/json:
+        type: ParentType[]
+        examples:
+          ex1:
+            - stringProperty: ab
+              kind: k1
+
+          ex2:
+            - stringProperty: ab
+              kind: k2

@@ -1,0 +1,182 @@
+{
+  "specification": {
+    "types": {
+      "dept_code": {
+        "name": "dept_code",
+        "displayName": "dept_code",
+        "type": [
+          "string"
+        ],
+        "pattern": "^\\d+\\-\\w+$",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "traits": {
+      "chargeable": {
+        "headers": {
+          "X-Dept": {
+            "name": "X-Dept",
+            "displayName": "X-Dept",
+            "type": [
+              "array"
+            ],
+            "examples": [
+              {
+                "value": [
+                  "230-OCTO",
+                  "InvalidHere"
+                ],
+                "strict": true,
+                "name": "one_dept"
+              }
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "dept_code",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "chargeable"
+      }
+    },
+    "title": "Test named parameters",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "headers": {
+              "X-Dept": {
+                "name": "X-Dept",
+                "displayName": "X-Dept",
+                "type": [
+                  "array"
+                ],
+                "examples": [
+                  {
+                    "value": [
+                      "230-OCTO",
+                      "InvalidHere"
+                    ],
+                    "strict": true,
+                    "name": "one_dept"
+                  }
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "dept_code",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "is": [
+              "chargeable"
+            ],
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "PATTERN_VIOLATION",
+      "message": "String should match to '^\\d+\\-\\w+$'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 14,
+          "position": 235
+        },
+        "end": {
+          "line": 14,
+          "column": 25,
+          "position": 246
+        }
+      }
+    },
+    {
+      "code": "PATTERN_VIOLATION",
+      "message": "String should match to '^\\d+\\-\\w+$'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 14,
+          "position": 235
+        },
+        "end": {
+          "line": 14,
+          "column": 25,
+          "position": 246
+        }
+      },
+      "trace": [
+        {
+          "code": "PATTERN_VIOLATION",
+          "message": "String should match to '^\\d+\\-\\w+$'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 17,
+              "column": 2,
+              "position": 261
+            },
+            "end": {
+              "line": 17,
+              "column": 5,
+              "position": 264
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

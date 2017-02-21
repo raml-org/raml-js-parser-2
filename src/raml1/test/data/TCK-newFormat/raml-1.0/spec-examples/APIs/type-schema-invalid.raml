@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: Types / Schema mutual exclusive
+
+description: This RAML illustrates an invalid case where type and schema has been used on the same node.
+
+types:
+  Person:
+    schema: # invalid as mutually exclusive with `type`
+    type: # invalid as mutually exclusive with `schema`
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json: # start type declaration
+            schema: # invalid as mutually exclusive with `type`
+            type: # invalid as mutually exclusive with `schema`

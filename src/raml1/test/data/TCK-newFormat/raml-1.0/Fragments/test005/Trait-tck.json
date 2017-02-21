@@ -1,0 +1,29 @@
+{
+  "specification": {
+    "headers": {
+      "TestHeader": {
+        "name": "TestHeader",
+        "displayName": "TestHeader",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Trait",
+  "errors": []
+}

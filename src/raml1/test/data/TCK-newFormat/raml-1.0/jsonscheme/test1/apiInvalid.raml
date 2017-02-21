@@ -1,0 +1,14 @@
+#%RAML 1.0
+
+title: Api
+
+types:
+  MyType: !include scheme.json
+
+/resource:
+  get:
+    body:
+      application/json:
+        type: MyType
+        example:
+          name1: somename

@@ -1,0 +1,22 @@
+#%RAML 1.0
+title: Example API test 04
+annotationTypes:
+  NumberAnnotation:
+    type: number
+
+  ObjectAnnotation:
+    type: ObjectType1
+
+types:
+  ObjectType1:
+    properties:
+      prop1:
+    example:
+      value:
+        prop1: value1
+      strict: false
+      displayName: myExample
+      description: example of ObjectType3
+      (NumberAnnotation): 5
+      (ObjectAnnotation): { prop1: value1 }
+

@@ -1,0 +1,108 @@
+{
+  "specification": {
+    "title": "TCK Bodies 001.",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": "string",
+        "required": true,
+        "repeat": false,
+        "enum": [
+          "v1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "{}",
+                    "example": "{}",
+                    "schemaContent": "{}"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{}",
+                "example": "{}",
+                "schemaContent": "{}"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,42 @@
+#%RAML 1.0
+title: Example API
+version: v1
+mediaType: application/json
+types:
+  item:
+    type: object
+    properties:
+      id: string
+      size: number
+  collection:
+    type: array
+    items:
+      item | string
+traits:
+  params:
+    queryParameters:
+      paginationType:
+  type:
+resourceTypes:
+  searchableCollection:
+   get:
+     is:  [params]
+     responses:
+       200:
+         body:
+           application/json:
+             type: <<name | !singularize>>
+/rest:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              length: string
+  type: {searchableCollection: {name: collection}}
+/res:
+  post:
+  /{resId}:
+    get:

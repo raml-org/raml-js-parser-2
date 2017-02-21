@@ -1,0 +1,132 @@
+{
+  "specification": {
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "WebOfMe",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "message": "s",
+                          "r": 2
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "type": [
+                      "{\n  \"required\": \"message\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": true,\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
+                    ],
+                    "mediaType": "application/json",
+                    "typePropertyKind": "JSON"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/hello",
+        "displayName": "/hello",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hello"
+        ],
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "EXAMPLE_SCHEMA_FAILURE",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Keyword 'required' is expected to be of type 'array' required,array, Keyword 'required' is expected to be of type 'array' required,array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 25,
+          "column": 12,
+          "position": 585
+        },
+        "end": {
+          "line": 25,
+          "column": 19,
+          "position": 592
+        }
+      }
+    }
+  ]
+}

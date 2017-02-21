@@ -1,0 +1,99 @@
+{
+  "specification": {
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "someProperty": {
+            "name": "someProperty",
+            "displayName": "someProperty",
+            "type": [
+              "SomeType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "someProperty": {
+                "someProperty": {
+                  "someProperty": null
+                }
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "CYCLIC_DEPENDENCY",
+      "message": "'someProperty' has cyclic dependency",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 6,
+          "position": 64
+        },
+        "end": {
+          "line": 6,
+          "column": 18,
+          "position": 76
+        }
+      }
+    },
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 12,
+          "position": 158
+        },
+        "end": {
+          "line": 10,
+          "column": 24,
+          "position": 170
+        }
+      }
+    }
+  ]
+}

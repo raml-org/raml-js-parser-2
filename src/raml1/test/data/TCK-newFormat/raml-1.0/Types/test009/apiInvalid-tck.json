@@ -1,0 +1,257 @@
+{
+  "specification": {
+    "types": {
+      "SimpleType1": {
+        "name": "SimpleType1",
+        "displayName": "SimpleType1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "property1": {
+            "name": "property1",
+            "displayName": "property1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "property2": {
+            "name": "property2",
+            "displayName": "property2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "SimpleType2": {
+        "name": "SimpleType2",
+        "displayName": "SimpleType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "property1": {
+            "name": "property1",
+            "displayName": "property1",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "property2": {
+            "name": "property2",
+            "displayName": "property2",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "SimpleUnion": {
+        "name": "SimpleUnion",
+        "displayName": "SimpleUnion",
+        "type": [
+          "SimpleType1 | SimpleType2"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "TypeWithUnionProps": {
+        "name": "TypeWithUnionProps",
+        "displayName": "TypeWithUnionProps",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "unionArray": {
+            "name": "unionArray",
+            "displayName": "unionArray",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "SimpleUnion",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "unionArray": [
+                {
+                  "property1": "val1",
+                  "property2": "val2"
+                },
+                {
+                  "property1": "val1",
+                  "property2": 2
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNION_TYPE_FAILURE_DETAILS",
+      "message": "Union type option does not pass validation (SimpleType2: number is expected)",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 27,
+          "column": 10,
+          "position": 442
+        },
+        "end": {
+          "line": 27,
+          "column": 19,
+          "position": 451
+        }
+      }
+    },
+    {
+      "code": "UNION_TYPE_FAILURE",
+      "message": "Union type options do not pass validation",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 27,
+          "column": 10,
+          "position": 442
+        },
+        "end": {
+          "line": 28,
+          "column": 22,
+          "position": 480
+        }
+      }
+    },
+    {
+      "code": "UNION_TYPE_FAILURE_DETAILS",
+      "message": "Union type option does not pass validation (SimpleType1: string is expected)",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 28,
+          "column": 10,
+          "position": 468
+        },
+        "end": {
+          "line": 28,
+          "column": 19,
+          "position": 477
+        }
+      }
+    }
+  ]
+}

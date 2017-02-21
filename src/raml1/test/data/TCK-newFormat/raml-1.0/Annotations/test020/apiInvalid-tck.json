@@ -1,0 +1,214 @@
+{
+  "specification": {
+    "traits": {
+      "helloNightmare": {
+        "queryParameters": {
+          "nightMare": {
+            "name": "nightMare",
+            "displayName": "nightMare",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "<<isRequired>>": "<<value>>"
+          }
+        },
+        "name": "helloNightmare"
+      }
+    },
+    "annotationTypes": {
+      "searchable": {
+        "name": "searchable",
+        "displayName": "searchable",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "sortable": {
+        "name": "sortable",
+        "displayName": "sortable",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "default": {
+            "name": "default",
+            "displayName": "default",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "annotations": {
+              "searchable": {
+                "name": "searchable",
+                "structuredValue": "someValue"
+              }
+            },
+            "queryParameters": {
+              "kind": {
+                "annotations": {
+                  "sortable": {
+                    "name": "sortable",
+                    "structuredValue": {
+                      "default": "low"
+                    }
+                  },
+                  "searchable": {
+                    "name": "searchable",
+                    "structuredValue": null
+                  }
+                },
+                "name": "kind",
+                "displayName": "kind",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/animals",
+        "displayName": "/animals",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "animals"
+        ],
+        "absoluteUri": "/animals",
+        "completeRelativeUri": "/animals",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "NULL_EXPECTED",
+      "message": "null is expected",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 19,
+          "column": 4,
+          "position": 292
+        },
+        "end": {
+          "line": 19,
+          "column": 16,
+          "position": 304
+        }
+      }
+    }
+  ]
+}

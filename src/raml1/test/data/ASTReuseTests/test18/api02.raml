@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: Example API
+version: v1
+mediaType: application/json
+traits:
+  pagination:
+    queryParameters:
+      pageSize: number
+  showHidden:
+    headers:
+      showAll: boolean
+  showOwner:
+    queryParameters:
+      getOwner: boolean
+resourceTypes:
+  collection:
+    type: member
+    get:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName>> # e.g. Users
+    post:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName | !singularize>>  # e.g. User
+  member:
+    type: item
+    get:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName>> # e.g. User
+  item:
+    put:
+      is:  [pagination, showOwner]
+  bucket:
+    patch:
+/res:
+  type: collection

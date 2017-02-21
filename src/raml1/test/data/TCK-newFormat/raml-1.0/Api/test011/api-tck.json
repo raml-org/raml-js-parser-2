@@ -1,0 +1,19 @@
+{
+  "specification": {
+    "title": "this is a very long title, it should fail the length validation for titles with an exception clearly marking it so",
+    "baseUri": "http://myapi.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

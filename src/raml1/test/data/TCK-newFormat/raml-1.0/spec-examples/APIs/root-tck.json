@@ -1,0 +1,233 @@
+{
+  "specification": {
+    "types": {
+      "Gist": {
+        "name": "Gist",
+        "displayName": "Gist",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Gists": {
+        "name": "Gists",
+        "displayName": "Gists",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "resourceTypes": {
+      "collection": {
+        "description": "represents a collection",
+        "securedBy": [
+          "oauth_2_0"
+        ],
+        "name": "collection",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "describedBy": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "headers": {
+            "Authorization": {
+              "name": "Authorization",
+              "displayName": "Authorization",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+            },
+            {
+              "code": "403",
+              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+            }
+          ]
+        },
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "authorization_code",
+            "implicit",
+            "urn:ietf:params:oauth:grant-type:saml2-bearer"
+          ],
+          "scopes": [
+            "USER",
+            "ADMINISTRATOR"
+          ]
+        }
+      }
+    },
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "securedBy": [
+      "oauth_2_0"
+    ],
+    "resources": [
+      {
+        "securedBy": [
+          "oauth_2_0"
+        ],
+        "relativeUri": "/search",
+        "displayName": "/search",
+        "resources": [
+          {
+            "methods": {
+              "get": {
+                "protocols": [
+                  "HTTPS"
+                ],
+                "securedBy": [
+                  "oauth_2_0"
+                ],
+                "method": "get",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    },
+                    "securedBy": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "type": "collection",
+            "description": "represents a collection",
+            "securedBy": [
+              "oauth_2_0"
+            ],
+            "relativeUri": "/code",
+            "displayName": "/code",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "code"
+            ],
+            "absoluteUri": "https://api.github.com/search/code",
+            "completeRelativeUri": "/search/code",
+            "parentUri": "/search"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "search"
+        ],
+        "absoluteUri": "https://api.github.com/search",
+        "completeRelativeUri": "/search",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

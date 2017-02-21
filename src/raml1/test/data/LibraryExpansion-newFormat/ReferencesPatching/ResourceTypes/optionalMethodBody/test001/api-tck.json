@@ -1,0 +1,132 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": {
+      "lib.MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "mediaType": "application/raml+yaml",
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "p2": {
+            "name": "p2",
+            "displayName": "p2",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "mediaType": "application/raml+yaml",
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    },
+    "resourceTypes": {
+      "rt": {
+        "name": "rt",
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<typeName>>"
+                ],
+                "mediaType": "application/raml+yaml",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post",
+            "__METADATA__": {
+              "optional": true
+            }
+          }
+        }
+      }
+    },
+    "title": "test API",
+    "resources": [
+      {
+        "type": {
+          "rt": {
+            "typeName": "lib.MyType"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "errors": []
+}

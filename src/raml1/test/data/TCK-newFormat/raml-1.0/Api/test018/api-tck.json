@@ -1,0 +1,60 @@
+{
+  "specification": {
+    "title": "Test",
+    "baseUri": "http://{a}.myapi.org",
+    "baseUriParameters": {
+      "a": {
+        "name": "a",
+        "displayName": "A",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "description": "This is A",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_FACET",
+      "message": "Specifying unknown facet: 'wrongPropertyName'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 4,
+          "position": 127
+        },
+        "end": {
+          "line": 7,
+          "column": 21,
+          "position": 144
+        }
+      }
+    }
+  ]
+}

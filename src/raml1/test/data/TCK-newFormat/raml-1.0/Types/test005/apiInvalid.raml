@@ -1,0 +1,28 @@
+#%RAML 1.0
+title: API
+
+types:
+  SomeType:
+    type: object
+    properties:
+      name: string
+
+  AnotherType:
+    type: SomeType
+    properties:
+      age: number
+    additionalProperties: false
+
+  ComplexTypeWithArrayProperty:
+    properties:
+      users: AnotherType[]
+    example:
+      users:
+        -
+          name: John
+          age: not number
+        -
+          name1: Jane
+          age: 28
+        -
+          name: Alex

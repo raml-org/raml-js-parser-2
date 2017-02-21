@@ -1,0 +1,52 @@
+{
+  "specification": {
+    "title": "Test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
+                "type": "number",
+                "required": false,
+                "example": "2",
+                "repeat": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

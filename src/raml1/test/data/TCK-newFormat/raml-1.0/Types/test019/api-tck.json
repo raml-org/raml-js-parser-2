@@ -1,0 +1,46 @@
+{
+  "specification": {
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "number"
+        ],
+        "minimum": 10,
+        "maximum": 1,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Some API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "RESTRICTIONS_CONFLICT",
+      "message": "Restrictions conflict in type 'SomeType': ['SomeType.minimum=10' is higher than 'SomeType.maximum=1'. The maximum cannot be less than the minimum.]",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 4,
+          "position": 39
+        },
+        "end": {
+          "line": 4,
+          "column": 12,
+          "position": 47
+        }
+      }
+    }
+  ]
+}

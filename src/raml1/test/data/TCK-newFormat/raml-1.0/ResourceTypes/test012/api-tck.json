@@ -1,0 +1,132 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "rt": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": "<<param1>><<param2>>\n",
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "rt"
+      }
+    },
+    "title": "My API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": "can not resolve unexisting-file.txt{\n  \"songId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"songTitle\": \"Get Lucky\",\n  \"albumId\": \"183100e3-0e2b-4404-a716-66104d440550\"\n}\n\n",
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": {
+          "rt": {
+            "param1": "can not resolve unexisting-file.txt",
+            "param2": "{\n  \"songId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"songTitle\": \"Get Lucky\",\n  \"albumId\": \"183100e3-0e2b-4404-a716-66104d440550\"\n}\n"
+          }
+        },
+        "relativeUri": "/songs",
+        "displayName": "/songs",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "songs"
+        ],
+        "absoluteUri": "/songs",
+        "completeRelativeUri": "/songs",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INCLUDE_ERROR",
+      "message": "Can not resolve unexisting-file.txt",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 6,
+          "position": 225
+        },
+        "end": {
+          "line": 16,
+          "column": 12,
+          "position": 231
+        }
+      }
+    }
+  ]
+}

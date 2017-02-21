@@ -11,6 +11,7 @@ import hlimpl = require('../highLevelImpl');
 import defs = require('raml-definition-system');
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
+import expanderHL=require("../ast.core/expanderHL")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import linter=require("../ast.core/linter")
 import Opt = require('../../Opt')
@@ -48,7 +49,8 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     if(lowLevelProxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    return expander.expandTraitsAndResourceTypes(api);
+    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    return exp.expandTraitsAndResourceTypes(api);
 }
 //__$helperMethod__ Path relative to API root
 export function completeRelativeUri(res:RamlWrapper.Resource):string{

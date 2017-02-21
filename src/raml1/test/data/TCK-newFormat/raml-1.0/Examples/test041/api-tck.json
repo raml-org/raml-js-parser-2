@@ -1,0 +1,229 @@
+{
+  "specification": {
+    "types": {
+      "MM": {
+        "name": "MM",
+        "displayName": "MM",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "a": {
+            "name": "a",
+            "displayName": "a",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "b": {
+            "name": "b",
+            "displayName": "b",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "VV": {
+        "name": "VV",
+        "displayName": "VV",
+        "type": [
+          "MM"
+        ],
+        "properties": {
+          "c": {
+            "name": "c",
+            "displayName": "c",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "qq": {
+        "name": "qq",
+        "displayName": "qq",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MM"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "WebOfMe",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "a": 3
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "type": [
+                      "VV"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "REQUIRED_PROPERTY_MISSING",
+      "message": "Required property 'c' is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 23,
+          "column": 10,
+          "position": 320
+        },
+        "end": {
+          "line": 23,
+          "column": 17,
+          "position": 327
+        }
+      }
+    }
+  ]
+}

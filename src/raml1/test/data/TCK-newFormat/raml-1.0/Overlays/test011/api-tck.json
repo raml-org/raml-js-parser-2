@@ -1,0 +1,55 @@
+{
+  "specification": {
+    "title": "Extension",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "displayName": "Test4",
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      },
+      {
+        "relativeUri": "/anotherResource",
+        "displayName": "/anotherResource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "anotherResource"
+        ],
+        "absoluteUri": "/anotherResource",
+        "completeRelativeUri": "/anotherResource",
+        "parentUri": ""
+      },
+      {
+        "relativeUri": "/anotherResource2",
+        "displayName": "/anotherResource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "anotherResource2"
+        ],
+        "absoluteUri": "/anotherResource2",
+        "completeRelativeUri": "/anotherResource2",
+        "parentUri": ""
+      }
+    ],
+    "extends": "NewExtension2.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "errors": []
+}

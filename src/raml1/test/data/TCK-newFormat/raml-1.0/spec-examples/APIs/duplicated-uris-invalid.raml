@@ -1,0 +1,12 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates an example of duplicated URIs which is invalid in RAML.
+# Expected result: error message indicating that the resources share the same URIs
+
+# tags: duplicated uris
+
+title: Duplicated URIs
+
+/users:
+  /foo:
+/users/foo:

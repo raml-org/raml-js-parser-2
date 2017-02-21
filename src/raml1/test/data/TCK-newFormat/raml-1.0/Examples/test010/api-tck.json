@@ -1,0 +1,100 @@
+{
+  "specification": {
+    "types": {
+      "SmallArray": {
+        "name": "SmallArray",
+        "displayName": "SmallArray",
+        "type": [
+          "array"
+        ],
+        "minItems": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "items": "string",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "SmallArray"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "items": [
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'SmallArray.minItems=5' i.e. array items count should not be less than 5",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 6,
+          "position": 153
+        },
+        "end": {
+          "line": 11,
+          "column": 11,
+          "position": 158
+        }
+      }
+    }
+  ]
+}

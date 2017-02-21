@@ -1,0 +1,50 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "a1": {
+        "name": "a1",
+        "displayName": "a1",
+        "type": [
+          "string"
+        ],
+        "allowedTargets": [
+          "ObjectTypeDeclaration"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNSUPPORTED_ANNOTATION_TARGET",
+      "message": "Unsupported annotation target: 'ObjectTypeDeclaration'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "position": 55
+        },
+        "end": {
+          "line": 5,
+          "column": 18,
+          "position": 69
+        }
+      }
+    }
+  ]
+}

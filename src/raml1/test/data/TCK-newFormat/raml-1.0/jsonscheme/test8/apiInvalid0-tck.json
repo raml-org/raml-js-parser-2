@@ -1,0 +1,59 @@
+{
+  "specification": {
+    "title": "Api",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n",
+                "example": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName1\": \"anothername\"\n  }\n}\n",
+                "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "EXAMPLE_SCHEMA_FAILURE",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: childName childName",
+      "path": "apiInvalid0.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 8,
+          "position": 128
+        },
+        "end": {
+          "line": 9,
+          "column": 15,
+          "position": 135
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

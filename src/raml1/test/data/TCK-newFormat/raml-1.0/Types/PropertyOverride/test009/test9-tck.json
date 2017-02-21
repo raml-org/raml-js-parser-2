@@ -1,0 +1,116 @@
+{
+  "specification": {
+    "types": {
+      "SuperType": {
+        "name": "SuperType",
+        "displayName": "SuperType",
+        "facets": {
+          "test": {
+            "name": "test",
+            "displayName": "test",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "SubType": {
+        "name": "SubType",
+        "displayName": "SubType",
+        "facets": {
+          "test": {
+            "name": "test",
+            "displayName": "test",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "SuperType"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "OVERRIDE_FACET",
+      "message": "Facet 'test' can not be overriden",
+      "path": "test9.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 2,
+          "position": 76
+        },
+        "end": {
+          "line": 6,
+          "column": 9,
+          "position": 83
+        }
+      }
+    },
+    {
+      "code": "MISSING_REQUIRED_FACETS",
+      "message": "Missing required facets: 'test'",
+      "path": "test9.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 2,
+          "position": 76
+        },
+        "end": {
+          "line": 6,
+          "column": 9,
+          "position": 83
+        }
+      }
+    }
+  ]
+}

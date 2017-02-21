@@ -1,0 +1,109 @@
+{
+  "specification": {
+    "securitySchemes": {
+      "oauth2": {
+        "name": "oauth2",
+        "type": "OAuth 2.0",
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "client_credentials"
+          ]
+        }
+      }
+    },
+    "title": "Demo",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "type": [
+                      "object"
+                    ],
+                    "examples": [
+                      {
+                        "value": "<doc><property1>value1</property1></doc>\n",
+                        "strict": true,
+                        "name": "one"
+                      },
+                      {
+                        "value": "<doc><property2>value2</property2></doc>\n",
+                        "strict": true,
+                        "name": "two"
+                      }
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              null,
+              "oauth2"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "http://api.samplehost.com/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: test API
+version: v1
+baseUri: https://example.com/raml
+
+uses:
+  typesLib: libraries/types.raml
+
+traits:
+  tr: !include traits/trait.raml
+
+/resource:
+  is: [ tr ]
+  post:
+    body:
+      application/json:
+        example:
+          p1: stringValue
+          p2: 10

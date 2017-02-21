@@ -237,6 +237,9 @@ export class TraitsAndResourceTypesExpander {
 
 
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
+        resourceLowLevel.preserveAnnotations();
+        resourceLowLevel.takeOnlyOriginalChildrenWithKey(
+            def.universesInfo.Universe10.ResourceBase.properties.type.name);
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.highLevel().lowLevel();
             var resourceTypeTransformer = x.resourceType.transformer;
@@ -452,23 +455,6 @@ export class TraitsAndResourceTypesExpander {
             }
         }
         return null;
-    }
-
-    private appendTraitReferences(
-        m:RamlWrapper.Method|RamlWrapper08.Method,
-        traits:GenericData[]){
-        
-        if(traits.length==0){
-            return;
-        }
-
-        var traitsData = traits.map(x=>{
-            return {
-                node: x.ref.highLevel().lowLevel(),
-                transformer: x.parentTransformer
-            };
-        });
-        referencePatcher.patchMethodIs(m.highLevel(),traitsData);
     }
 }
 

@@ -1,0 +1,170 @@
+{
+  "specification": {
+    "types": {
+      "Point": {
+        "name": "Point",
+        "displayName": "Point",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "x": {
+            "name": "x",
+            "displayName": "x",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "y": {
+            "name": "y",
+            "displayName": "y",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "Label": {
+        "name": "Label",
+        "displayName": "Label",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "point": {
+            "name": "point",
+            "displayName": "point",
+            "type": [
+              "Point"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "New API",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "annotations": {
+          "Label": {
+            "name": "Label",
+            "structuredValue": {
+              "point": {
+                "x": 3
+              }
+            }
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "http://api.samplehost.com/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "REQUIRED_PROPERTY_MISSING",
+      "message": "Required property 'y' is missing",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 6,
+          "position": 243
+        },
+        "end": {
+          "line": 16,
+          "column": 11,
+          "position": 248
+        }
+      }
+    }
+  ]
+}

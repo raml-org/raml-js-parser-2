@@ -1,0 +1,50 @@
+{
+  "specification": {
+    "types": {
+      "mySchema": {
+        "name": "mySchema",
+        "displayName": "mySchema",
+        "type": [
+          "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "z2": {
+        "name": "z2",
+        "displayName": "z2",
+        "type": [
+          "mySchema"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "id": "4"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/json"
+      }
+    },
+    "title": "A"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

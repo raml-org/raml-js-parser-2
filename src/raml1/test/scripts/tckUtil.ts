@@ -7,6 +7,7 @@ import hlImpl = require("../../highLevelImpl");
 import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
+import expanderHL = require("../../ast.core/expanderHL")
 
 class MessageMapping{
 
@@ -347,6 +348,21 @@ function orderExtensionsAndOverlaysByIndex(ramlFiles:RamlFile[]):RamlFile[]{
     return sorted;
 }
 
+export function testAPILibExpandNewFormat(
+    apiPath:string, extensions?:string[],
+    tckJsonPath?:string){
+
+    doTestAPI(
+        apiPath,
+        extensions,
+        tckJsonPath,
+        true,
+        false,
+        true,
+        true,true);
+
+}
+
 export function testAPILibExpand(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
@@ -400,9 +416,32 @@ var printTime = function (message) {
     var d = new Date();
     console.log(message + ": " + d.toLocaleString() + "/" + d.getMilliseconds());
 };
+export function testAPINewFormat(
+    apiPath:string, extensions?:string[],
+    tckJsonPath?:string,
+    regenerteJSON:boolean=false,
+    callTests:boolean=true,
+    doAssert:boolean = true,
+    expandLib:boolean = false):TestResult{
+
+    return doTestAPI(apiPath,extensions,tckJsonPath,true,false,true,true,false);
+
+}
 export function testAPI(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
+    regenerteJSON:boolean=false,
+    callTests:boolean=true,
+    doAssert:boolean = true,
+    expandLib:boolean = false):TestResult{
+    
+    return doTestAPI(apiPath,extensions,tckJsonPath,false,regenerteJSON,callTests,doAssert,expandLib);
+    
+    }
+function doTestAPI(
+    apiPath:string, extensions?:string[],
+    tckJsonPath?:string,
+    newFormat = false,
     regenerteJSON:boolean=false,
     callTests:boolean=true,
     doAssert:boolean = true,
@@ -420,11 +459,16 @@ export function testAPI(
     else{
         tckJsonPath = testUtil.data(tckJsonPath);
     }
-    var api = index.loadRAMLSync(apiPath,extensions);
-    var expanded = api["expand"] ? api["expand"](expandLib) : api;
-
-    (<any>expanded).setAttributeDefaults(true);
-    var json = expanded.toJSON({rootNodeDetails:true});
+    var json:any;
+    if(newFormat){
+        json = index.loadSync(apiPath,{expandLibraries:expandLib});
+    }
+    else {
+        var api = index.loadRAMLSync(apiPath, extensions);
+        var expanded = api["expand"] ? api["expand"](expandLib) : api;
+        (<any>expanded).setAttributeDefaults(true);
+        json = expanded.toJSON({rootNodeDetails: true});
+    }
 
     if(!tckJsonPath){
         tckJsonPath = defaultJSONPath(apiPath);
@@ -509,7 +553,8 @@ export function generateMochaSuite(
     dstPath:string,
     dataRoot:string,
     mochaSuiteTitle:string,
-    libExpand:boolean=false){
+    libExpand:boolean=false,
+    newFormat=false){
 
     var dirs = iterateFolder(folderAbsPath);
     var map:{[key:string]:Test[]} = {};
@@ -535,7 +580,7 @@ export function generateMochaSuite(
         if(title==null){
             continue;
         }
-        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand);
+        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand,newFormat);
         suiteStrings.push(suiteStr);
     }
     var content = fileContent(suiteStrings,dstPath,mochaSuiteTitle);
@@ -550,9 +595,9 @@ function suiteTitle(absPath:string,dataRoot:string){
     return title;
 }
 
-function dumpSuite(title:string,dataRoot:string,tests:Test[],libExpand:boolean):string{
+function dumpSuite(title:string,dataRoot:string,tests:Test[],libExpand:boolean,newFormat:boolean):string{
 
-    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand));
+    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand,newFormat));
 
     var testsStr = dumpedTests.join("\n\n");
     return`describe('${title}',function(){
@@ -562,7 +607,7 @@ ${testsStr}
 });`
 }
 
-function dumpTest(test:Test,dataRoot:string,libExpand:boolean):string{
+function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean):string{
 
     var relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
 
@@ -583,6 +628,9 @@ function dumpTest(test:Test,dataRoot:string,libExpand:boolean):string{
     }
 
     var testMethod = libExpand ? 'testAPILibExpand' : 'testAPI';
+    if(newFormat){
+        testMethod += "NewFormat";
+    }
 
     return`    it("${path.basename(path.dirname(test.masterPath()))}/${path.basename(test.masterPath())}", function () {
         this.timeout(20000);

@@ -1,0 +1,42 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "hasGroups": {
+        "methods": {
+          "get": {
+            "method": "get"
+          },
+          "patch": {
+            "method": "patch"
+          },
+          "delete": {
+            "method": "delete"
+          }
+        },
+        "name": "hasGroups"
+      }
+    },
+    "title": "Invalid sub resource usage"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_NODE",
+      "message": "Unknown node: '/groups'",
+      "path": "resourcetypes-traits-no-subresources.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 4,
+          "position": 364
+        },
+        "end": {
+          "line": 14,
+          "column": 11,
+          "position": 371
+        }
+      }
+    }
+  ]
+}

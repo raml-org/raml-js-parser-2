@@ -1,0 +1,173 @@
+{
+  "specification": {
+    "title": "Example API",
+    "baseUri": "http://example.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "resources": [
+          {
+            "relativeUri": "/{resourceId}",
+            "uriParameters": {
+              "resourceId": {
+                "name": "resourceId",
+                "displayName": "resourceId",
+                "type": "string",
+                "required": true,
+                "repeat": false,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "methods": {
+              "post": {
+                "body": {
+                  "application/x-www-form-urlencoded": {
+                    "name": "application/x-www-form-urlencoded",
+                    "formParameters": {
+                      "name": [
+                        {
+                          "name": "name",
+                          "displayName": "name",
+                          "type": "string",
+                          "required": false,
+                          "example": "Comment",
+                          "repeat": false,
+                          "description": "The name of the resource to create",
+                          "__METADATA__": {
+                            "primitiveValuesMeta": {
+                              "displayName": {
+                                "calculated": true
+                              },
+                              "required": {
+                                "insertedAsDefault": true
+                              },
+                              "repeat": {
+                                "insertedAsDefault": true
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "name": "name",
+                          "displayName": "name",
+                          "type": "string",
+                          "required": false,
+                          "example": "Comment1",
+                          "repeat": false,
+                          "description": "The name 1 of the resource to create",
+                          "__METADATA__": {
+                            "primitiveValuesMeta": {
+                              "displayName": {
+                                "calculated": true
+                              },
+                              "required": {
+                                "insertedAsDefault": true
+                              },
+                              "repeat": {
+                                "insertedAsDefault": true
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "description": {
+                        "name": "description",
+                        "displayName": "description",
+                        "type": "string",
+                        "required": false,
+                        "example": "User-generated content pertinent to the associated blog post",
+                        "repeat": false,
+                        "description": "A description of the resource to create",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "protocols": [
+                  "HTTP"
+                ],
+                "method": "post",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "displayName": "/{resourceId}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{resourceId}"
+            ],
+            "absoluteUri": "http://example.com/resource/{resourceId}",
+            "completeRelativeUri": "/resource/{resourceId}",
+            "parentUri": "/resource"
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "http://example.com/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

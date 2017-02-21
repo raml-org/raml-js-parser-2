@@ -1,0 +1,70 @@
+{
+  "specification": {
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "authorization_code",
+            "password",
+            "client_credentials",
+            "implicit",
+            "https://example.com"
+          ]
+        }
+      }
+    },
+    "title": "Dropbox API",
+    "version": "1",
+    "baseUri": "https://api.dropbox.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTPS"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

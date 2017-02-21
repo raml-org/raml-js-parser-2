@@ -1,0 +1,98 @@
+{
+  "specification": {
+    "types": {
+      "MyType": {
+        "name": "MyType",
+        "displayName": "MyType",
+        "schemaPath": "subdir/scheme.json",
+        "type": [
+          "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      }
+    },
+    "title": "Api",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "MyType"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": {
+                      "parentName": "somename",
+                      "child": {
+                        "childName1": "anothername"
+                      }
+                    },
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/json"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "EXAMPLE_SCHEMA_FAILURE",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: childName childName",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 8,
+          "position": 151
+        },
+        "end": {
+          "line": 12,
+          "column": 15,
+          "position": 158
+        }
+      }
+    }
+  ]
+}

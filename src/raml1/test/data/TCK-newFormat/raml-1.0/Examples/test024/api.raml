@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test API
+types:
+  MyType1:
+    type: number
+    minimum: 5
+    example: 5
+  MyType2:
+    properties: 
+      z: MyType1
+    example:
+      z: 5

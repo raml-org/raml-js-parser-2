@@ -1,0 +1,16 @@
+#%RAML 1.0
+#failure test for 'maxItems'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    type: array
+    maxItems:
+      value: 2
+      (a): abcdefg

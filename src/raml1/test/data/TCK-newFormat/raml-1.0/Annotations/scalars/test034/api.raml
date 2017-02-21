@@ -1,0 +1,18 @@
+#%RAML 1.0
+#failure test for 'maximum'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      iProp:
+        type: integer
+        maximum:
+          value: 5
+          (a): abcdefg

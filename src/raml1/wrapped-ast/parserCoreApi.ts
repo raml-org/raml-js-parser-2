@@ -57,4 +57,15 @@ export interface Options{
      * load the file.
      */
     filePath?:string
+
+    reusedNode?:hl.IHighLevelNode
+}
+
+
+export interface Options1 {
+
+    /**
+     * Whether to apply library expansion
+     */
+    expandLibraries?:boolean
 }

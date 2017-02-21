@@ -1,0 +1,28 @@
+{
+  "specification": {
+    "title": "Pet shop",
+    "version": "6",
+    "extends": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": [
+    {
+      "code": "INVALID_OVERRIDE_IN_OVERLAY",
+      "message": "Property 'version' is not allowed to be overriden or added in overlays",
+      "path": "NewOverlay.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 0,
+          "position": 38
+        },
+        "end": {
+          "line": 3,
+          "column": 7,
+          "position": 45
+        }
+      }
+    }
+  ]
+}

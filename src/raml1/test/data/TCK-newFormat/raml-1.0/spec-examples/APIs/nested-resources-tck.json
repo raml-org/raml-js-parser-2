@@ -1,0 +1,44 @@
+{
+  "specification": {
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/gists",
+        "displayName": "Gists",
+        "resources": [
+          {
+            "relativeUri": "/public",
+            "displayName": "Public Gists",
+            "relativeUriPathSegments": [
+              "public"
+            ],
+            "absoluteUri": "https://api.github.com/gists/public",
+            "completeRelativeUri": "/gists/public",
+            "parentUri": "/gists"
+          }
+        ],
+        "relativeUriPathSegments": [
+          "gists"
+        ],
+        "absoluteUri": "https://api.github.com/gists",
+        "completeRelativeUri": "/gists",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

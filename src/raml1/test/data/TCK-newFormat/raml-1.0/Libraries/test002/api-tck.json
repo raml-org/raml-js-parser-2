@@ -1,0 +1,56 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "security",
+        "value": "myLibrary.raml"
+      }
+    ],
+    "traits": {
+      "security.auth": {
+        "headers": {
+          "Authorization": {
+            "name": "Authorization",
+            "displayName": "Authorization",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "pattern": "^Bearer (.*)",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "security.auth",
+        "__METADATA__": {
+          "calculated": true
+        }
+      }
+    },
+    "resourceTypes": {
+      "myResource": {
+        "is": [
+          "security.auth"
+        ],
+        "name": "myResource"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

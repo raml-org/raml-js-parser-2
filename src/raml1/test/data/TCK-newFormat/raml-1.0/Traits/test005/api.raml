@@ -1,0 +1,28 @@
+#%RAML 1.0
+title: Demo
+version: v1
+baseUri: http://api.samplehost.com
+securitySchemes:
+  oauth2:
+    type: OAuth 2.0
+    settings:
+      accessTokenUri: https://api.dropbox.com/1/oauth2/token
+      authorizationGrants: [client_credentials]
+      authorizationUri: https://www.dropbox.com/1/oauth2/authorize
+
+/resource:
+  get:
+    securedBy: [ null, oauth2 ]
+    responses:
+      200:
+        body:
+          application/xml:
+            examples:
+              one:
+                value: |
+                  <doc><property1>value1</property1></doc>
+                  
+              two:
+                value: |
+                  <doc><property2>value2</property2></doc>
+                  

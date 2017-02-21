@@ -1,0 +1,21 @@
+#%RAML 0.8
+---
+title: Example API
+baseUri: http://example.com
+/resource:
+  /{resourceId}:
+    post:
+      body:
+        application/x-www-form-urlencoded:
+          formParameters:
+            name:
+              - description: The name of the resource to create
+                type: string
+                example: Comment
+              - description: The name 1 of the resource to create
+                type: string
+                example: Comment1
+            description:
+              description: A description of the resource to create
+              type: string
+              example: User-generated content pertinent to the associated blog post

@@ -1,0 +1,180 @@
+{
+  "specification": {
+    "title": "A",
+    "resourceTypes": {
+      "Resource": {
+        "name": "Resource",
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "b": {
+                "name": "b",
+                "displayName": "b",
+                "type": "number",
+                "required": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "a": {
+                "name": "a",
+                "displayName": "a",
+                "type": "boolean",
+                "required": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "c": {
+                "name": "c",
+                "displayName": "c",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "type": "Resource",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
+                  }
+                }
+              }
+            },
+            "queryParameters": {
+              "a": {
+                "name": "a",
+                "displayName": "a",
+                "type": "boolean",
+                "required": false,
+                "example": "false",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "b": {
+                "name": "b",
+                "displayName": "b",
+                "type": "number",
+                "required": false,
+                "example": "111",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "c": {
+                "name": "c",
+                "displayName": "c",
+                "type": "string",
+                "required": false,
+                "example": "stringValue",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,181 @@
+{
+  "specification": {
+    "types": {
+      "Users": {
+        "name": "Users",
+        "displayName": "Users",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "<<methodName>>": {
+            "name": "<<methodName>>",
+            "displayName": "<<methodName>>",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "A <<methodName>>-token pair is required",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "examples": [
+              {
+                "value": "<<methodName>>=h8duh3uhhu38",
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "description": "Some requests require authentication",
+        "name": "secured"
+      }
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "type": {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "<<resourcePathName>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "type": {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "<<resourcePathName | !singularize>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "name": "collection"
+      },
+      "member": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "type": {
+                    "name": "type",
+                    "displayName": "type",
+                    "type": [
+                      "<<resourcePathName>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "member"
+      }
+    },
+    "title": "Example API",
+    "version": "v1",
+    "mediaType": [
+      "application/json"
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

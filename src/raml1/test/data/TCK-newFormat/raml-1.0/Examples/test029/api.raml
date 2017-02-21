@@ -1,0 +1,79 @@
+#%RAML 1.0
+title: API Gateway Test API
+version: 1.0.0
+baseUri: https://api.uber.com
+mediaType: application/json
+types:  # Move to overlay file
+  amazon-apigateway-method:
+    type: string
+    enum: [ GET, PATCH, PUT, POST, DELETE, PATCH ]
+    example: POST
+  amazon-apigateway-status:
+    pattern: "^[12345]\\d\\d$"
+  amazon-apigateway-templates:
+    properties:
+      /\w+/\w+/:
+  amazon-apigateway-auth-type:
+    enum: [ aws_iam ]
+  amazon-apigateway-integration-lambda:
+    properties:
+      type:
+        enum: [ lambda ]
+  amazon-apigateway-integration-HTTP:
+    properties:
+      type:
+        enum: [ HTTP ]
+  amazon-apigateway-integration-mock:
+    properties:
+      type:
+        enum: [ mock ]
+  amazon-apigateway-integration-aws:
+    properties:
+      type:
+        enum: [ aws ]
+      uri:
+      httpMethod: amazon-apigateway-method
+      credentials:
+      requestTemplates:
+        type: amazon-apigateway-templates
+      requestParameters:
+        type: object
+      cacheNamespace:
+      cacheKeyParameters: string[]
+      responses:
+        properties:
+          /.*/:
+            properties:
+              statusCode: amazon-apigateway-status
+              responseParameters:
+                type: object
+              responseTemplates:
+                type: amazon-apigateway-templates
+    example:
+      type: aws
+      uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations"
+      httpMethod: "POST"
+      credentials: "arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role"
+      requestTemplates:
+        application/json: "json request template 2"
+        application/xml: "xml request template 2"
+      requestParameters:
+          integration.request.path.integrationPathParam: "method.request.querystring.latitude"
+          integration.request.querystring.integrationQueryParam: "method.request.querystring.longitude"
+      cacheNamespace: "cache namespace"
+      cacheKeyParameters: []
+      responses:
+          "2\\d{2}":
+            statusCode: "200"
+            responseParameters:
+              method.response.header.test-method-response-header: "integration.response.header.integrationResponseHeaderParam1"
+            responseTemplates:
+              application/json: "json 200 response template"
+              application/xml: "xml 200 response template"
+          default:
+            statusCode: "400"
+            responseParameters:
+              method.response.header.test-method-response-header: "'static value'"
+            responseTemplates:
+              application/json: "json 400 response template"
+              application/xml: "xml 400 response template"

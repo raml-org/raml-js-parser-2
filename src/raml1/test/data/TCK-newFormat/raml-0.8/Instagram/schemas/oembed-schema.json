@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "type": "object",
+    "properties": {
+        "author_id": {
+            "type": "integer"
+        },
+        "author_name": {
+            "type": "string"
+        },
+        "author_url": {
+            "type": "string"
+        },
+        "height": {
+            "type": "integer"
+        },
+        "media_id": {
+            "type": "string"
+        },
+        "provider_name": {
+            "type": "string"
+        },
+        "provider_url": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string"
+        },
+        "url": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string"
+        },
+        "width": {
+            "type": "integer"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "parentName": "somename",
+  "child": {
+    "childName": "anothername"
+  }
+}

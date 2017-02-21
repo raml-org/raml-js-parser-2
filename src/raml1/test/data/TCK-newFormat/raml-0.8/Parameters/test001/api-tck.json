@@ -1,0 +1,73 @@
+{
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "relativeUri": "/test",
+        "methods": {
+          "post": {
+            "queryParameters": {
+              "limit": {
+                "name": "limit",
+                "displayName": "limit",
+                "type": "integer",
+                "required": false,
+                "default": "someValue",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INTEGER_EXPECTED",
+      "message": "integer is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 8,
+          "position": 102
+        },
+        "end": {
+          "line": 7,
+          "column": 15,
+          "position": 109
+        }
+      }
+    }
+  ]
+}

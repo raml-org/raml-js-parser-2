@@ -1,0 +1,104 @@
+{
+  "specification": {
+    "title": "Api",
+    "baseUri": "/segment1/{param1}/{param2}",
+    "baseUriParameters": {
+      "param1": {
+        "name": "param1",
+        "displayName": "param1",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "param2": {
+        "name": "param2",
+        "displayName": "param2",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "param3": {
+        "name": "param3",
+        "displayName": "param3",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "PROPERTY_UNUSED",
+      "message": "Base uri parameter unused",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 2,
+          "position": 100
+        },
+        "end": {
+          "line": 8,
+          "column": 8,
+          "position": 106
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

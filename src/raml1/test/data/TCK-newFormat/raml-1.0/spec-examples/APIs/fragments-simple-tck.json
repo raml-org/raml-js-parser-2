@@ -1,0 +1,116 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        },
+        "description": "A collection resource",
+        "name": "collection",
+        "usage": "Use this to describe a resource that lists items"
+      }
+    },
+    "title": "Products API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        },
+        "type": "collection",
+        "description": "All products",
+        "relativeUri": "/products",
+        "displayName": "/products",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "products"
+        ],
+        "absoluteUri": "/products",
+        "completeRelativeUri": "/products",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

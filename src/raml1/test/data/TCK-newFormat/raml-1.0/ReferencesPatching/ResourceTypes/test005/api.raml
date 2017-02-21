@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: test API.
+version: v1
+baseUri: https://example.com/raml
+uses:
+  lib1: lib1.raml
+
+/resource:
+  type: lib1.rt
+  post:
+    body:
+      application/json:

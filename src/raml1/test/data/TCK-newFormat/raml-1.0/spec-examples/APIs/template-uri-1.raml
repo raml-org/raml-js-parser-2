@@ -1,0 +1,14 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates an example on how template URIs are resolved
+# Expected result: no error message
+
+# tags: template uris
+
+title: ZEncoder API
+version: v2
+baseUri: https://app.zencoder.com/api/{version}
+/jobs: # its fully-resolved URI is https://app.zencoder.com/api/{version}/jobs
+  description: A collection of jobs
+  /{jobId}: # its fully-resolved URI is https://app.zencoder.com/api/{version}/jobs/{jobId}
+    description: A specific job, a member of the jobs collection

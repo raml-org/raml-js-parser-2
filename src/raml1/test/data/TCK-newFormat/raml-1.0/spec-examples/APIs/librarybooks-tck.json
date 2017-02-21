@@ -1,0 +1,43 @@
+{
+  "specification": {
+    "title": "Book Library API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "method": "get"
+          }
+        },
+        "description": "The collection of library books",
+        "relativeUri": "/books",
+        "displayName": "/books",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "books"
+        ],
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
+      }
+    ],
+    "documentation": [
+      {
+        "title": "Introduction",
+        "content": "Automated access to books"
+      },
+      {
+        "title": "Licensing",
+        "content": "Please respect copyrights on our books."
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

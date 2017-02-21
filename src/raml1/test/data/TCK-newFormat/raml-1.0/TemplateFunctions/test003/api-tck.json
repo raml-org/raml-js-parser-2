@@ -1,0 +1,63 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "post": {
+            "description": "Create a <<resourcePathName|!singulari___ize|!uppercamelcase>>",
+            "method": "post"
+          }
+        },
+        "name": "collection"
+      }
+    },
+    "title": "testAPI",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "description": "Create a Users",
+            "method": "post"
+          }
+        },
+        "type": "collection",
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_FUNCTION",
+      "message": "Unknown function applied to parameter: '!singulari___ize'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 36,
+          "position": 102
+        },
+        "end": {
+          "line": 6,
+          "column": 79,
+          "position": 145
+        }
+      }
+    }
+  ]
+}

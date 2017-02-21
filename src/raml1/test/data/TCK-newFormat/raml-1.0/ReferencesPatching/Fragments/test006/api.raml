@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test API
+
+/resource:
+  put:
+    body:
+      application/json:
+        type: !include fragments/type.raml
+        example:
+          objectProperty:
+            prop: string
+          stringProperty: abcdefghijklmnopqrstuvwxyz0123456789

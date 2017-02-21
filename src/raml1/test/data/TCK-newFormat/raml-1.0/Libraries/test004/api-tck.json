@@ -1,0 +1,66 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "traits": {
+      "lib.libTrait1": {
+        "name": "lib.libTrait1",
+        "__METADATA__": {
+          "calculated": true
+        }
+      },
+      "lib.libTrait2": {
+        "name": "lib.libTrait2",
+        "__METADATA__": {
+          "calculated": true
+        }
+      },
+      "ownTrait1": {
+        "name": "ownTrait1"
+      },
+      "ownTrait2": {
+        "name": "ownTrait2"
+      }
+    },
+    "resourceTypes": {
+      "lib.libResourceType1": {
+        "name": "lib.libResourceType1",
+        "__METADATA__": {
+          "calculated": true
+        }
+      },
+      "lib.libResourceType2": {
+        "name": "lib.libResourceType2",
+        "__METADATA__": {
+          "calculated": true
+        }
+      },
+      "ownResourceType1": {
+        "name": "ownResourceType1"
+      },
+      "ownResourceType2": {
+        "name": "ownResourceType2"
+      }
+    },
+    "title": "TCK Sample. RAML 1.0 Libraries 001.",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,105 @@
+{
+  "specification": {
+    "types": {
+      "t0": {
+        "name": "t0",
+        "displayName": "t0",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "t2": {
+        "name": "t2",
+        "displayName": "t2",
+        "type": [
+          "t0",
+          "t1"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "scalarsAnnotations": {
+          "type": [
+            [
+              {
+                "name": "a",
+                "structuredValue": "qwertyuiop"
+              }
+            ],
+            [
+              {
+                "name": "a",
+                "structuredValue": "asdfghjkl;"
+              }
+            ]
+          ]
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "testAPI",
+    "version": "v1"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

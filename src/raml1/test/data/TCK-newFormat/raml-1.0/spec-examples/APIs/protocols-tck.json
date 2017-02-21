@@ -1,0 +1,46 @@
+{
+  "specification": {
+    "title": "Salesforce Chatter REST API",
+    "version": "v28.0",
+    "baseUri": "https://na1.salesforce.com/services/data/{version}/chatter",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "v28.0"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTP",
+      "HTTPS"
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

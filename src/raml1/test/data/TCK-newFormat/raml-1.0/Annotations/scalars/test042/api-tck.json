@@ -1,0 +1,123 @@
+{
+  "specification": {
+    "types": {
+      "t0": {
+        "name": "t0",
+        "displayName": "t0",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "t2": {
+        "name": "t2",
+        "displayName": "t2",
+        "type": [
+          "t0",
+          "t1"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "scalarsAnnotations": {
+          "type": [
+            [
+              {
+                "name": "a",
+                "structuredValue": "qwertyuiop"
+              }
+            ],
+            [
+              {
+                "name": "a",
+                "structuredValue": "asdfg"
+              }
+            ]
+          ]
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "testAPI",
+    "version": "v1"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'a.minLength=8' i.e. string length should not be less than 8",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 8,
+          "position": 225
+        },
+        "end": {
+          "line": 18,
+          "column": 11,
+          "position": 228
+        }
+      }
+    }
+  ]
+}

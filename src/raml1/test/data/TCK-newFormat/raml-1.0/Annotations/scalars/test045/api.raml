@@ -1,0 +1,21 @@
+#%RAML 1.0
+#successful test for 'example.strict'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      prop:
+        type: string
+    example:
+      value:
+        prop: stringValue
+      strict:
+        value: true
+        (a): asdfghjkl

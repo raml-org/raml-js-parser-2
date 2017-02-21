@@ -1,0 +1,13 @@
+#%RAML 1.0
+
+# Objective: The following example shows a RAML fragment file that defines a resource type and a file that includes this fragment file.
+# Expected result: no error message and the content from the fragment needs to be applied to '/products' except 'usage'
+
+# tags: fragments
+
+title: Products API
+resourceTypes:
+  collection: !include resourceTypes/collection.raml
+/products:
+  type: collection
+  description: All products

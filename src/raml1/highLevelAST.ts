@@ -124,6 +124,12 @@ export interface ValueMetadata{
 
     toJSON():any;
 }
+
+export interface ApiLoadingError extends Error{
+
+    parserErrors:RamlParserError[]
+}
+
 export interface RamlParserError {
 
     /**
@@ -327,6 +333,10 @@ export interface IParseResult {
      * RAML version
      */
     version();
+
+    setJSON(val:any);
+
+    getJSON():any;
 }
 
 export function isParseResult(object : any) : object is IParseResult {
@@ -631,6 +641,11 @@ export interface IHighLevelNode extends IParseResult {
      * Gets whether this node is auxilary.
      */
     isAuxilary() : boolean;
+
+    /**
+     * Returns reused node if any
+     */
+    reusedNode(): IHighLevelNode;
 }
 
 export interface IEditableHighLevelNode extends IHighLevelNode {

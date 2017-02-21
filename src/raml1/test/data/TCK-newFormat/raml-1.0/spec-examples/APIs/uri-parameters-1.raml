@@ -1,0 +1,24 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates a simple example with resources and nested resources with URI parameters
+# Expected result: no error
+
+# tags: resources, nested resources, sub resources, URI parameters
+
+title: GitHub API
+version: v3
+baseUri: https://api.github.com
+
+/user:
+/users:
+  /{userId}:
+    uriParameters:
+      userId:
+        type: integer
+    /followers:
+    /following:
+    /keys:
+      /{keyId}:
+        uriParameters:
+          keyId:
+            type: integer

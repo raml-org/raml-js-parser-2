@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: WebOfMe
+mediaType: application/json
+types:
+  MM:
+    type: object
+    properties:
+      a: number
+      items: VV[]
+    examples:
+      f1:
+        value:
+          a: 3
+          items:
+            - c: 4
+              r1: 3
+            - r2: 3
+  VV:
+    type: object
+    properties:
+       r2?:
+       c: number
+       r1?:
+annotationTypes:
+  qq:
+    properties:
+      z: MM

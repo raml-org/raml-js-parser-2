@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Customer API
+version: 1.0
+
+mediaType: application/json
+types:
+  T1:
+    properties:
+      p1: string
+      p2: number
+
+/customer:
+  post:
+    body:
+      type: T1
+      example: !include example.raml

@@ -1,0 +1,16 @@
+#%RAML 1.0 Overlay
+
+# Objective: The following example illustrates an overlay file that provide a Spanish translation.
+# Expected result: resulting AST contains spanish instead of english description from librarybooks.raml
+
+# tags: overlay
+
+usage: Spanish localization
+extends: librarybooks.raml
+documentation:
+  - title: Introducción
+    content: El acceso automatizado a los libros
+  - title: Licencias
+    content: Por favor respeta los derechos de autor de los libros
+/books:
+  description: La colección de libros de la biblioteca

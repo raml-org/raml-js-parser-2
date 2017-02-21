@@ -1,0 +1,44 @@
+{
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "relativeUri": "/test",
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "{\"name\": \"someName\"}\n",
+                    "schemaContent": "{\"name\": \"someName\"}\n"
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

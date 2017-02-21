@@ -1,0 +1,136 @@
+{
+  "specification": {
+    "traits": {
+      "secured": {
+        "headers": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "Access Token",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "examples": [
+              {
+                "value": "5757gh76",
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "description": "Some requests require authentication.",
+        "name": "secured",
+        "usage": "Apply this to any method that needs to be secured"
+      },
+      "rateLimited": {
+        "headers": {
+          "limit": {
+            "name": "limit",
+            "displayName": "limit",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "The limit.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "examples": [
+              {
+                "value": 5000,
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "description": "Some requests require rate limiting.",
+        "name": "rateLimited",
+        "usage": "Apply this to any method that needs to be rate limited"
+      }
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        },
+        "description": "A collection resource",
+        "name": "collection",
+        "usage": "Use this to describe a resource that lists items"
+      },
+      "member": {
+        "methods": {
+          "get": {
+            "description": "Get a <<resourcePathName | !singularize>>",
+            "method": "get"
+          }
+        },
+        "description": "A single <<resourcePathName | !singularize>>",
+        "name": "member",
+        "usage": "This resourceType should be used for any specific member of a collection"
+      }
+    },
+    "title": "Example API",
+    "version": "v1"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

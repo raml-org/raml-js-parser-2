@@ -1,0 +1,220 @@
+{
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "TestType"
+                    ],
+                    "properties": {
+                      "additionalField": {
+                        "name": "additionalField",
+                        "displayName": "additionalField",
+                        "type": [
+                          "string"
+                        ],
+                        "required": false,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "baseField": "base",
+                          "field": "any text"
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "type": [
+                  "account"
+                ],
+                "mediaType": "application/json"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
+      }
+    ],
+    "types": {
+      "account": {
+        "name": "account",
+        "displayName": "account",
+        "type": [
+          "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "TypeBase": {
+        "name": "TypeBase",
+        "displayName": "TypeBase",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "baseField": {
+            "name": "baseField",
+            "displayName": "baseField",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "baseField": "name"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "TestType": {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "TypeBase"
+        ],
+        "properties": {
+          "field": {
+            "name": "field",
+            "displayName": "field",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "baseField": "name",
+              "field": "value"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

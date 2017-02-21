@@ -67,6 +67,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     transformer():ValueTransformer{ return this._transformer; }
 
+    setTransformer(tr:ValueTransformer) {
+        this._transformer = tr;
+    }
+
     originalNode():ll.ILowLevelASTNode{
         return this._originalNode;
     }
@@ -112,6 +116,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     parent():ll.ILowLevelASTNode { return this._parent;}
 
     unit():ll.ICompilationUnit { return this._originalNode.unit(); }
+
+    containingUnit():ll.ICompilationUnit { return this._originalNode.containingUnit(); }
 
     includeBaseUnit():ll.ICompilationUnit { return this._originalNode.unit(); }
 
@@ -304,6 +310,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     
     protected isInsideResource:boolean;
 
+    protected nonMergableChildren:{[key:string]:boolean} = {};
+
     adoptedNodes():ll.ILowLevelASTNode[]{
         return this._adoptedNodes;
     }
@@ -344,17 +352,29 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             val = this._originalNode.value(toString);
         }
         if(LowLevelValueTransformingNode.isInstance(val)){
+            var key = (<LowLevelValueTransformingNode>val).key();
+            if(key) {
+                var n:LowLevelCompositeNode = this;
+                while(n.children().length==1&&(n.kind()==yaml.Kind.MAPPING||n.kind()==yaml.Kind.MAP||n.kind()==yaml.Kind.SEQ)){
+                    n = <LowLevelCompositeNode>n.children()[0];
+                    if(n.originalNode().key()==key){
+                        val = n;
+                        break;
+                    }
+                }
+
+            }
             this._valueOverride = val;
         }
         return val;
     }
 
-    children():ll.ILowLevelASTNode[] {
+    children():LowLevelCompositeNode[] {
 
         if(this._children){
             return this._children;
         }
-        var result = [];
+        var result:LowLevelCompositeNode[] = [];
 
         var canBeMap:boolean = false;
         var canBeSeq = false;
@@ -396,6 +416,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             result = [];
         }
         this._children = result;
+        if(this._preserveAnnotations){
+            this._children.forEach(x=>x.preserveAnnotations());
+        }
         return result;
     }
 
@@ -427,9 +450,12 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             var isPrimary = x == this.primaryNode();
             for(var y of x.children()){
                 var key = y.originalNode().key();
+                if(this.nonMergableChildren[key]&&(x!=this._originalNode)){
+                    continue;
+                }
                 if(key && x.transformer()){
                     var isAnnotation = key!=null
-                        && (this._preserveAnnotations||this.isResource())
+                        && this._preserveAnnotations
                         && util.stringStartsWith(key,"(")
                         && util.stringEndsWith(key,")");
                     if(!isAnnotation) {
@@ -583,7 +609,13 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         if(!this._children){
             this._children = [];
         }
-        var newCNode = new LowLevelCompositeNode(newNode,this,null,this.ramlVersion);
+        var newCNode:LowLevelCompositeNode;
+        if(LowLevelCompositeNode.isInstance(newNode)){
+            newCNode = <LowLevelCompositeNode>newNode;
+        }
+        else {
+            newCNode = new LowLevelCompositeNode(newNode, this, null, this.ramlVersion);
+        }
         if(oldNode==null){
             this._children.push(newCNode);
             return newCNode;
@@ -622,27 +654,15 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
             return new LowLevelCompositeNode(x,this,null,this.ramlVersion);
         });
+        if(this._preserveAnnotations){
+            this._children.forEach(x=>x.preserveAnnotations());
+        }
     }
 
     preserveAnnotations(){
-        if(!this._preserveAnnotations) {
-            if(this.isInsideResource===undefined){
-                this.isInsideResource = false;
-                if(!this.isResource()){
-                    var parent = this._parent;
-                    while (parent) {
-                        if ((<LowLevelCompositeNode>parent).isResource()) {
-                            this.isInsideResource = true;
-                            break;
-                        }
-                        parent = parent.parent();
-                    }
-                }
-            }
-            if(this.isInsideResource) {
-                this._preserveAnnotations = true;
-                this._children = null;
-            }
+        this._preserveAnnotations = true;
+        if(this._children) {
+            this._children.forEach(x=>x.preserveAnnotations());
         }
     }
 
@@ -664,6 +684,22 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         });
         this._children = filtered;
     }
+
+    containingUnit():ll.ICompilationUnit{
+        var paths = {};
+        for(var n of this.adoptedNodes()){
+            paths[n.containingUnit().absolutePath()] = true;
+        }
+        if(Object.keys(paths).length<=1){
+            return this._originalNode.containingUnit();
+        }
+        return null;
+    }
+
+    takeOnlyOriginalChildrenWithKey(key:string){
+        this.nonMergableChildren[key] = true;
+    }
+
 }
 
 interface ChildEntry {
@@ -760,4 +796,9 @@ export interface ValueTransformer{
     children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
 
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind
+}
+
+export function isLowLevelProxyNode(node : any) : node is LowLevelProxyNode {
+    var anyNode = <any>node;
+    return anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
 }

@@ -1,0 +1,29 @@
+{
+  "specification": {
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "typePropertyKind": "JSON",
+        "schemaPath": "schemas/person.json",
+        "type": [
+          "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"firstName\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"lastName\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"age\": {\n\t\t\t\"description\": \"Age in years\",\n\t\t\t\"type\": \"integer\",\n\t\t\t\"minimum\": 0\n\t\t}\n\t},\n\t\"required\": [\"firstName\", \"lastName\"]\n}\n"
+        ],
+        "description": "this is a schema describing person",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      }
+    },
+    "title": "External Types"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

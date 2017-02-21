@@ -1,0 +1,44 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "title": "Test API",
+    "baseUri": "https://example.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    },
+    "scalarsAnnotations": {
+      "baseUri": [
+        {
+          "name": "lib.bindingDefinition",
+          "structuredValue": [
+            {
+              "method": "GET",
+              "input": "NONE",
+              "output": "REQUIRED"
+            },
+            {
+              "method": "POST",
+              "input": "NONE",
+              "output": "REQUIRED"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}
