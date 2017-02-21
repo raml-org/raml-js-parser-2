@@ -461,6 +461,9 @@ function doTestAPI(
     }
     var json:any;
     if(newFormat){
+        if(extensions && extensions.length>0){
+            apiPath = extensions[extensions.length-1];
+        }
         json = index.loadSync(apiPath,{expandLibraries:expandLib});
     }
     else {
