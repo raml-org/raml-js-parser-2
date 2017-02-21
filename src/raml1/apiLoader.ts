@@ -20,7 +20,7 @@ import universeDef=require("../raml1/tools/universe")
 import parserCore=require('../raml1/wrapped-ast/parserCore')
 import parserCoreApi=require('../raml1/wrapped-ast/parserCoreApi')
 import ramlServices = require("../raml1/definition-system/ramlServices")
-import tckDumperHL = require("../util/TCKDumperHL")
+import tckDumperHL = require("../util/tckDumperHL")
 import universeHelpers = require("./tools/universeHelpers");
 import search = require("./../search/search-interface");
 
