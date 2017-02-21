@@ -20,7 +20,7 @@ export import api08 = require("./raml1/artifacts/raml08parserapi")
  * @param options Load options
  * @return Object representation of the specification wrapped into a Promise.
  **/
-export function load(ramlPath:string,options?:parserCore.Options1):Promise<Object>{
+export function load(ramlPath:string,options?:parserCore.Options2):Promise<Object>{
     return apiLoader.load(ramlPath,options);
 }
 
@@ -30,7 +30,7 @@ export function load(ramlPath:string,options?:parserCore.Options1):Promise<Objec
  * @param options Load options
  * @return Object representation of the specification.
  **/
-export function loadSync(ramlPath:string,options?:parserCore.Options1):Object{
+export function loadSync(ramlPath:string,options?:parserCore.Options2):Object{
     return apiLoader.loadSync(ramlPath,options);
 }
 /**

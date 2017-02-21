@@ -29,7 +29,7 @@ export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../raml1/definition-system/universeProvider")
 
-export function load(ramlPath:string,options?:parserCoreApi.Options1):Promise<Object>{
+export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Object>{
     options = options || {};
     return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
@@ -47,7 +47,7 @@ export function load(ramlPath:string,options?:parserCoreApi.Options1):Promise<Ob
     });
 }
 
-export function loadSync(ramlPath:string,options?:parserCoreApi.Options1):Object{
+export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object{
     options = options || {};
     var hlNode = loadRAMLInternalHL(ramlPath);
     var expanded:hl.IHighLevelNode;
@@ -100,6 +100,21 @@ export function loadRAML(ramlPath:string,arg1?:string[]|parserCoreApi.Options,ar
     setAttributeDefaults(api,options);
     return new Opt<hl.BasicNode>(api);
 }
+
+/***
+ * Load RAML synchronously. Detects RAML version and uses corresponding parser.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @return Opt&lt;hl.IHighLevelNode&gt;
+ ***/
+export function loadRAMLHL(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : Opt<hl.IHighLevelNode> {
+    var hlNode = loadRAMLInternalHL(ramlPath, arg1, arg2);
+    if(!hlNode){
+        return Opt.empty<hl.BasicNode>();
+    }
+    return new Opt<hl.BasicNode>(hlNode);
+}
+
 
 function loadRAMLInternalHL(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : hl.IHighLevelNode {
     var gotArray = Array.isArray(arg1);
