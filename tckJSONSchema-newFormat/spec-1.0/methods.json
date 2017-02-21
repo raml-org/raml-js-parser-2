@@ -1,0 +1,121 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "definitions": {
+        "TraitRef10": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-zA-Z0-9]+": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "Trait10": {
+            "description": "Declarations of traits for use within this API",
+            "allOf":[
+                {"$ref": "#/definitions/MethodBase10"},
+                {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the trait"
+                        },
+                        "displayName": {
+                            "type": "string",
+                            "description": "The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
+                        },
+                        "usage": {
+                            "type": "string",
+                            "description": "Instructions on how and when the trait should be used."
+                        }
+                    }
+                }
+            ]
+        },
+        "TraitFragment": {
+            "type": "object",
+            "allOf":[
+                {"$ref": "common.json#/definitions/FragmentDeclaration"},
+                {"$ref": "#/definitions/Trait10"}
+            ]
+        },
+        "Method10": {
+            "allOf": [
+                {"$ref": "#/definitions/MethodBase10"},
+                {
+                    "properties": {
+                        "method": {
+                            "type": "string",
+                            "description": "Method that can be called"
+                        }
+                    },
+                    "allUriParameters": {
+                        "type": "array",
+                        "items": {"$ref": "datamodel.json#/definitions/Type"}
+                    }
+                }
+            ],
+            "require": ["method"]
+        },
+        "MethodBase10": {
+            "allOf": [
+                {
+                    "$ref": "security.json#/definitions/Operation10"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "displayName": {
+                            "type": "string"
+                        },
+                        "protocols": {
+                            "type": "array",
+                            "description": "A method can override the protocols specified in the resource or at the API root, by employing this property.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "securedBy": {
+                            "type": "array",
+                            "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
+                            "items": {
+                                "$ref": "security.json#/definitions/SecuritySchemeRef10"
+                            }
+                        },
+                        "is": {
+                            "type": "array",
+                            "description": "Instantiation of applyed traits",
+                            "items": {
+                                "$ref": "#/definitions/TraitRef10"
+                            }
+                        },
+                        "body": {
+                            "type": "object",
+                            "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {
+                                    "$ref": "datamodel.json#/definitions/TypeReference10"
+                                }
+                            }
+                        },
+                        "description": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+        }
+    }
+}

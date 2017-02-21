@@ -1,0 +1,223 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "RAML08": {
+      "properties": {
+        "ramlVersion": {
+          "type": "string",
+          "pattern": "RAML08",
+          "description":"Returns AST node of security scheme, this reference refers to, or null."
+        },
+        "errors": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/Error"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "Api08": {
+      "type": "object",
+      "properties":{
+        "title": {
+          "type": "string",
+          "description": "The title property is a short plain text description of the RESTful API. The value SHOULD be suitable for use as a title for the contained user documentation."
+        },
+        "version": {
+          "type": "string",
+          "description": "If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if: The API itself is not versioned. The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change. The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, 'v3', 'v3.0', and 'V3' are all allowed, but are not considered to be equal."
+        },
+        "baseUri": {
+          "type": "string",
+          "description": "(Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification RFC2396 or a Level 1 Template URI as defined in RFC6570. The baseUri property SHOULD only be used as a reference value."
+        },
+        "baseUriParameters": {
+          "type": "object",
+          "description": "Base uri parameters are named parameters which described template parameters in the base uri",
+          "patternProperties": {
+            "^[a-zA-Z0-9]+": {
+              "oneOf":[
+                {
+                  "$ref": "parameters.json#/definitions/Parameter08",
+                  "description":"Named parameter which described template parameter in the base uri"
+                },
+                {
+                  "type": "array",
+                  "description": "Array of named parameters which described template parameters in the base uri",
+                  "items": {"$ref": "parameters.json#/definitions/Parameter08"}
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "uriParameters": {
+          "type": "object",
+          "description": "URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters",
+          "patternProperties": {
+            "^[a-zA-Z0-9]+": {
+              "oneOf":[
+                {"$ref": "parameters.json#/definitions/Parameter08"},
+                {
+                  "type": "array",
+                  "items": {"$ref": "parameters.json#/definitions/Parameter08"}
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "protocols":{
+          "type": "array",
+          "description": "A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.",
+          "items":{
+            "type": "string"
+          }
+        },
+        "mediaType": {
+          "description": "(Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type described in the specification.",
+          "type": "string"
+        },
+        "schemas":{
+          "type": "array",
+          "description": "To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.",
+          "items":{
+            "$ref": "#/definitions/GlobalSchema"
+          }
+        },
+        "traits":{
+          "type": "object",
+          "description": "Declarations of traits used in this API",
+          "patternProperties": {
+            "^[a-zA-Z0-9]+": {
+              "$ref": "methods.json#/definitions/Trait"
+            }
+          }
+        },
+        "securedBy":{
+          "type": "array",
+          "description": "A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.",
+          "items":{
+            "$ref": "methods.json#/definitions/Reference08"
+          }
+        },
+        "securitySchemes":{
+          "type": "object",
+          "description": "Security schemes that can be applied using securedBy",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+": {
+              "$ref": "security.json#/definitions/SecurityScheme08"
+            }
+          }
+        },
+        "resourceTypes":{
+          "type": "object",
+          "description": "Declaration of resource types used in this API",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+": {
+              "$ref": "resources.json#/definitions/ResourceType08"
+            }
+          }
+        },
+        "resources":{
+          "type": "array",
+          "description": "Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.",
+          "items":{
+            "$ref": "resources.json#/definitions/Resource08"
+          }
+        },
+        "documentation":{
+          "type": "array",
+          "description": "The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared. To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document. Documentation-generators MUST process the content field as if it was defined using Markdown.",
+          "items":{
+            "$ref": "#/definitions/DocumentationItem08"
+          }
+        },
+        "__METADATA__": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "GlobalSchema": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9]+":{
+          "type": "string",
+          "description":"Content of the schema"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DocumentationItem08": {
+      "type": "object",
+      "properties":{
+        "title":{
+          "type": "string",
+          "description": "title of documentation section"
+        },
+        "content":{
+          "type": "string",
+          "description": "Content of documentation section"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "IssueCode"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message text"
+        },
+        "path": {
+          "type": "string",
+          "description": "File path"
+        },
+        "isWarning": {
+          "type": "boolean",
+          "description": "Whether the message is warning or not"
+        },
+        "trace": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/Error"}
+        },
+        "range": {"$ref": "#/definitions/ErrorRange"}
+      },
+      "additionalProperties": false
+    },
+
+    "ErrorRange": {
+      "type": "object",
+      "description": "RangeObject describing start and end of error location",
+      "properties": {
+        "start": {"$ref": "#/definitions/ErrorPosition"},
+        "end": {"$ref": "#/definitions/ErrorPosition"}
+      },
+      "additionalProperties": false
+    },
+
+    "ErrorPosition": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "number",
+          "description": "Line number, starting at 0"
+        },
+        "column": {
+          "type": "number",
+          "description": "Column number, starting at 0"
+        },
+        "position": {
+          "type": "number",
+          "description": "Position in characters from the beginning of the document, starting at 0"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
