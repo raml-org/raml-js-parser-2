@@ -1,0 +1,168 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": "<<exampleCollection>>",
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "collection"
+      }
+    },
+    "title": "Flights-01",
+    "version": "1.0",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": [
+                          {
+                            "ID": 1,
+                            "code": "ER38sd",
+                            "price": 400,
+                            "departureDate": "2016/03/20",
+                            "origin": "MUA",
+                            "destination": "SFO",
+                            "emptySeats": 0,
+                            "plane": {
+                              "type": "Boeing 737",
+                              "totalSeats": 150
+                            }
+                          },
+                          {
+                            "ID": 2,
+                            "code": "ER45if",
+                            "price": 345.99,
+                            "departureDate": "2016/02/11",
+                            "origin": "MUA",
+                            "destination": "LAX",
+                            "emptySeats": 52,
+                            "plane": {
+                              "type": "Boeing 777",
+                              "totalSeats": 300
+                            }
+                          }
+                        ],
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": {
+          "collection": {
+            "exampleCollection": [
+              {
+                "ID": 1,
+                "code": "ER38sd",
+                "price": 400,
+                "departureDate": "2016/03/20",
+                "origin": "MUA",
+                "destination": "SFO",
+                "emptySeats": 0,
+                "plane": {
+                  "type": "Boeing 737",
+                  "totalSeats": 150
+                }
+              },
+              {
+                "ID": 2,
+                "code": "ER45if",
+                "price": 345.99,
+                "departureDate": "2016/02/11",
+                "origin": "MUA",
+                "destination": "LAX",
+                "emptySeats": 52,
+                "plane": {
+                  "type": "Boeing 777",
+                  "totalSeats": 300
+                }
+              }
+            ]
+          }
+        },
+        "relativeUri": "/flights",
+        "displayName": "/flights",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "flights"
+        ],
+        "absoluteUri": "/flights",
+        "completeRelativeUri": "/flights",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

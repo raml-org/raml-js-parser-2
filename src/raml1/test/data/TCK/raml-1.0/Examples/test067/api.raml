@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: Flights-01
+version: 1.0
+
+resourceTypes:
+  collection:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: <<exampleCollection>>
+
+/flights:
+  type:
+    collection:
+      exampleCollection: !include example.raml

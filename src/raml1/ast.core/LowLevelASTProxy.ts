@@ -773,12 +773,21 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
         return super.valueKind();
     }
 
+    includePath(){
+        var includePath = this._transformer && this._transformer.includePath(this.originalNode());
+        if(includePath!=null){
+            return includePath;
+        }
+        return super.includePath();
+    }
+
     parent():LowLevelValueTransformingNode { return <LowLevelValueTransformingNode>this._parent;}
 
     key(raw:boolean=false):string{
         var key = super.key(raw);
         if(this.transformer()!=null) {
-            return this.transformer().transform(key).value;
+            var transformed = this.transformer().transform(key).value;
+            return (typeof(transformed)=="object") ? null : transformed;
         }
         return key;
     }
@@ -796,6 +805,8 @@ export interface ValueTransformer{
     children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
 
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind
+
+    includePath(node:ll.ILowLevelASTNode):string
 }
 
 export function isLowLevelProxyNode(node : any) : node is LowLevelProxyNode {

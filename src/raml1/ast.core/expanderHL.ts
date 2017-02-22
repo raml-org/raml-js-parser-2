@@ -723,7 +723,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 var paramName = obj.substring(2,obj.length-2);
                 var structuredValue = this.structuredParams[paramName];
                 if(structuredValue!=null){
-                   return { value:structuredValue.value(toString), errors: errors };
+                   return { value:structuredValue, errors: errors };
                 }
             }
             var str:string = <string>obj;
@@ -827,6 +827,15 @@ export class ValueTransformer implements proxy.ValueTransformer{
         var substitution = this.substitutionNode(node);
         if(substitution){
             return substitution.valueKind();
+        }
+        return null;
+    }
+
+
+    includePath(node:ll.ILowLevelASTNode):string{
+        var substitution = this.substitutionNode(node);
+        if(substitution){
+            return substitution.includePath();
         }
         return null;
     }
@@ -944,6 +953,10 @@ export class DefaultTransformer extends ValueTransformer{
 
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind{
         return this.delegate != null ? this.delegate.valueKind(node) : null;
+    }
+
+    includePath(node:ll.ILowLevelASTNode):string{
+        return this.delegate != null ? this.delegate.includePath(node) : null;
     }
 
 }
