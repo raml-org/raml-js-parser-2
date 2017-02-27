@@ -876,4 +876,21 @@ describe('Helper methods', function () {
 
         assert.equal(api.types()[2].properties()[0].findComponentTypeDeclaration().name(),"TestType");
     });
+
+    it('structuredItems() for array type', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  MyArrayType:",
+            "    type: array",
+            "    items:",
+            "      properties:",
+            "        prop: string"
+        ].join("\n")));
+
+        var prop = api.types()[0].structuredItems().properties()[0]
+
+        assert.equal(prop.name(),"prop");
+        assert.equal(prop.value().value(),"string");
+    });
 });

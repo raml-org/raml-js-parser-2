@@ -888,6 +888,26 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
 }
 
 /**
+ * __$helperMethod__ Inlined component type definition.
+ * __$meta__={"name":"structuredItems","primary":true}
+ */
+export function itemsStructuredValue(typeDeclaration:RamlWrapper.ArrayTypeDeclaration):RamlWrapper.TypeInstance{
+
+    var attrs
+        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.ArrayTypeDeclaration.properties.items.name);
+
+    var values = attrs.map(x=>x.value());
+    for(var val of values){
+        if(hlimpl.StructuredValue.isInstance(val)){
+            var typeInstance = new core.TypeInstanceImpl((<hlimpl.StructuredValue><any>val).lowLevel());
+            return typeInstance;
+        }
+    }
+    return null;
+}
+
+
+/**
  * __$helperMethod__
  * Returns the root node of the AST, uses statement refers.
  * __$meta__={"name":"ast"}
