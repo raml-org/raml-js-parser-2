@@ -1,4 +1,6 @@
-# The New API
+# The New API (Beta)
+
+This document describes the beta version of the new parser API and its differences compared to the old API, which will become deprecated after the new API is released and which will be removed at some distant point in future after that.
 
 ## Creating test files
 
