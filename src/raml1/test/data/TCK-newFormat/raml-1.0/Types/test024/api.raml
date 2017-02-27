@@ -1,0 +1,180 @@
+#%RAML 1.0
+title: TCK Sample. RAML 1.0 Types 001.
+version: v1
+baseUri: http://api.samplehost.com/{version}
+types:
+  
+  Zip:
+    type: number
+    example: 630128
+
+  Address:
+    properties:
+      country:
+        enum:
+          - US
+          - ARG
+          - RUS
+          - GB
+      city:
+      street?:
+      house?:
+      zip: Zip
+
+    example: !include examples/address.json
+
+  Email:
+    pattern: "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com"
+    minLength: 15
+    maxLength: 64
+
+    example: press@mulesoft.com
+
+  User:
+    properties:
+
+      id: number
+
+      name:
+
+      email: Email
+
+      phone?:
+        pattern: \+\d{1}\-\d{3}\-\d{3}\-\d{4}
+        minLength: 15
+        maxLength: 15
+
+      address?: Address
+
+    facets:
+      role:
+        enum: [ user, manager, admin, super-admin ]
+        default: user
+
+    examples:
+      value1:
+          id: 11
+          name: John Johnson
+          email: press@mulesoft.com
+          phone: +7-913-111-1111
+          address:
+            country: RUS
+            city: Novosibirsk
+            zip: 630090
+          
+      value2:
+          id: 12
+          name: John Johnson
+          email: press1@mulesoft.com
+          phone: +1-222-222-2222
+          address:
+            country: US
+            city: SF
+            zip: 123456
+
+  Manager:
+    type: User
+    role: manager
+    properties:
+      managerId: number
+    examples:
+      manager1:
+        value: 
+          id: 11
+          name: John Johnson
+          email: press@mulesoft.com
+          phone: +7-913-111-1111
+          address:
+            country: RUS
+            city: Novosibirsk
+            zip: 630090
+          managerId: 77
+      
+      manager2:    
+        value:
+          id: 12
+          name: John Johnson
+          email: press1@mulesoft.com
+          phone: +1-222-222-2222
+          address:
+            country: US
+            city: SF
+            zip: 123456
+          managerId: 88
+
+  Admin:
+    type: User
+    role: admin
+    properties:
+      adminId: number
+
+  SuperAdmin:
+    type: Admin
+    
+    #the 'role' facet has already been fixed in 'Admin' class
+    #role: super-admin
+
+  Team:
+    properties:
+      id: number
+      title:
+        pattern: /[A-Z][a-z]*/
+      manager: Manager
+      admin: Admin|SuperAdmin
+      members: (User|Team)[]
+      info:
+        #inline type declaration
+        properties:
+          address: Address
+          email: Email
+          size: number
+
+/teams:
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            type: Team[]
+  post:
+    description: create new team with desired title
+    body:
+      #inline type declaration
+      application/json:
+        properties:
+          title:
+            pattern: "[A-Z][a-z]*"
+    responses:
+      204:
+        body:
+          application/json:
+            type: User
+            role: admin
+
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: Team
+        404:
+          body:
+            text/plain:
+
+/users:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: User[]
+
+/users/{id}:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: User
+            role: admin

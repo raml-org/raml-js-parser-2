@@ -1,0 +1,37 @@
+{
+  "specification": {
+    "annotations": {
+      "lib2.a2": {
+        "name": "lib2.a2",
+        "structuredValue": null
+      },
+      "lib1.a1": {
+        "name": "lib1.a1",
+        "structuredValue": null
+      },
+      "lib0.a0": {
+        "name": "lib0.a0",
+        "structuredValue": null
+      }
+    },
+    "uses": [
+      {
+        "key": "lib2",
+        "value": "lib2.raml"
+      },
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      },
+      {
+        "key": "lib0",
+        "value": "lib0.raml"
+      }
+    ],
+    "title": "test API",
+    "extends": "e1.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "errors": []
+}

@@ -1,0 +1,95 @@
+{
+  "specification": {
+    "title": "Dropbox API",
+    "version": "1",
+    "baseUri": "https://api.dropbox.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": "string",
+        "required": true,
+        "repeat": false,
+        "enum": [
+          "1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTPS"
+    ],
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "settings": {}
+      }
+    },
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MISSING_REQUIRED_PROPERTY",
+      "message": "Missing required property 'accessTokenUri'",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 6,
+          "position": 237
+        },
+        "end": {
+          "line": 9,
+          "column": 14,
+          "position": 245
+        }
+      }
+    },
+    {
+      "code": "MISSING_REQUIRED_PROPERTY",
+      "message": "Missing required property 'authorizationUri'",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 6,
+          "position": 237
+        },
+        "end": {
+          "line": 9,
+          "column": 14,
+          "position": 245
+        }
+      }
+    }
+  ]
+}

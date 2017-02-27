@@ -1,0 +1,12 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates another example on how template URIs need to work when it comes down to URI duplication.
+# Expected result: no error message
+
+# tags: template uris
+
+title: URI Templates
+
+/users/{userId}:
+/users/{username}:
+/users/me:

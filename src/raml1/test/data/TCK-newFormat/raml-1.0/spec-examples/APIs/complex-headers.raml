@@ -1,0 +1,40 @@
+#%RAML 1.0
+
+# Objective: The following example illustrates inheriting headers from a trait, allowing multiple instances of a header, specifying examples, and overriding the headers when applied to a method and a resource.
+# Expected result: no error message
+
+# tags: headers, traits, override, examples
+
+title: Example with headers
+traits:
+  chargeable:
+    headers:
+      X-Dept:
+        type: array
+        description: |
+          A department code to be charged.
+          Multiple of such headers are allowed.
+        items:
+          pattern: ^\d+\-\w+$
+          example: 230-OCTO
+  traceable:
+    headers:
+      X-Tracker:
+        description: A code to track API calls end to end
+        pattern: ^\w{16}$
+        example: abcdefghijklmnop
+/users:
+  get:
+    is: [ chargeable, traceable ]
+    description: |
+      The HTTP interaction will look like
+
+      GET /users HTTP/1.1
+      X-Dept: 18-FINANCE
+      X-Dept: 200-MISC
+      X-Tracker: gfr456d03ygh38s2
+    headers:
+      X-Dept:
+        example: [ 18-FINANCE, 200-MISC ]
+      X-Tracker:
+        example: gfr456d03ygh38s2

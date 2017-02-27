@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: API Gateway Test API
+version: 1.0.0
+baseUri: https://api.uber.com
+mediaType: application/json
+types:  # Move to overlay file
+  amazon-apigateway-auth-type:
+    enum: [ aws_iam ]
+  amazon-apigateway-integration-lambda:
+    properties:
+      type:
+        enum: [ lambda ]
+  amazon-apigateway-integration-HTTP:
+    properties:
+      type:
+        enum: [ HTTP ]
+  amazon-apigateway-integration-mock:
+    properties:
+      type:
+        enum: [ mock ]
+  amazon-apigateway-integration-aws:
+    properties:
+      type:
+        enum: [ aws ]
+  amazon-apigateway-integration:
+    type: amazon-apigateway-integration-lambda | amazon-apigateway-integration-HTTP | amazon-apigateway-integration-mock | amazon-apigateway-integration-aws
+annotationTypes: # Move to overlay file
+  amazon-apigateway-auth:
+    properties:
+      value: amazon-apigateway-auth-type
+  amazon-apigateway-integration:
+    properties:
+      value: amazon-apigateway-integration
+securitySchemes:
+  key:
+    type: Pass Through
+    describedBy:
+      headers:
+        x-api-key:

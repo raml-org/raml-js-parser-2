@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: API
+resourceTypes:
+  main:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              description: some very useful resource
+  base:
+    post:
+traits:
+  one:
+    queryParameters:
+      hidden:
+  two:
+    headers:
+      hidden:
+baseUri: /some/base/uri
+
+/someChildUri:
+  type: main
+  post:
+    is: [two]
+    responses:
+      200:
+        body:
+          application/xml:
+            description: some very useful resource
+  /anotherChild:
+    put:
+      body:
+        application/json:
+          description: another very useful resource

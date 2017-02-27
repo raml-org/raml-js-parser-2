@@ -1,0 +1,137 @@
+{
+  "specification": {
+    "types": {
+      "NilType_1": {
+        "name": "NilType_1",
+        "displayName": "NilType_1",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "NilType_2": {
+        "name": "NilType_2",
+        "displayName": "NilType_2",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "TypeWithNilProperties": {
+        "name": "TypeWithNilProperties",
+        "displayName": "TypeWithNilProperties",
+        "type": [
+          "object"
+        ],
+        "examples": [
+          {
+            "value": {
+              "nilProp_1": null,
+              "nilProp_2": null
+            },
+            "strict": true,
+            "name": "exampleWithEmptyValues"
+          },
+          {
+            "value": {
+              "nilProp_1": null,
+              "nilProp_2": null
+            },
+            "strict": true,
+            "name": "exampleWithImplicitNull"
+          },
+          {
+            "value": {
+              "nilProp_1": null,
+              "nilProp_2": null
+            },
+            "strict": true,
+            "name": "exampleWithTilde"
+          },
+          {
+            "value": {
+              "nilProp_1": null,
+              "nilProp_2": null
+            },
+            "strict": true,
+            "name": "exampleWithNullTag"
+          }
+        ],
+        "properties": {
+          "nilProp_1": {
+            "name": "nilProp_1",
+            "displayName": "nilProp_1",
+            "type": [
+              "NilType_1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "nilProp_2": {
+            "name": "nilProp_2",
+            "displayName": "nilProp_2",
+            "type": [
+              "NilType_2"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

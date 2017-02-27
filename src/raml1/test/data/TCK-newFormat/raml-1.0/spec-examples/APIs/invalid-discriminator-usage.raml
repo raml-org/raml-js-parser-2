@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: Invalid Discriminator Usage
+
+description: |
+  This RAML illustrates two examples that discriminator is not allowed in any inline
+  type declaration and for union types.
+
+types:
+  Person:
+  Dog:
+  PersonOrDog:
+    type: Person | Dog
+    discriminator: hasTail # not allowed
+
+/inline:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            discriminator: kind # not allowed
+            properties:
+              kind: string

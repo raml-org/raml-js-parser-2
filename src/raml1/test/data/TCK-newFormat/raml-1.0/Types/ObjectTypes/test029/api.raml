@@ -1,0 +1,17 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  Error:
+    discriminator: type
+    properties:
+      type:
+        type: string
+
+    example:
+      type: internal_server_error
+
+  ServerError:
+    type: Error
+    discriminatorValue: internal_server_error

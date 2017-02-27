@@ -1,0 +1,89 @@
+{
+  "specification": {
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "typePropertyKind": "JSON",
+        "schemaPath": "schemas/person.json",
+        "type": [
+          "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"firstName\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"lastName\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"age\": {\n\t\t\t\"description\": \"Age in years\",\n\t\t\t\"type\": \"integer\",\n\t\t\t\"minimum\": 0\n\t\t}\n\t},\n\t\"required\": [\"firstName\", \"lastName\"]\n}\n"
+        ],
+        "description": "this is a schema describing person",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "Board": {
+        "name": "Board",
+        "displayName": "Board",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "members": {
+            "name": "members",
+            "displayName": "members",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "Person",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "External Types Invalid"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "EXTERNAL_AS_COMPONENT",
+      "message": "It is not allowed to use external types in component type definitions",
+      "path": "external-type-extend-invalid.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 6,
+          "position": 419
+        },
+        "end": {
+          "line": 14,
+          "column": 13,
+          "position": 426
+        }
+      }
+    }
+  ]
+}

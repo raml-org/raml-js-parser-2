@@ -1,0 +1,125 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "Types",
+        "value": "types.raml"
+      }
+    ],
+    "title": "Mulesoft Info",
+    "version": "1",
+    "baseUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "array"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": [
+                          {
+                            "id": 1,
+                            "title": "feature1",
+                            "description": "description of feature 1",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 2,
+                            "title": "feature2",
+                            "description": "description of feature 2",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 3,
+                            "title": "feature3",
+                            "description": "description of feature 3",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 4,
+                            "title": "feature4",
+                            "description": "description of feature 4",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          },
+                          {
+                            "id": 5,
+                            "title": "feature5",
+                            "description": "description of feature 4",
+                            "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+                          }
+                        ],
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "items": "Types.Feature",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/features",
+        "displayName": "/features",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "features"
+        ],
+        "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
+        "completeRelativeUri": "/features",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

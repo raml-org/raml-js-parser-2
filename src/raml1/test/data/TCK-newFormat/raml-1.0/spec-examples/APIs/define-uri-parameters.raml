@@ -1,0 +1,20 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates an example on how to define a uri parameter
+# Expected result: no error message
+
+# tags: uri parameter
+
+title: GitHub API
+version: v3
+baseUri: https://api.github.com
+/user:
+  description: The currently authenticated User
+/users:
+  description: All users
+  /{userId}:
+   description: A specific user
+   uriParameters:
+     userId:
+       description: The id of the user
+       type: integer

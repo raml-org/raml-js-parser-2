@@ -1,0 +1,56 @@
+{
+  "specification": {
+    "title": "Overlay2",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "displayName": "Test3",
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      },
+      {
+        "relativeUri": "/anotherResource",
+        "displayName": "/anotherResource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "anotherResource"
+        ],
+        "absoluteUri": "/anotherResource",
+        "completeRelativeUri": "/anotherResource",
+        "parentUri": ""
+      }
+    ],
+    "extends": "NewOverlay.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": [
+    {
+      "code": "INVALID_OVERLAY_NODE",
+      "message": "The './anotherResource' node does not match any node of the master api.",
+      "path": "NewOverlay2.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 0,
+          "position": 95
+        },
+        "end": {
+          "line": 6,
+          "column": 16,
+          "position": 111
+        }
+      }
+    }
+  ]
+}

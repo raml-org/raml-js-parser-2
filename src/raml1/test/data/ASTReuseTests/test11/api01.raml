@@ -1,0 +1,29 @@
+#%RAML 1.0
+title: Example API
+version: v1
+types:
+  item:
+    type: object
+    properties:
+      id: string
+      size: number
+  collection:
+    type: array
+    items:
+      item | string
+resourceTypes:
+  searchableCollection:
+   get:
+     responses:
+       200:
+         body:
+           application/json:
+             properties:
+               items:
+                 type: item
+/rest:
+  type: searchableCollection
+/res:
+  post:
+  /{resId}:
+    get:

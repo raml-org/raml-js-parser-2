@@ -15,6 +15,25 @@ export import api10 = require("./raml1/artifacts/raml10parserapi")
 export import api08 = require("./raml1/artifacts/raml08parserapi")
 
 /**
+ * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the result contains errors and the 'rejectOnErrors' option is set to 'true'.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @return Object representation of the specification wrapped into a Promise.
+ **/
+export function load(ramlPath:string,options?:parserCore.Options2):Promise<Object>{
+    return apiLoader.load(ramlPath,options);
+}
+
+/**
+ * Load RAML synchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @return Object representation of the specification.
+ **/
+export function loadSync(ramlPath:string,options?:parserCore.Options2):Object{
+    return apiLoader.loadSync(ramlPath,options);
+}
+/**
  * Load API synchronously. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for Api which contains errors.
  * @param apiPath Path to API: local file system path or Web URL
  * @param options Load options

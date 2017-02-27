@@ -1,0 +1,75 @@
+{
+  "specification": {
+    "traits": {
+      "lib.boolean": {
+        "securedBy": [
+          "lib.number"
+        ],
+        "name": "boolean",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "resourceTypes": {
+      "lib.number": {
+        "is": [
+          "lib.boolean"
+        ],
+        "securedBy": [
+          "lib.oauth",
+          "lib.number"
+        ],
+        "name": "number"
+      }
+    },
+    "securitySchemes": {
+      "lib.oauth": {
+        "name": "oauth",
+        "type": "OAuth 2.0"
+      },
+      "lib.number": {
+        "name": "number",
+        "type": "Basic Authentication"
+      }
+    },
+    "title": "test API",
+    "securedBy": [
+      "lib.number"
+    ],
+    "resources": [
+      {
+        "is": [
+          "lib.boolean"
+        ],
+        "type": "lib.number",
+        "securedBy": [
+          "lib.oauth",
+          "lib.number"
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

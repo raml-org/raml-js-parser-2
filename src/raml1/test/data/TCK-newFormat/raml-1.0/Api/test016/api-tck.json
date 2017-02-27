@@ -1,0 +1,77 @@
+{
+  "specification": {
+    "title": "Test",
+    "baseUri": "http://{a}.myapi.org",
+    "baseUriParameters": {
+      "a": [
+        {
+          "name": "a",
+          "displayName": "second",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "description": "This is A",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        },
+        {
+          "name": "a",
+          "displayName": "2",
+          "type": [
+            "integer"
+          ],
+          "required": true,
+          "description": "This is A",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        }
+      ]
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "SEQUENCE_NOT_ALLOWED_10",
+      "message": "In RAML 1.0 base uri parameter is not allowed to have sequence as definition",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 74
+        },
+        "end": {
+          "line": 4,
+          "column": 3,
+          "position": 75
+        }
+      }
+    }
+  ]
+}

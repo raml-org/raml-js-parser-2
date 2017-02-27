@@ -1,0 +1,59 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "meta" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "code" : {
+          "type" : "number" ,
+          "required" : false
+        }
+      }
+    } ,
+    "data" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "object" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "object_id" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "aspect" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "callback_url" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "type" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "id" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "lng" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "lat" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "radius" : {
+          "type" : "number" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}

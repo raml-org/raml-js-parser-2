@@ -1,0 +1,69 @@
+{
+  "specification": {
+    "types": {
+      "Email": {
+        "name": "Email",
+        "displayName": "Email",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Emails": {
+        "name": "Emails",
+        "displayName": "Emails",
+        "type": [
+          "array"
+        ],
+        "uniqueItems": true,
+        "items": [
+          "Email"
+        ],
+        "minItems": 1,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Expanded Array Type with Example"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

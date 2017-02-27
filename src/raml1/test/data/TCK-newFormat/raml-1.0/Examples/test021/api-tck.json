@@ -1,0 +1,105 @@
+{
+  "specification": {
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "string"
+        ],
+        "pattern": ".5",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": "d5",
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MyType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "z": ".3"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "PATTERN_VIOLATION",
+      "message": "String should match to '.5'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 6,
+          "position": 142
+        },
+        "end": {
+          "line": 10,
+          "column": 7,
+          "position": 143
+        }
+      }
+    }
+  ]
+}

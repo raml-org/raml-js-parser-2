@@ -1,0 +1,18 @@
+{
+  "specification": {
+    "type": "OAuth 2.0",
+    "settings": {
+      "accessTokenUri": "http://example.com",
+      "authorizationUri": "http://example.com",
+      "authorizationGrants": [
+        "http://example.com"
+      ],
+      "scopes": [
+        "http://example.com"
+      ]
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "OAuth2SecurityScheme",
+  "errors": []
+}

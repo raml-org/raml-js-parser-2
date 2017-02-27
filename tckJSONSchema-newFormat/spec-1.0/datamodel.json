@@ -1,0 +1,375 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "TypeDeclarationFragment": {
+      "allOf":[
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/Type"}
+      ],
+      "required": ["type", "__METADATA__", "required"]
+    },
+    "ExampleFragment": {
+      "allOf":[
+        {"$ref": "common.json#/definitions/FragmentDeclaration"},
+        {"$ref": "#/definitions/ExampleSpec10"}
+      ]
+    },
+    "ExampleSpec10": {
+      "allOf":[
+        {"$ref": "common.json#/definitions/Annotable"},
+        {
+          "properties": {
+            "value": {
+              "type": ["object", "boolean", "string", "number", "array", "null"],
+              "description": "Actual example value"
+            },
+            "strict": {
+              "type": "boolean",
+              "description": "By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate."
+            },
+            "name": {
+              "type": ["string", "null"],
+              "description": "Example identifier, if specified"
+            },
+            "description": {
+              "type": "string",
+              "description": "A longer, human-friendly description of the example"
+            },
+            "displayName": {
+              "type": "string",
+              "description": "An alternate, human-friendly name for the example"
+            }
+          }
+        }
+      ],
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+    },
+    "Type": {
+      "description": "Declaration of (data) type for use within API",
+      "anyOf": [
+        {"$ref": "#/definitions/TypeSchemaDeclaration"},
+        {"$ref": "#/definitions/StringTypeDeclaration"},
+        {"$ref": "#/definitions/NumberTypeDeclaration"},
+        {"$ref": "#/definitions/DateTypeDeclaration"},
+        {"$ref": "#/definitions/FileTypeDeclaration"},
+        {"$ref": "#/definitions/ArrayTypeDeclaration"},
+        {"$ref": "#/definitions/ObjectDeclaration"},
+        {"$ref": "#/definitions/BrokenTypeDeclaration"}
+      ]
+    },
+    "ArrayTypeDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "uniqueItems": {
+              "type": "boolean",
+              "description": "Should items in array be unique"
+            },
+            "minItems": {
+              "type": "number",
+              "description": "Minimum amount of items in array"
+            },
+            "maxItems": {
+              "type": "number",
+              "description": "Maximum amount of items in array"
+            },
+            "items": {"$ref": "#/definitions/TypeReference10"}
+          }
+        }
+      ]
+    },
+    "FileTypeDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "enum": {
+              "type": "array",
+              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
+            },
+            "fileTypes": {
+              "type": "array"
+            },
+            "fixedFacets": {
+              "fileTypes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression"
+            },
+            "minLength": {
+              "type": "number",
+              "description": "Minimum length"
+            },
+            "maxLength": {
+              "type": "number",
+              "description": "Maximum length"
+            }
+          }
+        }
+      ]
+    },
+    "StringTypeDeclaration": {
+      "description": "Value must be a string",
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "enum": {
+              "type": "array",
+              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
+            },
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression that this string should path"
+            },
+            "minLength": {
+              "type": "number",
+              "description": "Minimum length of the string"
+            },
+            "maxLength": {
+              "type": "number",
+              "description": "Maximum length of the string"
+            }
+          }
+        }
+      ]
+    },
+    "NumberTypeDeclaration": {
+      "description": "Value MUST be a number. Indicate floating point numbers as defined by YAML.",
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "enum": {
+              "type": "array",
+              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
+            },
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression"
+            },
+            "minimum": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
+            },
+            "maximum": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+            },
+            "format": {
+              "type": "string",
+              "description": "Value format"
+            },
+            "multipleOf": {
+              "type": "number",
+              "description": "A numeric instance is valid against \"multipleOf\" if the result of the division of the instance by this keywords value is an integer."
+            },
+            "fixedFacets": {
+              "type": "object",
+              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+              "properties": {
+                "maximum": {
+                  "type": "number",
+                  "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+                },
+                "minimum": {
+                  "type": "number",
+                  "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
+                },
+                "format": {
+                  "type": "string",
+                  "description": "Value format"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      ]
+    },
+    "DateTypeDeclaration": {
+      "description": "the \"full-date\" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)",
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"}
+      ]
+    },
+    "TypeReference10": {
+      "oneOf": [
+        {"type": "string"},
+        {
+          "type": "array",
+          "items": {
+            "oneOF": [
+              {
+                "type": "string"
+              },
+              {"$ref": "#/definitions/Type"}
+            ]
+          }
+        },
+        {"$ref": "#/definitions/Type"}
+      ]
+    },
+    "TypeSchemaDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "type":  {"$ref": "#/definitions/TypeReference10"},
+            "schemaPath": {
+              "type": "string",
+              "description": "relative path to schema for types that loaded from json schemas"
+            }
+          }
+        }
+      ]
+    },
+    "TypeDeclaration": {
+      "allOf":[
+        {"$ref": "common.json#/definitions/Annotable"},
+        {
+          "properties": {
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "examples": {
+              "type": "array",
+              "description": "An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.",
+              "items": {"$ref": "#/definitions/ExampleSpec10"}
+            },
+            "structuredExample": {"$ref": "#/definitions/ExampleSpec10"},
+            "name": {
+              "type": "string",
+              "description": "name of the parameter"
+            },
+            "default": {
+              "type": ["object", "string", "array", "number", "boolean"],
+              "description": "Provides default value for a property"
+            },
+            "description": {
+              "type": "string",
+              "description": "A longer, human-friendly description of the type"
+            },
+            "allowedTargets": {
+              "type": "array",
+              "description": "Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "xml": {
+              "type": "object",
+              "properties": {
+                "attribute": {
+                  "type": "boolean",
+                  "description": "If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types."
+                },
+                "wrapped": {
+                  "type": "boolean",
+                  "description": "If wrapped is set to true, a type instance should be wrapped in its own XML element. It can not be true for scalar types and it can not be true at the same moment when attribute is true."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Allows to override the name of the XML element or XML attribute in it's XML representation."
+                },
+                "namespace": {
+                  "type": "string",
+                  "description": "Allows to configure the name of the XML namespace."
+                },
+                "prefix": {
+                  "type": "string",
+                  "description": "Allows to configure the prefix which will be used during serialization to XML."
+                }
+              },
+              "additionalProperties": false
+            },
+            "required": {
+              "type": "boolean",
+              "description": "Sets if property is optional or not"
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
+            },
+            "facets": {
+              "type": "object",
+              "description": "When extending from a type you can define new facets (which can then be set to concrete values by subtypes).",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
+              }
+            },
+            "fixedFacets": {
+              "type": "object",
+              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet."
+            },
+            "__METADATA__": {
+              "type": "object"
+            }
+          }
+        }
+      ],
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+    },
+    "ObjectDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/TypeDeclaration"},
+        {
+          "properties": {
+            "discriminator": {
+              "type": "string"
+            },
+            "discriminatorValue": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "object",
+              "description": "For types defined in traits or resource types returns object representation of parametrized properties",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+              }
+            },
+            "minProperties": {
+              "type": "number",
+              "description": "The minimum number of properties allowed for instances of this type."
+            },
+            "maxProperties": {
+              "type": "number",
+              "description": "The maximum number of properties allowed for instances of this type."
+            },
+            "additionalProperties": {
+              "type": "boolean",
+              "description": "A Boolean that indicates if an object instance has additional properties."
+            }
+          }
+        }
+      ]
+    },
+    "BrokenTypeDeclaration": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+
+        "type": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "string"
+          }
+        },
+
+        "__METADATA__": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+    }
+  }
+}

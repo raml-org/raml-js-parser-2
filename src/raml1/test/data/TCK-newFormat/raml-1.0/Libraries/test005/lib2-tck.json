@@ -1,0 +1,79 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib1.raml"
+      }
+    ],
+    "types": {
+      "t2": {
+        "name": "t2",
+        "displayName": "t2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p2": {
+            "name": "p2",
+            "displayName": "p2",
+            "type": [
+              "lib.t1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "p2": {
+                "p1": {
+                  "p2": {
+                    "p1": {
+                      "p2": {
+                        "p1": {
+                          "p2": {
+                            "p1": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": []
+}

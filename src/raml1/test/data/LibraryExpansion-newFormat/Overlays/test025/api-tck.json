@@ -1,0 +1,117 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "lib.TestAnnotationType": {
+        "name": "TestAnnotationType",
+        "displayName": "TestAnnotationType",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "lib.AnotherAnnotationType": {
+        "name": "AnotherAnnotationType",
+        "displayName": "AnotherAnnotationType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "firstProp": {
+            "name": "firstProp",
+            "displayName": "firstProp",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "secondProp": {
+            "name": "secondProp",
+            "displayName": "secondProp",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Overlay 2",
+    "resources": [
+      {
+        "annotations": {
+          "lib.TestAnnotationType": {
+            "name": "lib.TestAnnotationType",
+            "structuredValue": "TestAnnotationType2"
+          },
+          "lib.AnotherAnnotationType": {
+            "name": "lib.AnotherAnnotationType",
+            "structuredValue": {
+              "firstProp": "firstProp2",
+              "secondProp": 101
+            }
+          }
+        },
+        "relativeUri": "/servers",
+        "displayName": "/servers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "servers"
+        ],
+        "absoluteUri": "/servers",
+        "completeRelativeUri": "/servers",
+        "parentUri": ""
+      }
+    ],
+    "extends": "NewOverlay.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": []
+}

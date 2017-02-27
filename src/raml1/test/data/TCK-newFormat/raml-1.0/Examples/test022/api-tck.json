@@ -1,0 +1,119 @@
+{
+  "specification": {
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "number"
+        ],
+        "minimum": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": 4,
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "z": {
+            "name": "z",
+            "displayName": "z",
+            "type": [
+              "MyType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "z": 3
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'MyType1.minimum=5' i.e. value should not be less than 5",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 4,
+          "position": 81
+        },
+        "end": {
+          "line": 6,
+          "column": 11,
+          "position": 88
+        }
+      }
+    },
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'MyType1.minimum=5' i.e. value should not be less than 5",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 6,
+          "position": 155
+        },
+        "end": {
+          "line": 11,
+          "column": 7,
+          "position": 156
+        }
+      }
+    }
+  ]
+}

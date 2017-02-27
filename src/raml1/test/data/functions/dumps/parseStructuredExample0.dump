@@ -1,9 +1,9 @@
 {
 	"name": "example",
 	"displayName": "example",
-	"typePropertyKind": "TYPE_EXPRESSION",
+	"typePropertyKind": "XML",
 	"type": [
-		"\"<TypeFromLibrary>\\n  <someProp>lorem ipsum</someProp>\\n</TypeFromLibrary>\\n\""
+		"<TypeFromLibrary>\n  <someProp>lorem ipsum</someProp>\n</TypeFromLibrary>\n"
 	],
 	"__METADATA__": {
 		"primitiveValuesMeta": {

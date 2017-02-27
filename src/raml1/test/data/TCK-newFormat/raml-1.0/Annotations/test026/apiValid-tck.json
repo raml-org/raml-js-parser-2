@@ -1,0 +1,69 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "a1": {
+        "name": "a1",
+        "displayName": "a1",
+        "type": [
+          "number"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "a2": {
+        "name": "a2",
+        "displayName": "a2",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "API",
+    "resources": [
+      {
+        "description": "descriptionValue",
+        "relativeUri": "/resource",
+        "displayName": "myResource",
+        "scalarsAnnotations": {
+          "description": [
+            {
+              "name": "a1",
+              "structuredValue": 5
+            }
+          ],
+          "displayName": [
+            {
+              "name": "a2",
+              "structuredValue": "value1"
+            }
+          ]
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

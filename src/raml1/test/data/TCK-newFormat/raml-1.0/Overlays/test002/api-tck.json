@@ -1,0 +1,114 @@
+{
+  "specification": {
+    "traits": {
+      "env-org-pair2": {
+        "securedBy": [
+          "x-ttt"
+        ],
+        "name": "env-org-pair2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      },
+      "env-org-pair": {
+        "securedBy": [
+          "x-ttt"
+        ],
+        "name": "env-org-pair",
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "resourceTypes": {
+      "servers-collection": {
+        "securedBy": [
+          "x-ttt"
+        ],
+        "name": "servers-collection",
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "x-ttt": {
+        "name": "x-ttt",
+        "type": "Basic Authentication"
+      }
+    },
+    "title": "Extension",
+    "version": "0.4",
+    "baseUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
+    "protocols": [
+      "HTTP"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "securedBy": [
+      "x-ttt"
+    ],
+    "resources": [
+      {
+        "is": [
+          "env-org-pair"
+        ],
+        "securedBy": [
+          "x-ttt"
+        ],
+        "relativeUri": "/servers",
+        "displayName": "/servers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "servers"
+        ],
+        "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers",
+        "completeRelativeUri": "/servers",
+        "parentUri": ""
+      }
+    ],
+    "extends": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": [
+    {
+      "code": "INVALID_OVERLAY_NODE",
+      "message": "The '.env-org-pair2' node does not match any node of the master api.",
+      "path": "NewOverlay.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 64
+        },
+        "end": {
+          "line": 4,
+          "column": 15,
+          "position": 77
+        }
+      }
+    }
+  ]
+}

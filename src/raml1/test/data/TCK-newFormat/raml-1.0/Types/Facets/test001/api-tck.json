@@ -1,0 +1,153 @@
+{
+  "specification": {
+    "types": {
+      "myDate": {
+        "annotations": {
+          "reader": {
+            "name": "reader",
+            "structuredValue": "myReaader.ts"
+          },
+          "writer": {
+            "name": "writer",
+            "structuredValue": "myWiter.ts"
+          }
+        },
+        "name": "myDate",
+        "displayName": "myDate",
+        "facets": {
+          "format": {
+            "name": "format",
+            "displayName": "format",
+            "type": [
+              "string"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "year": {
+        "name": "year",
+        "displayName": "year",
+        "type": [
+          "myDate"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "fixedFacets": {
+          "format": "YYYY"
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "reader": {
+        "name": "reader",
+        "displayName": "reader",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "writer": {
+        "name": "writer",
+        "displayName": "writer",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "A",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "y": {
+                "name": "y",
+                "displayName": "y",
+                "type": [
+                  "year"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/q",
+        "displayName": "/q",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "q"
+        ],
+        "absoluteUri": "/q",
+        "completeRelativeUri": "/q",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

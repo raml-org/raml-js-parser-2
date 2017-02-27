@@ -1,0 +1,38 @@
+{
+  "specification": {
+    "title": "Extension",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "displayName": "Test3",
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      },
+      {
+        "relativeUri": "/anotherResource",
+        "displayName": "/anotherResource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "anotherResource"
+        ],
+        "absoluteUri": "/anotherResource",
+        "completeRelativeUri": "/anotherResource",
+        "parentUri": ""
+      }
+    ],
+    "extends": "NewOverlay.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "errors": []
+}

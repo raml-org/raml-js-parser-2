@@ -1,0 +1,20 @@
+#%RAML 1.0
+#successful test for 'maxProperties'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      prop:
+        type: object
+        properties:
+          /[a-z]+/ : string
+        maxProperties:
+          value: 5
+          (a): abcdefghijkl

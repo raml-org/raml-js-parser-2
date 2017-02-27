@@ -96,7 +96,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
         var unit=this._project.resolveAsync(this._path,p);
         return unit;
     }
-    
+
 
 
     getIncludeNodes(): { includePath(): string}[]
@@ -308,7 +308,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     includedByContains(path:string) : boolean {
         return _.find(this._includedByPaths,currentPath=>{return currentPath==path}) != null;
     }
-    
+
     getIncludedByPaths() : string[] {
         return this._includedByPaths;
     }
@@ -809,7 +809,7 @@ export class Project implements lowlevel.IProject{
     pathToUnit:{[path:string]:CompilationUnit}={}
 
     failedUnits:{[path:string]:any}={}
-    
+
     _fsEnabled: boolean = true;
 
     private _namespaceResolver = new namespaceResolver.NamespaceResolver();
@@ -832,6 +832,14 @@ export class Project implements lowlevel.IProject{
         if(this._httpResolver == null){
             this._httpResolver = new HTTPResolverImpl();
         }
+    }
+
+    setFSResolver(res:resolversApi.FSResolver){
+        this.resolver = res;
+    }
+
+    setHTTPResolver(res:resolversApi.HTTPResolver){
+        this._httpResolver = res;
     }
 
     fsEnabled(): boolean {
@@ -883,7 +891,7 @@ export class Project implements lowlevel.IProject{
 
             this.pathToUnit[absPath] ? Promise.resolve(result).then((unit: CompilationUnit) => {
                 this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, this.pathToUnit[absPath].contents()), false, this, refPath);
-                
+
                 return this.pathToUnit[refPath];
             }) : this.unitAsync(absPath, true).then((unit: CompilationUnit) => {
                 this.pathToUnit[absPath] = unit;
@@ -2648,6 +2656,29 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         }        
         return false;
     }
+    //value caching proto
+    // private valComputed = [false,false];
+    //
+    // private _val:any[] = [undefined,undefined];
+    //
+    //
+    // value(toString?:boolean):any {
+    //     //value caching proto
+    //     if(toString){
+    //         if(tru!this.valComputed[0]){
+    //             this._val[0] = this._value(true);
+    //             this.valComputed[0] = true;
+    //         }
+    //         return this._val[0];
+    //     }
+    //     else{
+    //         if(!this.valComputed[1]){
+    //             this._val[1] = this._value(false);
+    //             this.valComputed[1] = true;
+    //         }
+    //         return this._val[1];
+    //     }
+    // }
 
     value(toString?:boolean):any {
         if (!this._node){
@@ -3267,6 +3298,16 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         //if(this._unit) return this._unit;
         //if(!this.parent()) return null;
         //return this.parent().unit();
+    }
+
+    containingUnit():lowlevel.ICompilationUnit{
+        if(this.valueKind()==yaml.Kind.INCLUDE_REF){
+            return this.unit().resolve(this._node.value.value);
+        }
+        if(this.kind()==yaml.Kind.INCLUDE_REF){
+            return this.unit().resolve(this._node.value);
+        }
+        return this._unit;
     }
 
     includeBaseUnit():lowlevel.ICompilationUnit {

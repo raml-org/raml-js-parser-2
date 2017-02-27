@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd1:schema xmlns:xsd1="http://www.w3.org/2001/XMLSchema">
+
+<xsd1:include schemaLocation = "schema1.xsd"/>
+
+<xsd1:simpleType name="stringtype">
+  <xsd1:restriction base="xsd1:string"/>
+</xsd1:simpleType>
+
+<xsd1:simpleType name="inttype">
+  <xsd1:restriction base="xsd1:positiveInteger"/>
+</xsd1:simpleType>
+
+<xsd1:simpleType name="dectype">
+  <xsd1:restriction base="xsd1:decimal"/>
+</xsd1:simpleType>
+
+<xsd1:simpleType name="orderidtype">
+  <xsd1:restriction base="xsd1:string">
+    <xsd1:pattern value="[0-9]{6}"/>
+  </xsd1:restriction>
+</xsd1:simpleType>
+
+<xsd1:complexType name="shiptotype">
+  <xsd1:sequence>
+    <xsd1:element name="name" type="stringtype"/>
+    <xsd1:element name="address" type="stringtype"/>
+    <xsd1:element name="city" type="stringtype"/>
+    <xsd1:element name="country" type="stringtype"/>
+  </xsd1:sequence>
+</xsd1:complexType>
+
+<xsd1:complexType name="itemtype">
+  <xsd1:sequence>
+    <xsd1:element name="title" type="stringtype"/>
+    <xsd1:element name="note" type="stringtype" minOccurs="0"/>
+    <xsd1:element name="quantity" type="inttype"/>
+    <xsd1:element name="price" type="dectype"/>
+  </xsd1:sequence>
+</xsd1:complexType>
+
+<xsd1:complexType name="shipordertype">
+  <xsd1:sequence>
+    <xsd1:element name="remoteref" type="remotetype"/>
+    <xsd1:element name="orderperson" type="stringtype"/>
+    <xsd1:element name="shipto" type="shiptotype"/>
+    <xsd1:element name="item" maxOccurs="unbounded" type="itemtype"/>
+  </xsd1:sequence>
+  <xsd1:attribute name="orderid" type="orderidtype" use="required"/>
+</xsd1:complexType>
+
+<xsd1:element name="shiporder" type="shipordertype"/>
+
+</xsd1:schema>

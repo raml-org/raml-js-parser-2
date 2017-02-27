@@ -1,0 +1,50 @@
+#%RAML 1.0 Library
+
+types:
+  apiResource:
+    properties:
+      title: string
+      type: string
+      uri: string
+
+
+annotationTypes:
+
+  highLevelApiDescription:
+    type: string
+    displayName: Api Description
+    description: Description of the RAML API spec.
+    allowedTargets:
+      - API
+      - Overlay
+
+  apiLogo:
+    type: string
+    displayName: Logo
+    description: Service logo.
+    allowedTargets:
+      - API
+      - Overlay
+
+  specAuthor:
+    type: string
+    displayName: Spec Author
+    description: Author of the RAML spec.
+    allowedTargets:
+      - API
+      - Overlay
+
+  devPortal:
+    type: string
+    displayName: Developer Portal
+    description: URL to the developer portal
+    allowedTargets:
+      - API
+      - Overlay
+
+  extraResources:
+    type: apiResource[]
+    allowedTargets:
+      - API
+      - Overlay
+

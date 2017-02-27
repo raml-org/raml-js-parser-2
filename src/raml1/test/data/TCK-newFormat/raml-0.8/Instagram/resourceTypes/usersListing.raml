@@ -1,0 +1,13 @@
+#%RAML 0.8 ResourceType
+securedBy:
+  - oauth_2_0:
+      scopes: [relationships]
+      clientId: []
+type: base
+get:
+  responses:
+    200:
+      body:
+        application/json:
+          schema: users
+          example: !include ../examples/users-example.json

@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "": "http://json-schema.org/draft-03/schema",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        }
+      }
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "created_time": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "from": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "profile_picture": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "full_name": {
+                "type": "string"
+              }
+            }
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

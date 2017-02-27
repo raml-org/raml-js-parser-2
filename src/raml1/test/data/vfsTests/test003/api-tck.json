@@ -12,6 +12,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "typePropertyKind": "JSON",
+                "schemaPath": "schemas/schema.json",
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],
@@ -39,6 +40,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "typePropertyKind": "JSON",
+                "schemaPath": "schemas/schema.json",
                 "type": [
                   "{\n  \"type\": \"object\"\n}"
                 ],

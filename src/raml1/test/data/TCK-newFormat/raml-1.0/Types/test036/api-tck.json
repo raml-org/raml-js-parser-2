@@ -1,0 +1,66 @@
+{
+  "specification": {
+    "types": {
+      "TestType": {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "prop": {
+            "name": "prop",
+            "displayName": "prop",
+            "type": [
+              "date"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_IN_PROPERTY_DEFINITION",
+      "message": "Property 'prop' refers to unknown type 'date'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 8,
+          "position": 80
+        },
+        "end": {
+          "line": 8,
+          "column": 12,
+          "position": 84
+        }
+      }
+    }
+  ]
+}

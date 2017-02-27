@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: Example API
+version: v1
+annotationTypes:
+  deprecated: boolean
+  experimental: nil | boolean
+types:
+  Admin: Owner | Account
+  Document:
+    type: object
+    properties:
+      path: string
+  Owner: Account
+  User:
+    (experimental):
+    type: object
+    properties:
+      name: string
+  Account:
+    type: User
+    properties:
+      id: string
+      creationDate:
+        type: datetime

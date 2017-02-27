@@ -88,9 +88,9 @@ function mergeHighLevelNodes(
 
 export class TraitsAndResourceTypesExpander {
 
-    private globalTraits:(RamlWrapper.Trait|RamlWrapper08.Trait)[];
+    private hasGlobalTraits = false;
 
-    private globalResourceTypes:(RamlWrapper.ResourceType|RamlWrapper08.ResourceType)[];
+    private hasGlobalResourceTypes = false;
 
     private ramlVersion:string;
 
@@ -113,7 +113,7 @@ export class TraitsAndResourceTypesExpander {
 
         var unit = llNode.unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
-        var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
+        var hasTemplates = this.namespaceResolver.hasTemplates(llNode.unit());
         if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
@@ -127,15 +127,8 @@ export class TraitsAndResourceTypesExpander {
     }
 
     init(api:RamlWrapper08.Api|RamlWrapper.Api) {
-        this.ramlVersion = api.highLevel().definition().universe().version();
-
-        this.globalTraits = this.ramlVersion == "RAML10"
-            ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
-            : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
-
-        this.globalResourceTypes = this.ramlVersion == "RAML10"
-            ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
-            : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
+        var hlNode = api.highLevel();
+        this.ramlVersion = hlNode.definition().universe().version();
     }
 
     expandHighLevelNode(
@@ -237,6 +230,9 @@ export class TraitsAndResourceTypesExpander {
 
 
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
+        resourceLowLevel.preserveAnnotations();
+        resourceLowLevel.takeOnlyOriginalChildrenWithKey(
+            def.universesInfo.Universe10.ResourceBase.properties.type.name);
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.highLevel().lowLevel();
             var resourceTypeTransformer = x.resourceType.transformer;
@@ -452,23 +448,6 @@ export class TraitsAndResourceTypesExpander {
             }
         }
         return null;
-    }
-
-    private appendTraitReferences(
-        m:RamlWrapper.Method|RamlWrapper08.Method,
-        traits:GenericData[]){
-        
-        if(traits.length==0){
-            return;
-        }
-
-        var traitsData = traits.map(x=>{
-            return {
-                node: x.ref.highLevel().lowLevel(),
-                transformer: x.parentTransformer
-            };
-        });
-        referencePatcher.patchMethodIs(m.highLevel(),traitsData);
     }
 }
 
@@ -692,7 +671,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 var paramName = obj.substring(2,obj.length-2);
                 var structuredValue = this.structuredParams[paramName];
                 if(structuredValue!=null){
-                   return { value:structuredValue.value(toString), errors: errors };
+                   return { value:structuredValue, errors: errors };
                 }
             }
             var str:string = <string>obj;
@@ -796,6 +775,14 @@ export class ValueTransformer implements proxy.ValueTransformer{
         var substitution = this.substitutionNode(node);
         if(substitution){
             return substitution.valueKind();
+        }
+        return null;
+    }
+
+    includePath(node:ll.ILowLevelASTNode):string{
+        var substitution = this.substitutionNode(node);
+        if(substitution){
+            return substitution.includePath();
         }
         return null;
     }
@@ -919,6 +906,10 @@ export class DefaultTransformer extends ValueTransformer{
 
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind{
         return this.delegate != null ? this.delegate.valueKind(node) : null;
+    }
+
+    includePath(node:ll.ILowLevelASTNode):string{
+        return this.delegate != null ? this.delegate.includePath(node) : null;
     }
 
 }

@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+# Objective: This test covers the case that 'items' is something else than either
+#            a reference to an existing type or an inline type declaration.
+# Expected result: Test fails with an error that contains a message that the
+#                  allowed value of 'items' is either a reference to an existing
+#                  type or an inline type declaration. Line numbers should
+#                  indicate where it happens.
+
+# tags: type, array, facet
+
+title: TestRAML
+
+types:
+  Foo:
+  Bar:
+  FooBarArray:
+    type: array
+    items: [ Foo, Bar ]

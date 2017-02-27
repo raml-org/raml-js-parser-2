@@ -1,0 +1,68 @@
+{
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "method": "post"
+          },
+          "get": {
+            "method": "get"
+          },
+          "put": {
+            "method": "put"
+          },
+          "options": {
+            "method": "options"
+          },
+          "head": {
+            "method": "head"
+          },
+          "patch": {
+            "method": "patch"
+          },
+          "delete": {
+            "method": "delete"
+          }
+        },
+        "relativeUri": "/methods",
+        "displayName": "/methods",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "methods"
+        ],
+        "absoluteUri": "/methods",
+        "completeRelativeUri": "/methods",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNKNOWN_NODE",
+      "message": "Unknown node: 'set'",
+      "path": "meth03.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 2,
+          "position": 95
+        },
+        "end": {
+          "line": 10,
+          "column": 5,
+          "position": 98
+        }
+      }
+    }
+  ]
+}

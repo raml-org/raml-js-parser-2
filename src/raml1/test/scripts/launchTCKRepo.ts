@@ -22,5 +22,5 @@ var cloneStatus = spawnSync('git', [
 
 if(cloneStatus.status == 0){
     var reportPath = path.resolve(TCKFolder, "report.json");
-    tckUtil.launchTests(path.resolve(TCKFolder, "src/source/TCK"), reportPath, false, true);
+    tckUtil.launchTests(path.resolve(TCKFolder, "tests"), reportPath, false, true);
 }

@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: My API With Types
+
+description: |
+  This RAML illustrates a type properties that includes a question mark in its
+  name. The expections here is that the question mark is part of the
+  property name if either required is explicitly applied to the
+  property or someone uses ??. Otherwise, the question mark indicates an optional
+  property.
+
+types:
+  profile:
+    properties:
+      preference?: # not optional, ? as part of the property name
+        required: true
+      foto?: # optional, ? as part of the property name
+        required: false
+      description??: # optional, ? as part of the property name
+      link?: #optional, , ? not part of the property name

@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: Single example
+
+# Objective: This RAML illustrates an example on how to use a single example
+# Expected result: no error message
+
+# tags: example
+
+types:
+  Message:
+    properties:
+      title?: string
+      body?: string
+      name?: string
+      comment?: string
+    example:
+      title: Attention needed
+      body: You have been added to group 274

@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: API
+
+types:
+  SomeType:
+    type: object
+    properties:
+      selfReference: SomeType[]
+      someProperty: string
+    additionalProperties: false
+    example:
+      selfReference:
+        -
+          selfReference:
+            -
+              selfReference: []
+              someProperty1: val1
+          someProperty: val2
+      someProperty: val3

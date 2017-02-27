@@ -57,4 +57,26 @@ export interface Options{
      * load the file.
      */
     filePath?:string
+
+    reusedNode?:hl.IHighLevelNode
+}
+
+
+export interface Options2 {
+
+    /**
+     * Whether to expand libraries
+     */
+    expandLibraries?:boolean
+
+    /**
+     * Module used for operations with file system
+     **/
+    fsResolver?:resolversApi.FSResolver
+
+    /**
+     * Module used for operations with web
+     **/
+    httpResolver?:resolversApi.HTTPResolver
+
 }

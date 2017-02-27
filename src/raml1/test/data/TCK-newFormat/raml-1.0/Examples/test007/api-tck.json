@@ -1,0 +1,83 @@
+{
+  "specification": {
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "y": {
+            "name": "y",
+            "displayName": "y",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "val1",
+              "val2",
+              "3"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "y": "aaa2"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "ENUM_RESTRICTION",
+      "message": "value should be one of: 'val1', 'val2', '3'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 6,
+          "position": 140
+        },
+        "end": {
+          "line": 9,
+          "column": 7,
+          "position": 141
+        }
+      }
+    }
+  ]
+}

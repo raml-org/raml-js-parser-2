@@ -1,0 +1,106 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "decls.important": {
+        "name": "important",
+        "displayName": "important",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "ApiExtension",
+    "baseUri": "http://myItems.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "annotations": {
+              "decls.important": {
+                "name": "decls.important",
+                "structuredValue": null
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "description": "describing your method here\n",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/items",
+        "displayName": "/items",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "items"
+        ],
+        "absoluteUri": "http://myItems.com/items",
+        "completeRelativeUri": "/items",
+        "parentUri": ""
+      },
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/elements",
+        "displayName": "/elements",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "elements"
+        ],
+        "absoluteUri": "/elements",
+        "completeRelativeUri": "/elements",
+        "parentUri": ""
+      }
+    ],
+    "extends": "master.raml",
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "errors": []
+}

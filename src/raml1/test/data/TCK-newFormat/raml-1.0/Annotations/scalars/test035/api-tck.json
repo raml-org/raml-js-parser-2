@@ -1,0 +1,81 @@
+{
+  "specification": {
+    "types": {
+      "t1": {
+        "name": "t1",
+        "displayName": "t1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "/[a-z]+/": {
+            "name": "/[a-z]+/",
+            "displayName": "/[a-z]+/",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "minProperties": 5,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "scalarsAnnotations": {
+          "minProperties": [
+            {
+              "name": "a",
+              "structuredValue": "abcdefghijkl"
+            }
+          ]
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "minLength": 8,
+        "maxLength": 64,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "testAPI",
+    "version": "v1"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,62 @@
+{
+  "specification": {
+    "methods": {
+      "get": {
+        "responses": {
+          "200": {
+            "code": "200",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "files.file-type.File"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            }
+          }
+        },
+        "is": [
+          "files.drm"
+        ],
+        "method": "get"
+      }
+    },
+    "uses": [
+      {
+        "key": "files",
+        "value": "libraries/files.raml"
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "ResourceType",
+  "errors": [
+    {
+      "code": "INHERITING_UNKNOWN_TYPE",
+      "message": "Inheriting from unknown type",
+      "path": "libraries-invalid-chaining.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 10,
+          "position": 382
+        },
+        "end": {
+          "line": 16,
+          "column": 14,
+          "position": 386
+        }
+      }
+    }
+  ]
+}

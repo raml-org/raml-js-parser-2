@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: hybrid-rest-services
+version: 0.4
+mediaType: application/json
+securedBy: x-ttt
+protocols: HTTP
+securitySchemes:
+   x-ttt:
+      type: Digest Authentication
+
+baseUri: https://anypoint.mulesoft.com/hybrid/api/v1
+traits:
+   env-org-pair:
+      displayName: masterDisplayName
+resourceTypes:
+   servers-collection:
+/servers:
+  is: [env-org-pair]
+  securedBy: x-ttt

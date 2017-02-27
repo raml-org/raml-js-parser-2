@@ -1,0 +1,545 @@
+{
+  "specification": {
+    "types": {
+      "Feature": {
+        "name": "Feature",
+        "displayName": "Feature",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "Feature"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "geometry": {
+            "name": "geometry",
+            "displayName": "geometry",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "properties": {
+            "name": "properties",
+            "displayName": "properties",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ZoomEmbed": {
+        "name": "ZoomEmbed",
+        "displayName": "ZoomEmbed",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "_embeds": {
+            "name": "_embeds",
+            "displayName": "_embeds",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "description": "Optional embedded, related resources if requested.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "object",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "_links": {
+            "name": "_links",
+            "displayName": "_links",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "description": "Optional links to related resources.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Scene": {
+        "name": "Scene",
+        "displayName": "Scene",
+        "type": [
+          "ZoomEmbed",
+          "Feature"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "PlanetScene": {
+        "name": "PlanetScene",
+        "displayName": "PlanetScene",
+        "type": [
+          "Scene"
+        ],
+        "properties": {
+          "properties": {
+            "name": "properties",
+            "displayName": "properties",
+            "type": [
+              "PlanetProperties"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "_links": {
+            "name": "_links",
+            "displayName": "_links",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "description": "Links to related resources and actions.",
+            "properties": {
+              "licenses": {
+                "name": "licenses",
+                "displayName": "licenses",
+                "type": [
+                  "ResourceURL"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "BaseProperties": {
+        "name": "BaseProperties",
+        "displayName": "BaseProperties",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "acquired": {
+            "name": "acquired",
+            "displayName": "acquired",
+            "type": [
+              "datetime"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "PlanetProperties": {
+        "name": "PlanetProperties",
+        "displayName": "PlanetProperties",
+        "type": [
+          "BaseProperties"
+        ],
+        "properties": {
+          "vnd_camera_gain": {
+            "name": "vnd_camera_gain",
+            "displayName": "vnd_camera_gain",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "minimum": 0,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ResourceURL": {
+        "name": "ResourceURL",
+        "displayName": "ResourceURL",
+        "type": [
+          "string"
+        ],
+        "description": "A URL to a related resource.",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Planet RAML Experiments",
+    "version": "v1",
+    "baseUri": "http://api.planet.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "protocols": [
+              "HTTP"
+            ],
+            "description": "Lists available endpoints.",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/v1",
+        "displayName": "/v1",
+        "resources": [
+          {
+            "methods": {
+              "get": {
+                "protocols": [
+                  "HTTP"
+                ],
+                "description": "Lists all available providers.",
+                "method": "get",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "relativeUri": "/scenes",
+            "displayName": "/scenes",
+            "resources": [
+              {
+                "methods": {
+                  "get": {
+                    "responses": {
+                      "200": {
+                        "code": "200",
+                        "body": {
+                          "application/json": {
+                            "name": "application/json",
+                            "displayName": "application/json",
+                            "type": [
+                              "array"
+                            ],
+                            "__METADATA__": {
+                              "primitiveValuesMeta": {
+                                "displayName": {
+                                  "calculated": true
+                                }
+                              }
+                            },
+                            "examples": [
+                              {
+                                "value": [
+                                  {
+                                    "id": "foo",
+                                    "type": "Feature",
+                                    "geometry": {},
+                                    "properties": {
+                                      "acquired": "2016-02-28T16:41:41.090Z",
+                                      "vnd_camera_gain": 5
+                                    },
+                                    "_embeds": [],
+                                    "_links": {
+                                      "licenses": "https://api.planet.com/v1/scenes/foo/licenses"
+                                    }
+                                  }
+                                ],
+                                "strict": true,
+                                "name": null
+                              }
+                            ],
+                            "items": "PlanetScene",
+                            "mediaType": "application/raml+yaml",
+                            "typePropertyKind": "TYPE_EXPRESSION"
+                          }
+                        }
+                      }
+                    },
+                    "protocols": [
+                      "HTTP"
+                    ],
+                    "description": "Basic search via url parameters. Restricted to the planetscope provider.",
+                    "method": "get",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "protocols": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "relativeUri": "/planetscope",
+                "displayName": "/planetscope",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "planetscope"
+                ],
+                "absoluteUri": "http://api.planet.com/v1/scenes/planetscope",
+                "completeRelativeUri": "/v1/scenes/planetscope",
+                "parentUri": "/v1/scenes"
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "scenes"
+            ],
+            "absoluteUri": "http://api.planet.com/v1/scenes",
+            "completeRelativeUri": "/v1/scenes",
+            "parentUri": "/v1"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "v1"
+        ],
+        "absoluteUri": "http://api.planet.com/v1",
+        "completeRelativeUri": "/v1",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "ENUM_ARRAY",
+      "message": "'enum' facet value must be defined by array",
+      "path": "test1.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 10,
+          "position": 291
+        },
+        "end": {
+          "line": 15,
+          "column": 14,
+          "position": 295
+        }
+      }
+    }
+  ]
+}

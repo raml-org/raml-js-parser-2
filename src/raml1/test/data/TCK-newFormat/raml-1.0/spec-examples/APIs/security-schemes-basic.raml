@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+# Objective: The following example shows a Basic Authentication security scheme.
+# Expected result: no error message
+
+# tags: security schemes, Basic Authentication
+
+title: Dropbox API
+version: 1
+baseUri: https://api.dropbox.com/{version}
+securitySchemes:
+  basic:
+    description: |
+      This API supports Basic Authentication.
+    type: Basic Authentication

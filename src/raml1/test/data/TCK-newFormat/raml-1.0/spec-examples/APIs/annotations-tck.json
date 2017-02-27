@@ -1,0 +1,250 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "nil"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "experimental": {
+        "name": "experimental",
+        "displayName": "experimental",
+        "type": [
+          "nil | string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "feedbackRequested": {
+        "name": "feedbackRequested",
+        "displayName": "feedbackRequested",
+        "type": [
+          "string?"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "testHarness": {
+        "name": "testHarness",
+        "displayName": "testHarness",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "badge": {
+        "name": "badge",
+        "displayName": "badge",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "clearanceLevel": {
+        "name": "clearanceLevel",
+        "displayName": "clearanceLevel",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "level": {
+            "name": "level",
+            "displayName": "level",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "signature": {
+            "name": "signature",
+            "displayName": "signature",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "pattern": "\\d{3}-\\w{12}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Illustrating annotations",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "annotations": {
+          "experimental": {
+            "name": "experimental",
+            "structuredValue": null
+          },
+          "feedbackRequested": {
+            "name": "feedbackRequested",
+            "structuredValue": null
+          }
+        },
+        "relativeUri": "/groups",
+        "displayName": "/groups",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "groups"
+        ],
+        "absoluteUri": "/groups",
+        "completeRelativeUri": "/groups",
+        "parentUri": ""
+      },
+      {
+        "annotations": {
+          "testHarness": {
+            "name": "testHarness",
+            "structuredValue": "usersTest"
+          },
+          "badge": {
+            "name": "badge",
+            "structuredValue": "tested.gif"
+          },
+          "clearanceLevel": {
+            "name": "clearanceLevel",
+            "structuredValue": {
+              "level": "high",
+              "signature": "230-ghtwvfrs1itr"
+            }
+          }
+        },
+        "methods": {
+          "get": {
+            "annotations": {
+              "deprecated": {
+                "name": "deprecated",
+                "structuredValue": null
+              },
+              "experimental": {
+                "name": "experimental",
+                "structuredValue": null
+              },
+              "feedbackRequested": {
+                "name": "feedbackRequested",
+                "structuredValue": "Feedback committed!"
+              }
+            },
+            "responses": {
+              "200": {
+                "code": "200"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

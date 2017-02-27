@@ -1,0 +1,442 @@
+{
+  "specification": {
+    "types": {
+      "TestType": {
+        "name": "TestType",
+        "displayName": "TestType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name2": {
+            "name": "name2",
+            "displayName": "name2",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name3": {
+            "name": "name3",
+            "displayName": "name3",
+            "type": [
+              "TestType4"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "TestType2": {
+        "name": "TestType2",
+        "displayName": "TestType2",
+        "type": [
+          "TestType"
+        ],
+        "properties": {
+          "name4": {
+            "name": "name4",
+            "displayName": "name4",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "TestType3": {
+        "name": "TestType3",
+        "displayName": "TestType3",
+        "type": [
+          "TestType2"
+        ],
+        "properties": {
+          "name5": {
+            "name": "name5",
+            "displayName": "name5",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "TestType4": {
+        "name": "TestType4",
+        "displayName": "TestType4",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "proppp": {
+            "name": "proppp",
+            "displayName": "proppp",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Blah",
+    "version": "v1",
+    "baseUri": "https://api.instagram.com/{version}/",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "v1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "resources": [
+          {
+            "methods": {
+              "get": {
+                "queryParameters": {
+                  "bbb": {
+                    "name": "bbb",
+                    "displayName": "bbb",
+                    "type": [
+                      "number"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "headers": {
+                  "blah": {
+                    "name": "blah",
+                    "displayName": "blah",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "code": "200",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "type": [
+                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
+                        ],
+                        "mediaType": "application/json",
+                        "typePropertyKind": "JSON"
+                      }
+                    }
+                  },
+                  "201": {
+                    "code": "201",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "type": [
+                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
+                        ],
+                        "mediaType": "application/json",
+                        "typePropertyKind": "JSON"
+                      }
+                    }
+                  },
+                  "202": {
+                    "code": "202",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "type": [
+                          "TestType"
+                        ],
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        },
+                        "examples": [
+                          {
+                            "value": null,
+                            "strict": true,
+                            "name": null
+                          }
+                        ],
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    }
+                  }
+                },
+                "protocols": [
+                  "HTTPS"
+                ],
+                "method": "get",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "relativeUri": "/helloWorldddd1234ddd2",
+            "displayName": "/helloWorldddd1234ddd2",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "helloWorldddd1234ddd2"
+            ],
+            "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
+            "completeRelativeUri": "/test/helloWorldddd1234ddd2",
+            "parentUri": "/test"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "https://api.instagram.com/{version}/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token p",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 56,
+          "column": 14,
+          "position": 1486
+        },
+        "end": {
+          "line": 56,
+          "column": 21,
+          "position": 1493
+        }
+      }
+    }
+  ]
+}

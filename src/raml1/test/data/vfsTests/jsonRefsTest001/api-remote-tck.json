@@ -1,0 +1,118 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "type": "rt2",
+          "name": "rt1"
+        }
+      },
+      {
+        "rt2": {
+          "name": "rt2",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "JSON",
+                    "schemaPath": "https://www.__testdata__.com/vfsTests/jsonRefsTest001/schemes1/subdir/scheme1.json#/definitions/Type1",
+                    "schema": [
+                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "JSON",
+                    "schemaPath": "https://www.__testdata__.com/vfsTests/jsonRefsTest001/schemes1/subdir/scheme1.json#/definitions/Type1",
+                    "schema": [
+                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                    ],
+                    "example": {
+                      "p1": "p1Value",
+                      "p2": {
+                        "q1": "q1Value",
+                        "q2": 12
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"p1\": \"p1Value\",\n  \"p2\": {\n    \"q1\": \"q1Value\",\n    \"q2\": 12\n  }\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": "p1Value",
+                        "p2": {
+                          "q1": "q1Value",
+                          "q2": 12
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "type": "rt1",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}

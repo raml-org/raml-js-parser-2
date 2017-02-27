@@ -1,0 +1,38 @@
+#%RAML 1.0
+
+# Objective: In the following example, union types and extended multiple types are used to constrain the query parameters to specific alternatives.
+# Expected result: no error message
+
+# tags: query string, union types, examples, strict
+
+title: Illustrate query parameter variations
+types:
+  lat-long: # lat & long required; mutually exclusive with location
+    properties:
+      lat: number
+      long: number
+  loc: # location required; mutually exclusive with lat & long
+    properties:
+      location:
+  paging: # each is optional, not exclusive with anything
+    properties:
+      start?: number
+      page-size?: number
+/locations:
+  get:
+    queryString:
+      type: [paging,  lat-long | loc ]
+      examples:
+        first:
+          start: 2
+          lat: 12
+          long: 13
+        second:
+          start: 2
+          page-size: 20
+          location: 1,2
+        third:  
+          value:
+            lat: 12
+            location: 2
+          strict: false 

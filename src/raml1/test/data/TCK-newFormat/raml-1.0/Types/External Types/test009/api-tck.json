@@ -1,0 +1,95 @@
+{
+  "specification": {
+    "types": {
+      "mySchema": {
+        "name": "mySchema",
+        "displayName": "mySchema",
+        "type": [
+          "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "z2": {
+        "name": "z2",
+        "displayName": "z2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "c": {
+            "name": "c",
+            "displayName": "c",
+            "type": [
+              "mySchema"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/json"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "c": {
+                "id": "2"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "A"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "EXTERNAL_IN_PROPERTY_DEFINITION",
+      "message": "It is not allowed to use external types in property definitions",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 20,
+          "column": 6,
+          "position": 431
+        },
+        "end": {
+          "line": 20,
+          "column": 7,
+          "position": 432
+        }
+      }
+    }
+  ]
+}

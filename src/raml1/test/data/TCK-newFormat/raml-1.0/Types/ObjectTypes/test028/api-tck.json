@@ -1,0 +1,244 @@
+{
+  "specification": {
+    "types": {
+      "ParentType": {
+        "name": "ParentType",
+        "displayName": "ParentType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "stringProperty": {
+            "name": "stringProperty",
+            "displayName": "stringProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "kind": {
+            "name": "kind",
+            "displayName": "kind",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "discriminator": "kind",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ChildType1": {
+        "name": "ChildType1",
+        "displayName": "ChildType1",
+        "type": [
+          "ParentType"
+        ],
+        "discriminatorValue": "k1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ChildType2": {
+        "name": "ChildType2",
+        "displayName": "ChildType2",
+        "type": [
+          "ParentType"
+        ],
+        "properties": {
+          "stringProperty": {
+            "name": "stringProperty",
+            "displayName": "stringProperty",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "minLength": 3,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "discriminatorValue": "k2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ArrayType1": {
+        "name": "ArrayType1",
+        "displayName": "ArrayType1",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "items": "ChildType1",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ArrayType2": {
+        "name": "ArrayType2",
+        "displayName": "ArrayType2",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "items": "ChildType2",
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ArrayType": {
+        "name": "ArrayType",
+        "displayName": "ArrayType",
+        "type": [
+          "ArrayType1|ArrayType2"
+        ],
+        "examples": [
+          {
+            "value": [
+              {
+                "stringProperty": "ab",
+                "kind": "k2"
+              }
+            ],
+            "strict": true,
+            "name": "ex1"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNION_TYPE_FAILURE",
+      "message": "Union type options do not pass validation",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 31,
+          "column": 6,
+          "position": 485
+        },
+        "end": {
+          "line": 31,
+          "column": 9,
+          "position": 488
+        }
+      }
+    },
+    {
+      "code": "UNION_TYPE_FAILURE_DETAILS",
+      "message": "Union type option does not pass validation (ChildType2[]: 'ChildType2.stringProperty.minLength=3' i.e. string length should not be less than 3)",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 32,
+          "column": 10,
+          "position": 500
+        },
+        "end": {
+          "line": 32,
+          "column": 24,
+          "position": 514
+        }
+      }
+    },
+    {
+      "code": "UNION_TYPE_FAILURE_DETAILS",
+      "message": "Union type option does not pass validation (ChildType1[]: None of the 'ChildType1' type known subtypes declare 'k2' as value of discriminating property 'kind'.)",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 33,
+          "column": 10,
+          "position": 529
+        },
+        "end": {
+          "line": 33,
+          "column": 14,
+          "position": 533
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  MyType:
+    properties:
+      id:
+        type: number
+      boundaries?:
+        type: object[]
+        description: An array of boundaries
+        items:
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            boundaryAsWkt:
+              type: string
+              description: The well-known-text value of the boundary.

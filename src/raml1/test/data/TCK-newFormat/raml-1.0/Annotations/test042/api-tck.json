@@ -1,0 +1,101 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "xz": {
+        "name": "xz",
+        "displayName": "xz",
+        "type": [
+          "string"
+        ],
+        "allowedTargets": [
+          "Method"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "annotations": {
+                  "xz": {
+                    "name": "xz",
+                    "structuredValue": "z"
+                  }
+                },
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/g",
+        "displayName": "/g",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "g"
+        ],
+        "absoluteUri": "/g",
+        "completeRelativeUri": "/g",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INVALID_ANNOTATION_LOCATION",
+      "message": "Annotation 'xz' can not be placed at this location, allowed targets are: 'Method'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 9,
+          "position": 128
+        },
+        "end": {
+          "line": 10,
+          "column": 13,
+          "position": 132
+        }
+      }
+    }
+  ]
+}

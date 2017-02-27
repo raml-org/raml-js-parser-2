@@ -1,0 +1,92 @@
+{
+  "specification": {
+    "title": "Pet shop",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "name": {
+                    "name": "name",
+                    "displayName": "name",
+                    "type": [
+                      "string"
+                    ],
+                    "default": "Blah",
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "extends": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": [
+    {
+      "code": "INVALID_OVERRIDE_IN_OVERLAY",
+      "message": "Property 'default' is not allowed to be overriden or added in overlays",
+      "path": "NewOverlay.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 12,
+          "position": 138
+        },
+        "end": {
+          "line": 9,
+          "column": 19,
+          "position": 145
+        }
+      }
+    }
+  ]
+}

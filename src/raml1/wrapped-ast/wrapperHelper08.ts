@@ -11,6 +11,7 @@ import hlimpl = require('../highLevelImpl');
 import defs = require('raml-definition-system');
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
+import expanderHL=require("../ast.core/expanderHL")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import linter=require("../ast.core/linter")
 import Opt = require('../../Opt')
@@ -22,6 +23,7 @@ import universeHelpers = require("../tools/universeHelpers");
 
 import ll=require("../jsyaml/jsyaml2lowLevel");
 import path=require("path")
+import _ = require("underscore");
 //export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
 //    var tpe=typeexpression.typeFromNode(p.highLevel());
 //    return tpe.toRuntime();
@@ -47,7 +49,8 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     if(lowLevelProxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    return expander.expandTraitsAndResourceTypes(api);
+    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    return exp.expandTraitsAndResourceTypes(api);
 }
 //__$helperMethod__ Path relative to API root
 export function completeRelativeUri(res:RamlWrapper.Resource):string{
@@ -668,13 +671,16 @@ export function schemaContent(bodyDeclaration : RamlWrapper.BodyLike) : string {
         return null;
     }
 
-    var schemaAttribute =
-        bodyDeclaration.highLevel().attr(universes.Universe08.BodyLike.properties.schema.name);
-    if (!schemaAttribute) {
+    if(util.stringStartsWith(schemaString,"{")
+        ||util.stringStartsWith(schemaString,"[")
+        ||util.stringStartsWith(schemaString,"<")){
         return schemaString;
     }
 
-    var declaration = search.findDeclarationByNode(schemaAttribute, search.LocationKind.VALUE_COMPLETION);
+    var hlNode = bodyDeclaration.highLevel();
+    var root = hlNode.root();
+    var globalSchemas = root.elementsOfKind(universes.Universe08.Api.properties.schemas.name);
+    var declaration = _.find(globalSchemas,x=>x.name()==schemaString);
     if (!declaration) return schemaString;
 
     if (!(<any>declaration).getKind || (<any>declaration).getKind() != hl.NodeKind.NODE) {

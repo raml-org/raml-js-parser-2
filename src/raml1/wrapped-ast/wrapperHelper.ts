@@ -16,6 +16,7 @@ import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
 import expander=require("../ast.core/expander")
+import expanderHL=require("../ast.core/expanderHL")
 import proxy = require("../ast.core/LowLevelASTProxy")
 import referencePatcher = require("../ast.core/referencePatcher")
 import search=require("../../search/search-interface")
@@ -78,14 +79,14 @@ export function expandSpec(api:RamlWrapper.Api,expLib:boolean=false):RamlWrapper
 }
 /**
  * Equivalent API with traits and resource types expanded
- * __$meta__={"name":"expand"}
- */
+  */
 export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api{
     var lowLevelNode = api.highLevel().lowLevel();
     if(proxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    return expander.expandTraitsAndResourceTypes(api);
+    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    return exp.expandTraitsAndResourceTypes(api);
 }
 
 /**
@@ -93,7 +94,8 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
  * __$meta__={"name":"expandLibraries"}
  */
 export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
-    return expander.expandLibraries(api);
+    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    return exp.expandLibraries(api);
 }
 
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
@@ -884,6 +886,26 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
     }
     return null;
 }
+
+/**
+ * __$helperMethod__ Inlined component type definition.
+ * __$meta__={"name":"structuredItems","primary":true}
+ */
+export function itemsStructuredValue(typeDeclaration:RamlWrapper.ArrayTypeDeclaration):RamlWrapper.TypeInstance{
+
+    var attrs
+        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.ArrayTypeDeclaration.properties.items.name);
+
+    var values = attrs.map(x=>x.value());
+    for(var val of values){
+        if(hlimpl.StructuredValue.isInstance(val)){
+            var typeInstance = new core.TypeInstanceImpl((<hlimpl.StructuredValue><any>val).lowLevel());
+            return typeInstance;
+        }
+    }
+    return null;
+}
+
 
 /**
  * __$helperMethod__

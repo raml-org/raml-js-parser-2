@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "type": "object",
+    "properties": {
+    	"data": {
+    		"properties": {
+    			"media_count": {
+    				"type": "integer"
+    			},
+    			"name": {
+    				"type": "string"
+    			}
+    		},
+    		"type": "object"
+    	}
+    }
+}    

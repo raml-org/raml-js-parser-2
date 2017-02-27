@@ -1,0 +1,76 @@
+{
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "responses": {
+              "20x": {
+                "code": "20x",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "STATUS_MUST_BE_3NUMBER",
+      "message": "Status code should be 3 digits number.",
+      "path": "methResp06.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 6,
+          "position": 60
+        },
+        "end": {
+          "line": 6,
+          "column": 9,
+          "position": 63
+        }
+      }
+    }
+  ]
+}

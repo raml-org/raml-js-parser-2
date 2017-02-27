@@ -1,0 +1,91 @@
+{
+  "specification": {
+    "title": "Serialization API",
+    "resources": [
+      {
+        "description": "All users",
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "description": "A specific user",
+            "uriParameters": {
+              "userIds": {
+                "name": "userIds",
+                "displayName": "userIds",
+                "type": [
+                  "array"
+                ],
+                "required": true,
+                "description": "A list of userIds",
+                "uniqueItems": true,
+                "items": [
+                  {
+                    "name": "items",
+                    "displayName": "items",
+                    "type": [
+                      "string"
+                    ],
+                    "minLength": 1,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "relativeUri": "/{userIds}",
+            "displayName": "/{userIds}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{userIds}"
+            ],
+            "absoluteUri": "/users/{userIds}",
+            "completeRelativeUri": "/users/{userIds}",
+            "parentUri": "/users"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

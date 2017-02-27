@@ -1,0 +1,10 @@
+#%RAML 1.0 SecurityScheme
+
+description: |
+  OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.
+type: OAuth 1.0
+settings:
+  requestTokenUri: https://api.mysampleapi.com/1/oauth/request_token
+  authorizationUri: https://api.mysampleapi.com/1/oauth/authorize
+  tokenCredentialsUri: https://api.mysampleapi.com/1/oauth/access_token
+  signatures: [ 'HMAC-SHA1', 'PLAINTEXT' ]

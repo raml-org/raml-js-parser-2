@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: Testing with Jonathan
+mediaType: application/json
+types:
+  URL:
+  User:
+    properties:
+      firstName: string
+      lastName: string
+  Brand:
+    properties:
+      name: string
+      logo: URL
+      followers: User[]
+      /^X/:
+        type: number
+    example:
+      name: Brandicted
+      logo: http://www.domain.com/logo.gif
+      followers:
+        - firstName: Fred
+          lastName: Armand
+        - firstName: Joan
+          lastName: Rivers
+      X: x

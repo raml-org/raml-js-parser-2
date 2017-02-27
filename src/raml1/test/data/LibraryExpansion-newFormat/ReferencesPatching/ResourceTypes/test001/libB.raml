@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+
+types:
+  Monkey: boolean
+
+resourceTypes:
+  rt:
+    post:
+      body:
+        application/json: <<param1>>
+        application/xml: <<param2>>
+        text/plain: Monkey
+        atom/xml: <<param1>> | <<param2>> | Monkey

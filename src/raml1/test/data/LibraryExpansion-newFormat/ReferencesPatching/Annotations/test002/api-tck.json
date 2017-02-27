@@ -1,0 +1,137 @@
+{
+  "specification": {
+    "traits": {
+      "lib.libTrait1": {
+        "annotations": {
+          "lib.MyAnnotation": {
+            "name": "lib.MyAnnotation",
+            "structuredValue": "stringValueFromLibTrait1"
+          }
+        },
+        "name": "libTrait1"
+      },
+      "lib.libTrait2": {
+        "annotations": {
+          "lib.MyAnnotation": {
+            "name": "lib.MyAnnotation",
+            "structuredValue": "stringValueFromLibTrait2"
+          }
+        },
+        "name": "libTrait2"
+      }
+    },
+    "resourceTypes": {
+      "lib.libResourceType": {
+        "methods": {
+          "post": {
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "post"
+          }
+        },
+        "is": [
+          "lib.libTrait2"
+        ],
+        "name": "libResourceType"
+      }
+    },
+    "annotationTypes": {
+      "lib.MyAnnotation": {
+        "name": "MyAnnotation",
+        "displayName": "MyAnnotation",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "RAML spec",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "annotations": {
+              "lib.MyAnnotation": {
+                "name": "lib.MyAnnotation",
+                "structuredValue": "stringValueFromLibTrait1"
+              }
+            },
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "get"
+          },
+          "post": {
+            "annotations": {
+              "lib.MyAnnotation": {
+                "name": "lib.MyAnnotation",
+                "structuredValue": "stringValueFromLibTrait2"
+              }
+            },
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "post"
+          }
+        },
+        "is": [
+          "lib.libTrait2"
+        ],
+        "type": "lib.libResourceType",
+        "uriParameters": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "relativeUri": "/{id}",
+        "displayName": "/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "{id}"
+        ],
+        "absoluteUri": "/{id}",
+        "completeRelativeUri": "/{id}",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

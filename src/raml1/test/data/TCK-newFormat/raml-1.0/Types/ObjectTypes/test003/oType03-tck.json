@@ -1,0 +1,161 @@
+{
+  "specification": {
+    "types": {
+      "Initial_comments": {
+        "name": "Initial_comments",
+        "displayName": "Initial_comments",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "comment_id": {
+            "name": "comment_id",
+            "displayName": "comment_id",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "initial_comments": {
+            "name": "initial_comments",
+            "displayName": "initial_comments",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "user": {
+            "name": "user",
+            "displayName": "user",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "time_stamp": {
+            "name": "time_stamp",
+            "displayName": "time_stamp",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "created": {
+            "name": "created",
+            "displayName": "created",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "minProperties": 2,
+        "maxProperties": 4,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "comment_id": 2,
+              "initial_comments": "oo",
+              "user": "Raml",
+              "time_stamp": 1422378528,
+              "created": 1422378528
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "My API With Types"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'Initial_comments.maxProperties=4' i.e. object properties count should not be more than 4",
+      "path": "oType03.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 4,
+          "position": 271
+        },
+        "end": {
+          "line": 13,
+          "column": 11,
+          "position": 278
+        }
+      }
+    }
+  ]
+}

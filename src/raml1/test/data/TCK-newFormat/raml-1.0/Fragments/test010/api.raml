@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: test API
+
+/example:
+  get:
+    body:
+      application/json:
+        type: !include schema.xsd
+        example: !include example.xml

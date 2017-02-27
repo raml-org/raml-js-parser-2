@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: test API
+resourceTypes:
+  rt1: !include /resourceTypes/rt1.raml
+  rt2: !include /resourceTypes/subdir/rt2.raml
+
+/resource:
+  type: rt1
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "p1": "p1Value",
+                "p2": {
+                  "q1": "q1Value",
+                  "q2": 12
+                }
+              }

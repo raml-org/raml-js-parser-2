@@ -47,6 +47,9 @@ var testFilesLibExpand = [
   'dist/raml1/test/TCK.js',
   'dist/raml1/test/TCK2.js',
   'dist/raml1/test/libraryExpansion.js',
+  'dist/raml1/test/TCK2-newFormat.js',
+  'dist/raml1/test/libraryExpansion-newFormat.js',
+  'dist/raml1/test/astReuseTests.js',
   // // //
   'src/raml1/test/data/parser/test/specs/optionals.js',
   'src/raml1/test/data/parser/test/specs/parser.js',

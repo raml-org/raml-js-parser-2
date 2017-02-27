@@ -1,0 +1,67 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "traits": {
+      "lib.boolean": {
+        "name": "lib.boolean",
+        "__METADATA__": {
+          "calculated": true
+        }
+      }
+    },
+    "resourceTypes": {
+      "lib.number": {
+        "is": [
+          "lib.boolean"
+        ],
+        "securedBy": [
+          "lib.oauth",
+          "lib.number"
+        ],
+        "name": "lib.number",
+        "__METADATA__": {
+          "calculated": true
+        }
+      }
+    },
+    "title": "test API",
+    "securedBy": [
+      "lib.number"
+    ],
+    "resources": [
+      {
+        "is": [
+          "lib.boolean"
+        ],
+        "type": "lib.number",
+        "securedBy": [
+          "lib.oauth",
+          "lib.number"
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

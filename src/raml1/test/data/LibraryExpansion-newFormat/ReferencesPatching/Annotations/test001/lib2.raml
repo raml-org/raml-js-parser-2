@@ -1,0 +1,10 @@
+#%RAML 1.0  Library
+
+annotationTypes:
+  MyAnnotation: string
+
+traits:
+  myTrait:
+    body:
+      application/json:
+        (MyAnnotation): stringValue

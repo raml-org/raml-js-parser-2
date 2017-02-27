@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: Test
+version: 1
+baseUri: /api/{version}
+traits:
+  notAlwaysPresent:
+    responses:
+      401:
+        description:  <<param | !singularize>> cannot be found
+      402:
+        description:  <<param | !pluralize>> cannot be found
+      403:
+        description:  <<param | !uppercase>> cannot be found
+      404:
+        description:  <<param | !lowercase>> cannot be found
+      405:
+        description:  <<param | !lowercamelcase>> cannot be found
+      406:
+        description:  <<param | !uppercamelcase>> cannot be found
+      407:
+        description:  <<param | !lowerunderscorecase>> cannot be found
+      408:
+        description:  <<param | !upperunderscorecase>> cannot be found
+      409:
+        description:  <<param | !lowerhyphencase>> cannot be found
+      410:
+        description:  <<param | !upperhyphencase>> cannot be found
+      411:
+        description:  <<param | !unknown>> cannot be found
+/users:
+  get:
+    is: [ { notAlwaysPresent : {param : user } }]

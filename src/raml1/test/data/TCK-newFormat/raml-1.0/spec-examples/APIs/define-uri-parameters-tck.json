@@ -1,0 +1,101 @@
+{
+  "specification": {
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "description": "The currently authenticated User",
+        "relativeUri": "/user",
+        "displayName": "/user",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "user"
+        ],
+        "absoluteUri": "https://api.github.com/user",
+        "completeRelativeUri": "/user",
+        "parentUri": ""
+      },
+      {
+        "description": "All users",
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "description": "A specific user",
+            "uriParameters": {
+              "userId": {
+                "name": "userId",
+                "displayName": "userId",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "description": "The id of the user",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "relativeUri": "/{userId}",
+            "displayName": "/{userId}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{userId}"
+            ],
+            "absoluteUri": "https://api.github.com/users/{userId}",
+            "completeRelativeUri": "/users/{userId}",
+            "parentUri": "/users"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "https://api.github.com/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

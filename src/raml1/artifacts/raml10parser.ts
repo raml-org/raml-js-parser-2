@@ -2436,6 +2436,14 @@ RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
+         * Inlined component type definition.
+         **/
+structuredItems(  ):TypeInstance{
+            return helper.itemsStructuredValue(this);
+        }
+
+
+        /**
          * Array component type.
          **/
 items(  ):string[]{

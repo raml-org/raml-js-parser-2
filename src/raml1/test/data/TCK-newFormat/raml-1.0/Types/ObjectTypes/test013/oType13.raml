@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: My API With Types
+types:
+  Method:
+    type: object
+    properties:
+      name:
+        type: string
+  Resource:
+    type: object
+    properties:
+      /post|get|put/: Method
+    example:
+      put:
+        name: update method
+      post:
+        name: create method

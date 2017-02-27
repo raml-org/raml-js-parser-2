@@ -1,0 +1,115 @@
+{
+  "specification": {
+    "types": {
+      "Person": {
+        "name": "Person",
+        "displayName": "Person",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "type": [
+          null
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "INPLACE"
+      }
+    },
+    "title": "Types / Schema mutual exclusive",
+    "description": "This RAML illustrates an invalid case where type and schema has been used on the same node.",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "type": [
+                      null
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "INPLACE"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "SCHEMA_AND_TYPE",
+      "message": "'schema' and 'type' are mutually exclusive",
+      "path": "type-schema-invalid.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 2,
+          "position": 166
+        },
+        "end": {
+          "line": 6,
+          "column": 8,
+          "position": 172
+        }
+      }
+    },
+    {
+      "code": "SCHEMA_AND_TYPE",
+      "message": "'schema' and 'type' are mutually exclusive",
+      "path": "type-schema-invalid.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 10,
+          "position": 355
+        },
+        "end": {
+          "line": 15,
+          "column": 26,
+          "position": 371
+        }
+      }
+    }
+  ]
+}

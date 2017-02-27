@@ -1,0 +1,30 @@
+{
+  "specification": {
+    "types": {
+      "Weight": {
+        "name": "Weight",
+        "displayName": "Weight",
+        "type": [
+          "number"
+        ],
+        "minimum": 3,
+        "maximum": 5,
+        "format": "int64",
+        "multipleOf": 4,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Number Type"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,0 +1,89 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": {
+      "ArrayOfInt": {
+        "name": "ArrayOfInt",
+        "displayName": "ArrayOfInt",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "type": [
+          "array"
+        ],
+        "items": [
+          {
+            "name": "items",
+            "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "integer"
+            ],
+            "mediaType": "application/raml+yaml",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "title": "TestApi",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "ArrayOfInt"
+                ],
+                "mediaType": "application/raml+yaml",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/persons",
+        "completeRelativeUri": "/persons",
+        "parentUri": "",
+        "displayName": "/persons",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "persons"
+        ],
+        "absoluteUri": "/persons"
+      }
+    ]
+  },
+  "errors": []
+}

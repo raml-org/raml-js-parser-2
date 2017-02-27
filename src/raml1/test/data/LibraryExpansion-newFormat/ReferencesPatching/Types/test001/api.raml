@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: Library test
+uses:
+  primitives: library.raml
+/exampleRes:
+  post:
+    body:
+      application/json:
+        type: primitives.Locale

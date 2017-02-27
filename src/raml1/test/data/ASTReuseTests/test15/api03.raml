@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: Example API
+version: v1
+annotationTypes:
+  deprecated: boolean
+  experimental: nil | boolean
+types:
+  User:
+    type: object
+    properties:
+      name: string
+  Account:
+    type: User
+    properties:
+      id: string
+      creationDate:
+        type: datetime
+        (experimental):
+/rest:
+  post:
+    body:
+      application/json:
+        type: User

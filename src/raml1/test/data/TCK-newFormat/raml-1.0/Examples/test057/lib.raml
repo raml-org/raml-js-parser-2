@@ -1,0 +1,16 @@
+#%RAML 1.0 Library
+
+types:
+
+  MyType:
+    properties:
+      name:
+        type: nil | string
+      data:
+        type: nil | Data
+    example: !include ./example.json
+
+  Data:
+    properties:
+      p1:
+      p2:

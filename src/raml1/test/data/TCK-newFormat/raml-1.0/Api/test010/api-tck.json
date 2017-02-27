@@ -1,0 +1,36 @@
+{
+  "specification": {
+    "baseUri": "http://myapi.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INVALID_PROPERTY_RANGE",
+      "message": "Property 'title' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "position": 11
+        },
+        "end": {
+          "line": 1,
+          "column": 5,
+          "position": 16
+        }
+      }
+    }
+  ]
+}

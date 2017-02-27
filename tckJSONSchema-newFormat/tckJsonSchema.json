@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "oneOf": [
+    {"$ref": "#/definitions/RAML10Api"},
+    {"$ref": "#/definitions/RAML10Library"},
+    {"$ref": "#/definitions/RAML10Extension"},
+    {"$ref": "#/definitions/RAML10Overlay"},
+    {"$ref": "#/definitions/RAML10TypeDeclaration"},
+    {"$ref": "#/definitions/RAML10SecurityScheme"},
+    {"$ref": "#/definitions/RAML10Trait"},
+    {"$ref": "#/definitions/RAML10ExampleSpec"},
+    {"$ref": "#/definitions/RAML10ResourceType"},
+
+    {"$ref": "#/definitions/RAML08Api"}
+  ],
+  "definitions": {
+
+    "RAML10Api": {
+      "type": "object",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "Api"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": { "$ref": "spec-1.0/api.json#/definitions/Api10" }
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10Library": {
+      "type": "object",
+      "description": "RAML libraries are used to combine any collection of data type declarations, resource type declarations, trait declarations, and security scheme declarations into modular, externalized, reusable groups.",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "Library"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": { "$ref": "spec-1.0/api.json#/definitions/Library" }
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10Extension": {
+      "type": "object",
+      "description": "Extension is RAML documents that add or override nodes of a RAML API definition.",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "Extension"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": { "$ref": "spec-1.0/api.json#/definitions/Extension" }
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10Overlay": {
+      "type": "object",
+      "description": "Overlays is RAML document that add or override nodes of a RAML API definition.",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "Overlay"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": { "$ref": "spec-1.0/api.json#/definitions/Overlay" }
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10TypeDeclaration": {
+      "type": "object",
+      "description": "A data type declaration (inline or in a global types collection), header declaration, query parameter declaration, URI parameter declaration, or a property within any of these declarations, where the type property can be used",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "enum": ["StringTypeDeclaration", "ObjectTypeDeclaration", "TypeDeclaration"]
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": {"$ref": "spec-1.0/datamodel.json#/definitions/TypeDeclarationFragment"}
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10SecurityScheme": {
+      "type": "object",
+      "description": "Describes how an API include security scheme definitions",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "enum": ["SecurityScheme", "OAuth2SecurityScheme"]
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": {"$ref": "spec-1.0/security.json#/definitions/SecuritySchemeFragment"}
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10Trait": {
+      "type": "object",
+      "description": "A trait can provide method-level nodes such as description, headers, query string parameters, and responses.",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "Trait"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": {"$ref": "spec-1.0/methods.json#/definitions/TraitFragment"}
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10ExampleSpec": {
+      "type": "object",
+      "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "ExampleSpec"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": {"$ref": "spec-1.0/datamodel.json#/definitions/ExampleFragment"}
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML10ResourceType": {
+      "type": "object",
+      "description": "Declarations of resource types for use within this API",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/ramlVersion"},
+        "type": {
+          "type": "string",
+          "pattern": "ResourceType"
+        },
+        "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
+        "specification": {"$ref": "spec-1.0/resources.json#/definitions/ResourceTypeFragment"}
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    },
+
+    "RAML08Api": {
+      "type": "object",
+      "properties": {
+        "ramlVersion": {"$ref": "spec-0.8/api.json#/definitions/RAML08/properties/ramlVersion"},
+        "type":{
+          "type": "string",
+          "pattern": "Api"
+        },
+        "specification": {"$ref": "spec-0.8/api.json#/definitions/Api08"},
+        "errors": {"$ref": "spec-0.8/api.json#/definitions/RAML08/properties/errors"}
+      },
+      "required": ["ramlVersion", "type", "errors", "specification"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -12,6 +12,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "typePropertyKind": "XML",
+                "schemaPath": "schema.xsd",
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema version=\"1.0\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n\n    <xs:element name=\"tree\" type=\"Tree\"/>\n\n    <xs:complexType name=\"Tree\">\n        <xs:sequence>\n            <xs:element name=\"length\" type=\"xs:int\"></xs:element>\n            <xs:element name=\"color\" type=\"xs:string\"></xs:element>\n        </xs:sequence>\n    </xs:complexType>\n\n</xs:schema>\n"
                 ],

@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: Dropbox API
+version: 1
+baseUri: https://api.dropbox.com/{version}
+securitySchemes:
+  oauth_1_0:
+    description: |
+      Dropbox supports OAuth 2.0 for authenticating all API requests.
+    type: OAuth 1.0
+    settings:

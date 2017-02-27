@@ -1,0 +1,18 @@
+#%RAML 1.0
+
+title: test API
+
+uses:
+  lib: lib.raml
+
+resourceTypes:
+  rt:
+    post?:
+      body:
+        application/json:
+          type: <<typeName>>
+
+/resource:
+  type:
+    rt:
+      typeName: lib.MyType

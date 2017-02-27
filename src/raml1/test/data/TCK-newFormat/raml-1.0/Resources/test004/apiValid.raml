@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: API
+
+baseUri: /some/base/uri
+
+types:
+  User:
+    type: object
+    properties:
+      name: string
+      age: number
+
+/someChildUri/{blah}:
+  uriParameters:
+    blah:
+      type: string
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            type: User
+            example:
+              name: john
+              age: 34

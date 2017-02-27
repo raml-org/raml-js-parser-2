@@ -1,0 +1,190 @@
+{
+  "specification": {
+    "title": "A",
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<queryParamName>>": {
+            "name": "<<queryParamName>>",
+            "displayName": "<<queryParamName>>",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "headers": {
+          "<<headerName>>": {
+            "name": "<<headerName>>",
+            "displayName": "<<headerName>>",
+            "type": "boolean",
+            "required": false,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "SomeTrait"
+      },
+      "Trait1": {
+        "responses": {
+          "200": {
+            "code": "200"
+          }
+        },
+        "name": "Trait1"
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
+                  }
+                }
+              }
+            },
+            "queryParameters": {
+              "a": {
+                "name": "a",
+                "displayName": "a",
+                "type": "number",
+                "required": false,
+                "example": "s11",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "c": {
+                "name": "c",
+                "displayName": "c",
+                "type": "boolean",
+                "required": false,
+                "example": "true1",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get",
+            "is": [
+              {
+                "SomeTrait": {
+                  "queryParamName": "a",
+                  "headerName": "c"
+                }
+              }
+            ]
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "number is expected",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 22,
+          "column": 8,
+          "position": 346
+        },
+        "end": {
+          "line": 22,
+          "column": 15,
+          "position": 353
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "boolean is expected",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 26,
+          "column": 8,
+          "position": 390
+        },
+        "end": {
+          "line": 26,
+          "column": 15,
+          "position": 397
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

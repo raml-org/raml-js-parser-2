@@ -1,0 +1,21 @@
+#%RAML 1.0
+#successful test for 'discriminatorValue'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      prop:
+    discriminator: prop
+
+  t2:
+    type: t1
+    discriminatorValue:
+      value: dv
+      (a): abcdefghijkl

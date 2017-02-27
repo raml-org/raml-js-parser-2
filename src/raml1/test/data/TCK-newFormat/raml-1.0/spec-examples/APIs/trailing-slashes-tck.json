@@ -1,0 +1,78 @@
+{
+  "specification": {
+    "title": "Trailing Slashes",
+    "description": "This RAML illustrates an example with multiple trailing slashes that should be removed by the parser.",
+    "baseUri": "//api.test.com//common//",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/",
+        "displayName": "/",
+        "resources": [
+          {
+            "relativeUri": "/users/",
+            "displayName": "/users/",
+            "resources": [
+              {
+                "relativeUri": "/groups//",
+                "displayName": "/groups//",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "groups",
+                  "",
+                  ""
+                ],
+                "absoluteUri": "//api.test.com//common//users/groups/",
+                "completeRelativeUri": "//users//groups//",
+                "parentUri": "//users/"
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "users",
+              ""
+            ],
+            "absoluteUri": "//api.test.com//common//users/",
+            "completeRelativeUri": "//users/",
+            "parentUri": "/"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [],
+        "absoluteUri": "//api.test.com//common//",
+        "completeRelativeUri": "/",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

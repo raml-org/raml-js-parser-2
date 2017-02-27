@@ -1,0 +1,22 @@
+#%RAML 1.0 Library
+annotationTypes:
+  bindingDefinition:
+    displayName: BindingDefinition
+    type: array
+    items:
+      properties:
+        method:
+          type: string
+          required: true
+          description: This field defines to which method the binding applies
+          enum: ["GET", "PATCH", "POST", "PUT", "DELETE"]
+        input:
+          type: string
+          required: true
+          description: The binding related to the field when used as an input
+          enum: ["OPTIONAL", "REQUIRED", "NONE"]
+        output:
+          type: string
+          required: true
+          description: The binding related to the field when used as an output
+          enum: ["OPTIONAL", "REQUIRED", "NONE"]

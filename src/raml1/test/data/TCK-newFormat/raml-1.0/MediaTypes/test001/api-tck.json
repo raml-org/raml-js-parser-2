@@ -1,0 +1,29 @@
+{
+  "specification": {
+    "title": "Test Api",
+    "mediaType": [
+      "someStringvalue"
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MEDIATYPE_EXCEPTION",
+      "message": "invalid media type",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 2,
+          "column": 0,
+          "position": 27
+        },
+        "end": {
+          "line": 2,
+          "column": 9,
+          "position": 36
+        }
+      }
+    }
+  ]
+}

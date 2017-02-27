@@ -1,0 +1,14 @@
+#%RAML 1.0
+---
+title: Test API
+
+types:
+  Person:
+    type: object
+  Data:
+    type: object
+    properties:
+      reports:
+        type: Person[]
+    example:
+      reports: [ null ]

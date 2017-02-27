@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: Test API
+types:
+  MyType1:
+    minLength: 5
+    example: ddddd
+  MyType2:
+    properties:
+      z: MyType1
+    example:
+      z: "3"

@@ -1,0 +1,191 @@
+{
+  "specification": {
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/user",
+        "displayName": "/user",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "user"
+        ],
+        "absoluteUri": "https://api.github.com/user",
+        "completeRelativeUri": "/user",
+        "parentUri": ""
+      },
+      {
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "uriParameters": {
+              "userId": {
+                "name": "userId",
+                "displayName": "userId",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "relativeUri": "/{userId}",
+            "displayName": "/{userId}",
+            "resources": [
+              {
+                "relativeUri": "/followers",
+                "displayName": "/followers",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "followers"
+                ],
+                "absoluteUri": "https://api.github.com/users/{userId}/followers",
+                "completeRelativeUri": "/users/{userId}/followers",
+                "parentUri": "/users/{userId}"
+              },
+              {
+                "relativeUri": "/following",
+                "displayName": "/following",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "following"
+                ],
+                "absoluteUri": "https://api.github.com/users/{userId}/following",
+                "completeRelativeUri": "/users/{userId}/following",
+                "parentUri": "/users/{userId}"
+              },
+              {
+                "relativeUri": "/keys",
+                "displayName": "/keys",
+                "resources": [
+                  {
+                    "uriParameters": {
+                      "keyId": {
+                        "name": "keyId",
+                        "displayName": "keyId",
+                        "type": [
+                          "integer"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    },
+                    "relativeUri": "/{keyId}",
+                    "displayName": "/{keyId}",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "relativeUriPathSegments": [
+                      "{keyId}"
+                    ],
+                    "absoluteUri": "https://api.github.com/users/{userId}/keys/{keyId}",
+                    "completeRelativeUri": "/users/{userId}/keys/{keyId}",
+                    "parentUri": "/users/{userId}/keys"
+                  }
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "keys"
+                ],
+                "absoluteUri": "https://api.github.com/users/{userId}/keys",
+                "completeRelativeUri": "/users/{userId}/keys",
+                "parentUri": "/users/{userId}"
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{userId}"
+            ],
+            "absoluteUri": "https://api.github.com/users/{userId}",
+            "completeRelativeUri": "/users/{userId}",
+            "parentUri": "/users"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "https://api.github.com/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

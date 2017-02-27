@@ -1,0 +1,63 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "TestAnnotation": {
+        "name": "TestAnnotation",
+        "displayName": "TestAnnotation",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "securitySchemes": {
+      "TestScheme": {
+        "annotations": {
+          "TestAnnotation": {
+            "name": "TestAnnotation",
+            "structuredValue": "stringValue1"
+          }
+        },
+        "name": "TestScheme",
+        "type": "OAuth 1.0",
+        "settings": {
+          "annotations": {
+            "TestAnnotation": {
+              "name": "TestAnnotation",
+              "structuredValue": "stringValue2"
+            }
+          },
+          "requestTokenUri": "https://example.com/requesttoken",
+          "authorizationUri": "https://example.com/authorize",
+          "tokenCredentialsUri": "https://example.com/credentials"
+        }
+      }
+    },
+    "title": "Test",
+    "baseUri": "http://myapi.org",
+    "protocols": [
+      "HTTP"
+    ],
+    "mediaType": [
+      "multipart/form-data"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

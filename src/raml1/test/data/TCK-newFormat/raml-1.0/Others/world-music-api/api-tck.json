@@ -1,0 +1,1166 @@
+{
+  "specification": {
+    "annotations": {
+      "info": {
+        "name": "info",
+        "structuredValue": {
+          "license": "MIT"
+        }
+      }
+    },
+    "uses": [
+      {
+        "key": "SongsLib",
+        "value": "libraries/songs-library.raml"
+      },
+      {
+        "key": "ApiLib",
+        "value": "libraries/api-library.raml"
+      }
+    ],
+    "types": {
+      "Entry": {
+        "name": "Entry",
+        "displayName": "Entry",
+        "type": [
+          "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "AnotherEntry": {
+        "name": "AnotherEntry",
+        "displayName": "AnotherEntry",
+        "type": [
+          "Entry"
+        ],
+        "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json"
+      },
+      "User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "firstname": {
+            "name": "firstname",
+            "displayName": "firstname",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "lastname": {
+            "name": "lastname",
+            "displayName": "lastname",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "examples": [
+              {
+                "value": "Doe",
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "firstname": "John"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "access_token": {
+            "name": "access_token",
+            "displayName": "access_token",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "name": "secured",
+        "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "type": [
+                      "<<resourcePathName|!singularize|!uppercamelcase>>"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "description": "returns a list of <<resourcePathName|!singularize>>",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "name": "collection",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "annotationTypes": {
+      "deprecated": {
+        "name": "deprecated",
+        "displayName": "deprecated",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "date": {
+            "name": "date",
+            "displayName": "date",
+            "type": [
+              "datetime"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "deprecatedBy": {
+            "name": "deprecatedBy",
+            "displayName": "deprecatedBy",
+            "type": [
+              "User"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "comment": {
+            "name": "comment",
+            "displayName": "comment",
+            "type": [
+              "nil | string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "monitoringInterval": {
+        "name": "monitoringInterval",
+        "displayName": "monitoringInterval",
+        "type": [
+          "integer"
+        ],
+        "description": "interval in seconds",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": 2,
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ready": {
+        "name": "ready",
+        "displayName": "ready",
+        "type": [
+          "nil"
+        ],
+        "description": "markes a resource as ready",
+        "allowedTargets": [
+          "Resource"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "info": {
+        "name": "info",
+        "displayName": "info",
+        "type": [
+          "object"
+        ],
+        "allowedTargets": [
+          "API"
+        ],
+        "properties": {
+          "license": {
+            "name": "license",
+            "displayName": "license",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "MIT",
+              "Apache 2.0"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "rediractable": {
+        "name": "rediractable",
+        "displayName": "rediractable",
+        "type": [
+          "boolean"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "securitySchemes": {
+      "oauth_1_0": {
+        "name": "oauth_1_0",
+        "type": "OAuth 1.0",
+        "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
+        "settings": {
+          "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
+          "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
+          "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+          "signatures": [
+            "HMAC-SHA1",
+            "PLAINTEXT"
+          ]
+        }
+      },
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+        "describedBy": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "headers": {
+            "Authorization": {
+              "name": "Authorization",
+              "displayName": "Authorization",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+            },
+            {
+              "code": "403",
+              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+            }
+          ]
+        },
+        "settings": {
+          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+          "authorizationGrants": [
+            "authorization_code",
+            "implicit",
+            "urn:ietf:params:oauth:grant-type:saml2-bearer"
+          ]
+        }
+      },
+      "custom_scheme": {
+        "name": "custom_scheme",
+        "type": "x-custom",
+        "description": "A custom security scheme for authenticating requests.\n",
+        "describedBy": {
+          "headers": {
+            "SpecialToken": {
+              "name": "SpecialToken",
+              "displayName": "SpecialToken",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a custom token.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad token.\n"
+            },
+            {
+              "code": "403"
+            }
+          ]
+        }
+      }
+    },
+    "title": "World Music API",
+    "description": "This is an example of a music API.",
+    "version": "v1",
+    "baseUri": "http://{environment}.musicapi.com/{version}",
+    "baseUriParameters": {
+      "environment": {
+        "name": "environment",
+        "displayName": "environment",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "stg",
+          "dev",
+          "test",
+          "prod"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "v1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTP",
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "securedBy": [
+      "custom_scheme"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryString": {
+              "name": "queryString",
+              "displayName": "queryString",
+              "type": [
+                "object"
+              ],
+              "properties": {
+                "start": {
+                  "name": "start",
+                  "displayName": "start",
+                  "type": [
+                    "number"
+                  ],
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                },
+                "page-size": {
+                  "name": "page-size",
+                  "displayName": "page-size",
+                  "type": [
+                    "number"
+                  ],
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                },
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "ApiLib.RamlDataType"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                },
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "relativeUri": "/api",
+        "displayName": "/api",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "api"
+        ],
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/api",
+        "completeRelativeUri": "/api",
+        "parentUri": ""
+      },
+      {
+        "methods": {
+          "post": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "AnotherEntry"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/json"
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                },
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "type": [
+                      "Entry"
+                    ],
+                    "mediaType": "application/json"
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "description": "returns a list of entry",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                },
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "type": "collection",
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "relativeUri": "/entry",
+        "displayName": "/entry",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "entry"
+        ],
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/entry",
+        "completeRelativeUri": "/entry",
+        "parentUri": ""
+      },
+      {
+        "annotations": {
+          "ready": {
+            "name": "ready",
+            "structuredValue": null
+          }
+        },
+        "methods": {
+          "get": {
+            "annotations": {
+              "monitoringInterval": {
+                "name": "monitoringInterval",
+                "structuredValue": 30
+              }
+            },
+            "queryParameters": {
+              "genre": {
+                "name": "genre",
+                "displayName": "genre",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "filter the songs by genre",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              "oauth_2_0",
+              null
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          "post": {
+            "queryParameters": {
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                },
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "is": [
+          "secured"
+        ],
+        "description": "Access to all songs inside the music world library.",
+        "securedBy": [
+          "custom_scheme"
+        ],
+        "relativeUri": "/songs",
+        "displayName": "Songs",
+        "resources": [
+          {
+            "methods": {
+              "get": {
+                "annotations": {
+                  "deprecated": {
+                    "name": "deprecated",
+                    "structuredValue": {
+                      "date": "2016-02-28T16:41:41.090Z",
+                      "deprecatedBy": {
+                        "firstname": "Christian"
+                      },
+                      "comment": "no comment"
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "code": "200",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "type": [
+                          "SongsLib.Song"
+                        ],
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      },
+                      "application/xml": {
+                        "name": "application/xml",
+                        "displayName": "application/xml",
+                        "typePropertyKind": "XML",
+                        "schemaPath": "schemas/songs.xsd",
+                        "type": [
+                          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
+                        ],
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        },
+                        "examples": [
+                          {
+                            "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
+                            "strict": true,
+                            "name": null
+                          }
+                        ],
+                        "mediaType": "application/xml",
+                        "typePropertyKind": "XML"
+                      }
+                    }
+                  }
+                },
+                "protocols": [
+                  "HTTP"
+                ],
+                "securedBy": [
+                  "custom_scheme"
+                ],
+                "method": "get",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    },
+                    "securedBy": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "securedBy": [
+              "custom_scheme"
+            ],
+            "uriParameters": {
+              "songId": {
+                "name": "songId",
+                "displayName": "songId",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "relativeUri": "/{songId}",
+            "displayName": "/{songId}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                },
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{songId}"
+            ],
+            "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
+            "completeRelativeUri": "/songs/{songId}",
+            "parentUri": "/songs"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "songs"
+        ],
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/songs",
+        "completeRelativeUri": "/songs",
+        "parentUri": ""
+      }
+    ],
+    "documentation": [
+      {
+        "title": "Getting Started",
+        "content": "This is a getting started guide for the World Music API.\n"
+      },
+      {
+        "title": "Legal",
+        "content": "See http://legal.musicapi.com"
+      }
+    ],
+    "scalarsAnnotations": {
+      "baseUri": [
+        {
+          "name": "rediractable",
+          "structuredValue": true
+        }
+      ]
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

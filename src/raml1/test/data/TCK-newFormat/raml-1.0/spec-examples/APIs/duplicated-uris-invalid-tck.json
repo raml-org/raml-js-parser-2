@@ -1,0 +1,99 @@
+{
+  "specification": {
+    "title": "Duplicated URIs",
+    "resources": [
+      {
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "relativeUri": "/foo",
+            "displayName": "/foo",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "foo"
+            ],
+            "absoluteUri": "/users/foo",
+            "completeRelativeUri": "/users/foo",
+            "parentUri": "/users"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
+      },
+      {
+        "relativeUri": "/users/foo",
+        "displayName": "/users/foo",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users",
+          "foo"
+        ],
+        "absoluteUri": "/users/foo",
+        "completeRelativeUri": "/users/foo",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "RESOURCES_SHARE_SAME_URI",
+      "message": "Resources share same URI",
+      "path": "duplicated-uris-invalid.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 2,
+          "position": 246
+        },
+        "end": {
+          "line": 10,
+          "column": 6,
+          "position": 250
+        }
+      }
+    },
+    {
+      "code": "RESOURCES_SHARE_SAME_URI",
+      "message": "Resources share same URI",
+      "path": "duplicated-uris-invalid.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 0,
+          "position": 252
+        },
+        "end": {
+          "line": 11,
+          "column": 10,
+          "position": 262
+        }
+      }
+    }
+  ]
+}

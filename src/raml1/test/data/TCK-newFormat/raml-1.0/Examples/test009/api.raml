@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: Test API
+types:
+  Person:
+    properties:
+      items:
+        type: number[]
+        minItems: 3
+      items2:
+        type: number[]
+        maxItems: 3
+      items3:
+        type: number[]
+        uniqueItems: true
+    example:
+      items:  [1,2,3]
+      items2:
+        - 3
+        - 1
+        - 4
+
+      items3:
+        - 1
+        - 2
+        - 3

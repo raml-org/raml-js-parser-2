@@ -1,0 +1,80 @@
+#%RAML 1.0
+title: AST Reuse test API
+version: v1
+mediaType: [ application/json ]
+
+uses:
+  SongsLib: libraries/songs-library.raml
+  ApiLib: libraries/api-library.raml
+
+types:
+  Entry: |
+    {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/song"
+      },
+      "definitions": {
+        "song": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "artist": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  User:
+    properties:
+      firstname: string
+      lastname:
+        type: string
+        example: Doe
+        required: false
+    example:
+      firstname: John
+
+traits:
+  secured: !include traits/trait1.raml
+  baseTrait: !include traits/baseTrait.raml
+
+resourceTypes:
+  base: !include resourceTypes/base.raml
+  rt2: !include resourceTypes/rt2.raml
+  collection:
+    type: base
+    get:
+      description: returns a list of <<resourcePathName|!singularize>>
+      responses:
+        200:
+          body:
+            application/json:
+              schema: <<resourcePathName|!singularize|!uppercamelcase>>
+
+securitySchemes:
+  oauth_1_0:
+    type: OAuth 1.0
+  oauth_2_0:
+    type: OAuth 2.0
+    describedBy:
+      headers:
+        Authorization:
+
+/api:
+  type:
+    rt2:
+      param1: some value
+  get:
+    description: some description
+    queryParameters:
+      start?: number
+      page-size?: number
+
+    responses:
+      203:
+        body:
+          application/json: Entry

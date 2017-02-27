@@ -42,9 +42,17 @@ function extractNamespace(documentOrElement:any){
     return ns;
 }
 
+var parserOtions: any = {
+    errorHandler:{
+        warning:() => null,
+        error:() => null,
+        fatalError:() => null
+    }
+}
+
 export function isXmlScheme(content: string): boolean {
     try {
-        var doc = new DomParser.DOMParser().parseFromString(content);
+        var doc = new DomParser.DOMParser(parserOtions).parseFromString(content);
         
         var schemas = elementChildrenByName(doc, 'schema', extractNamespace(doc));
         

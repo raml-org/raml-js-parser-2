@@ -1,0 +1,219 @@
+{
+  "specification": {
+    "types": {
+      "SomeType": {
+        "name": "SomeType",
+        "displayName": "SomeType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "AnotherType": {
+        "name": "AnotherType",
+        "displayName": "AnotherType",
+        "type": [
+          "SomeType"
+        ],
+        "properties": {
+          "age": {
+            "name": "age",
+            "displayName": "age",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "additionalProperties": false,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ComplexTypeWithArrayProperty": {
+        "name": "ComplexTypeWithArrayProperty",
+        "displayName": "ComplexTypeWithArrayProperty",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "users": {
+            "name": "users",
+            "displayName": "users",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "AnotherType",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "users": [
+                {
+                  "name": "John",
+                  "age": "not number"
+                },
+                {
+                  "name1": "Jane",
+                  "age": 28
+                },
+                {
+                  "name": "Alex"
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "number is expected",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 22,
+          "column": 10,
+          "position": 338
+        },
+        "end": {
+          "line": 22,
+          "column": 13,
+          "position": 341
+        }
+      }
+    },
+    {
+      "code": "UNKNOWN_PROPERTY",
+      "message": "Unknown property: 'name1'",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 24,
+          "column": 10,
+          "position": 374
+        },
+        "end": {
+          "line": 24,
+          "column": 15,
+          "position": 379
+        }
+      }
+    },
+    {
+      "code": "REQUIRED_PROPERTY_MISSING",
+      "message": "Required property 'name' is missing",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 24,
+          "column": 10,
+          "position": 374
+        },
+        "end": {
+          "line": 25,
+          "column": 17,
+          "position": 403
+        }
+      }
+    },
+    {
+      "code": "REQUIRED_PROPERTY_MISSING",
+      "message": "Required property 'age' is missing",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 27,
+          "column": 10,
+          "position": 424
+        },
+        "end": {
+          "line": 27,
+          "column": 20,
+          "position": 434
+        }
+      }
+    }
+  ]
+}

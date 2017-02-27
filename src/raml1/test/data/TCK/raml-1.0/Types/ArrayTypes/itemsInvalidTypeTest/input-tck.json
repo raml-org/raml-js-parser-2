@@ -1,0 +1,89 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Foo": {
+          "name": "Foo",
+          "displayName": "Foo",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Bar": {
+          "name": "Bar",
+          "displayName": "Bar",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "FooBarArray": {
+          "name": "FooBarArray",
+          "displayName": "FooBarArray",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "array"
+          ],
+          "items": [
+            "Foo",
+            "Bar"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "TestRAML"
+  },
+  "errors": [
+    {
+      "code": "ITEMS_SHOULD_BE_REFERENCE_OR_INLINE_TYPE",
+      "message": "The 'items' property value should be either a reference to an existing type or an inline type declaration",
+      "path": "input.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 13,
+          "position": 560
+        },
+        "end": {
+          "line": 18,
+          "column": 16,
+          "position": 563
+        }
+      }
+    }
+  ]
+}

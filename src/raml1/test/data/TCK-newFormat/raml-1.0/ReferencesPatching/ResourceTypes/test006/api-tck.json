@@ -1,0 +1,210 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "defaultResponses",
+        "value": "libraries/responseBase.raml"
+      },
+      {
+        "key": "error-types",
+        "value": "types/error-types.raml"
+      }
+    ],
+    "traits": {
+      "defaultResponses.general": {
+        "responses": {
+          "422": {
+            "code": "422",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            }
+          },
+          "423": {
+            "code": "423",
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            }
+          }
+        },
+        "name": "defaultResponses.general",
+        "__METADATA__": {
+          "calculated": true
+        }
+      }
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "is": [
+              {
+                "defaultResponses.general": {
+                  "parentType": "<<parentType>>"
+                }
+              }
+            ],
+            "method": "get"
+          }
+        },
+        "name": "collection"
+      }
+    },
+    "title": "test API",
+    "baseUri": "https://example.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/alpha",
+        "displayName": "/alpha",
+        "resources": [
+          {
+            "methods": {
+              "get": {
+                "responses": {
+                  "422": {
+                    "code": "422",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "type": [
+                          "error-types.alpha-letters-errors"
+                        ],
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    }
+                  },
+                  "423": {
+                    "code": "423",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "type": [
+                          "error-types.alpha-letters-errors | string"
+                        ],
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            }
+                          }
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      }
+                    }
+                  }
+                },
+                "protocols": [
+                  "HTTPS"
+                ],
+                "is": [
+                  {
+                    "defaultResponses.general": {
+                      "parentType": "alpha"
+                    }
+                  }
+                ],
+                "method": "get",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "type": {
+              "collection": {
+                "parentType": "alpha"
+              }
+            },
+            "relativeUri": "/letters",
+            "displayName": "/letters",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "letters"
+            ],
+            "absoluteUri": "https://example.com/alpha/letters",
+            "completeRelativeUri": "/alpha/letters",
+            "parentUri": "/alpha"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "alpha"
+        ],
+        "absoluteUri": "https://example.com/alpha",
+        "completeRelativeUri": "/alpha",
+        "parentUri": ""
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

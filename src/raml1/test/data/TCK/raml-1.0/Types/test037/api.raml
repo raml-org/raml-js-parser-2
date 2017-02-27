@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: TestApi
+types:
+    ArrayOfInt:
+        type: array
+        items:
+            type: integer
+
+/persons:
+  post:
+    body:
+      application/json:
+        schema: ArrayOfInt

@@ -1,0 +1,53 @@
+{
+  "specification": {
+    "annotationTypes": {
+      "z": {
+        "name": "z",
+        "displayName": "z",
+        "type": [
+          "number"
+        ],
+        "minimum": 2,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Hello",
+    "scalarsAnnotations": {
+      "title": [
+        {
+          "name": "z",
+          "structuredValue": 1
+        }
+      ]
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'z.minimum=2' i.e. value should not be less than 2",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 2,
+          "position": 89
+        },
+        "end": {
+          "line": 7,
+          "column": 5,
+          "position": 92
+        }
+      }
+    }
+  ]
+}

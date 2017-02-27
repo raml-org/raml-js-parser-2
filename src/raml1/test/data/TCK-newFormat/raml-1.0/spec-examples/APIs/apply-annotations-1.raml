@@ -1,0 +1,14 @@
+#%RAML 1.0
+
+# Objective: The example below, a small subset of the previous example, shows an explicit declaration and use of a testHarness annotation that should be a string value.
+# Expected result: no error message
+
+# tags: annotations
+
+title: Testing annotations
+mediaType: application/json
+annotationTypes:
+  testHarness:
+    type: string
+/users:
+  (testHarness): usersTest

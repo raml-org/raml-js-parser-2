@@ -1,0 +1,93 @@
+{
+  "specification": {
+    "securitySchemes": {
+      "custom_scheme": {
+        "name": "custom_scheme",
+        "type": "x-custom",
+        "description": "A custom security scheme for authenticating requests.\n",
+        "describedBy": {
+          "headers": {
+            "SpecialToken": {
+              "name": "SpecialToken",
+              "displayName": "SpecialToken",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a custom token.\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "responses": [
+            {
+              "code": "401",
+              "description": "Bad token.\n"
+            },
+            {
+              "code": "403"
+            }
+          ]
+        }
+      }
+    },
+    "title": "Custom API",
+    "version": "1",
+    "baseUri": "https://api.custom.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "protocols": [
+      "HTTPS"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

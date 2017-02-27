@@ -1,0 +1,1 @@
+Instagram is a popular image sharing mobile service. The first version of the Instagram API is an exciting step forward towards making it easier for users to have open access to their Instagram data.
