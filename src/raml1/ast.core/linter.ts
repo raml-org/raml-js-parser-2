@@ -1673,7 +1673,7 @@ function isMixedCase(input: string): boolean {
 class UriValidator{
     validate(node:hl.IAttribute,cb:hl.ValidationAcceptor){
         try{
-            var values:string[]=new UrlParameterNameValidator().parseUrl(node.value());
+            var values:string[]=new UrlParameterNameValidator().parseUrl(node.value() || '');
             if (values.some(x=>x=="version")&&node.property().nameId()=="baseUri"){
                 var version= node.root().attr("version")
 
