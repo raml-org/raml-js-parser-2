@@ -1,0 +1,12 @@
+#%RAML 1.0 Extension
+
+extends: ./base.raml
+
+title: foo
+
+types:
+  mytype: string
+
+/foobar:
+  get:
+    is: [foo]

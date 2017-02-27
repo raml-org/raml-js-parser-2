@@ -88,9 +88,9 @@ function mergeHighLevelNodes(
 
 export class TraitsAndResourceTypesExpander {
 
-    private globalTraits:(RamlWrapper.Trait|RamlWrapper08.Trait)[];
+    private hasGlobalTraits = false;
 
-    private globalResourceTypes:(RamlWrapper.ResourceType|RamlWrapper08.ResourceType)[];
+    private hasGlobalResourceTypes = false;
 
     private ramlVersion:string;
 
@@ -113,7 +113,7 @@ export class TraitsAndResourceTypesExpander {
 
         var unit = llNode.unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
-        var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
+        var hasTemplates = this.namespaceResolver.hasTemplates(llNode.unit());
         if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
@@ -127,15 +127,8 @@ export class TraitsAndResourceTypesExpander {
     }
 
     init(api:RamlWrapper08.Api|RamlWrapper.Api) {
-        this.ramlVersion = api.highLevel().definition().universe().version();
-
-        this.globalTraits = this.ramlVersion == "RAML10"
-            ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
-            : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
-
-        this.globalResourceTypes = this.ramlVersion == "RAML10"
-            ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
-            : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
+        var hlNode = api.highLevel();
+        this.ramlVersion = hlNode.definition().universe().version();
     }
 
     expandHighLevelNode(

@@ -1,0 +1,122 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "specification": {
+    "types": [
+      {
+        "mytype": {
+          "name": "mytype",
+          "displayName": "mytype",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "mystring": {
+          "name": "mystring",
+          "displayName": "mystring",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "foo": {
+          "queryParameters": {
+            "foo": {
+              "name": "foo",
+              "displayName": "foo",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "foo",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "title": "foo",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "foo": {
+                "name": "foo",
+                "displayName": "foo",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "foo"
+            ],
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/foobar",
+        "displayName": "/foobar",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "foobar"
+        ],
+        "absoluteUri": "/foobar"
+      }
+    ],
+    "extends": "./base.raml"
+  },
+  "errors": []
+}

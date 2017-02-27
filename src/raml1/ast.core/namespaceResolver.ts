@@ -4,19 +4,60 @@ import ll=require("../lowLevelAST")
 import path = require("path")
 import universes = require("../tools/universe");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel")
+import yaml = require("yaml-ast-parser")
 import universeHelpers = require("../tools/universeHelpers");
 
 import resourceRegistry = require('../jsyaml/resourceRegistry');
+import hlImpl = require("../highLevelImpl");
+import def = require("raml-definition-system");
+import _ = require("underscore");
+import util = require("../../util/index");
 
 export class NamespaceResolver{
 
     private expandedAbsToNsMap:{[key:string]:{[key:string]:UsesInfo}} = {};
+
+    private _expandedNSMap:{[key:string]:{[key:string]:UsesInfo}} = {};
 
     private byPathMap:{[key:string]:{[key:string]:UsesInfo}} = {};
 
     private byNsMap:{[key:string]:{[key:string]:UsesInfo}} = {};
 
     private _hasFragments: {[key:string]:boolean} = {};
+
+    private _unitModels: {[key:string]:UnitModel} = {};
+
+    hasTemplates(unit:ll.ICompilationUnit){
+        var uModel = this.unitModel(unit);
+        if(!uModel.traits.isEmpty()||!uModel.resourceTypes.isEmpty()){
+            return true;
+        }
+        var epMap = this.expandedPathMap(unit);
+        if(epMap) {
+            for (var p of Object.keys(epMap)) {
+                var u = epMap[p].unit;
+                var uModel1 = this.unitModel(u);
+                if (!uModel1.traits.isEmpty() || !uModel1.resourceTypes.isEmpty()) {
+                    return true;
+                }
+            }
+        }
+        var eValue = extendsValue(unit);
+        while(eValue){
+            unit = unit.resolve(eValue);
+            if(unit){
+                uModel = this.unitModel(unit);
+                if(!uModel.traits.isEmpty()||!uModel.resourceTypes.isEmpty()){
+                    return true;
+                }
+                eValue = extendsValue(unit);
+            }
+            else {
+                eValue = null;
+            }
+        }
+        return false;
+    }
 
     resolveNamespace(from:ll.ICompilationUnit, to:ll.ICompilationUnit):UsesInfo{
 
@@ -30,6 +71,26 @@ export class NamespaceResolver{
         }
         var usesInfo = unitMap[toPath];
         return usesInfo;
+    }
+
+    expandedNSMap(unit:ll.ICompilationUnit) {
+        var aPath = unit.absolutePath();
+        let result = this._expandedNSMap[aPath];
+        if(result===undefined) {
+            var pm = this.expandedPathMap(unit);
+            if (!pm) {
+                result = null;
+            }
+            else{
+                result = {};
+                for(var ap of Object.keys(pm)){
+                    var uInfo = pm[ap];
+                    result[uInfo.namespace()] = uInfo;
+                }
+            }
+            this._expandedNSMap[aPath] = result;
+        }
+        return result;
     }
 
     expandedPathMap(unit:ll.ICompilationUnit) {
@@ -54,13 +115,15 @@ export class NamespaceResolver{
             usesInfoArray.push(new UsesInfo([], _unit, ""));
             var u = _unit;
             _unit = null;
-            var hlNode = u.highLevel();
-            if (hlNode.isElement()) {
-                var hlElem = hlNode.asElement();
-                var definition = hlElem.definition();
-                if (universeHelpers.isOverlayType(definition) || universeHelpers.isExtensionType(definition)) {
-                    var eValue = hlElem.attrValue(universes.Universe10.Extension.properties.extends.name);
-                    if (eValue) {
+            var node = u.ast();
+            if (node && node.kind() != yaml.Kind.SCALAR) {
+
+                var fLine = hlImpl.ramlFirstLine(u.contents());
+                if (fLine && fLine.length == 3 && (
+                    fLine[2] == def.universesInfo.Universe10.Overlay.name ||
+                    fLine[2] == def.universesInfo.Universe10.Extension.name)) {
+                    var eValue = extendsValue(u);
+                    if(eValue) {
                         _unit = u.resolve(eValue);
 
                         if (_unit && resourceRegistry.isWaitingFor(_unit.absolutePath())) {
@@ -78,8 +141,8 @@ export class NamespaceResolver{
 
             var info = usesInfoArray[i];
             var unit = info.unit;
-            var hlPR = unit.highLevel();
-            if(!hlPR.isElement()){
+            var node = unit.ast();
+            if(!node || node.kind() == yaml.Kind.SCALAR){
                 continue;
             }
             var steps = info.steps() + 1;
@@ -258,22 +321,28 @@ export class NamespaceResolver{
             result[absPath] = ui;
         }
 
-        var hlNode = unit.highLevel();
-        if (hlNode.isElement()) {
-            var hlElem = hlNode.asElement();
-            var definition = hlElem.definition();
-            if (universeHelpers.isOverlayType(definition) || universeHelpers.isExtensionType(definition)) {
-                var eValue = hlElem.attr(universes.Universe10.Extension.properties.extends.name).value();
-                var extendedUnit:ll.ICompilationUnit;
-                try {
-                    extendedUnit = unit.resolve(eValue);
-                }
-                catch(e){}
-                if(extendedUnit){
-                    var m = this.pathMap(extendedUnit);
-                    if(m){
-                        for(var k of Object.keys(m)){
-                            result[k] = m[k];
+        var node = unit.ast();
+        if (node && node.kind() != yaml.Kind.SCALAR) {
+
+            var fLine = hlImpl.ramlFirstLine(unit.contents());
+            if (fLine.length == 3 && (
+                fLine[2] == def.universesInfo.Universe10.Overlay.name ||
+                fLine[2] == def.universesInfo.Universe10.Extension.name)) {
+                var eNode = _.find(node.children(), x=>x.key()==universes.Universe10.Extension.properties.extends.name);
+                if(eNode) {
+                    var eValue = eNode.value(true);
+                    var extendedUnit:ll.ICompilationUnit;
+                    try {
+                        extendedUnit = unit.resolve(eValue);
+                    }
+                    catch (e) {
+                    }
+                    if (extendedUnit) {
+                        var m = this.pathMap(extendedUnit);
+                        if (m) {
+                            for (var k of Object.keys(m)) {
+                                result[k] = m[k];
+                            }
                         }
                     }
                 }
@@ -307,6 +376,16 @@ export class NamespaceResolver{
         this.calculateExpandedNamespaces(unit);
         return this._hasFragments[unit.absolutePath()] ? true : false;
     }
+
+    unitModel(unit:ll.ICompilationUnit):UnitModel{
+        var aPath = unit.absolutePath();
+        var result = this._unitModels[aPath];
+        if(!result){
+            result = new UnitModel(unit);
+            this._unitModels[aPath] = result;
+        }
+        return result;
+    }
 }
 
 export class UsesInfo{
@@ -333,4 +412,145 @@ export class UsesInfo{
         return this.unit.absolutePath();
     }
 
+}
+
+export class ElementsCollection{
+    private static CLASS_IDENTIFIER = "namespaceResolver.ElementsCollection";
+
+    public static isInstance(instance : any) : instance is ElementsCollection {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ElementsCollection.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(ElementsCollection.CLASS_IDENTIFIER);
+    }
+
+    constructor(public name:string){}
+
+    array:ll.ILowLevelASTNode[] = [];
+
+    map:{[key:string]:ll.ILowLevelASTNode} = {};
+
+    addElement(node:ll.ILowLevelASTNode){
+        this.array.push(node);
+        this.map[node.key()] = node;
+    }
+
+    hasElement(name:string):boolean{
+        return ( this.map[name] != null );
+    }
+
+    getElement(name:string):ll.ILowLevelASTNode{
+        return this.map[name];
+    }
+
+    isEmpty(){
+        return this.array.length == 0;
+    }
+}
+
+export class UnitModel{
+
+    constructor(public unit:ll.ICompilationUnit){
+        this.initCollections();
+    }
+
+    resourceTypes:ElementsCollection;
+
+    traits:ElementsCollection;
+
+    securitySchemes:ElementsCollection;
+
+    annotationTypes:ElementsCollection;
+
+    types:ElementsCollection;
+
+
+    private initCollections(){
+
+        this.types = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.types.name);
+        this.annotationTypes = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name);
+        this.securitySchemes = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name);
+        this.traits = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.traits.name);
+        this.resourceTypes = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name);
+
+        var rootNode = this.unit.ast();
+        if(!rootNode){
+            return;
+        }
+        if(!this.isLibraryBaseDescendant(this.unit)){
+            return;
+        }
+        var isRAML08 = (hlImpl.ramlFirstLine(this.unit.contents())[1] == "0.8");
+        for(var ch of rootNode.children()){
+            var key = ch.key();
+
+            if(key==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+                this.contributeCollection(this.types,ch.children());
+            }
+            else if(key==def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name){
+                this.contributeCollection(this.annotationTypes,ch.children());            }
+            else if(key==def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name){
+                this.contributeCollection(this.securitySchemes,ch.children(),isRAML08);
+            }
+            else if(key==def.universesInfo.Universe10.LibraryBase.properties.traits.name){
+                this.contributeCollection(this.traits,ch.children(),isRAML08);
+            }
+            else if(key==def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
+                this.contributeCollection(this.resourceTypes,ch.children(),isRAML08);
+            }
+        }
+
+    }
+
+    private contributeCollection(c:ElementsCollection,nodes:ll.ILowLevelASTNode[],isRAML08=false){
+        var _nodes:ll.ILowLevelASTNode[];
+        if(isRAML08){
+            _nodes = [];
+            nodes.forEach(x=>{
+                var children = x.children();
+                if(children.length > 0) {
+                    _nodes.push(children[0]);
+                }
+            });
+        }
+        else{
+            _nodes = nodes;
+        }
+        _nodes.forEach(x=>c.addElement(x));
+    }
+
+    private libTypeDescendants:{[key:string]:boolean};
+
+    private isLibraryBaseDescendant(unit:ll.ICompilationUnit) {
+
+        var fLine = hlImpl.ramlFirstLine(unit.contents());
+        if (!fLine) {
+            return false;
+        }
+        if (fLine.length < 3 || !fLine[2]) {
+            return true;
+        }
+        let typeName = fLine[2];
+        if (!this.libTypeDescendants) {
+            this.libTypeDescendants = {};
+            let u = def.getUniverse("RAML10");
+            let libType = u.type(def.universesInfo.Universe10.LibraryBase.name);
+            [libType].concat(libType.allSubTypes()).forEach(x=>this.libTypeDescendants[x.nameId()] = true);
+        }
+        return this.libTypeDescendants[typeName];
+    }
+}
+
+
+
+function extendsValue(u:ll.ICompilationUnit){
+
+    var node = u.ast();
+    var eNode = _.find(node.children(), x=>x.key()==universes.Universe10.Extension.properties.extends.name);
+    return eNode && eNode.value();
 }
