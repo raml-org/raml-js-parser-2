@@ -93,7 +93,8 @@ export class TCKDumper {
         new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemeRefType, universeHelpers.isSecuritySchemeProperty),
         new BasicObjectPropertyMatcher(universeHelpers.isTraitRefType, universeHelpers.isTraitProperty),
         new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeRefType, universeHelpers.isResourceTypeProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isRAMLVersionProperty)
+        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isRAMLVersionProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationDescendant, universeHelpers.isStructuredItemsProperty),
     ]);
 
     private missingProperties:PropertiesData = new PropertiesData();

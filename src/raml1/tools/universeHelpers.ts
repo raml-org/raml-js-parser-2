@@ -217,6 +217,13 @@ export function isItemsProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe10.ArrayTypeDeclaration.properties.items.name;
 }
 
+export function isStructuredItemsProperty(p:hl.IProperty) : boolean {
+    if(!p) {
+        return false;
+    }
+    return p.nameId() === universe.Universe10.ArrayTypeDeclaration.properties.structuredItems.name;
+}
+
 
 export function isPropertiesProperty(p:hl.IProperty) : boolean {
     if(!p) {

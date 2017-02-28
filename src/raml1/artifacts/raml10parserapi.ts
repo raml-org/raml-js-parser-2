@@ -597,6 +597,12 @@ maxItems(  ):number
 
 
         /**
+         * Inlined component type definition
+         **/
+structuredItems(  ):TypeInstance
+
+
+        /**
          * Anonymous type declaration defined by "items" keyword.
          * If no "items" is defined explicitly, this one is null.
          **/

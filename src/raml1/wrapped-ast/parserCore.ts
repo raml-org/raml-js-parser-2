@@ -545,7 +545,7 @@ export class TypeInstanceImpl{
             return false;
         }
         if(this.type) {
-            return this.type.isScalar();
+            return isScalarLike(this.type);
         }
         return true;
     }
@@ -865,4 +865,24 @@ export function basicError(_node:hl.IHighLevelNode,x:hl.ValidationIssue):RamlPar
         eObj.trace = x.extras.map(y=>basicError(_node,y));
     }
     return eObj;
+}
+
+function isScalarLike(t:rt.IParsedType):boolean{
+    if(t.isScalar()){
+        return true;
+    }
+    var unionSupertypes = t.allSuperTypes().filter(x=>x.isUnion()||x.isIntersection());
+    for(var ust of unionSupertypes){
+        let isScalar = true;
+        for(var opt of (<rt.tsInterfaces.IDerivedType>ust).allOptions()){
+            isScalar = isScalar || isScalarLike(opt);
+            if(!isScalar){
+                break;
+            }
+        }
+        if(isScalar){
+            return true;
+        }
+    }
+    return false;
 }
