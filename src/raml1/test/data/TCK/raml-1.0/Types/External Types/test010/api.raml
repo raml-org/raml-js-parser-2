@@ -1,0 +1,20 @@
+#%RAML 1.0
+---
+title: Foo API
+version: 0.1.0
+protocols: HTTPS
+mediaType: application/json
+baseUri: https://example.com
+
+traits:
+  bar:
+    usage: bar usage
+
+/baz:
+  post:
+    body:
+      type: object
+      properties:
+        quz:
+          type: array
+          items: !include type_message.json

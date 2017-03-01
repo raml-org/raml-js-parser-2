@@ -1,0 +1,95 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "bar": {
+          "name": "bar",
+          "usage": "bar usage"
+        }
+      }
+    ],
+    "title": "Foo API",
+    "version": "0.1.0",
+    "baseUri": "https://example.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "quz": {
+                    "name": "quz",
+                    "displayName": "quz",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "array"
+                    ],
+                    "required": true,
+                    "items": [
+                      "{\r\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r\n  \"version\": 1,\r\n  \"title\": \"message\",\r\n  \"additionalProperties\": false,\r\n  \"type\": \"object\",\r\n  \"required\": [\r\n    \"datetime\"\r\n  ],\r\n  \"properties\": {\r\n    \"datetime\": {\r\n      \"type\": \"string\",\r\n      \"format\": \"date-time\",\r\n      \"description\": \"message generated time\"\r\n    }\r\n  }\r\n}\r\n"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/baz",
+        "displayName": "/baz",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "baz"
+        ],
+        "absoluteUri": "https://example.com/baz"
+      }
+    ]
+  },
+  "errors": []
+}

@@ -222,14 +222,10 @@ export class ReferencePatcher{
                 localType = superTypes[0];
             }
         }
-        var isExternal = localType.isExternal();
-        if(!isExternal){
-            for(var st of localType.superTypes()){
-                isExternal = st.isExternal();
-                if(isExternal){
-                    break;
-                }
-            }
+
+        var isExternal = isExternalType(localType);
+        if(!isExternal && localType.isArray()){
+            isExternal = isExternalType((<def.rt.nominalInterfaces.IArrayType>localType).componentType());            
         }
         
         if(!isExternal) {
@@ -1219,3 +1215,17 @@ export function isCompoundValue(str:string):boolean{
     }
     return false;
 }
+
+
+var isExternalType = function (localType:def.ITypeDefinition) {
+    var isExternal = !localType || localType.isExternal();
+    if (!isExternal) {
+        for (var st of localType.superTypes()) {
+            isExternal = st.isExternal();
+            if (isExternal) {
+                break;
+            }
+        }
+    }
+    return isExternal;
+};

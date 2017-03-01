@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "version": 1,
+  "title": "message",
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "datetime"
+  ],
+  "properties": {
+    "datetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "message generated time"
+    }
+  }
+}
