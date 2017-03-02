@@ -746,8 +746,6 @@ export class ReferencePatcher{
                     }
                 }
             }
-            this.resetTypes(api);
-            api.resetChildren();
             if (gotContribution) {
                 var gotPatch = false;
                 do {
@@ -849,7 +847,8 @@ export class ReferencePatcher{
                 continue;
             }
             var newLlNode = llNode.replaceChild(null,e.lowLevel());
-            var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,propRange,prop);
+            var definition = (e.isElement()&&e.asElement().definition())||propRange;
+            var newHLNode = new hlimpl.ASTNodeImpl(newLlNode,api,definition,prop);
             directChildren.push(newHLNode);
             if(mergedChildren){
                 mergedChildren.push(newHLNode);

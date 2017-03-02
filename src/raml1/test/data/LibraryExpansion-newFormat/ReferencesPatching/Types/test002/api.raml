@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test API
+uses:
+  lib1: lib1.raml
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib1.CollectionType
