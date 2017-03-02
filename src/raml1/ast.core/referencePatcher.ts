@@ -273,6 +273,9 @@ export class ReferencePatcher{
                                     stringToPatch = actualValue;
                                 }
                             }
+                            else if (escapeData.status == ParametersEscapingStatus.ERROR){
+                                return;
+                            }
                             else {
                                 transformer = null;
                             }
