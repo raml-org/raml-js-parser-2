@@ -75,12 +75,12 @@
         "start": {
           "line": 4,
           "column": 2,
-          "position": 43
+          "position": 39
         },
         "end": {
           "line": 4,
           "column": 15,
-          "position": 56
+          "position": 52
         }
       }
     }
