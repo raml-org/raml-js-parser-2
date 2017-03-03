@@ -273,6 +273,14 @@ class JSONResolver implements IncludeReferenceResolver {
     }
 }
 
+var parserOptions: any = {
+    errorHandler:{
+        warning:() => null,
+        error:() => null,
+        fatalError:() => null
+    }
+}
+
 class XMLResolver implements IncludeReferenceResolver {
     isApplicable(includePath: string, content: string) : boolean {
         return includePath && (endsWith(includePath.trim(), '.xml') || endsWith(includePath.trim(), '.xsd'));
@@ -280,7 +288,7 @@ class XMLResolver implements IncludeReferenceResolver {
 
     resolveReference(content: string, reference : IncludeReference) : ResolvedReference {
         try {
-            var doc = new DOMParser().parseFromString(content);
+            var doc = new DOMParser(parserOptions).parseFromString(content);
 
             var requestedName = reference.asString();
 
@@ -344,7 +352,7 @@ class XMLResolver implements IncludeReferenceResolver {
 
     completeReference(content: string, reference : IncludeReference) : string[] {
         try {
-            var doc = new DOMParser().parseFromString(content);
+            var doc = new DOMParser(parserOptions).parseFromString(content);
 
             var result = [];
 

@@ -42,7 +42,7 @@ function extractNamespace(documentOrElement:any){
     return ns;
 }
 
-var parserOtions: any = {
+var parserOptions: any = {
     errorHandler:{
         warning:() => null,
         error:() => null,
@@ -52,7 +52,7 @@ var parserOtions: any = {
 
 export function isXmlScheme(content: string): boolean {
     try {
-        var doc = new DomParser.DOMParser(parserOtions).parseFromString(content);
+        var doc = new DomParser.DOMParser(parserOptions).parseFromString(content);
         
         var schemas = elementChildrenByName(doc, 'schema', extractNamespace(doc));
         
@@ -140,7 +140,7 @@ function cleanupJson(j:any){
 }
 
 export function parseXML(value:string){
-    var v=new DomParser.DOMParser();
+    var v=new DomParser.DOMParser(parserOptions);
     if (!value || value.trim().indexOf("<<") == 0) return null;
 
     var parsed=v.parseFromString(value);
