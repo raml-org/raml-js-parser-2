@@ -5,7 +5,7 @@
         "name": "Player1",
         "displayName": "Player1",
         "type": [
-          "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\":  {\n      \"type\": \"string\"\n    }\n  }\n}\n"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -21,7 +21,7 @@
         "name": "Player2",
         "displayName": "Player2",
         "type": [
-          "{\n  \"type\": \"object\",\n  \"properties\": [\n    {\n      \"name\": \"string\"\n    }\n  ]\n}\n"
+          "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\":  {\n      \"type\": \"string\"\n    }\n  }\n}\n"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -59,12 +59,12 @@
         "start": {
           "line": 15,
           "column": 0,
-          "position": 217
+          "position": 226
         },
         "end": {
           "line": 15,
           "column": 7,
-          "position": 224
+          "position": 233
         }
       }
     }

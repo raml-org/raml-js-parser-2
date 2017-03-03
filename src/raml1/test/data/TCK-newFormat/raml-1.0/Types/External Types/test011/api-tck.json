@@ -1,0 +1,88 @@
+{
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "type": [
+                  "invalidSchema"
+                ],
+                "mediaType": "application/json"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ],
+    "types": {
+      "invalidSchema": {
+        "name": "invalidSchema",
+        "displayName": "invalidSchema",
+        "type": [
+          "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"properties\": {\n    \"id\": {\n        \"type\": \"string\",\n        \"required\": true\n    }\n  }\n}\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array' required,array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 43
+        },
+        "end": {
+          "line": 4,
+          "column": 15,
+          "position": 56
+        }
+      }
+    }
+  ]
+}

@@ -31,14 +31,14 @@
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 3,
-          "column": 2,
-          "position": 45
+          "line": 4,
+          "column": 4,
+          "position": 58
         },
         "end": {
-          "line": 3,
-          "column": 9,
-          "position": 52
+          "line": 4,
+          "column": 8,
+          "position": 62
         }
       }
     }

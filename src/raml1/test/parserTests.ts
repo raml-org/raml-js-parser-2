@@ -1290,17 +1290,17 @@ describe('RAML10/Dead Loop Tests/JSONSchemas',function(){
 
     it("test001", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test001/api.raml"),["JSON schema contains circular references"]);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test001/api.raml"),["JSON schema contains circular references","JSON schema contains circular references"]);
     });
 
     it("test002", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test002/api.raml"),["JSON schema contains circular references"]);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test002/api.raml"),["JSON schema contains circular references","JSON schema contains circular references"]);
     });
 
     it("test003", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),["Remote reference didn't compile successfully"]);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),["Remote reference didn't compile successfully","Remote reference didn't compile successfully"]);
     });
 
 });
