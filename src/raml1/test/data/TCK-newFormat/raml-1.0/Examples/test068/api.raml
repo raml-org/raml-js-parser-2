@@ -1,0 +1,33 @@
+#%RAML 1.0
+
+title: test API
+
+traits:
+  tr:
+
+types:
+  ComponentType:
+    properties:
+      p1:
+      p2: number
+      p3: boolean
+
+  MyType:
+    properties:
+      comment?:
+      value: ComponentType[]
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: MyType
+            example:
+              strict: true
+              value:
+                value:
+                  - p1: stringValue
+                    p2: 15
+                    p3: true
