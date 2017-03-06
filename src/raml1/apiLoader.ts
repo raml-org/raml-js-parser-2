@@ -33,7 +33,7 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
     options = options || {};
     return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
-        if(options.expandLibraries) {
+        if(!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
             expanded = expanderHL.expandLibrariesHL(hlNode);
         }
         else{
@@ -51,7 +51,7 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
     options = options || {};
     var hlNode = loadRAMLInternalHL(ramlPath);
     var expanded:hl.IHighLevelNode;
-    if (options.expandLibraries) {
+    if (!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
         expanded = expanderHL.expandLibrariesHL(hlNode)||hlNode;
     }
     else {

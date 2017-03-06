@@ -16,37 +16,37 @@
     "userIds": {
       "type": "array",
       "items": { "type": "string" },
-      "uniqueItems": "true",
+      "uniqueItems": true,
       "description": "Limits results to only log entries belonging to the given users"
     },
     "objectIds": {
       "type": "array",
       "items": { "type": "string" },
-      "uniqueItems": "true",
+      "uniqueItems": true,
       "description": "Limits results to only log entries containing at least one of the given object ids"
     },
     "parentIds": {
       "type": "array",
       "items": { "type": "string" },
-      "uniqueItems": "true",
+      "uniqueItems": true,
       "description": "Limits results to only log entries whose objects are children of the given parent ids"
     },
     "platforms": {
       "type": "array",
       "items": { "type": "string" },
-      "uniqueItems": "true",
+      "uniqueItems": true,
       "description": "Limits results to only log entries belonging to the platforms"
     },
     "objectTypes": {
       "type": "array",
       "items": { "type": "string" },
-      "uniqueItems": "true",
+      "uniqueItems": true,
       "description": "Limits results to only log entries for objects of the given types"
     },
     "actions": {
       "type": "array",
       "items": { "type": "string" },
-      "uniqueItems": "true",
+      "uniqueItems": true,
       "description": "Limits results to only log entries describing one of the given set of actions"
     },
     "limit": {

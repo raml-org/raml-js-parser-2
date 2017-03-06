@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: test API
+
+schemas:
+  invalidSchema: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "properties": {
+        "id": {
+            "type": "string",
+            "required": true
+        }
+      }
+    }
+
+/resource:
+  post:
+    body:
+      application/json:
+        schema: invalidSchema

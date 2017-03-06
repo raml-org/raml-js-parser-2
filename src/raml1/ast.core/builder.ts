@@ -670,7 +670,8 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                                             inherited.push(node);
                                                         }
                                                         node.children().forEach(x=> {
-                                                            if (x.property().getAdapter(services.RAMLPropertyService).isKey()) {
+                                                            var p = x.property();
+                                                            if (p&&p.getAdapter(services.RAMLPropertyService).isKey()) {
                                                                 var atr = <ASTPropImpl>x;
                                                                 atr._computed = true;
                                                                 return;
