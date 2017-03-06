@@ -5,17 +5,19 @@
   "required": true,
   "properties": {
     "type": {
-      "type": { "enum": [ "scaleup", "scaledown", "notify", "webhook" ] },
+      "type": "string",
+      "enum": [ "scaleup", "scaledown", "notify", "webhook" ],
       "required": true
     },
     "scaleType": {
-      "type": { "enum": ["workerCount", "workerSize"] }
+      "type": "string",
+      "enum": ["workerCount", "workerSize"]
     },
     "minScale": {
-      "type": "int"
+      "type": "integer"
     },
     "maxScale": {
-      "type": "int"
+      "type": "integer"
     },
     "webhookUrl": {
       "type": "string"

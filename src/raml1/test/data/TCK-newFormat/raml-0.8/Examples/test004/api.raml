@@ -1,0 +1,17 @@
+#%RAML 0.8
+title: test API
+
+schemas:
+  - example-schema: |
+      {
+        "type": "object",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "Test schema showing the issue",
+        "properties": {
+          "test1": {
+              "type": "string",
+              "description": "This property is marked as being required",
+              "required": true
+          }
+        }
+      }

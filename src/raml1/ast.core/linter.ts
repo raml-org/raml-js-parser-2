@@ -1446,8 +1446,27 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return false;
             }
             var tm = su.createSchema(v, contentProvider(h.lowLevel()));
-            if (tm instanceof Error){
+            if(!tm){
+                return tm;
+            }
+            else if (tm instanceof Error){
                 (<any>tm).canBeRef=true;
+            }
+            else {
+                var isJSON = false;
+                try{
+                    JSON.parse(v);
+                    isJSON = true;
+                }
+                catch(e){};
+                if(isJSON){
+                    try {
+                        tm.validateSelf();
+                    }
+                    catch(e){
+                        return e;
+                    }
+                }
             }
             return tm;
         }
