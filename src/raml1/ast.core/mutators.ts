@@ -52,6 +52,17 @@ function findInsertionPointLowLevel(node:hl.IHighLevelNode,llnode: ll.ILowLevelA
     return insertionPoint;
 }
 
+
+function asMapping(lowLevelNode: jsyaml.ASTNode): yaml.YAMLMapping {
+    var original = lowLevelNode;
+
+    while((<any>original).originalNode && (<any>original).originalNode()) {
+        original = (<any>original).originalNode();
+    }
+
+    return original.asMapping();
+}
+
 function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.IAttribute):ll.ILowLevelASTNode{
     //console.log('find insertion point for node (HL): ' + node.property().name() + '; attr: ' + node.isAttr());
     //console.log('node1: ' + node.lowLevel().text());
@@ -93,7 +104,7 @@ function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.I
             return _.find(llchilds, (llch: jsyaml.ASTNode) => {
                 if(!llch.isMapping()) return false;
 
-                llch.asMapping().key.value === node.property().nameId()
+                return asMapping(llch).key.value === node.property().nameId();
             })
         }
 
@@ -107,7 +118,7 @@ function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.I
             var llch = <jsyaml.ASTNode>llchilds[i];
             //console.log('  child: ' + llch.kindName());
             if(!llch.isMapping()) continue;
-            var cpnme = llch.asMapping().key.value;
+            var cpnme = asMapping(llch).key.value;
             var pi = cls.propertyIndex(cpnme);
             //console.log('  property: ' + cpnme + ' index: ' + pi + ' at pos: ' + i);
             if(pi > pindex) {
