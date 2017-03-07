@@ -25,7 +25,8 @@
           "column": 18,
           "position": 55
         }
-      }
+      },
+      "isWarning": true
     }
   ]
 }
