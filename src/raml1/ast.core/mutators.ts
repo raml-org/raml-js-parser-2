@@ -80,9 +80,13 @@ function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.I
     if((node.isAttr()||embed) && !(universeHelpers.isMethodType(where.definition()) && node.property && universeHelpers.isIsProperty(node.property()))) {
         var toRet:ll.ILowLevelASTNode=null;
         for (var i = 0; i < ch.length; i++) {
-            if (!ch[i].isAttr()){
+            if(!ch[i].isAttr()){
                 break;
-            } else{
+            }
+
+            if(ch[i].property && ch[i].property() && universeHelpers.isIsProperty(ch[i].property())) {
+                continue;
+            } else {
                 toRet=ch[i].lowLevel();
             }
         }

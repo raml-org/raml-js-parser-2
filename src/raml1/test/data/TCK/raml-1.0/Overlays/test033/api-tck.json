@@ -1,0 +1,34 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "uses": [
+      {
+        "key": "library",
+        "value": "https://somewrongurl.blah"
+      }
+    ],
+    "title": "Blah",
+    "version": "v1",
+    "extends": "api.raml"
+  },
+  "errors": [
+    {
+      "code": "INVALID_LIBRARY_PATH",
+      "message": "Can not resolve library from path: 'https://somewrongurl.blah'",
+      "path": "NewOverlay.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 46
+        },
+        "end": {
+          "line": 4,
+          "column": 9,
+          "position": 53
+        }
+      }
+    }
+  ]
+}

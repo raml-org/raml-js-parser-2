@@ -772,7 +772,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
             if (vn&&vn.value()){
                 var rs=highLevelNode.lowLevel().unit().resolve(vn.value());
-                if (!rs){
+                if (!rs || rs.contents() === null){
                     v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
                         {path:vn.value()},highLevelNode,false));
                 } else if(!resourceRegistry.isWaitingFor(vn.value())){
@@ -796,10 +796,15 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                         });
                         for(var issue of issues) {
                             var _issue = issue;
-                            while(_issue.extras.length>0){
+                            while(_issue.extras && _issue.extras.length>0){
                                 _issue = _issue.extras[0];
                             }
+                            
                             if(_issue != brand) {
+                                if(!_issue.extras) {
+                                    _issue.extras = [];
+                                }
+                                
                                 _issue.extras.push(brand);
                             }
                             v.accept(issue);
