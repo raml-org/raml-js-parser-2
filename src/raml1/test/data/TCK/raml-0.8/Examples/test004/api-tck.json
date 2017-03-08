@@ -1,0 +1,32 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "example-schema": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array' required,array",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 4,
+          "position": 41
+        },
+        "end": {
+          "line": 4,
+          "column": 18,
+          "position": 55
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

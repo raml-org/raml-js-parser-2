@@ -1446,8 +1446,28 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return false;
             }
             var tm = su.createSchema(v, contentProvider(h.lowLevel()));
-            if (tm instanceof Error){
+            if(!tm){
+                return tm;
+            }
+            else if (tm instanceof Error){
                 (<any>tm).canBeRef=true;
+            }
+            else {
+                var isJSON = false;
+                try{
+                    JSON.parse(v);
+                    isJSON = true;
+                }
+                catch(e){};
+                if(isJSON){
+                    try {
+                        tm.validateSelf();
+                    }
+                    catch(e){
+                        e['isWarning'] = true;
+                        return e;
+                    }
+                }
             }
             return tm;
         }
@@ -1532,10 +1552,10 @@ class NormalValidator implements PropertyValidator{
             if (!(<any>validation).canBeRef){
                 if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
-                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node, (<any>validation).isWarning));
                 }
                 else {
-                    v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node));
+                    v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node,(<any>validation).isWarning));
                 }
                 validation = null;
                 return;
@@ -2214,10 +2234,10 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             if (validation instanceof Error) {
                 if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
-                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node,validation.isWarning));
                 }
                 else {
-                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
+                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
                 }
                 validation = null;
             }

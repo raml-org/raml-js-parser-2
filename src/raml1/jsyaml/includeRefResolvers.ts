@@ -200,7 +200,7 @@ class JSONResolver implements IncludeReferenceResolver {
         try {
             var resultJson = {};
 
-            resultJson['$ref'] = reference.getIncludePath() + '#' + reference.asString();
+            resultJson['$ref'] = reference.getIncludePath() + '#' + reference.getFragments().map(x=>"/"+x).join("");
 
             return {
                 content: JSON.stringify(resultJson, null, 2),

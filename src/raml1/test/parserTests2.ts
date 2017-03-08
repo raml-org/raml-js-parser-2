@@ -764,7 +764,7 @@ describe('External Types', function(){
     });
 
     it('Should parse json schemas referencing json schemas',function(){
-        testErrors(util.data('schema/illegalReferenceSchema.raml'));
+        testErrors(util.data('schema/illegalReferenceSchema.raml'),["Invalid JSON schema: Reference could not be resolved"]);
     });
 
 //  #400
