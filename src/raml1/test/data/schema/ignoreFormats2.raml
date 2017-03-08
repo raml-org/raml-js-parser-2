@@ -1,0 +1,30 @@
+#%RAML 1.0
+title: Test API
+schemas:
+  MyType: |
+    {
+      "properties": {
+        "p1": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "p2": {
+          "type": "string"
+        },
+        "p3": {
+          "type": "string"
+        },
+        "p4": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "p5": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "p1",
+        "p3atientUid",
+        "p5"
+      ]
+    }

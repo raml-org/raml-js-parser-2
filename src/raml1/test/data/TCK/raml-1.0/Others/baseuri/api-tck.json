@@ -1,0 +1,9 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "A",
+    "baseUri": {}
+  },
+  "errors": []
+}

@@ -1,0 +1,82 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Foo": {
+          "name": "Foo",
+          "displayName": "Foo",
+          "typePropertyKind": "JSON",
+          "schemaPath": "schema.json#Foo",
+          "type": [
+            "{\n  \"$ref\": \"./schema.json#/Foo\"\n}"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
+                "type": [
+                  "Foo"
+                ],
+                "example": {
+                  "id": 1,
+                  "name": "stringValue",
+                  "ownerName": "stringValue"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"id\": 1,\n  \"name\": \"stringValue\",\n  \"ownerName\": \"stringValue\"\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "id": 1,
+                    "name": "stringValue",
+                    "ownerName": "stringValue"
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}

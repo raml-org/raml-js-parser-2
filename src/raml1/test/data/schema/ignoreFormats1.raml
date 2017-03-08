@@ -1,0 +1,26 @@
+#%RAML 1.0
+title: Test API
+
+types:
+  Customer: |
+    {
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "http://jsonschema.net",
+    "required": true,
+    "properties": {
+      "id": {
+        "type": "string",
+        "required": true
+        },
+      "userName": {
+        "type": "string",
+        "required": true
+        },
+      "dob": {
+        "type": "string",
+        "required": true,
+        "format": "YYYY-MM-DD"
+        }
+      }
+    }

@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: test API
+
+types:
+  InvalidPropertyType:  |
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "id": "http://jsonschema.net",
+      "type": "array",
+      "items": {
+        "id": "http://jsonschema.net/0",
+        "type": "object",
+        "properties": {
+          "name": "[object Object]",
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      }
+    }

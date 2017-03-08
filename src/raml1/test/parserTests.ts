@@ -19,6 +19,7 @@ import hl=require("../highLevelAST")
 //
 import util = require("./test-utils")
 import tools = require("./testTools")
+import index = require("../../index");
 
 //describe('Low level model', function() {
 describe('Parser integration tests',function(){
@@ -1061,6 +1062,19 @@ describe('JSON schemes tests', function () {
         this.timeout(15000);
         testErrors(util.data("parser/jsonscheme/test8/apiInvalid0.raml"), ["Missing required property: childName"]);
     })
+
+    it("Ignore unknown strig format 1" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("schema/ignoreFormats1.raml"));
+    })
+    it("Ignore unknown number format 1" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("schema/ignoreFormats2.raml"));
+    })
+    it("String instad of object as property definition" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("schema/invalidProperty.raml"),["(Schema validation exception: Cannot assign to read only property '\\_\\_\\$validated' of \\[object Object\\])|(Schema validation exception: Object\\.keys called on non-object)"]);
+    })
 });
 
 describe("Include tests + typesystem",function (){
@@ -1361,6 +1375,16 @@ describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
 describe('Dumps',function(){
     it("dump1", function () {
         testDump(util.data("dump/dump1/api.raml"), {dumpXMLRepresentationOfExamples: true});
+    });
+});
+
+describe('New API',function(){
+    it("'expandLibraries' == true by default", function () {
+        var p = util.data("parser/libraries/nestedUses/index.raml");
+        var json = index.loadSync(p);
+        var spec = json['specification'];
+        assert(!spec.hasOwnProperty("uses"));
+        assert(spec['traits']['files.hello']['name']=="hello");
     });
 });
 
