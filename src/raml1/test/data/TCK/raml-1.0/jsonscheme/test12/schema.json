@@ -1,0 +1,22 @@
+{
+  "Foo": {
+    "type": "object",
+    "description": "Foo details",
+    "properties": {
+      "id": { "type": "integer" },
+      "name": { "type": "string" },
+      "ownerName": { "type": "string" }
+    },
+    "required": [ "id", "name" ]
+  },
+  "Person": {
+    "type": "object",
+    "description": "Person details",
+    "properties": {
+      "firstName": { "type": "string" },
+      "lastName": { "type": "string" },
+      "nationality": { "type": "string" }
+    },
+    "required": [ "firstName", "lastName" ]
+  }
+}
