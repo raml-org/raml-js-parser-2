@@ -1579,7 +1579,7 @@ class NormalValidator implements PropertyValidator{
                     if (decl instanceof Error) {
                         if(ValidationError.isInstance(decl)){
                             var ve = <ValidationError>decl;
-                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning));
                         }
                         else {
                             v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>decl).message}, node));
@@ -1599,7 +1599,7 @@ class NormalValidator implements PropertyValidator{
                         if (validation instanceof Error&&vl){
                             if(ValidationError.isInstance(validation)){
                                 var ve = <ValidationError>validation;
-                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning));
                             }
                             else {
                                 v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
