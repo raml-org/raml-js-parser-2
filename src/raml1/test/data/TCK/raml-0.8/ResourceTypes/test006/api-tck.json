@@ -1,0 +1,165 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "Transactor Thor API",
+    "version": "1.0",
+    "baseUri": "http://server/api/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": "string",
+        "required": true,
+        "repeat": false,
+        "enum": [
+          "1.0"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "schemas": [
+      {
+        "member": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "<<schema>>",
+                    "schemaContent": "<<schema>>"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/members",
+        "type": {
+          "collection": {
+            "schema": "member"
+          }
+        },
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "member",
+                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "displayName": "/members",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "members"
+        ],
+        "absoluteUri": "http://server/api/{version}/members"
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Keyword 'type' is expected to be of type 'array,boolean,integer,number,null,object,string' type,array,boolean,integer,number,null,object,string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 3,
+          "position": 101
+        },
+        "end": {
+          "line": 6,
+          "column": 9,
+          "position": 107
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Keyword 'type' is expected to be of type 'array,boolean,integer,number,null,object,string' type,array,boolean,integer,number,null,object,string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 41,
+          "column": 25,
+          "position": 824
+        },
+        "end": {
+          "line": 41,
+          "column": 31,
+          "position": 830
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}
