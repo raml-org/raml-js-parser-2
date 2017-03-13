@@ -290,7 +290,16 @@ export class ReferencePatcher{
                         var appendedAttrUnit = this.appendUnitIfNeeded(typeAttr,units);
                         
                         let newValue:string;
-                        if(gotExpression){
+                        
+                        var parsedExpression;
+                        
+                        try  {
+                            parsedExpression = gotExpression && typeExpressions.parse(stringToPatch);
+                        } catch(exception) {
+                            parsedExpression = null;
+                        }
+                        
+                        if(gotExpression && parsedExpression !== null) {
                             var expressionPatchFailed = false;
                             var expr = typeExpressions.parse(stringToPatch);
                             var gotPatch = false;
