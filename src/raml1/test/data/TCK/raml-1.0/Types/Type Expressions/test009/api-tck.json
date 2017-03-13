@@ -1,0 +1,77 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "dept_code": {
+          "name": "dept_code",
+          "displayName": "dept_code",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "pattern": "^\\d+\\-\\w+$",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "chargeable": {
+          "headers": {
+            "X-Dept": {
+              "name": "X-Dept",
+              "displayName": "X-Dept",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "dept_code["
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "chargeable"
+        }
+      }
+    ],
+    "title": "Test named parameters"
+  },
+  "errors": [
+    {
+      "code": "INHERITING_UNKNOWN_TYPE",
+      "message": "Inheriting from unknown type",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 8,
+          "position": 142
+        },
+        "end": {
+          "line": 10,
+          "column": 12,
+          "position": 146
+        }
+      }
+    }
+  ]
+}

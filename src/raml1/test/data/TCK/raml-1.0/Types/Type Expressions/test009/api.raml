@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: Test named parameters
+types:
+  dept_code:
+    pattern: ^\d+\-\w+$
+
+traits:
+  chargeable:
+    headers:
+      X-Dept:
+        type: dept_code[
