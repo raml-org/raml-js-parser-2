@@ -46,6 +46,7 @@ export class ReferencePatcher{
         else {
             this.patchUses(hlNode, resolver);
         }
+        hlNode.elements().forEach(ch=>this.removeUses(ch));
         this.resetTypes(hlNode);
         hlNode.lowLevel()["libProcessed"] = true;
     }

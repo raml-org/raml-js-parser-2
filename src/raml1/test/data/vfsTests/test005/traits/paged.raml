@@ -1,0 +1,8 @@
+#%RAML 1.0 Trait
+
+uses:
+  contracts: ../types/ContractsLib.raml
+
+body:
+  application/json:
+    type: contracts.Create<<resourcePathName | !singularize | !uppercamelcase>>Request

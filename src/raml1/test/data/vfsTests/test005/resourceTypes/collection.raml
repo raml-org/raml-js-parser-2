@@ -1,0 +1,18 @@
+#%RAML 1.0 ResourceType
+
+uses:
+  contracts: ../types/ContractsLib.raml
+  traits: ../traits/TraitsLib.raml
+get?:
+  responses:
+    200:
+      body:
+        application/json:
+          type: contracts.Get<<resourcePathName | !uppercamelcase>>Response
+    404:
+      body:
+        application/json:
+          type: contracts.Response
+
+put:
+  is: [ traits.paged ]

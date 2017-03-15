@@ -1,0 +1,240 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "contracts",
+        "value": "types/ContractsLib.raml"
+      },
+      {
+        "key": "traits",
+        "value": "traits/TraitsLib.raml"
+      }
+    ],
+    "traits": [
+      {
+        "paged": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "contracts.Create<<resourcePathName | !singularize | !uppercamelcase>>Request"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "paged"
+        }
+      },
+      {
+        "traits.paged": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "contracts.Create<<resourcePathName | !singularize | !uppercamelcase>>Request"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "traits.paged",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "contracts.Get<<resourcePathName | !uppercamelcase>>Response"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "code": "404",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "contracts.Response"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get",
+            "__METADATA__": {
+              "optional": true
+            }
+          },
+          "put": {
+            "is": [
+              "traits.paged"
+            ],
+            "method": "put"
+          }
+        }
+      }
+    ],
+    "title": "DOC - Referential API",
+    "version": "v1",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "contracts.GetContextsResponse"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "code": "404",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "contracts.Response"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "contracts.CreateContextRequest"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "paged"
+            ],
+            "method": "post"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "contracts.CreateContextRequest"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "traits.paged"
+            ],
+            "method": "put"
+          }
+        ],
+        "type": "collection",
+        "relativeUri": "/contexts",
+        "displayName": "/contexts",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "contexts"
+        ],
+        "absoluteUri": "/contexts"
+      }
+    ]
+  },
+  "errors": []
+}

@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: DOC - Referential API
+version: v1
+
+resourceTypes:
+  collection: !include resourceTypes/collection.raml
+
+traits:
+  paged: !include traits/paged.raml
+
+/contexts:
+  type: collection
+  get:
+  post:
+    is: [ paged ]

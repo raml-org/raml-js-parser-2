@@ -82,6 +82,22 @@ describe('HTTP Asynchronous tests',function() {
     it("JSON references test", function (done) {
         testAPIHttpAsync(`./vfsTests/jsonRefsTest001/api-remote.raml`).should.be.fulfilled.and.notify(done);
     });
+
+
+    it('Accessing uses node defined in fragment 1', function (done) {
+        // process.once("uncaughtException", function (error) {
+        //     console.log("HEREHERE: " + error)
+        // })
+        testAPIHttpAsync("./vfsTests/test005/api.raml").should.be.fulfilled.and.notify(done);
+
+    });
+    it('Accessing uses node defined in fragment 2', function (done) {
+        // process.once("uncaughtException", function (error) {
+        //     console.log("HEREHERE: " + error)
+        // })
+        testAPIHttpAsync("./vfsTests/test006/api.raml").should.be.fulfilled.and.notify(done);
+
+    });
 });
 
 describe('Path tests',function() {
@@ -214,7 +230,14 @@ function inspect(node:parserCore.BasicNode,apiDir:string):Promise<void>{
     }
     var apiUnit = node.highLevel().lowLevel().unit();
     var apiFileName = path.basename(apiUnit.absolutePath());
-    var tckJsonPath = path.resolve(apiDir,apiFileName).replace(".raml","-tck.json");
+    var realAPIPath = path.resolve(apiDir,apiFileName);
+    let tckJsonPath:string;
+    if(realAPIPath.lastIndexOf(".raml")==realAPIPath.length-".raml".length){
+        tckJsonPath = realAPIPath.replace(".raml","-tck.json");
+    }
+    else{
+        tckJsonPath = realAPIPath + "-tck.json";
+    }
 
     var json = node.toJSON({rootNodeDetails:true});
     var pathRegExp = new RegExp('/errors\\[\\d+\\]/path');
