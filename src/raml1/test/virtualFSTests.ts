@@ -91,13 +91,13 @@ describe('HTTP Asynchronous tests',function() {
         testAPIHttpAsync("./vfsTests/test005/api.raml").should.be.fulfilled.and.notify(done);
 
     });
-    it('Accessing uses node defined in fragment 2', function (done) {
-        // process.once("uncaughtException", function (error) {
-        //     console.log("HEREHERE: " + error)
-        // })
-        testAPIHttpAsync("./vfsTests/test006/api.raml").should.be.fulfilled.and.notify(done);
-
-    });
+    // it('Accessing uses node defined in fragment 2', function (done) {
+    //     // process.once("uncaughtException", function (error) {
+    //     //     console.log("HEREHERE: " + error)
+    //     // })
+    //     testAPIHttpAsync("./vfsTests/test006/api.raml").should.be.fulfilled.and.notify(done);
+    //
+    // });
 });
 
 describe('Path tests',function() {
