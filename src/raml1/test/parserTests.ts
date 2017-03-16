@@ -1071,9 +1071,9 @@ describe('JSON schemes tests', function () {
         this.timeout(15000);
         testErrors(util.data("schema/ignoreFormats2.raml"));
     })
-    it("String instad of object as property definition" ,function() {
+    it("String instead of object as property definition" ,function() {
         this.timeout(15000);
-        testErrors(util.data("schema/invalidProperty.raml"),["(Schema validation exception: Cannot assign to read only property '\\_\\_\\$validated' of \\[object Object\\])|(Schema validation exception: Object\\.keys called on non-object)"]);
+        testErrors(util.data("schema/invalidProperty.raml"),["Invalid JSON schema: Unexpected value '[object Object]'"]);
     })
 });
 

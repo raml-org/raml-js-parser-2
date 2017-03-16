@@ -342,7 +342,7 @@
   },
   "INVALID_JSON_SCHEMA" : {
     "code" : "INVALID_JSON_SCHEMA",
-    "message" : "Invalid JSON schema. Potentially, required array containing value '{{propName}}' has invalid location"
+    "message" : "Invalid JSON schema. Unexpected value '{{propName}}'"
   },
   "EXAMPLE_SCHEMA_FAILURE" : {
     "code" : "EXAMPLE_SCHEMA_FAILURE",
