@@ -1,0 +1,9 @@
+      description: Collection of <<resourcePathName>> in stock.
+      get:
+        description: Get a list of <<resourcePathName>>.
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<schemaCollection>>
+                example: <<exampleCollection>>

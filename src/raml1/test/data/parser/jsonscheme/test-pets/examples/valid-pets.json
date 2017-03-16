@@ -1,0 +1,13 @@
+{
+  "pets": [
+    {
+      "genus": "Canis",
+      "quantity": 30
+    },
+    {
+      "genus": "Felis",
+      "quantity": 1
+    }
+  ],
+  "totalRecords": 2
+}

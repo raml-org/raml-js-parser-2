@@ -1,0 +1,17 @@
+#%RAML 1.0
+---
+title: Valid, included schema, sub-schema ref with filename.
+
+types:
+  petSchema: !include ../schema/pet.json
+  petsSchema: !include ../schema/pets-filename.json
+
+/pets:
+  get:
+    description: List of pets
+    responses:
+      200:
+        body:
+          application/json:
+            type: petsSchema
+            example: !include ../examples/valid-pets.json

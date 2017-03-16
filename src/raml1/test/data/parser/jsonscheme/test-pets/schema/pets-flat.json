@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "pets": {
+      "id": "petsList",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "genus": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "genus",
+          "quantity"
+        ]
+      }
+    },
+    "totalRecords": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "pets",
+    "totalRecords"
+  ]
+}

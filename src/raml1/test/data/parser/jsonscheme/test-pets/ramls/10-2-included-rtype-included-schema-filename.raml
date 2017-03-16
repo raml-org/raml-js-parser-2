@@ -1,0 +1,15 @@
+#%RAML 1.0
+---
+title: Valid, included resourceType, included schema, sub-schema ref with filename.
+
+types:
+  petsSchema: !include ../schema/pets-filename.json
+
+resourceTypes:
+  collection: !include ../raml-util/rtypes/10-collection.raml
+
+/pets:
+  type:
+    collection:
+      schemaCollection: petsSchema
+      exampleCollection: !include ../examples/valid-pets.json

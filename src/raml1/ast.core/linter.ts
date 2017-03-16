@@ -1450,7 +1450,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             if(isTypeProp){
                 return false;
             }
-            var tm = su.createSchema(v, contentProvider(h.lowLevel()));
+            var tm = su.createSchema(v, contentProvider(h.lowLevel(),attr&&attr.lowLevel()));
             if(!tm){
                 return tm;
             }
@@ -3266,8 +3266,14 @@ class ValidateChildrenKeys implements NodeValidator {
     }
 }
 
-function contentProvider(lowLevel: any) {
-    var root = lowLevel && lowLevel.includeBaseUnit() && ((lowLevel.includePath && lowLevel.includePath()) ? lowLevel.includeBaseUnit().resolve(lowLevel.includePath()) : lowLevel.includeBaseUnit());
+function contentProvider(lowLevel: any,chLL?:any) {
+    let root = lowLevel && lowLevel.includeBaseUnit() && ((lowLevel.includePath && lowLevel.includePath()) ? lowLevel.includeBaseUnit().resolve(lowLevel.includePath()) : lowLevel.includeBaseUnit());
+    if(chLL){
+        let root1 = chLL && chLL.includeBaseUnit() && ((chLL.includePath && chLL.includePath()) ? chLL.includeBaseUnit().resolve(chLL.includePath()) : chLL.includeBaseUnit());
+        if(root1!=root){
+            root = root1;
+        }
+    }
 
     return new contentprovider.ContentProvider(root);
 }

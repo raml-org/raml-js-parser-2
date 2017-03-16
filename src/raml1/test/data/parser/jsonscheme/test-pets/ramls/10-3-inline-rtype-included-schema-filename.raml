@@ -1,0 +1,24 @@
+#%RAML 1.0
+---
+title: Valid, inline resourceType, included schema, sub-schema ref with filename.
+
+types:
+  petsSchema: !include ../schema/pets-filename.json
+
+resourceTypes:
+  collection:
+    description: Collection of <<resourcePathName>> in stock.
+    get:
+      description: Get a list of <<resourcePathName>>.
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<schemaCollection>>
+              example: <<exampleCollection>>
+
+/pets:
+  type:
+    collection:
+      schemaCollection: petsSchema
+      exampleCollection: !include ../examples/valid-pets.json

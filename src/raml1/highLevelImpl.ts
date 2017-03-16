@@ -637,7 +637,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 if (vl) {
                     var actualValue = vl.value();
                     if (actualValue) {
-                        var rf = linter.isValid(this._def,this.parent(),actualValue,vl.property());
+                        var rf = linter.isValid(this._def,this.parent(),actualValue,vl.property(),vl);
                         return rf;
                     }
                 }

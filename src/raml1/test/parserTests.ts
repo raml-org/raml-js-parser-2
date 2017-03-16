@@ -1075,6 +1075,38 @@ describe('JSON schemes tests', function () {
         this.timeout(15000);
         testErrors(util.data("schema/invalidProperty.raml"),["Invalid JSON schema: Unexpected value '[object Object]'"]);
     })
+    it("JOSN schema test Pets 10-3-inline-rtype-included-schema-filename.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/10-3-inline-rtype-included-schema-filename.raml"));
+    });
+    it("JOSN schema test Pets 10-1-included-rtype-included-schema-flat.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/10-1-included-rtype-included-schema-flat.raml"));
+    });
+    it("JOSN schema test Pets 10-2-included-rtype-included-schema-filename.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/10-2-included-rtype-included-schema-filename.raml"));
+    });
+    it("JOSN schema test Pets 08-1-included-rtype-included-schema-flat.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/08-1-included-rtype-included-schema-flat.raml"));
+    });
+    it("JOSN schema test Pets 08-2-included-rtype-included-schema-filename.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/08-2-included-rtype-included-schema-filename.raml"));
+    });
+    it("JOSN schema test Pets 08-3-inline-rtype-included-schema-filename.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/08-3-inline-rtype-included-schema-filename.raml"));
+    });
+    it("JOSN schema test Pets 08-4-included-schema-filename.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/08-4-included-schema-filename.raml"));
+    });
+    it("JOSN schema test Pets 10-4-included-schema-filename.raml" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test-pets/ramls/10-4-included-schema-filename.raml"));
+    });
 });
 
 describe("Include tests + typesystem",function (){
