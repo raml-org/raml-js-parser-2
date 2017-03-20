@@ -247,8 +247,10 @@ export class TraitsAndResourceTypesExpander {
         methods.forEach(m=> {
 
             var methodLowLevel = <proxy.LowLevelCompositeNode>m.highLevel().lowLevel();
-            methodLowLevel.takeOnlyOriginalChildrenWithKey(
-                def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
+            if(proxy.LowLevelCompositeNode.isInstance(methodLowLevel)) {
+                methodLowLevel.takeOnlyOriginalChildrenWithKey(
+                    def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
+            }
             var name = m.method();
             var allTraits:GenericData[]=[]
             resourceData.forEach(x=>{

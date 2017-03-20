@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+types:
+  Person:
+    type: object
+    properties:
+      name: string
+  EmailOwner:
+    type: object
+    properties:
+      email: string
+  Employee:
+    type: [ Person, EmailOwner ]
+    properties:
+      id: string

@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: test
+types:
+   TestType:
+      type: object
+      properties:
+        field: string
+      example:
+        field: value
+traits:
+   TestTrait:
+      body:
+        application/json:
+          type: TestType
+/test:
+  post:
+    is:

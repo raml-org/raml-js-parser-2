@@ -1,0 +1,11 @@
+#%RAML 1.0 Library
+types:
+  item:
+    type: object
+    properties:
+      id: string
+      size: number
+  collection:
+    type: array
+    items:
+      item | string
