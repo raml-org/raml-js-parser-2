@@ -14,10 +14,7 @@ traits:
     queryParameters:
       <<tokenName>>:
         description: A valid <<tokenName>> is required
-  paged:
-    queryParameters:
-      numPages:
-        description: The number of pages to return, not to exceed <<maxPages>>
+  paged: !include pagedTrait.raml
 /books:
   type: { searchableCollection: { queryParamName: title, fallbackParamName: digest_all_fields } }
   get:

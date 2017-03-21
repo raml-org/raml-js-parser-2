@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Protocols', function () {
+  this.timeout(15000);
   it('should use value from baseUri property for protocols property if not specified explicitly', function (done) {
     raml.load([
       '#%RAML 0.8',

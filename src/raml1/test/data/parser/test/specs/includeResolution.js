@@ -25,6 +25,7 @@ function subsetCompare(expected, target) {
 }
 
 describe('Include resolution injection', function() {
+  this.timeout(15000);
   it('should call injected method', function(done) {
     var callbackCalled = false;
     var injectedReader = new raml.FileReader(function() {

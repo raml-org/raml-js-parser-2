@@ -15,7 +15,7 @@ import smg = require("../tools/schemaModelGen");
 
 
 describe('Schema Tests', function() {
-
+  this.timeout(15000);
   describe('generate model by json', function () {
 
     it('generate type definition in text mode (outdated)', function () {

@@ -5,6 +5,8 @@ import ramlWrapper = require("../artifacts/raml10parser");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import hlimpl = require("../highLevelImpl");
 import util = require("./test-utils");
+import reuseUtil = require("./test-reuse-utils");
+import fs = require("fs");
 
 describe('AST Reuse Test Set',function() {
     this.timeout(15000);
@@ -38,8 +40,8 @@ describe('AST Reuse Test Set',function() {
             test("ASTReuseTests/test01/api.raml", "ASTReuseTests/test01/api03.raml");
         });
 
-        it("Super type switch", function () {
-            test("ASTReuseTests/test02/api.raml", "ASTReuseTests/test02/api01.raml", false);
+        it("Body type switch", function () {
+            test("ASTReuseTests/test02/api.raml", "ASTReuseTests/test02/api01.raml");
         });
 
         it("Additional properties for a response mime type", function () {
@@ -196,52 +198,26 @@ describe('AST Reuse Test Set',function() {
         it("Resource type value change", function () {
             test("ASTReuseTests/test18/api.raml", "ASTReuseTests/test18/api07.raml");
         });
+
+        it("Add colon to 'is'", function () {
+            test("ASTReuseTests/test19/api.raml", "ASTReuseTests/test19/api01.raml");
+        });
     });
 });
 
-function test(path1:string,path2:string,doReuse=true) {
+function test(_path1:string,_path2:string,expectReuse=true) {
 
-    var path1Res = util.data(path1).replace(/\\/g,'/');
-    var path2Res = util.data(path2).replace(/\\/g,'/');
-    let api1 = (<ramlWrapper.ApiImpl>index.loadRAMLSync(path1Res, [])).expand();
+    let path1 = util.data(_path1).replace(/\\/g,'/');
+    let path2 = util.data(_path2).replace(/\\/g,'/');
 
-    var resolver = new jsyaml.FSResolverImpl();
-    var fsResolver = {
-        content: (path) => {
-            if (path == path1Res) {
-                return resolver.content(path2Res)
-            }
-            return resolver.content(path);
-        },
-        contentAsync: (path) => {
-            return Promise.resolve("");
-        }
-    };
+    let newContent = fs.readFileSync(path2,"utf-8");
+    let initialApi = (<ramlWrapper.ApiImpl>index.loadRAMLSync(path1, [])).expand();
 
-    let api2 = (<ramlWrapper.ApiImpl>index.loadRAMLSync(path1Res, [], {
-        reusedNode: api1.highLevel(),
-        fsResolver: fsResolver
-    })).expand();
-    var payload1 = api2.toJSON({rootNodeDetails: true});
-
-    let api3 = (<ramlWrapper.ApiImpl>index.loadRAMLSync(path1Res, [], {
-        fsResolver: fsResolver
-    })).expand();
-    var payload2 = api3.toJSON({rootNodeDetails: true});
-
-    var diff = util.compare(payload1,payload2);
-
-
-    if(diff.length!=0){
-        console.warn("DIFFERENCE DETECTED FOR " + path2Res);
-        console.warn(diff.map(x=>x.message("actual","expected")).join("\n\n"));
+    try {
+        reuseUtil.testReuse(newContent, path1, initialApi.highLevel(), expectReuse);
+    }
+    catch(e) {
+        console.error(e);
         assert(false);
     }
-    if(doReuse){
-        assert((<hlimpl.ASTNodeImpl>api2.highLevel()).reusedNode()!=null,"Reuse is expected");
-    }
-    else {
-        assert((<hlimpl.ASTNodeImpl>api2.highLevel()).reusedNode()==null,"Reuse is not expected");
-    }
-
 }

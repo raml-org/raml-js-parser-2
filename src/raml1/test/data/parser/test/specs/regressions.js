@@ -17,6 +17,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Regressions', function () {
+  this.timeout(15000);
 
   //FIXTEST changed a message to an equivalent
   it('should fail unsupported raml version:RT-180', function (done) {

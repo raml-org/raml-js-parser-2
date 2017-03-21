@@ -2,20 +2,10 @@
 title: Example API
 version: v1
 mediaType: application/json
-types:
-  item:
-    type: object
-    properties:
-      id: string
-      size: number
-  collection:
-    type: array
-    items:
-      item | string
+uses:
+  types: types.raml
 traits:
-  params:
-    queryParameters:
-      paginationType:
+  params: !include paramsTrait.raml
   type:
 resourceTypes:
   searchableCollection:

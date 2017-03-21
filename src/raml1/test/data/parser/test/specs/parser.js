@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Parser', function() {
+    this.timeout(15000);
     it('should be tolerant to whitespaces around version', function (done) {
       raml.load([
         ' #%RAML 0.8 ',

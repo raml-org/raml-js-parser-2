@@ -38,6 +38,7 @@ function createExampleObjectFromTypeDefinition(tp:hl.ITypeDefinition, generateFa
 }
 
 describe('Example test',function(){
+    this.timeout(15000);
     it ("Programmers",function() {
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/exampleGen/e1.raml"))
         api = <wrapper.ApiImpl>util.expandWrapperIfNeeded(api);

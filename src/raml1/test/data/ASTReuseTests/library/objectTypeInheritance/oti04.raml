@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: test
+uses:
+  lib: oti04Lib.raml
+/test:
+  post:
+    body:
+      application/json: lib.TestType
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib.TestType
+            properties:
+              additionalField: string
+            example:
+              field: any text
+              additionalField: any text

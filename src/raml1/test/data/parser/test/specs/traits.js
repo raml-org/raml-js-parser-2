@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Traits', function () {
+  this.timeout(15000);
   //FIXTEST (capitalized error message)
   it('should detect unused trait parameters and throw an exception', function (done) {
     raml.load([

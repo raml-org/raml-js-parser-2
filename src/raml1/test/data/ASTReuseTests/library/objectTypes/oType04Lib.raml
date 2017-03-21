@@ -1,0 +1,18 @@
+#%RAML 1.0 Library
+types:
+  Initial_comments:
+    type: object
+    minProperties: 2
+    maxProperties: 4
+    properties:
+      comment_id:
+        type: number
+        required: true
+      initial_comments?: string
+      user?: string
+      time_stamp?: integer
+      created?: integer
+    example:
+      initial_comments: "oo"
+      user: "Raml"
+      time_stamp: 1422378528

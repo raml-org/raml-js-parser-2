@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+types:
+  TypeBase:
+      type: object
+      properties:
+        baseField: string
+      example:
+        baseField: name
+  TestType:
+      type: TypeBase
+      properties:
+        field: string
+      example:
+        baseField: name
+        field: value

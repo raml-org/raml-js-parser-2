@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+types:
+    FirstType:
+        properties:
+            name: string
+    SecondType:
+        properties:
+            age: number
+    SomeType:
+        type: [FirstType, SecondType]
+        properties:
+            weight: number

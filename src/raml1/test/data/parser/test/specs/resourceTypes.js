@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Resource Types', function () {
+  this.timeout(15000);
   //FIXTEST 'circular reference of "a" has been detected: a -> b -> c -> a' => 'Resource type definition contains cycle: a -> b -> c -> a'
   it('should report an error with better message when circular reference is detected', function (done) {
     var definition = [

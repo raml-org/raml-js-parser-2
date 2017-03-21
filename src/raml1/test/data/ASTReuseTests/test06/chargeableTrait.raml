@@ -1,0 +1,10 @@
+#%RAML 1.0 Trait
+headers:
+  X-Dept:
+    type: array
+    description: |
+      A department code to be charged.
+      Multiple of such headers are allowed.
+    items:
+      pattern: ^\d+\-\w+$
+      example: 230-OCTO

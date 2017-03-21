@@ -3,6 +3,7 @@
 global.isExpanded = true;
 
 describe ("Tests with expanded APIs.", function () {
+    this.timeout(15000);
     require("./model-editing-tests-add")
     require("./model-editing-tests-refactoring")
     require("./model-editing-tests-remove")

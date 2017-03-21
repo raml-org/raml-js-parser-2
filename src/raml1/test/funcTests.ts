@@ -24,6 +24,7 @@ import factory08 = require("../artifacts/raml08factory");
 import highLevelImpl = require("../highLevelImpl");
 
 describe('Parser index functions tests',function() {
+    this.timeout(15000);
     it("loadRaml", function(done){
         this.timeout(15000);
 
@@ -62,6 +63,7 @@ describe('Parser index functions tests',function() {
 });
 
 describe('Parser parserMod functions tests',function() {
+    this.timeout(15000);
     it("createTypeDeclaration", function () {
         var typeDecl = parserMod.createTypeDeclaration('SomeType');
 
@@ -76,6 +78,7 @@ describe('Parser parserMod functions tests',function() {
 });
 
 describe('Parser project functions tests',function() {
+    this.timeout(15000);
     it("createProject", function () {
         var prj = project.createProject(util.data('./functions'));
 
@@ -88,6 +91,7 @@ describe('Parser project functions tests',function() {
 });
 
 describe('Parser searchProxy functions tests',function() {
+    this.timeout(15000);
     it("determineCompletionKind1", function () {
         var prj = project.createProject(util.data('./functions'));
 
@@ -372,6 +376,7 @@ describe('Parser searchProxy functions tests',function() {
 });
 
 describe('Parser schema functions tests',function() {
+    this.timeout(15000);
     it("createSchema xsd", function () {
         var api = util.loadApi(util.data('./functions/simple.raml'));
         
@@ -444,6 +449,7 @@ describe('Parser schema functions tests',function() {
 });
 
 describe('Parser raml1/artifacts factories functions tests',function() {
+    this.timeout(15000);
     funcUtil.loadWrappersData();
     
     it("wrappers test 5", function (done) {
