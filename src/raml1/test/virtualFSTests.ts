@@ -74,7 +74,7 @@ describe('Virtual File System Tests', function() {
 
 
 describe('HTTP Asynchronous tests',function() {
-
+    this.timeout(15000);
     it("RAML references test", function (done) {
         testAPIHttpAsync(`./vfsTests/ramlRefsTest001/api.raml`).should.be.fulfilled.and.notify(done);
     });
@@ -101,7 +101,7 @@ describe('HTTP Asynchronous tests',function() {
 });
 
 describe('Path tests',function() {
-
+    this.timeout(15000);
     it("Query String Test", function (done) {
         testAPIHttpAsync(`./vfsTests/pathWithQuery/api.raml`).should.be.fulfilled.and.notify(done);
     });

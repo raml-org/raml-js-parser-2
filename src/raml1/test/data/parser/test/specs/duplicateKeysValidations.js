@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 //
 describe('Duplicated properties', function () {
+  this.timeout(15000);
   describe('in Security Schemes', function () {
 
     //FIXTEST removed skip, changed error message

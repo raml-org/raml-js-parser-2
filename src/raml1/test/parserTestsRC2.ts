@@ -12,7 +12,7 @@ import apiLoader = require("../apiLoader")
 
 //describe('Low level model', function() {
 describe('Resource type parameters tests',function(){
-
+    this.timeout(15000);
     it ("Resource type parameters test 1",function(){
         parserTests.testErrors(util.data("../data/rc2/resourceTypeParamsPositive.raml"));
     });
@@ -42,7 +42,7 @@ describe('Resource type parameters tests',function(){
 });
 
 describe('External type facets tests',function(){
-
+    this.timeout(15000);
     //json schema tests
 
     it ("JSON External type facets test 1",function(){
@@ -215,7 +215,7 @@ describe('External type facets tests',function(){
 });
 
 describe('Inplace types',function(){
-
+    this.timeout(15000);
     it ("Inplace types 1",function(){
         parserTests.testErrors(util.data("../data/rc2/inplaceTypesPositive1.raml"));
     });

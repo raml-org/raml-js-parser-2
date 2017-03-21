@@ -9,6 +9,7 @@ import RamlWrapper = require("../artifacts/raml10parserapi")
 import RamlWrapperImpl = require("../artifacts/raml10parser")
 
 describe('Helper methods', function () {
+    this.timeout(15000);
 
     var api:RamlWrapper.Api;
     var songsResource:RamlWrapper.Resource;

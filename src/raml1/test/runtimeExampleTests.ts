@@ -21,6 +21,7 @@ import _=require("underscore")
 
 
 describe('Runtime example tests', function() {
+    this.timeout(15000);
     it('Should return JSON string example as JSON', function () {
         var api = util.loadApiWrapper1(util.data('exampleGen/e1.raml'));
         var types : wrapper10.TypeDeclaration[] = <any>tools.toArray(api.types());

@@ -18,6 +18,7 @@ import hl=require("../highLevelAST")
 import util = require("./test-utils")
 import tools = require("./testTools")
 describe('API parsing', function() {
+    this.timeout(15000);
     it('Should parse title', function(){
         testErrors(util.data('parser/api/api01.raml'));
     });
@@ -138,6 +139,7 @@ describe('API parsing', function() {
 });
 
 describe('Resource parsing', function() {
+    this.timeout(15000);
     it('Should parse simple resource with response body', function(){
         testErrors(util.data('parser/resource/res01.raml'));
     });
@@ -192,6 +194,7 @@ describe('Resource parsing', function() {
 });
 
 describe('Resource type', function(){
+    this.timeout(15000);
     it('Should parse simple resource type with request body', function(){
         testErrors(util.data('parser/resourceType/resType01.raml'));
     });
@@ -275,6 +278,7 @@ describe('Resource type', function(){
 });
 
 describe('Method', function(){
+    this.timeout(15000);
     it('Should parse simple method with response body', function(){
         testErrors(util.data('parser/method/meth01.raml'));
     });
@@ -333,6 +337,7 @@ describe('Method', function(){
 });
 
 describe('Trait', function(){
+    this.timeout(15000);
     it('Should parse trait with header and validate it', function(){
         testErrors(util.data('parser/trait/trait01.raml'));
     });
@@ -359,6 +364,7 @@ describe('Trait', function(){
 });
 
 describe('Method response', function(){
+    this.timeout(15000);
     it('Should parse response code', function(){
         testErrors(util.data('parser/methodResponse/methResp01.raml'));
     });
@@ -385,6 +391,7 @@ describe('Method response', function(){
 });
 
 describe('Security scheme declaration', function(){
+    this.timeout(15000);
     it('Should parse security scheme type', function(){
         testErrors(util.data('parser/securitySchemes/qa/securityScheme01.raml'));
     });
@@ -403,6 +410,7 @@ describe('Security scheme declaration', function(){
 });
 
 describe('Security Scheme types', function(){
+    this.timeout(15000);
     it('Should parse OAuth 1.0 security scheme type', function(){
         testErrors(util.data('parser/securitySchemes/qa/securityScheme05.raml'));
     });
@@ -437,6 +445,7 @@ describe('Security Scheme types', function(){
 });
 
 describe('Type', function(){
+    this.timeout(15000);
     it('Should parse type inherited from object declaration', function(){
         testErrors(util.data('parser/type/t01.raml'));
     });
@@ -567,6 +576,7 @@ describe('Type', function(){
 });
 
 describe('Annotations', function() {
+    this.timeout(15000);
     it('Should validate annotation parameters and scope', function () {
         testErrors(util.data('parser/annotations/a20.raml'));
     });
@@ -581,6 +591,7 @@ describe('Annotations', function() {
 });
 
 describe('Scalar types', function(){
+    this.timeout(15000);
     it('Should parse string type declaration',function(){
         testErrors(util.data('parser/scalarTypes/sType01.raml'));
     });
@@ -607,6 +618,7 @@ describe('Scalar types', function(){
 });
 
 describe('Object types', function(){
+    this.timeout(15000);
     it('Should parse object properties',function(){
         testErrors(util.data('parser/objectTypes/oType01.raml'));
     });
@@ -675,6 +687,7 @@ describe('Object types', function(){
 });
 
 describe('Array types', function(){
+    this.timeout(15000);
     it('Should parse array of scalar types declaration',function(){
         testErrors(util.data('parser/arrayTypes/aType01.raml'));
     });
@@ -685,6 +698,7 @@ describe('Array types', function(){
 });
 
 describe('Union types', function(){
+    this.timeout(15000);
     it('Should parse union type declaration',function(){
         testErrors(util.data('parser/unionTypes/uType01.raml'));
     });
@@ -705,6 +719,7 @@ describe('Union types', function(){
 });
 
 describe('Object type Inheritance', function(){
+    this.timeout(15000);
     it('Should parse type inherited from user defined type declaration',function(){
         testErrors(util.data('parser/objectTypeInheritance/oti01.raml'));
     });
@@ -738,6 +753,7 @@ describe('Object type Inheritance', function(){
 });
 
 describe('External Types', function(){
+    this.timeout(15000);
     it('Should parse included json schema',function(){
         testErrors(util.data('parser/externalTypes/eType01.raml'));
     });
@@ -775,6 +791,7 @@ describe('External Types', function(){
 });
 
 describe('Type expressions', function(){
+    this.timeout(15000);
     it('Should parse simplest type expression',function(){
         testErrors(util.data('parser/type/typeExpressions/te01.raml'));
     });
@@ -809,6 +826,7 @@ describe('Type expressions', function(){
 });
 
 describe('Modularization', function(){
+    this.timeout(15000);
     it('Should parse library and allows to use library items.',function(){
         testErrors(util.data('parser/modularization/m01.raml'));
     });
@@ -1046,6 +1064,7 @@ describe('Modularization', function(){
 });
 
 describe("Individual errors",function(){
+    this.timeout(15000);
     it('Individial nodes should pass validation',function() {
         var api = util.loadApi(util.data('parser/modularization/m02_overlay.raml'));
         api.children().forEach(x=>{
@@ -1063,6 +1082,7 @@ describe("Individual errors",function(){
 
 
 describe('Object values for template parameters tests', function () {
+    this.timeout(15000);
     it("Parameter used in key must have scalar value", function () {
         this.timeout(15000);
         testErrors(util.data("parser/resourceType/resType21.raml"), ["property 'param' must be a string"]);

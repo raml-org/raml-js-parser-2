@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Errors', function () {
+  this.timeout(15000);
   it('should be at right line/column when new document content started without special marker right after end marker', function (done) {
     raml.load([
       '#%RAML 0.8',

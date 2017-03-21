@@ -14,6 +14,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Parser', function() {
+    this.timeout(15000);
     describe('Include', function() {
         it('should succeed on including local files', function(done) {
             raml.loadFile('test/raml-files/local.yml').should.eventually.deep.equal({

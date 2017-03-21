@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Validator', function () {
+  this.timeout(15000);
   //FIXTEST actually defining some base uri parameter
   //message changed from 'uri parameters defined when there is no baseUri'
   it('should fail if baseUriParameters is defined without baseUri', function (done) {

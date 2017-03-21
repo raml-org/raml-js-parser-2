@@ -11,6 +11,7 @@ var should = chai.should();
 var PARSER_BIN = join(__dirname, '../../node_modules/raml-parser/bin/raml-parser');
 
 describe('CLI', function () {
+  this.timeout(15000);
   it('should error when missing file argument', function (done) {
     exec('node ' + PARSER_BIN, function (err, stdout, stderr) {
       err.should.match(/No filename specified/);
