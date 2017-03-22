@@ -1082,7 +1082,7 @@ describe('JSON schemes tests', function () {
     })
     it("String instead of object as property definition" ,function() {
         this.timeout(15000);
-        testErrors(util.data("schema/invalidProperty.raml"),["Invalid JSON schema: Assignment to non-object."]);
+        testErrors(util.data("schema/invalidProperty.raml"),["(Invalid JSON schema: Unexpected value)|(Invalid JSON schema: Assignment to non-object.)"]);
     })
     it("JOSN schema test Pets 10-3-inline-rtype-included-schema-filename.raml" ,function() {
         this.timeout(15000);
