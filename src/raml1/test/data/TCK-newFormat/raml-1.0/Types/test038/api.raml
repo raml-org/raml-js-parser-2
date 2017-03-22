@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Anchor breaks queryParameter/uriParameter type parsing
+/resource1:
+  get:
+    queryParameters:
+      qp1: &qp1Ref
+        type: number
+        description: number parameter
+      qp2: &qp2Ref boolean
+
+/resource2:
+  get:
+    queryParameters:
+      qp11: *qp1Ref
+      qp21: *qp2Ref
