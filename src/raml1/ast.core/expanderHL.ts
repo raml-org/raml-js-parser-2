@@ -761,6 +761,9 @@ export class ValueTransformer implements proxy.ValueTransformer{
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
                     if(val) {
+                        if(referencePatcher.PatchedReference.isInstance(val)){
+                            val = (<referencePatcher.PatchedReference>val).value();
+                        }
                         for(var tr of transformers) {
                             val = tr(val);
                         }

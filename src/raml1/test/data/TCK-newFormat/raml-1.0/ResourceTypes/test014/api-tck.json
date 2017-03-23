@@ -1,0 +1,117 @@
+{
+  "specification": {
+    "types": {
+      "Category": {
+        "name": "Category",
+        "displayName": "Category",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "resourceTypes": {
+      "parentResourceType": {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "foo": {
+                "name": "foo",
+                "displayName": "foo",
+                "type": [
+                  "<<typeName | !singularize>>"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "name": "parentResourceType"
+      },
+      "childResourceType": {
+        "type": {
+          "parentResourceType": {
+            "typeName": "<<typeName>>"
+          }
+        },
+        "name": "childResourceType"
+      }
+    },
+    "title": "Minimal bug case",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "foo": {
+                "name": "foo",
+                "displayName": "foo",
+                "type": [
+                  "Category"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": {
+          "childResourceType": {
+            "typeName": "Category"
+          }
+        },
+        "relativeUri": "/cats",
+        "displayName": "/cats",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "cats"
+        ],
+        "absoluteUri": "/cats",
+        "completeRelativeUri": "/cats",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

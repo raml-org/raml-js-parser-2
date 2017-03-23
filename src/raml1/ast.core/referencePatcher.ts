@@ -1089,6 +1089,18 @@ export class PatchedReference{
             this._name = this._name.substring(0,l-1);
         }
     }
+
+    private static CLASS_IDENTIFIER_PatchedReference = "referencePatcher.PatchedReference";
+
+    public static isInstance(instance : any) : instance is PatchedReference {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),PatchedReference.CLASS_IDENTIFIER_PatchedReference);
+    }
+
+    public getClassIdentifier() : string[] {
+        return [ PatchedReference.CLASS_IDENTIFIER_PatchedReference ];
+    }
     
     referencedNode: ll.ILowLevelASTNode;
 

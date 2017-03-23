@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Minimal bug case
+types: { Category: string }
+resourceTypes:
+  parentResourceType:
+    get:
+      queryParameters:
+        foo: <<typeName | !singularize>>
+  childResourceType:
+    type: { parentResourceType: { typeName: <<typeName>> } }
+
+/cats:
+  type:
+    childResourceType: { typeName: Category }
