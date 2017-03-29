@@ -1,0 +1,8 @@
+#%RAML 1.0
+title: My API With Types
+uses:
+  lib: oType10Lib.raml
+/res:
+  post:
+    body:
+      application/json: lib.MapOfNumbers

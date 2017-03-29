@@ -1078,7 +1078,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         if (vk==yaml.Kind.SEQ){
             return rTypes.NodeKind.ARRAY;
         }
-        if (vk==yaml.Kind.INCLUDE_REF){
+        if (vk==yaml.Kind.INCLUDE_REF || vk==yaml.Kind.ANCHOR_REF){
             if (this._node.children().length>0){
                 //we can safely assume that it is map in the type system in this case
                 return rTypes.NodeKind.MAP;

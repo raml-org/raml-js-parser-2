@@ -1,20 +1,10 @@
 #%RAML 1.0
 title: Example API
 version: v1
-types:
-  item:
-    type: object
-    properties:
-      id: string
-      size: number
-  collection:
-    type: array
-    items:
-      item | string
+uses:
+  types: types.raml
 traits:
-  params:
-    queryParameters:
-      paginationType:
+  params: !include paramsTrait.raml
   type:
 resourceTypes:
   searchableCollection:
@@ -24,7 +14,7 @@ resourceTypes:
        200:
          body:
            application/json:
-             type: collection
+             type: types.collection
 /rest:
   get:
     responses:

@@ -1,0 +1,140 @@
+{
+  "specification": {
+    "title": "Anchor breaks queryParameter/uriParameter type parsing",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "qp1": {
+                "name": "qp1",
+                "displayName": "qp1",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "description": "number parameter",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "qp2": {
+                "name": "qp2",
+                "displayName": "qp2",
+                "type": [
+                  "boolean"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource1",
+        "displayName": "/resource1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource1"
+        ],
+        "absoluteUri": "/resource1",
+        "completeRelativeUri": "/resource1",
+        "parentUri": ""
+      },
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "qp11": {
+                "name": "qp11",
+                "displayName": "qp11",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "description": "number parameter",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "qp21": {
+                "name": "qp21",
+                "displayName": "qp21",
+                "type": [
+                  "boolean"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "get"
+          }
+        },
+        "relativeUri": "/resource2",
+        "displayName": "/resource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource2"
+        ],
+        "absoluteUri": "/resource2",
+        "completeRelativeUri": "/resource2",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

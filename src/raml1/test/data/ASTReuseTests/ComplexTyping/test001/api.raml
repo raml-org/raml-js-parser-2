@@ -1,0 +1,67 @@
+#%RAML 1.0
+
+title: reuseTest API
+
+baseUri: ftp://my.examaple.com
+
+securitySchemes:
+  default:
+    type: Basic Authentication
+
+types:
+  T0:
+    type: lib.LibType1
+    maxLength: 16
+  T1:
+    type: lib.LibType2
+    properties:
+      p1:
+      p2: number
+  T2:
+    type: T1
+    properties:
+      p3: boolean
+      p4: date-only
+
+uses:
+  lib: lib.raml
+
+/resource0: !include resource.raml
+
+/resource1:
+  displayName: Resource 1
+  get:
+    securedBy: [ default ]
+    queryParameters:
+      a:
+    displayName: test GET method
+    body:
+      application/json:
+        type: T1
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: T2
+      404:
+        body:
+          text/plain: T0
+  delete:
+    securedBy: default
+/resource2:
+  displayName: Resource 2
+  post:
+    securedBy:
+      - default
+    body:
+      application/json:
+        type: T2
+
+    responses:
+      201:
+        body:
+          application/json: T1
+      404:
+        body:
+          text/plain: T0

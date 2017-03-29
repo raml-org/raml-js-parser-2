@@ -1,0 +1,132 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Anchor breaks queryParameter/uriParameter type parsing",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "qp1": {
+                "name": "qp1",
+                "displayName": "qp1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "description": "number parameter",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "qp2": {
+                "name": "qp2",
+                "displayName": "qp2",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "boolean"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource1",
+        "displayName": "/resource1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource1"
+        ],
+        "absoluteUri": "/resource1"
+      },
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "qp11": {
+                "name": "qp11",
+                "displayName": "qp11",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "description": "number parameter",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "qp21": {
+                "name": "qp21",
+                "displayName": "qp21",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "boolean"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource2",
+        "displayName": "/resource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource2"
+        ],
+        "absoluteUri": "/resource2"
+      }
+    ]
+  },
+  "errors": []
+}

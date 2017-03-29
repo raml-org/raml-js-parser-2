@@ -9,6 +9,7 @@ import path = require("path")
 
 
 describe('Extension API', function () {
+    this.timeout(15000);
     it('Api', function (done) {
         var opt = apiLoader.loadApi(
             path.resolve(__dirname,"./data/extensions/librarybooks_spain.raml"),

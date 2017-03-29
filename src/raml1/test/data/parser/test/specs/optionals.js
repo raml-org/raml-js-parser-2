@@ -16,6 +16,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Optional scalar parameters', function () {
+  this.timeout(15000);
 
   //TESTFIX changed error message : 'property: \'' + property[0] + '\' is invalid in a resource type'=>
   //'Optional scalar properties are not allowed in resource types and their descendants: ''+property[0]

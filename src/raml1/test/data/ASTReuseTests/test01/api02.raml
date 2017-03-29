@@ -1,15 +1,8 @@
 #%RAML 1.0
 title: API
 resourceTypes:
-  main:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              description: some very useful resource
-  base:
-    post:
+  main: !include mainRT.raml
+  base: !include baseRT.raml
 traits:
   one:
     queryParameters:

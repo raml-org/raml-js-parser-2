@@ -688,7 +688,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     containingUnit():ll.ICompilationUnit{
         var paths = {};
         for(var n of this.adoptedNodes()){
-            paths[n.containingUnit().absolutePath()] = true;
+            var cu = n.containingUnit();
+            if(cu) {
+                paths[cu.absolutePath()] = true;
+            }
         }
         if(Object.keys(paths).length<=1){
             return this._originalNode.containingUnit();

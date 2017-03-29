@@ -1,16 +1,7 @@
 #%RAML 1.0
 title: Example with headers
 traits:
-  chargeable:
-    headers:
-      X-Dept:
-        type: array
-        description: |
-          A department code to be charged.
-          Multiple of such headers are allowed.
-        items:
-          pattern: ^\d+\-\w+$
-          example: 230-OCTO
+  chargeable: !include chargeableTrait.raml
   traceable:
     headers:
       X-Tracker:

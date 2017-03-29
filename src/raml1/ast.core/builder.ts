@@ -133,12 +133,14 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var children = this.process(node, childrenToAdopt);
                     var ts = (<hlimpl.ASTNodeImpl>node);
                     ts._children = children;
+                    ts._mergedChildren = null;
                     var t = doDescrimination(node);
                     if (t) {
                         ts.patchType(<hl.INodeDefinition>t);
                     }
                     var children = this.process(node, childrenToAdopt);
                     ts._children = children;
+                    ts._mergedChildren = null;
                 }finally {
                     this.shouldDescriminate = false;
                 }
@@ -297,6 +299,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             }
 
             aNode._children = res;
+            aNode._mergedChildren = null;
             if (!aNode.definition().getAdapter(services.RAMLService).isUserDefined()){
                 if (aNode.definition().key()==universes.Universe08.Api||aNode.definition().key()==universes.Universe10.Api){
                         var uses=childrenToAdopt.filter(x=>x.key()=="uses");
@@ -316,6 +319,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 res = this.processChildren(childrenToAdopt, aNode, res, allowsQuestion, km);
             }
             aNode._children = res;
+            aNode._mergedChildren = null;
 
             return res;
         }finally{
@@ -508,6 +512,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var rs:ASTNodeImpl[] = [];
                     //now we need determine actual type
                     aNode._children = res;
+                    aNode._mergedChildren = null;
 
                     if (x.value()!=null && (typeof x.value()=='string'||typeof x.value()=='boolean'||typeof x.value()=='number')){
                         if ((""+x.value()).trim().length>0){
@@ -665,6 +670,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                                         var ch = node.children();
                                                         //this are false unknowns actual unknowns will be reported by parent node
                                                         node._children = ch.filter(x=>!x.isUnknown())
+                                                        node._mergedChildren = null;
                                                         node._allowQuestion = allowsQuestion;
                                                         if (!exists) {
                                                             inherited.push(node);
@@ -809,6 +815,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                         rs.push(node);
                     }
                     aNode._children = aNode._children.concat(rs);
+                    aNode._mergedChildren = null;
                     res = res.concat(rs);
                     rs.forEach(x=> {
                         var rt = descriminate(p, aNode, x);

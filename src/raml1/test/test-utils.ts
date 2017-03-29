@@ -1,4 +1,5 @@
 /// <reference path="../../../typings/main.d.ts" />
+import index = require("../../index");
 import assert = require("assert")
 import fs = require("fs")
 import path = require("path")
@@ -337,7 +338,9 @@ export function compare(arg0:any,arg1:any,path:string=''):Diff[] {
   }
   else {
     if(arg0 !== arg1){
-      diffs.push(new Diff(path,arg0,arg1,'Inequal values'));
+      if(!(isNaN(arg0)&&isNaN(arg1))) {
+        diffs.push(new Diff(path, arg0, arg1, 'Inequal values'));
+      }
     }
   }
   return diffs;
@@ -547,3 +550,4 @@ export function expandWrapperIfNeeded(original : RamlWrapper.Api | RamlWrapper08
 
   return (<RamlWrapper.Api>original).expand(global.isLibExpanded);
 }
+

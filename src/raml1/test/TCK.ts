@@ -2,7 +2,7 @@
 import tckUtil = require("./scripts/tckUtil")
 
 describe('TCK tests',function() {
-
+    this.timeout(15000);
     it("Fragments 001", function () {
         this.timeout(15000);
         tckUtil.testAPI('TCK/raml-1.0/Fragments/test001/fragment.raml');

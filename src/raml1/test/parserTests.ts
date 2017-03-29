@@ -24,6 +24,7 @@ import index = require("../../index");
 //describe('Low level model', function() {
 describe('Parser integration tests',function(){
 
+    this.timeout(15000);
     it ("Instagram",function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/Instagram/api.raml"),["Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null, Expected type \\w+ but found type null \\w+,null"]);
@@ -92,6 +93,7 @@ describe('Parser integration tests',function(){
 });
 
 describe('https connection tests',function(){
+    this.timeout(15000);
     it ("https 0.8",function(){
         this.timeout(15000);
         testErrors(util.data("parser/https/tr1.raml"));
@@ -104,6 +106,7 @@ describe('https connection tests',function(){
 });
 
 describe('Id tests',function(){
+    this.timeout(15000);
     it ("Instagram",function(){
         this.timeout(15000);
         testIds(util.data("../example-ramls/Instagram/api.raml"));
@@ -112,12 +115,14 @@ describe('Id tests',function(){
 });
 
 describe('Transformers tests',function(){
+    this.timeout(15000);
     it ("All transformer from spec should be valid.",function(){
         testErrors(util.data("parser/transformers/t1.raml"), ["Unknown function applied to parameter: \'!\\w+\'"]);
     });
 });
 
 describe('Security Schemes tests', function () {
+    this.timeout(15000);
     it ("should fail if not all required settings specified" ,function(){
         testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property \'\\w+\'"]);
     })
@@ -158,6 +163,7 @@ describe('Security Schemes tests', function () {
     })
 });
 describe('Parser regression tests', function () {
+    this.timeout(15000);
     it ("basic type expression cases should pass validation" ,function(){
         testErrors(util.data("parser/typexpressions/basic.raml"));
     })
@@ -829,6 +835,7 @@ describe('Parser regression tests', function () {
 });
 
 describe('XSD schemes tests', function () {
+    this.timeout(15000);
     it("XSD Scheme test 1" ,function() {
         testErrorsByNumber(util.data("parser/xsdscheme/test1/apiValid.raml"), 0);
     })
@@ -888,6 +895,7 @@ describe('XSD schemes tests', function () {
 });
 
 describe('XML parsing tests', function () {
+    this.timeout(15000);
     it("XML parsing tests 1" ,function() {
         testErrorsByNumber(util.data("parser/xmlfacets/test1/apiValid.raml"), 0);
     })
@@ -966,6 +974,7 @@ describe('XML parsing tests', function () {
 });
 
 describe('JSON schemes tests', function () {
+    this.timeout(15000);
     it("JSON Scheme test 1" ,function() {
         this.timeout(15000);
         testErrors(util.data("parser/jsonscheme/test1/apiValid.raml"));
@@ -1073,7 +1082,7 @@ describe('JSON schemes tests', function () {
     })
     it("String instead of object as property definition" ,function() {
         this.timeout(15000);
-        testErrors(util.data("schema/invalidProperty.raml"),["(Invalid JSON schema: Unexpected value '\\[object Object\\]')|(Schema validation exception: Object\\.keys called on non-object)"]);
+        testErrors(util.data("schema/invalidProperty.raml"),["(Invalid JSON schema: Unexpected value)|(Invalid JSON schema: Assignment to non-object.)"]);
     })
     it("JOSN schema test Pets 10-3-inline-rtype-included-schema-filename.raml" ,function() {
         this.timeout(15000);
@@ -1110,6 +1119,7 @@ describe('JSON schemes tests', function () {
 });
 
 describe("Include tests + typesystem",function (){
+    this.timeout(15000);
     it("Include test" ,function() {
         this.timeout(15000);
         testErrorsByNumber(util.data("parser/include/includeTypes.raml"));
@@ -1123,6 +1133,7 @@ describe("Include tests + typesystem",function (){
 
 
 describe('Parse strings', function () {
+    this.timeout(15000);
     it('scalar should include both start/end quotes #parse-str1', function () {
         var api = util.loadApi(util.data('parser/strings/str1.raml'));
         //console.log(api.lowLevel().unit().contents());
@@ -1176,6 +1187,7 @@ describe('Parse strings', function () {
 });
 
 describe('Property override tests',function(){
+    this.timeout(15000);
     it ("Planets",function(){
         testErrors(util.data("parser/propertyOverride/test1.raml"),["'enum' facet value must be defined by array"]);
     });
@@ -1244,6 +1256,7 @@ describe('Property override tests',function(){
     });
 });
 describe('Line mapper tests',function() {
+    this.timeout(15000);
     it("Test that columns and line numbers start from 1", function () {
         testErrorsWithLineNumber(util.data("parser/lineNumbers/t1.raml"),3,0);
     });
@@ -1257,6 +1270,7 @@ describe('Line mapper tests',function() {
 });
 
 describe('Fragment loading', function () {
+    this.timeout(15000);
     it('DataType loading', function () {
         var fragment = util.loadRAML(util.data('parser/fragment/DataType.raml'));
         var fragmentName = fragment.definition().nameId();
@@ -1273,6 +1287,7 @@ describe('Fragment loading', function () {
 });
 
 describe('Optional template parameters tests', function () {
+    this.timeout(15000);
     it("Should not report error on unspecified parameter, which is not used after expansion #1.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api01.raml"));
     });
@@ -1309,6 +1324,7 @@ describe('Optional template parameters tests', function () {
 });
 
 describe('RAML10/Dead Loop Tests/Includes',function(){
+    this.timeout(15000);
 
     it("test001", function () {
         this.timeout(15000);
@@ -1333,6 +1349,7 @@ describe('RAML10/Dead Loop Tests/Includes',function(){
 });
 
 describe('RAML10/Dead Loop Tests/JSONSchemas',function(){
+    this.timeout(15000);
 
     it("test001", function () {
         this.timeout(15000);
@@ -1352,6 +1369,7 @@ describe('RAML10/Dead Loop Tests/JSONSchemas',function(){
 });
 
 describe('RAML10/Dead Loop Tests/Libraries',function(){
+    this.timeout(15000);
 
     it("test001", function () {
         this.timeout(15000);
@@ -1386,6 +1404,7 @@ describe('RAML10/Dead Loop Tests/Libraries',function(){
 });
 
 describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
+    this.timeout(15000);
 
     it("test001", function () {
         this.timeout(15000);
@@ -1405,12 +1424,14 @@ describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
 });
 
 describe('Dumps',function(){
+    this.timeout(15000);
     it("dump1", function () {
         testDump(util.data("dump/dump1/api.raml"), {dumpXMLRepresentationOfExamples: true});
     });
 });
 
 describe('New API',function(){
+    this.timeout(15000);
     it("'expandLibraries' == true by default", function () {
         var p = util.data("parser/libraries/nestedUses/index.raml");
         var json = index.loadSync(p);

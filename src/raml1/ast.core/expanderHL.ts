@@ -272,6 +272,8 @@ export class TraitsAndResourceTypesExpander {
         resourceLowLevel.preserveAnnotations();
         resourceLowLevel.takeOnlyOriginalChildrenWithKey(
             def.universesInfo.Universe10.ResourceBase.properties.type.name);
+        resourceLowLevel.takeOnlyOriginalChildrenWithKey(
+            def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.lowLevel();
             var resourceTypeTransformer = x.resourceType.transformer;
@@ -285,6 +287,10 @@ export class TraitsAndResourceTypesExpander {
         methods.forEach(m=> {
 
             var methodLowLevel = <proxy.LowLevelCompositeNode>m.lowLevel();
+            if(proxy.LowLevelCompositeNode.isInstance(methodLowLevel)) {
+                methodLowLevel.takeOnlyOriginalChildrenWithKey(
+                    def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
+            }
             var name = m.attr("method").value();
             var allTraits:GenericData[]=[]
             resourceData.forEach(x=>{
@@ -755,6 +761,9 @@ export class ValueTransformer implements proxy.ValueTransformer{
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
                     if(val) {
+                        if(referencePatcher.PatchedReference.isInstance(val)){
+                            val = (<referencePatcher.PatchedReference>val).value();
+                        }
                         for(var tr of transformers) {
                             val = tr(val);
                         }

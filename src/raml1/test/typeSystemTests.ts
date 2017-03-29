@@ -12,6 +12,7 @@ import core = require("../wrapped-ast/parserCore")
 var dir=path.resolve(__dirname,"../../../src/raml1/test/")
 
 describe('To Runtime Tests',function(){
+    this.timeout(15000);
     it ("Basic inheritance",function(){
         var rsm=apiLoader.loadApi(path.resolve(dir,"data/typeSystem.raml"));
         var mt=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="AnotherType");
@@ -161,6 +162,7 @@ describe('To Runtime Tests',function(){
 });
 
 describe('Nominal Hierarchy Genuine User Defined Tests',function(){
+    this.timeout(15000);
     it ("Genuine User Defined 1",function(){
         var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
         var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType1");

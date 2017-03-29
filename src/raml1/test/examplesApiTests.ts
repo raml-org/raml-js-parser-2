@@ -25,6 +25,7 @@ import util = require("./test-utils")
 var dir=path.resolve(__dirname,"../../../src/raml1/test/")
 
 describe('Example API tests.',function(){
+    this.timeout(15000);
     it ("Direct YAML example",function() {
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api01.raml"))
         var example = api.types()[0].example();

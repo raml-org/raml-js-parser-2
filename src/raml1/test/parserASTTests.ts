@@ -5,6 +5,7 @@ import hl=require("../highLevelAST")
 import util = require("./test-utils")
 
 describe('Parser overlay AST comparison tests',function(){
+    this.timeout(15000);
     it ("Simple overlay as master",function(){
 
         util.testAST("parser/overlays/o1/NewOverlay.raml", "parser/overlays/o1/ast.txt",[],[],

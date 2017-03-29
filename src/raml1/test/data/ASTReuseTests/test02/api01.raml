@@ -1,18 +1,10 @@
 #%RAML 1.0
 title: API
-types:
-  User:
-    type: Man
-    properties:
-      id: string
-  Person:
-    type: object
-    properties:
-      name: string
-  Man:
-    type: object
+uses:
+  types: types.raml
 /anotherChild:
   put:
     body:
       application/json:
         description: another very useful resource
+        type: types.Person

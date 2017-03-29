@@ -429,6 +429,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             }
         }
         if (parentNode==null) {
+            var cLength = node.lowLevel().unit().contents().length;
             node.lowLevel().errors().forEach(x=> {
                 var ps= (<any>x).mark?(<any>x).mark.position:0;
                 var em = {
@@ -436,7 +437,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
                     message: x.message,
                     node: null,
                     start: ps,
-                    end: ps + 1,
+                    end: (ps >= cLength) ? ps : (ps + 1),
                     isWarning: false,
                     path: node.lowLevel().unit() == node.root().lowLevel().unit() ? null : node.lowLevel().unit().path(),
                     unit: node.lowLevel().unit()
