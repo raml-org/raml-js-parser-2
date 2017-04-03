@@ -1,5 +1,4 @@
 /// <reference path="../../../typings/main.d.ts" />
-import index = require("../../index");
 import assert = require("assert");
 import ramlWrapper = require("../artifacts/raml10parser");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
@@ -11,6 +10,17 @@ import fs = require("fs");
 describe('Testing AST reuse by typing simulation (basic)',function() {
     this.timeout(15000);
     describe('Basic Tests', function () {
+
+
+        it("application-monitoring", function () {
+            this.timeout(40000);
+            test("../example-ramls/application-monitoring/api.raml");
+        });
+
+        it("AMC REST API", function () {
+            this.timeout(600000);
+            test("../example-ramls/amc-rest-api/api.raml");
+        });
 
         it("Resource type", function () {
             test("ASTReuseTests/test01/api.raml");
@@ -266,7 +276,9 @@ describe('Testing AST reuse by typing simulation (basic)',function() {
     });
 });
 
+import index = require("../../index");
+
 function test(specPath:string) {
     var pathRes = util.data(specPath).replace(/\\/g,'/');
-    reuseUtil.testReuseByBasicTyping(pathRes,false,false);
+    reuseUtil.testReuseByBasicTyping(pathRes,false,false,index);
 }

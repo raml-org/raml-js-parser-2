@@ -398,7 +398,8 @@ export function testEditingStep(
     specPath:string,
     reuseNode:hl.IHighLevelNode,
     enableReuse:boolean,
-    expectReuse?:boolean):hl.IHighLevelNode {
+    expectReuse?:boolean,
+    parserInstance?:any):hl.IHighLevelNode {
     
     if(!enableReuse){
         reuseNode = null;
@@ -417,7 +418,9 @@ export function testEditingStep(
         }
     };
 
-    let reusingApi = (<RamlWrapper.Api>index.loadRAMLSync(specPath, [], {
+    parserInstance = parserInstance || index;
+
+    let reusingApi = (<RamlWrapper.Api>parserInstance.loadRAMLSync(specPath, [], {
         reusedNode: reuseNode,
         fsResolver: fsResolver
     })).expand();
@@ -439,7 +442,7 @@ export function testEditingStep(
         }
     }
 
-    let nonReusingApi = (<RamlWrapper.Api>index.loadRAMLSync(specPath, [], {
+    let nonReusingApi = (<RamlWrapper.Api>parserInstance.loadRAMLSync(specPath, [], {
         fsResolver: fsResolver
     })).expand();
 
@@ -485,7 +488,11 @@ function checkErrorPositions(errs: Object[]): Boolean{
     return true;
 }
 
-export function testReuseByBasicTyping(specPath:string,byWords=true,enableReuse=true) {
+export function testReuseByBasicTyping(
+    specPath:string,
+    byWords=true,
+    enableReuse=true,
+    parserInstance?:any) {
 
     let fileContent: string = fs.readFileSync(specPath, "utf8");
     let i1 = fileContent.indexOf("#%RAML");
@@ -508,7 +515,7 @@ export function testReuseByBasicTyping(specPath:string,byWords=true,enableReuse=
         for (var i = 0; i < words.length; i++) {
             contentBuffer += words[i];
             try {
-                prevNode = testEditingStep(contentBuffer, specPath, prevNode, enableReuse);
+                prevNode = testEditingStep(contentBuffer, specPath, prevNode, enableReuse,parserInstance);
             }
             catch (e) {
                 console.error(e);
