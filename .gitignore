@@ -6,6 +6,7 @@ npm-debug.log
 
 .project
 .settings
+.idea/*
 
 /browserVersion
 /browser_version_npm

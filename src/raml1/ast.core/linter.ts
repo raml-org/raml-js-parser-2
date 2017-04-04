@@ -2238,7 +2238,10 @@ class RAMLVersionAndFragmentValidator implements NodeValidator{
 
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor){
         var u=(<hlimpl.ASTNodeImpl>node).universe();
-        var tv=u.getTypedVersion();
+        let tv;
+        if (u && u.getTypedVersion) {
+            tv=u.getTypedVersion();
+        }
         if (tv){
             if (tv !== "0.8" && tv !== "1.0") {
                 var i = createIssue1(messageRegistry.UNKNOWN_RAML_VERSION, {}, node)

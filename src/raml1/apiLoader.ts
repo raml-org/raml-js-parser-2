@@ -246,6 +246,15 @@ function getProject(apiPath:string,options?:parserCoreApi.Options):jsyaml.Projec
     return project;
 };
 
+function pathToUnit(apiPath: string, options:parserCoreApi.Options, project?: jsyaml.Project): ll.ICompilationUnit {
+    if (!project) {
+        project = getProject(apiPath,options);
+    }
+    var pr=apiPath.indexOf("://");
+    var unitName=(pr!=-1&&pr<6)?apiPath:path.basename(apiPath);
+    return project.unit(unitName);
+}
+
 function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:parserCoreApi.Options,checkApisOverlays=false):hl.BasicNode {
     if(!unitOrHighlevel){
         return null;

@@ -257,6 +257,9 @@ export class BasicASTNode implements hl.IParseResult {
 
 
     name(){
+        if (!this.lowLevel() || !this.lowLevel().key) {
+            return "";
+        }
         var c=this.lowLevel().key();
         if (!c){
             return "";
@@ -2044,7 +2047,7 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
 };
 
 export function ramlFirstLine(content:string):RegExpMatchArray{
-    return content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+    return content.match(/^\s*#%RAML\s+(\d\.\d)[ \t]*?(\S.*?|)\s*?$/m);
 }
 
 export function getFragmentDefenitionName(highLevelNode: hl.IHighLevelNode): string {
@@ -2061,14 +2064,36 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
     if (l == null)
         return null;
 
+    let apiType;
+    let localUniverse;
     var contents = l.contents();
-    var ast = l.ast();
-    var __ret = getDefinitionSystemType(contents, ast);
-    var ptype = __ret.ptype;
-    var localUniverse = __ret.localUniverse;
-    var apiType = localUniverse.type(ptype)
+    var rfl = ramlFirstLine(contents);
+    if (rfl && rfl.length && rfl.length > 2 && rfl[2] && typeof rfl[2] === 'string' && rfl[2].indexOf("ExternalType") == 0) {
+        const extTypeSpec = rfl[2].split(" ");
+        if (extTypeSpec.length > 2) {
+            const extTypeName = extTypeSpec[1];
+            const extTypePath = extTypeSpec[2];
+            const project = l.project();
+            const parentUnit = project.unit(extTypePath);
+            const parentApi = <hl.IHighLevelNode>fromUnit(parentUnit);
 
-    if (!apiType) apiType = localUniverse.type("Api");
+            //localUniverse = (<ASTNodeImpl>parentApi).universe()
+
+            const parsedType = parentApi.types().getType(extTypeName);
+            apiType = rTypes.toNominal(parsedType, x=>null);
+        }
+    }
+
+    var ast = l.ast();
+    if (apiType) {
+        localUniverse = apiType.universe();
+    } else {
+        var __ret = getDefinitionSystemType(contents, ast);
+        localUniverse = __ret.localUniverse;
+        var ptype = __ret.ptype;
+        apiType = localUniverse.type(ptype);
+        if (!apiType) apiType = localUniverse.type("Api");
+    }
 
     var api = new ASTNodeImpl(ast, null, <any>apiType, null);
     api.setUniverse(localUniverse);
