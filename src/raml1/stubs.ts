@@ -1,5 +1,5 @@
 
-import defs=require("raml-definition-system")
+import defs=require("@evches/raml-definition-system")
 import hl=require("./highLevelAST")
 import ll=require("./lowLevelAST")
 

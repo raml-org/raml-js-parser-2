@@ -18,7 +18,7 @@ import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore");
 import referencePatcher = require("./referencePatcher");
 import namespaceResolver = require("./namespaceResolver");
-import def = require("raml-definition-system");
+import def = require("@evches/raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
 
 var changeCase = require('change-case');

@@ -6,7 +6,7 @@ import path = require("path")
 import _=require("underscore")
 
 import jsyaml = require("../jsyaml/jsyaml2lowLevel")
-import def = require("raml-definition-system")
+import def = require("@evches/raml-definition-system")
 
 import ll=require("../lowLevelAST")
 import yll=require("../jsyaml/jsyaml2lowLevel")

@@ -3,7 +3,7 @@ import assert = require("assert")
 import fs = require("fs")
 import path = require("path")
 import _=require("underscore")
-import def = require("raml-definition-system")
+import def = require("@evches/raml-definition-system")
 import services = require("../../definition-system/ramlServices")
 
 import ll=require("../../lowLevelAST")

@@ -20,7 +20,7 @@ import t3 = require("../artifacts/raml10parser")
 import services=require("../../raml1/definition-system/ramlServices")
 
 import util = require("./test-utils")
-import def = require("raml-definition-system")
+import def = require("@evches/raml-definition-system")
 import stubs = require("../stubs")
 import mod = require("../../parserMod")
 

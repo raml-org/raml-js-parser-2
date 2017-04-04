@@ -1,6 +1,6 @@
 import rs=require("./raml1/jsyaml/resourceRegistry")
 import hlimpl=require("./raml1/highLevelImpl")
-import defs=require("raml-definition-system")
+import defs=require("@evches/raml-definition-system")
 import jsyaml=require("./raml1/jsyaml/jsyaml2lowLevel")
 import expander=require("./raml1/ast.core/expander")
 import hl=require("./raml1/highLevelAST")

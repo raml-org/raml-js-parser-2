@@ -10,7 +10,7 @@ import ll= require ("../lowLevelAST")
 
 import _=require("underscore")
 import yaml=require("yaml-ast-parser")
-import def=require( "raml-definition-system");
+import def=require( "@evches/raml-definition-system");
 import high=require("../highLevelAST");
 type Error=yaml.YAMLException
 import hlimpl=require("../highLevelImpl")

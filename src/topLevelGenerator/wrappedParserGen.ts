@@ -1,5 +1,5 @@
 /// <reference path="../../typings/main.d.ts" />
-import def=require("raml-definition-system")
+import def=require("@evches/raml-definition-system")
 import td=require("ts-model")
 import util=require("../util/index")
 import tsModel = require("ts-structure-parser")
@@ -744,7 +744,7 @@ import stubs=require("../../raml1/stubs");
 import hlImpl=require("../../raml1/highLevelImpl");
 import jsyaml=require("../../raml1/jsyaml/jsyaml2lowLevel");
 import json2lowlevel = require('../../raml1/jsyaml/json2lowLevel');
-import def=require("raml-definition-system");
+import def=require("@evches/raml-definition-system");
 import services=require("../../raml1/definition-system/ramlServices");
 import core=require("../../raml1/wrapped-ast/parserCore");
 import apiLoader=require("../../raml1/apiLoader");

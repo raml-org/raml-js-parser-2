@@ -1,5 +1,5 @@
 {
-  "name": "raml-1-parser",
+  "name": "@evches/raml-1-parser",
   "version": "1.1.14",
   "main": "dist/index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "mkdirp": "^0.5.0",
     "pluralize": "^1.2.0",
     "q": "^1.0.0",
-    "raml-definition-system": "0.0.56",
+    "@evches/raml-definition-system": ">=0.0.56",
     "then-request": "^2.2.0",
     "ts-structure-parser": "0.0.12",
     "ts-model": "0.0.13",

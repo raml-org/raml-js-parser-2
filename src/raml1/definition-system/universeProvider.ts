@@ -1,2 +1,2 @@
-import ramlDS=require("raml-definition-system")
+import ramlDS=require("@evches/raml-definition-system")
 export = ramlDS.getUniverse;

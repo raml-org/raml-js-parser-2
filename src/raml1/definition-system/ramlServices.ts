@@ -1,2 +1,2 @@
-  import serv= require ("raml-definition-system");
+  import serv= require ("@evches/raml-definition-system");
   export = serv;

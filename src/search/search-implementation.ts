@@ -1,11 +1,11 @@
 /// <reference path="../../typings/main.d.ts" />
 
-import defs=require("raml-definition-system")
+import defs=require("@evches/raml-definition-system")
 import hl=require("../raml1/highLevelAST")
 import ll=require("../raml1/lowLevelAST")
 import _=require("underscore")
 
-import def=require( "raml-definition-system");
+import def=require( "@evches/raml-definition-system");
 // import high=require("../highLevelAST");
 import hlimpl=require("../raml1/highLevelImpl")
 import universes=require("../raml1/tools/universe")

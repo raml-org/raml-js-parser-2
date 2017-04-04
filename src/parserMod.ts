@@ -4,7 +4,7 @@ import coreApi=require("./raml1/wrapped-ast/parserCoreApi");
 import coreImpl=require("./raml1/wrapped-ast/parserCore");
 import highLevel = require("./raml1/highLevelAST");
 import stubs = require("./raml1/stubs");
-import defSys = require("raml-definition-system")
+import defSys = require("@evches/raml-definition-system")
 import jsyaml=require("./raml1/jsyaml/jsyaml2lowLevel")
 import ll=require("./raml1/lowLevelAST")
 

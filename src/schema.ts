@@ -1,4 +1,4 @@
-import def = require('raml-definition-system');
+import def = require('@evches/raml-definition-system');
 
 import ll=require("./raml1/lowLevelAST")
 import refResolvers=require("./raml1/jsyaml/includeRefResolvers")

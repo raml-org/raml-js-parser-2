@@ -5,7 +5,7 @@ import assert = require("assert");
 var schema = require("../../../../../tckJsonSchema/tckJsonSchema.json");
 
 var fs = require("fs");
-var def = require("raml-definition-system");
+var def = require("@evches/raml-definition-system");
 var projectClass = require("../../../jsyaml/jsyaml2lowLevel").Project;
 var ContentProvider = require("../../../../util/contentprovider").ContentProvider;
 

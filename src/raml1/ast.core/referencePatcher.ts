@@ -10,7 +10,7 @@ import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import universeHelpers = require("../tools/universeHelpers");
 import namespaceResolver = require("./namespaceResolver");
-import def = require("raml-definition-system");
+import def = require("@evches/raml-definition-system");
 import typeExpressions = def.rt.typeExpressions;
 import expander=require("./expander");
 

@@ -1,12 +1,12 @@
 /// <reference path="../../../typings/main.d.ts" />
 
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
-import defs=require("raml-definition-system")
+import defs=require("@evches/raml-definition-system")
 import hl=require("../highLevelAST")
 import ll=require("../lowLevelAST")
 import _=require("underscore")
 import yaml=require("yaml-ast-parser")
-import def=require( "raml-definition-system");
+import def=require( "@evches/raml-definition-system");
 import high=require("../highLevelAST");
 import hlimpl=require("../highLevelImpl")
 import linterApi=require("./linterApi")

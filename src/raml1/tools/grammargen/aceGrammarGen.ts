@@ -1,5 +1,5 @@
 /// <reference path="../../../../typings/main.d.ts" />
-import def=require("raml-definition-system")
+import def=require("@evches/raml-definition-system")
 import hl=require("../../highLevelAST")
 import services=def
 import _=require("underscore")
