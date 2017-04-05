@@ -1,0 +1,41 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "test": {
+          "name": "test",
+          "get": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "JSON",
+                    "schemaPath": "list.json",
+                    "type": [
+                      "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"id\": \"list.json\",\n  \"type\": \"object\",\n  \"allOf\": [\n    {\n      \"$ref\": \"#/definitions/a\"\n    }\n  ]  ,\n  \"definitions\": {\n    \"b\": {\n      \"id\": \"#b\",\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": \"integer\"\n        },\n        \"type\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n\t\"a\":{\n\t  \"id\": \"#a\",\n\t  \"type\": \"object\",\n\t  \"allOf\": [\n\t    {\n\t      \"$ref\": \"#/definitions/b\"\n\t    }\n\t  ],\n\t  \"properties\": {\n\t  \t  \"a\": {\n\t      \"$ref\": \"#/definitions/b\"\n\t    }\n\t  },\n\t  \"required\": [\"a\"]\n\t}\n  }\n}"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "list.json",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/definitions/a"
+    }
+  ]  ,
+  "definitions": {
+    "b": {
+      "id": "#b",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+	"a":{
+	  "id": "#a",
+	  "type": "object",
+	  "allOf": [
+	    {
+	      "$ref": "#/definitions/b"
+	    }
+	  ],
+	  "properties": {
+	  	  "a": {
+	      "$ref": "#/definitions/b"
+	    }
+	  },
+	  "required": ["a"]
+	}
+  }
+}
