@@ -8,7 +8,7 @@ import reuseUtil = require("./test-reuse-utils");
 import util = require("./test-utils");
 import fs = require("fs");
 
-describe('Testing AST reuse by typing simulation (complex)',function() {
+describe('Typing simulation based longivity tests (complex)',function() {
     this.timeout(200000);
     it("Test 001", function () {
         test("ASTReuseTests/ComplexTyping/test001/api.raml");

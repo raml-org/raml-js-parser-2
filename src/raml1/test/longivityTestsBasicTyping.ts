@@ -7,7 +7,7 @@ import reuseUtil = require("./test-reuse-utils");
 import util = require("./test-utils");
 import fs = require("fs");
 
-describe('Testing AST reuse by typing simulation (basic)',function() {
+describe('Typing simulation based longivity tests (basic)',function() {
     this.timeout(15000);
     describe('Basic Tests', function () {
 
