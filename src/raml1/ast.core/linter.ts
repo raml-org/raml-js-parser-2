@@ -2215,7 +2215,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
                 }
             }
         }
-        else if (vl != null){
+        else if (hlimpl.StructuredValue.isInstance(vl)){
             var st=<hlimpl.StructuredValue>vl;
             if (st) {
                 valueKey=st.valueName();
