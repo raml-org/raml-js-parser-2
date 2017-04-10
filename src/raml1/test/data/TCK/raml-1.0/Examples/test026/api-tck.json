@@ -409,7 +409,7 @@
   "errors": [
     {
       "code": "CAN_NOT_PARSE_JSON",
-      "message": "Can not parse JSON example: Unexpected token p in JSON at position 2",
+      "message": "Can not parse JSON example: Unexpected token p in JSON at position 61",
       "path": "api.raml",
       "range": {
         "start": {
