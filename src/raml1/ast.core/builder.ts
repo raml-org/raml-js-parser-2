@@ -328,7 +328,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
     }
 
     private isTypeDeclarationShortcut(node:hlimpl.ASTNodeImpl, property: hl.IProperty) {
-        var isTypeDeclarationType = universeHelpers.isTypeProperty(property);
+        var isTypeDeclarationType = universeHelpers.isTypeOrSchemaProperty(property);
         var isTypeDeclaration = node.definition() && universeHelpers.isTypeDeclarationTypeOrDescendant(node.definition());
 
         if(isTypeDeclaration && isTypeDeclarationType && node.lowLevel() && node.lowLevel().valueKind() === yaml.Kind.SEQ) {
@@ -438,8 +438,8 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var ch = xChildren;
                     var seq = (x.valueKind() == yaml.Kind.SEQ);
                     if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
-                        if(ch.length > 1 && universeHelpers.isTypeDeclarationSibling(aNode.definition())
-                            &&(universeHelpers.isTypeProperty(p)||universeHelpers.isItemsProperty(p)) && x.valueKind() != yaml.Kind.SEQ){
+                        if(ch.length > 1 && universeHelpers.isTypeDeclarationDescendant(aNode.definition())
+                            &&(universeHelpers.isTypeOrSchemaProperty(p)||universeHelpers.isItemsProperty(p)) && x.valueKind() != yaml.Kind.SEQ){
                             var pi = new hlimpl.ASTPropImpl(x, aNode, range, p)
                             res.push(pi);
                             aNode.setComputed(p.nameId(), pi);

@@ -195,6 +195,9 @@ export function isSecuritySchemeProperty(p:hl.IProperty) : boolean {
         p.nameId() === universe.Universe08.SecuritySchemeRef.properties.securityScheme.name;
 }
 
+export function isTypeOrSchemaProperty(p:hl.IProperty) : boolean {
+    return isTypeProperty(p)||isSchemaProperty(p);
+}
 
 export function isTypeProperty(p:hl.IProperty) : boolean {
     if(!p) {
