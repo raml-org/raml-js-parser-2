@@ -556,6 +556,11 @@ export function isStringTypeType(type: hl.INodeDefinition | hl.ITypeDefinition) 
         type.key() == universe.Universe08.StringType;
 }
 
+export function isAnyTypeType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.key() == universe.Universe10.AnyType ||
+        type.key() == universe.Universe08.AnyType;
+}
+
 export function isExampleSpecType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.key() == universe.Universe10.ExampleSpec;
 }

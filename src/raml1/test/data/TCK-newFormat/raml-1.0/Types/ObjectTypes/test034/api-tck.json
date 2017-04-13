@@ -1,0 +1,127 @@
+{
+  "specification": {
+    "types": {
+      "MyStringType": {
+        "name": "MyStringType",
+        "displayName": "MyStringType",
+        "type": [
+          "string"
+        ],
+        "enum": [
+          "stringValue1",
+          "stringValue2",
+          "546"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyNumberType": {
+        "name": "MyNumberType",
+        "displayName": "MyNumberType",
+        "type": [
+          "number"
+        ],
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          "stringValue"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyBooleanType": {
+        "name": "MyBooleanType",
+        "displayName": "MyBooleanType",
+        "type": [
+          "boolean"
+        ],
+        "enum": [
+          false,
+          546
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "myApi"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "string is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 40,
+          "position": 132
+        },
+        "end": {
+          "line": 7,
+          "column": 43,
+          "position": 135
+        }
+      }
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "number is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 27,
+          "position": 198
+        },
+        "end": {
+          "line": 10,
+          "column": 38,
+          "position": 209
+        }
+      }
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "boolean is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 19,
+          "position": 266
+        },
+        "end": {
+          "line": 13,
+          "column": 22,
+          "position": 269
+        }
+      }
+    }
+  ]
+}

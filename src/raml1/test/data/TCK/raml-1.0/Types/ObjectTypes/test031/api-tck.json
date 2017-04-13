@@ -70,6 +70,23 @@
               }
             }
           },
+          "enum": [
+            {
+              "id": "12345fr",
+              "name": "Foo",
+              "age": 23
+            },
+            {
+              "id": "12345gr",
+              "name": "Bar",
+              "age": false
+            },
+            {
+              "id": 12345,
+              "name": "Bar",
+              "age": 45
+            }
+          ],
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {

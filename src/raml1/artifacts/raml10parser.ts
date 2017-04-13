@@ -95,6 +95,7 @@ import ObjectTypeDeclarationScalarsAnnotations = pApi.ObjectTypeDeclarationScala
 import StringTypeDeclaration = pApi.StringTypeDeclaration;
 import StringTypeDeclarationScalarsAnnotations = pApi.StringTypeDeclarationScalarsAnnotations;
 import BooleanTypeDeclaration = pApi.BooleanTypeDeclaration;
+import BooleanTypeDeclarationScalarsAnnotations = pApi.BooleanTypeDeclarationScalarsAnnotations;
 import NumberTypeDeclaration = pApi.NumberTypeDeclaration;
 import NumberTypeDeclarationScalarsAnnotations = pApi.NumberTypeDeclarationScalarsAnnotations;
 import IntegerTypeDeclaration = pApi.IntegerTypeDeclaration;
@@ -2825,6 +2826,20 @@ setDiscriminatorValue( param:string ){
             return this;
         }
 
+enum(  ):any[]{
+             return <any[]>super.attributes('enum', this.toAny);
+         }
+
+
+        /**
+         * @hidden
+         * Set enum value
+         **/
+setEnum( param:any ){
+            this.highLevel().attrOrCreate("enum").setValue(""+param);
+            return this;
+        }
+
 
         /**
          * @hidden
@@ -2952,6 +2967,19 @@ discriminatorValue(  ):AnnotationRef[]{
         var annotationAttrs = attr.annotations();
         var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ObjectTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("enum");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -3156,6 +3184,20 @@ enum(  ):AnnotationRef[][]{
 export class BooleanTypeDeclarationImpl extends TypeDeclarationImpl implements BooleanTypeDeclaration{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createBooleanTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
+enum(  ):boolean[]{
+             return <boolean[]>super.attributes('enum', this.toBoolean);
+         }
+
+
+        /**
+         * @hidden
+         * Set enum value
+         **/
+setEnum( param:boolean ){
+            this.highLevel().attrOrCreate("enum").setValue(""+param);
+            return this;
+        }
+
 
         /**
          * @hidden
@@ -3202,6 +3244,31 @@ static isInstance( instance:any ):boolean{
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):BooleanTypeDeclarationScalarsAnnotationsImpl{return new BooleanTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * BooleanTypeDeclaration scalar properties annotations accessor
+ **/
+export class BooleanTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements BooleanTypeDeclarationScalarsAnnotations{
+
+        /**
+         * BooleanTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("enum");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
+}
 }
 
 
@@ -3251,8 +3318,8 @@ setMaximum( param:number ){
         /**
          * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
          **/
-enum(  ):string[]{
-             return <string[]>super.attributes('enum', this.toString);
+enum(  ):number[]{
+             return <number[]>super.attributes('enum', this.toNumber);
          }
 
 
@@ -3260,7 +3327,7 @@ enum(  ):string[]{
          * @hidden
          * Set enum value
          **/
-setEnum( param:string ){
+setEnum( param:number ){
             this.highLevel().attrOrCreate("enum").setValue(""+param);
             return this;
         }

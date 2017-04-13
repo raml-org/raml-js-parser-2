@@ -758,6 +758,8 @@ discriminator(  ):string
          **/
 discriminatorValue(  ):string
 
+enum(  ):any[]
+
 
         /**
          * Scalar properties annotations accessor
@@ -799,6 +801,12 @@ discriminator(  ):AnnotationRef[]
          * ObjectTypeDeclaration.discriminatorValue annotations
          **/
 discriminatorValue(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[][]
 }
 
 
@@ -871,7 +879,27 @@ enum(  ):AnnotationRef[][]
 /**
  * Value must be a boolean
  **/
-export interface BooleanTypeDeclaration extends TypeDeclaration{}
+export interface BooleanTypeDeclaration extends TypeDeclaration{
+enum(  ):boolean[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):BooleanTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * BooleanTypeDeclaration scalar properties annotations accessor
+ **/
+export interface BooleanTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * BooleanTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[][]
+}
 
 
 /**
@@ -894,7 +922,7 @@ maximum(  ):number
         /**
          * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
          **/
-enum(  ):string[]
+enum(  ):number[]
 
 
         /**

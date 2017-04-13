@@ -496,6 +496,7 @@ function doTestAPI(
     var tckJson:any = readTestJSON(tckJsonPath);
     var pathRegExp = new RegExp('/errors\\[\\d+\\]/path');
     var messageRegExp = new RegExp('/errors\\[\\d+\\]/message');
+    json = JSON.parse(JSON.stringify(json));
     var diff = testUtil.compare(json,tckJson).filter(x=>{
         if(x.path.match(pathRegExp)){
             return false;
