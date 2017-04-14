@@ -171,10 +171,27 @@ export interface ILowLevelASTNode{
 
     isValueLocal():boolean;
 
+    /**
+     * Returns kind of the underlying YAML node
+     */
     kind(): yaml.Kind;
 
+    /**
+     * Returns kind of the value YAML node
+     */
     valueKind(): yaml.Kind;
+    /**
+     * Returns value kind for AST with resolved includes and anchors
+     */
+    resolvedValueKind(): yaml.Kind;
+    /**
+     * For anchor returns kind of anchored node.
+     * For the rest of the nodes returns null.
+     */
     anchorValueKind():yaml.Kind;
+    /**
+     * Returns kind of the key YAML node
+     */
     keyKind(): yaml.Kind;
 
     show(msg: string, lev?: number, text?: string);

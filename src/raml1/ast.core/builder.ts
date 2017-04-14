@@ -738,7 +738,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                     }
                                 }
-                                if (p.nameId()==="documentation"&&x.valueKind()!==yaml.Kind.SEQ){
+                                if (p.nameId()==="documentation"&&x.resolvedValueKind()!==yaml.Kind.SEQ){
                                         if (!aNode.definition().getAdapter(services.RAMLService).isUserDefined()) {
                                             var error = new hlimpl.BasicASTNode(x, aNode);
                                             error.errorMessage = {

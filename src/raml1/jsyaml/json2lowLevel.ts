@@ -296,6 +296,10 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         return null;
     }
 
+    resolvedValueKind(){
+        return this.valueKind();
+    }
+
     show(msg: string){}
 
     setHighLevelParseResult(highLevelParseResult:highlevel.IParseResult){

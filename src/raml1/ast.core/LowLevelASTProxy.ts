@@ -172,6 +172,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     anchorValueKind(){ return this._originalNode.anchorValueKind(); }
 
+    resolvedValueKind(){ return this._originalNode.resolvedValueKind() };
+
     show(msg: string) { this._originalNode.show(msg); }
 
     setHighLevelParseResult(highLevelParseResult:hl.IParseResult){
