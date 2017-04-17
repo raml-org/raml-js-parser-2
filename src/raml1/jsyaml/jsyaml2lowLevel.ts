@@ -3399,7 +3399,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 return null;
             }
             if (resolved == null) {
-                return null;
+                return yaml.Kind.SCALAR;//Error message is returned in this case
             }
             else if (resolved.isRAMLUnit()) {
                 var ast = resolved.ast();

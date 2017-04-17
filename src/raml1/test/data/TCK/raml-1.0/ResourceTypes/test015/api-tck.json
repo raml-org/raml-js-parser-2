@@ -1,0 +1,195 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "member": {
+          "name": "member",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "body": {
+                    "name": "body",
+                    "displayName": "body",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": "<<param1>>",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "<<param1>>",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": "<<param1>>"
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": {
+                      "id": "987",
+                      "at": "Sun, 20 Jul 2014 21:20:00 GMT",
+                      "toAddressId": "273hh79",
+                      "orderItemId": "9877292",
+                      "status": "scheduled",
+                      "droneId": "f"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "id": "987",
+                        "at": "Sun, 20 Jul 2014 21:20:00 GMT",
+                        "toAddressId": "273hh79",
+                        "orderItemId": "9877292",
+                        "status": "scheduled",
+                        "droneId": "f"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "type": {
+          "member": {
+            "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
+          }
+        },
+        "relativeUri": "/resource1",
+        "displayName": "/resource1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource1"
+        ],
+        "absoluteUri": "/resource1"
+      },
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": {
+                      "id": "987",
+                      "at": "Sun, 20 Jul 2014 21:20:00 GMT",
+                      "toAddressId": "273hh79",
+                      "orderItemId": "9877292",
+                      "status": "scheduled",
+                      "droneId": "f"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "id": "987",
+                        "at": "Sun, 20 Jul 2014 21:20:00 GMT",
+                        "toAddressId": "273hh79",
+                        "orderItemId": "9877292",
+                        "status": "scheduled",
+                        "droneId": "f"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "type": {
+          "member": {
+            "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
+          }
+        },
+        "relativeUri": "/resource2",
+        "displayName": "/resource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource2"
+        ],
+        "absoluteUri": "/resource2"
+      }
+    ]
+  },
+  "errors": []
+}

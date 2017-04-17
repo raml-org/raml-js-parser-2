@@ -1444,7 +1444,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 if(src){
                     var srcProp = src.property();
                     if(srcProp){
-                        isTypeProp = universeHelpers.isTypeProperty(srcProp) || universeHelpers.isSchemaProperty(srcProp); 
+                        isTypeProp = universeHelpers.isTypeProperty(srcProp) || universeHelpers.isSchemaProperty(srcProp);
                     }
                 }
             }
@@ -2346,7 +2346,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 var gotValue = false;
                 if (nm!=null){
                     if(nm.lowLevel().kind()==yaml.Kind.SCALAR
-                        ||nm.lowLevel().valueKind()==yaml.Kind.SCALAR
+                        ||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR
                         ||nm.lowLevel().kind()==yaml.Kind.INCLUDE_REF
                         ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF
                         ||(nm.lowLevel().valueKind()===null&&!isInlinedTemplate)){
