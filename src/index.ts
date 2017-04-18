@@ -258,4 +258,3 @@ export type IParseResult=hl.IParseResult;
 if(typeof Promise === 'undefined' && typeof window !== 'undefined') {
     (<any>window).Promise = PromiseConstructor;
 }
-
