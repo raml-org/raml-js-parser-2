@@ -1,6 +1,4 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "uses": [
       {
@@ -8,15 +6,9 @@
         "value": "types.raml"
       }
     ],
-    "resourceTypes": [
-      {
-        "standardResponse": {
-          "type": {
-            "standardResponse": {
-              "objectName": "types.Folder"
-            }
-          },
-          "name": "standardResponse",
+    "resourceTypes": {
+      "standardResponse": {
+        "methods": {
           "post": {
             "responses": {
               "201": {
@@ -25,7 +17,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<objectName | !singularize>>"
                     ],
@@ -35,7 +26,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -44,7 +37,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "New<<objectName | !singularize>>"
                 ],
@@ -54,21 +46,23 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        }
+        },
+        "type": {
+          "standardResponse": {
+            "objectName": "types.Folder"
+          }
+        },
+        "name": "standardResponse"
       },
-      {
-        "collection": {
-          "type": {
-            "standardResponse": {
-              "objectName": "types.Folder"
-            }
-          },
-          "name": "collection",
+      "collection": {
+        "methods": {
           "post": {
             "responses": {
               "201": {
@@ -77,7 +71,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<objectName | !singularize>>"
                     ],
@@ -87,7 +80,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -96,7 +91,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "New<<objectName | !singularize>>"
                 ],
@@ -106,19 +100,27 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        }
+        },
+        "type": {
+          "standardResponse": {
+            "objectName": "types.Folder"
+          }
+        },
+        "name": "collection"
       }
-    ],
+    },
     "title": "Box",
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "post": {
             "responses": {
               "201": {
                 "code": "201",
@@ -126,7 +128,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "types.Folder"
                     ],
@@ -136,7 +137,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
               }
@@ -145,7 +148,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "Newtypes.Folder"
                 ],
@@ -155,12 +157,14 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post"
           }
-        ],
+        },
         "type": {
           "collection": {
             "objectName": "types.Folder"
@@ -178,10 +182,14 @@
         "relativeUriPathSegments": [
           "folders"
         ],
-        "absoluteUri": "/folders"
+        "absoluteUri": "/folders",
+        "completeRelativeUri": "/folders",
+        "parentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "CYCLE_IN_DEFINITION",
