@@ -398,6 +398,30 @@ function validateTopLevelNodeSkippingChildren(node : hl.IParseResult,v:hl.Valida
 }
 
 /**
+ * According to RAML spec:
+ *   "When an object type does not contain the "properties" facet, the object is assumed
+ *   to be unconstrained and therefore capable of containing any properties of any type."
+ * @param node
+ */
+function hasPlainObjectInHierarchy(node: hl.IParseResult) {
+    while(node !== null && node.property() === null) {
+        node = node.parent();
+    }
+
+    if (node === null)
+        return false;
+
+    const type = node.property().range();
+
+    if (type.properties() !== null && type.properties().length > 0) {
+        return false;
+    }
+
+    const superTypes = type.allSuperTypes();
+    return !superTypes.some(st => st.nameId() !== 'object' && st.nameId() !== 'any');
+}
+
+/**
  * Performs basic validation of a node on a single level, without proceeding to the node high-level children validation.
  * @param node
  * @param v
@@ -488,7 +512,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
         }
         else {
             var issue = restrictUnknownNodeError(node);
-            if(!issue){
+            if(!issue && !hasPlainObjectInHierarchy(node)) {
                 issue = createIssue1(messageRegistry.UNKNOWN_NODE, {name : node.name()}, node);
             }
             v.accept(issue);
