@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Box
+
+uses:
+  types: types.raml
+resourceTypes:
+  standardResponse: !include resourceTypes/collection.raml
+  collection: !include resourceTypes/collection.raml
+
+securedBy: [ oauth_2_0 ]
+/folders:
+  type: { collection: { objectName: types.Folder } }
