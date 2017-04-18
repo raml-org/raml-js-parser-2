@@ -1,0 +1,16 @@
+{
+   "type" : "object",
+   "properties": {
+      "p1": {
+         "$ref": "#/definitions/type1"
+      },
+      "P2": {
+         "$ref": "./B.json#/definitions/type2"
+      }
+   },
+   "definitions":{
+      "type1" : {
+         "type" : "boolean"
+      }
+   }
+}

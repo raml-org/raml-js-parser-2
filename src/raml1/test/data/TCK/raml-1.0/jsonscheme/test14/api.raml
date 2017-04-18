@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: test API
+
+types:
+  externalType:
+    type: !include schemas/A.json
+    example:
+      p1: false
+      p2: 15
+
+/res:
+  post:
+    body:
+      application/json:
+        type: !include schemas/A.json
+        example:
+          p1: false
+          p2: 15

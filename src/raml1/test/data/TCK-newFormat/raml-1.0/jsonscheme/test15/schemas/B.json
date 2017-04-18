@@ -1,0 +1,16 @@
+{
+  "type" : "object",
+  "properties": {
+    "q1": {
+      "type": "string"
+    },
+    "q2": {
+      "$ref": "#/definitions/type2"
+    }
+  },
+  "definitions":{
+    "type2" : {
+      "type" : "number"
+    }
+  }
+}
