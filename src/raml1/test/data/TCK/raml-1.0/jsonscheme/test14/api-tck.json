@@ -1,0 +1,94 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "externalType": {
+          "name": "externalType",
+          "displayName": "externalType",
+          "typePropertyKind": "JSON",
+          "schemaPath": "schemas/A.json",
+          "type": [
+            "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
+          ],
+          "example": {
+            "p1": false,
+            "p2": 15
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"p1\": false,\n  \"p2\": 15\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "p1": false,
+              "p2": 15
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "JSON",
+                "schemaPath": "schemas/A.json",
+                "type": [
+                  "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
+                ],
+                "example": {
+                  "p1": false,
+                  "p2": 15
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"p1\": false,\n  \"p2\": 15\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "p1": false,
+                    "p2": 15
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/res",
+        "displayName": "/res",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res"
+        ],
+        "absoluteUri": "/res"
+      }
+    ]
+  },
+  "errors": []
+}

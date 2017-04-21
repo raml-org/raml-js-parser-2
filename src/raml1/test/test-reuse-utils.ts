@@ -371,7 +371,10 @@ class TextTyper {
 
 }
 
-export function simulateTypingForFile(filePath:string, restrictions:string[]=DEFAULT_TYPING_SEQUENCE){
+export function simulateTypingForFile(
+    filePath:string,
+    restrictions:string[]=DEFAULT_TYPING_SEQUENCE,
+    enableReuse=true){
 
     let hlNode = index.loadApiSync(filePath).highLevel();
     let ps = new PropertySelector(restrictions);
@@ -382,7 +385,7 @@ export function simulateTypingForFile(filePath:string, restrictions:string[]=DEF
         let tt = new TextTyper(hlNode, ps);
         while (tt.hasNext()) {
             let text = tt.next();
-            reuseNode = testReuse(text,filePath,reuseNode);
+            reuseNode = testEditingStep(text,filePath,reuseNode,true);
             //console.log(text);
         }
         ps.increment();
@@ -390,11 +393,17 @@ export function simulateTypingForFile(filePath:string, restrictions:string[]=DEF
 }
 
 
-export function testReuse(
+export function testEditingStep(
     newContent:string,
     specPath:string,
     reuseNode:hl.IHighLevelNode,
-    expectReuse?:boolean):hl.IHighLevelNode {
+    enableReuse:boolean,
+    expectReuse?:boolean,
+    parserInstance?:any):hl.IHighLevelNode {
+    
+    if(!enableReuse){
+        reuseNode = null;
+    }
 
     let resolver = new jsyaml.FSResolverImpl();
     let fsResolver = {
@@ -409,7 +418,9 @@ export function testReuse(
         }
     };
 
-    let reusingApi = (<RamlWrapper.Api>index.loadRAMLSync(specPath, [], {
+    parserInstance = parserInstance || index;
+
+    let reusingApi = (<RamlWrapper.Api>parserInstance.loadRAMLSync(specPath, [], {
         reusedNode: reuseNode,
         fsResolver: fsResolver
     })).expand();
@@ -431,7 +442,7 @@ export function testReuse(
         }
     }
 
-    let nonReusingApi = (<RamlWrapper.Api>index.loadRAMLSync(specPath, [], {
+    let nonReusingApi = (<RamlWrapper.Api>parserInstance.loadRAMLSync(specPath, [], {
         fsResolver: fsResolver
     })).expand();
 
@@ -477,7 +488,11 @@ function checkErrorPositions(errs: Object[]): Boolean{
     return true;
 }
 
-export function testReuseByBasicTyping(specPath:string,byWords=true) {
+export function testReuseByBasicTyping(
+    specPath:string,
+    byWords=true,
+    enableReuse=true,
+    parserInstance?:any) {
 
     let fileContent: string = fs.readFileSync(specPath, "utf8");
     let i1 = fileContent.indexOf("#%RAML");
@@ -500,7 +515,7 @@ export function testReuseByBasicTyping(specPath:string,byWords=true) {
         for (var i = 0; i < words.length; i++) {
             contentBuffer += words[i];
             try {
-                prevNode = testReuse(contentBuffer, specPath, prevNode);
+                prevNode = testEditingStep(contentBuffer, specPath, prevNode, enableReuse,parserInstance);
             }
             catch (e) {
                 console.error(e);
@@ -512,7 +527,7 @@ export function testReuseByBasicTyping(specPath:string,byWords=true) {
         for (var i = contentBuffer.length; i < fileContent.length; i++) {
             contentBuffer += fileContent.charAt(i);
             try {
-                prevNode = testReuse(contentBuffer, specPath, prevNode);
+                prevNode = testEditingStep(contentBuffer, specPath, prevNode, enableReuse);
             }
             catch (e) {
                 console.error(e);

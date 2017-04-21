@@ -1,0 +1,265 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "types",
+        "value": "types.raml"
+      }
+    ],
+    "resourceTypes": {
+      "standardResponse": {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "<<objectName | !singularize>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "New<<objectName | !singularize>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "type": {
+          "standardResponse": {
+            "objectName": "types.Folder"
+          }
+        },
+        "name": "standardResponse"
+      },
+      "collection": {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "<<objectName | !singularize>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "New<<objectName | !singularize>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "type": {
+          "standardResponse": {
+            "objectName": "types.Folder"
+          }
+        },
+        "name": "collection"
+      }
+    },
+    "title": "Box",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "types.Folder"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "Newtypes.Folder"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "type": {
+          "collection": {
+            "objectName": "types.Folder"
+          }
+        },
+        "relativeUri": "/folders",
+        "displayName": "/folders",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "folders"
+        ],
+        "absoluteUri": "/folders",
+        "completeRelativeUri": "/folders",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "CYCLE_IN_DEFINITION",
+      "message": "Resource type definition contains cycle: standardResponse -> standardResponse",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 2,
+          "position": 66
+        },
+        "end": {
+          "line": 6,
+          "column": 18,
+          "position": 82
+        }
+      }
+    },
+    {
+      "code": "CYCLE_IN_DEFINITION",
+      "message": "Resource type definition contains cycle: collection -> standardResponse -> standardResponse",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 2,
+          "position": 125
+        },
+        "end": {
+          "line": 7,
+          "column": 12,
+          "position": 135
+        }
+      }
+    },
+    {
+      "code": "INHERITING_UNKNOWN_TYPE",
+      "message": "Inheriting from unknown type",
+      "path": "resourceTypes/collection.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 6,
+          "position": 121
+        },
+        "end": {
+          "line": 7,
+          "column": 10,
+          "position": 125
+        }
+      },
+      "trace": [
+        {
+          "code": "INHERITING_UNKNOWN_TYPE",
+          "message": "Inheriting from unknown type",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 9,
+              "column": 0,
+              "position": 177
+            },
+            "end": {
+              "line": 9,
+              "column": 8,
+              "position": 185
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

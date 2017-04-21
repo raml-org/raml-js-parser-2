@@ -338,7 +338,7 @@ export function compare(arg0:any,arg1:any,path:string=''):Diff[] {
   }
   else {
     if(arg0 !== arg1){
-      if(!(isNaN(arg0)&&isNaN(arg1))) {
+      if(!(typeof arg0 == "number" && typeof arg1 == "number" && isNaN(arg0)&&isNaN(arg1))) {
         diffs.push(new Diff(path, arg0, arg1, 'Inequal values'));
       }
     }

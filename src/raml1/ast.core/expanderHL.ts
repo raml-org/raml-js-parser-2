@@ -447,18 +447,11 @@ export class TraitsAndResourceTypesExpander {
                 else {
                     sv.children().forEach(x=> {
                         var llNode = x.lowLevel();
-                        if (llNode.valueKind() == yaml.Kind.SCALAR) {
+                        var llNode = x.lowLevel();
+                        if(llNode.resolvedValueKind()==yaml.Kind.SCALAR) {
                             scalarParams[x.valueName()] = llNode.value();
                         }
-                        else if (llNode.valueKind() == yaml.Kind.INCLUDE_REF) {
-                            if (llNode.children().length == 0) {
-                                scalarParams[x.valueName()] = llNode.value();
-                            }
-                            else {
-                                structuredParams[x.valueName()] = llNode;
-                            }
-                        }
-                        else {
+                        else{
                             structuredParams[x.valueName()] = llNode;
                         }
                     });
@@ -840,6 +833,13 @@ export class ValueTransformer implements proxy.ValueTransformer{
         return null;
     }
 
+    anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind{
+        var substitution = this.substitutionNode(node);
+        if(substitution && substitution.valueKind()==yaml.Kind.ANCHOR_REF){
+            return substitution.anchorValueKind();
+        }
+        return null;
+    }
 
     includePath(node:ll.ILowLevelASTNode):string{
         var substitution = this.substitutionNode(node);
@@ -968,6 +968,9 @@ export class DefaultTransformer extends ValueTransformer{
         return this.delegate != null ? this.delegate.includePath(node) : null;
     }
 
+    anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind{
+        return this.delegate != null ? this.delegate.anchorValueKind(node) : null;
+    }
 }
 
 interface GenericData{

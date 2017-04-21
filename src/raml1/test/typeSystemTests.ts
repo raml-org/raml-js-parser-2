@@ -473,7 +473,8 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
             "additionalProperties": false
         };
         var ignore:any = {
-            properties: true
+            properties: true,
+            enum: true
         };
         testFacets(type,expected,ignore);     
     });

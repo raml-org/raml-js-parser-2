@@ -1,0 +1,75 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyStringType": {
+          "name": "MyStringType",
+          "displayName": "MyStringType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "enum": [
+            "stringValue1",
+            "stringValue2"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "MyNumberType": {
+          "name": "MyNumberType",
+          "displayName": "MyNumberType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "number"
+          ],
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "MyBooleanType": {
+          "name": "MyBooleanType",
+          "displayName": "MyBooleanType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "boolean"
+          ],
+          "enum": [
+            false
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "myApi"
+  },
+  "errors": []
+}

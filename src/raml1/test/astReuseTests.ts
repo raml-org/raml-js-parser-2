@@ -214,7 +214,7 @@ function test(_path1:string,_path2:string,expectReuse=true) {
     let initialApi = (<ramlWrapper.ApiImpl>index.loadRAMLSync(path1, [])).expand();
 
     try {
-        reuseUtil.testReuse(newContent, path1, initialApi.highLevel(), expectReuse);
+        reuseUtil.testEditingStep(newContent, path1, initialApi.highLevel(), true, expectReuse);
     }
     catch(e) {
         console.error(e);

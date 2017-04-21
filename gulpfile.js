@@ -52,6 +52,8 @@ var testFilesLibExpand = [
   'dist/raml1/test/astReuseTests.js',
   'dist/raml1/test/astReuseTestsBasicTyping.js',
   'dist/raml1/test/astReuseTestsComplexTyping.js',
+  'dist/raml1/test/longivityTestsBasicTyping.js',
+  'dist/raml1/test/longivityTestsComplexTyping.js',
   // // //
   'src/raml1/test/data/parser/test/specs/optionals.js',
   'src/raml1/test/data/parser/test/specs/parser.js',

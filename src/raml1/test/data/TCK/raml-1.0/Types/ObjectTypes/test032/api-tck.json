@@ -1,0 +1,170 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Example",
+    "version": "2.0",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
+                "schema": {
+                  "name": "schema",
+                  "displayName": "schema",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "object"
+                  ],
+                  "properties": {
+                    "size": {
+                      "name": "size",
+                      "displayName": "size",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "length": {
+                      "name": "length",
+                      "displayName": "length",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "typePropertyKind": "INPLACE",
+                "type": {
+                  "name": "type",
+                  "displayName": "type",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "object"
+                  ],
+                  "properties": {
+                    "size": {
+                      "name": "size",
+                      "displayName": "size",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "length": {
+                      "name": "length",
+                      "displayName": "length",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/orders",
+        "displayName": "/orders",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "orders"
+        ],
+        "absoluteUri": "/orders"
+      }
+    ]
+  },
+  "errors": []
+}

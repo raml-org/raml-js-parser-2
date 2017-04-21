@@ -452,6 +452,15 @@ export class TCKDumper {
             var val:any;
             if (isValueType && aNode['value']) {
                 val = aNode['value']();
+                if(val==null && universeHelpers.isAnyTypeType(rangeType)){
+                    let llAttrNode = aNode.lowLevel();
+                    if(aNode.isAnnotatedScalar()){
+                        llAttrNode = _.find(llAttrNode.children(),x=>x.key()=="value");
+                    }
+                    if(llAttrNode) {
+                        val = aNode.lowLevel().dumpToObject();
+                    }
+                }
             }
             if (val!=null&&(typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean')) {
                 result = val;

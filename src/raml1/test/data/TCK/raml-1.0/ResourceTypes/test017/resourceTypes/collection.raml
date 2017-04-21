@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType
+type:
+  standardResponse:
+    objectName: types.Folder
+post:
+  body:
+    application/json:
+      type: New<<objectName | !singularize>>
+  responses:
+    201:
+      body:
+        application/json:
+          type: <<objectName | !singularize>>

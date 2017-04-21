@@ -1,0 +1,70 @@
+{
+  "specification": {
+    "types": {
+      "externalType": {
+        "name": "externalType",
+        "displayName": "externalType",
+        "schemaPath": "schemas/A.xml",
+        "type": [
+          "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xsd1:schema xmlns:xsd1=\"http://www.w3.org/2001/XMLSchema\">\n\n    <xsd1:include schemaLocation = \"B.xsd\"/>\n\n    <xsd1:simpleType name=\"stringtype\">\n        <xsd1:restriction base=\"xsd1:string\"/>\n    </xsd1:simpleType>\n\n    <xsd1:simpleType name=\"inttype\">\n        <xsd1:restriction base=\"xsd1:positiveInteger\"/>\n    </xsd1:simpleType>\n\n    <xsd1:simpleType name=\"dectype\">\n        <xsd1:restriction base=\"xsd1:decimal\"/>\n    </xsd1:simpleType>\n\n    <xsd1:simpleType name=\"orderidtype\">\n        <xsd1:restriction base=\"xsd1:string\">\n            <xsd1:pattern value=\"[0-9]{6}\"/>\n        </xsd1:restriction>\n    </xsd1:simpleType>\n\n    <xsd1:complexType name=\"shiptotype\">\n        <xsd1:sequence>\n            <xsd1:element name=\"name\" type=\"stringtype\"/>\n            <xsd1:element name=\"address\" type=\"stringtype\"/>\n            <xsd1:element name=\"city\" type=\"stringtype\"/>\n            <xsd1:element name=\"country\" type=\"stringtype\"/>\n        </xsd1:sequence>\n    </xsd1:complexType>\n\n    <xsd1:complexType name=\"itemtype\">\n        <xsd1:sequence>\n            <xsd1:element name=\"title\" type=\"stringtype\"/>\n            <xsd1:element name=\"note\" type=\"stringtype\" minOccurs=\"0\"/>\n            <xsd1:element name=\"quantity\" type=\"inttype\"/>\n            <xsd1:element name=\"price\" type=\"dectype\"/>\n        </xsd1:sequence>\n    </xsd1:complexType>\n\n    <xsd1:complexType name=\"shipordertype\">\n        <xsd1:sequence>\n            <xsd1:element name=\"remoteref\" type=\"remotetype\"/>\n            <xsd1:element name=\"orderperson\" type=\"stringtype\"/>\n            <xsd1:element name=\"shipto\" type=\"shiptotype\"/>\n            <xsd1:element name=\"item\" maxOccurs=\"unbounded\" type=\"itemtype\"/>\n        </xsd1:sequence>\n        <xsd1:attribute name=\"orderid\" type=\"orderidtype\" use=\"required\"/>\n    </xsd1:complexType>\n\n    <xsd1:element name=\"shiporder\" type=\"shipordertype\"/>\n\n</xsd1:schema>\n"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/xml",
+        "typePropertyKind": "XML"
+      }
+    },
+    "title": "test API",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "schemaPath": "schemas/A.xml",
+                "type": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xsd1:schema xmlns:xsd1=\"http://www.w3.org/2001/XMLSchema\">\n\n    <xsd1:include schemaLocation = \"B.xsd\"/>\n\n    <xsd1:simpleType name=\"stringtype\">\n        <xsd1:restriction base=\"xsd1:string\"/>\n    </xsd1:simpleType>\n\n    <xsd1:simpleType name=\"inttype\">\n        <xsd1:restriction base=\"xsd1:positiveInteger\"/>\n    </xsd1:simpleType>\n\n    <xsd1:simpleType name=\"dectype\">\n        <xsd1:restriction base=\"xsd1:decimal\"/>\n    </xsd1:simpleType>\n\n    <xsd1:simpleType name=\"orderidtype\">\n        <xsd1:restriction base=\"xsd1:string\">\n            <xsd1:pattern value=\"[0-9]{6}\"/>\n        </xsd1:restriction>\n    </xsd1:simpleType>\n\n    <xsd1:complexType name=\"shiptotype\">\n        <xsd1:sequence>\n            <xsd1:element name=\"name\" type=\"stringtype\"/>\n            <xsd1:element name=\"address\" type=\"stringtype\"/>\n            <xsd1:element name=\"city\" type=\"stringtype\"/>\n            <xsd1:element name=\"country\" type=\"stringtype\"/>\n        </xsd1:sequence>\n    </xsd1:complexType>\n\n    <xsd1:complexType name=\"itemtype\">\n        <xsd1:sequence>\n            <xsd1:element name=\"title\" type=\"stringtype\"/>\n            <xsd1:element name=\"note\" type=\"stringtype\" minOccurs=\"0\"/>\n            <xsd1:element name=\"quantity\" type=\"inttype\"/>\n            <xsd1:element name=\"price\" type=\"dectype\"/>\n        </xsd1:sequence>\n    </xsd1:complexType>\n\n    <xsd1:complexType name=\"shipordertype\">\n        <xsd1:sequence>\n            <xsd1:element name=\"remoteref\" type=\"remotetype\"/>\n            <xsd1:element name=\"orderperson\" type=\"stringtype\"/>\n            <xsd1:element name=\"shipto\" type=\"shiptotype\"/>\n            <xsd1:element name=\"item\" maxOccurs=\"unbounded\" type=\"itemtype\"/>\n        </xsd1:sequence>\n        <xsd1:attribute name=\"orderid\" type=\"orderidtype\" use=\"required\"/>\n    </xsd1:complexType>\n\n    <xsd1:element name=\"shiporder\" type=\"shipordertype\"/>\n\n</xsd1:schema>\n"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/xml",
+                "typePropertyKind": "XML"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "relativeUri": "/res",
+        "displayName": "/res",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res"
+        ],
+        "absoluteUri": "/res",
+        "completeRelativeUri": "/res",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

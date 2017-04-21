@@ -769,7 +769,9 @@ describe('Parser regression tests', function () {
     it ("Overlay: sub-level illegal node 2" ,function(){
         testErrors(util.data("parser/overlay/o22/NewOverlay.raml"),["The './resource.post' node does not match any node of the master api."]);
     })
-
+    it ("Is node must be an array in master API" ,function() {
+        testErrors(util.data("parser/overlay/o23/NewOverlay.raml"), ["Property 'is' must be an array"]);
+    })
     it ("Security Scheme Fragment: new security scheme" ,function(){
         testErrors(util.data("parser/securityschemefragments/ss1/securitySchemeFragment.raml"));
     })

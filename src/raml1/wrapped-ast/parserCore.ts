@@ -229,7 +229,24 @@ export class BasicNodeImpl implements hl.BasicNode{
         return obj != null ? obj.toString() : obj;
     }
     toAny(arg:any):any{
-        return arg;
+        var obj : any;
+        //kind of instanceof for hl.IAttribute without actually calling instanceof
+        if (arg.lowLevel && arg.property) {
+            let attr = <hl.IAttribute>arg;
+            let value = attr.value();
+            if(value){
+                obj = value;
+            }
+            else{
+                obj = new TypeInstanceImpl(attr.lowLevel());
+            }
+
+        }
+        else {
+            obj = arg;
+        }
+
+        return obj;
     }
 
     toBoolean(arg:any):boolean{

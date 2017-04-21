@@ -70,18 +70,23 @@ export class ReferencePatcher{
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
             var traitNodes = node.attributes(isPropertyName);
             if(traitNodes.length!=0) {
-                isNode = patchMethodIs(node,traitNodes.map(x=>x.lowLevel()).map(x=>{
-                    if(!proxy.LowLevelProxyNode.isInstance(x)){
+                let llIsNodes = node.lowLevel().children().filter(
+                    x=>x.key()==universeDef.Universe10.MethodBase.properties.is.name);
+
+                if(llIsNodes.length==1&&llIsNodes[0].valueKind()==yaml.Kind.SEQ) {
+                    isNode = patchMethodIs(node, traitNodes.map(x => x.lowLevel()).map(x => {
+                        if (!proxy.LowLevelProxyNode.isInstance(x)) {
+                            return {
+                                node: x,
+                                transformer: null
+                            }
+                        }
                         return {
                             node: x,
-                            transformer: null
-                        }
-                    }
-                    return{
-                        node: x,
-                        transformer: (<proxy.LowLevelProxyNode>x).transformer()
-                    };
-                }),units[0].absolutePath());
+                            transformer: (<proxy.LowLevelProxyNode>x).transformer()
+                        };
+                    }), units[0].absolutePath());
+                }
             }
         }
 
@@ -177,7 +182,7 @@ export class ReferencePatcher{
                 this.registerPatchedReference(newValue);
             }
         }
-        else{
+        else if (hlimpl.StructuredValue.isInstance(value)){
             var sValue = <hlimpl.StructuredValue>value;
             var hlNode = sValue.toHighLevel();
             if(hlNode) {

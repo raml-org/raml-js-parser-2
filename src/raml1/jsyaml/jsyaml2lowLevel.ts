@@ -3380,8 +3380,36 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         if(this.valueKind()==yaml.Kind.ANCHOR_REF){
             var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node.value;
             return ref.value.kind;
-        }        
+        }
         return null;
+    }
+
+    resolvedValueKind(){
+        let vk = this.valueKind();
+        if(vk==yaml.Kind.ANCHOR_REF) {
+            return this.anchorValueKind();
+        }
+        else if (vk==yaml.Kind.INCLUDE_REF){
+
+            let includePath = this.includePath();
+            let resolved:lowlevel.ICompilationUnit;
+            try {
+                resolved = this._unit.resolve(includePath);
+            } catch (Error) {
+                return null;
+            }
+            if (resolved == null) {
+                return yaml.Kind.SCALAR;//Error message is returned in this case
+            }
+            else if (resolved.isRAMLUnit()) {
+                var ast = resolved.ast();
+                if(ast){
+                    return ast.kind();
+                }
+            }
+            return yaml.Kind.SCALAR;
+        }
+        return vk;
     }
 
     valueKindName(): string {

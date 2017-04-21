@@ -195,6 +195,9 @@ export function isSecuritySchemeProperty(p:hl.IProperty) : boolean {
         p.nameId() === universe.Universe08.SecuritySchemeRef.properties.securityScheme.name;
 }
 
+export function isTypeOrSchemaProperty(p:hl.IProperty) : boolean {
+    return isTypeProperty(p)||isSchemaProperty(p);
+}
 
 export function isTypeProperty(p:hl.IProperty) : boolean {
     if(!p) {
@@ -551,6 +554,11 @@ export function isLibraryType(type: hl.INodeDefinition | hl.ITypeDefinition) : b
 export function isStringTypeType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.key() == universe.Universe10.StringType ||
         type.key() == universe.Universe08.StringType;
+}
+
+export function isAnyTypeType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.key() == universe.Universe10.AnyType ||
+        type.key() == universe.Universe08.AnyType;
 }
 
 export function isExampleSpecType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {

@@ -172,6 +172,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     anchorValueKind(){ return this._originalNode.anchorValueKind(); }
 
+    resolvedValueKind(){ return this._originalNode.resolvedValueKind() };
+
     show(msg: string) { this._originalNode.show(msg); }
 
     setHighLevelParseResult(highLevelParseResult:hl.IParseResult){
@@ -776,6 +778,14 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
         return super.valueKind();
     }
 
+    anchorValueKind():yaml.Kind{
+        var kind = this._transformer && this._transformer.anchorValueKind(this.originalNode());
+        if(kind!=null){
+            return kind;
+        }
+        return super.anchorValueKind();
+    }
+
     includePath(){
         var includePath = this._transformer && this._transformer.includePath(this.originalNode());
         if(includePath!=null){
@@ -808,6 +818,8 @@ export interface ValueTransformer{
     children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
 
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind
+
+    anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind
 
     includePath(node:ll.ILowLevelASTNode):string
 }

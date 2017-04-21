@@ -652,7 +652,13 @@ export function structuredValue(reference:RamlWrapper.Reference):RamlWrapper.Typ
  */
 export function referenceName(reference:RamlWrapper.Reference):string{
     var val = reference.highLevel().value();
-    return (typeof val == 'string') || val==null ? val : val.valueName();
+    if(typeof val == 'string' || val==null){
+        return val;
+    }
+    else if(hlimpl.StructuredValue.isInstance(val)){
+        return val.valueName();
+    }
+    return null;
 }
 
 /**

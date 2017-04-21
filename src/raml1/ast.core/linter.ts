@@ -556,9 +556,20 @@ function queryDeclarationsSearch(operation: MethodBase): QueryDeclarationsSearch
     }
 }
 
-function queryDeclarationSearch(operation: MethodBase, isParamsSearch: boolean): ll.ILowLevelASTNode | hl.IParseResult {
+function queryDeclarationSearch(
+    operation: MethodBase,
+    isParamsSearch: boolean,
+    checkParent=true,
+    passed:{[key:string]:boolean} = {}): ll.ILowLevelASTNode | hl.IParseResult {
     if(!operation) {
         return null;
+    }
+    if((<any>operation).name){
+        let name = (<any>operation).name();
+        if(passed[name]){
+            return;
+        }
+        passed[name] = true;
     }
     
     var declaredHere = queryDeclarationFromMethodBase(operation, isParamsSearch);
@@ -569,33 +580,51 @@ function queryDeclarationSearch(operation: MethodBase, isParamsSearch: boolean):
     
     var traitRefs = (operation.is && operation.is()) || [];
 
-    var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(traitRef.trait(), isParamsSearch));
+    var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(
+        traitRef.trait(), isParamsSearch, checkParent, passed));
 
     if(declaredIn) {
         return declaredIn.highLevel();
     }
 
-    var resourceBase: ResourceBase = (<any>operation).parentResource && (<any>operation).parentResource();
+    if(checkParent) {
+        var resourceBase: ResourceBase = (<any>operation).parentResource && (<any>operation).parentResource();
 
-    var found = resourceBase && queryDeclarationSearchInResourceBase(resourceBase, isParamsSearch);
+        var found = resourceBase && queryDeclarationSearchInResourceBase(
+            resourceBase, isParamsSearch, passed);
 
-    if(found) {
-        return found;
-    }
+        if (found) {
+            return found;
+        }
 
-    resourceBase = (<any>operation).parent && (<any>operation).parent();
+        resourceBase = (<any>operation).parent && (<any>operation).parent();
 
-    if(resourceBase && resourceBase.highLevel().definition().isAssignableFrom(universes.Universe10.ResourceBase.name)) {
-        return queryDeclarationSearchInResourceBase(resourceBase, isParamsSearch);
+        if (resourceBase && resourceBase.highLevel().definition().isAssignableFrom(universes.Universe10.ResourceBase.name)) {
+            return queryDeclarationSearchInResourceBase(resourceBase, isParamsSearch, passed);
+        }
     }
     
     return null;
 }
 
-function queryDeclarationSearchInResourceBase(resource: ResourceBase, isParamsSearch: boolean): ll.ILowLevelASTNode | hl.IParseResult {
+function queryDeclarationSearchInResourceBase(
+    resource: ResourceBase,
+    isParamsSearch: boolean,
+    passedTraits:{[key:string]:boolean} = {},
+    passed:{[key:string]:boolean} = {}): ll.ILowLevelASTNode | hl.IParseResult {
+
+    if((<any>resource).name){
+        let name = (<any>resource).name();
+        if(passed[name]){
+            return;
+        }
+        passed[name] = true;
+    }
+
     var traitRefs = resource.is();
 
-    var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(traitRef.trait(), isParamsSearch));
+    var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(
+        traitRef.trait(), isParamsSearch, false, passedTraits));
 
     if(declaredIn) {
         return declaredIn.highLevel();
@@ -605,7 +634,8 @@ function queryDeclarationSearchInResourceBase(resource: ResourceBase, isParamsSe
 
     var resourceType = resourceTypeRef && resourceTypeRef.resourceType();
 
-    var foundInType = resourceType && queryDeclarationSearchInResourceBase(resourceType, isParamsSearch);
+    var foundInType = resourceType && queryDeclarationSearchInResourceBase(
+        resourceType, isParamsSearch, passedTraits, passed);
 
     if(foundInType) {
         return resourceTypeRef.highLevel();
@@ -1444,7 +1474,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 if(src){
                     var srcProp = src.property();
                     if(srcProp){
-                        isTypeProp = universeHelpers.isTypeProperty(srcProp) || universeHelpers.isSchemaProperty(srcProp); 
+                        isTypeProp = universeHelpers.isTypeProperty(srcProp) || universeHelpers.isSchemaProperty(srcProp);
                     }
                 }
             }
@@ -2215,7 +2245,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
                 }
             }
         }
-        else if (vl != null){
+        else if (hlimpl.StructuredValue.isInstance(vl)){
             var st=<hlimpl.StructuredValue>vl;
             if (st) {
                 valueKey=st.valueName();
@@ -2346,7 +2376,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 var gotValue = false;
                 if (nm!=null){
                     if(nm.lowLevel().kind()==yaml.Kind.SCALAR
-                        ||nm.lowLevel().valueKind()==yaml.Kind.SCALAR
+                        ||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR
                         ||nm.lowLevel().kind()==yaml.Kind.INCLUDE_REF
                         ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF
                         ||(nm.lowLevel().valueKind()===null&&!isInlinedTemplate)){

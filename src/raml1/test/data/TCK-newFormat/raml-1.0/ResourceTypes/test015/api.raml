@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: test API
+mediaType: application/json
+resourceTypes:
+  member:
+    get:
+      responses:
+        200:
+          body:
+            example: <<param1>>
+/resource1:
+  type:
+    member:
+      param1: &delivery |
+        {
+          "id": "987",
+          "at": "Sun, 20 Jul 2014 21:20:00 GMT",
+          "toAddressId": "273hh79",
+          "orderItemId": "9877292",
+          "status": "scheduled",
+          "droneId": "f"
+        }
+
+/resource2:
+    type:
+      member:
+        param1: *delivery

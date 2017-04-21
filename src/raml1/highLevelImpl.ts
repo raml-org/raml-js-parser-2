@@ -711,8 +711,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
         var isString = this.property()!=null
             && !(this.parent()==null||this.parent().definition()==null||
-                    (universeHelpers.isTypeProperty(this.property())
-                        && universeHelpers.isTypeDeclarationSibling(this.parent().definition())))
+                    (universeHelpers.isTypeOrSchemaProperty(this.property())
+                        && universeHelpers.isTypeDeclarationDescendant(this.parent().definition())))
             && universeHelpers.isStringTypeType(this.property().range());
 
         var actualValue = this._node.value(isString); //TODO FIXME
@@ -750,8 +750,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             return res;
         }
         if (actualValue==null&&this._node.children().length>0
-            &&this.property()&&(universeHelpers.isTypeProperty(this.property())||universeHelpers.isItemsProperty(this.property()))
-            &&this.parent()&&universeHelpers.isTypeDeclarationSibling(this.parent().definition())){
+            &&this.property()&&(universeHelpers.isTypeOrSchemaProperty(this.property())||universeHelpers.isItemsProperty(this.property()))
+            &&this.parent()&&universeHelpers.isTypeDeclarationDescendant(this.parent().definition())){
             return new StructuredValue(<ll.ILowLevelASTNode>this._node,this.parent(),this._prop);
         }
         return actualValue;

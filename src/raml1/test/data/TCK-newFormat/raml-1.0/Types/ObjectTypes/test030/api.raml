@@ -1,0 +1,18 @@
+#%RAML 1.0
+#object enums support test
+title: myApi
+
+types:
+  Foo:
+    type: object
+    properties:
+      id: string
+      name: string
+      age: integer
+    enum:
+      - id: 12345fr
+        name: Foo
+        age: 23
+      - id: 12345gr
+        name: Bar
+        age: 12

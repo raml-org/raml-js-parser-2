@@ -1,0 +1,12 @@
+#%RAML 0.8
+
+title: test api
+
+traits:
+  - tr1:
+
+/resource:
+  post:
+    body:
+      application/json:
+        schema: !include ./schema.json
