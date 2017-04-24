@@ -1392,6 +1392,12 @@ class ValidationError extends Error{
 
     private static CLASS_IDENTIFIER_ValidationError = "linter.ValidationError";
 
+    public isWarning = false;
+
+    public internalRange:def.rt.tsInterfaces.RangeObject;
+
+    public additionalErrors: ValidationError[];
+
     public static isInstance(instance : any) : instance is ValidationError {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
@@ -1481,12 +1487,18 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             if(isTypeProp){
                 return false;
             }
+            let isJSONorXML = v && v.trim().length > 0
+                &&(v.trim().charAt(0)=="{"||v.trim().charAt(0)=="<");
+
             var tm = su.createSchema(v, contentProvider(h.lowLevel(),attr&&attr.lowLevel()));
             if(!tm){
                 return tm;
             }
             else if (tm instanceof Error){
-                (<any>tm).canBeRef=true;
+                tm.isWarning = true;
+                if(!isJSONorXML) {
+                    (<any>tm).canBeRef = true;
+                }
             }
             else {
                 var isJSON = false;
@@ -1588,7 +1600,7 @@ class NormalValidator implements PropertyValidator{
             if (!(<any>validation).canBeRef){
                 if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
-                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node, (<any>validation).isWarning));
+                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node, (<any>validation).isWarning,ve.internalRange));
                 }
                 else {
                     v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node,(<any>validation).isWarning));
@@ -1615,7 +1627,7 @@ class NormalValidator implements PropertyValidator{
                     if (decl instanceof Error) {
                         if(ValidationError.isInstance(decl)){
                             var ve = <ValidationError>decl;
-                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning));
+                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning, ve.internalRange));
                         }
                         else {
                             v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>decl).message}, node));
@@ -1635,7 +1647,7 @@ class NormalValidator implements PropertyValidator{
                         if (validation instanceof Error&&vl){
                             if(ValidationError.isInstance(validation)){
                                 var ve = <ValidationError>validation;
-                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning));
+                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning, ve.internalRange));
                             }
                             else {
                                 v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
@@ -2270,7 +2282,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             if (validation instanceof Error) {
                 if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
-                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node,validation.isWarning));
+                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node,validation.isWarning, ve.internalRange));
                 }
                 else {
                     cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
@@ -2521,10 +2533,10 @@ class TypeDeclarationValidator implements NodeValidator{
                 var n = extractLowLevelNode(e);
                 var issue;
                 if(n){
-                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mapPath( node,e), e.isWarning(),true);
+                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mapPath( node,e), e.isWarning(),true,e.getInternalRange());
                 }
                 else {
-                    issue = createIssue(e.getCode(), e.getMessage(), mapPath(node, e), e.isWarning());
+                    issue = createIssue(e.getCode(), e.getMessage(), mapPath(node, e), e.isWarning(),e.getInternalRange());
                 }
                 v.accept(issue);
             };
@@ -3330,7 +3342,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
         var schema=this.aquireSchema(node);
         if (schema){
-            schema.validate(pObj,cb,strictValidation);
+            schema.validate(node.value(),cb,strictValidation);
         }
     }
 
@@ -3517,7 +3529,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                     var validateObject = pt.validate(pObje, false);
                     if (!validateObject.isOk()) {
                         validateObject.getErrors().forEach(e=>cb.accept(
-                            createIssue(e.getCode(),e.getMessage(), node, !strict)));
+                            createIssue(e.getCode(),e.getMessage(), node, !strict, e.getInternalRange())));
                     }
                 }
             }
@@ -3560,10 +3572,17 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
             if (mediaType){
                 if (isJson(mediaType)){
                     try{
+                        def.rt.getSchemaUtils().tryParseJSON(vl,true);
                         pObj=JSON.parse(vl);
                     }catch (e){
-                        cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
-                            {msg:e.message},node,!strictValidation));
+                        if(ValidationError.isInstance(e)){
+                            var ve = <ValidationError>e;
+                            cb.accept(createIssue1(ve.messageEntry,ve.parameters, node, !strictValidation,ve.internalRange));
+                        }
+                        else {
+                            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
+                                {msg: e.message}, node, !strictValidation));
+                        }
                         return;
                     }
                 }
@@ -3921,46 +3940,82 @@ function getMediaType2(node:hl.IAttribute){
     return null;
 }
 
-var localError = function (node:hl.IParseResult, c, w, message,p:boolean,prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode) {
+var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
+    prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode,internalRange?:def.rt.tsInterfaces.RangeObject) {
     var llNode = positionsSource ? positionsSource : node.lowLevel();
     var contents = llNode.unit() && llNode.unit().contents();
     var contentLength = contents && contents.length;
 
     var st = llNode.start();
     var et = llNode.end();
-    if (contentLength && contentLength < et) {
-        et = contentLength - 1;
-    }
+    if(internalRange){
+        let lineMapper = llNode.unit().lineMapper();
+        let vs = llNode.valueStart();
+        let aNode = llNode.actual();
+        let aValNode = aNode.value;
+        let rawVal = aValNode.rawValue;
 
-    if (llNode.key() && llNode.keyStart()) {
-        var ks = llNode.keyStart();
-        if (ks > 0) {
-            st = ks;
+        let vsPos = lineMapper.position(vs);
+        let aSCol:number;
+        let aECol:number;
+        let aSLine = vsPos.line+internalRange.start.line;
+        let aELine = vsPos.line+internalRange.end.line;
+        if(rawVal.charAt(0)=="|"){
+            //let keyCol = lineMapper.position(llNode.keyStart()).column;
+            let i0 = rawVal.indexOf("\n");
+            let i1 = rawVal.indexOf("\n",i0+1);
+            let off = rawVal.substring(i0,i1).replace(/[^ ]/g,"").length;
+            aSCol = off + internalRange.start.column;
+            aECol = off + internalRange.end.column;
+            aSLine++;
+            aELine++;
         }
-        var ke = llNode.keyEnd();
-        if (ke > 0) {
-            et = ke;
-        }
-    }
-    if (et < st) {
-        et = st + 1;
-        //this happens for empty APIs, when we basically have nothing to parse
-        if(node.isElement()) {
-            var definition = (<hl.IHighLevelNode> node).definition();
-            if (universeHelpers.isApiType(definition)) {
-                st = contentLength == 0 ? 0: contentLength - 1;
-                et = st;
+        else{
+            aSCol = vsPos.column + internalRange.start.column;
+            aECol = vsPos.column + internalRange.end.column;
+            if(aValNode.singleQuoted||aValNode.doubleQuoted){
+                aSCol++;
+                aECol++;
             }
         }
+        st = lineMapper.toPosition(aSLine,aSCol).position;
+        et = lineMapper.toPosition(aELine,aECol).position;
     }
-    if (prop&&!prop.getAdapter(services.RAMLPropertyService).isMerged()&&node.parent()==null){
-        var nm= _.find(llNode.children(),x=>x.key()==prop.nameId());
-        if (nm){
-            var ks=nm.keyStart();
-            var ke=nm.keyEnd();
-            if (ks>0&&ke>ks){
-                st=ks;
-                et=ke;
+    else {
+        if (contentLength && contentLength < et) {
+            et = contentLength - 1;
+        }
+
+        if (llNode.key() && llNode.keyStart()) {
+            var ks = llNode.keyStart();
+            if (ks > 0) {
+                st = ks;
+            }
+            var ke = llNode.keyEnd();
+            if (ke > 0) {
+                et = ke;
+            }
+        }
+        if (et < st) {
+            et = st + 1;
+            //this happens for empty APIs, when we basically have nothing to parse
+            if (node.isElement()) {
+                var definition = (<hl.IHighLevelNode> node).definition();
+                if (universeHelpers.isApiType(definition)) {
+                    st = contentLength == 0 ? 0 : contentLength - 1;
+                    et = st;
+                }
+            }
+        }
+        if (prop && !prop.getAdapter(services.RAMLPropertyService).isMerged() && node.parent() == null) {
+            var nm = _.find(llNode.children(), x => x.key() == prop.nameId());
+            if (nm) {
+                var ks = nm.keyStart();
+                var ke = nm.keyEnd();
+                if (ks > 0 && ke > ks) {
+                    st = ks;
+                    et = ke;
+                }
             }
 
         }
@@ -3979,8 +4034,14 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,prop:hl
     }
 };
 
-var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : hl.IParseResult,
-                                   issueCode, isWarning, message,path:boolean) : hl.ValidationIssue {
+var localLowLevelError = function (
+    node:ll.ILowLevelASTNode,
+    highLevelAnchor : hl.IParseResult,
+    issueCode,
+    isWarning,
+    message,path:boolean,
+    range?:def.rt.tsInterfaces.RangeObject) : hl.ValidationIssue {
+
     var contents = node.unit() && node.unit().contents();
     var contentLength = contents && contents.length;
 
@@ -4024,17 +4085,19 @@ export function createIssue1(
     messageEntry:any,
     parameters: any,
     node:hl.IParseResult,
-    isWarning:boolean=false):hl.ValidationIssue {
+    isWarning:boolean=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue {
 
     var msg = applyTemplate(<Message>messageEntry,parameters);
-    return createIssue(messageEntry.code, msg, node, isWarning);
+    return createIssue(messageEntry.code, msg, node, isWarning, internalRange);
 }
 
 export function createIssue(
     issueCode:string,
     message:string,
     node:hl.IParseResult,
-    isWarning:boolean=false):hl.ValidationIssue{
+    isWarning:boolean=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -4042,7 +4105,8 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                original=localError(node,issueCode,isWarning,message,true,pr);
+                original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange);
+                internalRange = null;
                 //message +="(template expansion affected)"
             }
             node=node.parent();
@@ -4054,7 +4118,8 @@ export function createIssue(
         pr=node.property();
 
         if (node.lowLevel().unit() != node.root().lowLevel().unit()) {
-            original=localError(node,issueCode,isWarning,message,true,pr);
+            original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange);
+            internalRange = null;
             var v=node.lowLevel().unit();
             if (v) {
                 //message = message + " " + v.path();
@@ -4085,7 +4150,7 @@ export function createIssue(
             node=node.parent();
         }
     }
-    var error=localError(node, issueCode, isWarning, message,false,pr);
+    var error=localError(node, issueCode, isWarning, message,false,pr,null,internalRange);
     if (original) {
         original.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
@@ -4099,22 +4164,34 @@ export function createIssue(
     return error;
 }
 
-function createLLIssue1(messageEntry:any, parameters:any, node:ll.ILowLevelASTNode,
-                        rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false){
+function createLLIssue1(
+    messageEntry:any,
+    parameters:any,
+    node:ll.ILowLevelASTNode,
+    rootCalculationAnchor: hl.IParseResult,
+    isWarning:boolean=false,
+    p=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject){
 
     var msg = applyTemplate(<Message>messageEntry,parameters);
-    return createLLIssue(messageEntry.code, msg, node, rootCalculationAnchor,isWarning,p);
+    return createLLIssue(messageEntry.code, msg, node, rootCalculationAnchor,isWarning,p,internalRange);
 }
 
-export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevelASTNode,
-                              rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false):hl.ValidationIssue{
+export function createLLIssue(
+    issueCode:string,
+    message:string,
+    node:ll.ILowLevelASTNode,
+    rootCalculationAnchor: hl.IParseResult,
+    isWarning:boolean=false,
+    p=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue{
     var original=null;
 
     if (node) {
 
         var rootUnit = rootCalculationAnchor.root().lowLevel().unit();
         if (rootCalculationAnchor.lowLevel().unit() != rootUnit) {
-            original=localLowLevelError(node,rootCalculationAnchor,issueCode,isWarning,message,true);
+            original=localLowLevelError(node,rootCalculationAnchor,issueCode,isWarning,message,true,internalRange);
             var v=rootCalculationAnchor.lowLevel().unit();
             if (v) {
                 message = message + " " + v.path();
@@ -4125,13 +4202,14 @@ export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevel
         }
     }
     if (original){
+        internalRange = null;
         if (rootCalculationAnchor.property()&&rootCalculationAnchor.property().nameId()
             ==universes.Universe10.FragmentDeclaration.properties.uses.name&&rootCalculationAnchor.parent()!=null){
             rootCalculationAnchor=rootCalculationAnchor.parent();
         }
         node = rootCalculationAnchor.lowLevel();
     }
-    var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p);
+    var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p,internalRange);
     if (original) {
         original.extras.push(error);
         if(node.valueKind()==yaml.Kind.INCLUDE_REF) {
