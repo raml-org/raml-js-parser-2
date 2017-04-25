@@ -3342,7 +3342,11 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
         var schema=this.aquireSchema(node);
         if (schema){
-            schema.validate(node.value(),cb,strictValidation);
+            let arg = pObj;
+            if(typeof arg == "object"){
+                arg = node.value();
+            }
+            schema.validate(arg,cb,strictValidation);
         }
     }
 
@@ -3460,7 +3464,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     cb.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:so.message},node,!strict));
                                     return;
                                 }
-                                so.validateObject(pObje);
+                                so.validate(pObje);
                             }catch(e){
                                 var illegalRequiredMessageStart = "Cannot assign to read only property '__$validated' of ";
                                 if (e.message && e.message.indexOf(illegalRequiredMessageStart) == 0){
