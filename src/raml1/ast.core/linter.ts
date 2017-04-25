@@ -3949,18 +3949,38 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
     var st = llNode.start();
     var et = llNode.end();
     if(internalRange){
+        if(llNode.valueKind() == yaml.Kind.INCLUDE_REF){
+            let includedUnit = llNode.unit().resolve(llNode.includePath());
+            let lineMapper = includedUnit.lineMapper();
+            let sp = lineMapper.toPosition(internalRange.start.line,internalRange.start.column);
+            let ep = lineMapper.toPosition(internalRange.end.line,internalRange.end.column);
+            let result = {
+                code: c,
+                isWarning: w,
+                message: message,
+                node: null,
+                start: sp.position,
+                end: ep.position,
+                path: includedUnit.path(),
+                extras:[],
+                unit: includedUnit
+            };
+            let trace = localError(node,c, w, message,p,prop,positionsSource);
+            result.extras.push(trace);
+            return result;
+        }
         let lineMapper = llNode.unit().lineMapper();
         let vs = llNode.valueStart();
         let aNode = llNode.actual();
         let aValNode = aNode.value;
-        let rawVal = aValNode.rawValue;
+        let rawVal = aValNode.rawValue;;
 
         let vsPos = lineMapper.position(vs);
         let aSCol:number;
         let aECol:number;
         let aSLine = vsPos.line+internalRange.start.line;
         let aELine = vsPos.line+internalRange.end.line;
-        if(rawVal.charAt(0)=="|"){
+        if(rawVal && typeof rawVal == "string" && rawVal.charAt(0)=="|"){
             //let keyCol = lineMapper.position(llNode.keyStart()).column;
             let i0 = rawVal.indexOf("\n");
             let i1 = rawVal.indexOf("\n",i0+1);
