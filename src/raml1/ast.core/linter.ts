@@ -1601,8 +1601,7 @@ class NormalValidator implements PropertyValidator{
         if (validation instanceof Error){
             if (!(<any>validation).canBeRef){
                 if(ValidationError.isInstance(validation)){
-                    var ve = <ValidationError>validation;
-                    v.accept(createIssue2(ve,node));
+                    v.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
                     v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node,(<any>validation).isWarning));
@@ -1627,12 +1626,21 @@ class NormalValidator implements PropertyValidator{
                     }
                     var decl = (<hlimpl.ASTPropImpl>node).findReferencedValue();
                     if (decl instanceof Error) {
-                        if(ValidationError.isInstance(decl)){
-                            var ve = <ValidationError>decl;
-                            v.accept(createIssue2(ve,node));
-                        }
-                        else {
-                            v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>decl).message}, node));
+                        var c = (<hlimpl.ASTPropImpl>node).findReferenceDeclaration();
+                        if(c) {
+                            let resultingIssue:hl.ValidationIssue;
+                            let trace:hl.ValidationIssue;
+                            if (ValidationError.isInstance(decl)) {
+                                let ve = <ValidationError>decl;
+                                resultingIssue = createIssue2(ve, c);
+                                trace = createIssue1(ve.messageEntry, {msg: ve.message}, node);
+                            }
+                            else {
+                                resultingIssue = createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>decl).message}, c);
+                                trace = createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>decl).message}, node);
+                            }
+                            resultingIssue.extras.push(trace);
+                            v.accept(resultingIssue);
                         }
                     }
                     if (!decl){
@@ -1648,8 +1656,7 @@ class NormalValidator implements PropertyValidator{
                         }
                         if (validation instanceof Error&&vl){
                             if(ValidationError.isInstance(validation)){
-                                var ve = <ValidationError>validation;
-                                v.accept(createIssue2(ve,node));
+                                v.accept(createIssue2(<ValidationError>validation,node));
                             }
                             else {
                                 v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
@@ -2283,8 +2290,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             var validation = isValid(pr.range(),node.parent(), valueKey, pr);
             if (validation instanceof Error) {
                 if(ValidationError.isInstance(validation)){
-                    var ve = <ValidationError>validation;
-                    cb.accept(createIssue2(ve,node));
+                    cb.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
                     cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
@@ -2624,7 +2630,7 @@ function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):NodeMappingResult{
     }
     return {
         node: resultNode,
-        internalPathUsed: true
+        internalPathUsed: internalPathUsed
     };
 }
 
@@ -3502,6 +3508,10 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                 if (e.message=="Object.keys called on non-object"){
                                     return;
                                 }
+                                if(ValidationError.isInstance(e)){
+                                    cb.accept(createIssue2(<ValidationError>e,node,!strict));
+                                    return;
+                                }
                                 cb.accept(createIssue1(messageRegistry.EXAMPLE_SCHEMA_FAILURE,
                                     {msg:e.message},node,!strict));
                                 return;
@@ -3604,8 +3614,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                         pObj=JSON.parse(vl);
                     }catch (e){
                         if(ValidationError.isInstance(e)){
-                            var ve = <ValidationError>e;
-                            cb.accept(createIssue2(ve,node,!strictValidation));
+                            cb.accept(createIssue2(<ValidationError>e,node,!strictValidation));
                         }
                         else {
                             cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
@@ -3968,6 +3977,8 @@ function getMediaType2(node:hl.IAttribute){
     return null;
 }
 
+var offsetRegexp = /^[ ]*/;
+
 var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
     prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode,internalRange?:def.rt.tsInterfaces.RangeObject) {
     var llNode = positionsSource ? positionsSource : node.lowLevel();
@@ -3976,7 +3987,16 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
 
     var st = llNode.start();
     var et = llNode.end();
-    if(internalRange){
+
+    let aNode = llNode.actual();
+    let aValNode = aNode && aNode.value;
+    let rawVal = aValNode && aValNode.rawValue;;
+
+    let valueKind = llNode.valueKind();
+    if(valueKind==yaml.Kind.INCLUDE_REF){
+        valueKind = node.lowLevel().resolvedValueKind();
+    }
+    if(internalRange && valueKind == yaml.Kind.SCALAR){
         if(llNode.valueKind() == yaml.Kind.INCLUDE_REF){
             let includedUnit = llNode.unit().resolve(llNode.includePath());
             let lineMapper = includedUnit.lineMapper();
@@ -3999,9 +4019,6 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
         }
         let lineMapper = llNode.unit().lineMapper();
         let vs = llNode.valueStart();
-        let aNode = llNode.actual();
-        let aValNode = aNode.value;
-        let rawVal = aValNode.rawValue;;
 
         let vsPos = lineMapper.position(vs);
         let aSCol:number;
@@ -4010,9 +4027,12 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
         let aELine = vsPos.line+internalRange.end.line;
         if(rawVal && typeof rawVal == "string" && rawVal.charAt(0)=="|"){
             //let keyCol = lineMapper.position(llNode.keyStart()).column;
-            let i0 = rawVal.indexOf("\n");
-            let i1 = rawVal.indexOf("\n",i0+1);
-            let off = rawVal.substring(i0,i1).replace(/[^ ]/g,"").length;
+            let i0 = rawVal.indexOf("\n")+1;
+            let i1 = rawVal.indexOf("\n",i0);
+            if(i1<0){
+                i1 = rawVal.length;
+            }
+            let off = offsetRegexp.exec(rawVal.substring(i0,i1))[0].length;
             aSCol = off + internalRange.start.column;
             aECol = off + internalRange.end.column;
             aSLine++;
@@ -4136,7 +4156,11 @@ function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolea
     let internalPath = ve.internalPath;
     let actualNode = node;
     let internalPathUsed = false;
-    if(internalPath){
+    let valueKind = node.lowLevel().valueKind();
+    if(valueKind==yaml.Kind.INCLUDE_REF){
+        valueKind = node.lowLevel().resolvedValueKind();
+    }
+    if(internalPath && valueKind != yaml.Kind.SCALAR){
         let ivp = def.rt.toValidationPath(internalPath);
         if(ivp){
             let n = findElementAtPath(node,ivp);
