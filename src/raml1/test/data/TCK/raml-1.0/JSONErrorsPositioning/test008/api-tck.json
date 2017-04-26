@@ -60,13 +60,13 @@
       "range": {
         "start": {
           "line": 29,
-          "column": 23,
-          "position": 739
+          "column": 22,
+          "position": 738
         },
         "end": {
-          "line": 30,
-          "column": 0,
-          "position": 754
+          "line": 29,
+          "column": 37,
+          "position": 753
         }
       }
     }

@@ -47,13 +47,13 @@
       "range": {
         "start": {
           "line": 13,
-          "column": 20,
-          "position": 312
+          "column": 19,
+          "position": 311
         },
         "end": {
           "line": 13,
-          "column": 74,
-          "position": 366
+          "column": 73,
+          "position": 365
         }
       },
       "isWarning": true

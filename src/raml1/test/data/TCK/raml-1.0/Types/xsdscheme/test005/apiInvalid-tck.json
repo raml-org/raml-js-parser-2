@@ -33,8 +33,8 @@
   },
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: file_0.xml:1: element country_name1: Schemas validity error : Element 'country_name1': This element is not expected. Expected is ( country_name ).",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: file_0.xml:1: element country_name1: Schemas validity error : Element 'country_name1': This element is not expected. Expected is ( country_name ).",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
