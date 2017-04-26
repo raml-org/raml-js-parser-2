@@ -1396,6 +1396,8 @@ class ValidationError extends Error{
 
     public internalRange:def.rt.tsInterfaces.RangeObject;
 
+    public internalPath: string;
+
     public additionalErrors: ValidationError[];
 
     public static isInstance(instance : any) : instance is ValidationError {
@@ -1600,7 +1602,7 @@ class NormalValidator implements PropertyValidator{
             if (!(<any>validation).canBeRef){
                 if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
-                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node, (<any>validation).isWarning,ve.internalRange));
+                    v.accept(createIssue2(ve,node));
                 }
                 else {
                     v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node,(<any>validation).isWarning));
@@ -1627,7 +1629,7 @@ class NormalValidator implements PropertyValidator{
                     if (decl instanceof Error) {
                         if(ValidationError.isInstance(decl)){
                             var ve = <ValidationError>decl;
-                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning, ve.internalRange));
+                            v.accept(createIssue2(ve,node));
                         }
                         else {
                             v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>decl).message}, node));
@@ -1647,7 +1649,7 @@ class NormalValidator implements PropertyValidator{
                         if (validation instanceof Error&&vl){
                             if(ValidationError.isInstance(validation)){
                                 var ve = <ValidationError>validation;
-                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning, ve.internalRange));
+                                v.accept(createIssue2(ve,node));
                             }
                             else {
                                 v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
@@ -2282,7 +2284,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             if (validation instanceof Error) {
                 if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
-                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node,validation.isWarning, ve.internalRange));
+                    cb.accept(createIssue2(ve,node));
                 }
                 else {
                     cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
@@ -2516,7 +2518,7 @@ class FixedFacetsValidator implements NodeValidator {
 
             var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
-                validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath( node,e), false)));
+                validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath(node,e).node, false)));
             }
         }
     }
@@ -2525,27 +2527,29 @@ class FixedFacetsValidator implements NodeValidator {
 class TypeDeclarationValidator implements NodeValidator{
 
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor) {
-        var nc=node.definition();
-        var rof = node.parsedType();
-        var validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
+        let nc=node.definition();
+        let rof = node.parsedType();
+        let validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
         if (!validateObject.isOk()) {
             for( var e of validateObject.getErrors()){
-                var n = extractLowLevelNode(e);
-                var issue;
+                let n = extractLowLevelNode(e);
+                let issue;
+                let mappingResult = mapPath( node,e);
+                let internalRange = mappingResult.internalPathUsed ? null : e.getInternalRange();
                 if(n){
-                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mapPath( node,e), e.isWarning(),true,e.getInternalRange());
+                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mappingResult.node, e.isWarning(),true,internalRange);
                 }
                 else {
-                    issue = createIssue(e.getCode(), e.getMessage(), mapPath(node, e), e.isWarning(),e.getInternalRange());
+                    issue = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning(),internalRange);
                 }
                 v.accept(issue);
             };
         }
 
-        var examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
+        let examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
 
         if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
-            issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
+            let issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
 
             v.accept(issue);
         }
@@ -2599,9 +2603,29 @@ class TypeDeclarationValidator implements NodeValidator{
         "Extension" : true
     };
 }
-function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{
+
+interface NodeMappingResult {
+
+    node: hl.IParseResult,
+    internalPathUsed: boolean
+}
+
+function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):NodeMappingResult{
     var src= e.getValidationPath();
-    return findElementAtPath(node,src);
+    let resultNode = findElementAtPath(node,src);
+    let internalPath = e.getInternalPath();
+    let internalPathUsed = false;
+    if(internalPath){
+        let internalNode = findElementAtPath(resultNode,internalPath);
+        if(internalNode && internalNode != resultNode){
+            resultNode = internalNode;
+            internalPathUsed = true;
+        }
+    }
+    return {
+        node: resultNode,
+        internalPathUsed: true
+    };
 }
 
 function extractLowLevelNode(e:rtypes.IStatus):ll.ILowLevelASTNode{
@@ -3581,7 +3605,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                     }catch (e){
                         if(ValidationError.isInstance(e)){
                             var ve = <ValidationError>e;
-                            cb.accept(createIssue1(ve.messageEntry,ve.parameters, node, !strictValidation,ve.internalRange));
+                            cb.accept(createIssue2(ve,node,!strictValidation));
                         }
                         else {
                             cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
@@ -4102,7 +4126,28 @@ var localLowLevelError = function (
 
 
 export function toIssue(error: any, node: hl.IHighLevelNode): hl.ValidationIssue {
-    return createIssue(error.getCode(), error.getMessage(), mapPath(node, error), error.isWarning());
+    return createIssue(error.getCode(), error.getMessage(), mapPath(node, error).node, error.isWarning());
+}
+
+function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolean){
+
+    let isWarning = _isWarning != null ? _isWarning : ve.isWarning;
+
+    let internalPath = ve.internalPath;
+    let actualNode = node;
+    let internalPathUsed = false;
+    if(internalPath){
+        let ivp = def.rt.toValidationPath(internalPath);
+        if(ivp){
+            let n = findElementAtPath(node,ivp);
+            if(n){
+                actualNode = n;
+                internalPathUsed = true;
+            }
+        }
+    }
+    let internalRange = internalPathUsed ? null : ve.internalRange;
+    return createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
 }
 
 export function createIssue1(

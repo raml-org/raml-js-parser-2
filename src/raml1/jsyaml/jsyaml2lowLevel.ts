@@ -2632,6 +2632,28 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         if(!this.unit()){
             return false;
         }
+        let hlNode:highlevel.IParseResult;
+        let n:lowlevel.ILowLevelASTNode = this;
+        while(!hlNode && n){
+            hlNode = n.highLevelNode();
+            n = n.parent();
+        }
+        if(hlNode){
+           let def:highlevel.ITypeDefinition;
+           if(hlNode.isElement()){
+               def = hlNode.asElement().definition();
+           }
+           else{
+               let p = hlNode.property();
+               def = p && (p.domain() || p.range());
+           }
+           if(def){
+               let ver = def.universe().version();
+               if(ver == "RAML08"){
+                   return false;
+               }
+           }
+        }
         var mappings;
         if(this.kind() == yaml.Kind.MAPPING && this.valueKind() == yaml.Kind.MAP ) {
             mappings = this._node.value.mappings;
