@@ -5134,58 +5134,156 @@
   },
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type string but found type null string,null, Expected type string but found type null string,null",
-      "path": "api.raml",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type string but found type null",
+      "path": "examples/media-example.json",
       "range": {
         "start": {
-          "line": 56,
-          "column": 14,
-          "position": 2454
+          "line": 31,
+          "column": 8,
+          "position": 918
         },
         "end": {
-          "line": 56,
-          "column": 21,
-          "position": 2461
-        }
-      },
-      "isWarning": true
-    },
-    {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type object but found type null object,null",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 151,
-          "column": 16,
-          "position": 5641
-        },
-        "end": {
-          "line": 151,
+          "line": 31,
           "column": 23,
-          "position": 5648
+          "position": 933
         }
       },
-      "isWarning": true
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type string but found type null",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 56,
+              "column": 14,
+              "position": 2454
+            },
+            "end": {
+              "line": 56,
+              "column": 21,
+              "position": 2461
+            }
+          },
+          "isWarning": true
+        }
+      ]
     },
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type object but found type null object,null",
-      "path": "api.raml",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type string but found type null",
+      "path": "examples/media-example.json",
       "range": {
         "start": {
-          "line": 427,
-          "column": 12,
-          "position": 15288
+          "line": 69,
+          "column": 8,
+          "position": 2195
         },
         "end": {
-          "line": 427,
-          "column": 19,
-          "position": 15295
+          "line": 69,
+          "column": 24,
+          "position": 2211
         }
       },
-      "isWarning": true
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type string but found type null",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 56,
+              "column": 14,
+              "position": 2454
+            },
+            "end": {
+              "line": 56,
+              "column": 21,
+              "position": 2461
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type object but found type null",
+      "path": "examples/subscriptionsDelete-example.json",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 40
+        },
+        "end": {
+          "line": 4,
+          "column": 15,
+          "position": 53
+        }
+      },
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type object but found type null",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 427,
+              "column": 12,
+              "position": 15288
+            },
+            "end": {
+              "line": 427,
+              "column": 19,
+              "position": 15295
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type object but found type null",
+      "path": "examples/tags-recent-media-example.json",
+      "range": {
+        "start": {
+          "line": 73,
+          "column": 8,
+          "position": 2439
+        },
+        "end": {
+          "line": 73,
+          "column": 24,
+          "position": 2455
+        }
+      },
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type object but found type null",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 151,
+              "column": 16,
+              "position": 5641
+            },
+            "end": {
+              "line": 151,
+              "column": 23,
+              "position": 5648
+            }
+          },
+          "isWarning": true
+        }
+      ]
     }
   ]
 }

@@ -41,13 +41,13 @@
       "path": "invalid.json",
       "range": {
         "start": {
-          "line": 4,
-          "column": 8,
+          "line": 2,
+          "column": 2,
           "position": 32
         },
         "end": {
-          "line": 8,
-          "column": 2,
+          "line": 4,
+          "column": 3,
           "position": 78
         }
       },

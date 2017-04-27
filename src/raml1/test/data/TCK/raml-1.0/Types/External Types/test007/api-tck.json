@@ -94,19 +94,19 @@
       }
     },
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type object but found type integer object,integer",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type object but found type integer",
       "path": "api.raml",
       "range": {
         "start": {
           "line": 22,
-          "column": 6,
-          "position": 462
+          "column": 9,
+          "position": 465
         },
         "end": {
           "line": 22,
-          "column": 7,
-          "position": 463
+          "column": 10,
+          "position": 466
         }
       }
     }

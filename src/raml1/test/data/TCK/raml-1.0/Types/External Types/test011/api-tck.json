@@ -67,18 +67,18 @@
   "errors": [
     {
       "code": "INVALID_JSON_SCHEMA_DETAILS",
-      "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array' required,array",
+      "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array'",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 4,
-          "column": 2,
-          "position": 39
+          "line": 9,
+          "column": 8,
+          "position": 176
         },
         "end": {
-          "line": 4,
-          "column": 15,
-          "position": 52
+          "line": 12,
+          "column": 9,
+          "position": 252
         }
       },
       "isWarning": true

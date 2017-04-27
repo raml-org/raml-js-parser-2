@@ -27,20 +27,39 @@
   "errors": [
     {
       "code": "INVALID_JSON_SCHEMA_DETAILS",
-      "message": "Invalid JSON schema: Unexpected token p",
-      "path": "api.raml",
+      "message": "Invalid JSON schema: Cannot tokenize symbol 'p'",
+      "path": "files/accountWrong.json",
       "range": {
         "start": {
-          "line": 4,
-          "column": 4,
-          "position": 58
+          "line": 1,
+          "column": 2,
+          "position": 4
         },
         "end": {
-          "line": 4,
-          "column": 8,
-          "position": 62
+          "line": 1,
+          "column": 3,
+          "position": 5
         }
-      }
+      },
+      "trace": [
+        {
+          "code": "INVALID_JSON_SCHEMA_DETAILS",
+          "message": "Invalid JSON schema: Cannot tokenize symbol 'p'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 4,
+              "column": 4,
+              "position": 58
+            },
+            "end": {
+              "line": 4,
+              "column": 8,
+              "position": 62
+            }
+          }
+        }
+      ]
     }
   ]
 }
