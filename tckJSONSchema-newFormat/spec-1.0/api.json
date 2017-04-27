@@ -26,7 +26,7 @@
               "description": "Short plain-text label for the API"
             },
             "description": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A substantial, human-friendly description of the API. Its value is a string and MAY be formatted using markdown."
             },
             "version": {
@@ -34,7 +34,7 @@
               "description": "The version of the API, e.g. 'v1'"
             },
             "baseUri": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
             },
             "baseUriParameters": {

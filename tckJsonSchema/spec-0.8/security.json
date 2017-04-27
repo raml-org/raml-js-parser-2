@@ -25,7 +25,7 @@
                     "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
                 },
                 "description":{
-                    "type": "string",
+                    "type": [ "string", "null" ],
                     "description": "The description attribute MAY be used to describe a security schemes property."
                 },
                 "describedBy":{"$ref": "#/definitions/SecuritySchemePart08"},

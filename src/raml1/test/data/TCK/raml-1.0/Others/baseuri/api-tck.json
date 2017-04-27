@@ -3,7 +3,7 @@
   "type": "Api",
   "specification": {
     "title": "A",
-    "baseUri": {}
+    "baseUri": null
   },
   "errors": []
 }
