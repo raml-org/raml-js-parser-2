@@ -213,7 +213,7 @@ export class TCKDumper {
             var isValueType = pRange.isValueType();
             if (isValueType && attrNode['value']) {
                 var val = attrNode['value']();
-                if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
+                if (val == null || typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
                     return val;
                 }
             }

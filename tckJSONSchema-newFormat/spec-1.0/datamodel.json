@@ -33,7 +33,7 @@
               "description": "Example identifier, if specified"
             },
             "description": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A longer, human-friendly description of the example"
             },
             "displayName": {
@@ -253,7 +253,7 @@
               "description": "Provides default value for a property"
             },
             "description": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A longer, human-friendly description of the type"
             },
             "allowedTargets": {

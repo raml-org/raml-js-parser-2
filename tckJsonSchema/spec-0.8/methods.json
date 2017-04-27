@@ -152,7 +152,7 @@
                   "additionalProperties": false
               },
               "description":{
-                  "type": "string"
+                  "type": [ "string", "null" ]
               }
           }
       },

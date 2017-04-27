@@ -88,7 +88,7 @@
                     "additionalProperties": false
                 },
                 "description":{
-                    "type": "string",
+                    "type": ["string", "null"],
                     "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
                 },
                 "absoluteUri": {
@@ -172,7 +172,7 @@
                     }
                 },
                 "description": {
-                    "type": "string",
+                    "type": ["string", "null"],
                     "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
                 },
                 "isScalar": {

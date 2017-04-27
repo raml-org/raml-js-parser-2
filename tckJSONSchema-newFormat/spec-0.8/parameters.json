@@ -47,7 +47,7 @@
           "description": "The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated."
         },
         "description":{
-          "type": "string",
+          "type": ["string", "null"],
           "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
         },
         "__METADATA__": {"type": "object"}
