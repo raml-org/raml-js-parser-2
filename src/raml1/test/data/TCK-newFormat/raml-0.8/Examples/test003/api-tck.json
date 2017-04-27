@@ -56,24 +56,5 @@
   },
   "ramlVersion": "RAML08",
   "type": "Api",
-  "errors": [
-    {
-      "code": "TYPE_EXPECTED",
-      "message": "string is expected",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 17,
-          "column": 8,
-          "position": 321
-        },
-        "end": {
-          "line": 17,
-          "column": 15,
-          "position": 328
-        }
-      },
-      "isWarning": true
-    }
-  ]
+  "errors": []
 }

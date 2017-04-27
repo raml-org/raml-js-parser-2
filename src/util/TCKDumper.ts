@@ -216,7 +216,14 @@ export class TCKDumper {
                 if (val == null || typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
                     return val;
                 }
+                else if (pRange.isAssignableFrom(universe.Universe08.StringType.name)&&hlImpl.StructuredValue.isInstance(val)) {
+                    var sVal = (<hlImpl.StructuredValue>val);
+                    var llNode = sVal.lowLevel();
+                    val = llNode ? llNode.dumpToObject() : null;
+                    return val;
+                }
             }
+
             var obj = this.dumpProperties(props, node);
 
             this.nodeTransformers.forEach(x=> {

@@ -328,7 +328,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/custom/res08.raml"));
     })
     it ("example is string 0.8" ,function(){
-        testErrors(util.data("parser/examples/ex44.raml"),["Scalar is expected here","'example' value should be a string"]);
+        testErrors(util.data("parser/examples/ex44.raml"),[ "Scalar is expected here" ]);
     })
     it ("enums values restriction" ,function(){
         testErrors(util.data("parser/examples/ex37.raml"));

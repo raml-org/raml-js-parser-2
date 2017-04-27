@@ -1246,14 +1246,14 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
         if (isExampleProp(node.property())||isDefaultValueProp(node.property())){
-            if (ramlVersion=="RAML08"){
-                var llv=node.lowLevel().value();
-                if (node.lowLevel().children().length>0){
-                    var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
-                    v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
-                        {propName: valName},node,false));
-                }
-            }
+            // if (ramlVersion=="RAML08"){
+            //     var llv=node.lowLevel().value();
+            //     if (node.lowLevel().children().length>0){
+            //         var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
+            //         v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
+            //             {propName: valName},node,false));
+            //     }
+            // }
             new ExampleAndDefaultValueValidator().validate(node, v);
         }
         if (isSecuredBy(node.property())){
