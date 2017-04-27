@@ -10,7 +10,7 @@
         {
           "properties": {
             "description": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A longer, human-friendly description of the response"
             },
             "headers": {

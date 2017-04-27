@@ -1,0 +1,8 @@
+{
+  "specification": {
+    "title": "A"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}
