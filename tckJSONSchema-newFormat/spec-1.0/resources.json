@@ -58,7 +58,8 @@
                         "__METADATA__": {"type": "object"}
                     }
                 }
-            ]
+            ],
+            "description":"Web resource"
         },
         "ResourceTypeFragment": {
             "type": "object",
@@ -91,6 +92,7 @@
                     }
                 }
             ],
+            "description": "Resource pattern which can be defined and then applied to multiple resources",
             "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
             },

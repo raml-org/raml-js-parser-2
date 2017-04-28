@@ -74,6 +74,7 @@
                     }
                 }
             ],
+            "description": "RESTful API methods are operations that are performed on a resource.",
             "required": ["method"]
         },
         "MethodBase10": {

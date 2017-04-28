@@ -27,6 +27,7 @@
         "errors": {"$ref": "spec-1.0/api.json#/definitions/RAML10/properties/errors"},
         "specification": { "$ref": "spec-1.0/api.json#/definitions/Api10" }
       },
+      "description": "API definition.",
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
@@ -170,6 +171,7 @@
         "specification": {"$ref": "spec-0.8/api.json#/definitions/Api08"},
         "errors": {"$ref": "spec-0.8/api.json#/definitions/RAML08/properties/errors"}
       },
+      "description": "API definition.",
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     }
