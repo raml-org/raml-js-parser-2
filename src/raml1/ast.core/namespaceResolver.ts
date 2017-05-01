@@ -141,6 +141,7 @@ export class NamespaceResolver{
 
             var info = usesInfoArray[i];
             var unit = info.unit;
+            let unitAbsPath = unit.absolutePath();
             var node = unit.ast();
             if(!node || node.kind() == yaml.Kind.SCALAR){
                 continue;
@@ -151,17 +152,19 @@ export class NamespaceResolver{
                     return;
                 }
                 var children = x.children();
+                var nodeUnit = x.unit();
+                var localPath = nodeUnit.absolutePath();
 
                 if(x.parent()==null) {
-
-                    var nodeUnit = x.unit();
-                    var localPath = nodeUnit.absolutePath();
                     if(visited[localPath]){
                         return;
                     }
                     visited[localPath] = true;
-                    if(localPath!=unit.absolutePath()){
-                        this._hasFragments[unit.absolutePath()] = true;
+                    if(localPath!=unitAbsPath){
+                        let fLine = hlImpl.ramlFirstLine(nodeUnit.contents());
+                        if(fLine && fLine.length==3 && fLine[1] == "1.0") {
+                            this._hasFragments[unitAbsPath] = true;
+                        }
                     }
                     var map = this.pathMap(nodeUnit);
                     if(map) {
@@ -210,20 +213,28 @@ export class NamespaceResolver{
                                 usedUnits[ui.absolutePath()] = true;
                             }
                         }
-                    }                 
+                    }
                 }
                 children.forEach(y=>{
-                    if(y.includedFrom()){
-                        y=y.parent();
+                    if(y.valueKind()==yaml.Kind.INCLUDE_REF){
+                        let includedUnit = nodeUnit.resolve(y.includePath());
+                        if(includedUnit) {
+                            if (!includedUnit.isRAMLUnit()) {
+                                return;
+                            }
+                            visit(includedUnit.ast());
+                        }
                     }
-                    visit(y);
+                    else {
+                        visit(y);
+                    }
                 });
                 if(x.parent()==null){
-                    visited[x.unit().absolutePath()] = false;
+                    visited[localPath] = false;
                 }
 
             };
-            visit(unit.ast());
+            visit(node);
         }
         var namespaces:any={};
         for(var key of Object.keys(result)){
@@ -373,7 +384,14 @@ export class NamespaceResolver{
     }
     
     hasFragments(unit:ll.ICompilationUnit):boolean{
-        this.calculateExpandedNamespaces(unit);
+        if(!unit.isRAMLUnit()){
+            return false;
+        }
+        let fLine = hlImpl.ramlFirstLine(unit.contents());
+        if(!fLine || fLine.length < 2 || fLine[1] != "1.0"){
+            return false;
+        }
+        this.expandedPathMap(unit);
         return this._hasFragments[unit.absolutePath()] ? true : false;
     }
 

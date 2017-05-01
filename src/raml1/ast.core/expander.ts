@@ -94,8 +94,6 @@ export class TraitsAndResourceTypesExpander {
 
     private ramlVersion:string;
 
-    private namespaceResolver:namespaceResolver.NamespaceResolver = new namespaceResolver.NamespaceResolver();
-
     expandTraitsAndResourceTypes(
         api:RamlWrapper.Api|RamlWrapper08.Api,
         rp:referencePatcher.ReferencePatcher = null,
@@ -113,7 +111,7 @@ export class TraitsAndResourceTypesExpander {
 
         var unit = llNode.unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
-        var hasTemplates = this.namespaceResolver.hasTemplates(llNode.unit());
+        var hasTemplates = (<jsyaml.Project>unit.project()).namespaceResolver().hasTemplates(llNode.unit());
         if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
@@ -383,7 +381,7 @@ export class TraitsAndResourceTypesExpander {
             if (transformer) {
                 value = transformer.transform(value).value;
             }
-            var _node = referencePatcher.getDeclaration(value,propName,this.namespaceResolver,unitsChain);
+            var _node = referencePatcher.getDeclaration(value,propName,unitsChain);
             if (_node) {
                 var node = <any>_node.wrapperNode();
                 return {
@@ -405,7 +403,7 @@ export class TraitsAndResourceTypesExpander {
             var scalarParams:{[key:string]:string} = {};
             var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
 
-            var _node = referencePatcher.getDeclaration(name,propName,this.namespaceResolver,unitsChain);
+            var _node = referencePatcher.getDeclaration(name,propName,unitsChain);
             if (_node) {
                 var node = <any>_node.wrapperNode();
                 if (this.ramlVersion == 'RAML08') {

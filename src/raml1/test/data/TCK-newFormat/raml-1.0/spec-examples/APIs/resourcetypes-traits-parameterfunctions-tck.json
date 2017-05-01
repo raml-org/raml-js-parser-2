@@ -87,9 +87,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "type": {
-                    "name": "type",
-                    "displayName": "type",
+                  "body": {
+                    "name": "body",
+                    "displayName": "body",
                     "type": [
                       "<<resourcePathName>>"
                     ],
@@ -113,9 +113,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "type": {
-                    "name": "type",
-                    "displayName": "type",
+                  "body": {
+                    "name": "body",
+                    "displayName": "body",
                     "type": [
                       "<<resourcePathName | !singularize>>"
                     ],
@@ -144,9 +144,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "type": {
-                    "name": "type",
-                    "displayName": "type",
+                  "body": {
+                    "name": "body",
+                    "displayName": "body",
                     "type": [
                       "<<resourcePathName>>"
                     ],

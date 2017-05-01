@@ -121,8 +121,6 @@ export class TraitsAndResourceTypesExpander {
 
     private ramlVersion:string;
 
-    private namespaceResolver:namespaceResolver.NamespaceResolver = new namespaceResolver.NamespaceResolver();
-
     expandTraitsAndResourceTypes(
         api:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher = null,
@@ -437,7 +435,7 @@ export class TraitsAndResourceTypesExpander {
         var scalarParams:{[key:string]:string} = {};
         var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
 
-        var node = referencePatcher.getDeclaration(name, propName, this.namespaceResolver, unitsChain);
+        var node = referencePatcher.getDeclaration(name, propName, unitsChain);
         if (node) {
             var ds = new DefaultTransformer(<any>r, null, unitsChain);
             if (sv) {
