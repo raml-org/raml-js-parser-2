@@ -1,0 +1,100 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "MyType": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\", \"required\": true }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType",
+                "example": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\", \"required\": true }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res"
+        ],
+        "absoluteUri": "/res"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 8,
+          "position": 153
+        },
+        "end": {
+          "line": 12,
+          "column": 15,
+          "position": 160
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array'",
+      "path": "schema.json",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 23,
+          "position": 260
+        },
+        "end": {
+          "line": 8,
+          "column": 71,
+          "position": 308
+        }
+      },
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "INVALID_JSON_SCHEMA_DETAILS",
+          "message": "Invalid JSON schema: Keyword 'required' is expected to be of type 'array'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 4,
+              "column": 4,
+              "position": 41
+            },
+            "end": {
+              "line": 4,
+              "column": 10,
+              "position": 47
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+          ],
+          "examples": [
+            {
+              "value": "{\"arrayProp\":[{\"prop1\":13,\"prop2\": true},{\"prop1\": 13\"prop2\":false}]}",
+              "strict": true,
+              "name": "ex1"
+            },
+            {
+              "value": "{\"arrayProp\":[{\"prop1\": 13,\"prop2\": false},{\"prop1\": 13,\"prop2\": false}]}",
+              "strict": true,
+              "name": "ex2",
+              "structuredValue": {
+                "arrayProp": [
+                  {
+                    "prop1": 13,
+                    "prop2": false
+                  },
+                  {
+                    "prop1": 13,
+                    "prop2": false
+                  }
+                ]
+              }
+            }
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '\"prop2\"'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 65,
+          "position": 370
+        },
+        "end": {
+          "line": 8,
+          "column": 72,
+          "position": 377
+        }
+      }
+    }
+  ]
+}

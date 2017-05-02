@@ -1,0 +1,124 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+          ],
+          "examples": [
+            {
+              "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": \"stringValue\"\n    }\n  ]\n}\n",
+              "strict": true,
+              "name": "ex1",
+              "structuredValue": {
+                "arrayProp": [
+                  {
+                    "prop1": 13,
+                    "prop2": true
+                  },
+                  {
+                    "prop1": 13,
+                    "prop2": "stringValue"
+                  }
+                ]
+              }
+            },
+            {
+              "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
+              "strict": true,
+              "name": "ex2"
+            }
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type string",
+      "path": "example1.json",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 6,
+          "position": 102
+        },
+        "end": {
+          "line": 8,
+          "column": 28,
+          "position": 124
+        }
+      },
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type boolean but found type string",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 22,
+              "column": 6,
+              "position": 486
+            },
+            "end": {
+              "line": 22,
+              "column": 9,
+              "position": 489
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '\"prop2\"'",
+      "path": "example2.json",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 6,
+          "position": 49
+        },
+        "end": {
+          "line": 4,
+          "column": 13,
+          "position": 56
+        }
+      },
+      "trace": [
+        {
+          "code": "CAN_NOT_PARSE_JSON",
+          "message": "Can not parse JSON example: Unexpected token '\"prop2\"'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 23,
+              "column": 6,
+              "position": 522
+            },
+            "end": {
+              "line": 23,
+              "column": 9,
+              "position": 525
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

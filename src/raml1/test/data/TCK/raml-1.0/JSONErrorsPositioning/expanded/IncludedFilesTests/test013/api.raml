@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: test API
+traits:
+  tr:
+types:
+  MyType:
+    type: !include ./schema.json
+
+    examples:
+      ex1: !include ./example1.json
+      ex2: !include ./example2.json

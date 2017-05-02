@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-04/",
+  "type": "object",
+  "definitions": {
+    "entry": {
+      "properties": {
+        "eProp1": {
+          "type": "number"
+        },
+        "eProp2": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

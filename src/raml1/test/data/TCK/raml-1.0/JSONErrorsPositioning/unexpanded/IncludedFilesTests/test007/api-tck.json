@@ -1,0 +1,69 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"arrayProp\": [\n    {\n         \"prop1\": 13,\n      \"prop2\": true\n      }  ,\n    {\n  \"prop1\": 13  ,\n          \"prop2\" false\n    }\n  ]\n}\n",
+            "strict": true,
+            "name": null
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token 'false'",
+      "path": "example.json",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 18,
+          "position": 119
+        },
+        "end": {
+          "line": 8,
+          "column": 23,
+          "position": 124
+        }
+      },
+      "trace": [
+        {
+          "code": "CAN_NOT_PARSE_JSON",
+          "message": "Can not parse JSON example: Unexpected token 'false'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 21,
+              "column": 4,
+              "position": 470
+            },
+            "end": {
+              "line": 21,
+              "column": 11,
+              "position": 477
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

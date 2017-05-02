@@ -1,0 +1,112 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "MyType": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\"  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "body": {
+            "application/json": {
+              "name": "application/json"
+            }
+          },
+          "name": "tr"
+        }
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType",
+                "example": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}\n",
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\"  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res"
+        ],
+        "absoluteUri": "/res"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Unexpected token '\"properties\"'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 8,
+          "position": 207
+        },
+        "end": {
+          "line": 16,
+          "column": 15,
+          "position": 214
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Unexpected token '\"properties\"'",
+      "path": "schema.json",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 35,
+          "position": 179
+        },
+        "end": {
+          "line": 6,
+          "column": 47,
+          "position": 191
+        }
+      },
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "INVALID_JSON_SCHEMA_DETAILS",
+          "message": "Invalid JSON schema: Unexpected token '\"properties\"'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 8,
+              "column": 4,
+              "position": 95
+            },
+            "end": {
+              "line": 8,
+              "column": 10,
+              "position": 101
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    }
+  ]
+}

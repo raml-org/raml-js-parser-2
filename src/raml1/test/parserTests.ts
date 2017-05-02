@@ -1381,7 +1381,10 @@ describe('RAML10/Dead Loop Tests/JSONSchemas',function(){
 
     it("test003", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),["Remote reference didn't compile successfully","Remote reference didn't compile successfully"]);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),[
+            "Can not parse JSON example: Unexpected end of JSON input",
+            "Can not parse JSON example: Unexpected end of JSON input"
+        ]);
     });
 
 });

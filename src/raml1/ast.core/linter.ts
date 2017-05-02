@@ -1398,6 +1398,8 @@ class ValidationError extends Error{
 
     public internalPath: string;
 
+    public filePath: string;
+
     public additionalErrors: ValidationError[];
 
     public static isInstance(instance : any) : instance is ValidationError {
@@ -2547,6 +2549,14 @@ class TypeDeclarationValidator implements NodeValidator{
                 }
                 else {
                     issue = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning(),internalRange);
+                }
+                let actualFilePath = e.getFilePath();
+                if(actualFilePath!=null){
+                    let actualUnit = node.lowLevel().unit().project().unit(actualFilePath);
+                    if(actualUnit) {
+                        issue.unit = actualUnit;
+                        issue.path = actualFilePath;
+                    }
                 }
                 v.accept(issue);
             };
@@ -3991,31 +4001,36 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
     let aNode = llNode.actual();
     let aValNode = aNode && aNode.value;
     let rawVal = aValNode && aValNode.rawValue;;
-
     let valueKind = llNode.valueKind();
+    if(valueKind==yaml.Kind.ANCHOR_REF) {
+        valueKind = llNode.anchorValueKind();
+    }
+    let vk1 = valueKind;
     if(valueKind==yaml.Kind.INCLUDE_REF){
         valueKind = node.lowLevel().resolvedValueKind();
     }
     if(internalRange && valueKind == yaml.Kind.SCALAR){
-        if(llNode.valueKind() == yaml.Kind.INCLUDE_REF){
+        if(vk1 == yaml.Kind.INCLUDE_REF){
             let includedUnit = llNode.unit().resolve(llNode.includePath());
-            let lineMapper = includedUnit.lineMapper();
-            let sp = lineMapper.toPosition(internalRange.start.line,internalRange.start.column);
-            let ep = lineMapper.toPosition(internalRange.end.line,internalRange.end.column);
-            let result = {
-                code: c,
-                isWarning: w,
-                message: message,
-                node: null,
-                start: sp.position,
-                end: ep.position,
-                path: includedUnit.path(),
-                extras:[],
-                unit: includedUnit
-            };
-            let trace = localError(node,c, w, message,p,prop,positionsSource);
-            result.extras.push(trace);
-            return result;
+            if(includedUnit) {
+                let lineMapper = includedUnit.lineMapper();
+                let sp = lineMapper.toPosition(internalRange.start.line, internalRange.start.column);
+                let ep = lineMapper.toPosition(internalRange.end.line, internalRange.end.column);
+                let result = {
+                    code: c,
+                    isWarning: w,
+                    message: message,
+                    node: null,
+                    start: sp.position,
+                    end: ep.position,
+                    path: includedUnit.path(),
+                    extras: [],
+                    unit: includedUnit
+                };
+                let trace = localError(node, c, w, message, p, prop, positionsSource);
+                result.extras.push(trace);
+                return result;
+            }
         }
         let lineMapper = llNode.unit().lineMapper();
         let vs = llNode.valueStart();
@@ -4046,8 +4061,12 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
                 aECol++;
             }
         }
-        st = lineMapper.toPosition(aSLine,aSCol).position;
-        et = lineMapper.toPosition(aELine,aECol).position;
+        let sPoint = lineMapper.toPosition(aSLine,aSCol);
+        let ePoint = lineMapper.toPosition(aELine,aECol);
+        if(sPoint && ePoint) {
+            st = sPoint.position;
+            et = ePoint.position;
+        }
     }
     else {
         if (contentLength && contentLength < et) {
@@ -4164,14 +4183,20 @@ function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolea
         let ivp = def.rt.toValidationPath(internalPath);
         if(ivp){
             let n = findElementAtPath(node,ivp);
-            if(n){
+            if(n && (n != node)){
                 actualNode = n;
                 internalPathUsed = true;
             }
         }
     }
     let internalRange = internalPathUsed ? null : ve.internalRange;
-    return createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
+    let result = createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
+    if(ve.filePath){
+        let actualUnit = node.lowLevel().unit().project().unit(ve.filePath);
+        result.unit = actualUnit;
+        result.path = ve.filePath;
+    }
+    return result;
 }
 
 export function createIssue1(

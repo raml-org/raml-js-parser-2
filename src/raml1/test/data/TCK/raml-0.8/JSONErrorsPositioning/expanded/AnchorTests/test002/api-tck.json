@@ -1,0 +1,77 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "MyType": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+      },
+      {
+        "MyType1": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "body": {
+            "application/json": {
+              "name": "application/json"
+            }
+          },
+          "name": "tr"
+        }
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType1",
+                "example": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": \"stringValue\"\n    }\n  ]\n}\n",
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res"
+        ],
+        "absoluteUri": "/res"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 42,
+          "column": 16,
+          "position": 823
+        },
+        "end": {
+          "line": 42,
+          "column": 38,
+          "position": 845
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}
