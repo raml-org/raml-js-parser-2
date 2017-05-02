@@ -4,6 +4,7 @@
     "definitions": {
         "Resource08": {
             "type": "object",
+            "description":"Web resource",
             "properties":{
                 "relativeUri":{
                     "type": "string",
@@ -95,6 +96,7 @@
         },
         "ResourceType08": {
             "type": "object",
+            "description": "Resource pattern which can be defined and then applied to multiple resources",
             "patternProperties":{
                 "^[a-zA-Z0-9<>]+":{
                     "type": "object",

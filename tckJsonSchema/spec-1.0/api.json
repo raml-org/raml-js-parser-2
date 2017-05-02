@@ -13,6 +13,7 @@
           "items": {"$ref": "#/definitions/Error"}
         }
       },
+      "description": "RAML 1.0 API definition.",
       "additionalProperties": false
     },
     "Api10": {
@@ -80,7 +81,8 @@
             }
           }
         }
-      ]
+      ],
+      "description": "RAML 1.0 API definition."
     },
     "Library": {
       "allOf":[
@@ -97,7 +99,8 @@
           }
         },
         {"$ref": "#/definitions/LibraryBase10"}
-      ]
+      ],
+      "description": "RAML libraries are used to combine any collection of data type declarations, resource type declarations, trait declarations, and security scheme declarations into modular, externalized, reusable groups."
     },
     "Extension": {
       "allOf":[
@@ -114,7 +117,8 @@
           }
         },
         {"$ref": "#/definitions/Api10"}
-      ]
+      ],
+      "description": "Extension is RAML documents that add or override nodes of a RAML API definition."
     },
     "Overlay": {
       "allOf":[
@@ -131,7 +135,8 @@
           }
         },
         {"$ref": "#/definitions/Api10"}
-      ]
+      ],
+      "description": "Overlays is RAML document that add or override nodes of a RAML API definition."
     },
     "LibraryBase10": {
       "allOf":[
@@ -219,6 +224,7 @@
           "description": "Content of documentation section"
         }
       },
+      "description": "API documentation",
       "additionalProperties": false
     },
 
@@ -248,6 +254,7 @@
         },
         "range": {"$ref": "#/definitions/ErrorRange"}
       },
+      "description": "RAML error",
       "additionalProperties": false
     },
 

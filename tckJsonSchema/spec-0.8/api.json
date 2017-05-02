@@ -14,6 +14,7 @@
           "items": {"$ref": "#/definitions/Error"}
         }
       },
+      "description": "RAML 0.8 API definition.",
       "additionalProperties": false
     },
     "Api08": {
@@ -131,6 +132,7 @@
           "type": "object"
         }
       },
+      "description": "RAML 0.8 API definition.",
       "additionalProperties": false
     },
     "GlobalSchema": {
@@ -148,7 +150,7 @@
       "properties":{
         "title":{
           "type": "string",
-          "description": "title of documentation section"
+          "description": "Title of documentation section"
         },
         "content":{
           "type": "string",
@@ -182,6 +184,7 @@
         },
         "range": {"$ref": "#/definitions/ErrorRange"}
       },
+      "description": "RAML error",
       "additionalProperties": false
     },
 
