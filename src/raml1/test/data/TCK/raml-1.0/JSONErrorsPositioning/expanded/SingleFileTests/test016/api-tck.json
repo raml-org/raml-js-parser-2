@@ -1,0 +1,106 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"boolean\"}"
+          ],
+          "examples": [
+            {
+              "value": "123123",
+              "strict": true,
+              "name": "ex1",
+              "structuredValue": "123123"
+            },
+            {
+              "value": "123123",
+              "strict": true,
+              "name": "ex2",
+              "structuredValue": "123123"
+            },
+            {
+              "value": "123123",
+              "strict": true,
+              "name": "ex3",
+              "structuredValue": 123123
+            }
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 12,
+          "position": 160
+        },
+        "end": {
+          "line": 8,
+          "column": 18,
+          "position": 166
+        }
+      }
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 12,
+          "position": 180
+        },
+        "end": {
+          "line": 9,
+          "column": 18,
+          "position": 186
+        }
+      }
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 11,
+          "position": 199
+        },
+        "end": {
+          "line": 10,
+          "column": 17,
+          "position": 205
+        }
+      }
+    }
+  ]
+}

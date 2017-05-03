@@ -290,23 +290,6 @@ export class BasicNodeImpl implements hl.BasicNode{
         return errors(this._node);
     }
 
-    private filterErrors(rawErrors):RamlParserError[] {
-        var result:RamlParserError[] = [];
-        var errorsMap = {};
-
-        rawErrors.map(x=>{errorsMap[JSON.stringify(x)] = x});
-        var keys: string[] = Object.keys(errorsMap);
-        for (var i = 0; i < keys.length; i++){
-            result.push(errorsMap[keys[i]]);
-        }
-
-        //console.log("errorsMap:" + JSON.stringify(errorsMap, null, 4));
-        //console.log("rawErrors:" + JSON.stringify(rawErrors, null, 4));
-        //console.log("result:" + JSON.stringify(result, null, 4));
-
-        return result;
-    }
-
     /**
      * @return object representing class of the node
      **/
@@ -839,8 +822,19 @@ export function filterErrors(rawErrors:RamlParserError[]):RamlParserError[] {
  * @hidden
  */
 export function basicError(_node:hl.IHighLevelNode,x:hl.ValidationIssue):RamlParserError {
-    var lineMapper = (x.node && x.node.lowLevel() && x.node.lowLevel().unit().lineMapper())
-        || _node.lowLevel().unit().lineMapper();
+
+    let unit:ll.ICompilationUnit;
+    if (x.unit) {
+        unit = x.unit;
+    }
+    else if (x.node) {
+        unit = x.node.lowLevel().unit();
+    }
+    else {
+        unit = search.declRoot(_node).lowLevel().unit();
+    }
+
+    var lineMapper = (unit && unit.lineMapper()) || _node.lowLevel().unit().lineMapper();
 
     var startPoint = null;
     try {
@@ -858,16 +852,7 @@ export function basicError(_node:hl.IHighLevelNode,x:hl.ValidationIssue):RamlPar
         console.warn(e);
     }
 
-    var path:string;
-    if (x.path) {
-        path = x.path;
-    }
-    else if (x.node) {
-        path = x.node.lowLevel().unit().path();
-    }
-    else {
-        path = search.declRoot(_node).lowLevel().unit().path();
-    }
+    let path = x.path || (unit &&  unit.path());
     var eObj:any = {
         code: x.code,
         message: x.message,

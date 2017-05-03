@@ -121,8 +121,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Additional properties not allowed: vlue vlue",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Additional properties not allowed: vlue",
       "path": "api.raml",
       "range": {
         "start": {

@@ -160,21 +160,7 @@ export interface RamlParserError {
     trace?:RamlParserError[];
 }
 
-export interface RangeObject{
-
-    start: MarkerObject;
-
-    end: MarkerObject;
-}
-
-export interface MarkerObject{
-
-    line:number;
-
-    column:number;
-
-    position:number;
-}
+export type RangeObject = ds.rt.tsInterfaces.RangeObject;
 
 export interface NodeMetadata extends ValueMetadata{
 

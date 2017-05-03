@@ -1,0 +1,17 @@
+#%RAML 0.8
+title: test API
+
+traits:
+  - tr:
+      body:
+        application/json:
+schemas:
+  - MyType: !include ./schema.json
+
+
+/res:
+  post:
+    body:
+      application/json:
+        schema: MyType
+        example: !include ./example.json

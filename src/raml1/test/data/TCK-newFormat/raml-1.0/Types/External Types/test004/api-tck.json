@@ -4,7 +4,6 @@
       "Account": {
         "name": "Account",
         "displayName": "Account",
-        "typePropertyKind": "JSON",
         "schemaPath": "files/accountWrong.json",
         "type": [
           "{\n  properties: {\n  \"auth_token\": {\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"uri\": {\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"date_created\": {\n    \"description\": \"The date that this account was created, in GMT in RFC 2822 format\",\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"date_updated\": {\n    \"description\": \"The date that this account was last updated, in GMT in RFC 2822 format.\",\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"friendly_name\": {\n    \"description\": \"A human readable description of this account, up to 64 characters long. By default the FriendlyName is your email address.\",\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"sid\": {\n    \"description\": \"A 34 character string that uniquely identifies this account.\",\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"status\": {\n    \"description\": \"The status of this account. Usually active, but can be suspended or closed.\",\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"type\": {\n    \"description\": \"The type of this account. Either Trial or Full if you've upgraded.\",\n    \"required\": false,\n    \"type\": \"string\"\n  },\n  \"subresource_uris\": {\n    \"type\": \"object\",\n    \"required\": false\n  }\n},\n\"required\": false,\n\"type\": \"object\"\n}\n"
@@ -27,20 +26,39 @@
   "errors": [
     {
       "code": "INVALID_JSON_SCHEMA_DETAILS",
-      "message": "Invalid JSON schema: Unexpected token p",
-      "path": "api.raml",
+      "message": "Invalid JSON schema: Cannot tokenize symbol 'p'",
+      "path": "files/accountWrong.json",
       "range": {
         "start": {
-          "line": 4,
-          "column": 4,
-          "position": 58
+          "line": 1,
+          "column": 2,
+          "position": 4
         },
         "end": {
-          "line": 4,
-          "column": 8,
-          "position": 62
+          "line": 1,
+          "column": 3,
+          "position": 5
         }
-      }
+      },
+      "trace": [
+        {
+          "code": "INVALID_JSON_SCHEMA_DETAILS",
+          "message": "Invalid JSON schema: Cannot tokenize symbol 'p'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 4,
+              "column": 4,
+              "position": 58
+            },
+            "end": {
+              "line": 4,
+              "column": 8,
+              "position": 62
+            }
+          }
+        }
+      ]
     }
   ]
 }

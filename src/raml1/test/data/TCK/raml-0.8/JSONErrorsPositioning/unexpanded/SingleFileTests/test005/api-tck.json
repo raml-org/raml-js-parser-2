@@ -1,0 +1,90 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "MyType": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res1",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType",
+                "example": "{\n  \"arrayProp\": [\n     {\n               \"prop1\": 13,\n        \"prop2\"   :          true\n      },          {\n    \"prop1\": 13,\n                 \"prop2\": false\n      }\n           ]\n}\n",
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res1"
+        ],
+        "absoluteUri": "/res1"
+      },
+      {
+        "relativeUri": "/res2",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType",
+                "example": "{\n           \"arrayProp\": [\n      {\n  \"prop1\": 13,\n                \"prop2\": false\n          }        , {\n        \"prop1\": 13,\n              \"prop2\": 123123\n                }\n       ]\n}\n",
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res2"
+        ],
+        "absoluteUri": "/res2"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 51,
+          "column": 24,
+          "position": 1206
+        },
+        "end": {
+          "line": 51,
+          "column": 39,
+          "position": 1221
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

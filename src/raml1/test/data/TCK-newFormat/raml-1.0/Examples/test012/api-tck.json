@@ -112,19 +112,19 @@
   "type": "Api",
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Additional properties not allowed: r r",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Additional properties not allowed: r",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 25,
-          "column": 12,
-          "position": 590
+          "line": 26,
+          "column": 14,
+          "position": 615
         },
         "end": {
-          "line": 25,
-          "column": 19,
-          "position": 597
+          "line": 26,
+          "column": 38,
+          "position": 639
         }
       }
     }

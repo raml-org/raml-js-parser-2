@@ -13,6 +13,7 @@
           "items": {"$ref": "#/definitions/Error"}
         }
       },
+      "description": "RAML 1.0 API definition.",
       "additionalProperties": false
     },
     "Api10": {
@@ -26,7 +27,7 @@
               "description": "Short plain-text label for the API"
             },
             "description": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A substantial, human-friendly description of the API. Its value is a string and MAY be formatted using markdown."
             },
             "version": {
@@ -34,7 +35,7 @@
               "description": "The version of the API, e.g. 'v1'"
             },
             "baseUri": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
             },
             "baseUriParameters": {
@@ -73,7 +74,8 @@
             }
           }
         }
-      ]
+      ],
+      "description": "RAML 1.0 API definition."
     },
     "Library": {
       "allOf":[
@@ -90,7 +92,8 @@
           }
         },
         {"$ref": "#/definitions/LibraryBase10"}
-      ]
+      ],
+      "description": "RAML libraries are used to combine any collection of data type declarations, resource type declarations, trait declarations, and security scheme declarations into modular, externalized, reusable groups."
     },
     "Extension": {
       "allOf":[
@@ -107,7 +110,8 @@
           }
         },
         {"$ref": "#/definitions/Api10"}
-      ]
+      ],
+      "description": "Extension is RAML documents that add or override nodes of a RAML API definition."
     },
     "Overlay": {
       "allOf":[
@@ -124,7 +128,8 @@
           }
         },
         {"$ref": "#/definitions/Api10"}
-      ]
+      ],
+      "description": "Overlays is RAML document that add or override nodes of a RAML API definition."
     },
     "LibraryBase10": {
       "allOf":[
@@ -216,6 +221,7 @@
         },
         "range": {"$ref": "#/definitions/ErrorRange"}
       },
+      "description": "RAML error",
       "additionalProperties": false
     },
 

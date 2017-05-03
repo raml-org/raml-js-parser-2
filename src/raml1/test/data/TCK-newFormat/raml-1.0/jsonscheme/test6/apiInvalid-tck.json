@@ -4,7 +4,6 @@
       "MyType": {
         "name": "MyType",
         "displayName": "MyType",
-        "typePropertyKind": "JSON",
         "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType",
         "type": [
           "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
@@ -76,8 +75,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: innerTypeName innerTypeName",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Missing required property: innerTypeName",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

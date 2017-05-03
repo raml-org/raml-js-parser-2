@@ -13,7 +13,13 @@
                             "type": "object",
                             "patternProperties": {
                                 "^[a-zA-Z0-9]+": {
-                                    "type": "string"
+                                    "type": [
+                                        "number",
+                                        "string",
+                                        "boolean",
+                                        "object",
+                                        "array"
+                                    ]
                                 }
                             }
                         }
@@ -29,7 +35,7 @@
                         "displayName": {
                             "type": "string",
                             "description": "Resource name"
-                        }
+                        },
                         "resources": {
                             "type": "array",
                             "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
@@ -52,7 +58,8 @@
                         "__METADATA__": {"type": "object"}
                     }
                 }
-            ]
+            ],
+            "description":"Web resource"
         },
         "ResourceTypeFragment": {
             "type": "object",
@@ -85,6 +92,7 @@
                     }
                 }
             ],
+            "description": "Resource pattern which can be defined and then applied to multiple resources",
             "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
             },
@@ -96,7 +104,7 @@
                 {
                     "properties": {
                         "description": {
-                            "type": "string",
+                            "type": ["string", "null"],
                             "description": "Resource description"
                         },
                         "is": {
@@ -118,9 +126,7 @@
                                     "$ref": "methods.json#/definitions/Method10"
                                 }
                             },
-                            "additionalProperties": false
-                            "type": "array",
-                            "description": "Methods that are part of this resource type definition",
+                            "additionalProperties": false,
                             "items": {"$ref": "methods.json#/definitions/Method10"}
                         },
                         "uriParameters": {

@@ -136,7 +136,7 @@
           "description": "Name of the security scheme"
         },
         "description": {
-          "type": "string",
+          "type": [ "string", "null" ],
           "description": "The description attribute MAY be used to describe a security schemes property."
         },
         "describedBy": {

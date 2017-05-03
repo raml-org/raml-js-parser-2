@@ -9,7 +9,6 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "XML",
                 "schemaPath": "schema.xsd#City",
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n  <xs:complexType name=\"City\">\n    <xs:sequence>\n      <xs:element name=\"country_name\" type=\"xs:string\"/>\n      <xs:element name=\"population\" type=\"xs:decimal\"/>\n    </xs:sequence>\n  </xs:complexType>\n<xs:element name=\"c2NoZW1hLnhzZC9DaXR5\" type=\"City\" requestedname=\"City\" extraelement=\"true\"/></xs:schema>"
@@ -57,8 +56,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: file_0.xml:1: element country_name1: Schemas validity error : Element 'country_name1': This element is not expected. Expected is ( country_name ).",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: file_0.xml:1: element country_name1: Schemas validity error : Element 'country_name1': This element is not expected. Expected is ( country_name ).",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

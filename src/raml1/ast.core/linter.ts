@@ -1246,14 +1246,14 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
         if (isExampleProp(node.property())||isDefaultValueProp(node.property())){
-            if (ramlVersion=="RAML08"){
-                var llv=node.lowLevel().value();
-                if (node.lowLevel().children().length>0){
-                    var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
-                    v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
-                        {propName: valName},node,false));
-                }
-            }
+            // if (ramlVersion=="RAML08"){
+            //     var llv=node.lowLevel().value();
+            //     if (node.lowLevel().children().length>0){
+            //         var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
+            //         v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
+            //             {propName: valName},node,false));
+            //     }
+            // }
             new ExampleAndDefaultValueValidator().validate(node, v);
         }
         if (isSecuredBy(node.property())){
@@ -1392,6 +1392,16 @@ class ValidationError extends Error{
 
     private static CLASS_IDENTIFIER_ValidationError = "linter.ValidationError";
 
+    public isWarning = false;
+
+    public internalRange:def.rt.tsInterfaces.RangeObject;
+
+    public internalPath: string;
+
+    public filePath: string;
+
+    public additionalErrors: ValidationError[];
+
     public static isInstance(instance : any) : instance is ValidationError {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
@@ -1481,12 +1491,18 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             if(isTypeProp){
                 return false;
             }
+            let isJSONorXML = v && v.trim().length > 0
+                &&(v.trim().charAt(0)=="{"||v.trim().charAt(0)=="<");
+
             var tm = su.createSchema(v, contentProvider(h.lowLevel(),attr&&attr.lowLevel()));
             if(!tm){
                 return tm;
             }
             else if (tm instanceof Error){
-                (<any>tm).canBeRef=true;
+                tm.isWarning = true;
+                if(!isJSONorXML) {
+                    (<any>tm).canBeRef = true;
+                }
             }
             else {
                 var isJSON = false;
@@ -1587,8 +1603,7 @@ class NormalValidator implements PropertyValidator{
         if (validation instanceof Error){
             if (!(<any>validation).canBeRef){
                 if(ValidationError.isInstance(validation)){
-                    var ve = <ValidationError>validation;
-                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node, (<any>validation).isWarning));
+                    v.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
                     v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node,(<any>validation).isWarning));
@@ -1613,12 +1628,21 @@ class NormalValidator implements PropertyValidator{
                     }
                     var decl = (<hlimpl.ASTPropImpl>node).findReferencedValue();
                     if (decl instanceof Error) {
-                        if(ValidationError.isInstance(decl)){
-                            var ve = <ValidationError>decl;
-                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning));
-                        }
-                        else {
-                            v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>decl).message}, node));
+                        var c = (<hlimpl.ASTPropImpl>node).findReferenceDeclaration();
+                        if(c) {
+                            let resultingIssue:hl.ValidationIssue;
+                            let trace:hl.ValidationIssue;
+                            if (ValidationError.isInstance(decl)) {
+                                let ve = <ValidationError>decl;
+                                resultingIssue = createIssue2(ve, c);
+                                trace = createIssue1(ve.messageEntry, {msg: ve.message}, node);
+                            }
+                            else {
+                                resultingIssue = createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>decl).message}, c);
+                                trace = createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>decl).message}, node);
+                            }
+                            resultingIssue.extras.push(trace);
+                            v.accept(resultingIssue);
                         }
                     }
                     if (!decl){
@@ -1634,8 +1658,7 @@ class NormalValidator implements PropertyValidator{
                         }
                         if (validation instanceof Error&&vl){
                             if(ValidationError.isInstance(validation)){
-                                var ve = <ValidationError>validation;
-                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node,(<any>ve).isWarning));
+                                v.accept(createIssue2(<ValidationError>validation,node));
                             }
                             else {
                                 v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
@@ -2269,8 +2292,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             var validation = isValid(pr.range(),node.parent(), valueKey, pr);
             if (validation instanceof Error) {
                 if(ValidationError.isInstance(validation)){
-                    var ve = <ValidationError>validation;
-                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node,validation.isWarning));
+                    cb.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
                     cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
@@ -2504,7 +2526,7 @@ class FixedFacetsValidator implements NodeValidator {
 
             var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
-                validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath( node,e), false)));
+                validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath(node,e).node, false)));
             }
         }
     }
@@ -2513,27 +2535,37 @@ class FixedFacetsValidator implements NodeValidator {
 class TypeDeclarationValidator implements NodeValidator{
 
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor) {
-        var nc=node.definition();
-        var rof = node.parsedType();
-        var validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
+        let nc=node.definition();
+        let rof = node.parsedType();
+        let validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
         if (!validateObject.isOk()) {
             for( var e of validateObject.getErrors()){
-                var n = extractLowLevelNode(e);
-                var issue;
+                let n = extractLowLevelNode(e);
+                let issue;
+                let mappingResult = mapPath( node,e);
+                let internalRange = mappingResult.internalPathUsed ? null : e.getInternalRange();
                 if(n){
-                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mapPath( node,e), e.isWarning(),true);
+                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mappingResult.node, e.isWarning(),true,internalRange);
                 }
                 else {
-                    issue = createIssue(e.getCode(), e.getMessage(), mapPath(node, e), e.isWarning());
+                    issue = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning(),internalRange);
+                }
+                let actualFilePath = e.getFilePath();
+                if(actualFilePath!=null){
+                    let actualUnit = node.lowLevel().unit().project().unit(actualFilePath);
+                    if(actualUnit) {
+                        issue.unit = actualUnit;
+                        issue.path = actualFilePath;
+                    }
                 }
                 v.accept(issue);
             };
         }
 
-        var examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
+        let examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
 
         if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
-            issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
+            let issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
 
             v.accept(issue);
         }
@@ -2587,9 +2619,29 @@ class TypeDeclarationValidator implements NodeValidator{
         "Extension" : true
     };
 }
-function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{
+
+interface NodeMappingResult {
+
+    node: hl.IParseResult,
+    internalPathUsed: boolean
+}
+
+function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):NodeMappingResult{
     var src= e.getValidationPath();
-    return findElementAtPath(node,src);
+    let resultNode = findElementAtPath(node,src);
+    let internalPath = e.getInternalPath();
+    let internalPathUsed = false;
+    if(internalPath){
+        let internalNode = findElementAtPath(resultNode,internalPath);
+        if(internalNode && internalNode != resultNode){
+            resultNode = internalNode;
+            internalPathUsed = true;
+        }
+    }
+    return {
+        node: resultNode,
+        internalPathUsed: internalPathUsed
+    };
 }
 
 function extractLowLevelNode(e:rtypes.IStatus):ll.ILowLevelASTNode{
@@ -3330,7 +3382,11 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
         var schema=this.aquireSchema(node);
         if (schema){
-            schema.validate(pObj,cb,strictValidation);
+            let arg = pObj;
+            if(typeof arg == "object"){
+                arg = node.value();
+            }
+            schema.validate(arg,cb,strictValidation);
         }
     }
 
@@ -3448,7 +3504,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     cb.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:so.message},node,!strict));
                                     return;
                                 }
-                                so.validateObject(pObje);
+                                so.validate(pObje);
                             }catch(e){
                                 var illegalRequiredMessageStart = "Cannot assign to read only property '__$validated' of ";
                                 if (e.message && e.message.indexOf(illegalRequiredMessageStart) == 0){
@@ -3460,6 +3516,10 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     return;
                                 }
                                 if (e.message=="Object.keys called on non-object"){
+                                    return;
+                                }
+                                if(ValidationError.isInstance(e)){
+                                    cb.accept(createIssue2(<ValidationError>e,node,!strict));
                                     return;
                                 }
                                 cb.accept(createIssue1(messageRegistry.EXAMPLE_SCHEMA_FAILURE,
@@ -3517,7 +3577,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                     var validateObject = pt.validate(pObje, false);
                     if (!validateObject.isOk()) {
                         validateObject.getErrors().forEach(e=>cb.accept(
-                            createIssue(e.getCode(),e.getMessage(), node, !strict)));
+                            createIssue(e.getCode(),e.getMessage(), node, !strict, e.getInternalRange())));
                     }
                 }
             }
@@ -3560,10 +3620,16 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
             if (mediaType){
                 if (isJson(mediaType)){
                     try{
+                        def.rt.getSchemaUtils().tryParseJSON(vl,true);
                         pObj=JSON.parse(vl);
                     }catch (e){
-                        cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
-                            {msg:e.message},node,!strictValidation));
+                        if(ValidationError.isInstance(e)){
+                            cb.accept(createIssue2(<ValidationError>e,node,!strictValidation));
+                        }
+                        else {
+                            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
+                                {msg: e.message}, node, !strictValidation));
+                        }
                         return;
                     }
                 }
@@ -3921,46 +3987,122 @@ function getMediaType2(node:hl.IAttribute){
     return null;
 }
 
-var localError = function (node:hl.IParseResult, c, w, message,p:boolean,prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode) {
+var offsetRegexp = /^[ ]*/;
+
+var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
+    prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode,internalRange?:def.rt.tsInterfaces.RangeObject) {
     var llNode = positionsSource ? positionsSource : node.lowLevel();
     var contents = llNode.unit() && llNode.unit().contents();
     var contentLength = contents && contents.length;
 
     var st = llNode.start();
     var et = llNode.end();
-    if (contentLength && contentLength < et) {
-        et = contentLength - 1;
-    }
 
-    if (llNode.key() && llNode.keyStart()) {
-        var ks = llNode.keyStart();
-        if (ks > 0) {
-            st = ks;
-        }
-        var ke = llNode.keyEnd();
-        if (ke > 0) {
-            et = ke;
-        }
+    let aNode = llNode.actual();
+    let aValNode = aNode && aNode.value;
+    let rawVal = aValNode && aValNode.rawValue;;
+    let valueKind = llNode.valueKind();
+    if(valueKind==yaml.Kind.ANCHOR_REF) {
+        valueKind = llNode.anchorValueKind();
     }
-    if (et < st) {
-        et = st + 1;
-        //this happens for empty APIs, when we basically have nothing to parse
-        if(node.isElement()) {
-            var definition = (<hl.IHighLevelNode> node).definition();
-            if (universeHelpers.isApiType(definition)) {
-                st = contentLength == 0 ? 0: contentLength - 1;
-                et = st;
+    let vk1 = valueKind;
+    if(valueKind==yaml.Kind.INCLUDE_REF){
+        valueKind = node.lowLevel().resolvedValueKind();
+    }
+    if(internalRange && valueKind == yaml.Kind.SCALAR){
+        if(vk1 == yaml.Kind.INCLUDE_REF){
+            let includedUnit = llNode.unit().resolve(llNode.includePath());
+            if(includedUnit) {
+                let lineMapper = includedUnit.lineMapper();
+                let sp = lineMapper.toPosition(internalRange.start.line, internalRange.start.column);
+                let ep = lineMapper.toPosition(internalRange.end.line, internalRange.end.column);
+                let result = {
+                    code: c,
+                    isWarning: w,
+                    message: message,
+                    node: null,
+                    start: sp.position,
+                    end: ep.position,
+                    path: includedUnit.path(),
+                    extras: [],
+                    unit: includedUnit
+                };
+                let trace = localError(node, c, w, message, p, prop, positionsSource);
+                result.extras.push(trace);
+                return result;
             }
         }
+        let lineMapper = llNode.unit().lineMapper();
+        let vs = llNode.valueStart();
+
+        let vsPos = lineMapper.position(vs);
+        let aSCol:number;
+        let aECol:number;
+        let aSLine = vsPos.line+internalRange.start.line;
+        let aELine = vsPos.line+internalRange.end.line;
+        if(rawVal && typeof rawVal == "string" && rawVal.charAt(0)=="|"){
+            //let keyCol = lineMapper.position(llNode.keyStart()).column;
+            let i0 = rawVal.indexOf("\n")+1;
+            let i1 = rawVal.indexOf("\n",i0);
+            if(i1<0){
+                i1 = rawVal.length;
+            }
+            let off = offsetRegexp.exec(rawVal.substring(i0,i1))[0].length;
+            aSCol = off + internalRange.start.column;
+            aECol = off + internalRange.end.column;
+            aSLine++;
+            aELine++;
+        }
+        else{
+            aSCol = vsPos.column + internalRange.start.column;
+            aECol = vsPos.column + internalRange.end.column;
+            if(aValNode.singleQuoted||aValNode.doubleQuoted){
+                aSCol++;
+                aECol++;
+            }
+        }
+        let sPoint = lineMapper.toPosition(aSLine,aSCol);
+        let ePoint = lineMapper.toPosition(aELine,aECol);
+        if(sPoint && ePoint) {
+            st = sPoint.position;
+            et = ePoint.position;
+        }
     }
-    if (prop&&!prop.getAdapter(services.RAMLPropertyService).isMerged()&&node.parent()==null){
-        var nm= _.find(llNode.children(),x=>x.key()==prop.nameId());
-        if (nm){
-            var ks=nm.keyStart();
-            var ke=nm.keyEnd();
-            if (ks>0&&ke>ks){
-                st=ks;
-                et=ke;
+    else {
+        if (contentLength && contentLength < et) {
+            et = contentLength - 1;
+        }
+
+        if (llNode.key() && llNode.keyStart()) {
+            var ks = llNode.keyStart();
+            if (ks > 0) {
+                st = ks;
+            }
+            var ke = llNode.keyEnd();
+            if (ke > 0) {
+                et = ke;
+            }
+        }
+        if (et < st) {
+            et = st + 1;
+            //this happens for empty APIs, when we basically have nothing to parse
+            if (node.isElement()) {
+                var definition = (<hl.IHighLevelNode> node).definition();
+                if (universeHelpers.isApiType(definition)) {
+                    st = contentLength == 0 ? 0 : contentLength - 1;
+                    et = st;
+                }
+            }
+        }
+        if (prop && !prop.getAdapter(services.RAMLPropertyService).isMerged() && node.parent() == null) {
+            var nm = _.find(llNode.children(), x => x.key() == prop.nameId());
+            if (nm) {
+                var ks = nm.keyStart();
+                var ke = nm.keyEnd();
+                if (ks > 0 && ke > ks) {
+                    st = ks;
+                    et = ke;
+                }
             }
 
         }
@@ -3979,8 +4121,14 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,prop:hl
     }
 };
 
-var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : hl.IParseResult,
-                                   issueCode, isWarning, message,path:boolean) : hl.ValidationIssue {
+var localLowLevelError = function (
+    node:ll.ILowLevelASTNode,
+    highLevelAnchor : hl.IParseResult,
+    issueCode,
+    isWarning,
+    message,path:boolean,
+    range?:def.rt.tsInterfaces.RangeObject) : hl.ValidationIssue {
+
     var contents = node.unit() && node.unit().contents();
     var contentLength = contents && contents.length;
 
@@ -4017,24 +4165,57 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
 
 
 export function toIssue(error: any, node: hl.IHighLevelNode): hl.ValidationIssue {
-    return createIssue(error.getCode(), error.getMessage(), mapPath(node, error), error.isWarning());
+    return createIssue(error.getCode(), error.getMessage(), mapPath(node, error).node, error.isWarning());
+}
+
+function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolean){
+
+    let isWarning = _isWarning != null ? _isWarning : ve.isWarning;
+
+    let internalPath = ve.internalPath;
+    let actualNode = node;
+    let internalPathUsed = false;
+    let valueKind = node.lowLevel().valueKind();
+    if(valueKind==yaml.Kind.INCLUDE_REF){
+        valueKind = node.lowLevel().resolvedValueKind();
+    }
+    if(internalPath && valueKind != yaml.Kind.SCALAR){
+        let ivp = def.rt.toValidationPath(internalPath);
+        if(ivp){
+            let n = findElementAtPath(node,ivp);
+            if(n && (n != node)){
+                actualNode = n;
+                internalPathUsed = true;
+            }
+        }
+    }
+    let internalRange = internalPathUsed ? null : ve.internalRange;
+    let result = createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
+    if(ve.filePath){
+        let actualUnit = node.lowLevel().unit().project().unit(ve.filePath);
+        result.unit = actualUnit;
+        result.path = ve.filePath;
+    }
+    return result;
 }
 
 export function createIssue1(
     messageEntry:any,
     parameters: any,
     node:hl.IParseResult,
-    isWarning:boolean=false):hl.ValidationIssue {
+    isWarning:boolean=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue {
 
     var msg = applyTemplate(<Message>messageEntry,parameters);
-    return createIssue(messageEntry.code, msg, node, isWarning);
+    return createIssue(messageEntry.code, msg, node, isWarning, internalRange);
 }
 
 export function createIssue(
     issueCode:string,
     message:string,
     node:hl.IParseResult,
-    isWarning:boolean=false):hl.ValidationIssue{
+    isWarning:boolean=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -4042,7 +4223,8 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                original=localError(node,issueCode,isWarning,message,true,pr);
+                original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange);
+                internalRange = null;
                 //message +="(template expansion affected)"
             }
             node=node.parent();
@@ -4054,7 +4236,8 @@ export function createIssue(
         pr=node.property();
 
         if (node.lowLevel().unit() != node.root().lowLevel().unit()) {
-            original=localError(node,issueCode,isWarning,message,true,pr);
+            original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange);
+            internalRange = null;
             var v=node.lowLevel().unit();
             if (v) {
                 //message = message + " " + v.path();
@@ -4085,7 +4268,7 @@ export function createIssue(
             node=node.parent();
         }
     }
-    var error=localError(node, issueCode, isWarning, message,false,pr);
+    var error=localError(node, issueCode, isWarning, message,false,pr,null,internalRange);
     if (original) {
         original.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
@@ -4099,22 +4282,34 @@ export function createIssue(
     return error;
 }
 
-function createLLIssue1(messageEntry:any, parameters:any, node:ll.ILowLevelASTNode,
-                        rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false){
+function createLLIssue1(
+    messageEntry:any,
+    parameters:any,
+    node:ll.ILowLevelASTNode,
+    rootCalculationAnchor: hl.IParseResult,
+    isWarning:boolean=false,
+    p=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject){
 
     var msg = applyTemplate(<Message>messageEntry,parameters);
-    return createLLIssue(messageEntry.code, msg, node, rootCalculationAnchor,isWarning,p);
+    return createLLIssue(messageEntry.code, msg, node, rootCalculationAnchor,isWarning,p,internalRange);
 }
 
-export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevelASTNode,
-                              rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false):hl.ValidationIssue{
+export function createLLIssue(
+    issueCode:string,
+    message:string,
+    node:ll.ILowLevelASTNode,
+    rootCalculationAnchor: hl.IParseResult,
+    isWarning:boolean=false,
+    p=false,
+    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue{
     var original=null;
 
     if (node) {
 
         var rootUnit = rootCalculationAnchor.root().lowLevel().unit();
         if (rootCalculationAnchor.lowLevel().unit() != rootUnit) {
-            original=localLowLevelError(node,rootCalculationAnchor,issueCode,isWarning,message,true);
+            original=localLowLevelError(node,rootCalculationAnchor,issueCode,isWarning,message,true,internalRange);
             var v=rootCalculationAnchor.lowLevel().unit();
             if (v) {
                 message = message + " " + v.path();
@@ -4125,13 +4320,14 @@ export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevel
         }
     }
     if (original){
+        internalRange = null;
         if (rootCalculationAnchor.property()&&rootCalculationAnchor.property().nameId()
             ==universes.Universe10.FragmentDeclaration.properties.uses.name&&rootCalculationAnchor.parent()!=null){
             rootCalculationAnchor=rootCalculationAnchor.parent();
         }
         node = rootCalculationAnchor.lowLevel();
     }
-    var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p);
+    var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p,internalRange);
     if (original) {
         original.extras.push(error);
         if(node.valueKind()==yaml.Kind.INCLUDE_REF) {

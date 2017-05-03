@@ -2632,6 +2632,28 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         if(!this.unit()){
             return false;
         }
+        let hlNode:highlevel.IParseResult;
+        let n:lowlevel.ILowLevelASTNode = this;
+        while(!hlNode && n){
+            hlNode = n.highLevelNode();
+            n = n.parent();
+        }
+        if(hlNode){
+           let def:highlevel.ITypeDefinition;
+           if(hlNode.isElement()){
+               def = hlNode.asElement().definition();
+           }
+           else{
+               let p = hlNode.property();
+               def = p && (p.domain() || p.range());
+           }
+           if(def){
+               let ver = def.universe().version();
+               if(ver == "RAML08"){
+                   return false;
+               }
+           }
+        }
         var mappings;
         if(this.kind() == yaml.Kind.MAPPING && this.valueKind() == yaml.Kind.MAP ) {
             mappings = this._node.value.mappings;
@@ -3338,7 +3360,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     }
 
     getIncludeString() : string {
-        if (this._node.kind==yaml.Kind.INCLUDE_REF){
+        if(!this._node){
+            return null;
+        }
+        else if (this._node.kind==yaml.Kind.INCLUDE_REF){
 
             var includePath=this._node['value'];
             return includePath;
@@ -3347,6 +3372,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             var mapping: yaml.YAMLMapping = <yaml.YAMLMapping> this._node;
             if (mapping.value == null) return null;
             return new ASTNode(mapping.value, this._unit, this, null, null).getIncludeString();
+        }
+        else if(this._node.kind == yaml.Kind.ANCHOR_REF){
+            var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node.value;
+            return new ASTNode(ref, this._unit, this, null, null).getIncludeString();
         }
 
         return null;
@@ -3379,7 +3408,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     anchorValueKind(){
         if(this.valueKind()==yaml.Kind.ANCHOR_REF){
             var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node.value;
-            return ref.value.kind;
+            return ref && ref.value && ref.value.kind;
         }
         return null;
     }
@@ -3387,29 +3416,38 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     resolvedValueKind(){
         let vk = this.valueKind();
         if(vk==yaml.Kind.ANCHOR_REF) {
-            return this.anchorValueKind();
+            let ak = this.anchorValueKind();
+            if(ak==yaml.Kind.INCLUDE_REF){
+                let ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node.value;
+                let includePath = ref.value.value;
+                return this.unitKind(includePath);
+            }
+            return ak;
         }
         else if (vk==yaml.Kind.INCLUDE_REF){
-
             let includePath = this.includePath();
-            let resolved:lowlevel.ICompilationUnit;
-            try {
-                resolved = this._unit.resolve(includePath);
-            } catch (Error) {
-                return null;
-            }
-            if (resolved == null) {
-                return yaml.Kind.SCALAR;//Error message is returned in this case
-            }
-            else if (resolved.isRAMLUnit()) {
-                var ast = resolved.ast();
-                if(ast){
-                    return ast.kind();
-                }
-            }
-            return yaml.Kind.SCALAR;
+            return this.unitKind(includePath);
         }
         return vk;
+    }
+
+    private unitKind(unitPath:string){
+        let resolved:lowlevel.ICompilationUnit;
+        try {
+            resolved = this._unit.resolve(unitPath);
+        } catch (Error) {
+            return null;
+        }
+        if (resolved == null) {
+            return yaml.Kind.SCALAR;//Error message is returned in this case
+        }
+        else if (resolved.isRAMLUnit()) {
+            var ast = resolved.ast();
+            if(ast){
+                return ast.kind();
+            }
+        }
+        return yaml.Kind.SCALAR;
     }
 
     valueKindName(): string {

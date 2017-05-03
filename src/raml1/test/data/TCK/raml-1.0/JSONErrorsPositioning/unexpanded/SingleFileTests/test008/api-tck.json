@@ -1,0 +1,74 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+          ],
+          "example": {
+            "arrayProp": [
+              {
+                "prop1": 13,
+                "prop2": false
+              },
+              {
+                "prop1": 13,
+                "prop2": 123123
+              }
+            ]
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n           \"arrayProp\": [\n      {\n  \"prop1\": 13,\n                \"prop2\": false\n          }        , {\n        \"prop1\": 13,\n              \"prop2\": 123123\n                }\n       ]\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "arrayProp": [
+                {
+                  "prop1": 13,
+                  "prop2": false
+                },
+                {
+                  "prop1": 13,
+                  "prop2": 123123
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 29,
+          "column": 22,
+          "position": 685
+        },
+        "end": {
+          "line": 29,
+          "column": 37,
+          "position": 700
+        }
+      }
+    }
+  ]
+}

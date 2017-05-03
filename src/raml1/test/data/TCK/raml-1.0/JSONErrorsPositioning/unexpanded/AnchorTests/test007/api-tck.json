@@ -1,0 +1,175 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+          ],
+          "example": {
+            "arrayProp": [
+              {
+                "prop1": 13,
+                "prop2": true
+              },
+              {
+                "prop1": 13,
+                "prop2": "stringValue"
+              }
+            ]
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": \"stringValue\"\n    }\n  ]\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "arrayProp": [
+                {
+                  "prop1": 13,
+                  "prop2": true
+                },
+                {
+                  "prop1": 13,
+                  "prop2": "stringValue"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "MyType2": {
+          "name": "MyType2",
+          "displayName": "MyType2",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"arrayProp\": {\n      \"items\": {\n        \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n          \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}\n"
+          ],
+          "example": {
+            "arrayProp": [
+              {
+                "prop1": 13,
+                "prop2": true
+              },
+              {
+                "prop1": 13,
+                "prop2": "stringValue"
+              }
+            ]
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": \"stringValue\"\n    }\n  ]\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "arrayProp": [
+                {
+                  "prop1": 13,
+                  "prop2": true
+                },
+                {
+                  "prop1": 13,
+                  "prop2": "stringValue"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type string",
+      "path": "example.json",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 6,
+          "position": 102
+        },
+        "end": {
+          "line": 8,
+          "column": 28,
+          "position": 124
+        }
+      },
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type boolean but found type string",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 21,
+              "column": 4,
+              "position": 470
+            },
+            "end": {
+              "line": 21,
+              "column": 11,
+              "position": 477
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type string",
+      "path": "example.json",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 6,
+          "position": 102
+        },
+        "end": {
+          "line": 8,
+          "column": 28,
+          "position": 124
+        }
+      },
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type boolean but found type string",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 39,
+              "column": 4,
+              "position": 943
+            },
+            "end": {
+              "line": 39,
+              "column": 11,
+              "position": 950
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

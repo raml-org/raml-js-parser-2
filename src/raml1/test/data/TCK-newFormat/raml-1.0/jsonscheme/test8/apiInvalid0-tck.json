@@ -38,22 +38,42 @@
   "type": "Api",
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: childName childName",
-      "path": "apiInvalid0.raml",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Missing required property: childName",
+      "path": "invalid.json",
       "range": {
         "start": {
-          "line": 9,
-          "column": 8,
-          "position": 128
+          "line": 2,
+          "column": 2,
+          "position": 32
         },
         "end": {
-          "line": 9,
-          "column": 15,
-          "position": 135
+          "line": 4,
+          "column": 3,
+          "position": 78
         }
       },
-      "isWarning": true
+      "isWarning": true,
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Missing required property: childName",
+          "path": "apiInvalid0.raml",
+          "range": {
+            "start": {
+              "line": 9,
+              "column": 8,
+              "position": 128
+            },
+            "end": {
+              "line": 9,
+              "column": 15,
+              "position": 135
+            }
+          },
+          "isWarning": true
+        }
+      ]
     }
   ]
 }

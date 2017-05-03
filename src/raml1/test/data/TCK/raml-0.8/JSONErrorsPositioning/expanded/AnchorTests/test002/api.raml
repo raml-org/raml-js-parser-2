@@ -1,0 +1,46 @@
+#%RAML 0.8
+title: test API
+traits:
+  - tr:
+      body:
+        application/json:
+
+schemas:
+  - MyType: &sch |
+      {
+        "$schema": "http://json-schema.org/draft-04/",
+        "type": "object",
+        "properties": {
+          "arrayProp": {
+            "items": {
+              "type": "object",  "properties": {
+                "prop1": { "type": "number" },
+                "prop2": { "type": "boolean" }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+
+  - MyType1: *sch
+
+
+/res:
+  post:
+    body:
+      application/json:
+        schema: MyType1
+        example: |
+          {
+            "arrayProp": [
+              {
+                "prop1": 13,
+                "prop2": true
+              },
+              {
+                "prop1": 13,
+                "prop2": "stringValue"
+              }
+            ]
+          }

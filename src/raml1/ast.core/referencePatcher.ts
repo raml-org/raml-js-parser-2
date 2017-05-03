@@ -1183,8 +1183,9 @@ export type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};
 export function getDeclaration(
     elementName:string,
     typeName:string,
-    resolver:namespaceResolver.NamespaceResolver,
     units:ll.ICompilationUnit[]):hl.IHighLevelNode{
+
+    let resolver =  (<jsyaml.Project>units[0].project()).namespaceResolver();
     
     if(!elementName){
         return null;

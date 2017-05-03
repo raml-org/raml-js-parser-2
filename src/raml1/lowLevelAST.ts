@@ -326,6 +326,7 @@ export interface LineMapper{
 
     position(pos:number):TextPosition
 
+    toPosition(line:number,column:number):TextPosition;
 }
 
 export class LineMapperImpl implements LineMapper{
@@ -406,6 +407,28 @@ Unit path: ${this.absPath}`);
             }
         }
         this.mapping.push(l-ind);
+    }
+
+    toPosition(line:number,_column:number):TextPosition{
+
+        let column = _column;
+        this.initMapping();
+        for(var i = line ; i < this.mapping.length ; i++){
+            var lineLength = this.mapping[i];
+            if(column < lineLength){
+                let pos = column;
+                for(var j = 0 ; j < i ; j++){
+                    pos += this.mapping[j];
+                }
+                return {
+                    line: i,
+                    column: column,
+                    position: pos
+                }
+            }
+            column -= lineLength;
+        }
+        return null;
     }
 }
 

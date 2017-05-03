@@ -1,0 +1,80 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "MyType": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\"\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res1",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType",
+                "example": "{\"arrayProp\":[{\"prop1\":13,\"prop2\": true},{\"prop1\": 13,\"prop2\":false}]}",
+                "schemaContent": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\"\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res1"
+        ],
+        "absoluteUri": "/res1"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Unexpected token '\"properties\"'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 74,
+          "position": 111
+        },
+        "end": {
+          "line": 4,
+          "column": 86,
+          "position": 123
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Unexpected token '\"properties\"'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 8,
+          "position": 351
+        },
+        "end": {
+          "line": 10,
+          "column": 15,
+          "position": 358
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

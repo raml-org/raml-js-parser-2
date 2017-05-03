@@ -27,7 +27,12 @@ describe('Parser integration tests',function(){
     this.timeout(15000);
     it ("Instagram",function(){
         this.timeout(15000);
-        testErrors(util.data("../example-ramls/Instagram/api.raml"),["Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null, Expected type \\w+ but found type null \\w+,null"]);
+        testErrors(util.data("../example-ramls/Instagram/api.raml"),[
+            "Content is not valid according to schema: Expected type string but found type null",
+            "Content is not valid according to schema: Expected type string but found type null",
+            "Content is not valid according to schema: Expected type object but found type null",
+            "Content is not valid according to schema: Expected type object but found type null"
+        ]);
     });
     it ("Omni",function(){
         this.timeout(15000);
@@ -56,11 +61,15 @@ describe('Parser integration tests',function(){
     });
     it ("core services",function(){
         this.timeout(15000);
-        testErrors(util.data("../example-ramls/core-services/api.raml"),["Can not parse JSON: Unexpected token {", "Can not parse JSON: Unexpected token \\w+", "Can not parse JSON: Unexpected token \\w+"]);
+        testErrors(util.data("../example-ramls/core-services/api.raml"),[
+            "Can not parse JSON example: Unexpected token '{'",
+            "Can not parse JSON example: Cannot tokenize symbol 'O'",
+            "Can not parse JSON example: Cannot tokenize symbol 'O'"
+        ]);
     });
     it ("cloudhub new logging",function(){
         this.timeout(15000);
-        testErrors(util.data("../example-ramls/cloudhub-new-logging/api.raml"),["Can not parse JSON: Unexpected token }"]);
+        testErrors(util.data("../example-ramls/cloudhub-new-logging/api.raml"),["Can not parse JSON example: Unexpected token '}'"]);
     });
     it ("audit logging",function(){
         this.timeout(15000);
@@ -68,7 +77,14 @@ describe('Parser integration tests',function(){
     });
     it ("application monitoring",function(){
         this.timeout(15000)
-        testErrors(util.data("../example-ramls/application-monitoring/api.raml"),["Unrecognized schema: 'appmonitor-rule.schema'", "Example does not conform to schema: Content is not valid according to schema: Reference has not been resolved during compilation: appmonitor-rule appmonitor-rule", "Unrecognized schema: 'appmonitor-rule.schema'", "Example does not conform to schema: Content is not valid according to schema: Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Example does not conform to schema: Content is not valid according to schema: Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Unrecognized schema: 'appmonitor'"]);
+        testErrors(util.data("../example-ramls/application-monitoring/api.raml"),[
+            "Unrecognized schema: 'appmonitor-rule.schema'",
+            "Invalid JSON schema: Reference has not been resolved during compilation: appmonitor-rule",
+            "Unrecognized schema: 'appmonitor-rule.schema'",
+            "Invalid JSON schema: Reference has not been resolved during compilation: appmonitor-action",
+                                             "Invalid JSON schema: Reference has not been resolved during compilation: appmonitor-action",
+            "Unrecognized schema: 'appmonitor'"
+        ]);
     });
     //it ("api platform",function(){
     //    testErrors(util.data("../../../../example-ramls/api-platform/api.raml"));
@@ -183,7 +199,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex2.raml"), ["Content is not valid according to schema"]);
     })
     it ("example validation yaml against schema" ,function(){
-        testErrors(util.data("parser/examples/ex3.raml"), ["Example does not conform to schema: Content is not valid according to schema: Additional properties not allowed: \\w+ \\w+"]);
+        testErrors(util.data("parser/examples/ex3.raml"), ["Content is not valid according to schema: Additional properties not allowed: vlue"]);
     })
     it ("example validation yaml against basic type" ,function(){
         testErrors(util.data("parser/examples/ex4.raml"),["Required property 'c' is missing"]);
@@ -312,7 +328,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/custom/res08.raml"));
     })
     it ("example is string 0.8" ,function(){
-        testErrors(util.data("parser/examples/ex44.raml"),["'example' value should be a string"]);
+        testErrors(util.data("parser/examples/ex44.raml"),[ "Scalar is expected here" ]);
     })
     it ("enums values restriction" ,function(){
         testErrors(util.data("parser/examples/ex37.raml"));
@@ -806,7 +822,7 @@ describe('Parser regression tests', function () {
 
     })
     it ("external 1" ,function(){
-        testErrors(util.data("parser/external/e1.raml"),["Example does not conform to schema: Content is not valid according to schema: Missing required property: \\w+ \\w+"]);
+        testErrors(util.data("parser/external/e1.raml"),["Content is not valid according to schema: Missing required property: id"]);
     })
     it ("external 2" ,function(){
         testErrors(util.data("parser/external/e2.raml"));
@@ -1365,7 +1381,10 @@ describe('RAML10/Dead Loop Tests/JSONSchemas',function(){
 
     it("test003", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),["Remote reference didn't compile successfully","Remote reference didn't compile successfully"]);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),[
+            "Can not parse JSON example: Unexpected end of JSON input",
+            "Can not parse JSON example: Unexpected end of JSON input"
+        ]);
     });
 
 });

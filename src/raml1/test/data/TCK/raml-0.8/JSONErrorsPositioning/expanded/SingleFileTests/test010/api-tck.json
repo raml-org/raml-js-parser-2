@@ -1,0 +1,74 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "MyType": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "body": {
+            "application/json": {
+              "name": "application/json"
+            }
+          },
+          "name": "tr"
+        }
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res1",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "MyType",
+                "example": "{\"arrayProp\":[{\"prop1\":13,\"prop2\": true},{\"prop1\": 13,\"prop2\":123123}]}",
+                "schemaContent": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/res1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res1"
+        ],
+        "absoluteUri": "/res1"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type boolean but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 72,
+          "position": 470
+        },
+        "end": {
+          "line": 14,
+          "column": 86,
+          "position": 484
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

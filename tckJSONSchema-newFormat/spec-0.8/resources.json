@@ -4,6 +4,7 @@
     "definitions": {
         "Resource08": {
             "type": "object",
+            "description":"Web resource",
             "properties":{
                 "relativeUri":{
                     "type": "string",
@@ -88,7 +89,7 @@
                     "additionalProperties": false
                 },
                 "description":{
-                    "type": "string",
+                    "type": ["string", "null"],
                     "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
                 },
                 "absoluteUri": {
@@ -102,6 +103,7 @@
         },
         "ResourceType08": {
             "type": "object",
+            "description": "Resource pattern which can be defined and then applied to multiple resources",
             "properties": {
                 "name": {
                     "type": "string",
@@ -172,7 +174,7 @@
                     }
                 },
                 "description": {
-                    "type": "string",
+                    "type": ["string", "null"],
                     "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
                 },
                 "isScalar": {

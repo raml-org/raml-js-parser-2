@@ -13,7 +13,13 @@
                             "type": "object",
                             "patternProperties": {
                                 "^[a-zA-Z0-9]+": {
-                                    "type": "string"
+                                    "type": [
+                                        "number",
+                                        "string",
+                                        "boolean",
+                                        "object",
+                                        "array"
+                                    ]
                                 }
                             }
                         }
@@ -50,7 +56,8 @@
                         "__METADATA__": {"type": "object"}
                     }
                 }
-            ]
+            ],
+            "description":"Web resource"
         },
         "ResourceTypeFragment": {
             "type": "object",
@@ -88,6 +95,7 @@
                     }
                 }
             ],
+            "description": "Resource pattern which can be defined and then applied to multiple resources",
             "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
             },
@@ -99,7 +107,7 @@
                 {
                     "properties": {
                         "description": {
-                            "type": "string",
+                            "type": [ "string", "null" ],
                             "description": "Resource description"
                         },
                         "is": {

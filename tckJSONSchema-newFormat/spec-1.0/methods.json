@@ -14,6 +14,13 @@
                             "type": "object",
                             "patternProperties": {
                                 "^[a-zA-Z0-9]+": {
+                                    "type": [
+                                        "number",
+                                        "string",
+                                        "boolean",
+                                        "object",
+                                        "array"
+                                    ]
                                 }
                             }
                         }
@@ -58,15 +65,17 @@
                         "method": {
                             "type": "string",
                             "description": "Method that can be called"
+                        },
+                        "allUriParameters": {
+                            "type": "array",
+                            "items": {"$ref": "datamodel.json#/definitions/Type"}
                         }
-                    },
-                    "allUriParameters": {
-                        "type": "array",
-                        "items": {"$ref": "datamodel.json#/definitions/Type"}
+
                     }
                 }
             ],
-            "require": ["method"]
+            "description": "RESTful API methods are operations that are performed on a resource.",
+            "required": ["method"]
         },
         "MethodBase10": {
             "allOf": [
@@ -110,7 +119,7 @@
                             }
                         },
                         "description": {
-                            "type": "string"
+                            "type": ["string", "null"]
                         }
                     }
                 }

@@ -79,19 +79,19 @@
   },
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: name name",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Missing required property: name",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 21,
-          "column": 8,
-          "position": 334
+          "line": 22,
+          "column": 10,
+          "position": 353
         },
         "end": {
-          "line": 21,
+          "line": 22,
           "column": 15,
-          "position": 341
+          "position": 358
         }
       }
     }

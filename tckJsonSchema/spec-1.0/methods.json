@@ -14,6 +14,13 @@
                             "type": "object",
                             "patternProperties": {
                                 "^[a-zA-Z0-9]+": {
+                                    "type": [
+                                        "number",
+                                        "string",
+                                        "boolean",
+                                        "object",
+                                        "array"
+                                    ]
                                 }
                             }
                         }
@@ -68,6 +75,7 @@
                     }
                 }
             ],
+            "description": "RESTful API methods are operations that are performed on a resource.",
             "require": ["method"]
         },
         "MethodBase10": {
@@ -112,7 +120,7 @@
                             }
                         },
                         "description": {
-                            "type": "string"
+                            "type": [ "string", "null" ]
                         }
                     }
                 }

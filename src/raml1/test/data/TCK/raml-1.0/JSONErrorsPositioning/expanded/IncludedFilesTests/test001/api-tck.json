@@ -1,0 +1,64 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "schemaPath": "schema.json",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+          ],
+          "example": {
+            "arrayProp": [
+              {
+                "prop1": 13,
+                "prop2": true
+              },
+              {
+                "prop1": 13,
+                "prop2": false
+              }
+            ]
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"arrayProp\": [\n    {\n      \"prop1\": 13,\n      \"prop2\": true\n    },\n    {\n      \"prop1\": 13,\n      \"prop2\": false\n    }\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "arrayProp": [
+                {
+                  "prop1": 13,
+                  "prop2": true
+                },
+                {
+                  "prop1": 13,
+                  "prop2": false
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}

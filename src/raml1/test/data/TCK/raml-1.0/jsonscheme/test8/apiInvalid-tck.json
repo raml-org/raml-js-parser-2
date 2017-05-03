@@ -82,19 +82,19 @@
   },
   "errors": [
     {
-      "code": "EXAMPLE_SCHEMA_FAILURE",
-      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: childName childName",
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Missing required property: childName",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 12,
-          "column": 8,
-          "position": 151
+          "line": 14,
+          "column": 10,
+          "position": 201
         },
         "end": {
-          "line": 12,
+          "line": 14,
           "column": 15,
-          "position": 158
+          "position": 206
         }
       }
     }
