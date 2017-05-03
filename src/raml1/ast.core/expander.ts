@@ -703,7 +703,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                             val = (<referencePatcher.PatchedReference>val).value();
                         }
                         for(var tr of transformers) {
-                            val = tr(val);
+                            val = tr(val + '');
                         }
                     }
                 } else {
