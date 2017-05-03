@@ -1,0 +1,12 @@
+ #%RAML 1.0
+title: test API
+types:
+  sch: !includesome/arbitrary/path/to/nowhere/example.json
+/resource:
+  get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: !includesome/arbitrary/path/to/nowhere/example.json
+              example: !includesome/arbitrary/path/to/nowhere/example.json

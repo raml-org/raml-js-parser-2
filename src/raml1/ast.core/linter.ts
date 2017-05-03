@@ -432,12 +432,24 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             var cLength = node.lowLevel().unit().contents().length;
             node.lowLevel().errors().forEach(x=> {
                 var ps= (<any>x).mark?(<any>x).mark.position:0;
+                let pe = (ps >= cLength) ? ps : (ps + 1);
+                if((<any>x).mark && (<any>x).mark.toLineEnd){
+                    let content = (<any>x).mark.buffer;
+                    let ind = content.indexOf("\n",ps);
+                    if(ind<0){
+                        ind = content.length;
+                    }
+                    if(ind<content.length && content.charAt(ind)=="\r"){
+                        ind--;
+                    }
+                    pe = ind;
+                }
                 var em = {
                     code: "YAML_ERROR",//hl.IssueCode.YAML_ERROR,
                     message: x.message,
                     node: null,
                     start: ps,
-                    end: (ps >= cLength) ? ps : (ps + 1),
+                    end: pe,
                     isWarning: false,
                     path: node.lowLevel().unit() == node.root().lowLevel().unit() ? null : node.lowLevel().unit().path(),
                     unit: node.lowLevel().unit()

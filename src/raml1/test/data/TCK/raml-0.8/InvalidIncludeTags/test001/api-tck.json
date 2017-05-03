@@ -1,0 +1,114 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {}
+    ],
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": null,
+                    "example": null
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "SCHEMA_NAME_MUST_BE_STRING",
+      "message": "Schema 'sch' must be a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 4,
+          "position": 40
+        },
+        "end": {
+          "line": 3,
+          "column": 7,
+          "position": 43
+        }
+      }
+    },
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 4, column 1",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 9,
+          "position": 45
+        },
+        "end": {
+          "line": 3,
+          "column": 60,
+          "position": 96
+        }
+      }
+    },
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 11, column 15",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 22,
+          "position": 213
+        },
+        "end": {
+          "line": 10,
+          "column": 73,
+          "position": 264
+        }
+      }
+    },
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 12, column 1",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 23,
+          "position": 288
+        },
+        "end": {
+          "line": 11,
+          "column": 74,
+          "position": 339
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+#%RAML 0.8
+title: test API
+schemas:
+  - sch: !includesome/arbitrary/path/to/nowhere/example.json
+traits:
+  - tr:
+/resource:
+  get:
+    is: [ tr ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !includesome/arbitrary/path/to/nowhere/example.json
+            example: !includesome/arbitrary/path/to/nowhere/example.json

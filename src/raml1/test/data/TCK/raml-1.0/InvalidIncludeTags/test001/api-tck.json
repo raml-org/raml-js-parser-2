@@ -1,0 +1,157 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "sch": {
+          "name": "sch",
+          "displayName": "sch",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "example": null,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "tr"
+            ],
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 4, column 1",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 7,
+          "position": 41
+        },
+        "end": {
+          "line": 3,
+          "column": 58,
+          "position": 92
+        }
+      }
+    },
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 14, column 13",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 18,
+          "position": 226
+        },
+        "end": {
+          "line": 13,
+          "column": 69,
+          "position": 277
+        }
+      }
+    },
+    {
+      "code": "OBJECT_EXPECTED",
+      "message": "object is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 12,
+          "position": 290
+        },
+        "end": {
+          "line": 14,
+          "column": 19,
+          "position": 297
+        }
+      }
+    },
+    {
+      "code": "YAML_ERROR",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 15, column 1",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 21,
+          "position": 299
+        },
+        "end": {
+          "line": 14,
+          "column": 72,
+          "position": 350
+        }
+      }
+    }
+  ]
+}
