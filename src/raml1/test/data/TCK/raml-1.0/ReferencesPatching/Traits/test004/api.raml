@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: API
+traits:
+  bodyTrait:
+    body:
+      application/json:
+resourceTypes:
+  oneRT:
+    type: <<parentResourceType | !singularize>>
+    get:
+      is: [<<trait | !singularize>>]
+  twoRT:
+    post:
+/resource:
+  type:    { oneRT: {parentResourceType: twoRT, trait : bodyTrait} }

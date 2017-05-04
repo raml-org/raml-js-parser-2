@@ -1,0 +1,111 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "bodyTrait": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "bodyTrait"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "oneRT": {
+          "type": "<<parentResourceType | !singularize>>",
+          "name": "oneRT",
+          "get": {
+            "is": [
+              "<<trait | !singularize>>"
+            ],
+            "method": "get"
+          }
+        }
+      },
+      {
+        "twoRT": {
+          "name": "twoRT",
+          "post": {
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "bodyTrait"
+            ],
+            "method": "get"
+          },
+          {
+            "method": "post"
+          }
+        ],
+        "type": {
+          "oneRT": {
+            "parentResourceType": "twoRT",
+            "trait": "bodyTrait"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}
