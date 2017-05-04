@@ -981,6 +981,15 @@ export function checkExpression(value:string) {
     return gotExpression;
 };
 
+function isFromResourceType(node: ll.ILowLevelASTNode): boolean {
+    var parent = node.parent && node.parent();
+
+    parent = parent && parent.parent && parent.parent();
+    parent = parent && parent.parent && parent.parent();
+    parent = parent && parent.parent && parent.parent();
+    
+    return parent && parent.key && parent.key() === universeDef.Universe10.Api.properties.resourceTypes.name;
+}
 
 export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     node:ll.ILowLevelASTNode,
@@ -991,6 +1000,9 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     var llMethod = <proxy.LowLevelCompositeNode>node.lowLevel();
     var ramlVersion = node.definition().universe().version();
     var originalLlMethod = toOriginal(llMethod);
+    
+    var isFromResourceTypeMethod = isFromResourceType(originalLlMethod);
+            
     var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
     var ownIsNode = <proxy.LowLevelCompositeNode>_.find(
         llMethod.children(), x=>x.key() == isPropertyName);
@@ -1003,7 +1015,7 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
 
         isNode = (<proxy.LowLevelCompositeNode>llMethod).replaceChild(null,newLLIsNode);
     }
-    var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
+    var originalIsNode = isFromResourceTypeMethod ? null : _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
     var childrenToPreserve = (originalIsNode != null && (originalIsNode.unit().absolutePath() == rootPath))
         ? originalIsNode.children() : [];
 
