@@ -20,7 +20,7 @@ import referencePatcher = require("./referencePatcher");
 import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
-
+var mediaTypeParser = require("media-typer");
 var changeCase = require('change-case');
 
 export function expandTraitsAndResourceTypes<T>(api:T):T{
@@ -282,6 +282,90 @@ export class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
         resources.forEach(x=>this.processResource(x,nodes));
+        (<(RamlWrapper.Method|RamlWrapper08.Method)[]>resource.methods())
+            .forEach(x=>this.mergeBodiesForMethod(x.highLevel()));
+    }
+
+    private mergeBodiesForMethod(method: hl.IHighLevelNode) {
+        let llNode = <proxy.LowLevelCompositeNode>method.lowLevel();
+        if (!proxy.LowLevelCompositeNode.isInstance(llNode)) {
+            return;
+        }
+        let defaultMediaType
+            = method.computedValue(universeDef.Universe10.Api.properties.mediaType.name);
+
+        if (defaultMediaType == null) {
+            return;
+        }
+        let bodyNode: proxy.LowLevelCompositeNode;
+        let bodyNodesArray: proxy.LowLevelCompositeNode[] = [];
+        let llChildren = llNode.children();
+        for(var ch of llChildren){
+            if(ch.key()==universeDef.Universe10.Method.properties.body.name){
+                bodyNode = ch;
+            }
+            else if(ch.key()==universeDef.Universe10.Method.properties.responses.name){
+                let responses = ch.children();
+                for(var response of responses){
+                    let responseChildren = response.children();
+                    for(var respCh of responseChildren){
+                        if(respCh.key()==universeDef.Universe10.Response.properties.body.name){
+                            bodyNodesArray.push(respCh);
+                        }
+                    }
+                }
+            }
+        }
+        if(bodyNode){
+            bodyNodesArray.push(bodyNode);
+        }
+        for(var n of bodyNodesArray){
+            this.mergeBodies(n, defaultMediaType);
+        }
+    }
+
+    private mergeBodies(bodyNode:proxy.LowLevelCompositeNode, defaultMediaType:string):boolean{
+        let explicitCh:proxy.LowLevelCompositeNode;
+        let implicitPart:proxy.LowLevelCompositeNode[] = [],
+            otherMediaTypes:proxy.LowLevelCompositeNode[] = [];
+
+        let newAdopted:{node:ll.ILowLevelASTNode,transformer:proxy.ValueTransformer}[] = [];
+        let map:ll.ILowLevelASTNode[] = [];
+        for(let ch of bodyNode.children()){
+            let key = ch.key();
+            if(key==defaultMediaType){
+                explicitCh = ch;
+                newAdopted.push({node:referencePatcher.toOriginal(ch),transformer:ch.transformer()});
+            }
+            else {
+                try{
+                    mediaTypeParser.parse(key);
+                    otherMediaTypes.push(ch);
+                }
+                catch(e){
+                    let oParent = referencePatcher.toOriginal(ch).parent();
+                    if(map.indexOf(oParent)<0) {
+                        newAdopted.push({node:oParent,transformer:ch.transformer()});
+                        map.push(oParent);
+                    }
+                    implicitPart.push(ch);
+                }
+            }
+        }
+        if(implicitPart.length==0||(explicitCh==null&&otherMediaTypes.length==0)){
+            return false;
+        }
+        for(let ch of implicitPart){
+            bodyNode.removeChild(ch);
+        }
+        if(explicitCh==null){
+            let oNode = referencePatcher.toOriginal(bodyNode);
+            let mapping = yaml.newMapping(yaml.newScalar(defaultMediaType),yaml.newMap([]));
+            let newNode = new jsyaml.ASTNode(mapping,oNode.unit(),<jsyaml.ASTNode>oNode,null,null);
+            explicitCh = bodyNode.replaceChild(null,newNode);
+        }
+        explicitCh.patchAdoptedNodes(newAdopted);
+        return true;
     }
 
     private collectResourceData(

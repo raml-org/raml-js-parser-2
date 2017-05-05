@@ -1084,7 +1084,7 @@ export function prepareTraitRefNode(llNode:ll.ILowLevelASTNode,llParent:ll.ILowL
     return result;
 }
 
-function toOriginal(node:ll.ILowLevelASTNode){
+export function toOriginal(node:ll.ILowLevelASTNode){
     for(var i = 0; i<2 && proxy.LowLevelProxyNode.isInstance(node); i++){
         node = (<proxy.LowLevelProxyNode>node).originalNode();
     }

@@ -371,6 +371,15 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         return val;
     }
 
+    patchAdoptedNodes(entries:{node:ll.ILowLevelASTNode,transformer:ValueTransformer}[]){
+        this._adoptedNodes = [];
+        entries.forEach(x=>this.adopt(x.node,x.transformer));
+        if(this._adoptedNodes.length>0){
+            this._originalNode = this._adoptedNodes[0];
+        }
+        this.resetChildren();
+    }
+
     children():LowLevelCompositeNode[] {
 
         if(this._children){
@@ -614,6 +623,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         var newCNode:LowLevelCompositeNode;
         if(LowLevelCompositeNode.isInstance(newNode)){
             newCNode = <LowLevelCompositeNode>newNode;
+            newCNode._parent = this;
         }
         else {
             newCNode = new LowLevelCompositeNode(newNode, this, null, this.ramlVersion);
@@ -659,6 +669,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         if(this._preserveAnnotations){
             this._children.forEach(x=>x.preserveAnnotations());
         }
+    }
+
+    resetChildren(){
+        this._children = null;
     }
 
     preserveAnnotations(){

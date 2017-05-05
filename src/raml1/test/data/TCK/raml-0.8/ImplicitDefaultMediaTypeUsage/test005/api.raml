@@ -1,0 +1,24 @@
+#%RAML 0.8
+title: test API
+mediaType: application/json
+
+schemas:
+  - t1: "{}"
+  - t2: "{}"
+
+resourceTypes:
+  - collection:
+      get:
+        responses:
+          200:
+            body:
+              schema: t1
+
+/schemes:
+  type: collection
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            schema: t2

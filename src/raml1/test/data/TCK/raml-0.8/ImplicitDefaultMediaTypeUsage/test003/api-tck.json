@@ -1,0 +1,86 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "mediaType": "application/json",
+    "schemas": [
+      {
+        "t1": "{}"
+      },
+      {
+        "t2": "{}"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "schema": "t1",
+                    "schemaContent": "{}"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/schemes",
+        "type": "collection",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "schema": "t1",
+                    "schemaContent": "{}"
+                  },
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "t2",
+                    "schemaContent": "{}",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "name": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/schemes",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "schemes"
+        ],
+        "absoluteUri": "/schemes"
+      }
+    ]
+  },
+  "errors": []
+}

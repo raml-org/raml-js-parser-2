@@ -1,0 +1,96 @@
+{
+  "specification": {
+    "title": "test API",
+    "mediaType": "application/json",
+    "schemas": [
+      {
+        "t1": "{}"
+      },
+      {
+        "t2": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+      },
+      {
+        "t3": "{}"
+      }
+    ],
+    "resourceTypes": {
+      "collection": {
+        "name": "collection",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "t1",
+                    "schemaContent": "{}"
+                  },
+                  "application/xml": {
+                    "name": "application/xml",
+                    "schema": "t2",
+                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/schemes",
+        "type": "collection",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "t3",
+                    "schemaContent": "{}",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "name": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  },
+                  "application/xml": {
+                    "name": "application/xml",
+                    "schema": "t2",
+                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "displayName": "/schemes",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "schemes"
+        ],
+        "absoluteUri": "/schemes",
+        "completeRelativeUri": "/schemes",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

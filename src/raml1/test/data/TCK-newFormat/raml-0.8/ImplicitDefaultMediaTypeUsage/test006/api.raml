@@ -1,0 +1,27 @@
+#%RAML 0.8
+title: test API
+mediaType: application/json
+
+schemas:
+  - t1: "{}"
+  - t2: "{}"
+  - t3: '<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"/>'
+
+resourceTypes:
+  - collection:
+      get:
+        responses:
+          200:
+            body:
+              schema: t1
+
+/schemes:
+  type: collection
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: t2
+          application/xml:
+            schema: t3
