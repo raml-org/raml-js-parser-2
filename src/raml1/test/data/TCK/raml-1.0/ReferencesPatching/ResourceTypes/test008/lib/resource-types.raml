@@ -1,0 +1,24 @@
+#%RAML 1.0 Library
+
+uses:
+  ty: types.raml
+  tr: traits.raml
+  lib: libA.raml
+
+types:
+  MyType: number
+
+resourceTypes:
+  Collection:
+    description: <<desc>>
+    type:
+      lib.rt:
+        param1: MyType
+    get:
+      is: [ { tr.ResponseCommonErrors: { errorResponseType: ty.ErrorResponseType } } ]
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<param1>>

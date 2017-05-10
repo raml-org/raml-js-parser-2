@@ -1,0 +1,30 @@
+#%RAML 1.0 Library
+
+types:
+  MyType: boolean
+
+resourceTypes:
+  rt:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<param1>>
+              example: 8
+
+    post:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<param2>>
+              example:
+                p1: stringValue
+
+    put:
+      responses:
+        200:
+          body:
+            application/json:
+              type: MyType

@@ -1,0 +1,6 @@
+{
+  "main": "test.raml",
+  "name": "Test",
+  "classifier": "raml",
+  "tags": []
+}

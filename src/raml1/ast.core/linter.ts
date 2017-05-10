@@ -2014,6 +2014,9 @@ export function getHumanReadableNodeName(astNode:hl.IParseResult) {
 
 function isValidPropertyValue(pr:def.Property,vl:string,c:hl.IHighLevelNode):boolean{
     var node=<any>search.declRoot(c);
+    if(proxy.LowLevelProxyNode.isInstance(c.lowLevel())){
+        c = node;
+    }
     if (!node._cach){
         node._cach={};
     }

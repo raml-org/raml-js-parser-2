@@ -1,0 +1,267 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "rt.ty.ErrorResponseType": {
+          "name": "ErrorResponseType",
+          "displayName": "ErrorResponseType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "code": {
+              "name": "code",
+              "displayName": "code",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "message": {
+              "name": "message",
+              "displayName": "message",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "rt.tr.ResponseCommonErrors": {
+          "responses": {
+            "400": {
+              "code": "400",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "<<errorResponseType>>"
+                  ],
+                  "example": {
+                    "code": "abc123",
+                    "message": "Bad request"
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "structuredExample": {
+                    "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "code": "abc123",
+                      "message": "Bad request"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "code": "500",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "<<errorResponseType>>"
+                  ],
+                  "example": {
+                    "code": "xyz123",
+                    "message": "Server error"
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "structuredExample": {
+                    "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "code": "xyz123",
+                      "message": "Server error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "name": "ResponseCommonErrors"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rt.Collection": {
+          "name": "Collection",
+          "get": {
+            "is": [
+              {
+                "rt.tr.ResponseCommonErrors": {
+                  "errorResponseType": "rt.ty.ErrorResponseType"
+                }
+              }
+            ],
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "version": "v1z",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "400": {
+                "code": "400",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.ty.ErrorResponseType"
+                    ],
+                    "example": {
+                      "code": "abc123",
+                      "message": "Bad request"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "code": "abc123",
+                        "message": "Bad request"
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "code": "500",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.ty.ErrorResponseType"
+                    ],
+                    "example": {
+                      "code": "xyz123",
+                      "message": "Server error"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "code": "xyz123",
+                        "message": "Server error"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              {
+                "rt.tr.ResponseCommonErrors": {
+                  "errorResponseType": "rt.ty.ErrorResponseType"
+                }
+              }
+            ],
+            "method": "get"
+          }
+        ],
+        "type": "rt.Collection",
+        "relativeUri": "/products",
+        "displayName": "/products",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "products"
+        ],
+        "absoluteUri": "/products"
+      }
+    ]
+  },
+  "errors": []
+}

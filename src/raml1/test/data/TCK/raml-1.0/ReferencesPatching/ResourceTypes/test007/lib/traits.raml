@@ -1,0 +1,23 @@
+#%RAML 1.0 Library
+
+traits:
+  ResponseCommonErrors:
+    responses: 
+      400:
+        body:
+          application/json:
+            type: <<errorResponseType>>
+            example: |
+              {
+                "code": "abc123",
+                "message": "Bad request"
+              }
+      500:
+        body:
+          application/json:
+            type: <<errorResponseType>>
+            example: |
+              {
+                "code": "xyz123",
+                "message": "Server error"
+              }

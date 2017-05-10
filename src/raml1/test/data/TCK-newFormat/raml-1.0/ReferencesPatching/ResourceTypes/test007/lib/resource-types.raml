@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+
+uses:
+  ty: types.raml
+  tr: traits.raml
+
+resourceTypes: 
+  Collection:
+    get:
+      is: [ { tr.ResponseCommonErrors: { errorResponseType: ty.ErrorResponseType } } ]
+        
+    
+      

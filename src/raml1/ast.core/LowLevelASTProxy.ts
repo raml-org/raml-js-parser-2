@@ -11,6 +11,7 @@ import universes=require("../tools/universe")
 import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
 import universeHelpers = require("../tools/universeHelpers");
+import referencePatcher = require("./referencePatcher");
 var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
@@ -264,6 +265,15 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     isValueScalar(): boolean {
         return this.valueKind() == yaml.Kind.SCALAR;
+    }
+
+    definingUnitSequence():ll.ICompilationUnit[]{
+        let key = referencePatcher.toOriginal(this).key();
+        let tr = this.transformer();
+        if(!tr){
+            return null;
+        }
+        return tr.definingUnitSequence(key);
     }
 }
 
@@ -836,6 +846,8 @@ export interface ValueTransformer{
     anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind
 
     includePath(node:ll.ILowLevelASTNode):string
+
+    definingUnitSequence(str:string):ll.ICompilationUnit[]
 }
 
 export function isLowLevelProxyNode(node : any) : node is LowLevelProxyNode {

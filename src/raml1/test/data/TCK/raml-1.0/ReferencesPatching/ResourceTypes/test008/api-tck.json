@@ -1,0 +1,511 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "rt",
+        "value": "lib/resource-types.raml"
+      },
+      {
+        "key": "rt.ty",
+        "value": "lib/types.raml"
+      },
+      {
+        "key": "rt.tr",
+        "value": "lib/traits.raml"
+      },
+      {
+        "key": "rt.lib",
+        "value": "lib/libA.raml"
+      },
+      {
+        "key": "rt.lib.lib",
+        "value": "lib/libB.raml"
+      }
+    ],
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "rt.tr.ResponseCommonErrors": {
+          "responses": {
+            "400": {
+              "code": "400",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "<<errorResponseType>>"
+                  ],
+                  "example": {
+                    "code": "abc123",
+                    "message": "Bad request"
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "structuredExample": {
+                    "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "code": "abc123",
+                      "message": "Bad request"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "code": "500",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "<<errorResponseType>>"
+                  ],
+                  "example": {
+                    "code": "xyz123",
+                    "message": "Server error"
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "structuredExample": {
+                    "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "code": "xyz123",
+                      "message": "Server error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "name": "rt.tr.ResponseCommonErrors",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rt.lib.lib.rt": {
+          "name": "rt.lib.lib.rt",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<param1>>"
+                    ],
+                    "example": 8,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "8",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": 8
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<param2>>"
+                    ],
+                    "example": {
+                      "p1": "stringValue"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"p1\": \"stringValue\"\n}",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": "stringValue"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          },
+          "put": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.lib.lib.MyType"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        }
+      },
+      {
+        "rt.lib.rt": {
+          "type": {
+            "rt.lib.lib.rt": {
+              "param1": "<<param1>>",
+              "param2": "MyType"
+            }
+          },
+          "name": "rt.lib.rt",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "rt.Collection": {
+          "type": {
+            "rt.lib.rt": {
+              "param1": "MyType"
+            }
+          },
+          "description": "<<desc>>",
+          "name": "rt.Collection",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "get": {
+            "is": [
+              {
+                "rt.tr.ResponseCommonErrors": {
+                  "errorResponseType": "ty.ErrorResponseType"
+                }
+              }
+            ],
+            "method": "get"
+          },
+          "delete": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<param1>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "delete"
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "version": "v1z",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.MyType"
+                    ],
+                    "example": 8,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "8",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": 8
+                    }
+                  }
+                }
+              },
+              "400": {
+                "code": "400",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.ty.ErrorResponseType"
+                    ],
+                    "example": {
+                      "code": "abc123",
+                      "message": "Bad request"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "code": "abc123",
+                        "message": "Bad request"
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "code": "500",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.ty.ErrorResponseType"
+                    ],
+                    "example": {
+                      "code": "xyz123",
+                      "message": "Server error"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "code": "xyz123",
+                        "message": "Server error"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              {
+                "rt.tr.ResponseCommonErrors": {
+                  "errorResponseType": "rt.ty.ErrorResponseType"
+                }
+              }
+            ],
+            "method": "get"
+          },
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "MyType"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "delete"
+          },
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.lib.MyType"
+                    ],
+                    "example": {
+                      "p1": "stringValue"
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"p1\": \"stringValue\"\n}",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": "stringValue"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          },
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "rt.lib.lib.MyType"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "type": {
+          "rt.Collection": {
+            "desc": "stringValue",
+            "param1": "MyType"
+          }
+        },
+        "description": "stringValue",
+        "relativeUri": "/products",
+        "displayName": "/products",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "products"
+        ],
+        "absoluteUri": "/products"
+      }
+    ]
+  },
+  "errors": []
+}

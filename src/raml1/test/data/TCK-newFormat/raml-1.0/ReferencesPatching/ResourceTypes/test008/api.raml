@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Test API
+version: v1z
+
+uses:
+  rt: lib/resource-types.raml
+
+types:
+  MyType: string
+
+/products:
+  type:
+    rt.Collection:
+      desc: stringValue
+      param1: MyType

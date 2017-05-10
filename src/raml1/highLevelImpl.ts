@@ -12,6 +12,7 @@ import search=require("../search/search-interface")
 import mutators=require("./ast.core/mutators")
 import linter=require("./ast.core/linter")
 import expander=require("./ast.core/expander")
+import referencePatcher=require("./ast.core/referencePatcher");
 import typeBuilder=require("./ast.core/typeBuilder")
 import universes=require("./tools/universe")
 import jsyaml=require("./jsyaml/jsyaml2lowLevel")
@@ -43,7 +44,7 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
         var rootUnit = context.root().lowLevel().unit();
         var resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
         var unit = x.lowLevel().unit();
-        var usesInfo = resolver.resolveNamespace(rootUnit,unit);
+        let usesInfo = resolver.resolveNamespace(context.lowLevel().unit(), unit);
         if(usesInfo != null) {
             var ns = usesInfo.namespace();
             if (ns != null) {
@@ -464,7 +465,20 @@ export class StructuredValue implements hl.IStructuredValue{
             return this._hl;
         }
         var vn=this.valueName();
-        var cands=search.referenceTargets(this._pr, parent).filter(x=>qName(x,parent)==vn);
+        let p = parent;
+        if(proxy.LowLevelProxyNode.isInstance(this.node)){
+            let uSeq = (<proxy.LowLevelProxyNode>this.node).definingUnitSequence();
+            let p1 = uSeq && uSeq[0] && uSeq[0].highLevel().asElement();
+            let path1 = p1 && p1.lowLevel().unit().absolutePath();
+            if(path1 == parent.lowLevel().unit().absolutePath()){
+                p1 = parent;
+            }
+            else if(path1==parent.root().lowLevel().unit().absolutePath()){
+                p1 = parent.root();
+            }
+            p = p1 || p;
+        }
+        var cands=search.referenceTargets(this._pr, p).filter(x=>qName(x,p)==vn);
         if (cands&&cands[0]){
             var tp=(<hl.IHighLevelNode>cands[0]).localType();
             var node=new ASTNodeImpl(this.node,parent,<hl.INodeDefinition>tp,this._pr);

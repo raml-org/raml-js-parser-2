@@ -945,6 +945,41 @@ export class ValueTransformer implements proxy.ValueTransformer{
         }
         return paramName;
     }
+
+
+    definingUnitSequence(str:string){
+        if(str.length<2){
+            return null;
+        }
+        if(str.charAt(0)=="("&&str.charAt(str.length-1)==")"){
+            str = str.substring(1,str.length-1);
+        }
+        if(str.length<4){
+            return null;
+        }
+        if(str.substring(0,2)!="<<"){
+            return null;
+        }
+        if(str.substring(str.length-2,str.length)!=">>"){
+            return null;
+        }
+        let _str = str.substring(2,str.length-2);
+        if(_str.indexOf("<<")>=0||_str.indexOf(">>")>=0){
+            return null;
+        }
+        return this._definingUnitSequence(_str);
+    }
+
+    _definingUnitSequence(str:string):ll.ICompilationUnit[]{
+
+        if(this.params && this.params[str]){
+            return this.unitsChain;
+        }
+        if(this.vDelegate){
+            return this.vDelegate._definingUnitSequence(str);
+        }
+        return null;
+    }
 }
 
 export class DefaultTransformer extends ValueTransformer{
@@ -1051,6 +1086,17 @@ export class DefaultTransformer extends ValueTransformer{
 
     anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind{
         return this.delegate != null ? this.delegate.anchorValueKind(node) : null;
+    }
+
+    _definingUnitSequence(str:string):ll.ICompilationUnit[]{
+
+        if(this.params && this.params[str]){
+            return this.unitsChain;
+        }
+        if(this.delegate){
+            return this.delegate._definingUnitSequence(str);
+        }
+        return null;
     }
 }
 
