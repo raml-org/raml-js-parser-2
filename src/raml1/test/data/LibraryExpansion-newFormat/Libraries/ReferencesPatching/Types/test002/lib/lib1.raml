@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+
+uses:
+  lib2: lib2.raml
+
+types:
+  ComponentType:
+    properties:
+      prop1: string
+      prop2: string
+  CollectionType:
+    type: lib2.SuperType
+    properties:
+      array: ComponentType[]

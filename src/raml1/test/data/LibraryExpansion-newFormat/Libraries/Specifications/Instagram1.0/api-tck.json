@@ -1,0 +1,5940 @@
+{
+  "specification": {
+    "types": {
+      "types.Location": {
+        "name": "Location",
+        "displayName": "Location",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "latitude": {
+            "name": "latitude",
+            "displayName": "latitude",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "longitude": {
+            "name": "longitude",
+            "displayName": "longitude",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "street_address": {
+            "name": "street_address",
+            "displayName": "street_address",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "id": "1",
+              "name": "John",
+              "latitude": 34.016242,
+              "longitude": -95.800781,
+              "street_address": ""
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Meta": {
+        "name": "Meta",
+        "displayName": "Meta",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "code": {
+            "name": "code",
+            "displayName": "code",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "code": 200
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Locations": {
+        "name": "Locations",
+        "displayName": "Locations",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.Location",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": [
+                {
+                  "id": "1",
+                  "name": "John",
+                  "latitude": 34.016242,
+                  "longitude": -95.800781
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Counts": {
+        "name": "Counts",
+        "displayName": "Counts",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "media": {
+            "name": "media",
+            "displayName": "media",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "follows": {
+            "name": "follows",
+            "displayName": "follows",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "followed_by": {
+            "name": "followed_by",
+            "displayName": "followed_by",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "media": 2,
+              "follows": 3,
+              "followed_by": 5
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.UserAccount": {
+        "name": "UserAccount",
+        "displayName": "UserAccount",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "username": {
+                "name": "username",
+                "displayName": "username",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "full_name": {
+                "name": "full_name",
+                "displayName": "full_name",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "profile_picture": {
+                "name": "profile_picture",
+                "displayName": "profile_picture",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "bio": {
+                "name": "bio",
+                "displayName": "bio",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "website": {
+                "name": "website",
+                "displayName": "website",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "count": {
+                "name": "count",
+                "displayName": "count",
+                "type": [
+                  "types.Counts"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "data": {
+                "id": "1",
+                "username": "John",
+                "full_name": "John Smith",
+                "profile_picture": "URL",
+                "website": "example.org",
+                "count": {
+                  "media": 2,
+                  "follows": 3,
+                  "followed_by": 5
+                }
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.User": {
+        "name": "User",
+        "displayName": "User",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "username": {
+            "name": "username",
+            "displayName": "username",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "full_name": {
+            "name": "full_name",
+            "displayName": "full_name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "profile_picture": {
+            "name": "profile_picture",
+            "displayName": "profile_picture",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "bio": {
+            "name": "bio",
+            "displayName": "bio",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "website": {
+            "name": "website",
+            "displayName": "website",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "count": {
+            "name": "count",
+            "displayName": "count",
+            "type": [
+              "types.Counts"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "id": "1",
+              "username": "John",
+              "full_name": "John Smith",
+              "profile_picture": "URL",
+              "website": "example.org",
+              "count": {
+                "media": 2,
+                "follows": 3,
+                "followed_by": 5
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.SubscriptionPost": {
+        "name": "SubscriptionPost",
+        "displayName": "SubscriptionPost",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "object": {
+                "name": "object",
+                "displayName": "object",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "object_id": {
+                "name": "object_id",
+                "displayName": "object_id",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "aspect": {
+                "name": "aspect",
+                "displayName": "aspect",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "callback_url": {
+                "name": "callback_url",
+                "displayName": "callback_url",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "type": {
+                "name": "type",
+                "displayName": "type",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "lat": {
+                "name": "lat",
+                "displayName": "lat",
+                "type": [
+                  "number"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "lng": {
+                "name": "lng",
+                "displayName": "lng",
+                "type": [
+                  "number"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "radius": {
+                "name": "radius",
+                "displayName": "radius",
+                "type": [
+                  "number"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": {
+                "object_id": "25",
+                "callback_url": "url",
+                "id": "22",
+                "lat": 34.016242,
+                "lng": -95.800781,
+                "radius": 20
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.SubscriptionData": {
+        "name": "SubscriptionData",
+        "displayName": "SubscriptionData",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "object": {
+            "name": "object",
+            "displayName": "object",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "aspect": {
+            "name": "aspect",
+            "displayName": "aspect",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "callback_url": {
+            "name": "callback_url",
+            "displayName": "callback_url",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "object_id": {
+            "name": "object_id",
+            "displayName": "object_id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "object_id": "25",
+              "callback_url": "url",
+              "id": "22"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.SubscriptionsGet": {
+        "name": "SubscriptionsGet",
+        "displayName": "SubscriptionsGet",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.SubscriptionData",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": [
+                {
+                  "object_id": "25",
+                  "callback_url": "url",
+                  "id": "22"
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.SubscriptionsDelete": {
+        "name": "SubscriptionsDelete",
+        "displayName": "SubscriptionsDelete",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "types.SubscriptionData"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": {
+                "object_id": "25",
+                "callback_url": "url",
+                "id": "22"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Tag": {
+        "name": "Tag",
+        "displayName": "Tag",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "media_count": {
+                "name": "media_count",
+                "displayName": "media_count",
+                "type": [
+                  "integer"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "name": {
+                "name": "name",
+                "displayName": "name",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "data": {
+                "media_count": 2,
+                "name": "forest"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.SerachTagItem": {
+        "name": "SerachTagItem",
+        "displayName": "SerachTagItem",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "media_count": {
+            "name": "media_count",
+            "displayName": "media_count",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "media_count": 2,
+              "name": "forest"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.TagsSearch": {
+        "name": "TagsSearch",
+        "displayName": "TagsSearch",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.SerachTagItem",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": [
+                {
+                  "media_count": 2,
+                  "name": "forest"
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaLike": {
+        "name": "MediaLike",
+        "displayName": "MediaLike",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "first_name": {
+            "name": "first_name",
+            "displayName": "first_name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "last_name": {
+            "name": "last_name",
+            "displayName": "last_name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "first_name": "John",
+              "last_name": "Smith",
+              "id": "2",
+              "type": "string"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaLikes": {
+        "name": "MediaLikes",
+        "displayName": "MediaLikes",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.MediaLike",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "data": [
+                {
+                  "first_name": "John",
+                  "last_name": "Smith",
+                  "id": "2",
+                  "type": "string"
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Comment": {
+        "name": "Comment",
+        "displayName": "Comment",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "created_time": {
+            "name": "created_time",
+            "displayName": "created_time",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "text": {
+            "name": "text",
+            "displayName": "text",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "from": {
+            "name": "from",
+            "displayName": "from",
+            "type": [
+              "types.User"
+            ],
+            "required": false,
+            "properties": {
+              "type": {
+                "name": "type",
+                "displayName": "type",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "created_time": "1382576494",
+              "text": "text",
+              "from": {
+                "username": "John",
+                "id": "2000",
+                "full_name": "John Smith"
+              },
+              "id": "200"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaComment": {
+        "name": "MediaComment",
+        "displayName": "MediaComment",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.Comment",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": [
+                {
+                  "created_time": "1382576494",
+                  "text": "text",
+                  "from": {
+                    "username": "John",
+                    "id": "2000",
+                    "full_name": "John Smith"
+                  },
+                  "id": "200"
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Oembed": {
+        "name": "Oembed",
+        "displayName": "Oembed",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "author_id": {
+            "name": "author_id",
+            "displayName": "author_id",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "author_name": {
+            "name": "author_name",
+            "displayName": "author_name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "author_url": {
+            "name": "author_url",
+            "displayName": "author_url",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "heght": {
+            "name": "heght",
+            "displayName": "heght",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "media_id": {
+            "name": "media_id",
+            "displayName": "media_id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "provider_name": {
+            "name": "provider_name",
+            "displayName": "provider_name",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "provider_url": {
+            "name": "provider_url",
+            "displayName": "provider_url",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "url": {
+            "name": "url",
+            "displayName": "url",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "version": {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "width": {
+            "name": "width",
+            "displayName": "width",
+            "type": [
+              "integer"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "author_id": 20,
+              "author_name": "John",
+              "author_url": "URL",
+              "heght": 400,
+              "media_id": "29",
+              "provider_name": "Alex",
+              "provider_url": "URL",
+              "title": "Photos",
+              "type": "media",
+              "url": "URL",
+              "version": "2.11",
+              "width": 600
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.RelationshipsPost": {
+        "name": "RelationshipsPost",
+        "displayName": "RelationshipsPost",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "outgoing_status": {
+                "name": "outgoing_status",
+                "displayName": "outgoing_status",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": {
+                "outgoing_status": "none"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Relationships": {
+        "name": "Relationships",
+        "displayName": "Relationships",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "outgoing_status": {
+                "name": "outgoing_status",
+                "displayName": "outgoing_status",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "incoming_status": {
+                "name": "incoming_status",
+                "displayName": "incoming_status",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": {
+                "outgoing_status": "none",
+                "incoming_status": "requested_by"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.RequestedBy": {
+        "name": "RequestedBy",
+        "displayName": "RequestedBy",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "username": {
+                "name": "username",
+                "displayName": "username",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "profile_picture": {
+                "name": "profile_picture",
+                "displayName": "profile_picture",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              },
+              "data": {
+                "username": "John",
+                "profile_picture": "URL",
+                "id": "25"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.UsersItem": {
+        "name": "UsersItem",
+        "displayName": "UsersItem",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "username": {
+            "name": "username",
+            "displayName": "username",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "first_name": {
+            "name": "first_name",
+            "displayName": "first_name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "profile_picture": {
+            "name": "profile_picture",
+            "displayName": "profile_picture",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "last_name": {
+            "name": "last_name",
+            "displayName": "last_name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "username": "John",
+              "first_name": "John",
+              "profile_picture": "URL",
+              "id": "25",
+              "last_name": "Smith"
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Users": {
+        "name": "Users",
+        "displayName": "Users",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.UsersItem",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "data": [
+                {
+                  "username": "John",
+                  "first_name": "John",
+                  "profile_picture": "URL",
+                  "id": "25",
+                  "last_name": "Smith"
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.OkStatus": {
+        "name": "OkStatus",
+        "displayName": "OkStatus",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "meta": {
+            "name": "meta",
+            "displayName": "meta",
+            "type": [
+              "types.Meta"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "any | nil"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "meta": {
+                "code": 200
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Likes": {
+        "name": "Likes",
+        "displayName": "Likes",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "count": {
+            "name": "count",
+            "displayName": "count",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.User",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "count": 42,
+              "data": [
+                {
+                  "id": "1",
+                  "username": "John",
+                  "full_name": "John Smith",
+                  "profile_picture": "URL",
+                  "website": "example.org",
+                  "count": {
+                    "media": 2,
+                    "follows": 3,
+                    "followed_by": 5
+                  }
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Resolution": {
+        "name": "Resolution",
+        "displayName": "Resolution",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "url": {
+            "name": "url",
+            "displayName": "url",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "width": {
+            "name": "width",
+            "displayName": "width",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "height": {
+            "name": "height",
+            "displayName": "height",
+            "type": [
+              "number"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "url": "URL",
+              "width": 400,
+              "height": 600
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Image": {
+        "name": "Image",
+        "displayName": "Image",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "low_resolution": {
+            "name": "low_resolution",
+            "displayName": "low_resolution",
+            "type": [
+              "types.Resolution"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "thumbnail": {
+            "name": "thumbnail",
+            "displayName": "thumbnail",
+            "type": [
+              "types.Resolution"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "standard_resolution": {
+            "name": "standard_resolution",
+            "displayName": "standard_resolution",
+            "type": [
+              "types.Resolution"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "low_resolution": {
+                "url": "URL",
+                "width": 200,
+                "height": 400
+              },
+              "thumbnail": {
+                "url": "URL",
+                "width": 400,
+                "height": 600
+              },
+              "standard_resolution": {
+                "url": "URL",
+                "width": 600,
+                "height": 800
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.TagsRecentMedia": {
+        "name": "TagsRecentMedia",
+        "displayName": "TagsRecentMedia",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.TagsRecentMediaItem",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "data": [
+                {
+                  "type": "photo",
+                  "tags": [
+                    "forest",
+                    "flovers"
+                  ],
+                  "comments": {
+                    "data": [
+                      {
+                        "created_time": "1382576494",
+                        "text": "text",
+                        "from": {
+                          "username": "John",
+                          "id": "2000",
+                          "full_name": "John Smith"
+                        },
+                        "id": "200"
+                      }
+                    ],
+                    "count": 1
+                  },
+                  "caption": null,
+                  "likes": {
+                    "count": 42,
+                    "data": [
+                      {
+                        "id": "1",
+                        "username": "John",
+                        "full_name": "John Smith",
+                        "profile_picture": "URL",
+                        "website": "example.org",
+                        "count": {
+                          "media": 2,
+                          "follows": 3,
+                          "followed_by": 5
+                        }
+                      }
+                    ]
+                  },
+                  "link": "link",
+                  "created_time": "1386312776",
+                  "id": "id",
+                  "location": null
+                }
+              ]
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.TagsRecentMediaItem": {
+        "name": "TagsRecentMediaItem",
+        "displayName": "TagsRecentMediaItem",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "users_in_photo": {
+            "name": "users_in_photo",
+            "displayName": "users_in_photo",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.UsersInPhoto",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "filter": {
+            "name": "filter",
+            "displayName": "filter",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "tags": {
+            "name": "tags",
+            "displayName": "tags",
+            "type": [
+              "array"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "string",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "comments": {
+            "name": "comments",
+            "displayName": "comments",
+            "type": [
+              "object"
+            ],
+            "required": false,
+            "properties": {
+              "data": {
+                "name": "data",
+                "displayName": "data",
+                "type": [
+                  "array"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "types.Comment",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "count": {
+                "name": "count",
+                "displayName": "count",
+                "type": [
+                  "number"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "caption": {
+            "name": "caption",
+            "displayName": "caption",
+            "type": [
+              "nil | types.Comment"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "likes": {
+            "name": "likes",
+            "displayName": "likes",
+            "type": [
+              "types.Likes"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "link": {
+            "name": "link",
+            "displayName": "link",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "created_time": {
+            "name": "created_time",
+            "displayName": "created_time",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "images": {
+            "name": "images",
+            "displayName": "images",
+            "type": [
+              "types.Image"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "location": {
+            "name": "location",
+            "displayName": "location",
+            "type": [
+              "nil | types.Location"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "type": "photo",
+              "tags": [
+                "forest",
+                "flovers"
+              ],
+              "comments": {
+                "data": [
+                  {
+                    "created_time": "1382576494",
+                    "text": "text",
+                    "from": {
+                      "username": "John",
+                      "id": "2000",
+                      "full_name": "John Smith"
+                    },
+                    "id": "200"
+                  }
+                ],
+                "count": 2
+              },
+              "caption": {
+                "created_time": "1382576494",
+                "text": "text",
+                "from": {
+                  "username": "John",
+                  "id": "2000"
+                }
+              },
+              "likes": {
+                "count": 42,
+                "data": [
+                  {
+                    "id": "1",
+                    "username": "John",
+                    "full_name": "John Smith",
+                    "profile_picture": "URL",
+                    "website": "example.org",
+                    "count": {
+                      "media": 2,
+                      "follows": 3,
+                      "followed_by": 5
+                    }
+                  }
+                ]
+              },
+              "link": "link",
+              "created_time": "1386312776",
+              "id": "id",
+              "location": {
+                "latitude": 37.77872018361018,
+                "longitude": -122.3962783813477,
+                "id": "520640",
+                "street_address": "",
+                "name": "Le Truc"
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.UsersInPhoto": {
+        "name": "UsersInPhoto",
+        "displayName": "UsersInPhoto",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "user": {
+            "name": "user",
+            "displayName": "user",
+            "type": [
+              "types.User"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "position": {
+            "name": "position",
+            "displayName": "position",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "x": {
+                "name": "x",
+                "displayName": "x",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "y": {
+                "name": "y",
+                "displayName": "y",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "user": {
+                "id": "1",
+                "username": "John",
+                "full_name": "John Smith",
+                "profile_picture": "URL",
+                "website": "example.org",
+                "count": {
+                  "media": 2,
+                  "follows": 3,
+                  "followed_by": 5
+                }
+              },
+              "position": {
+                "x": 275,
+                "y": 705
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.Media": {
+        "name": "Media",
+        "displayName": "Media",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "users_in_photo": {
+                "name": "users_in_photo",
+                "displayName": "users_in_photo",
+                "type": [
+                  "array"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "types.UsersInPhoto",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "filter": {
+                "name": "filter",
+                "displayName": "filter",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "tags": {
+                "name": "tags",
+                "displayName": "tags",
+                "type": [
+                  "array"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "string",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "comments": {
+                "name": "comments",
+                "displayName": "comments",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "properties": {
+                  "data": {
+                    "name": "data",
+                    "displayName": "data",
+                    "type": [
+                      "array"
+                    ],
+                    "required": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "items": "types.Comment",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "count": {
+                    "name": "count",
+                    "displayName": "count",
+                    "type": [
+                      "number"
+                    ],
+                    "required": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "caption": {
+                "name": "caption",
+                "displayName": "caption",
+                "type": [
+                  "nil | types.Comment"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "likes": {
+                "name": "likes",
+                "displayName": "likes",
+                "type": [
+                  "types.Likes"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "link": {
+                "name": "link",
+                "displayName": "link",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "user": {
+                "name": "user",
+                "displayName": "user",
+                "type": [
+                  "types.User"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "created_time": {
+                "name": "created_time",
+                "displayName": "created_time",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "location": {
+                "name": "location",
+                "displayName": "location",
+                "type": [
+                  "types.Location | nil"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "data": {
+                "users_in_photo": [
+                  {
+                    "user": {
+                      "id": "1",
+                      "username": "John",
+                      "full_name": "John Smith",
+                      "profile_picture": "URL",
+                      "website": "example.org",
+                      "count": {
+                        "media": 2,
+                        "follows": 3,
+                        "followed_by": 5
+                      }
+                    },
+                    "position": {
+                      "x": 275,
+                      "y": 705
+                    }
+                  }
+                ],
+                "filter": "filter",
+                "tags": [
+                  "forest",
+                  "animals"
+                ],
+                "comments": {
+                  "data": [
+                    {
+                      "created_time": "1382576494",
+                      "text": "text",
+                      "from": {
+                        "username": "John",
+                        "id": "2000",
+                        "full_name": "John Smith"
+                      },
+                      "id": "200"
+                    }
+                  ]
+                },
+                "caption": {
+                  "created_time": "1296710352",
+                  "text": "Inside le truc",
+                  "from": {
+                    "username": "kevin",
+                    "full_name": "Kevin Systrom",
+                    "type": "user",
+                    "id": "3"
+                  },
+                  "id": "26621408"
+                },
+                "likes": {
+                  "count": 42,
+                  "data": [
+                    {
+                      "id": "1",
+                      "username": "John",
+                      "full_name": "John Smith",
+                      "profile_picture": "URL",
+                      "website": "example.org",
+                      "count": {
+                        "media": 2,
+                        "follows": 3,
+                        "followed_by": 5
+                      }
+                    }
+                  ]
+                },
+                "link": "link",
+                "created_time": "1386312776",
+                "id": "id",
+                "location": null,
+                "user": {
+                  "id": "1",
+                  "username": "John",
+                  "full_name": "John Smith",
+                  "profile_picture": "URL",
+                  "website": "example.org",
+                  "count": {
+                    "media": 2,
+                    "follows": 3,
+                    "followed_by": 5
+                  }
+                }
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaSearchFirstType": {
+        "name": "MediaSearchFirstType",
+        "displayName": "MediaSearchFirstType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "distance": {
+            "name": "distance",
+            "displayName": "distance",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "users_in_photo": {
+            "name": "users_in_photo",
+            "displayName": "users_in_photo",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.UsersInPhoto",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "filter": {
+            "name": "filter",
+            "displayName": "filter",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "tags": {
+            "name": "tags",
+            "displayName": "tags",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "string",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "comments": {
+            "name": "comments",
+            "displayName": "comments",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "data": {
+                "name": "data",
+                "displayName": "data",
+                "type": [
+                  "array"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "types.Comment",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "count": {
+                "name": "count",
+                "displayName": "count",
+                "type": [
+                  "number"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "caption": {
+            "name": "caption",
+            "displayName": "caption",
+            "type": [
+              "nil | types.Comment"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "likes": {
+            "name": "likes",
+            "displayName": "likes",
+            "type": [
+              "types.Likes"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "link": {
+            "name": "link",
+            "displayName": "link",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "user": {
+            "name": "user",
+            "displayName": "user",
+            "type": [
+              "types.User"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "created_time": {
+            "name": "created_time",
+            "displayName": "created_time",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "images": {
+            "name": "images",
+            "displayName": "images",
+            "type": [
+              "types.Image"
+            ],
+            "required": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "location": {
+            "name": "location",
+            "displayName": "location",
+            "type": [
+              "nil | types.Location"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "distance": 50,
+              "users_in_photo": [
+                {
+                  "user": {
+                    "id": "1",
+                    "username": "John",
+                    "full_name": "John Smith",
+                    "profile_picture": "URL",
+                    "website": "example.org",
+                    "count": {
+                      "media": 2,
+                      "follows": 3,
+                      "followed_by": 5
+                    }
+                  },
+                  "position": {
+                    "x": 275,
+                    "y": 705
+                  }
+                }
+              ],
+              "filter": "filter",
+              "tags": [
+                "forest",
+                "animals"
+              ],
+              "comments": {
+                "data": [
+                  {
+                    "created_time": "1382576494",
+                    "text": "text",
+                    "from": {
+                      "username": "John",
+                      "id": "2000",
+                      "full_name": "John Smith"
+                    },
+                    "id": "200"
+                  }
+                ]
+              },
+              "caption": null,
+              "likes": {
+                "count": 42,
+                "data": [
+                  {
+                    "id": "1",
+                    "username": "John",
+                    "full_name": "John Smith",
+                    "profile_picture": "URL",
+                    "website": "example.org",
+                    "count": {
+                      "media": 2,
+                      "follows": 3,
+                      "followed_by": 5
+                    }
+                  }
+                ]
+              },
+              "link": "link",
+              "created_time": "1386312776",
+              "id": "id",
+              "location": {
+                "id": "833",
+                "latitude": 37.77956,
+                "longitude": -122.4138,
+                "name": "Civic Center BART"
+              },
+              "user": {
+                "id": "1",
+                "username": "John",
+                "full_name": "John Smith",
+                "profile_picture": "URL",
+                "website": "example.org",
+                "count": {
+                  "media": 2,
+                  "follows": 3,
+                  "followed_by": 5
+                }
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaSearchSecondType": {
+        "name": "MediaSearchSecondType",
+        "displayName": "MediaSearchSecondType",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "distance": {
+            "name": "distance",
+            "displayName": "distance",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "videos": {
+            "name": "videos",
+            "displayName": "videos",
+            "type": [
+              "object"
+            ],
+            "required": true,
+            "properties": {
+              "low_resolution": {
+                "name": "low_resolution",
+                "displayName": "low_resolution",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "properties": {
+                  "url": {
+                    "name": "url",
+                    "displayName": "url",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "width": {
+                    "name": "width",
+                    "displayName": "width",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "height": {
+                    "name": "height",
+                    "displayName": "height",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "standard_resolution": {
+                "name": "standard_resolution",
+                "displayName": "standard_resolution",
+                "type": [
+                  "object"
+                ],
+                "required": false,
+                "properties": {
+                  "url": {
+                    "name": "url",
+                    "displayName": "url",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "width": {
+                    "name": "width",
+                    "displayName": "width",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "height": {
+                    "name": "height",
+                    "displayName": "height",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "users_in_photo": {
+                "name": "users_in_photo",
+                "displayName": "users_in_photo",
+                "type": [
+                  "array"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "types.UsersInPhoto",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "type": {
+                "name": "type",
+                "displayName": "type",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "filter": {
+                "name": "filter",
+                "displayName": "filter",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "tags": {
+                "name": "tags",
+                "displayName": "tags",
+                "type": [
+                  "array"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "items": "string",
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "comments": {
+                "name": "comments",
+                "displayName": "comments",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "properties": {
+                  "data": {
+                    "name": "data",
+                    "displayName": "data",
+                    "type": [
+                      "array"
+                    ],
+                    "required": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "items": "types.Comment",
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "count": {
+                    "name": "count",
+                    "displayName": "count",
+                    "type": [
+                      "number"
+                    ],
+                    "required": false,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "caption": {
+                "name": "caption",
+                "displayName": "caption",
+                "type": [
+                  "nil | types.Comment"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "likes": {
+                "name": "likes",
+                "displayName": "likes",
+                "type": [
+                  "types.Likes"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "link": {
+                "name": "link",
+                "displayName": "link",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "user": {
+                "name": "user",
+                "displayName": "user",
+                "type": [
+                  "types.User"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "created_time": {
+                "name": "created_time",
+                "displayName": "created_time",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "images": {
+                "name": "images",
+                "displayName": "images",
+                "type": [
+                  "types.Image"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "location": {
+                "name": "location",
+                "displayName": "location",
+                "type": [
+                  "nil | types.Location"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": {
+              "distance": 50,
+              "videos": {
+                "low_resolution": {
+                  "url": "URL",
+                  "width": 200,
+                  "height": 400
+                },
+                "standard_resolution": {
+                  "url": "URL",
+                  "width": 400,
+                  "height": 600
+                },
+                "users_in_photo": [
+                  {
+                    "user": {
+                      "id": "1",
+                      "username": "John",
+                      "full_name": "John Smith",
+                      "profile_picture": "URL",
+                      "website": "example.org",
+                      "count": {
+                        "media": 2,
+                        "follows": 3,
+                        "followed_by": 5
+                      }
+                    },
+                    "position": {
+                      "x": 275,
+                      "y": 705
+                    }
+                  }
+                ],
+                "filter": "filter",
+                "tags": [
+                  "forest",
+                  "animals"
+                ],
+                "comments": {
+                  "data": [
+                    {
+                      "created_time": "1382576494",
+                      "text": "text",
+                      "from": {
+                        "username": "John",
+                        "id": "2000",
+                        "full_name": "John Smith"
+                      },
+                      "id": "200"
+                    }
+                  ]
+                },
+                "caption": {
+                  "created_time": "1296710352",
+                  "text": "Inside le truc",
+                  "from": {
+                    "username": "kevin",
+                    "full_name": "Kevin Systrom",
+                    "type": "user",
+                    "id": "3"
+                  },
+                  "id": "26621408"
+                },
+                "likes": {
+                  "count": 42,
+                  "data": [
+                    {
+                      "id": "1",
+                      "username": "John",
+                      "full_name": "John Smith",
+                      "profile_picture": "URL",
+                      "website": "example.org",
+                      "count": {
+                        "media": 2,
+                        "follows": 3,
+                        "followed_by": 5
+                      }
+                    }
+                  ]
+                },
+                "link": "link",
+                "created_time": "1386312776",
+                "id": "id",
+                "location": {
+                  "latitude": 37.77872018361018,
+                  "longitude": -122.3962783813477,
+                  "id": "520640",
+                  "street_address": "",
+                  "name": "Le Truc"
+                },
+                "user": {
+                  "id": "1",
+                  "username": "John",
+                  "full_name": "John Smith",
+                  "profile_picture": "URL",
+                  "website": "example.org",
+                  "count": {
+                    "media": 2,
+                    "follows": 3,
+                    "followed_by": 5
+                  }
+                }
+              }
+            },
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaSearch": {
+        "name": "MediaSearch",
+        "displayName": "MediaSearch",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "types.MediaSearchFirstType | types.MediaSearchSecondType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "types.MediaSearchArray": {
+        "name": "MediaSearchArray",
+        "displayName": "MediaSearchArray",
+        "type": [
+          "types.OkStatus"
+        ],
+        "properties": {
+          "data": {
+            "name": "data",
+            "displayName": "data",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "items": "types.MediaSearchFirstType | types.MediaSearchSecondType",
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "traits": {
+      "acceptCallback": {
+        "queryParameters": {
+          "callback": {
+            "name": "callback",
+            "displayName": "callback",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "Callback function name. All output will be wrapper under this function name.\n",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "examples": [
+              {
+                "value": "callbackFunction",
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "acceptCallback"
+      },
+      "limitableByGeoPoint": {
+        "queryParameters": {
+          "lat": {
+            "name": "lat",
+            "displayName": "lat",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "description": "Latitude of the center search coordinate. If used, lng is required.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "lng": {
+            "name": "lng",
+            "displayName": "lng",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "description": "Longitude of the center search coordinate. If used, lat is required.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "distance": {
+            "name": "distance",
+            "displayName": "distance",
+            "type": [
+              "integer"
+            ],
+            "default": 1000,
+            "required": true,
+            "description": "Default is 1000m (distance=1000), max distance is 5000.",
+            "maximum": 5000,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "limitableByGeoPoint"
+      },
+      "limitable": {
+        "queryParameters": {
+          "count": {
+            "name": "count",
+            "displayName": "count",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Number of items you would like to receive.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "examples": [
+              {
+                "value": 1,
+                "strict": true,
+                "name": null
+              }
+            ],
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "limitable"
+      },
+      "limitableByTime": {
+        "queryParameters": {
+          "max_timestamp": {
+            "name": "max_timestamp",
+            "displayName": "max_timestamp",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media before this UNIX timestamp.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "min_timestamp": {
+            "name": "min_timestamp",
+            "displayName": "min_timestamp",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media after this UNIX timestamp.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "limitableByTime"
+      },
+      "limitableById": {
+        "queryParameters": {
+          "min_id": {
+            "name": "min_id",
+            "displayName": "min_id",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media later than this min_id.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "max_id": {
+            "name": "max_id",
+            "displayName": "max_id",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "description": "Return media earlier than this max_id.",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "name": "limitableById"
+      }
+    },
+    "resourceTypes": {
+      "usersListing": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "types.Users"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "data": [
+                            {
+                              "username": "jack",
+                              "first_name": "Jack",
+                              "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg",
+                              "id": "66",
+                              "last_name": "Dorsey"
+                            },
+                            {
+                              "username": "sammyjack",
+                              "first_name": "Sammy",
+                              "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg",
+                              "id": "29648",
+                              "last_name": "Jack"
+                            },
+                            {
+                              "username": "jacktiddy",
+                              "first_name": "Jack",
+                              "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg",
+                              "id": "13096",
+                              "last_name": "Tiddy"
+                            }
+                          ]
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "securedBy": [
+              {
+                "oauth_2_0": {
+                  "scopes": [
+                    "relationships"
+                  ]
+                }
+              }
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "type": "base",
+        "securedBy": [
+          {
+            "oauth_2_0": {
+              "scopes": [
+                "relationships"
+              ]
+            }
+          }
+        ],
+        "name": "usersListing"
+      },
+      "mediaSearch": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "types.MediaSearch"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "data": {
+                            "distance": 50,
+                            "type": "image",
+                            "users_in_photo": [
+                              {
+                                "user": {
+                                  "username": "kevin",
+                                  "full_name": "Kevin S",
+                                  "id": "3",
+                                  "profile_picture": "..."
+                                },
+                                "position": {
+                                  "x": 0.315,
+                                  "y": 0.9111
+                                }
+                              }
+                            ],
+                            "filter": "Walden",
+                            "tags": [],
+                            "comments": {
+                              "data": [
+                                {
+                                  "created_time": "1279332030",
+                                  "text": "Love the sign here",
+                                  "from": {
+                                    "username": "mikeyk",
+                                    "full_name": "Mikey Krieger",
+                                    "id": "4",
+                                    "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg"
+                                  },
+                                  "id": "8"
+                                }
+                              ],
+                              "count": 2
+                            },
+                            "caption": {
+                              "created_time": "1296710352",
+                              "text": "Inside le truc #foodtruck",
+                              "from": {
+                                "username": "kevin",
+                                "full_name": "Kevin Systrom",
+                                "type": "user",
+                                "id": "3"
+                              },
+                              "id": "26621408"
+                            },
+                            "likes": {
+                              "count": 1,
+                              "data": [
+                                {
+                                  "username": "mikeyk",
+                                  "full_name": "Mikeyk",
+                                  "id": "4",
+                                  "profile_picture": "..."
+                                }
+                              ]
+                            },
+                            "link": "http://instagr.am/p/D/",
+                            "user": {
+                              "username": "kevin",
+                              "full_name": "Kevin S",
+                              "profile_picture": "...",
+                              "bio": "...",
+                              "website": "...",
+                              "id": "3"
+                            },
+                            "created_time": "1279340983",
+                            "images": {
+                              "low_resolution": {
+                                "url": "http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg",
+                                "width": 306,
+                                "height": 306
+                              },
+                              "thumbnail": {
+                                "url": "http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg",
+                                "width": 150,
+                                "height": 150
+                              },
+                              "standard_resolution": {
+                                "url": "http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg",
+                                "width": 612,
+                                "height": 612
+                              }
+                            },
+                            "id": "3",
+                            "location": {
+                              "id": "id",
+                              "latitude": -34,
+                              "longitude": -53,
+                              "name": "some place"
+                            }
+                          }
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": "base",
+        "name": "mediaSearch"
+      },
+      "secured": {
+        "methods": {
+          "delete": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "meta": {
+                            "code": 200
+                          },
+                          "data": null
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "type": [
+                      "types.OkStatus | string"
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "securedBy": [
+              {
+                "oauth_2_0": {
+                  "scopes": [
+                    "<<scope>>"
+                  ]
+                }
+              }
+            ],
+            "method": "delete",
+            "__METADATA__": {
+              "optional": true
+            }
+          },
+          "post": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "types.OkStatus | string"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "meta": {
+                            "code": 200
+                          },
+                          "data": null
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "securedBy": [
+              {
+                "oauth_2_0": {
+                  "scopes": [
+                    "<<scope>>"
+                  ]
+                }
+              }
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "optional": true
+            }
+          }
+        },
+        "type": "base",
+        "securedBy": [
+          {
+            "oauth_2_0": {
+              "scopes": [
+                "<<scope>>"
+              ]
+            }
+          }
+        ],
+        "name": "secured"
+      },
+      "base": {
+        "methods": {
+          "delete": {
+            "responses": {
+              "503": {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n"
+              }
+            },
+            "method": "delete",
+            "__METADATA__": {
+              "optional": true
+            }
+          },
+          "post": {
+            "responses": {
+              "503": {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n"
+              }
+            },
+            "method": "post",
+            "__METADATA__": {
+              "optional": true
+            }
+          },
+          "get": {
+            "responses": {
+              "503": {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n"
+              }
+            },
+            "is": [
+              "limitable",
+              "acceptCallback"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "optional": true
+            }
+          }
+        },
+        "name": "base"
+      },
+      "feedsListing": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "types.MediaSearchArray"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "value": {
+                          "data": [
+                            {
+                              "distance": 50,
+                              "location": {
+                                "id": "833",
+                                "latitude": 37.77956816727314,
+                                "longitude": -122.4138736724854,
+                                "street_address": "",
+                                "name": "Civic Center BART"
+                              },
+                              "comments": {
+                                "count": 16,
+                                "data": []
+                              },
+                              "caption": {
+                                "created_time": "1296710352",
+                                "text": "Inside le truc #foodtruck",
+                                "from": {
+                                  "username": "kevin",
+                                  "full_name": "Kevin Systrom",
+                                  "type": "user",
+                                  "id": "3"
+                                },
+                                "id": "26621408"
+                              },
+                              "link": "http://instagr.am/p/BXsFz/",
+                              "likes": {
+                                "count": 190,
+                                "data": [
+                                  {
+                                    "username": "shayne",
+                                    "full_name": "Shayne Sweeney",
+                                    "id": "20",
+                                    "profile_picture": "..."
+                                  },
+                                  {}
+                                ]
+                              },
+                              "created_time": "1296748524",
+                              "images": {
+                                "low_resolution": {
+                                  "url": "http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg",
+                                  "width": 306,
+                                  "height": 306
+                                },
+                                "thumbnail": {
+                                  "url": "http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg",
+                                  "width": 150,
+                                  "height": 150
+                                },
+                                "standard_resolution": {
+                                  "url": "http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg",
+                                  "width": 612,
+                                  "height": 612
+                                }
+                              },
+                              "type": "image",
+                              "users_in_photo": [
+                                {
+                                  "user": {
+                                    "username": "kevin",
+                                    "full_name": "Kevin S",
+                                    "id": "3",
+                                    "profile_picture": "..."
+                                  },
+                                  "position": {
+                                    "x": 0.315,
+                                    "y": 0.9111
+                                  }
+                                }
+                              ],
+                              "filter": "Earlybird",
+                              "tags": [],
+                              "id": "22987123",
+                              "user": {
+                                "username": "kevin",
+                                "full_name": "Kevin S",
+                                "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg",
+                                "id": "3"
+                              }
+                            },
+                            {
+                              "distance": 50,
+                              "videos": {
+                                "low_resolution": {
+                                  "url": "http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4",
+                                  "width": 480,
+                                  "height": 480
+                                },
+                                "standard_resolution": {
+                                  "url": "http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4",
+                                  "width": 640,
+                                  "height": 640
+                                },
+                                "comments": {
+                                  "data": [
+                                    {
+                                      "created_time": "1279332030",
+                                      "text": "Love the sign here",
+                                      "from": {
+                                        "username": "mikeyk",
+                                        "full_name": "Mikey Krieger",
+                                        "id": "4",
+                                        "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg"
+                                      },
+                                      "id": "8"
+                                    },
+                                    {
+                                      "created_time": "1279341004",
+                                      "text": "Chilako taco",
+                                      "from": {
+                                        "username": "kevin",
+                                        "full_name": "Kevin S",
+                                        "id": "3",
+                                        "profile_picture": "..."
+                                      },
+                                      "id": "3"
+                                    }
+                                  ],
+                                  "count": 2
+                                },
+                                "caption": {
+                                  "created_time": "1296710352",
+                                  "text": "Inside le truc #foodtruck",
+                                  "from": {
+                                    "username": "kevin",
+                                    "full_name": "Kevin Systrom",
+                                    "type": "user",
+                                    "id": "3"
+                                  },
+                                  "id": "26621408"
+                                },
+                                "likes": {
+                                  "count": 1,
+                                  "data": [
+                                    {
+                                      "username": "mikeyk",
+                                      "full_name": "Mikeyk",
+                                      "id": "4",
+                                      "profile_picture": "..."
+                                    }
+                                  ]
+                                },
+                                "link": "http://instagr.am/p/D/",
+                                "created_time": "1279340983",
+                                "images": {
+                                  "low_resolution": {
+                                    "url": "http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg",
+                                    "width": 306,
+                                    "height": 306
+                                  },
+                                  "thumbnail": {
+                                    "url": "http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg",
+                                    "width": 150,
+                                    "height": 150
+                                  },
+                                  "standard_resolution": {
+                                    "url": "http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg",
+                                    "width": 612,
+                                    "height": 612
+                                  }
+                                },
+                                "type": "video",
+                                "users_in_photo": [],
+                                "filter": "Vesper",
+                                "tags": [],
+                                "id": "363839373298",
+                                "user": {
+                                  "username": "kevin",
+                                  "full_name": "Kevin S",
+                                  "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg",
+                                  "id": "3"
+                                },
+                                "location": {
+                                  "id": "833",
+                                  "latitude": 37.77956816727314,
+                                  "longitude": -122.4138736724854,
+                                  "street_address": "",
+                                  "name": "Civic Center BART"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "strict": true,
+                        "name": null
+                      }
+                    ],
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": "base",
+        "name": "feedsListing"
+      }
+    },
+    "securitySchemes": {
+      "oauth_2_0": {
+        "name": "oauth_2_0",
+        "type": "OAuth 2.0",
+        "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
+        "describedBy": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          }
+        },
+        "settings": {
+          "accessTokenUri": "https://api.instagram.com/oauth/access_token",
+          "authorizationUri": "https://api.instagram.com/oauth/authorize",
+          "authorizationGrants": [
+            "password"
+          ],
+          "scopes": [
+            "basic",
+            "comments",
+            "relationships",
+            "likes"
+          ]
+        }
+      },
+      "clientId": {
+        "name": "clientId",
+        "type": "x-customHeader",
+        "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
+        "describedBy": {
+          "queryParameters": {
+            "client_id": {
+              "name": "client_id",
+              "displayName": "client_id",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "examples": [
+                {
+                  "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
+                  "strict": true,
+                  "name": null
+                }
+              ],
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": []
+}

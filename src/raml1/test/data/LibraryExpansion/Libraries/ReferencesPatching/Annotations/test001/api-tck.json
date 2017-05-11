@@ -1,0 +1,69 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "traits": [
+      {
+        "lib1.lib2.myTrait": {
+          "body": {
+            "application/json": {
+              "annotations": {
+                "lib1.lib2.MyAnnotation": {
+                  "structuredValue": "stringValue",
+                  "name": "lib1.lib2.MyAnnotation"
+                }
+              },
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "myTrait"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib1.rt": {
+          "is": [
+            "lib1.lib2.myTrait"
+          ],
+          "name": "rt"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "lib1.lib2.MyAnnotation": {
+          "name": "MyAnnotation",
+          "displayName": "MyAnnotation",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

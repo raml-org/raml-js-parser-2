@@ -1,0 +1,1345 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "Entry": {
+          "name": "Entry",
+          "displayName": "Entry",
+          "typePropertyKind": "JSON",
+          "type": [
+            "{\n  \"type\": \"array\",\n  \"items\": {\n    \"$ref\": \"#/definitions/song\"\n  },\n  \"definitions\": {\n    \"song\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"artist\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "AnotherEntry": {
+          "name": "AnotherEntry",
+          "displayName": "AnotherEntry",
+          "typePropertyKind": "INPLACE",
+          "type": [
+            "Entry"
+          ],
+          "description": "This is just another entry to simulate that you can add facets also on JSON\nschema defined types. Although you can only add documentation-based facets.\n",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "User": {
+          "name": "User",
+          "displayName": "User",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "firstname": "John"
+          },
+          "properties": {
+            "firstname": {
+              "name": "firstname",
+              "displayName": "firstname",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "lastname": {
+              "name": "lastname",
+              "displayName": "lastname",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "example": "Doe",
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              },
+              "structuredExample": {
+                "value": "Doe",
+                "strict": true,
+                "name": null,
+                "structuredValue": "Doe"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"firstname\": \"John\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "firstname": "John"
+            }
+          }
+        }
+      },
+      {
+        "ApiLib.RamlDataType": {
+          "name": "RamlDataType",
+          "displayName": "RamlDataType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "propString": {
+              "name": "propString",
+              "displayName": "propString",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "propStringArray1": {
+              "name": "propStringArray1",
+              "displayName": "propStringArray1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "array"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "items": "string"
+            },
+            "ideas": {
+              "name": "ideas",
+              "displayName": "ideas",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "array"
+              ],
+              "required": true,
+              "items": {
+                "name": "items",
+                "displayName": "items",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "comment": {
+                    "name": "comment",
+                    "displayName": "comment",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "extIdeas": {
+              "name": "extIdeas",
+              "displayName": "extIdeas",
+              "typePropertyKind": "INPLACE",
+              "required": true,
+              "properties": {
+                "createdBy": {
+                  "name": "createdBy",
+                  "displayName": "createdBy",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "displayName": "type",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "comment": {
+                    "name": "comment",
+                    "displayName": "comment",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "feedback": {
+              "name": "feedback",
+              "displayName": "feedback",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "default": "very nice",
+              "example": "very well made",
+              "required": true,
+              "pattern": "[a-zA-Z\\s]*",
+              "minLength": 1,
+              "maxLength": 255,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "structuredExample": {
+                "value": "very well made",
+                "strict": true,
+                "name": null,
+                "structuredValue": "very well made"
+              }
+            },
+            "propNumber": {
+              "name": "propNumber",
+              "displayName": "propNumber",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "minimum": 0,
+              "maximum": 32,
+              "format": "int32",
+              "multipleOf": 2,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "propInteger": {
+              "name": "propInteger",
+              "displayName": "propInteger",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "minimum": 3,
+              "maximum": 5,
+              "format": "int8",
+              "multipleOf": 1,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "propBoolean": {
+              "name": "propBoolean",
+              "displayName": "propBoolean",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "boolean"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "propDate": {
+              "name": "propDate",
+              "displayName": "propDate",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "date-only"
+              ],
+              "example": "2015-05-23",
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "structuredExample": {
+                "value": "2015-05-23",
+                "strict": true,
+                "name": null,
+                "structuredValue": "2015-05-23"
+              }
+            },
+            "userPicture": {
+              "name": "userPicture",
+              "displayName": "userPicture",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "file"
+              ],
+              "required": true,
+              "fileTypes": [
+                "image/jpeg",
+                "image/png"
+              ],
+              "maxLength": 307200,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "NilValue": {
+              "name": "NilValue",
+              "displayName": "NilValue",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "properties": {
+                "name": {
+                  "name": "name",
+                  "displayName": "name",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "comment": {
+                  "name": "comment",
+                  "displayName": "comment",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string?"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "CatOrDog": {
+              "name": "CatOrDog",
+              "displayName": "CatOrDog",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "ApiLib.Cat | ApiLib.Dog"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "CatAndDog": [
+              {
+                "name": "CatAndDog",
+                "displayName": "CatAndDog",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "ApiLib.Cat"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              {
+                "name": "CatAndDog",
+                "displayName": "CatAndDog",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "ApiLib.Dog"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            ],
+            "PossibleMeetingDate": {
+              "name": "PossibleMeetingDate",
+              "displayName": "PossibleMeetingDate",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "ApiLib.CustomDate"
+              ],
+              "required": true,
+              "fixedFacets": {
+                "noHolidays": true
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ApiLib.Cat": {
+          "name": "Cat",
+          "displayName": "Cat",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "color": {
+              "name": "color",
+              "displayName": "color",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ApiLib.Dog": {
+          "name": "Dog",
+          "displayName": "Dog",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "fangs": {
+              "name": "fangs",
+              "displayName": "fangs",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ApiLib.CustomDate": {
+          "name": "CustomDate",
+          "displayName": "CustomDate",
+          "facets": {
+            "onlyFutureDates": {
+              "name": "onlyFutureDates",
+              "displayName": "onlyFutureDates",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "boolean"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            },
+            "noHolidays": {
+              "name": "noHolidays",
+              "displayName": "noHolidays",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "boolean"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          },
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "date-only"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "SongsLib.Song": {
+          "name": "Song",
+          "displayName": "Song",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "examples": [
+            {
+              "value": "{\n  \"title\": \"My Song\",\n  \"length\": 12\n}",
+              "strict": false,
+              "name": "song1",
+              "structuredValue": {
+                "title": "My Song",
+                "length": 12
+              }
+            },
+            {
+              "value": "{\n  \"title\": \"Last\",\n  \"length\": 3\n}",
+              "strict": true,
+              "name": "song2",
+              "structuredValue": {
+                "title": "Last",
+                "length": 3
+              }
+            }
+          ],
+          "properties": {
+            "title": {
+              "name": "title",
+              "displayName": "title",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "length": {
+              "name": "length",
+              "displayName": "length",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "SongsLib.Album": {
+          "name": "Album",
+          "displayName": "Album",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "title": {
+              "name": "title",
+              "displayName": "title",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "songs": {
+              "name": "songs",
+              "displayName": "songs",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "array"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "items": "SongsLib.Song"
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "SongsLib.Musician": {
+          "name": "Musician",
+          "displayName": "Musician",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "discography": {
+              "name": "discography",
+              "displayName": "discography",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "array"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "items": "(SongsLib.Song | SongsLib.Album)"
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "secured": {
+          "queryParameters": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "secured",
+          "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "schema": [
+                      "<<resourcePathName|!singularize|!uppercamelcase>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "returns a list of <<resourcePathName|!singularize>>",
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "deprecated": {
+          "name": "deprecated",
+          "displayName": "deprecated",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "date": {
+              "name": "date",
+              "displayName": "date",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "datetime"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "deprecatedBy": {
+              "name": "deprecatedBy",
+              "displayName": "deprecatedBy",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "User"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "comment": {
+              "name": "comment",
+              "displayName": "comment",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "nil | string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "monitoringInterval": {
+          "name": "monitoringInterval",
+          "displayName": "monitoringInterval",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "integer"
+          ],
+          "example": null,
+          "description": "interval in seconds",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ready": {
+          "name": "ready",
+          "displayName": "ready",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "nil"
+          ],
+          "description": "markes a resource as ready",
+          "allowedTargets": [
+            "Resource"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "info": {
+          "name": "info",
+          "displayName": "info",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "allowedTargets": [
+            "API"
+          ],
+          "properties": {
+            "license": {
+              "name": "license",
+              "displayName": "license",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "MIT",
+                "Apache 2.0"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "rediractable": {
+          "name": "rediractable",
+          "displayName": "rediractable",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "boolean"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "securitySchemes": [
+      {
+        "oauth_1_0": {
+          "name": "oauth_1_0",
+          "type": "OAuth 1.0",
+          "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
+          "settings": {
+            "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
+            "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
+            "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+            "signatures": [
+              "HMAC-SHA1",
+              "PLAINTEXT"
+            ]
+          }
+        }
+      },
+      {
+        "oauth_2_0": {
+          "name": "oauth_2_0",
+          "type": "OAuth 2.0",
+          "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+          "describedBy": {
+            "queryParameters": {
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Authorization": {
+                "name": "Authorization",
+                "displayName": "Authorization",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "responses": [
+              {
+                "code": "401",
+                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+              },
+              {
+                "code": "403",
+                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+              }
+            ]
+          },
+          "settings": {
+            "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+            "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+            "authorizationGrants": [
+              "authorization_code",
+              "implicit",
+              "urn:ietf:params:oauth:grant-type:saml2-bearer"
+            ]
+          }
+        }
+      },
+      {
+        "custom_scheme": {
+          "name": "custom_scheme",
+          "type": "x-custom",
+          "description": "A custom security scheme for authenticating requests.\n",
+          "describedBy": {
+            "headers": {
+              "SpecialToken": {
+                "name": "SpecialToken",
+                "displayName": "SpecialToken",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Used to send a custom token.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "responses": [
+              {
+                "code": "401",
+                "description": "Bad token.\n"
+              },
+              {
+                "code": "403"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

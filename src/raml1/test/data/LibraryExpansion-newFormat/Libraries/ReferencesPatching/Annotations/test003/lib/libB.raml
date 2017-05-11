@@ -1,0 +1,20 @@
+#%RAML 1.0 Library
+
+annotationTypes:
+  Monkey: boolean
+
+resourceTypes:
+  rt:
+    (<<param1>>): stringValue1
+    (<<param2>>): 5
+    (Monkey): true
+    get:
+      (<<param1>>): stringValue2
+    post:
+      (<<param2>>): 8
+    put:
+      (Monkey): false
+    delete:
+      (<<param1>>): stringValue3
+      (<<param2>>): 16
+      (Monkey): true

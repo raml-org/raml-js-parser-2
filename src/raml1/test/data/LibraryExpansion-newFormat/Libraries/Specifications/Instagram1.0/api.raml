@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+
+securitySchemes:
+   oauth_2_0: !include securitySchemes/oauth_2_0.raml
+   clientId: !include securitySchemes/clientId.raml
+uses:
+  types: ./lib/types.raml
+resourceTypes:
+   usersListing: !include resourceTypes/usersListing.raml
+   mediaSearch: !include resourceTypes/mediaSearch.raml
+   secured: !include resourceTypes/secured.raml
+   base: !include resourceTypes/base.raml
+   feedsListing:  !include resourceTypes/feedsListing.raml
+traits:
+   acceptCallback: !include traits/acceptCallback.raml
+   limitableByGeoPoint: !include traits/limitableByGeoPoint.raml
+   limitable: !include traits/limitable.raml
+   limitableByTime: !include traits/limitableByTime.raml
+   limitableById: !include traits/limitableById.raml

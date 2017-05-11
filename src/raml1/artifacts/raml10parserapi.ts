@@ -1996,6 +1996,12 @@ name(  ):string
 
 
         /**
+         * Equivalent Library which contains all its dependencies
+         **/
+expand(  ):Library
+
+
+        /**
          * Scalar properties annotations accessor
          **/
 scalarsAnnotations(  ):LibraryScalarsAnnotations

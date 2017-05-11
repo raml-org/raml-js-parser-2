@@ -1,0 +1,41 @@
+{
+  "specification": {
+    "types": {
+      "primitives.ExtLocale": {
+        "name": "ExtLocale",
+        "displayName": "ExtLocale",
+        "schemaPath": "schemas/locale.xsd",
+        "type": [
+          "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"language\": {\"type\": \"string\", \"minLength\": 2},\n    \"country\": {\"type\": \"string\", \"minLength\": 2}\n  },\n  \"required\": [\"language\"]\n}"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json",
+        "typePropertyKind": "JSON"
+      },
+      "primitives.Locale": {
+        "name": "Locale",
+        "displayName": "Locale",
+        "type": [
+          "primitives.ExtLocale"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/json"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": []
+}

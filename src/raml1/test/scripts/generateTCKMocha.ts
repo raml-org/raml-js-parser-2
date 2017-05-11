@@ -71,7 +71,7 @@ tckUtil.generateMochaSuite(
     path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/LibraryExpansion-newFormat"),
     path.resolve(tckUtil.projectFolder(),"src/raml1/test/libraryExpansion-newFormat.ts"),
     dataRoot,
-    'Library Expansion Tests For NEW JSON FOrmat',
+    'Library Expansion Tests For NEW JSON Format',
     true,
     true
 );

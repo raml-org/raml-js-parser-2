@@ -52,7 +52,12 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
     var hlNode = loadRAMLInternalHL(ramlPath);
     var expanded:hl.IHighLevelNode;
     if (!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
-        expanded = expanderHL.expandLibrariesHL(hlNode)||hlNode;
+        if(universeHelpers.isLibraryType(hlNode.definition())){
+            expanded = expanderHL.expandLibraryHL(hlNode) || hlNode;
+        }
+        else {
+            expanded = expanderHL.expandLibrariesHL(hlNode) || hlNode;
+        }
     }
     else {
         expanded = expanderHL.expandTraitsAndResourceTypesHL(hlNode)||hlNode;

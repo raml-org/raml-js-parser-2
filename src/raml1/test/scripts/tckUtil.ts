@@ -8,6 +8,7 @@ import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
 import expanderHL = require("../../ast.core/expanderHL")
+import universeHelpers = require("../../tools/universeHelpers");
 
 class MessageMapping{
 
@@ -468,7 +469,17 @@ function doTestAPI(
     }
     else {
         var api = index.loadRAMLSync(apiPath, extensions);
-        var expanded = api["expand"] ? api["expand"](expandLib) : api;
+        let expanded;
+        if(universeHelpers.isApiSibling(api.definition())){
+            expanded = api["expand"](expandLib);
+        }
+        else if(expandLib){
+            expanded = api["expand"]();;
+        }
+        else{
+            expanded = api;
+        }
+
         (<any>expanded).setAttributeDefaults(true);
         json = expanded.toJSON({rootNodeDetails: true});
     }

@@ -1,0 +1,21 @@
+#%RAML 1.0  Library
+
+annotationTypes:
+  MyAnnotation: string
+
+traits:
+  libTrait1:
+    (MyAnnotation): stringValueFromLibTrait1
+
+
+  libTrait2:
+    (MyAnnotation): stringValueFromLibTrait2
+
+
+resourceTypes:
+  libResourceType:
+    is: [ libTrait2 ]
+
+
+    post:
+      is: [ libTrait1 ]

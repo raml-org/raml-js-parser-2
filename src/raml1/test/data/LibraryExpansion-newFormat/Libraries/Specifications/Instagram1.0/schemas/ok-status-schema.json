@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"type": ["object","string"],	
+	"properties": {
+		"geo": {
+			"address": {
+				"type": "object",
+				"properties": {
+					"city": {
+						"type": "string"
+					},
+					"streetAddress": {
+						"type": "string"
+					}
+				}
+			},
+			"age":{
+				"type": "number"
+			}
+		}
+	}
+}

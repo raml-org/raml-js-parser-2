@@ -12,6 +12,7 @@ import testUtils = require("./test-utils");
 import Q = require("q");
 import http2fs = require("./virtualFS/http2fs");
 import testUtil = require("./test-utils");
+import universeHelpers = require("../tools/universeHelpers");
 
 var isWin = /^win/.test(process.platform);
 
@@ -220,7 +221,7 @@ function inspect(node:parserCore.BasicNode,apiDir:string):Promise<void>{
     if(!node){
         return Promise.reject(new Error("Failed to load RAML"));
     }
-    if((<any>node).expand){
+    if(universeHelpers.isApiSibling(node.definition())){
         node = (<any>node).expand();
     }
     var errors = node.errors();

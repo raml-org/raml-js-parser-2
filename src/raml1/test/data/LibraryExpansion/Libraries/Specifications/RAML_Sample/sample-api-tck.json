@@ -1,0 +1,451 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "dataTypes.CommonBase": {
+          "name": "CommonBase",
+          "displayName": "CommonBase",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "eTag": {
+              "name": "eTag",
+              "displayName": "eTag",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "dataTypes.Address": {
+          "name": "Address",
+          "displayName": "Address",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "addressType": {
+              "name": "addressType",
+              "displayName": "addressType",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "postal",
+                "business"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "line1": {
+              "name": "line1",
+              "displayName": "line1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "line2": {
+              "name": "line2",
+              "displayName": "line2",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "suburb": {
+              "name": "suburb",
+              "displayName": "suburb",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "postcode": {
+              "name": "postcode",
+              "displayName": "postcode",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "dataTypes.Customer": {
+          "name": "Customer",
+          "displayName": "Customer",
+          "typePropertyKind": "INPLACE",
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "age": {
+              "name": "age",
+              "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            },
+            "email": {
+              "name": "email",
+              "displayName": "email",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "mobile": {
+              "name": "mobile",
+              "displayName": "mobile",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "addresses": {
+              "name": "addresses",
+              "displayName": "addresses",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "required": false,
+              "properties": {
+                "addressType": {
+                  "name": "addressType",
+                  "displayName": "addressType",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "enum": [
+                    "postal",
+                    "business"
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "line1": {
+                  "name": "line1",
+                  "displayName": "line1",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "line2": {
+                  "name": "line2",
+                  "displayName": "line2",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "suburb": {
+                  "name": "suburb",
+                  "displayName": "suburb",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "postcode": {
+                  "name": "postcode",
+                  "displayName": "postcode",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "number"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "eTag": {
+                "name": "eTag",
+                "displayName": "eTag",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

@@ -6729,6 +6729,14 @@ RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
+         * Equivalent Library which contains all its dependencies
+         **/
+expand(  ):Library{
+            return helper.expandLibrarySpec(this);
+        }
+
+
+        /**
          * Scalar properties annotations accessor
          **/
 scalarsAnnotations(  ):LibraryScalarsAnnotationsImpl{return new LibraryScalarsAnnotationsImpl(this.highLevel());}

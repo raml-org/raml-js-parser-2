@@ -1,0 +1,85 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "lib1.lib2.MyLibType": {
+          "name": "MyLibType",
+          "displayName": "MyLibType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "lib1.lib2.myTrait": {
+          "queryParameters": {
+            "q": {
+              "name": "q",
+              "displayName": "<<paramName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "lib1.lib2.MyLibType"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "myTrait"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib1.rt": {
+          "is": [
+            {
+              "lib1.lib2.myTrait": {
+                "paramName": "QParam"
+              }
+            }
+          ],
+          "name": "rt"
+        }
+      }
+    ]
+  },
+  "errors": []
+}

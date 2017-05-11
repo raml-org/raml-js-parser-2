@@ -1,0 +1,42 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "traits": [
+      {
+        "lib.boolean": {
+          "name": "boolean"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib.number": {
+          "is": [
+            "lib.boolean"
+          ],
+          "securedBy": [
+            "lib.oauth",
+            "lib.number"
+          ],
+          "name": "number"
+        }
+      }
+    ],
+    "securitySchemes": [
+      {
+        "lib.oauth": {
+          "name": "oauth",
+          "type": "OAuth 2.0"
+        }
+      },
+      {
+        "lib.number": {
+          "name": "number",
+          "type": "Basic Authentication"
+        }
+      }
+    ]
+  },
+  "errors": []
+}

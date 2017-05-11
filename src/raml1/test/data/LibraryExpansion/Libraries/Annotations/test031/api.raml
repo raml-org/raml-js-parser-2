@@ -1,0 +1,22 @@
+#%RAML 1.0 Library
+
+uses:
+  lib: ./lib/lib.raml
+
+types:
+  cards:
+    type: array
+    items:
+      properties:
+        cardId:
+          (lib.bindingDefinition):
+            - method: "GET"
+              input: "NONE"
+              output: "REQUIRED"
+            - method: "POST"
+              input: "NONE"
+              output: "REQUIRED"
+          type: string
+          description: |
+            Card identifier.
+          required: false

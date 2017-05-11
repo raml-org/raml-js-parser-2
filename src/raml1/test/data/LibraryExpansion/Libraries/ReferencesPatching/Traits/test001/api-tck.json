@@ -1,0 +1,55 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "lib.LibType": {
+          "name": "LibType",
+          "displayName": "LibType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "lib.libTrait1": {
+          "responses": {
+            "200": {
+              "code": "200",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "lib.LibType"
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "name": "libTrait1"
+        }
+      }
+    ]
+  },
+  "errors": []
+}

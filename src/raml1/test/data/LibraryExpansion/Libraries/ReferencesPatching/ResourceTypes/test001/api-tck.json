@@ -1,0 +1,143 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "Monkey": {
+          "name": "Monkey",
+          "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib.Monkey": {
+          "name": "Monkey",
+          "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "number"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib.lib.Monkey": {
+          "name": "Monkey",
+          "displayName": "Monkey",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "boolean"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib.rt": {
+          "type": {
+            "lib.lib.rt": {
+              "param1": "<<param1>>",
+              "param2": "Monkey"
+            }
+          },
+          "name": "rt"
+        }
+      },
+      {
+        "lib.lib.rt": {
+          "name": "rt",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<param1>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<param2>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              },
+              "text/plain": {
+                "name": "text/plain",
+                "displayName": "text/plain",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "lib.lib.Monkey"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              },
+              "atom/xml": {
+                "name": "atom/xml",
+                "displayName": "atom/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<param1>> | <<param2>> | lib.lib.Monkey"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

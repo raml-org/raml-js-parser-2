@@ -1,0 +1,239 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "lib0.MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "prop": {
+              "name": "prop",
+              "displayName": "prop",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib0.MyStringType": {
+          "name": "MyStringType",
+          "displayName": "MyStringType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "maxLength": 32,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib.MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "types2.MyObjectType": {
+          "name": "MyObjectType",
+          "displayName": "MyObjectType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "integerProperty": {
+              "name": "integerProperty",
+              "displayName": "integerProperty",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rt": {
+          "name": "rt",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
+                "example": {
+                  "ownLibProperty": {
+                    "prop": "stringValue"
+                  },
+                  "rootLibProperty": {
+                    "integerProperty": 5
+                  }
+                },
+                "type": {
+                  "name": "type",
+                  "displayName": "type",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "object"
+                  ],
+                  "uses": [
+                    {
+                      "key": "lib",
+                      "value": "../libs/lib.raml"
+                    },
+                    {
+                      "key": "types2",
+                      "value": "../libs/types2.raml"
+                    }
+                  ],
+                  "properties": {
+                    "ownLibProperty": {
+                      "name": "ownLibProperty",
+                      "displayName": "ownLibProperty",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "type": [
+                        "lib0.MyType"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "rootLibProperty": {
+                      "name": "rootLibProperty",
+                      "displayName": "rootLibProperty",
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "type": [
+                        "types2.MyObjectType"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "ownLibProperty": {
+                      "prop": "stringValue"
+                    },
+                    "rootLibProperty": {
+                      "integerProperty": 5
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

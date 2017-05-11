@@ -1,0 +1,11 @@
+#%RAML 1.0 Library
+
+uses:
+  lib: ./lib/lib.raml
+
+resourceTypes:
+  rt:
+    post?:
+      body:
+        application/json:
+          type: <<typeName>>

@@ -724,7 +724,7 @@ export class ReferencePatcher{
         return collectionName;
     }
 
-    expandLibraries(api:hl.IHighLevelNode){
+    expandLibraries(api:hl.IHighLevelNode,excessive=false){
 
         if(api.lowLevel().actual().libExpanded){
             return;
@@ -763,10 +763,12 @@ export class ReferencePatcher{
             if (gotContribution) {
                 var gotPatch = false;
                 do {
-                    gotPatch = this.patchDependencies(api);
+                    gotPatch = this.patchDependencies(api,excessive);
                 }
                 while (gotPatch);
-                this.removeUnusedDependencies(api);
+                if(!excessive) {
+                    this.removeUnusedDependencies(api);
+                }
             }
         }
         this.removeUses(api);
@@ -774,7 +776,7 @@ export class ReferencePatcher{
         this.resetTypes(api);
     }
 
-    private patchDependencies(api:hl.IHighLevelNode):boolean {
+    private patchDependencies(api:hl.IHighLevelNode,excessive:boolean):boolean {
         var result = false;
         var apiPath = api.lowLevel().unit().absolutePath();
         for (var ch of api.children()) {
@@ -783,22 +785,31 @@ export class ReferencePatcher{
             }
             var chNode = ch.asElement();
             this.removeUses(chNode);
-            var chPath = ch.lowLevel().unit().absolutePath();
-            if (chPath == apiPath && ch.lowLevel().includePath() == null) {
-                continue;
-            }
-            var dependencies = this._outerDependencies[chPath];
-            if(dependencies==null){
-                continue;
-            }
             var pName = chNode.property().nameId();
-            var depCollection = dependencies[pName];
-            if(depCollection==null){
+            if(pName != universeDef.Universe10.LibraryBase.properties.types.name
+                && pName != universeDef.Universe10.LibraryBase.properties.annotationTypes.name
+                && pName != universeDef.Universe10.LibraryBase.properties.resourceTypes.name
+                && pName != universeDef.Universe10.LibraryBase.properties.traits.name
+                && pName != universeDef.Universe10.LibraryBase.properties.securitySchemes.name){
                 continue;
             }
-            var chName = chNode.name();
-            if(depCollection[chName]==null){
-                continue;
+            if(!excessive) {
+                var chPath = ch.lowLevel().unit().absolutePath();
+                if (chPath == apiPath && ch.lowLevel().includePath() == null) {
+                    continue;
+                }
+                var dependencies = this._outerDependencies[chPath];
+                if (dependencies == null) {
+                    continue;
+                }
+                var depCollection = dependencies[pName];
+                if (depCollection == null) {
+                    continue;
+                }
+                var chName = chNode.name();
+                if (depCollection[chName] == null) {
+                    continue;
+                }
             }
             this.process(chNode, api, true, true);
             result = true;

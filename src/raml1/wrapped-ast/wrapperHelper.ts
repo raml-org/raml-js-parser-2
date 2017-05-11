@@ -65,6 +65,16 @@ export function completeRelativeUri(res:RamlWrapper.Resource):string{
 }
 /**
  * __$helperMethod__
+ * Equivalent Library which contains all its dependencies
+ * __$meta__={"name":"expand"}
+ */
+export function expandLibrarySpec(lib:RamlWrapper.Library):RamlWrapper.Library{
+
+    var exp = lib.highLevel().reusedNode() != null ? expanderHL : expander;
+    return exp.expandLibrary(lib);
+}
+/**
+ * __$helperMethod__
  * Equivalent API with traits and resource types expanded
  * @expLib whether to apply library expansion or not
  * __$meta__={"name":"expand"}

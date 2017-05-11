@@ -1,0 +1,67 @@
+{
+  "specification": {
+    "types": {
+      "Types.SharedTypes.StandardInt64": {
+        "name": "StandardInt64",
+        "displayName": "StandardInt64",
+        "type": [
+          "integer"
+        ],
+        "format": "int64",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Types.Type1": {
+        "name": "Type1",
+        "displayName": "Type1",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "Types.SharedTypes.StandardInt64?"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": []
+}

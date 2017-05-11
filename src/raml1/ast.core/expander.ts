@@ -38,6 +38,11 @@ export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
     return new LibraryExpander().expandLibraries(api);
 }
 
+export function expandLibrary(lib:RamlWrapper.Library):RamlWrapper.Library{
+    return new LibraryExpander().expandLibrary(lib);
+}
+
+
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
     mergeMode: hlimpl.OverlayMergeMode) : hl.IHighLevelNode {
     var masterApi = hlimpl.fromUnit(masterUnit);
@@ -547,6 +552,23 @@ export class LibraryExpander{
 
         var result = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);
         this.processNode(rp,result.highLevel());
+        return result;
+    }
+
+    expandLibrary(_lib:RamlWrapper.Library):RamlWrapper.Library{
+        let lib = _lib;
+        if(lib==null){
+            return null;
+        }
+        if(proxy.LowLevelCompositeNode.isInstance(lib.highLevel().lowLevel())){
+            lib = <RamlWrapper.Library>lib.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();
+        }
+        let expander = new TraitsAndResourceTypesExpander();
+        let rp = new referencePatcher.ReferencePatcher();
+        let hlNode:hl.IHighLevelNode = expander.createHighLevelNode(lib.highLevel(),true,rp,true);
+        rp.process(hlNode);
+        rp.expandLibraries(hlNode,true);
+        let result = <RamlWrapper.Library>hlNode.wrapperNode();
         return result;
     }
     

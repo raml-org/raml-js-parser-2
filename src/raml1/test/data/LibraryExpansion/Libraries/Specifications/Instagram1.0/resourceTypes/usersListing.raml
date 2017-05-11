@@ -1,0 +1,12 @@
+securedBy:
+  - oauth_2_0:
+      scopes: [relationships]
+      #clientId: []
+type: base
+get:
+  responses:
+    200:
+      body:
+        application/json:
+          type: types.Users
+          example: !include ../examples/users-example.json

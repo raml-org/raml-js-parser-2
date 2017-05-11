@@ -1,0 +1,191 @@
+{
+  "specification": {
+    "types": {
+      "cards": {
+        "name": "cards",
+        "displayName": "cards",
+        "type": [
+          "array"
+        ],
+        "items": [
+          {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "cardId": {
+                "annotations": {
+                  "lib.bindingDefinition": {
+                    "name": "lib.bindingDefinition",
+                    "structuredValue": [
+                      {
+                        "method": "GET",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      },
+                      {
+                        "method": "POST",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      }
+                    ]
+                  }
+                },
+                "name": "cardId",
+                "displayName": "cardId",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "description": "Card identifier.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "lib.bindingDefinition": {
+        "name": "bindingDefinition",
+        "displayName": "BindingDefinition",
+        "type": [
+          "array"
+        ],
+        "items": [
+          {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "method": {
+                "name": "method",
+                "displayName": "method",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "This field defines to which method the binding applies",
+                "enum": [
+                  "GET",
+                  "PATCH",
+                  "POST",
+                  "PUT",
+                  "DELETE"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "input": {
+                "name": "input",
+                "displayName": "input",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "The binding related to the field when used as an input",
+                "enum": [
+                  "OPTIONAL",
+                  "REQUIRED",
+                  "NONE"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "output": {
+                "name": "output",
+                "displayName": "output",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "The binding related to the field when used as an output",
+                "enum": [
+                  "OPTIONAL",
+                  "REQUIRED",
+                  "NONE"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": []
+}

@@ -62,8 +62,25 @@ export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
     return result;
 }
 
+export function expandLibrary(lib:RamlWrapper.Library):RamlWrapper.Library{
+    if(!lib){
+        return null;
+    }
+    var hlNode = expandLibraryHL(lib.highLevel());
+    if(!hlNode){
+        return null;
+    }
+    var result = <RamlWrapper.Library>hlNode.wrapperNode();
+    (<any>result).setAttributeDefaults((<any>lib).getDefaultsCalculator().isEnabled());
+    return result;
+}
+
 export function expandLibrariesHL(api:hl.IHighLevelNode):hl.IHighLevelNode{
     return new LibraryExpander().expandLibraries(api);
+}
+
+export function expandLibraryHL(lib:hl.IHighLevelNode):hl.IHighLevelNode{
+    return new LibraryExpander().expandLibrary(lib);
 }
 
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
@@ -596,10 +613,25 @@ export class LibraryExpander{
         var expander = new TraitsAndResourceTypesExpander();
         var rp = new referencePatcher.ReferencePatcher();
         var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api,true,rp,true);
-
         var result = expander.expandHighLevelNode(hlNode, rp, api,true);
         this.processNode(rp,result);
         return result;
+    }
+
+    expandLibrary(_lib:hl.IHighLevelNode):hl.IHighLevelNode{
+        let lib = _lib;
+        if(lib==null){
+            return null;
+        }
+        if(proxy.LowLevelCompositeNode.isInstance(lib.lowLevel())){
+            lib = lib.lowLevel().unit().highLevel().asElement();
+        }
+        let expander = new TraitsAndResourceTypesExpander();
+        let rp = new referencePatcher.ReferencePatcher();
+        let hlNode:hl.IHighLevelNode = expander.createHighLevelNode(lib,true,rp,true);
+        rp.process(hlNode);
+        rp.expandLibraries(hlNode,true);
+        return hlNode;
     }
 
     processNode(rp:referencePatcher.ReferencePatcher, hlNode:hl.IHighLevelNode){

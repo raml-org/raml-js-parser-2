@@ -1,0 +1,183 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "cards": {
+          "name": "cards",
+          "displayName": "cards",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "cardId": {
+                "annotations": {
+                  "lib.bindingDefinition": {
+                    "structuredValue": [
+                      {
+                        "method": "GET",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      },
+                      {
+                        "method": "POST",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      }
+                    ],
+                    "name": "lib.bindingDefinition"
+                  }
+                },
+                "name": "cardId",
+                "displayName": "cardId",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "description": "Card identifier.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "lib.bindingDefinition": {
+          "name": "bindingDefinition",
+          "displayName": "BindingDefinition",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "method": {
+                "name": "method",
+                "displayName": "method",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "This field defines to which method the binding applies",
+                "enum": [
+                  "GET",
+                  "PATCH",
+                  "POST",
+                  "PUT",
+                  "DELETE"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              },
+              "input": {
+                "name": "input",
+                "displayName": "input",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "The binding related to the field when used as an input",
+                "enum": [
+                  "OPTIONAL",
+                  "REQUIRED",
+                  "NONE"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              },
+              "output": {
+                "name": "output",
+                "displayName": "output",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "The binding related to the field when used as an output",
+                "enum": [
+                  "OPTIONAL",
+                  "REQUIRED",
+                  "NONE"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {}
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}
