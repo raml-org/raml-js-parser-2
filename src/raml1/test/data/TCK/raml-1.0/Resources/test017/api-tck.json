@@ -1,0 +1,147 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Example",
+    "resources": [
+      {
+        "type": 4,
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "methods": [
+              {
+                "is": [
+                  5,
+                  false
+                ],
+                "method": "get"
+              }
+            ],
+            "type": true,
+            "uriParameters": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "relativeUri": "/{id}",
+            "displayName": "/{id}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{id}"
+            ],
+            "absoluteUri": "/users/{id}"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ],
+        "absoluteUri": "/users"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "UNRECOGNIZED_ELEMENT",
+      "message": "Unrecognized resource type: '4'.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 3,
+          "column": 2,
+          "position": 36
+        },
+        "end": {
+          "line": 3,
+          "column": 6,
+          "position": 40
+        }
+      }
+    },
+    {
+      "code": "UNRECOGNIZED_ELEMENT",
+      "message": "Unrecognized resource type: 'true'.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "position": 57
+        },
+        "end": {
+          "line": 5,
+          "column": 8,
+          "position": 61
+        }
+      }
+    },
+    {
+      "code": "UNRECOGNIZED_ELEMENT",
+      "message": "Unrecognized trait: '5'.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 11,
+          "position": 88
+        },
+        "end": {
+          "line": 7,
+          "column": 12,
+          "position": 89
+        }
+      }
+    },
+    {
+      "code": "UNRECOGNIZED_ELEMENT",
+      "message": "Unrecognized trait: 'false'.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 14,
+          "position": 91
+        },
+        "end": {
+          "line": 7,
+          "column": 19,
+          "position": 96
+        }
+      }
+    }
+  ]
+}
