@@ -1019,7 +1019,7 @@ export function refFinder(root:hl.IHighLevelNode,node:hl.IHighLevelNode,result:h
                     }
                 }
             }
-            else{
+            else if(hlimpl.StructuredValue.isInstance(vl)) {
                 var st=<hlimpl.StructuredValue>vl;
                 if (st) {
                     var vn = st.valueName();

@@ -2296,6 +2296,10 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             else{
                 valueKey=null;
             }
+        } else if(typeof(vl) === "number" || typeof(vl) === "boolean") {
+            if (node.definition().isAssignableFrom(universes.Universe10.Reference.name)) {
+                checkReference(pr, node, vl + '', cb);
+            }
         } else {
             //there is no value, but still a reference: calling checkReference with null value
             if (node.definition().isAssignableFrom(universes.Universe10.Reference.name)) {
@@ -2599,10 +2603,13 @@ class TypeDeclarationValidator implements NodeValidator{
         if(val==null){
             return;
         }
+        
         if(typeof(val)!="string"){
-            v.accept(createIssue1(messageRegistry.ANNOTATION_TARGET_MUST_BE_A_STRING,
-                {}, attr, false));
+            v.accept(createIssue1(messageRegistry.ANNOTATION_TARGET_MUST_BE_A_STRING, {}, attr, false));
+            
+            return;
         }
+        
         var str:string = val;
         if(val.replace(/\w|\s/g,'').length>0){
             v.accept(createIssue1(messageRegistry.ALLOWED_TARGETS_MUST_BE_ARRAY,
@@ -3090,7 +3097,7 @@ class OverlayNodesValidator implements NodeValidator{
             
             if(isExpanded && rootPath!=attribute.lowLevel().unit().absolutePath()){
                 return;
-            }        
+            }
 
             //ignoring key properties as they are not overriding anything
             if (attribute.property().getAdapter(services.RAMLPropertyService).isKey()) {
@@ -3942,7 +3949,7 @@ class TemplateCyclesDetector implements NodeValidator {
             var ref = templatesRefs[i];
             var val = ref.value();
             if (val) {
-                var refName = typeof(val) == 'string' ? val : val.valueName();
+                var refName = typeof(val) == 'string' || typeof(val) == 'number' ||  typeof(val) == 'boolean' ? (val + '') : val.valueName();
                 var template = templatesMap[refName];
                 if (template != null) {
                     var newCycles = this.findCyclesInDefinition(
@@ -4005,7 +4012,7 @@ function getMediaType2(node:hl.IAttribute){
 var offsetRegexp = /^[ ]*/;
 
 var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
-    prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode,internalRange?:def.rt.tsInterfaces.RangeObject) {
+                           prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode,internalRange?:def.rt.tsInterfaces.RangeObject) {
     var llNode = positionsSource ? positionsSource : node.lowLevel();
     var contents = llNode.unit() && llNode.unit().contents();
     var contentLength = contents && contents.length;
