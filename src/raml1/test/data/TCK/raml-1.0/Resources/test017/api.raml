@@ -1,0 +1,8 @@
+#%RAML 1.0
+title: Example
+/users:
+  type: 4
+  /{id}:
+    type: true
+    get:
+      is: [5, false]

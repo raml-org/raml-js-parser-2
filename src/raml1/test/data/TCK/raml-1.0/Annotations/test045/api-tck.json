@@ -1,0 +1,72 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "meta-resource-method": {
+          "name": "meta-resource-method",
+          "displayName": "meta-resource-method",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "allowedTargets": [
+            "Resource",
+            "Method",
+            true,
+            11
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Illustrating allowed targets",
+    "mediaType": "application/json"
+  },
+  "errors": [
+    {
+      "code": "ANNOTATION_TARGET_MUST_BE_A_STRING",
+      "message": "Annotation target must be set by a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 40,
+          "position": 156
+        },
+        "end": {
+          "line": 5,
+          "column": 44,
+          "position": 160
+        }
+      }
+    },
+    {
+      "code": "ANNOTATION_TARGET_MUST_BE_A_STRING",
+      "message": "Annotation target must be set by a string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 46,
+          "position": 162
+        },
+        "end": {
+          "line": 5,
+          "column": 48,
+          "position": 164
+        }
+      }
+    }
+  ]
+}
