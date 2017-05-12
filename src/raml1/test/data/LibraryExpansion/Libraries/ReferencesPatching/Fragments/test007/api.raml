@@ -6,3 +6,20 @@ uses:
 
 resourceTypes:
   rt: !include fragments/rt.raml
+  rt2:
+    type: rt
+
+    post:
+      body:
+        application/json:
+          example:
+            ownLibProperty:
+              prop: stringValue2
+            rootLibProperty:
+              integerProperty: 8
+
+    put:
+      body:
+        application/json:
+          type: lib.MyType
+          example: stringValue

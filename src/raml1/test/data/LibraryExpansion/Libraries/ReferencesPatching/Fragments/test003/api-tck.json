@@ -45,24 +45,6 @@
         }
       },
       {
-        "lib0.MyStringType": {
-          "name": "MyStringType",
-          "displayName": "MyStringType",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "string"
-          ],
-          "maxLength": 32,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
         "lib.MyType": {
           "name": "MyType",
           "displayName": "MyType",
@@ -208,6 +190,39 @@
               }
             },
             "method": "post"
+          }
+        }
+      },
+      {
+        "rt2": {
+          "type": "rt",
+          "name": "rt2",
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "lib.MyType"
+                ],
+                "example": "stringValue",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "stringValue",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "stringValue"
+                }
+              }
+            },
+            "method": "put"
           }
         }
       }

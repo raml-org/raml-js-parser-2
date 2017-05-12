@@ -1,3 +1,10 @@
 #%RAML 1.0 Library
 uses:
   primitives: ./lib/library.raml
+
+resourceTypes:
+  exampleRes:
+    post:
+      body:
+        application/json:
+          type: primitives.Locale

@@ -98,6 +98,16 @@
             }
           }
         }
+      },
+      {
+        "rt2": {
+          "type": {
+            "rt": {
+              "typeName": "lib.MyType"
+            }
+          },
+          "name": "rt2"
+        }
       }
     ]
   },

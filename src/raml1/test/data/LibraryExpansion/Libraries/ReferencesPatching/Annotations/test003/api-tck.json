@@ -4,6 +4,16 @@
   "specification": {
     "resourceTypes": [
       {
+        "rt": {
+          "type": {
+            "lib.rt": {
+              "param1": "Monkey"
+            }
+          },
+          "name": "rt"
+        }
+      },
+      {
         "lib.rt": {
           "type": {
             "lib.lib.rt": {
@@ -86,23 +96,6 @@
           "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
           ],
           "__METADATA__": {
             "primitiveValuesMeta": {

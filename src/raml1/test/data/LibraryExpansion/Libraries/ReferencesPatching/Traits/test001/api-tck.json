@@ -49,6 +49,19 @@
           "name": "libTrait1"
         }
       }
+    ],
+    "resourceTypes": [
+      {
+        "resourceType": {
+          "name": "resourceType",
+          "get": {
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "get"
+          }
+        }
+      }
     ]
   },
   "errors": []

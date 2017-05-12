@@ -11,6 +11,15 @@
     ],
     "resourceTypes": [
       {
+        "rt": {
+          "type": "lib.number",
+          "securedBy": [
+            "lib.number"
+          ],
+          "name": "rt"
+        }
+      },
+      {
         "lib.number": {
           "is": [
             "lib.boolean"

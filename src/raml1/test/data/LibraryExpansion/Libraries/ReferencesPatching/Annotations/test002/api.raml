@@ -2,3 +2,8 @@
 
 uses:
   lib: ./lib/lib.raml
+
+resourceTypes:
+  rt:
+    type: lib.libResourceType
+    is: [ lib.libTrait2, lib.libTrait1 ]

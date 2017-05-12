@@ -2,3 +2,11 @@
 uses:
   lib1: ./lib/lib1.raml
 
+resourceTypes:
+  resourceType:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib1.CollectionType

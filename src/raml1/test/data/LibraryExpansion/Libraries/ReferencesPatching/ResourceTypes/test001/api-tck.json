@@ -21,23 +21,6 @@
         }
       },
       {
-        "lib.Monkey": {
-          "name": "Monkey",
-          "displayName": "Monkey",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "type": [
-            "number"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          }
-        }
-      },
-      {
         "lib.lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
@@ -56,6 +39,16 @@
       }
     ],
     "resourceTypes": [
+      {
+        "resourceType": {
+          "type": {
+            "lib.rt": {
+              "param1": "Monkey"
+            }
+          },
+          "name": "resourceType"
+        }
+      },
       {
         "lib.rt": {
           "type": {

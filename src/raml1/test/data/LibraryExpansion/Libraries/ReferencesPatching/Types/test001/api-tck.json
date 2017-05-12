@@ -38,6 +38,33 @@
           }
         }
       }
+    ],
+    "resourceTypes": [
+      {
+        "exampleRes": {
+          "name": "exampleRes",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
+                "type": [
+                  "primitives.Locale"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
     ]
   },
   "errors": []

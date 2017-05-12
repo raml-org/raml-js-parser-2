@@ -28,6 +28,16 @@
     ],
     "resourceTypes": [
       {
+        "rt": {
+          "is": [
+            "lib.libTrait2",
+            "lib.libTrait1"
+          ],
+          "type": "lib.libResourceType",
+          "name": "rt"
+        }
+      },
+      {
         "lib.libResourceType": {
           "is": [
             "lib.libTrait2"

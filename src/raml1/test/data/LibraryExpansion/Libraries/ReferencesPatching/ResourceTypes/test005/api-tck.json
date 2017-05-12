@@ -47,6 +47,35 @@
     ],
     "resourceTypes": [
       {
+        "resourceType": {
+          "type": "lib1.rt",
+          "name": "resourceType",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      },
+      {
         "lib1.rt": {
           "is": [
             "lib1.lib2.myTrait"

@@ -62,6 +62,44 @@
           }
         }
       }
+    ],
+    "resourceTypes": [
+      {
+        "rt": {
+          "name": "rt",
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "Types.Type1"
+                ],
+                "example": {
+                  "id": null
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"id\": null\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "id": null
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        }
+      }
     ]
   },
   "errors": []

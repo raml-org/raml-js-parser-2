@@ -68,6 +68,15 @@
     ],
     "resourceTypes": [
       {
+        "resourceType": {
+          "type": "lib1.rt",
+          "name": "resourceType",
+          "post": {
+            "method": "post"
+          }
+        }
+      },
+      {
         "lib1.rt": {
           "is": [
             {

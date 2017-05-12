@@ -37,6 +37,12 @@
     ],
     "resourceTypes": [
       {
+        "resourceType": {
+          "type": "lib1.rt",
+          "name": "resourceType"
+        }
+      },
+      {
         "lib1.rt": {
           "is": [
             "lib1.lib2.myTrait"

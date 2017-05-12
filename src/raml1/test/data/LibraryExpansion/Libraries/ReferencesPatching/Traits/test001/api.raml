@@ -1,3 +1,8 @@
 #%RAML 1.0 Library
 uses:
   lib: ./lib/lib.raml
+
+resourceTypes:
+  resourceType:
+    get:
+      is: [ lib.libTrait1 ]

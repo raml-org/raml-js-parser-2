@@ -6,4 +6,11 @@ uses:
 
 resourceTypes:
   rt: !include ./fragments/rt.raml
+  rt2:
+    type: rt
+    put:
+      body:
+        application/json:
+          type: lib.MyType
+          example: stringValue
 

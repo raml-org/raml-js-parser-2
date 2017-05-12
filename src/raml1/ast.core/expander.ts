@@ -567,7 +567,7 @@ export class LibraryExpander{
         let rp = new referencePatcher.ReferencePatcher();
         let hlNode:hl.IHighLevelNode = expander.createHighLevelNode(lib.highLevel(),true,rp,true);
         rp.process(hlNode);
-        rp.expandLibraries(hlNode,true);
+        rp.expandLibraries(hlNode);
         let result = <RamlWrapper.Library>hlNode.wrapperNode();
         return result;
     }

@@ -47,6 +47,15 @@
     ],
     "resourceTypes": [
       {
+        "resourceType": {
+          "type": "lib1.rt",
+          "name": "resourceType",
+          "post": {
+            "method": "post"
+          }
+        }
+      },
+      {
         "lib1.rt": {
           "is": [
             "lib1.lib2.myTrait"

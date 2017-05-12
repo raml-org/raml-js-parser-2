@@ -4,7 +4,6 @@
       "lib.MyType": {
         "name": "MyType",
         "displayName": "MyType",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
