@@ -2068,6 +2068,9 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
     let localUniverse;
     var contents = l.contents();
     var rfl = ramlFirstLine(contents);
+    if (!rfl && utils.getDefaultHeader()) {
+        rfl = ramlFirstLine(utils.getDefaultHeader());
+    }
     if (rfl && rfl.length && rfl.length > 2 && rfl[2] && typeof rfl[2] === 'string' && rfl[2].indexOf("ExternalType") == 0) {
         const extTypeSpec = rfl[2].split(" ");
         if (extTypeSpec.length > 2) {
@@ -2076,9 +2079,6 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
             const project = l.project();
             const parentUnit = project.unit(extTypePath);
             const parentApi = <hl.IHighLevelNode>fromUnit(parentUnit);
-
-            //localUniverse = (<ASTNodeImpl>parentApi).universe()
-
             const parsedType = parentApi.types().getType(extTypeName);
             apiType = rTypes.toNominal(parsedType, x=>null);
         }
