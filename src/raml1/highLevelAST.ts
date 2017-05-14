@@ -1,5 +1,5 @@
 import lowLevel = require("./lowLevelAST")
-import ds=require("@evches/raml-definition-system")
+import ds=require("raml-definition-system")
 import typeSystem=ds.rt.nominalTypes;
 import rTypes=ds.rt;
 export type ITypeDefinition=typeSystem.ITypeDefinition;

@@ -8,7 +8,7 @@ import ramlPathMatch = require("../../util/raml-path-match")
 import hl = require('../highLevelAST');
 import hlimpl = require('../highLevelImpl');
 
-import defs = require('@evches/raml-definition-system');
+import defs = require('raml-definition-system');
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")

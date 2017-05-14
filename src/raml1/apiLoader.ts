@@ -24,7 +24,7 @@ export type IHighLevelNode=hl.IHighLevelNode;
 export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../raml1/definition-system/universeProvider")
-import {IHighLevelNode} from "@evches/raml-definition-system/dist/definitionSystem";
+import {IHighLevelNode} from "raml-definition-system/dist/definitionSystem";
 
 /***
  * Load API synchronously. Detects RAML version and uses corresponding parser.

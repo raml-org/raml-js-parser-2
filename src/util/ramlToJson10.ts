@@ -5,7 +5,7 @@
 // var _ =require("underscore")
 // import hlImpl = require("../raml1/highLevelImpl")
 // import hl = require("../raml1/highLevelAST")
-// import definitionSystem = require("@evches/raml-definition-system")
+// import definitionSystem = require("raml-definition-system")
 // var universe = require("../raml1/tools/universe");
 // import ramlService = require("../raml1/definition-system/ramlServices")
 // import core = require("../raml1/wrapped-ast/parserCore");

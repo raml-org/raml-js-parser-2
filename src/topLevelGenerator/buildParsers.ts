@@ -8,7 +8,7 @@
  **/
 import fs=require("fs")
 import wrapped=require("./wrappedParserGen")
-import def = require("@evches/raml-definition-system");
+import def = require("raml-definition-system");
 import path = require("path")
 
 //target paths

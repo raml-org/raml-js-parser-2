@@ -8,7 +8,7 @@ import yaml=require("yaml-ast-parser")
 import ll=require("../lowLevelAST")
 import yll=require("../jsyaml/jsyaml2lowLevel")
 import high = require("../highLevelImpl")
-import def = require("@evches/raml-definition-system")
+import def = require("raml-definition-system")
 
 import hl=require("../highLevelAST")
 import t3 = require("../artifacts/raml10parser")

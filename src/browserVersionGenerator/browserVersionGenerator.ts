@@ -23,8 +23,8 @@ function createBrowserPackage(minify = true) {
     var xmlValidationTargetFile = path.join(targetFolder, "raml-xml-validation.js");
     var jsonValidationTargetFile = path.join(targetFolder, "raml-json-validation.js");
 
-    var xmlValidationRootFile = path.resolve(rootPath, './node_modules/@evches/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-xml-validation/dist/index.js');
-    var jsonValidationRootFile = path.resolve(rootPath, './node_modules/@evches/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-json-validation/dist/index.js');
+    var xmlValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-xml-validation/dist/index.js');
+    var jsonValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-json-validation/dist/index.js');
 
     mkdirp.sync(targetFolder);
 

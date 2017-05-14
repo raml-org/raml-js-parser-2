@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/main.d.ts" />
 
-import defs=require("@evches/raml-definition-system")
+import defs=require("raml-definition-system")
 import ramlTypes=defs.rt;
 import hl=require("../highLevelAST")
 import ll=require("../lowLevelAST")

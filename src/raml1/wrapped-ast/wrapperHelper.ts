@@ -10,7 +10,7 @@ import hlimpl = require('../highLevelImpl');
 import linter = require('../ast.core/linter');
 import stubs = require('../stubs');
 
-import defs = require('@evches/raml-definition-system');
+import defs = require('raml-definition-system');
 import universeDef = require("../tools/universe");
 import universes=require("../tools/universe")
 import Opt = require('../../Opt')

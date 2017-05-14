@@ -6,7 +6,7 @@ import lowLevel = require("../raml1/lowLevelAST");
 import util = require("./index");
 
 import resourceRegistry = require("../raml1/jsyaml/resourceRegistry");
-import def = require('@evches/raml-definition-system');
+import def = require('raml-definition-system');
 
 var su = def.getSchemaUtils();
 

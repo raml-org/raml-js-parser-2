@@ -207,7 +207,7 @@ export import universeHelpers=require("./raml1/tools/universeHelpers")
 /**
  * Definition system.
  */
-export import ds=require("@evches/raml-definition-system")
+export import ds=require("raml-definition-system")
 
 /**
  * Schema utilities.
