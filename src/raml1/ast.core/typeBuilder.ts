@@ -358,6 +358,13 @@ export function convertType(root:hl.IHighLevelNode,t:ramlTypes.IParsedType):hl.I
                 }
             }
 
+            if (!propertySource) {
+                var at = node.attrs().filter(y => y.name() == x);
+                if (at && at.length > 0) {
+                    propertySource = at[0];
+                }
+            }
+
             var v = new defs.UserDefinedProp(x, propertySource);
             v.unmerge();
             return v;

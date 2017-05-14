@@ -9,6 +9,23 @@ import linter=require("./raml1/ast.core/linter")
 import builder=require("./raml1/ast.core/builder")
 import universes = require("./raml1/tools/universe")
 
+let defaultHeaderValue: string = null;
+
+/**
+ * This function can be used to set default header line that will be
+ * used by a parser when no correct RAML header was found in a file.
+ *
+ * For example:
+ *   #RAML 1.0 ExternalType SomeTypeName path/to/scheme.raml
+ */
+export function setDefaultHeader(header: string) {
+    defaultHeaderValue = header;
+}
+
+export function getDefaultHeader() {
+    return defaultHeaderValue;
+}
+
 export function hasAsyncRequests(){
     return rs.hasAsyncRequests();
 }

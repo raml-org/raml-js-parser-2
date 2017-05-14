@@ -78,7 +78,7 @@
     "json-loader": "^0.5.1",
     "dev-env-installer": "0.0.5",
     "rimraf": "*",
-    "gulp-istanbul" : "*"
+    "gulp-istanbul": "*"
   },
   "browser": {
     "fs": false,

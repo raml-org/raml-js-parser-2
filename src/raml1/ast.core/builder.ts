@@ -28,9 +28,9 @@ class KeyMatcher{
     canBeValue:hl.IProperty
 
     constructor(private _props:hl.IProperty[]){
-        this.parentValue=_.find(_props,x=>(<defs.Property>x).isFromParentValue());
-        this.parentKey=_.find(_props,x=>(<defs.Property>x).isFromParentKey());
-        this.canBeValue=_.find(_props,x=>(<defs.Property>x).canBeValue());
+        this.parentValue=_.find(_props,x=> x instanceof defs.Property && (<defs.Property>x).isFromParentValue());
+        this.parentKey=_.find(_props,x=> x instanceof defs.Property && (<defs.Property>x).isFromParentKey());
+        this.canBeValue=_.find(_props,x=> x instanceof defs.Property && (<defs.Property>x).canBeValue());
     }
 
     add(p:hl.IProperty){
@@ -120,6 +120,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         var cv=<any>node;
         cv._mergedChildren=null;
         var cha=nn._node?nn._node:nn;
+
+        var res:hl.IParseResult[] = []
+
         try {
             if (cha['currentChildren']){
                 return cha['currentChildren'];
@@ -146,12 +149,14 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
 
             }
+
             if (node.definition().hasUnionInHierarchy()){
-                if (true &&
+                if (true ||
                     (node.parent() && node.property().nameId()==universes.Universe10.LibraryBase.properties.annotations.name)){
+                const originalDef = node.definition();
                 var optins=getAllOptions(node.definition().unionInHierarchy());
                 var actualResult=null;
-                var bestResult=null;
+                let bestResult: hl.IParseResult[] =null;
                 var bestType=null;
                 var bestCount=1000;
                 var llnode = <hlimpl.ASTNodeImpl>node;
@@ -164,7 +169,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                             if (ad==0) {
                                 ad++;
                                 try {
-                                    var result = this.process(node, childrenToAdopt);
+                                    const result: hl.IParseResult[] = this.process(node, childrenToAdopt);
 
 
                                     var uc = 0;
@@ -194,7 +199,18 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     return actualResult;
                 }
                 if (bestResult){
-                    llnode.patchType(<hl.INodeDefinition>bestType);
+                    llnode.patchType(originalDef);
+                    childrenToAdopt = bestResult.filter(n => {
+                        const matched = n instanceof hlimpl.ASTPropImpl || n instanceof hlimpl.ASTNodeImpl;
+                        if (matched) {
+                            res.push(n);
+                        }
+                        return !matched;
+                    }).map(n => n.lowLevel());
+                    // childrenToAdopt = childrenToAdopt.filter(ch => {
+                    //     return ch.highLevelNode() instanceof hlimpl.BasicASTNode
+                    // })
+                    //childrenToAdopt = bestResult.filter(n => n.isUnknown()).map(n => n.node)
                 }
                 }
             }
@@ -210,7 +226,6 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             var aNode = <ASTNodeImpl>node;
 
             var allowsQuestion = aNode._allowQuestion || node.definition().getAdapter(services.RAMLService).getAllowQuestion();
-            var res:hl.IParseResult[] = []
             //cha['currentChildren']=res;
             if (km.parentKey) {
                 if (node.lowLevel().key()) {
