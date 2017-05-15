@@ -147,44 +147,53 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[],force=false){
 
-        var property = attr.property();
-        var range = property.range();
+        let property = attr.property();
+        let range = property.range();
         if(!force&&!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
             return;
         }
-        var value = attr.value();
+        let value = attr.value();
         if(value==null){
             return;
         }
 
-        var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
+        let llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
         if(!(proxy.LowLevelProxyNode.isInstance(llNode))){
             return;
         }
-        var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
-        
-        var isAnnotation = universeHelpers.isAnnotationsProperty(property);
+        let transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
+
+        let isAnnotation = universeHelpers.isAnnotationsProperty(property);
+        if(!isAnnotation && property && def.UserDefinedProp.isInstance(property)){
+            let defNode = (<def.UserDefinedProp>property).node();
+            let srcProp = defNode && defNode.property();
+            isAnnotation = srcProp && universeHelpers.isAnnotationsProperty(defNode.property());
+            if(srcProp && isAnnotation){
+                range = srcProp.range();
+            }
+        }
         if(typeof value == "string"){
             let stringToPatch = value;
             if(transformer!=null){
-                var actualNode = toOriginal(llNode);
+                let actualNode = toOriginal(llNode);
                 stringToPatch = actualNode.value();
             }
-            if(isAnnotation){
+            let embraceAnotation = isAnnotation && stringToPatch.charAt(0)=="(";
+            if(embraceAnotation){
                 stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
             }
             var newValue = this.resolveReferenceValue(
                 stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
             if(newValue!=null){
-                var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+                let newValue1 = embraceAnotation ? `(${newValue.value()})` : newValue.value();
                 (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
                 (<hlimpl.ASTPropImpl>attr).overrideValue(newValue1);
                 this.registerPatchedReference(newValue);
             }
         }
         else if (hlimpl.StructuredValue.isInstance(value)){
-            var sValue = <hlimpl.StructuredValue>value;
-            var hlNode = sValue.toHighLevel();
+            let sValue = <hlimpl.StructuredValue>value;
+            let hlNode = sValue.toHighLevel();
             if(hlNode) {
                 for (var attr of hlNode.attrs()) {
                     if (universeHelpers.isSchemaStringType(attr.definition())) {
@@ -192,20 +201,20 @@ export class ReferencePatcher{
                     }
                 }
             }
-            var key = sValue.lowLevel().key();
+            let key = sValue.lowLevel().key();
             let stringToPatch = key;
             if(transformer!=null){
-                var actualNode = toOriginal(sValue.lowLevel());
+                let actualNode = toOriginal(sValue.lowLevel());
                 stringToPatch = actualNode.key();
             }
             if(key!=null){
                 if(isAnnotation){
                     stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
                 }
-                var newValue = this.resolveReferenceValue(
+                let newValue = this.resolveReferenceValue(
                     stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
                 if(newValue!=null) {
-                    var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+                    let newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
                     (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue1);
                     this.registerPatchedReference(newValue);
                 }
@@ -477,6 +486,10 @@ export class ReferencePatcher{
         var isType = universeHelpers.isTypeDeclarationDescendant(range);
         var gotQuestion = isType && util.stringEndsWith(_value,"?");
         var value = gotQuestion ? _value.substring(0,_value.length-1) : _value;
+
+        if(value.indexOf("<<")>=0){
+            return;
+        }
 
         var ind = value.lastIndexOf(".");
 

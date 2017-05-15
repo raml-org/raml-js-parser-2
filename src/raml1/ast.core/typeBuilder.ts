@@ -31,11 +31,12 @@ function templateFields(node:hl.IParseResult,d:TemplateData){
     var u=<defs.Universe>node.root().definition().universe();
     var key = node.lowLevel().key();
     if(key){
-        handleValue(key, d, null,true,u);
+        let prop:hlimpl.ASTPropImpl = hlimpl.ASTPropImpl.isInstance(node) ? <hlimpl.ASTPropImpl>node: null;
+        handleValue(key, d, prop,true,u,true);
     }
     node.children().forEach(x=>templateFields(x,d));
     if (hlimpl.ASTPropImpl.isInstance(node)){
-        var prop=<ASTPropImpl>node;
+        let prop=<ASTPropImpl>node;
         //TODO RECURSIVE PARAMETERS
         var v=prop.value();
         if (typeof v=='string'){
@@ -71,7 +72,10 @@ function templateFields(node:hl.IParseResult,d:TemplateData){
         }
     }
 }
-var extractUsedParamNames = function (strV:string) {
+var extractUsedParamNames = function (strV:string,isKey=false) {
+    if(isKey && strV.charAt(0)=="("&&strV.charAt(strV.length-1)==")"){
+        strV = strV.substring(1,strV.length-1);
+    }
     var parameterUsages:string[] = [];
     var ps = 0;
     while (true) {
@@ -97,12 +101,17 @@ var handleValue = function (
     d:TemplateData,
     prop:ASTPropImpl,
     allwaysString:boolean,
-    u:defs.Universe) {
-    var __ret = extractUsedParamNames(strV);
+    u:defs.Universe,
+    isKey=false) {
+    var __ret = extractUsedParamNames(strV,isKey);
     var parameterUsages = __ret.parameterUsages;
     var isFull = __ret.isFull;
     var r = (prop) ? prop.property().range() : null;
-    if (prop) {
+    if(isKey && strV.charAt(0)=="("&&strV.charAt(strV.length-1)==")"){
+        r = <any>u.type(universes.Universe10.SchemaString.name);
+        allwaysString = false;
+    }
+    else if (prop) {
         if (prop.property().nameId() == universes.Universe10.TypeDeclaration.properties.type.name ||
             prop.property().nameId() == universes.Universe10.TypeDeclaration.properties.schema.name) {
             if (prop.property().domain().key() == universes.Universe10.TypeDeclaration) {

@@ -1,0 +1,28 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "schemaPath": "schema.json",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"$ref\" : \"./schema1.json#/definitions/entry\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}
