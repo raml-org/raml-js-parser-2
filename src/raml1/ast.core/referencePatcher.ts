@@ -523,7 +523,15 @@ export class ReferencePatcher{
             referencedUnit = units[units.length-1];
         }
         var collectionName = this.collectionName(range);
-        if(referencedUnit==null||referencedUnit.absolutePath()==rootUnit.absolutePath()){
+        if(referencedUnit){
+            if(referencedUnit.absolutePath()==rootUnit.absolutePath()) {
+                if (oldNS != null) {
+                    return new PatchedReference(null, plainName, collectionName, referencedUnit, this.mode);
+                }
+                return null;
+            }
+        }
+        else{
             return null;
         }
         var usesInfo = resolver.resolveNamespace(rootUnit, referencedUnit);

@@ -1,0 +1,16 @@
+#%RAML 1.0 DataType
+
+uses:
+  lib: lib.raml
+  
+
+type: object
+properties: 
+  Description:
+    type: string
+  reference:
+    type: string
+  weight:
+    type: number
+  workItmes:
+    type: lib.workItem[]
