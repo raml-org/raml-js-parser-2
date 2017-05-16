@@ -2568,7 +2568,7 @@ class TypeDeclarationValidator implements NodeValidator{
                 }
                 else {
                     if(e.getFilePath()&&e.getFilePath()!=node.lowLevel().unit().absolutePath()){
-                        let u = node.lowLevel().unit().project().unit(e.getFilePath());
+                        let u = node.lowLevel().unit().project().unit(e.getFilePath(),true);
                         if(u) {
                             let hlNode = u.highLevel();
                             if(hlNode) {
