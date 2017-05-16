@@ -2559,7 +2559,7 @@ class TypeDeclarationValidator implements NodeValidator{
         let validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
         if (!validateObject.isOk()) {
             for( var e of validateObject.getErrors()){
-                let n = extractLowLevelNode(e);
+                let n = extractLowLevelNode(e,node.lowLevel().unit().project());
                 let issue;
                 let mappingResult = mapPath( node,e);
                 let internalRange = mappingResult.internalPathUsed ? null : e.getInternalRange();
@@ -2567,7 +2567,20 @@ class TypeDeclarationValidator implements NodeValidator{
                     issue = createLLIssue(e.getCode(), e.getMessage(),n,mappingResult.node, e.isWarning(),true,internalRange);
                 }
                 else {
-                    issue = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning(),internalRange);
+                    if(e.getFilePath()&&e.getFilePath()!=node.lowLevel().unit().absolutePath()){
+                        let u = node.lowLevel().unit().project().unit(e.getFilePath());
+                        if(u) {
+                            let hlNode = u.highLevel();
+                            if(hlNode) {
+                                issue = createIssue(e.getCode(), e.getMessage(), hlNode, e.isWarning(), internalRange, true);
+                                let trace = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning());
+                                issue.extras.push(trace);
+                            }
+                        }
+                    }
+                    if(!issue){
+                        issue = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning(), internalRange);
+                    }
                 }
                 let actualFilePath = e.getFilePath();
                 if(actualFilePath!=null){
@@ -2666,11 +2679,18 @@ function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):NodeMappingResult{
     };
 }
 
-function extractLowLevelNode(e:rtypes.IStatus):ll.ILowLevelASTNode{
+function extractLowLevelNode(e:rtypes.IStatus,project:ll.IProject):ll.ILowLevelASTNode{
     var pn = e.getExtra(rtypes.SOURCE_EXTRA);
     if(hlimpl.LowLevelWrapperForTypeSystem.isInstance(pn)){
         return (<hlimpl.LowLevelWrapperForTypeSystem>pn).node();
     }
+    // let filePath = e.getFilePath();
+    // if(filePath){
+    //     let unit = project.unit(filePath);
+    //     if(unit){
+    //         return unit.ast();
+    //     }
+    // }
     return null;
 }
 
@@ -4011,8 +4031,16 @@ function getMediaType2(node:hl.IAttribute){
 
 var offsetRegexp = /^[ ]*/;
 
-var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
-                           prop:hl.IProperty,positionsSource?:ll.ILowLevelASTNode,internalRange?:def.rt.tsInterfaces.RangeObject) {
+var localError = function (
+    node:hl.IParseResult,
+    c,
+    w,
+    message,
+    p:boolean,
+    prop:hl.IProperty,
+    positionsSource?:ll.ILowLevelASTNode,
+    internalRange?:def.rt.tsInterfaces.RangeObject,
+    forceScalar = false) {
     var llNode = positionsSource ? positionsSource : node.lowLevel();
     var contents = llNode.unit() && llNode.unit().contents();
     var contentLength = contents && contents.length;
@@ -4031,7 +4059,7 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
     if(valueKind==yaml.Kind.INCLUDE_REF){
         valueKind = node.lowLevel().resolvedValueKind();
     }
-    if(internalRange && valueKind == yaml.Kind.SCALAR){
+    if(internalRange && (valueKind == yaml.Kind.SCALAR||forceScalar)){
         if(vk1 == yaml.Kind.INCLUDE_REF){
             let includedUnit = llNode.unit().resolve(llNode.includePath());
             if(includedUnit) {
@@ -4056,6 +4084,9 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
         }
         let lineMapper = llNode.unit().lineMapper();
         let vs = llNode.valueStart();
+        if(vs<0){
+            vs = llNode.start();
+        }
 
         let vsPos = lineMapper.position(vs);
         let aSCol:number;
@@ -4078,7 +4109,7 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,
         else{
             aSCol = vsPos.column + internalRange.start.column;
             aECol = vsPos.column + internalRange.end.column;
-            if(aValNode.singleQuoted||aValNode.doubleQuoted){
+            if(aValNode && (aValNode.singleQuoted||aValNode.doubleQuoted)){
                 aSCol++;
                 aECol++;
             }
@@ -4237,7 +4268,8 @@ export function createIssue(
     message:string,
     node:hl.IParseResult,
     isWarning:boolean=false,
-    internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue{
+    internalRange?:def.rt.tsInterfaces.RangeObject,
+    forceScalar = false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -4245,7 +4277,7 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange);
+                original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange,forceScalar);
                 internalRange = null;
                 //message +="(template expansion affected)"
             }
@@ -4258,7 +4290,7 @@ export function createIssue(
         pr=node.property();
 
         if (node.lowLevel().unit() != node.root().lowLevel().unit()) {
-            original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange);
+            original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange,forceScalar);
             internalRange = null;
             var v=node.lowLevel().unit();
             if (v) {
@@ -4290,7 +4322,7 @@ export function createIssue(
             node=node.parent();
         }
     }
-    var error=localError(node, issueCode, isWarning, message,false,pr,null,internalRange);
+    var error=localError(node, issueCode, isWarning, message,false,pr,null,internalRange,forceScalar);
     if (original) {
         original.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
