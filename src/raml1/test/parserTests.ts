@@ -846,6 +846,9 @@ describe('Parser regression tests', function () {
     it ("should pass without exceptions 2" ,function(){
         testErrorsByNumber(util.data("parser/api/api30/api.raml"), 2);
     })
+    it ("should pass without exceptions 3" ,function(){
+        testErrors(util.data("parser/api/api31.raml"), ["Scalar is expected here"]);
+    })
 
     it ("empty type include should produce no error" ,function(){
         testErrors(util.data("parser/type/t30.raml"));

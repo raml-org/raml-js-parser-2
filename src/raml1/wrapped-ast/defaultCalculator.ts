@@ -398,7 +398,7 @@ class ProtocolsPropertyCalculator implements ValueCalculator{
         var baseUriAttr = node.attr(universes.Universe10.Api.properties.baseUri.name);
         if(baseUriAttr) {
             var baseUri = baseUriAttr.value();
-            if (baseUri) {
+            if (baseUri && typeof baseUri == "string") {
                 var ind = baseUri.indexOf('://');
                 if (ind >= 0) {
                     result = [baseUri.substring(0, ind).toUpperCase()];
