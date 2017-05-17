@@ -2562,6 +2562,17 @@ class TypeDeclarationValidator implements NodeValidator{
                 let n = extractLowLevelNode(e,node.lowLevel().unit().project());
                 let issue;
                 let mappingResult = mapPath( node,e);
+                if(mappingResult.node==node && !mappingResult.internalPathUsed){
+                    let vp = e.getValidationPath();
+                    if(vp && vp.name == def.universesInfo.Universe10.TypeDeclaration.properties.type.name){
+                        if(node.attr(def.universesInfo.Universe10.TypeDeclaration.properties.schema.name)){
+                            let name = vp.name;
+                            vp.name = def.universesInfo.Universe10.TypeDeclaration.properties.schema.name;
+                            mappingResult = mapPath( node,e);
+                            vp.name = name;
+                        }
+                    }
+                }
                 let internalRange = mappingResult.internalPathUsed ? null : e.getInternalRange();
                 if(n){
                     issue = createLLIssue(e.getCode(), e.getMessage(),n,mappingResult.node, e.isWarning(),true,internalRange);
