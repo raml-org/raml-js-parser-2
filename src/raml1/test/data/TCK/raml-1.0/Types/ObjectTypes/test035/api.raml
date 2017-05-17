@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test
+
+/planets:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            default:
+              name: stringValue

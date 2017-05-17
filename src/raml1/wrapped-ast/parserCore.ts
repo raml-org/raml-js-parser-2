@@ -246,6 +246,9 @@ export class BasicNodeImpl implements hl.BasicNode{
             obj = arg;
         }
 
+        if(hlImpl.StructuredValue.isInstance(obj)){
+            obj = new TypeInstanceImpl((<hlImpl.StructuredValue>obj).lowLevel().parent());
+        }
         return obj;
     }
 
