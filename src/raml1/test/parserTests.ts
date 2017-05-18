@@ -1092,6 +1092,10 @@ describe('JSON schemes tests', function () {
         this.timeout(15000);
         testErrors(util.data("parser/jsonscheme/test8/apiInvalid0.raml"), ["Missing required property: childName"]);
     })
+    it("JSON Scheme test 25" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test12/api.raml"), ["Can not parse JSON example: Unexpected token '}'"]);
+    })
 
     it("Ignore unknown strig format 1" ,function() {
         this.timeout(15000);

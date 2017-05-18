@@ -414,7 +414,7 @@ Unit path: ${this.absPath}`);
         let column = _column;
         this.initMapping();
         for(var i = line ; i < this.mapping.length ; i++){
-            var lineLength = this.mapping[i];
+            let lineLength = this.mapping[i];
             if(column < lineLength){
                 let pos = column;
                 for(var j = 0 ; j < i ; j++){
@@ -428,7 +428,11 @@ Unit path: ${this.absPath}`);
             }
             column -= lineLength;
         }
-        return null;
+        return {
+            line: i,
+            column: column,
+            position: this.content.length
+        };
     }
 }
 

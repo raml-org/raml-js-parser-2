@@ -1,0 +1,11 @@
+#%RAML 0.8
+title: Hello
+version: V1
+
+/v2:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/get-app-statistics.json
