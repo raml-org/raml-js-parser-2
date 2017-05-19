@@ -1096,6 +1096,10 @@ describe('JSON schemes tests', function () {
         this.timeout(15000);
         testErrors(util.data("parser/jsonscheme/test12/api.raml"), ["Can not parse JSON example: Unexpected token '}'"]);
     })
+    it("JSON Scheme test 26" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test13/api.raml"), ["Invalid JSON schema: Reference could not be resolved:"]);
+    })
 
     it("Ignore unknown strig format 1" ,function() {
         this.timeout(15000);

@@ -4256,7 +4256,7 @@ function createIssue2(ve:ValidationError,node:hl.IParseResult,_isWarning?:boolea
     let internalRange = internalPathUsed ? null : ve.internalRange;
     let result = createIssue1(ve.messageEntry,ve.parameters,actualNode,isWarning,internalRange);
     if(ve.filePath){
-        let actualUnit = node.lowLevel().unit().project().unit(ve.filePath);
+        let actualUnit = node.lowLevel().unit().project().unit(ve.filePath,true);
         result.unit = actualUnit;
         result.path = ve.filePath;
     }
