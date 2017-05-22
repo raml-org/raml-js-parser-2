@@ -417,6 +417,31 @@ var printTime = function (message) {
     var d = new Date();
     console.log(message + ": " + d.toLocaleString() + "/" + d.getMilliseconds());
 };
+
+export interface TestOptions{
+    apiPath:string,
+    extensions?:string[],
+    tckJsonPath?:string,
+    regenerteJSON?:boolean,
+    expandLib?:boolean,
+    unfoldTypes?:boolean,
+    newFormat?:boolean
+}
+
+export function testAPIScript(o:TestOptions){
+    return doTestAPI(
+        o.apiPath,
+        o.extensions,
+        o.tckJsonPath,
+        o.newFormat,
+        o.regenerteJSON,
+        true,
+        true,
+        o.expandLib,
+        o.unfoldTypes);
+
+}
+
 export function testAPINewFormat(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
@@ -446,7 +471,8 @@ function doTestAPI(
     regenerteJSON:boolean=false,
     callTests:boolean=true,
     doAssert:boolean = true,
-    expandLib:boolean = false):TestResult{
+    expandLib:boolean = false,
+    unfoldTypes = false):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
@@ -461,11 +487,14 @@ function doTestAPI(
         tckJsonPath = testUtil.data(tckJsonPath);
     }
     var json:any;
-    if(newFormat){
+    if(newFormat||unfoldTypes){
         if(extensions && extensions.length>0){
             apiPath = extensions[extensions.length-1];
         }
-        json = index.loadSync(apiPath,{expandLibraries:expandLib});
+        json = index.loadSync(apiPath,{
+            expandLibraries: expandLib,
+            unfoldTypes: unfoldTypes
+        });
     }
     else {
         var api = index.loadRAMLSync(apiPath, extensions);
@@ -569,7 +598,8 @@ export function generateMochaSuite(
     dataRoot:string,
     mochaSuiteTitle:string,
     libExpand:boolean=false,
-    newFormat=false){
+    newFormat=false,
+    unfoldTypes = false){
 
     var dirs = iterateFolder(folderAbsPath);
     var map:{[key:string]:Test[]} = {};
@@ -595,7 +625,7 @@ export function generateMochaSuite(
         if(title==null){
             continue;
         }
-        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand,newFormat);
+        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand,newFormat,unfoldTypes);
         suiteStrings.push(suiteStr);
     }
     var content = fileContent(suiteStrings,dstPath,mochaSuiteTitle);
@@ -610,9 +640,15 @@ function suiteTitle(absPath:string,dataRoot:string){
     return title;
 }
 
-function dumpSuite(title:string,dataRoot:string,tests:Test[],libExpand:boolean,newFormat:boolean):string{
+function dumpSuite(
+    title:string,
+    dataRoot:string,
+    tests:Test[],
+    libExpand:boolean,
+    newFormat:boolean,
+    unfoldTypes:boolean):string{
 
-    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand,newFormat));
+    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand,newFormat,unfoldTypes));
 
     var testsStr = dumpedTests.join("\n\n");
     return`describe('${title}',function(){
@@ -622,34 +658,37 @@ ${testsStr}
 });`
 }
 
-function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean):string{
+function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean,unfoldTypes:boolean):string{
+
 
     var relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
-
-    var args = [ `"${relMasterPath}"` ];
+    let options:TestOptions = {
+        apiPath: relMasterPath,
+    }
 
     if(test.extensionsAndOverlays()) {
         var relArr = test.extensionsAndOverlays().map(x=>path.relative(dataRoot, x).replace(/\\/g,'/'));
-        if (relArr.length > 0) {
-            args.push("[ " + relArr.map(x=>`"${x}"`).join(", ") + " ]");
-        }
+        options.extensions = relArr;
     }
     var jsonPath = test.jsonPath() ? path.relative(dataRoot,test.jsonPath()).replace(/\\/g,'/'):null;
     if(jsonPath!=null){
-        if(!test.extensionsAndOverlays()){
-            args.push("null");
-        }
-        args.push(`"${jsonPath}"`);
+        options.tckJsonPath = jsonPath;
+    }
+    if(libExpand){
+        options.expandLib = true;
+    }
+    if(newFormat){
+        options.newFormat = true;
+    }
+    if(unfoldTypes){
+        options.unfoldTypes = true;
     }
 
-    var testMethod = libExpand ? 'testAPILibExpand' : 'testAPI';
-    if(newFormat){
-        testMethod += "NewFormat";
-    }
+    var testMethod = 'testAPIScript';
 
     return`    it("${path.basename(path.dirname(test.masterPath()))}/${path.basename(test.masterPath())}", function () {
         this.timeout(20000);
-        tckUtil.${testMethod}(${args.join(", ")});
+        tckUtil.${testMethod}(${JSON.stringify(options)});
     });`
 }
 

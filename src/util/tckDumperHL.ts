@@ -7,9 +7,11 @@ import ll = require("../raml1/lowLevelAST");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
 import expander=require("../raml1/ast.core/expanderHL");
+import referencePatcher=require("../raml1/ast.core/referencePatcher");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
+import typeExpressions = typeSystem.typeExpressions;
 
 import universeHelpers = require("../raml1/tools/universeHelpers")
 import universes = require("../raml1/tools/universe")
@@ -56,7 +58,7 @@ export class TCKDumper {
         this.nodeTransformers = [
             new ResourcesTransformer(),
             //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
-            new TypeTransformer(this.options.dumpXMLRepresentationOfExamples),
+            new TypeTransformer(this.options),
             //new ParametersTransformer(),
             //new ArrayExpressionTransformer(),
             //new UsesTransformer(),
@@ -639,6 +641,8 @@ export interface SerializeOptions{
     attributeDefaults?:boolean
 
     allUriParameters?:boolean
+
+    unfoldTypes?:boolean
 }
 
 class PropertyValue{
@@ -1212,7 +1216,7 @@ class ResourcesTransformer extends BasicTransformation{
 
 class TypeTransformer extends BasicTransformation{
 
-    constructor(private dumpXMLRepresentationOfExamples=false){
+    constructor(private options:SerializeOptions = {}){
         super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
@@ -1224,13 +1228,13 @@ class TypeTransformer extends BasicTransformation{
         }
         var value = isArray ? _value[0] : _value;
         var exampleObj = helpersHL.typeExample(
-            node.asElement(),this.dumpXMLRepresentationOfExamples);
+            node.asElement(),this.options.dumpXMLRepresentationOfExamples);
         if(exampleObj){
             value["examples"] = [ exampleObj ];
         }
         else {
             var examples = helpersHL.typeExamples(
-                node.asElement(), this.dumpXMLRepresentationOfExamples);
+                node.asElement(), this.options.dumpXMLRepresentationOfExamples);
             if (examples.length > 0) {
                 value["examples"] = examples;
             }
@@ -1259,23 +1263,6 @@ class TypeTransformer extends BasicTransformation{
         //this.refineTypeValue(value,node.asElement());
         if(!Array.isArray(value.type)){
             value.type = [value.type];
-        }
-        if(value.type.length==1){
-            var typeVal = value.type[0];
-            if(typeof(typeVal) == "string"){
-                typeVal = typeVal.trim();
-                var isArr = util.stringEndsWith(typeVal,"[]");
-                if(isArr){
-                    var itemsStr = typeVal.substring(0,typeVal.length-"[]".length).trim();
-                    while(itemsStr.length>0
-                    &&itemsStr.charAt(0)=="("
-                    &&itemsStr.charAt(itemsStr.length-1)==")"){
-                        itemsStr = itemsStr.substring(1,itemsStr.length-1);
-                    }
-                    value.type[0] = "array";
-                    value.items = itemsStr;
-                }
-            }
         }
         value.mediaType = RAML_MEDIATYPE;
         if(node && node.isElement()) {
@@ -1336,7 +1323,198 @@ class TypeTransformer extends BasicTransformation{
         } else if (typeof typeValue === "object"){
             value["typePropertyKind"] = "INPLACE";
         }
+        if(this.options.unfoldTypes) {
+            value.unfolded = this.processExpressions(value);
+        }
+        if(value.type.length==1){
+            var typeVal = value.type[0];
+            if(typeof(typeVal) == "string"){
+                typeVal = typeVal.trim();
+                var isArr = util.stringEndsWith(typeVal,"[]");
+                if(isArr){
+                    var itemsStr = typeVal.substring(0,typeVal.length-"[]".length).trim();
+                    while(itemsStr.length>0
+                    &&itemsStr.charAt(0)=="("
+                    &&itemsStr.charAt(itemsStr.length-1)==")"){
+                        itemsStr = itemsStr.substring(1,itemsStr.length-1);
+                    }
+                    value.type[0] = "array";
+                    value.items = itemsStr;
+                }
+            }
+        }
         return _value;
+    }
+
+    private processExpressions(value:any):any{
+        let copy = util.deepCopy(value);
+        this.parseExpressions(copy);
+        return copy;
+    }
+
+    private parseExpressions(obj){
+        this.parseExpressionsForProperty(obj,"type");
+        this.parseExpressionsForProperty(obj,"items");
+        if(obj.properties){
+            for(var pName of Object.keys(obj.properties)){
+                let p = obj.properties[pName];
+                if(p.unfolded){
+                    obj.properties[pName] = p.unfolded;
+                }
+            }
+        }
+    }
+
+    private parseExpressionsForProperty(obj:any, prop:string){
+
+        let value = obj[prop];
+        if(!value){
+            return;
+        }
+        let isSingleString = false;
+        if(!Array.isArray(value)){
+            if(typeof value == "object"){
+                if(value.unfolded){
+                    obj.prop = value.unfolded;
+                }
+                else {
+                    this.parseExpressions(value);
+                }
+                return;
+            }
+            else if(typeof value == "string"){
+                isSingleString = true;
+                value = [ value ];
+            }
+        }
+        let resultingArray:any[] = [];
+        for(var i = 0 ; i < value.length ; i++) {
+            let expr = value[i];
+            if(typeof expr=="object"){
+                if(expr.unfolded){
+                    expr = expr.unfolded;
+                }
+                else {
+                    this.parseExpressions(expr);
+                }
+            }
+            resultingArray.push(expr);
+            if(typeof expr != "string"){
+                continue;
+            }
+            let str = expr;
+            var gotExpression = referencePatcher.checkExpression(str);
+            if (!gotExpression) {
+                continue;
+            }
+            let escapeData:referencePatcher.EscapeData = {
+                status: referencePatcher.ParametersEscapingStatus.NOT_REQUIRED
+            };
+            if(expr.indexOf("<<")>=0){
+                escapeData = referencePatcher.escapeTemplateParameters(expr);
+                if (escapeData.status == referencePatcher.ParametersEscapingStatus.OK) {
+                    str = escapeData.resultingString;
+                    gotExpression = referencePatcher.checkExpression(str);
+                    if(!gotExpression){
+                        continue;
+                    }
+                }
+                else if (escapeData.status == referencePatcher.ParametersEscapingStatus.ERROR){
+                    continue;
+                }
+            }
+            let parsedExpression: any;
+            try {
+                parsedExpression = typeExpressions.parse(str);
+            } catch (exception) {
+                continue;
+            }
+
+            if (!parsedExpression) {
+                continue;
+            }
+            let exprObj = this.expressionToObject(parsedExpression,escapeData);
+            if(exprObj!=null){
+                resultingArray[i] = exprObj;
+            }
+        }
+        obj[prop] = isSingleString ? resultingArray[0] : resultingArray;
+    }
+
+    private expressionToObject(expr:typeExpressions.BaseNode, escapeData:referencePatcher.EscapeData):any{
+
+        let result:any;
+        let arr = 0;
+        if(expr.type=="name"){
+            let literal = <typeExpressions.Literal>expr;
+            arr = literal.arr;
+            result = literal.value;
+            if(escapeData.status==referencePatcher.ParametersEscapingStatus.OK){
+                let unescapeData = referencePatcher.unescapeTemplateParameters(result,escapeData.substitutions);
+                if(unescapeData.status==referencePatcher.ParametersEscapingStatus.OK){
+                    result = unescapeData.resultingString;
+                }
+                else if(unescapeData.status==referencePatcher.ParametersEscapingStatus.ERROR){
+                    result = null;
+                }
+            }
+        }
+        else if(expr.type=="union"){
+            let union = <typeExpressions.Union>expr;
+            result = {
+                type: ["union"],
+                options: []
+            };
+            let components = this.toOptionsArray(union);
+            for(var c of components){
+                if(c==null){
+                    result = null;
+                    break;
+                }
+                let c1 = this.expressionToObject(c,escapeData);
+                result.options.push(c1);
+            }
+            result.options = _.unique(result.options).sort()
+        }
+        else if(expr.type=="parens"){
+            let parens = <typeExpressions.Parens>expr;
+            arr = parens.arr;
+            result = this.expressionToObject(parens.expr,escapeData);
+        }
+        if(result!=null) {
+            while (arr-- > 0) {
+                result = {
+                    type: ["array"],
+                    items: result
+                };
+            }
+        }
+        return result;
+    }
+
+    private toOptionsArray(union:typeExpressions.Union):typeExpressions.BaseNode[]{
+        let result:typeExpressions.BaseNode[];
+        let e1 = union.first;
+        let e2 = union.rest;
+        while(e1.type=="parens" && (<typeExpressions.Parens>e1).arr == 0){
+            e1 = (<typeExpressions.Parens>e1).expr;
+        }
+        while(e2.type=="parens" && (<typeExpressions.Parens>e2).arr == 0){
+            e2 = (<typeExpressions.Parens>e2).expr;
+        }
+        if(e1.type=="union"){
+            result = this.toOptionsArray(<typeExpressions.Union>e1);
+        }
+        else{
+            result = [ e1 ];
+        }
+        if(e2.type=="union"){
+            result = result.concat(this.toOptionsArray(<typeExpressions.Union>e2));
+        }
+        else{
+            result.push(e2);
+        }
+        return result;
     }
 
 }

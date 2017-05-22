@@ -196,3 +196,23 @@ export function replace(str:string,x:string,r:string):string{
     result += str.substring(prev,str.length);
     return result;
 }
+
+export function deepCopy(val:any){
+    if(val == null || typeof val != "object"){
+        return val;
+    }
+    let result:any;
+    if(Array.isArray(val)){
+        result = [];
+        for(var x of val){
+            result.push(deepCopy(x));
+        }
+    }
+    else{
+        result = {};
+        for(var key of Object.keys(val)){
+            result[key] = deepCopy(val[key]);
+        }
+    }
+    return result;
+}

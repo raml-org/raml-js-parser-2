@@ -70,6 +70,11 @@ export interface Options2 {
     expandLibraries?:boolean
 
     /**
+     * Whether to unfold types
+     */
+    unfoldTypes?:boolean
+
+    /**
      * Module used for operations with file system
      **/
     fsResolver?:resolversApi.FSResolver

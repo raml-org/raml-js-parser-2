@@ -75,3 +75,14 @@ tckUtil.generateMochaSuite(
     true,
     true
 );
+
+tckUtil.generateMochaSuite(
+    path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/parser/UnfoldTypes"),
+    path.resolve(tckUtil.projectFolder(),"src/raml1/test/unfoldTypes.ts"),
+    dataRoot,
+    'Types Unfolding Tests',
+    false,
+    true,
+    true
+);
+
