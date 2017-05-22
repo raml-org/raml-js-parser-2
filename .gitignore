@@ -18,6 +18,7 @@ npm-debug.log
 /src/raml1/test/libraryExpansion.ts
 /src/raml1/test/TCK2-newFormat.ts
 /src/raml1/test/libraryExpansion-newFormat.ts
+/src/raml1/test/unfoldTypes.ts
 
 !/src/devUtil/documentation/theme.js
 
