@@ -859,49 +859,53 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         return res;
     }
 }
-function getBaseType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
+function getBaseTypes(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition[]{
     if (!expression) {
-        return node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name);
+        return [node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name)];
     }
     var pt=node.parsedType();
 
+    let result:hl.ITypeDefinition[] = [];
     if (pt.isString()){
-        return (node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name));
     }
     else if (pt.isNumber()){
         if (pt.isInteger()){
-            return (node.definition().universe().type(universes.Universe10.IntegerTypeDeclaration.name));
+            result.push(node.definition().universe().type(universes.Universe10.IntegerTypeDeclaration.name));
         }
-        return (node.definition().universe().type(universes.Universe10.NumberTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.NumberTypeDeclaration.name));
     }
     else if (pt.isBoolean()){
-        return (node.definition().universe().type(universes.Universe10.BooleanTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.BooleanTypeDeclaration.name));
     }
     else if (pt.isObject()){
-        return (node.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name));
     }
     else if (pt.isArray()){
-        return (node.definition().universe().type(universes.Universe10.ArrayTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.ArrayTypeDeclaration.name));
     }
     else if (pt.isFile()){
-        return (node.definition().universe().type(universes.Universe10.FileTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.FileTypeDeclaration.name));
     }
     else if (pt.isDateTime()){
-        return (node.definition().universe().type(universes.Universe10.DateTimeTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.DateTimeTypeDeclaration.name));
     }
     else if (pt.isDateTimeOnly()){
-        return (node.definition().universe().type(universes.Universe10.DateTimeOnlyTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.DateTimeOnlyTypeDeclaration.name));
     }
     else if (pt.isDateOnly()){
-        return (node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
     }
     else if (pt.isTimeOnly()){
-        return (node.definition().universe().type(universes.Universe10.TimeOnlyTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.TimeOnlyTypeDeclaration.name));
     }
     if (pt.isUnion()){
-        return (node.definition().universe().type(universes.Universe10.UnionTypeDeclaration.name));
+        result.push(node.definition().universe().type(universes.Universe10.UnionTypeDeclaration.name));
     }
-    return (node.definition().universe().type(universes.Universe10.TypeDeclaration.name));
+    if(result.length==0){
+        result.push(node.definition().universe().type(universes.Universe10.TypeDeclaration.name));
+    }
+    return result;
 }
 
 function transform(u:hl.IUniverse){
@@ -965,15 +969,31 @@ function findFacetDeclaration(facet : ramlTypes.ITypeFacet) : def.SourceProvider
     }
 }
 
-function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingType:hl.IHighLevelNode,
-    parentOfReferencingNode:hl.IHighLevelNode) {
-    if (originalType == null) return null;
+function patchTypeWithFacets(
+    originalTypes: hl.ITypeDefinition[],
+    nodeReferencingType:hl.IHighLevelNode,
+    parentOfReferencingNode:hl.IHighLevelNode):defs.NodeClass {
 
-    var patchedType=new defs.NodeClass(nodeReferencingType.name(),
-        <def.Universe>nodeReferencingType.definition().universe(),"","");
+    let patchedType:defs.NodeClass;
 
+    for(var originalType of originalTypes){
+        if(originalType==null){
+            continue;
+        }
+        let parsedRType = nodeReferencingType.parsedType();
+        if(!patchedType) {
+            patchedType = new defs.NodeClass(nodeReferencingType.name(),
+                <def.Universe>nodeReferencingType.definition().universe(), "", "");
+            patchedType.addAdapter(parsedRType);
+        }
+        patchedType._superTypes.push(originalType);
+        doPatchTypeWithFacets(patchedType,nodeReferencingType,parentOfReferencingNode);
+    }
+    return patchedType;
+}
+
+function doPatchTypeWithFacets(patchedType:defs.NodeClass,nodeReferencingType:hl.IHighLevelNode, parentOfReferencingNode:hl.IHighLevelNode) {
     var parsedRType=nodeReferencingType.parsedType();
-    patchedType.addAdapter(parsedRType);
     parsedRType.allFacets().forEach(facet=>{
         if (facet.kind() == defs.tsInterfaces.MetaInformationKind.FacetDeclaration) {
 
@@ -1006,15 +1026,8 @@ function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingTy
                 return v;
             });
             facetBasedProperty.withRange(ramlTypes.toNominal(facet.value(),transform(nodeReferencingType.definition().universe())))
-            
-
         }
     })
-
-    patchedType._superTypes.push(originalType);
-    return patchedType;
-
-    // return originalType;
 }
 
 function desc1(p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevelNode):hl.ITypeDefinition{
@@ -1022,9 +1035,9 @@ function desc1(p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevelNode):hl
     var value="";
     if (tp){
 
-        var baseType= getBaseType(x,tp.value());
+        var baseTypes= getBaseTypes(x,tp.value());
 
-        var patchedType = patchTypeWithFacets(baseType, x, parent);
+        var patchedType = patchTypeWithFacets(baseTypes, x, parent);
 
         if (patchedType) {
             if (patchedType.superTypes().length == 0) {

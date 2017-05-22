@@ -276,6 +276,24 @@
           "position": 392
         }
       }
+    },
+    {
+      "code": "UNKNOWN_PROPERTY",
+      "message": "Unknown property: 'fangs-INCORRECT'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 25,
+          "column": 10,
+          "position": 385
+        },
+        "end": {
+          "line": 25,
+          "column": 17,
+          "position": 392
+        }
+      },
+      "isWarning": true
     }
   ]
 }
