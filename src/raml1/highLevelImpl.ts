@@ -1641,6 +1641,37 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         return null;
     }
 
+    /**
+     * Finds slave counterpart of this node.
+     * @returns {any}
+     */
+    getSlaveCounterPart():hl.IHighLevelNode {
+        let root = <ASTNodeImpl> this.root();
+
+        if (!root.slave) return null;
+
+        return (<ASTNodeImpl>root.slave).findById(this.id());
+    }
+
+    /**
+     * Finds the slave counterpart of this node. If this slave has another slave in turn, recursivelly,
+     * returns the last slave in the dependency sequence.
+     */
+    getLastSlaveCounterPart() : hl.IHighLevelNode {
+        let root = <ASTNodeImpl> this.root();
+
+        let currentSlave = <ASTNodeImpl> root.slave;
+        if (currentSlave == null) return null;
+
+        while (currentSlave.slave != null) {
+            currentSlave = <ASTNodeImpl> currentSlave.slave;
+        }
+
+        if (this.id() == "") return currentSlave;
+
+        return currentSlave.findById(this.id());
+    }
+
     private getExtractedLowLevelChildren(n:ll.ILowLevelASTNode){
         var r=<ASTNodeImpl>this.root();
         if (r.isAuxilary()){
