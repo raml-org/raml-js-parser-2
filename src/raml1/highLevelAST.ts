@@ -632,6 +632,24 @@ export interface IHighLevelNode extends IParseResult {
      * Returns reused node if any
      */
     reusedNode(): IHighLevelNode;
+
+    /**
+     * Finds master counterpart of this node.
+     * @returns {IHighLevelNode}
+     */
+    getMasterCounterPart():IHighLevelNode;
+
+    /**
+     * Finds slave counterpart of this node.
+     * @returns {IHighLevelNode}
+     */
+    getSlaveCounterPart():IHighLevelNode;
+
+    /**
+     * Finds the slave counterpart of this node. If this slave has another slave in turn, recursivelly,
+     * returns the last slave in the dependency sequence.
+     */
+    getLastSlaveCounterPart() : IHighLevelNode;
 }
 
 export interface IEditableHighLevelNode extends IHighLevelNode {

@@ -1473,6 +1473,23 @@ describe('New API',function(){
     });
 });
 
+describe('JSON Extension default attributes',function(){
+    this.timeout(15000);
+    it("securedBy", function () {
+        var p = util.data("extensions/test58Extension.raml");
+        var json = index.loadSync(p);
+        var spec = json['specification'];
+        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
+    });
+
+    it("securedBy2", function () {
+        var p = util.data("extensions/test59Extension.raml");
+        var json = index.loadSync(p);
+        var spec = json['specification'];
+        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
+    });
+});
+
 function testDump(apiPath: string, options: any) {
     var api = util.loadApi(apiPath);
     var dumpPath = util.dumpPath(apiPath);

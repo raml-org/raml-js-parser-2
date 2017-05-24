@@ -1,0 +1,8 @@
+#%RAML 1.0 Extension
+extends: test59.raml
+
+securitySchemes:
+  oauth2_0: !include ./test59Security.raml
+
+/resource:
+  securedBy: oauth2_0

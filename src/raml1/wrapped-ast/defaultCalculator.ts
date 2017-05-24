@@ -353,6 +353,9 @@ class SecuredByPropertyCalculator implements ValueCalculator{
         if (universeHelpers.isMethodType(definition)) {
             var resource = node.parent();
             if (resource) {
+                let resourceSlave = resource.getLastSlaveCounterPart();
+                if (resourceSlave) resource = resourceSlave;
+
                 values = this.toHighLevel
                     ? resource.attributes("securedBy")
                     : (<any>resource.wrapperNode()).securedBy();
@@ -363,6 +366,9 @@ class SecuredByPropertyCalculator implements ValueCalculator{
                 node = node.parent();
             }
             if(node){
+                let nodeSlave = node.getLastSlaveCounterPart();
+                if (nodeSlave) node = nodeSlave;
+
                 values = this.toHighLevel
                     ? node.attributes("securedBy")
                     : (<any>node.wrapperNode()).securedBy();
