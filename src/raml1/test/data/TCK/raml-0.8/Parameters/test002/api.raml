@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: 00170156
+version: 1.0
+
+/policies:
+  /{id}:
+    uriParameters:
+      id:
+        required: true
+        minLength: 12
+        maxLength: 12
+        type: string
+        example: "123456789-11"

@@ -1,0 +1,70 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "00170156",
+    "version": "1.0",
+    "resources": [
+      {
+        "relativeUri": "/policies",
+        "displayName": "/policies",
+        "resources": [
+          {
+            "uriParameters": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "example": "123456789-11",
+                "required": true,
+                "minLength": 12,
+                "maxLength": 12,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "123456789-11",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "123456789-11"
+                }
+              }
+            },
+            "relativeUri": "/{id}",
+            "displayName": "/{id}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{id}"
+            ],
+            "absoluteUri": "/policies/{id}"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "policies"
+        ],
+        "absoluteUri": "/policies"
+      }
+    ]
+  },
+  "errors": []
+}
