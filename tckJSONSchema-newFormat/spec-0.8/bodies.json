@@ -35,7 +35,7 @@
           "additionalProperties": false
         },
         "description":{
-          "type": ["string", "null"],
+          "type": [ "string", "null" ],
           "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
         }
       },
@@ -78,9 +78,10 @@
           "description": "Returns schema content for the cases when schema is inlined, when schema is included, and when "
         },
         "description":{
-          "type": ["string", "null"],
+          "type": [ "string", "null" ],
           "description": "Human readable description of the body"
-        }
+        },
+        "__METADATA__": { "type": "object" }
       },
       "additionalProperties": false
     }

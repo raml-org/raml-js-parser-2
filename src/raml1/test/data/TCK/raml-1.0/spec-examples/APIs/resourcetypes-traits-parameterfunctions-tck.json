@@ -93,9 +93,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "body": {
-                    "name": "body",
-                    "displayName": "body",
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<resourcePathName>>"
@@ -118,9 +118,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "body": {
-                    "name": "body",
-                    "displayName": "body",
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<resourcePathName | !singularize>>"
@@ -148,9 +148,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "body": {
-                    "name": "body",
-                    "displayName": "body",
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "type": [
                       "<<resourcePathName>>"

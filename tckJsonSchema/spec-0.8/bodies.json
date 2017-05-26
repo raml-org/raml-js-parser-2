@@ -80,7 +80,8 @@
         "description":{
           "type": [ "string", "null" ],
           "description": "Human readable description of the body"
-        }
+        },
+        "__METADATA__": { "type": "object" }
       },
       "additionalProperties": false
     }

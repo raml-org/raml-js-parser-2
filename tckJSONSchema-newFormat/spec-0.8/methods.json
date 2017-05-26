@@ -3,13 +3,12 @@
   "type": "object",
   "definitions": {
       "Trait": {
-          "type": "object",
           "description": "A partial method definition that, like a method, can provide method-level properties such as description, headers, query string parameters, and responses. Methods that use one or more traits inherit those traits' properties.",
           "allOf": [
+              {"$ref": "#/definitions/MethodBase08"},
+              {"$ref": "common.json#/definitions/ParametrizedProperties"},
               {
-                  "$ref": "#/definitions/MethodBase08"
-              },
-              {
+                  "type": "object",
                   "properties": {
                       "name": {
                           "type": "string",
@@ -32,21 +31,7 @@
                       }
                   }
               }
-          ],
-          "patternProperties": {
-              "^[a-zA-Z0-9<>]+": {
-                  "type": [
-                      "array",
-                      "boolean",
-                      "integer",
-                      "number",
-                      "null",
-                      "object",
-                      "string"
-                  ],
-                  "description": "For instances of scalar types returns scalar value"
-              }
-          }
+          ]
       },
       "Reference08":{
           "oneOf": [
@@ -58,7 +43,7 @@
                           "type": "object",
                           "patternProperties":{
                               "^[a-zA-Z0-9<>]+":{
-                                  "type": ["array", "boolean", "integer", "number", "null","object","string"]
+                                  "type": ["boolean", "integer", "number", "null","string"]
                               }
                           },
                           "additionalProperties": false
@@ -157,15 +142,14 @@
                   "additionalProperties": false
               },
               "description":{
-                  "type": ["string", "null"]
+                  "type": [ "string", "null" ]
               }
           }
       },
       "Method08": {
           "allOf": [
-              {
-                  "$ref": "#/definitions/MethodBase08"
-              },
+              {"$ref": "#/definitions/MethodBase08"},
+              {"$ref": "common.json#/definitions/ParametrizedProperties"},
               {
                   "type": "object",
                   "properties": {

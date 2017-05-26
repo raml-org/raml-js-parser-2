@@ -89,7 +89,7 @@
                     "additionalProperties": false
                 },
                 "description":{
-                    "type": ["string", "null"],
+                    "type": [ "string", "null" ],
                     "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
                 },
                 "absoluteUri": {
@@ -176,10 +176,6 @@
                 "description": {
                     "type": ["string", "null"],
                     "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
-                },
-                "isScalar": {
-                    "type": "boolean",
-                    "description": "Whether the type is scalar"
                 },
                 "methods": {
                     "description": "Methods that can be called on this resource",

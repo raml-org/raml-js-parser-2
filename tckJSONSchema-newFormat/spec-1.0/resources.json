@@ -69,13 +69,14 @@
             ],
             "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
-            },
-            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+            }
         },
         "ResourceType10": {
             "allOf":[
                 {"$ref": "#/definitions/ResourceBase10"},
+                {"$ref": "common.json#/definitions/ParametrizedProperties"},
                 {
+                    "type": "object",
                     "properties": {
                         "name": {
                             "type": "string",
@@ -92,11 +93,7 @@
                     }
                 }
             ],
-            "description": "Resource pattern which can be defined and then applied to multiple resources",
-            "patternProperties": {
-                "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
-            },
-            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+            "description": "Resource pattern which can be defined and then applied to multiple resources"
         },
         "ResourceBase10": {
             "allOf":[
@@ -104,7 +101,7 @@
                 {
                     "properties": {
                         "description": {
-                            "type": ["string", "null"],
+                            "type": [ "string", "null" ],
                             "description": "Resource description"
                         },
                         "is": {
@@ -135,9 +132,6 @@
                             "patternProperties": {
                                 "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
                             }
-                        },
-                        "__METADATA__": {
-                            "type": "object"
                         }
                     }
                 }

@@ -68,9 +68,8 @@
                         },
                         "allUriParameters": {
                             "type": "array",
-                            "items": {"$ref": "datamodel.json#/definitions/Type"}
+                            "items": {"$ref": "datamodel.json#/definitions/TypeReference10"}
                         }
-
                     }
                 }
             ],
@@ -79,9 +78,8 @@
         },
         "MethodBase10": {
             "allOf": [
-                {
-                    "$ref": "security.json#/definitions/Operation10"
-                },
+                {"$ref": "security.json#/definitions/Operation10"},
+                {"$ref": "common.json#/definitions/ParametrizedProperties"},
                 {
                     "type": "object",
                     "properties": {
@@ -119,12 +117,20 @@
                             }
                         },
                         "description": {
-                            "type": ["string", "null"]
+                            "type": [ "string", "null" ]
+                        },
+                        "responses": {
+                            "description": "Information about the expected responses to a request",
+                            "type": "object",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {
+                                    "$ref": "bodies.json#/definitions/Response10"
+                                }
+                            }
                         }
                     }
                 }
-            ],
-            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+            ]
         }
     }
 }

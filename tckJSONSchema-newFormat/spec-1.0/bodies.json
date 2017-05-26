@@ -7,10 +7,11 @@
       "description": "Information about the expected responses to a request",
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"},
+        {"$ref": "common.json#/definitions/ParametrizedProperties"},
         {
           "properties": {
             "description": {
-              "type": ["string", "null"],
+              "type": [ "string", "null" ],
               "description": "A longer, human-friendly description of the response"
             },
             "headers": {
@@ -31,8 +32,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     }
   }
 }

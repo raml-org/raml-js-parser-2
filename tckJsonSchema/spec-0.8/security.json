@@ -42,9 +42,6 @@
                 {"$ref": "methods.json#/definitions/MethodBase08"},
                 {
                     "properties":{
-                        "method":{
-                            "type": "string"
-                        },
                         "is":{
                             "type": "array",
                             "description": "Instantiation of applyed traits",
