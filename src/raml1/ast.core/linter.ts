@@ -3711,7 +3711,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                         }
                         else{
                             var n=parseFloat(vl);
-                            if (!isNaN(n)){
+                            if (!isNaN(vl)){
                                 return n;
                             }
                         }
