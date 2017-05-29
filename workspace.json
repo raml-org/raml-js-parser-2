@@ -28,7 +28,6 @@
   "raml-json-validation" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/raml-json-validation.git",
-    "gitBranch": "develop",
     "installTypings" : true
   },
   "ts-structure-parser" : {
