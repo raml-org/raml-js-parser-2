@@ -996,7 +996,9 @@ describe('Regressions', function () {
               responses: {
                 200: {
                   body: {
-                    schema: '<<resourcePathName | !singularize>>'
+                    "application/json": {
+                      schema: '<<resourcePathName | !singularize>>'
+                    }
                   }
                 }
               }

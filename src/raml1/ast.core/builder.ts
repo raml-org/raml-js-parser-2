@@ -223,10 +223,10 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                     if(isDefaultMediaType) {
                         var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
-                        if (!isInsideTraitOrResourceType&&aNode._computedKey) {
+                        //if (!isInsideTraitOrResourceType&&aNode._computedKey) {
 
                             (<hlimpl.ASTPropImpl>keyAttr).overrideValue(aNode._computedKey);
-                        }
+                        //}
                     }
                 }
                 if (node.lowLevel().valueKind() === yaml.Kind.SEQ

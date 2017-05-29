@@ -11,13 +11,13 @@
             {
               "type": "object",
               "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/AnnotationInstance"}
+                "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/AnnotationInstance"}
               }
             },
             {
               "type": "object",
               "patternProperties": {
-                "^[a-zA-Z0-9]+": {
+                "^[a-zA-Z0-9<>]+": {
                   "type": "array",
                   "items": {"$ref": "#/definitions/AnnotationInstance"}
                 }
@@ -41,20 +41,28 @@
               }
             }
           }
+        },
+        "__METADATA__": {
+          "type": "object"
         }
       }
     },
     "AnnotationInstance": {
       "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "structuredValue": {
-          "type": ["object", "string", "boolean", "number", "array", "null"]
+      "allOf": [
+        {"$ref": "#/definitions/ParametrizedProperties"},
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "structuredValue": {
+              "type": [ "object", "string", "boolean", "number", "array", "null" ]
+            }
+          }
         }
-      },
-      "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
+      ]
     },
     "FragmentDeclaration": {
       "allOf":[
@@ -81,8 +89,14 @@
       },
       "additionalProperties": false
     },
-    "PatternProperties": {
-      "description": "Template property."
+    "ParametrizedProperties": {
+      "description": "Template property.",
+      "type": "object",
+      "patternProperties":{
+        "^([a-zA-Z0-9]*<<[a-zA-Z0-9]+>>[a-zA-Z0-9]*)+": {
+          "type": ["string","number","boolean","object","array","null"]
+        }
+      }
     }
   }
 }

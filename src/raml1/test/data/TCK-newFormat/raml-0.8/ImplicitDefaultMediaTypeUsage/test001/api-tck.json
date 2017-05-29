@@ -18,12 +18,13 @@
             "responses": {
               "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
                     "schema": "t1",
                     "schemaContent": "{}"
                   }
-                ]
+                }
               }
             },
             "method": "get"

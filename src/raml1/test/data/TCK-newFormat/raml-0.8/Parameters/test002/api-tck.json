@@ -1,0 +1,75 @@
+{
+  "specification": {
+    "title": "00170156",
+    "version": "1.0",
+    "resources": [
+      {
+        "relativeUri": "/policies",
+        "displayName": "/policies",
+        "resources": [
+          {
+            "uriParameters": {
+              "id": {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "minLength": 12,
+                "maxLength": 12,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "value": "123456789-11",
+                    "strict": true,
+                    "name": null
+                  }
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "relativeUri": "/{id}",
+            "displayName": "/{id}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{id}"
+            ],
+            "absoluteUri": "/policies/{id}",
+            "completeRelativeUri": "/policies/{id}",
+            "parentUri": "/policies"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "policies"
+        ],
+        "absoluteUri": "/policies",
+        "completeRelativeUri": "/policies",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

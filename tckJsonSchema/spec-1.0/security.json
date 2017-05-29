@@ -28,8 +28,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     },
     "OAuth20SecuritySettings10": {
       "allOf":[
@@ -53,53 +52,37 @@
             },
             "scopes": {
               "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              ]
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         }
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     },
     "PassThroughSecuritySettings10": {
-      "description": "Declares globally referable security scheme definition",
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     },
     "BasicSecuritySettings10": {
       "type": "object",
-      "description": "Declares globally referable security scheme definition",
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     },
     "DigestSecuritySettings10": {
       "type": "object",
-      "description": "Declares globally referable security scheme definition",
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     },
     "CustomSecuritySettings10": {
       "type": "object",
-      "description": "Declares globally referable security scheme definition",
       "allOf":[
         {"$ref": "common.json#/definitions/Annotable"}
-      ],
-      "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+      ]
     },
     "SecuritySchemeDeclaration": {
       "anyOf": [
@@ -130,39 +113,32 @@
       ]
     },
     "SecuritySchemeBase10": {
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the security scheme"
-        },
-        "description": {
-          "type": [ "string", "null" ],
-          "description": "The description attribute MAY be used to describe a security schemes property."
-        },
-        "describedBy": {
-          "$ref": "#/definitions/SecuritySchemePart10"
-        }
-      }
-    },
-    "OAuth10SecurityScheme10": {
-      "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"},
+      "allOf": [
         {
-          "properties":{
-            "type": {
+          "$ref": "common.json#/definitions/Annotable"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
               "type": "string",
-              "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
+              "description": "Name of the security scheme"
             },
-            "settings": {
-              "type": "string",
-              "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The description attribute MAY be used to describe a security schemes property."
+            },
+            "describedBy": {
+              "$ref": "#/definitions/SecuritySchemePart10"
             }
           }
         }
       ]
     },
-    "OAuth10SecuritySchemeBase10": {
+    "OAuth10SecurityScheme10": {
       "allOf":[
         {"$ref": "#/definitions/SecuritySchemeBase10"},
         {
@@ -179,12 +155,6 @@
     },
     "OAuth20SecurityScheme10": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
-        {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"}
-      ]
-    },
-    "OAuth20SecuritySchemeBase10": {
-      "allOf":[
         {"$ref": "#/definitions/SecuritySchemeBase10"},
         {
           "properties": {
@@ -200,7 +170,6 @@
     },
     "PassThroughSecurityScheme10": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
         {"$ref": "#/definitions/SecuritySchemeBase10"},
         {
           "properties": {
@@ -216,7 +185,6 @@
     },
     "BasicSecurityScheme10": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
         {"$ref": "#/definitions/SecuritySchemeBase10"},
         {
           "properties": {
@@ -232,7 +200,6 @@
     },
     "DigestSecurityScheme10": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
         {"$ref": "#/definitions/SecuritySchemeBase10"},
         {
           "properties": {
@@ -248,7 +215,6 @@
     },
     "CustomSecurityScheme10": {
       "allOf":[
-        {"$ref": "common.json#/definitions/Annotable"},
         {"$ref": "#/definitions/SecuritySchemeBase10"},
         {
           "properties": {
@@ -262,25 +228,31 @@
       ]
     },
     "SecuritySchemePart10": {
-      "allOf":[
+      "allOf": [
+        {"$ref": "#/definitions/Operation10"},
         {
+          "type": "object",
           "properties": {
-            "queryString": {"$ref": "datamodel.json#/definitions/Type"}
+            "responses": {
+              "description": "Information about the expected responses to a request",
+              "type": "array",
+              "items": {"$ref": "bodies.json#/definitions/Response10"}
+            }
           }
-        },
-        {"$ref": "#/definitions/Operation10"}
+        }
       ]
     },
+
     "OAuth10SecuritySchemeFragment10": {
       "allOf": [
         {"$ref": "common.json#/definitions/FragmentDeclaration"},
-        {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"}
+        {"$ref": "#/definitions/OAuth10SecurityScheme10"}
       ]
     },
     "OAuth20SecuritySchemeFragment10": {
       "allOf": [
         {"$ref": "common.json#/definitions/FragmentDeclaration"},
-        {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"}
+        {"$ref": "#/definitions/OAuth20SecurityScheme10"}
       ]
     },
     "PassThroughSecuritySchemeFragment10": {
@@ -335,25 +307,6 @@
         {"$ref": "common.json#/definitions/Annotable"},
         {
           "properties": {
-            "responses": {
-              "description": "Information about the expected responses to a request",
-              "oneOf": [
-                {
-                  "type": "object",
-                  "patternProperties": {
-                    "^[a-zA-Z0-9]+": {
-                      "$ref": "bodies.json#/definitions/Response10"
-                    }
-                  }
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "$ref": "bodies.json#/definitions/Response10"
-                  }
-                }
-              ]
-            },
             "headers": {
               "type": "object",
               "description": "Headers that allowed at this position",
@@ -372,8 +325,7 @@
                 }
               }
             },
-            "queryString": {"$ref": "datamodel.json#/definitions/Type"},
-            "__METADATA__": {"type": "object"}
+            "queryString": {"$ref": "datamodel.json#/definitions/ObjectTypeDeclaration"}
           }
         }
       ]

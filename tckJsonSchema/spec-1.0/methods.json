@@ -57,8 +57,7 @@
                     "allOf":[
                         {"$ref": "common.json#/definitions/FragmentDeclaration"},
                         {"$ref": "#/definitions/Trait10"}
-                    ],
-                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+                    ]
                 }
             },
             "additionalProperties": false
@@ -76,13 +75,12 @@
                 }
             ],
             "description": "RESTful API methods are operations that are performed on a resource.",
-            "require": ["method"]
+            "required": ["method"]
         },
         "MethodBase10": {
             "allOf": [
-                {
-                    "$ref": "security.json#/definitions/Operation10"
-                },
+                {"$ref": "security.json#/definitions/Operation10"},
+                {"$ref": "common.json#/definitions/ParametrizedProperties"},
                 {
                     "type": "object",
                     "properties": {
@@ -121,11 +119,19 @@
                         },
                         "description": {
                             "type": [ "string", "null" ]
+                        },
+                        "responses": {
+                            "description": "Information about the expected responses to a request",
+                            "type": "object",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+": {
+                                    "$ref": "bodies.json#/definitions/Response10"
+                                }
+                            }
                         }
                     }
                 }
-            ],
-            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+            ]
         }
     }
 }

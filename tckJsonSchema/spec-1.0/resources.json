@@ -52,8 +52,7 @@
                                 "type": "string"
                             }
                         },
-                        "absoluteUri": {"type": "string"},
-                        "__METADATA__": {"type": "object"}
+                        "absoluteUri": {"type": "string"}
                     }
                 }
             ],
@@ -69,8 +68,7 @@
                     ],
                     "patternProperties": {
                         "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
-                    },
-                    "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+                    }
                 }
             },
             "additionalProperties": false
@@ -78,7 +76,9 @@
         "ResourceType10": {
             "allOf":[
                 {"$ref": "#/definitions/ResourceBase10"},
+                {"$ref": "common.json#/definitions/ParametrizedProperties"},
                 {
+                    "type": "object",
                     "properties": {
                         "name": {
                             "type": "string",
@@ -92,14 +92,13 @@
                             "type": "string",
                             "description": "Resource name"
                         }
+                    },
+                    "patternProperties": {
+                        "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
                     }
                 }
             ],
-            "description": "Resource pattern which can be defined and then applied to multiple resources",
-            "patternProperties": {
-                "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
-            },
-            "additionalProperties": {"$ref": "common.json#/definitions/PatternProperties"}
+            "description": "Resource pattern which can be defined and then applied to multiple resources"
         },
         "ResourceBase10": {
             "allOf":[
@@ -132,9 +131,6 @@
                             "patternProperties": {
                                 "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
                             }
-                        },
-                        "__METADATA__": {
-                            "type": "object"
                         }
                     }
                 }

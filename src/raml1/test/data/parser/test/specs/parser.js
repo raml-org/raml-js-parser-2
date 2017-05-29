@@ -7844,7 +7844,9 @@ describe('Parser', function() {
               gettable: {
                 get: {
                   body:{
-                    example: "{}"
+                    "application/json":{
+                      example: "{}"
+                    }
                   }
                 }
               }
@@ -7904,7 +7906,9 @@ describe('Parser', function() {
           traits: [{
             bodiable: {
               body:{
-                example: "{}"
+                "application/json": {
+                  example: "{}"
+                }
               }
             }
           }],
@@ -7963,7 +7967,9 @@ describe('Parser', function() {
           traits: [{
             bodiable: {
               body:{
-                example: "{}"
+                "application/json": {
+                  example: "{}"
+                }
               }
             }
           }],
@@ -8026,7 +8032,9 @@ describe('Parser', function() {
                 is: [ "bodiable" ],
                 get: {
                   body: {
-                    schema: "{}"
+                    "application/json": {
+                      schema: "{}"
+                    }
                   }
                 }
               }
@@ -8035,7 +8043,9 @@ describe('Parser', function() {
           traits: [{
             bodiable: {
               body:{
-                example: "{}"
+                "application/json": {
+                  example: "{}"
+                }
               }
             }
           }],
@@ -8146,7 +8156,9 @@ describe('Parser', function() {
                   responses: {
                     200: {
                       body:{
-                        example: "{}"
+                        "application/json": {
+                          example: "{}"
+                        }
                       }
                     }
                   }
@@ -8216,7 +8228,9 @@ describe('Parser', function() {
               responses: {
                 200: {
                   body:{
-                    example: "{}"
+                    "application/json": {
+                      example: "{}"
+                    }
                   }
                 }
               }
@@ -8285,7 +8299,9 @@ describe('Parser', function() {
               responses: {
                 200: {
                   body:{
-                    example: "{}"
+                    "application/json": {
+                      example: "{}"
+                    }
                   }
                 }
               }
@@ -8360,7 +8376,9 @@ describe('Parser', function() {
                   responses: {
                     200: {
                       body: {
-                        schema: "{}"
+                        "application/json": {
+                          schema: "{}"
+                        }
                       }
                     }
                   }
@@ -8373,7 +8391,9 @@ describe('Parser', function() {
               responses: {
                 200: {
                   body:{
-                    example: "{}"
+                    "application/json": {
+                      example: "{}"
+                    }
                   }
                 }
               }

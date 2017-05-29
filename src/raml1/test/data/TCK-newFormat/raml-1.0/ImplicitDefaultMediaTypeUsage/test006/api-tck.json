@@ -67,9 +67,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "body": {
-                    "name": "body",
-                    "displayName": "body",
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
                     "type": [
                       "t1"
                     ],
