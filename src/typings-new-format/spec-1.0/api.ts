@@ -8,7 +8,7 @@ import security = require("./security");
  * RAML 1.0 API definition
  */
 //TODO NOT READY
-export interface Api10 {
+export interface Api10 extends LibraryBase10 {
 
     /**
      * Additional overall documentation for the API
