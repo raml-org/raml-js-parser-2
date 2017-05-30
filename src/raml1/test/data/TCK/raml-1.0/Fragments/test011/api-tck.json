@@ -1,118 +1,13 @@
 {
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "specification": {
-    "types": {
-      "MyType": {
-        "name": "MyType",
-        "displayName": "MyType",
-        "type": [
-          "object"
-        ],
-        "properties": {
-          "p1": {
-            "name": "p1",
-            "displayName": "p1",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "unfolded": {
-              "name": "p1",
-              "displayName": "p1",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
-          },
-          "p2": {
-            "name": "p2",
-            "displayName": "p2",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "unfolded": {
-              "name": "p2",
-              "displayName": "p2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
-          }
-        },
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
+    "types": [
+      {
+        "MyType": {
           "name": "MyType",
           "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "object"
           ],
@@ -120,6 +15,7 @@
             "p1": {
               "name": "p1",
               "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -136,13 +32,12 @@
                     "insertedAsDefault": true
                   }
                 }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              }
             },
             "p2": {
               "name": "p2",
               "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
               "type": [
                 "string"
               ],
@@ -159,9 +54,7 @@
                     "insertedAsDefault": true
                   }
                 }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              }
             }
           },
           "__METADATA__": {
@@ -170,16 +63,12 @@
                 "calculated": true
               }
             }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
+          }
         }
       }
-    },
+    ],
     "title": "BaseUri error message"
   },
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "errors": [
     {
       "code": "UNKNOWN_FACET",
