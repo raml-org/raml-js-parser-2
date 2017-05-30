@@ -2576,6 +2576,10 @@ class TypeDeclarationValidator implements NodeValidator{
                 let internalRange = mappingResult.internalPathUsed ? null : e.getInternalRange();
                 if(n){
                     issue = createLLIssue(e.getCode(), e.getMessage(),n,mappingResult.node, e.isWarning(),true,internalRange);
+                    if(n.unit().absolutePath()!=node.lowLevel().unit().absolutePath()){
+                        let trace = createIssue(e.getCode(), e.getMessage(), node, e.isWarning());
+                        issue.extras.push(trace);
+                    }
                 }
                 else {
                     if(e.getFilePath()&&e.getFilePath()!=node.lowLevel().unit().absolutePath()){
