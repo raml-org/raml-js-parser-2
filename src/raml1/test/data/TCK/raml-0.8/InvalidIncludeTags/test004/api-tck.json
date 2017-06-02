@@ -1,0 +1,48 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": [
+          {
+            "method": "get"
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 4,
+          "position": 51
+        },
+        "end": {
+          "line": 6,
+          "column": 13,
+          "position": 60
+        }
+      }
+    }
+  ]
+}

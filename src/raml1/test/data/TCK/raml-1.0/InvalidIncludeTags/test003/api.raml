@@ -1,0 +1,27 @@
+
+#%RAML 1.0
+title: test API
+
+types:
+  T1: object
+  T2: string
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: |
+              {
+                "type": "object"
+              }
+            example: ./example.json
+      201:
+        body:
+          application/json:
+            type: T1
+            example: example.json
+          text/plain:
+            type: T2
+            example: example.json

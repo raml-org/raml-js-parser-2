@@ -494,8 +494,10 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
                     return false;
                 }
                 if (node.lowLevel().value()!='~') {
-                    v.accept(createIssue1(messageRegistry.SCALAR_PROHIBITED,
-                        {propName: node.name()}, node));
+                    if(!checkIfIncludeTagIsMissing(node,v,messageRegistry.SCALAR_PROHIBITED.code,false)) {
+                        v.accept(createIssue1(messageRegistry.SCALAR_PROHIBITED,
+                            {propName: node.name()}, node));
+                    }
                 }
             }
         }
@@ -2594,6 +2596,9 @@ class TypeDeclarationValidator implements NodeValidator{
                         }
                     }
                     if(!issue){
+                        if(checkIfIncludeTagIsMissing(mappingResult.node, v, e.getCode(), e.isWarning())){
+                            continue;
+                        }
                         issue = createIssue(e.getCode(), e.getMessage(), mappingResult.node, e.isWarning(), internalRange);
                     }
                 }
@@ -2631,13 +2636,13 @@ class TypeDeclarationValidator implements NodeValidator{
         if(val==null){
             return;
         }
-        
+
         if(typeof(val)!="string"){
             v.accept(createIssue1(messageRegistry.ANNOTATION_TARGET_MUST_BE_A_STRING, {}, attr, false));
-            
+
             return;
         }
-        
+
         var str:string = val;
         if(val.replace(/\w|\s/g,'').length>0){
             v.accept(createIssue1(messageRegistry.ALLOWED_TARGETS_MUST_BE_ARRAY,
@@ -2753,7 +2758,7 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
     else if(chld.length>0){
         return findElementAtPath(chld[0], p.child)
     }
-        
+
     if (!n.lowLevel()){
         return n;
     }
@@ -3127,9 +3132,9 @@ class OverlayNodesValidator implements NodeValidator{
         var root = node.root();
         var rootPath = root.lowLevel().unit().absolutePath();
         var isExpanded = root.isExpanded()
-            
+
         node.attrs().forEach(attribute=>{
-            
+
             if(isExpanded && rootPath!=attribute.lowLevel().unit().absolutePath()){
                 return;
             }
@@ -3681,7 +3686,9 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                         pObj=JSON.parse(vl);
                     }catch (e){
                         if(ValidationError.isInstance(e)){
-                            cb.accept(createIssue2(<ValidationError>e,node,!strictValidation));
+                            if(!checkIfIncludeTagIsMissing(node, cb, (<ValidationError>e).messageEntry.code, !strictValidation)){
+                                cb.accept(createIssue2(<ValidationError>e,node,!strictValidation));
+                            }
                         }
                         else {
                             cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
@@ -4142,11 +4149,11 @@ var localError = function (
         }
 
         if (llNode.key() && llNode.keyStart()) {
-            var ks = llNode.keyStart();
+            let ks = llNode.keyStart();
             if (ks > 0) {
                 st = ks;
             }
-            var ke = llNode.keyEnd();
+            let ke = llNode.keyEnd();
             if (ke > 0) {
                 et = ke;
             }
@@ -4165,8 +4172,8 @@ var localError = function (
         if (prop && !prop.getAdapter(services.RAMLPropertyService).isMerged() && node.parent() == null) {
             var nm = _.find(llNode.children(), x => x.key() == prop.nameId());
             if (nm) {
-                var ks = nm.keyStart();
-                var ke = nm.keyEnd();
+                let ks = nm.keyStart();
+                let ke = nm.keyEnd();
                 if (ks > 0 && ke > ks) {
                     st = ks;
                     et = ke;
@@ -4451,3 +4458,84 @@ function applyTemplate(messageEntry:Message, params:any):string {
     return result;
 };
 
+
+var urlPattern = new RegExp("^(https?:\\/\\/)?"
+    + "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))?"
+    + "((\\:\\d+)|((\\.\\.\\/)+)|(\\.\\/)|(\\/))?(\\/[-a-z\\d%_.~+]*)*"
+    + "(\\\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$","i");
+
+var urlPatternWin = new RegExp('([a-zA-Z]:\\/)'+ // dot segments
+    '(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragmen
+
+function isURLorPath(str:string):boolean{
+
+    // if(str.indexOf(".")<0){
+    //     return false;
+    // }
+    if(urlPattern.test(str)){
+        return true;
+    }
+    let isWin = /^win/.test(process.platform);
+    if(!isWin){
+        return false;
+    }
+    return urlPatternWin.test(str);
+}
+
+function checkIfIncludeTagIsMissing(
+    mappedNode: hl.IParseResult, v: hl.ValidationAcceptor,code:string,isWarning:boolean):boolean {
+
+    if(code != messageRegistry.SCALAR_PROHIBITED.code
+        && code != "CAN_NOT_PARSE_JSON"
+        && code != "TYPE_EXPECTED"){
+        return false;
+    }
+    if (mappedNode) {
+        let llNode = mappedNode.lowLevel();
+        let valueKind = llNode.valueKind();
+        if(valueKind==yaml.Kind.ANCHOR_REF){
+            valueKind = llNode.anchorValueKind();
+        }
+        if(valueKind==yaml.Kind.INCLUDE_REF){
+            return false;
+        }
+        let prop = mappedNode.property();
+        if (!prop) {
+            prop = (<hlimpl.BasicASTNode>mappedNode).knownProperty;
+        }
+        let isExample = universeHelpers.isExampleProperty(prop)
+            || universeHelpers.isExamplesProperty(prop);
+        if (prop && (isExample||!prop.range().isValueType())) {
+
+            let parent = mappedNode.parent();
+            if(!parent){
+                return false;
+            }
+            let pDef = parent.definition();
+            let val = mappedNode.lowLevel().value();
+            if (typeof val == "string" && isURLorPath(val)) {
+                if(isExample) {
+                    if(val.indexOf(".")<0){
+                        return false;
+                    }
+                    if (!(universeHelpers.isBodyLikeType(pDef)
+                        || universeHelpers.isObjectTypeDeclarationSibling(pDef)
+                        || universeHelpers.isArrayTypeDeclarationSibling(pDef))) {
+                        return false;
+                    }
+                }
+                else{
+                    if(!(util.endsWith(val,".raml")||util.endsWith(val,".yml")||util.endsWith(val,".yaml"))){
+                        return false;
+                    }
+                }
+                let issue = createIssue1(messageRegistry.INCLUDE_TAG_MISSING, null, mappedNode, isWarning);
+                v.accept(issue);
+                return true;
+            }
+        }
+        return false;
+    }
+};

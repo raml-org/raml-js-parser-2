@@ -1,0 +1,119 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"array\",\n  \"items\": {\n    \"type\": \"string\"\n  }\n}\n",
+                    "example": "./example.json",
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"array\",\n  \"items\": {\n    \"type\": \"string\"\n  }\n}\n"
+                  }
+                }
+              },
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "example": "example.json"
+                  },
+                  "text/plain": {
+                    "name": "text/plain",
+                    "example": "./example.json"
+                  }
+                }
+              }
+            },
+            "queryParameters": {
+              "qParam1": {
+                "name": "qParam1",
+                "displayName": "qParam1",
+                "type": "string",
+                "required": false,
+                "example": "./example.json",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 12,
+          "position": 239
+        },
+        "end": {
+          "line": 15,
+          "column": 19,
+          "position": 246
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 19,
+          "column": 12,
+          "position": 328
+        },
+        "end": {
+          "line": 19,
+          "column": 19,
+          "position": 335
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}
