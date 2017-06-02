@@ -54,6 +54,7 @@ var testFilesLibExpand = [
   'dist/raml1/test/astReuseTestsComplexTyping.js',
   'dist/raml1/test/longivityTestsBasicTyping.js',
   'dist/raml1/test/longivityTestsComplexTyping.js',
+  'dist/raml1/test/longivityTestsUserTyping.js',
   'dist/raml1/test/unfoldTypes.js',
   // // //
   'src/raml1/test/data/parser/test/specs/optionals.js',

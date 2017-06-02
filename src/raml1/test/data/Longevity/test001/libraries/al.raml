@@ -1,0 +1,46 @@
+#%RAML 1.0 Library
+
+types:
+  RDT:
+    type: object
+    properties:
+      pS: string
+      pSA1: string[]
+      ideas:
+        type: array
+        items: !include: ../schemas/idea.raml
+      eI:
+        type: !include ../schemas/idea.raml
+        properties:
+          cB: string
+      fbk:
+        type: string
+        default: "vn"
+        example: "vwm"
+        minLength: 1
+        maxLength: 100
+        pattern: "[a-zA-Z\\s]*"
+      pN:
+        type: number
+        minimum: 0
+        maximum: 32
+        format: int32
+        multipleOf: 2
+      pB: boolean
+      pD:
+        type: date-only
+        example: 2015-05-23
+      uP:
+        type: file
+        fileTypes: ['image/jpeg', 'image/png']
+        maxLength: 307200
+  COD: Ca | Do
+  CAD: [Ca, Do]
+  Ca:
+    type: object
+    properties:
+      name: string
+  Do:
+    type: object
+    properties:
+      name: string

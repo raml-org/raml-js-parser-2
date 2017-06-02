@@ -1,0 +1,24 @@
+#%RAML 1.0 Library
+
+types:
+  S:
+    properties:
+      t: string
+      l: number
+    examples:
+      s1:
+        strict: false
+        value:
+          t: "M"
+          l: 12
+      s2:
+        t: "L"
+        l: 3
+  A:
+    properties:
+      t: string
+      songs: S[]
+  M:
+    properties:
+      n: string
+      d: (S|A)[]
