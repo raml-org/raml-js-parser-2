@@ -4471,6 +4471,13 @@ var urlPatternWin = new RegExp('([a-zA-Z]:\\/)'+ // dot segments
 
 function isURLorPath(str:string):boolean{
 
+    if(!str){
+        return false;
+    }
+    str = str.trim();
+    if(str.indexOf('\n')>=0||str.indexOf('\r')>=0){
+        return false;
+    }
     // if(str.indexOf(".")<0){
     //     return false;
     // }
