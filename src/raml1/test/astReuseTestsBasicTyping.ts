@@ -9,7 +9,7 @@ import util = require("./test-utils");
 import fs = require("fs");
 
 describe('Testing AST reuse by typing simulation (basic)',function() {
-    this.timeout(15000);
+    this.timeout(50000);
     describe('Basic Tests', function () {
 
         it("Resource type", function () {
