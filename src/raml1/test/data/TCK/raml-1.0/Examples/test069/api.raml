@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: A title
+
+resourceTypes:
+  collection: !include ./resourceTypes/collection.raml
+
+/testURI:
+  type:
+    collection:
+      postRequestBodyExample: !include examples/example.raml

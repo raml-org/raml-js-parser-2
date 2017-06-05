@@ -1,0 +1,110 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "p2": {
+              "name": "p2",
+              "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "BaseUri error message"
+  },
+  "errors": [
+    {
+      "code": "UNKNOWN_FACET",
+      "message": "Specifying unknown facet: 'baseUri'",
+      "path": "typeFragment.raml",
+      "range": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "position": 20
+        },
+        "end": {
+          "line": 1,
+          "column": 7,
+          "position": 27
+        }
+      },
+      "trace": [
+        {
+          "code": "UNKNOWN_FACET",
+          "message": "Specifying unknown facet: 'baseUri'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 4,
+              "column": 2,
+              "position": 50
+            },
+            "end": {
+              "line": 4,
+              "column": 8,
+              "position": 56
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

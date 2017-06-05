@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
@@ -77,6 +77,7 @@
     "chai-as-promised": "^5.2.0",
     "json-loader": "^0.5.1",
     "dev-env-installer": "0.0.5",
+    "atom-text-typer" : "0.0.1",
     "rimraf": "*",
     "gulp-istanbul" : "*"
   },

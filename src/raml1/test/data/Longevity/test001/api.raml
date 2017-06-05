@@ -1,0 +1,60 @@
+#%RAML 1.0
+title: AST
+version: v
+mediaType: [application/json]
+
+uses:
+  sl: libraries/sl.raml
+  al: libraries/al.raml
+types:
+  Ent: |
+   {
+     "type": "array",
+     "items": {
+       "$ref": "#/definitions/song"
+     },
+     "definitions": {
+       "song": {
+         "type": "object"
+       }
+     }
+   }
+  Use:
+    properties:
+      fn: string
+      ln:
+        type: string
+        example: DD
+        required: false
+traits:
+  sec: !include traits/t1.raml
+  bT: !include traits/bT.raml
+resourceTypes:
+  base: !include resourceTypes/base.raml
+  rt2: !include resourceTypes/rt2.raml
+  collection:
+    type: base
+    get:
+      responses:
+        200:
+securitySchemes:
+  oA1:
+    type: OAuth 1.0
+  oA2:
+    type: OAuth 2.0
+    describedBy:
+      headers:
+        Authorization:
+/api:
+  type:
+    rt2:
+      param1: s v
+  get:
+    description: t
+    queryParameters:
+      start?: number
+      pager-size: number
+    responses:
+      200:
+        body:
+          application/json: Ent

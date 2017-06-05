@@ -892,6 +892,11 @@ export class ValueTransformer implements proxy.ValueTransformer{
         return null;
     }
 
+    resolvedValueKind(node:ll.ILowLevelASTNode):yaml.Kind{
+        var substitution = this.substitutionNode(node);
+        return substitution && substitution.resolvedValueKind();
+    }
+
     includePath(node:ll.ILowLevelASTNode):string{
         var substitution = this.substitutionNode(node);
         if(substitution){
@@ -1061,6 +1066,10 @@ export class DefaultTransformer extends ValueTransformer{
 
     anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind{
         return this.delegate != null ? this.delegate.anchorValueKind(node) : null;
+    }
+
+    resolvedValueKind(node:ll.ILowLevelASTNode):yaml.Kind{
+        return this.delegate != null ? this.delegate.resolvedValueKind(node) : null;
     }
 
     _definingUnitSequence(str:string):ll.ICompilationUnit[]{

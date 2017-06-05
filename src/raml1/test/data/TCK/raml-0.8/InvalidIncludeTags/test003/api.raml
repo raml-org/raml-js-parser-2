@@ -1,0 +1,22 @@
+
+#%RAML 0.8
+title: test API
+
+/resource:
+  get:
+    queryParameters:
+      qParam1:
+        example: ./example.json
+
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include ./schema.json
+            example: ./example.json
+      201:
+        body:
+          application/json:
+            example: example.json
+          text/plain:
+            example: ./example.json

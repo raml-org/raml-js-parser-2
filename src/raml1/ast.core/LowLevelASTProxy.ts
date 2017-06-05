@@ -810,6 +810,14 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
         return super.anchorValueKind();
     }
 
+    resolvedValueKind():yaml.Kind{
+        var kind = this._transformer && this._transformer.resolvedValueKind(this.originalNode());
+        if(kind!=null){
+            return kind;
+        }
+        return super.resolvedValueKind();
+    }
+
     includePath(){
         var includePath = this._transformer && this._transformer.includePath(this.originalNode());
         if(includePath!=null){
@@ -844,6 +852,8 @@ export interface ValueTransformer{
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind
 
     anchorValueKind(node:ll.ILowLevelASTNode):yaml.Kind
+
+    resolvedValueKind(node:ll.ILowLevelASTNode):yaml.Kind
 
     includePath(node:ll.ILowLevelASTNode):string
 

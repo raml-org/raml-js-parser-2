@@ -1,0 +1,65 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 2,
+          "position": 42
+        },
+        "end": {
+          "line": 5,
+          "column": 5,
+          "position": 45
+        }
+      }
+    },
+    {
+      "code": "SCALAR_PROHIBITED_2",
+      "message": "Node 'get' can not be a scalar",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 2,
+          "position": 42
+        },
+        "end": {
+          "line": 5,
+          "column": 5,
+          "position": 45
+        }
+      }
+    }
+  ]
+}

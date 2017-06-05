@@ -996,35 +996,17 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         return vl;
     }
     value(){
-        var vk=this._node.valueKind();
+        var vk=this._node.resolvedValueKind();
         if (vk===yaml.Kind.SEQ){
             return this.children().map(x=>x.value());
         }
-        else if (vk===yaml.Kind.MAP||vk===yaml.Kind.ANCHOR_REF){
+        else if (vk===yaml.Kind.MAP){
             var vl= this._node.dumpToObject(false);
             return vl[this.key()];
         }
         else if (this._node.kind()==yaml.Kind.MAP){
             var vl= this._node.dumpToObject(false);
             return vl;
-        }
-
-        if (vk===yaml.Kind.INCLUDE_REF){
-            var resolved:ll.ICompilationUnit=null;
-            var includePath = this._node.includePath();
-            try {
-                resolved = this._node.unit().resolve(includePath)
-            } catch (e) {}
-            if (resolved!=null&&resolved.isRAMLUnit()){
-                var includedAST = resolved.ast();
-                var includedWrapper = new LowLevelWrapperForTypeSystem(includedAST,resolved.highLevel().asElement());
-                if(includedAST.kind()==yaml.Kind.SEQ){
-                    return includedWrapper.children().map(x=>x.value());
-                }
-                else{
-                    return includedWrapper.value();
-                }
-            }
         }
         var val = this._node.value();
         // if(val==null){

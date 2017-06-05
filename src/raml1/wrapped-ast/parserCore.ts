@@ -219,7 +219,7 @@ export class BasicNodeImpl implements hl.BasicNode{
     toString(arg:any):string{
         var obj : any;
         //kind of instanceof for hl.IAttribute without actually calling instanceof
-        if (arg.lowLevel && arg.property) {
+        if (arg && arg.lowLevel && arg.property) {
             obj = (<hl.IAttribute>arg).value();
         }
         else {

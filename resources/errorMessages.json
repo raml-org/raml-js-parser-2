@@ -424,9 +424,9 @@
     "code" : "INVALID_SECURITY_SCHEME_SCOPE",
     "message" : "The '{{invalidScope}}' scope is not allowed for the '{{securityScheme}}' security scheme. Allowed scopes are: {{allowedScopes}}."
   },
-  "1104" : {
-    "code" : "1104",
-    "message" : ""
+  "INCLUDE_TAG_MISSING" : {
+    "code" : "INCLUDE_TAG_MISSING",
+    "message" : "The '!include' tag is missing"
   },
   "1105" : {
     "code" : "1105",

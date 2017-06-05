@@ -1,0 +1,127 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "example": "<<postRequestBodyExample>>",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "<<postRequestBodyExample>>",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "<<postRequestBodyExample>>"
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "A title",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "example": {
+                  "subscriptionID": "8f19cb50-3f57-4d38",
+                  "name": "NewSub",
+                  "description": "This is the new subscription.",
+                  "startDate": "2015-01-01",
+                  "endDate": "2018-01-01",
+                  "quantity": 5,
+                  "productName": "ABC Product",
+                  "supportLevel": 4
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"subscriptionID\": \"8f19cb50-3f57-4d38\",\n  \"name\": \"NewSub\",\n  \"description\": \"This is the new subscription.\",\n  \"startDate\": \"2015-01-01\",\n  \"endDate\": \"2018-01-01\",\n  \"quantity\": 5,\n  \"productName\": \"ABC Product\",\n  \"supportLevel\": 4\n}",
+                  "strict": true,
+                  "name": null,
+                  "description": null,
+                  "structuredValue": {
+                    "subscriptionID": "8f19cb50-3f57-4d38",
+                    "name": "NewSub",
+                    "description": "This is the new subscription.",
+                    "startDate": "2015-01-01",
+                    "endDate": "2018-01-01",
+                    "quantity": 5,
+                    "productName": "ABC Product",
+                    "supportLevel": 4
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "type": {
+          "collection": {
+            "postRequestBodyExample": {
+              "subscriptionID": "8f19cb50-3f57-4d38",
+              "name": "NewSub",
+              "description": "This is the new subscription.",
+              "startDate": "2015-01-01",
+              "endDate": "2018-01-01",
+              "quantity": 5,
+              "productName": "ABC Product",
+              "supportLevel": 4
+            }
+          }
+        },
+        "relativeUri": "/testURI",
+        "displayName": "/testURI",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "testURI"
+        ],
+        "absoluteUri": "/testURI"
+      }
+    ]
+  },
+  "errors": []
+}

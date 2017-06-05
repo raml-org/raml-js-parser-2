@@ -598,6 +598,10 @@ export function isObjectTypeDeclarationSibling(type: hl.INodeDefinition | hl.ITy
     return type.isAssignableFrom(universe.Universe10.ObjectTypeDeclaration.name);
 }
 
+export function isArrayTypeDeclarationSibling(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.isAssignableFrom(universe.Universe10.ArrayTypeDeclaration.name);
+}
+
 export function isTypeDeclarationDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.isAssignableFrom(universe.Universe10.TypeDeclaration.name);
 }
