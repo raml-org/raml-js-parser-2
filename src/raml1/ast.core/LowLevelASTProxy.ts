@@ -409,6 +409,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     }
                 }
             }
+            if(canBeMap&&canBeSeq){
+                break;
+            }
         }
         if (canBeMap) {
             result = this.collectChildrenWithKeys();

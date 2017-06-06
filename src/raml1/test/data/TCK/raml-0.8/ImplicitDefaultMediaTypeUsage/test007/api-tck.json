@@ -1,0 +1,78 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "Test",
+    "version": "v1",
+    "mediaType": "application/atom+xml",
+    "schemas": [
+      {
+        "atom": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "emailed": {
+          "name": "emailed",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/atom+xml": {
+                    "name": "application/atom+xml",
+                    "schema": "atom",
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+                  }
+                }
+              }
+            },
+            "method": "get",
+            "__METADATA__": {
+              "optional": true
+            }
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/photos",
+        "type": "emailed",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "image/*": {
+                    "name": "image/*"
+                  },
+                  "application/atom+xml": {
+                    "name": "application/atom+xml",
+                    "schema": "atom",
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/photos",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "photos"
+        ],
+        "absoluteUri": "/photos"
+      }
+    ]
+  },
+  "errors": []
+}

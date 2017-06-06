@@ -1787,33 +1787,25 @@ class UriValidator{
 class MediaTypeValidator implements PropertyValidator{
     validate(node:hl.IAttribute,cb:hl.ValidationAcceptor){
         try {
-            var v = node.value();
-            if (!v){
-                return;
-            }
-            if (v == "*/*") {
-                return
-            }
-            if (v.indexOf("/*")==v.length-2){
-                v=v.substring(0,v.length-2)+"/xxx";
-            }
-            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
-                if(v.indexOf("<<")>=0){
-                    return;
-                }
-            }
+            let v = node.value();
             if (v=="body"){
                 if (node.parent().parent()) {
-                    var ppc=node.parent().parent().definition().key();
+                    let ppc=node.parent().parent().definition().key();
                     if (ppc===universes.Universe08.Response||ppc===universes.Universe10.Response||
                         node.parent().parent().definition().isAssignableFrom(universes.Universe10.MethodBase.name)) {
                         v=node.parent().computedValue("mediaType")
                     }
                 }
             }
-
-
-            var res = mediaTypeParser.parse(v);
+            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
+                if(v.indexOf("<<")>=0){
+                    return;
+                }
+            }
+            let res = expander.parseMediaType(v);
+            if(!res){
+                return;
+            }
             //check if type name satisfies RFC6338
             if (!res.type.match(/[\w\d][\w\d!#\$&\-\^_+\.]*/)) {
                 cb.accept(createIssue1(messageRegistry.INVALID_MEDIATYPE, { mediaType: res.type}, node));
