@@ -4450,37 +4450,39 @@ function applyTemplate(messageEntry:Message, params:any):string {
     return result;
 };
 
-
-var urlPattern = new RegExp("^(https?:\\/\\/)?"
-    + "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))?"
-    + "((\\:\\d+)|((\\.\\.\\/)+)|(\\.\\/)|(\\/))?(\\/[-a-z\\d%_.~+]*)*"
-    + "(\\\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$","i");
-
-var urlPatternWin = new RegExp('([a-zA-Z]:\\/)'+ // dot segments
-    '(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragmen
-
 function isURLorPath(str:string):boolean{
 
     if(!str){
         return false;
     }
-    str = str.trim();
+    str = str.trim().toLowerCase();
     if(str.indexOf('\n')>=0||str.indexOf('\r')>=0){
         return false;
     }
-    // if(str.indexOf(".")<0){
-    //     return false;
-    // }
-    if(urlPattern.test(str)){
-        return true;
+
+    if(util.startsWith(str,"http://")){
+        str = str.substring("http://".length);
     }
-    let isWin = /^win/.test(process.platform);
-    if(!isWin){
+    else if(util.startsWith(str,"https://")){
+        str = str.substring("https://".length);
+    }
+    else if(util.startsWith(str,"./")){
+        str = str.substring("./".length);
+    }
+    else if(util.startsWith(str,"/")){
+        str = str.substring("/".length);
+    }
+    str = str.replace(/\.\.\//g,'');
+    let arr = str.split("/");
+    if(arr.length==0){
         return false;
     }
-    return urlPatternWin.test(str);
+    for(var s of arr){
+        if(!/^[-a-z\\d%_.~+]+$/.test(s)){
+            return false;
+        }
+    }
+    return true;
 }
 
 function checkIfIncludeTagIsMissing(
@@ -4522,6 +4524,10 @@ function checkIfIncludeTagIsMissing(
                     if (!(universeHelpers.isBodyLikeType(pDef)
                         || universeHelpers.isObjectTypeDeclarationSibling(pDef)
                         || universeHelpers.isArrayTypeDeclarationSibling(pDef))) {
+                        return false;
+                    }
+                    if(!(util.endsWith(val,".raml")||util.endsWith(val,".yml")||util.endsWith(val,".yaml")
+                        ||util.endsWith(val,".xml")||util.endsWith(val,".json"))){
                         return false;
                     }
                 }

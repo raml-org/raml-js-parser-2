@@ -233,6 +233,10 @@ describe('Parser regression tests', function () {
         assert.equal(serializedJSON.indexOf("Two") > 0, true)
     })
 
+    it ("Should successfully process long string examples" ,function(){
+        testErrors(util.data("parser/examples/ex46.raml"));
+    });
+
     it ("checking that node is actually primitive" ,function(){
         testErrors(util.data("parser/examples/ex9.raml"), ["string is expected"]);
     })
