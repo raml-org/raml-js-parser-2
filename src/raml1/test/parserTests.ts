@@ -234,7 +234,7 @@ describe('Parser regression tests', function () {
     })
 
     it ("Should successfully process long string examples" ,function(){
-        testErrors(util.data("parser/examples/ex46.raml"));
+        testErrors(util.data("parser/examples/ex46.raml"),["Can not parse JSON example: Cannot tokenize symbol"]);
     });
 
     it ("checking that node is actually primitive" ,function(){
