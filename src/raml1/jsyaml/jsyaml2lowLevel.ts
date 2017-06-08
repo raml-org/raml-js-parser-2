@@ -169,7 +169,38 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
             }
         }
         var en=path.extname(p);
-        return en=='.raml'||en=='.yaml'||en=='.yml'
+        if(en=='.raml'||en=='.yaml'||en=='.yml'){
+            return true;
+        }
+        else if(!en){
+            if(!this._content){
+                return false;
+            }
+            let contentTrim = this._content.trim();
+            if(util.stringStartsWith(contentTrim,"#%RAML")){
+                return true;
+            }
+            let arr = contentTrim.split("\n");
+            let line1:string;
+            for(var str of arr){
+                let lTrim = str.trim();
+                if(!lTrim || util.stringStartsWith(lTrim,"#")){
+                    continue;
+                }
+                line1 = str;
+                break;
+            }
+            if(!line1){
+                return true;
+            }
+            try {
+                var result = <yaml.YAMLNode><any>yaml.load(line1, {ignoreDuplicateKeys: true});
+                return result.kind != yaml.Kind.SCALAR;
+            }catch (e){
+                return false;
+            }
+        }
+        return false;
     }
 
     contents():string {
