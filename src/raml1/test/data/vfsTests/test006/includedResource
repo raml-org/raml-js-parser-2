@@ -1,0 +1,105 @@
+/notificeer: 
+    post: 
+        description: Stuur een bepaalde notificatie en deze service zorgt ervoor dat het bijbehorende mule proces een trigger krijgt.
+        body: 
+            application/xml: 
+                schema: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        elementFormDefault="unqualified" xmlns:tns="http://namespace.europeesche.nl/notificeerservice"
+                        targetNamespace="http://namespace.europeesche.nl/notificeerservice" version="1.0">
+                    
+                        <xs:element name="NotificeerRequest" type="tns:NotificeerRequestType"/>
+                    
+                        <xs:complexType name="NotificeerRequestType">
+                            <xs:sequence>
+                                <xs:element name="notificatie" type="tns:notificatieRequest" />
+                            </xs:sequence>
+                        </xs:complexType>
+                        <xs:complexType name="notificatieRequest">
+                            <xs:sequence>
+                                <xs:element name="gebeurtenis">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:enumeration value="AanvraagVerwerkt"/>
+                                      <xs:enumeration value="CompliancyCheck"/>
+                                      <xs:enumeration value="UBOCheck"/>
+                                      <xs:enumeration value="Test"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="identificatieLabel" type="xs:string" />
+                                <xs:element name="identificatieWaarde">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:pattern value="[0-9]+" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="notificatieId" type="xs:integer" />
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:schema>
+        responses: 
+            "200": 
+                body: 
+                    application/xml: 
+/notificaties: 
+    /{notificatieId}: 
+        uriParameters: 
+            notificatieId: 
+                displayName: notificatieId
+                type: string
+                required: true
+                repeat: false
+        patch: 
+            description: Bijwerken van een bepaalde notificatie
+            body: 
+                application/json: 
+                    schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "description": "schema for updating a notification",
+                            "title": "BijwerkenStatusRequestSchema",
+                            "type": "object",
+                            "required": ["status", "melding"],
+                            "additionalProperties": false,
+                            "properties": {
+                                "status": {
+                                    "description": "New status of the notification",
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "melding": {
+                                    "description": "Message attached to the notification update",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    example: |
+                        {
+                            "status": "success",
+                            "melding": "E-mail verzonden"
+                        }
+            responses: 
+                "200": 
+                    body: 
+                        application/json: 
+                            schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "description": "schema for updating a notification",
+                                    "title": "BijwerkenStatusResponseSchema",
+                                    "type": "object",
+                                    "required": ["ontvangen"],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "ontvangen": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            example: |
+                                {
+                                    "ontvangen": "OK"
+                                }

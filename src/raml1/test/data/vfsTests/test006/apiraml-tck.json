@@ -1,0 +1,291 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "Notificatie Service API",
+    "version": "1.0",
+    "baseUri": "http://localhost:8081/api",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/notificeer",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "schema": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n    elementFormDefault=\"unqualified\" xmlns:tns=\"http://namespace.europeesche.nl/notificeerservice\"\n    targetNamespace=\"http://namespace.europeesche.nl/notificeerservice\" version=\"1.0\">\n\n    <xs:element name=\"NotificeerRequest\" type=\"tns:NotificeerRequestType\"/>\n\n    <xs:complexType name=\"NotificeerRequestType\">\n        <xs:sequence>\n            <xs:element name=\"notificatie\" type=\"tns:notificatieRequest\" />\n        </xs:sequence>\n    </xs:complexType>\n    <xs:complexType name=\"notificatieRequest\">\n        <xs:sequence>\n            <xs:element name=\"gebeurtenis\">\n              <xs:simpleType>\n                <xs:restriction base=\"xs:string\">\n                  <xs:enumeration value=\"AanvraagVerwerkt\"/>\n                  <xs:enumeration value=\"CompliancyCheck\"/>\n                  <xs:enumeration value=\"UBOCheck\"/>\n                  <xs:enumeration value=\"Test\"/>\n                </xs:restriction>\n              </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"identificatieLabel\" type=\"xs:string\" />\n            <xs:element name=\"identificatieWaarde\">\n                <xs:simpleType>\n                    <xs:restriction base=\"xs:string\">\n                        <xs:pattern value=\"[0-9]+\" />\n                    </xs:restriction>\n                </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"notificatieId\" type=\"xs:integer\" />\n        </xs:sequence>\n    </xs:complexType>\n</xs:schema>\n",
+                "schemaContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n    elementFormDefault=\"unqualified\" xmlns:tns=\"http://namespace.europeesche.nl/notificeerservice\"\n    targetNamespace=\"http://namespace.europeesche.nl/notificeerservice\" version=\"1.0\">\n\n    <xs:element name=\"NotificeerRequest\" type=\"tns:NotificeerRequestType\"/>\n\n    <xs:complexType name=\"NotificeerRequestType\">\n        <xs:sequence>\n            <xs:element name=\"notificatie\" type=\"tns:notificatieRequest\" />\n        </xs:sequence>\n    </xs:complexType>\n    <xs:complexType name=\"notificatieRequest\">\n        <xs:sequence>\n            <xs:element name=\"gebeurtenis\">\n              <xs:simpleType>\n                <xs:restriction base=\"xs:string\">\n                  <xs:enumeration value=\"AanvraagVerwerkt\"/>\n                  <xs:enumeration value=\"CompliancyCheck\"/>\n                  <xs:enumeration value=\"UBOCheck\"/>\n                  <xs:enumeration value=\"Test\"/>\n                </xs:restriction>\n              </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"identificatieLabel\" type=\"xs:string\" />\n            <xs:element name=\"identificatieWaarde\">\n                <xs:simpleType>\n                    <xs:restriction base=\"xs:string\">\n                        <xs:pattern value=\"[0-9]+\" />\n                    </xs:restriction>\n                </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"notificatieId\" type=\"xs:integer\" />\n        </xs:sequence>\n    </xs:complexType>\n</xs:schema>\n"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "description": "Stuur een bepaalde notificatie en deze service zorgt ervoor dat het bijbehorende mule proces een trigger krijgt.",
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "displayName": "/notificeer",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "notificeer"
+        ],
+        "absoluteUri": "http://localhost:8081/api/notificeer"
+      },
+      {
+        "relativeUri": "/notificaties",
+        "resources": [
+          {
+            "relativeUri": "/{notificatieId}",
+            "uriParameters": {
+              "notificatieId": {
+                "name": "notificatieId",
+                "displayName": "notificatieId",
+                "type": "string",
+                "required": true,
+                "repeat": false
+              }
+            },
+            "methods": [
+              {
+                "responses": {
+                  "200": {
+                    "code": "200",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "schema": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusResponseSchema\",\n    \"type\": \"object\",\n    \"required\": [\"ontvangen\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"ontvangen\": {\n            \"type\": \"string\"\n        }\n    }\n}\n",
+                        "example": "{\n    \"ontvangen\": \"OK\"\n}\n",
+                        "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusResponseSchema\",\n    \"type\": \"object\",\n    \"required\": [\"ontvangen\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"ontvangen\": {\n            \"type\": \"string\"\n        }\n    }\n}\n"
+                      }
+                    }
+                  }
+                },
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusRequestSchema\",\n    \"type\": \"object\",\n    \"required\": [\"status\", \"melding\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"status\": {\n            \"description\": \"New status of the notification\",\n            \"type\": \"string\",\n            \"minLength\": 1\n        },\n        \"melding\": {\n            \"description\": \"Message attached to the notification update\",\n            \"type\": \"string\"\n        }\n    }\n}\n",
+                    "example": "{\n    \"status\": \"success\",\n    \"melding\": \"E-mail verzonden\"\n}\n",
+                    "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusRequestSchema\",\n    \"type\": \"object\",\n    \"required\": [\"status\", \"melding\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"status\": {\n            \"description\": \"New status of the notification\",\n            \"type\": \"string\",\n            \"minLength\": 1\n        },\n        \"melding\": {\n            \"description\": \"Message attached to the notification update\",\n            \"type\": \"string\"\n        }\n    }\n}\n"
+                  }
+                },
+                "protocols": [
+                  "HTTP"
+                ],
+                "description": "Bijwerken van een bepaalde notificatie",
+                "method": "patch",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            ],
+            "displayName": "/{notificatieId}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{notificatieId}"
+            ],
+            "absoluteUri": "http://localhost:8081/api/notificaties/{notificatieId}"
+          }
+        ],
+        "displayName": "/notificaties",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "notificaties"
+        ],
+        "absoluteUri": "http://localhost:8081/api/notificaties"
+      },
+      {
+        "relativeUri": "/includedResource",
+        "resources": [
+          {
+            "relativeUri": "/notificeer",
+            "methods": [
+              {
+                "responses": {
+                  "200": {
+                    "code": "200",
+                    "body": {
+                      "application/xml": {
+                        "name": "application/xml"
+                      }
+                    }
+                  }
+                },
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "schema": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n    elementFormDefault=\"unqualified\" xmlns:tns=\"http://namespace.europeesche.nl/notificeerservice\"\n    targetNamespace=\"http://namespace.europeesche.nl/notificeerservice\" version=\"1.0\">\n\n    <xs:element name=\"NotificeerRequest\" type=\"tns:NotificeerRequestType\"/>\n\n    <xs:complexType name=\"NotificeerRequestType\">\n        <xs:sequence>\n            <xs:element name=\"notificatie\" type=\"tns:notificatieRequest\" />\n        </xs:sequence>\n    </xs:complexType>\n    <xs:complexType name=\"notificatieRequest\">\n        <xs:sequence>\n            <xs:element name=\"gebeurtenis\">\n              <xs:simpleType>\n                <xs:restriction base=\"xs:string\">\n                  <xs:enumeration value=\"AanvraagVerwerkt\"/>\n                  <xs:enumeration value=\"CompliancyCheck\"/>\n                  <xs:enumeration value=\"UBOCheck\"/>\n                  <xs:enumeration value=\"Test\"/>\n                </xs:restriction>\n              </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"identificatieLabel\" type=\"xs:string\" />\n            <xs:element name=\"identificatieWaarde\">\n                <xs:simpleType>\n                    <xs:restriction base=\"xs:string\">\n                        <xs:pattern value=\"[0-9]+\" />\n                    </xs:restriction>\n                </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"notificatieId\" type=\"xs:integer\" />\n        </xs:sequence>\n    </xs:complexType>\n</xs:schema>\n",
+                    "schemaContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n    elementFormDefault=\"unqualified\" xmlns:tns=\"http://namespace.europeesche.nl/notificeerservice\"\n    targetNamespace=\"http://namespace.europeesche.nl/notificeerservice\" version=\"1.0\">\n\n    <xs:element name=\"NotificeerRequest\" type=\"tns:NotificeerRequestType\"/>\n\n    <xs:complexType name=\"NotificeerRequestType\">\n        <xs:sequence>\n            <xs:element name=\"notificatie\" type=\"tns:notificatieRequest\" />\n        </xs:sequence>\n    </xs:complexType>\n    <xs:complexType name=\"notificatieRequest\">\n        <xs:sequence>\n            <xs:element name=\"gebeurtenis\">\n              <xs:simpleType>\n                <xs:restriction base=\"xs:string\">\n                  <xs:enumeration value=\"AanvraagVerwerkt\"/>\n                  <xs:enumeration value=\"CompliancyCheck\"/>\n                  <xs:enumeration value=\"UBOCheck\"/>\n                  <xs:enumeration value=\"Test\"/>\n                </xs:restriction>\n              </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"identificatieLabel\" type=\"xs:string\" />\n            <xs:element name=\"identificatieWaarde\">\n                <xs:simpleType>\n                    <xs:restriction base=\"xs:string\">\n                        <xs:pattern value=\"[0-9]+\" />\n                    </xs:restriction>\n                </xs:simpleType>\n            </xs:element>\n            <xs:element name=\"notificatieId\" type=\"xs:integer\" />\n        </xs:sequence>\n    </xs:complexType>\n</xs:schema>\n"
+                  }
+                },
+                "protocols": [
+                  "HTTP"
+                ],
+                "description": "Stuur een bepaalde notificatie en deze service zorgt ervoor dat het bijbehorende mule proces een trigger krijgt.",
+                "method": "post",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            ],
+            "displayName": "/notificeer",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "notificeer"
+            ],
+            "absoluteUri": "http://localhost:8081/api/includedResource/notificeer"
+          },
+          {
+            "relativeUri": "/notificaties",
+            "resources": [
+              {
+                "relativeUri": "/{notificatieId}",
+                "uriParameters": {
+                  "notificatieId": {
+                    "name": "notificatieId",
+                    "displayName": "notificatieId",
+                    "type": "string",
+                    "required": true,
+                    "repeat": false
+                  }
+                },
+                "methods": [
+                  {
+                    "responses": {
+                      "200": {
+                        "code": "200",
+                        "body": {
+                          "application/json": {
+                            "name": "application/json",
+                            "schema": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusResponseSchema\",\n    \"type\": \"object\",\n    \"required\": [\"ontvangen\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"ontvangen\": {\n            \"type\": \"string\"\n        }\n    }\n}\n",
+                            "example": "{\n    \"ontvangen\": \"OK\"\n}\n",
+                            "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusResponseSchema\",\n    \"type\": \"object\",\n    \"required\": [\"ontvangen\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"ontvangen\": {\n            \"type\": \"string\"\n        }\n    }\n}\n"
+                          }
+                        }
+                      }
+                    },
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "schema": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusRequestSchema\",\n    \"type\": \"object\",\n    \"required\": [\"status\", \"melding\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"status\": {\n            \"description\": \"New status of the notification\",\n            \"type\": \"string\",\n            \"minLength\": 1\n        },\n        \"melding\": {\n            \"description\": \"Message attached to the notification update\",\n            \"type\": \"string\"\n        }\n    }\n}\n",
+                        "example": "{\n    \"status\": \"success\",\n    \"melding\": \"E-mail verzonden\"\n}\n",
+                        "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"description\": \"schema for updating a notification\",\n    \"title\": \"BijwerkenStatusRequestSchema\",\n    \"type\": \"object\",\n    \"required\": [\"status\", \"melding\"],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"status\": {\n            \"description\": \"New status of the notification\",\n            \"type\": \"string\",\n            \"minLength\": 1\n        },\n        \"melding\": {\n            \"description\": \"Message attached to the notification update\",\n            \"type\": \"string\"\n        }\n    }\n}\n"
+                      }
+                    },
+                    "protocols": [
+                      "HTTP"
+                    ],
+                    "description": "Bijwerken van een bepaalde notificatie",
+                    "method": "patch",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "protocols": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                ],
+                "displayName": "/{notificatieId}",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "{notificatieId}"
+                ],
+                "absoluteUri": "http://localhost:8081/api/includedResource/notificaties/{notificatieId}"
+              }
+            ],
+            "displayName": "/notificaties",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "notificaties"
+            ],
+            "absoluteUri": "http://localhost:8081/api/includedResource/notificaties"
+          }
+        ],
+        "displayName": "/includedResource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "includedResource"
+        ],
+        "absoluteUri": "http://localhost:8081/api/includedResource"
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}
