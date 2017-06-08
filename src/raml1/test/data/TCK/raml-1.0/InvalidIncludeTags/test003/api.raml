@@ -21,7 +21,12 @@ types:
         body:
           application/json:
             type: T1
-            example: example.json
+            example: examples/example.json
           text/plain:
             type: T2
             example: example.json
+
+      202:
+        body:
+          application/json:
+            schema: ./path/to/schema.json

@@ -84,7 +84,7 @@
                     "type": [
                       "T1"
                     ],
-                    "example": "example.json",
+                    "example": "examples/example.json",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -93,10 +93,10 @@
                       }
                     },
                     "structuredExample": {
-                      "value": "example.json",
+                      "value": "examples/example.json",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "example.json"
+                      "structuredValue": "examples/example.json"
                     }
                   },
                   "text/plain": {
@@ -119,6 +119,29 @@
                       "strict": true,
                       "name": null,
                       "structuredValue": "example.json"
+                    }
+                  }
+                }
+              },
+              "202": {
+                "code": "202",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "schema": [
+                      "./path/to/schema.json"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
                     }
                   }
                 }
@@ -175,6 +198,23 @@
           "line": 23,
           "column": 19,
           "position": 365
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 31,
+          "column": 12,
+          "position": 532
+        },
+        "end": {
+          "line": 31,
+          "column": 18,
+          "position": 538
         }
       }
     }

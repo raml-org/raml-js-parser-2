@@ -1,0 +1,17 @@
+
+#%RAML 1.0
+title: test API
+
+types:
+  T1:
+    type: ./path/to/type_fragment.raml
+    properties:
+      p1:
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: ./path/to/type_fragment.raml

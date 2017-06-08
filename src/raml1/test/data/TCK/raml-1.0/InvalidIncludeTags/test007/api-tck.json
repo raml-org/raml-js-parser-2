@@ -1,0 +1,157 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "schemas": [
+      {
+        "sch1": {
+          "name": "sch1",
+          "displayName": "sch1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "path/to/schema.xsd"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "typePropertyKind": "XML",
+                    "schemaPath": "schema.xsd",
+                    "schema": [
+                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
+                    ],
+                    "example": "./example.xml",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "./example.xml",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": "./example.xml"
+                    }
+                  }
+                }
+              },
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "schema": [
+                      "./path/to/schema.xsd"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 2,
+          "position": 39
+        },
+        "end": {
+          "line": 4,
+          "column": 6,
+          "position": 43
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 12,
+          "position": 202
+        },
+        "end": {
+          "line": 13,
+          "column": 19,
+          "position": 209
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 12,
+          "position": 290
+        },
+        "end": {
+          "line": 18,
+          "column": 18,
+          "position": 296
+        }
+      }
+    }
+  ]
+}
