@@ -1,0 +1,353 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "T1": {
+          "name": "T1",
+          "displayName": "T1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": "https://example.com/examples/message.yaml",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "https://example.com/examples/message.yaml",
+            "strict": true,
+            "name": null,
+            "structuredValue": "https://example.com/examples/message.yaml"
+          }
+        }
+      },
+      {
+        "T2": {
+          "name": "T2",
+          "displayName": "T2",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": "http://example.com/examples/message.yml",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "http://example.com/examples/message.yml",
+            "strict": true,
+            "name": null,
+            "structuredValue": "http://example.com/examples/message.yml"
+          }
+        }
+      },
+      {
+        "T3": {
+          "name": "T3",
+          "displayName": "T3",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": "/examples/message.raml",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "/examples/message.raml",
+            "strict": true,
+            "name": null,
+            "structuredValue": "/examples/message.raml"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": "../examples/message.yaml",
+                    "properties": {
+                      "message": {
+                        "name": "message",
+                        "displayName": "message",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "../examples/message.yaml",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": "../examples/message.yaml"
+                    }
+                  }
+                }
+              },
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": "examples/message.raml",
+                    "properties": {
+                      "message": {
+                        "name": "message",
+                        "displayName": "message",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "examples/message.raml",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": "examples/message.raml"
+                    }
+                  }
+                }
+              },
+              "202": {
+                "code": "202",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": "examples/message.yml",
+                    "properties": {
+                      "message": {
+                        "name": "message",
+                        "displayName": "message",
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "examples/message.yml",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": "examples/message.yml"
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 4,
+          "position": 62
+        },
+        "end": {
+          "line": 6,
+          "column": 11,
+          "position": 69
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 4,
+          "position": 141
+        },
+        "end": {
+          "line": 10,
+          "column": 11,
+          "position": 148
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 4,
+          "position": 218
+        },
+        "end": {
+          "line": 14,
+          "column": 11,
+          "position": 225
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 26,
+          "column": 12,
+          "position": 429
+        },
+        "end": {
+          "line": 26,
+          "column": 19,
+          "position": 436
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 34,
+          "column": 12,
+          "position": 608
+        },
+        "end": {
+          "line": 34,
+          "column": 19,
+          "position": 615
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 41,
+          "column": 12,
+          "position": 783
+        },
+        "end": {
+          "line": 41,
+          "column": 19,
+          "position": 790
+        }
+      }
+    }
+  ]
+}
