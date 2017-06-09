@@ -390,6 +390,7 @@ export class TraitsAndResourceTypesExpander {
 
         let newAdopted:{node:ll.ILowLevelASTNode,transformer:proxy.ValueTransformer}[] = [];
         let map:ll.ILowLevelASTNode[] = [];
+        let gotImplicitPart = false;
         for(let ch of bodyNode.children()){
             let key = ch.key();
             if(key==defaultMediaType){
@@ -398,7 +399,7 @@ export class TraitsAndResourceTypesExpander {
             }
             else {
                 try{
-                    mediaTypeParser.parse(key);
+                    parseMediaType(key);
                     otherMediaTypes.push(ch);
                 }
                 catch(e){
@@ -407,12 +408,18 @@ export class TraitsAndResourceTypesExpander {
                         newAdopted.push({node:oParent,transformer:ch.transformer()});
                         map.push(oParent);
                     }
+                    if(sufficientTypeAttributes[ch.key()]){
+                        gotImplicitPart = true;
+                    }
                     implicitPart.push(ch);
                 }
             }
         }
         if(implicitPart.length==0||(explicitCh==null&&otherMediaTypes.length==0)){
             return false;
+        }
+        if(!gotImplicitPart) {
+            return;
         }
         for(let ch of implicitPart){
             bodyNode.removeChild(ch);
@@ -1167,3 +1174,21 @@ interface ResourceGenericData{
 
 var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
 
+const sufficientTypeAttributes:any = {};
+sufficientTypeAttributes[def.universesInfo.Universe10.TypeDeclaration.properties.type.name] = true;
+sufficientTypeAttributes[def.universesInfo.Universe10.TypeDeclaration.properties.example.name] = true;
+sufficientTypeAttributes[def.universesInfo.Universe08.BodyLike.properties.schema.name] = true;
+sufficientTypeAttributes[def.universesInfo.Universe10.ObjectTypeDeclaration.properties.properties.name] = true;
+
+export function parseMediaType(str:string){
+    if (!str){
+        return null;
+    }
+    if (str == "*/*") {
+        return null;
+    }
+    if (str.indexOf("/*")==str.length-2){
+        str=str.substring(0,str.length-2)+"/xxx";
+    }
+    return mediaTypeParser.parse(str);
+}

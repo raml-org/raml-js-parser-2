@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns0:NotificeerResponse xmlns:ns0="http://namespace.europeesche.nl/notificeerservice">
+  <notificatie>
+    <id>1</id>
+  </notificatie>
+</ns0:NotificeerResponse>

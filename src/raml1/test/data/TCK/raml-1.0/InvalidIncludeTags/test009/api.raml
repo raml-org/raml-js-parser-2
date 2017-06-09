@@ -1,0 +1,42 @@
+#%RAML 1.0
+title: test API
+
+types:
+  T1:
+    type: object
+    example: https://example.com/examples/message.yaml
+
+  T2:
+    type: object
+    example: http://example.com/examples/message.yml
+
+  T3:
+    type: object
+    example: /examples/message.raml
+
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              message: string
+            example: ../examples/message.yaml
+
+      201:
+        body:
+          application/json:
+            type: object
+            properties:
+              message: string
+            example: examples/message.raml
+      202:
+        body:
+          application/json:
+            type: object
+            properties:
+              message: string
+            example: examples/message.yml

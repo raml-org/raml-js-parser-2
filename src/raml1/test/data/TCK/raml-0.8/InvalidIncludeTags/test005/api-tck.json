@@ -1,16 +1,16 @@
 {
-  "ramlVersion": "RAML10",
+  "ramlVersion": "RAML08",
   "type": "Api",
   "specification": {
     "title": "test API",
     "resources": [
       {
+        "relativeUri": "/resource",
         "methods": [
           {
             "method": "get"
           }
         ],
-        "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -33,14 +33,14 @@
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 5,
+          "line": 4,
           "column": 2,
-          "position": 42
+          "position": 41
         },
         "end": {
-          "line": 5,
+          "line": 4,
           "column": 5,
-          "position": 45
+          "position": 44
         }
       }
     }

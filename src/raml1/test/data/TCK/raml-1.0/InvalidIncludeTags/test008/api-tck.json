@@ -1,0 +1,106 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "T1": {
+          "name": "T1",
+          "displayName": "T1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "./path/to/type_fragment.raml"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "./path/to/type_fragment.raml"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 4,
+          "position": 46
+        },
+        "end": {
+          "line": 6,
+          "column": 8,
+          "position": 50
+        }
+      }
+    },
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 12,
+          "position": 206
+        },
+        "end": {
+          "line": 16,
+          "column": 16,
+          "position": 210
+        }
+      }
+    }
+  ]
+}

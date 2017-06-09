@@ -1,5 +1,6 @@
 /// <reference path="../../typings/main.d.ts" />
 var DomParser = require("xmldom");
+import util = require("./index");
 
 function elementChildrenByName(parent: any, tagName: string, ns:string): any[] {
 
@@ -52,6 +53,10 @@ var parserOptions: any = {
 
 export function isXmlScheme(content: string): boolean {
     try {
+        content = content.trim();
+        if(!util.stringStartsWith(content,"<")&&util.stringEndsWith(content,">")){
+            return false;
+        }
         var doc = new DomParser.DOMParser(parserOptions).parseFromString(content);
         
         var schemas = elementChildrenByName(doc, 'schema', extractNamespace(doc));

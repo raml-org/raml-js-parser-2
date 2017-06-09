@@ -7,6 +7,7 @@ import hl=require("../highLevelAST")
 import util = require("./test-utils")
 import funcUtil = require("./funcUtils");
 import tools = require("./testTools")
+import xmlutil = require("../../util/xmlutil");
 
 import index = require("../../index");
 import parserMod = require("../../parserMod");
@@ -499,6 +500,97 @@ describe('Parser raml1/artifacts factories functions tests',function() {
             }
         });
     });
+});
+describe('Unit kind tests',function() {
+
+    it("Main RAML unit detection", function (done) {
+        index.loadRAML(util.data('./functions/unitKindTests/apiraml'), []).then((wrapper: any) => {
+            try {
+                let unit = wrapper.highLevel().lowLevel().unit();
+                assert(unit.isRAMLUnit());
+                assert(!xmlutil.isXmlScheme(unit.contents()));
+                done();
+            } catch (exception) {
+                done(exception);
+            }
+        });
+
+    });
+
+    it("Auxiliary RAML unit detection", function (done) {
+        index.loadRAML(util.data('./functions/unitKindTests/apiraml'), []).then((wrapper: any) => {
+            try {
+                let mainUnit = wrapper.highLevel().lowLevel().unit();
+                let unit = mainUnit.project().unit("./resourceraml");
+                assert(unit.isRAMLUnit());
+                assert(!xmlutil.isXmlScheme(unit.contents()));
+                done();
+            } catch (exception) {
+                done(exception);
+            }
+        });
+
+    });
+
+    it("Single word text unit unit detection", function (done) {
+        index.loadRAML(util.data('./functions/unitKindTests/apiraml'), []).then((wrapper: any) => {
+            try {
+                let mainUnit = wrapper.highLevel().lowLevel().unit();
+                let unit = mainUnit.project().unit("./text_1");
+                assert(!unit.isRAMLUnit());
+                assert(!xmlutil.isXmlScheme(unit.contents()));
+                done();
+            } catch (exception) {
+                done(exception);
+            }
+        });
+    });
+
+    it("Multiple words text unit unit detection", function (done) {
+        index.loadRAML(util.data('./functions/unitKindTests/apiraml'), []).then((wrapper: any) => {
+            try {
+                let mainUnit = wrapper.highLevel().lowLevel().unit();
+                let unit = mainUnit.project().unit("./text_1");
+                assert(!unit.isRAMLUnit());
+                assert(!xmlutil.isXmlScheme(unit.contents()));
+                done();
+            } catch (exception) {
+                done(exception);
+            }
+        });
+
+    });
+
+    it("XML unit unit detection", function (done) {
+        index.loadRAML(util.data('./functions/unitKindTests/apiraml'), []).then((wrapper: any) => {
+            try {
+                let mainUnit = wrapper.highLevel().lowLevel().unit();
+                let unit = mainUnit.project().unit("./xml");
+                assert(!unit.isRAMLUnit());
+                assert(xmlutil.isXmlScheme(unit.contents()));
+                done();
+            } catch (exception) {
+                done(exception);
+            }
+        });
+
+    });
+
+    it("JSON unit unit detection", function (done) {
+        index.loadRAML(util.data('./functions/unitKindTests/apiraml'), []).then((wrapper: any) => {
+            try {
+                let mainUnit = wrapper.highLevel().lowLevel().unit();
+                let unit = mainUnit.project().unit("./json");
+                assert(!unit.isRAMLUnit());
+                assert(!xmlutil.isXmlScheme(unit.contents()));
+                done();
+            } catch (exception) {
+                done(exception);
+            }
+        });
+
+    });
+
 });
 
 function createWrappers(highLevel) {

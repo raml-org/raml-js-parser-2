@@ -1,0 +1,25 @@
+#%RAML 0.8
+title: Test
+version: v1
+mediaType: application/atom+xml
+resourceTypes:
+  - emailed:
+      get?:
+        responses:
+          200:
+            body:
+              application/atom+xml:
+                schema: atom
+/photos:
+  type: emailed
+  get:
+    responses:
+      200:
+        body:
+          image/*:
+schemas:
+  - atom: |
+      {
+        "$schema": "http://json-schema.org/draft-03/schema",
+        "type": "object"
+      }

@@ -1,0 +1,63 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "version": "1.0",
+    "resources": [
+      {
+        "relativeUri": "/hierarchy",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "schema": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}\n",
+                    "example": "examples/test.json",
+                    "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}\n"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/hierarchy",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hierarchy"
+        ],
+        "absoluteUri": "/hierarchy"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INCLUDE_TAG_MISSING",
+      "message": "The '!include' tag is missing",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 12,
+          "position": 188
+        },
+        "end": {
+          "line": 11,
+          "column": 19,
+          "position": 195
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}
