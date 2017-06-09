@@ -9,7 +9,7 @@ import reuseUtil = require("./test-reuse-utils");
 import fs = require("fs");
 
 describe('AST Reuse Test Set',function() {
-    this.timeout(15000);
+    this.timeout(50000);
     describe('Basic Tests', function () {
 
         it("Space in the method description", function () {
