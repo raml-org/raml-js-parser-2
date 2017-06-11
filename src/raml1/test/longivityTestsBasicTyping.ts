@@ -17,7 +17,6 @@ describe('Typing simulation based longivity tests (basic)',function() {
             test("../example-ramls/application-monitoring/api.raml");
         });
 
-        //Commented out as this test regularly exceeds max time on Travis depending on server load.
         // it("AMC REST API", function () {
         //     this.timeout(600000);
         //     test("../example-ramls/amc-rest-api/api.raml");
