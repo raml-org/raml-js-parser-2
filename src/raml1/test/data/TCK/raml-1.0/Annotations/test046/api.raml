@@ -1,0 +1,33 @@
+#%RAML 1.0
+title: Hello
+mediaType: application/json
+uses:
+ views: views.raml
+types:
+  Method: any
+  Class:
+    type: object
+    facets:
+      methods?:
+        properties:
+          //: Method
+  Repository:
+    type: Class
+    properties:
+      id: integer
+      name: string
+      lastName: string
+/hello/{id}:
+
+  put:
+    (views.views): [{id: x,fixedParameters: {a: hello} }]
+    queryParameters:
+       a?: string
+    headers:
+       b?: string
+    body: Repository
+    responses:
+     200:
+      body: Class
+     400:
+      body: string

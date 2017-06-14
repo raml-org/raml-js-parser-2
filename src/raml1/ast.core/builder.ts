@@ -28,9 +28,17 @@ class KeyMatcher{
     canBeValue:hl.IProperty
 
     constructor(private _props:hl.IProperty[]){
-        this.parentValue=_.find(_props,x=>(<defs.Property>x).isFromParentValue());
-        this.parentKey=_.find(_props,x=>(<defs.Property>x).isFromParentKey());
-        this.canBeValue=_.find(_props,x=>(<defs.Property>x).canBeValue());
+        for(var p of <defs.Property[]>_props.filter(x=>defs.Property.isInstance(x))){
+            if(p.isFromParentValue()){
+                this.parentValue = this.parentValue || p;
+            }
+            if(p.isFromParentKey()){
+                this.parentKey = this.parentKey || p;
+            }
+            if(p.canBeValue()){
+                this.canBeValue = this.canBeValue || p;
+            }
+        }
     }
 
     add(p:hl.IProperty){

@@ -1,0 +1,342 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "views",
+        "value": "views.raml"
+      }
+    ],
+    "types": {
+      "Method": {
+        "name": "Method",
+        "displayName": "Method",
+        "type": [
+          "any"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Class": {
+        "name": "Class",
+        "displayName": "Class",
+        "facets": {
+          "methods": {
+            "name": "methods",
+            "displayName": "methods",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "//": {
+                "name": "//",
+                "displayName": "//",
+                "type": [
+                  "Method"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "object"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "Repository": {
+        "name": "Repository",
+        "displayName": "Repository",
+        "type": [
+          "Class"
+        ],
+        "properties": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "integer"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "name": {
+            "name": "name",
+            "displayName": "name",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "lastName": {
+            "name": "lastName",
+            "displayName": "lastName",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "Hello",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "put": {
+            "annotations": {
+              "views.views": {
+                "name": "views.views",
+                "structuredValue": [
+                  {
+                    "id": "x",
+                    "fixedParameters": {
+                      "a": "hello"
+                    }
+                  }
+                ]
+              }
+            },
+            "queryParameters": {
+              "a": {
+                "name": "a",
+                "displayName": "a",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "headers": {
+              "b": {
+                "name": "b",
+                "displayName": "b",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "Class"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              },
+              "400": {
+                "code": "400",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "string"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "Repository"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "put"
+          }
+        },
+        "uriParameters": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "relativeUri": "/hello/{id}",
+        "displayName": "/hello/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hello",
+          "{id}"
+        ],
+        "absoluteUri": "/hello/{id}",
+        "completeRelativeUri": "/hello/{id}",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

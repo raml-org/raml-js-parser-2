@@ -1,0 +1,330 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "views",
+        "value": "views.raml"
+      }
+    ],
+    "types": [
+      {
+        "Method": {
+          "name": "Method",
+          "displayName": "Method",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "any"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Class": {
+          "name": "Class",
+          "displayName": "Class",
+          "facets": {
+            "methods": {
+              "name": "methods",
+              "displayName": "methods",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "properties": {
+                "//": {
+                  "name": "//",
+                  "displayName": "//",
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "type": [
+                    "Method"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Repository": {
+          "name": "Repository",
+          "displayName": "Repository",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "Class"
+          ],
+          "properties": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "lastName": {
+              "name": "lastName",
+              "displayName": "lastName",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Hello",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "views.views": {
+                "structuredValue": {
+                  "null": {
+                    "id": "x",
+                    "fixedParameters": {
+                      "a": "hello"
+                    }
+                  }
+                },
+                "name": "views.views"
+              }
+            },
+            "queryParameters": {
+              "a": {
+                "name": "a",
+                "displayName": "a",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "b": {
+                "name": "b",
+                "displayName": "b",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "Class"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "code": "400",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "Repository"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "uriParameters": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/hello/{id}",
+        "displayName": "/hello/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "hello",
+          "{id}"
+        ],
+        "absoluteUri": "/hello/{id}"
+      }
+    ]
+  },
+  "errors": []
+}
