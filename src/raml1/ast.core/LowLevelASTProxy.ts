@@ -336,6 +336,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     adopt(node:ll.ILowLevelASTNode,transformer:ValueTransformer){
 
+        while(LowLevelProxyNode.isInstance(node)){
+            node = (<LowLevelProxyNode>node).originalNode();
+        }
         if(!transformer){
             transformer = this._transformer;
         }

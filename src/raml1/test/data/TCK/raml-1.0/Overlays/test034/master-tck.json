@@ -1,0 +1,110 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "types": [
+      {
+        "Customer": {
+          "name": "Customer",
+          "displayName": "Customer",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<resourcePathName | !singularize | !uppercamelcase>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Add a new <<resourcePathName | !singularize>>",
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "ACME Banking API",
+    "version": "1.0",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "description": "Recuperar una lista de clientes",
+            "method": "get"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "Customer"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Agregue un nuevo cliente",
+            "method": "post"
+          }
+        ],
+        "type": "collection",
+        "relativeUri": "/customers",
+        "displayName": "/customers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "customers"
+        ],
+        "absoluteUri": "/customers"
+      }
+    ],
+    "usage": "Spanish localization",
+    "extends": "master.raml"
+  },
+  "errors": []
+}

@@ -1,0 +1,5 @@
+#%RAML 1.0 ResourceType
+post:
+  description: Add a new <<resourcePathName | !singularize>>
+  body:
+    type: <<resourcePathName | !singularize | !uppercamelcase>>

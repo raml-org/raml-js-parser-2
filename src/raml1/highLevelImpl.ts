@@ -252,8 +252,16 @@ export class BasicASTNode implements hl.IParseResult {
 
     computedValue(name:string):any{
         var vl=this.values[name];
-        if (!vl&&this.parent()){
-            return this.parent().computedValue(name)
+        if (!vl){
+            if(this.parent()) {
+                return this.parent().computedValue(name)
+            }
+            else if(this.isElement()){
+                let master = this.asElement().getMaster();
+                if(master){
+                    return master.computedValue(name);
+                }
+            }
         }
         return vl;
     }
