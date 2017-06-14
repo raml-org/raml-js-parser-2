@@ -18,7 +18,8 @@
     "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
     "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
     "buildBrowserPublishBower": "node generateBrowserVersion.js --type 'bower'",
-    "validateTCKSchema": "node dist/raml1/test/scripts/schema/schemaTCKValidator.js"
+    "validateTCKSchema": "node dist/raml1/test/scripts/schema/schemaTCKValidator.js",
+    "platformTests": "node dist/raml1/test/scripts/platformTests.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",
@@ -79,6 +80,7 @@
     "dev-env-installer": "0.0.5",
     "atom-text-typer" : "0.0.1",
     "rimraf": "*",
+    "raml-1-parser-test-utils": "^1.0.7",
     "gulp-istanbul" : "*"
   },
   "browser": {
