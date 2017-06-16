@@ -90,6 +90,8 @@ export interface IProject{
     setCachedUnitContent(path:string,content?:string)
 
     fsEnabled(): boolean;
+
+    getMainUnit(): ICompilationUnit;
 }
 export interface IASTListener{
     (delta:ASTDelta)

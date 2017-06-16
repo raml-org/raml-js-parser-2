@@ -845,9 +845,8 @@ export class Project implements lowlevel.IProject{
 
     private _namespaceResolver = new namespaceResolver.NamespaceResolver();
 
-    getRootPath(){
-        return this.rootPath;
-    }
+    private mainUnitPath:string;
+
     /**
      *
      * @param rootPath - path to folder where your root api is located
@@ -863,6 +862,25 @@ export class Project implements lowlevel.IProject{
         if(this._httpResolver == null){
             this._httpResolver = new HTTPResolverImpl();
         }
+    }
+
+    getMainUnit():lowlevel.ICompilationUnit{
+        if(!this.mainUnitPath){
+            return null;
+        }
+        return this.unit(this.mainUnitPath,true);
+    }
+
+    getRootPath(){
+        return this.rootPath;
+    }
+
+    getMainUnitPath(){
+        return this.mainUnitPath;
+    }
+
+    setMainUnitPath(mainUnitPath:string){
+        this.mainUnitPath = mainUnitPath;
     }
 
     setFSResolver(res:resolversApi.FSResolver){

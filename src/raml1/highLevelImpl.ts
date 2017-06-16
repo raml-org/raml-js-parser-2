@@ -1212,13 +1212,54 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 if (c.types){
                     return c.types;
                 }
-                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
-                this._types.types().forEach(x=>{
-                    var convertedType = typeBuilder.convertType(this,x)
-                    // if (defs.instanceOfHasExtra(convertedType)) {
+                let unit = this.lowLevel().unit();
+                if(unit) {
+                    let project = <jsyaml.Project>unit.project();
+                    if (unit.absolutePath() != project.getMainUnitPath()) {
+                        let mainUnit = project.getMainUnit();
+                        if (mainUnit) {
+                            let nsr = project.namespaceResolver();
+                            let eSet = nsr.unitModel(mainUnit).extensionSet();
+                            if (!eSet[unit.absolutePath()]) {
+                                let mainTypes = (<ASTNodeImpl>mainUnit.highLevel()).types();
+                                if (mainTypes) {
+                                    let usesInfo = nsr.resolveNamespace(mainUnit, unit);
+                                    if(usesInfo) {
+                                        let segments = usesInfo.namespaceSegments;
+                                        let col = mainTypes;
+                                        for (let ind = 0; ind < segments.length;) {
+                                            let lib: rTypes.IParsedTypeCollection;
+                                            for (let i = ind; i < segments.length; i++) {
+                                                let ns = segments.slice(ind, i + 1).join(".");
+                                                lib = col.library(ns);
+                                                if (lib) {
+                                                    ind = i + 1;
+                                                    col = lib;
+                                                }
+                                            }
+                                            if (lib == null) {
+                                                col = null;
+                                                break;
+                                            }
+                                        }
+                                        if (col) {
+                                            this._types = col;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if(!this._types) {
+                    this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
+                    this._types.types().forEach(x => {
+                        var convertedType = typeBuilder.convertType(this, x)
+                        // if (defs.instanceOfHasExtra(convertedType)) {
                         convertedType.putExtra(defs.USER_DEFINED_EXTRA, true);
-                    // }
-                });
+                        // }
+                    });
+                }
                 c.types=this._types;
             }
 

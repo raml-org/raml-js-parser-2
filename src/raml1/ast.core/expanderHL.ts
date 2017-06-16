@@ -154,13 +154,15 @@ export class TraitsAndResourceTypesExpander {
         }
 
         var unit = api.lowLevel().unit();
+        let project = (<jsyaml.Project>unit.project());
+        project.setMainUnitPath(unit.absolutePath());
 
         var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api,false,rp);
         if (api.definition().key()==universeDef.Universe10.Overlay){
             return hlNode;
         }
-        var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
-        var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments);
+        var hasFragments = project.namespaceResolver().hasFragments(unit);
+        var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments,true);
         if (!result){
             return api;
         }
@@ -175,7 +177,8 @@ export class TraitsAndResourceTypesExpander {
         hlNode:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher,
         api:hl.IHighLevelNode,
-        forceExpand=false) {
+        forceExpand=false,
+        initTypes=false) {
 
         this.init(hlNode);
 
@@ -197,6 +200,9 @@ export class TraitsAndResourceTypesExpander {
             rp = rp || new referencePatcher.ReferencePatcher();
             rp.process(hlNode);
             hlNode.lowLevel().actual().referencePatcher = rp;
+            if(initTypes) {
+                (<hlimpl.ASTNodeImpl>hlNode).types();
+            }
         }
         //var result = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
         //(<any>result).setAttributeDefaults((<any>api.wrapperNode()).getDefaultsCalculator().isEnabled());

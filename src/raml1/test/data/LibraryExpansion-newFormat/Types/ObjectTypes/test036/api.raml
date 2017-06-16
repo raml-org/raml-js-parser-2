@@ -1,0 +1,79 @@
+#%RAML 1.0
+title: Pet Shop
+uses:
+  NewLibrary: NewLibrary.raml
+version: v1
+baseUri: /shop
+types:
+  Mammal:
+    type: NewLibrary.Pet
+  Bird:
+    type: NewLibrary.Pet
+    properties:
+      wingLength: number
+
+resourceTypes:
+/pets:
+  get:
+    queryParameters:
+      petKind:
+        enum: [bird, mammal]
+    responses:
+      200:
+        body:
+          application/json:
+            type: NewLibrary.Pet[]
+  post:
+    body:
+      application/json:
+        type: NewLibrary.Pet
+  /{id}:
+    delete:
+      responses:
+        204:
+    put:
+      body:
+        application/json:
+          type: NewLibrary.Pet
+
+/birds:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Bird[]
+  post:
+    body:
+      application/json:
+        type: Bird
+  /{id}:
+    delete:
+      responses:
+        204:
+    put:
+      body:
+        application/json:
+          type: Bird
+
+
+
+/mammals:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Mammal[]
+  post:
+    body:
+      application/json:
+        type: Mammal
+  /{id}:
+    delete:
+      responses:
+        204:
+    put:
+      body:
+        application/json:
+          type: Mammal
