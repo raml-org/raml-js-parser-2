@@ -76,6 +76,8 @@ export interface Resource08 extends common.HasMeta{
     completeRelativeUri: string
 
     parentUri: string
+
+    absoluteParentUri: string
 }
 
 /**

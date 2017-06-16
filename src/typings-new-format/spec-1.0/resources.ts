@@ -37,6 +37,8 @@ export interface Resource10 extends ResourceBase10 {
 
     parentUri: string
 
+    absoluteParentUri: string
+
 }
 
 export interface ResourceTypeFragment extends ResourceType10, common.FragmentDeclaration{}
