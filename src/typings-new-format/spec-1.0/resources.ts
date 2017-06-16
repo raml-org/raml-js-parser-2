@@ -87,11 +87,11 @@ export interface ResourceBase10 extends common.Annotable {
     /**
      * Methods that are part of this resource type definition
      */
-    methods?: { [key: string]: methods.Method10 }
+    methods?: methods.Method10[]
 
     /**
      * Detailed information about any URI parameters of this resource
      */
-    uriParameters?: { [key: string]: datamodel.TypeReference10 }
+    uriParameters?: datamodel.TypeReference10[]
 
 }

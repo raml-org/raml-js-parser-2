@@ -28,12 +28,12 @@ export interface Api08 extends common.HasMeta {
     /**
      * Base uri parameters are named parameters which described template parameters in the base uri
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters: parameters.Parameter08[]
 
     /**
      * URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
      */
-    uiParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    uiParameters: parameters.Parameter08[]
 
     /**
      * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
@@ -53,19 +53,19 @@ export interface Api08 extends common.HasMeta {
     /**
      * Declarations of traits used in this API
      */
-    traits: {[key:string]:methods.Trait}
+    traits: methods.Trait[]
 
     /**
      * A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.
      */
     securedBy: methods.Reference08[]
 
-    securitySchemes: {[key:string]:security.AbstractSecurityScheme08}
+    securitySchemes: security.AbstractSecurityScheme08[]
 
     /**
      * Declaration of resource types used in this API
      */
-    resourceTypes: {[key:string]:resources.ResourceType08}
+    resourceTypes: resources.ResourceType08[]
 
     /**
      * Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.

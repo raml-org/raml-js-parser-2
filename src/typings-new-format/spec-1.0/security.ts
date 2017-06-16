@@ -167,10 +167,6 @@ export interface CustomSecurityScheme10 extends SecuritySchemeBase10 {
 
 export interface SecuritySchemePart10 extends methods.Operation10 {
 
-    /**
-     * Information about the expected responses to a request
-     */
-    responses: methods.Response10[]
 }
 
 export type SecuritySchemeFragment = OAuth10SecuritySchemeFragment

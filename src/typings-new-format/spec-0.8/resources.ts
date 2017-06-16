@@ -5,10 +5,10 @@ import parameters = require("./parameters");
 
 export interface Resource08 extends common.HasMeta{
 
-/**
- * Relative URL of this resource from the parent resource
- */
-relativeUri:string
+    /**
+     * Relative URL of this resource from the parent resource
+     */
+    relativeUri:string
 
     /**
      * Instantiation of applyed resource type
@@ -35,14 +35,14 @@ relativeUri:string
     /**
      * Uri parameters of this resource
      */
-    uriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    uriParameters: parameters.Parameter08[]
 
     allUriParameters: parameters.Parameter08[]
 
     /**
      * Methods that can be called on this resource
      */
-    methods: {[key:string]:methods.Method08}
+    methods: methods.Method08[]
 
     /**
      * Children resources
@@ -62,7 +62,7 @@ relativeUri:string
      * baseUriParameters property, as well as base URI parameters
      * not specified at the root level.
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters: parameters.Parameter08[]
 
     /**
      * The description attribute describes the intended use or meaning of the $self.
@@ -112,7 +112,7 @@ export interface ResourceType08 extends common.HasMeta{
     /**
      * Uri parameters of this resource
      */
-    uriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    uriParameters: parameters.Parameter08[]
 
     /**
      * An alternate, human-friendly name for the resource type
@@ -126,7 +126,7 @@ export interface ResourceType08 extends common.HasMeta{
      * any or all parameters defined at the root level baseUriParameters
      * property, as well as base URI parameters not specified at the root level.
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters: parameters.Parameter08[]
 
     /**
      * The description attribute describes the intended use or meaning of the $self.
@@ -137,5 +137,5 @@ export interface ResourceType08 extends common.HasMeta{
     /**
      * Methods that can be called on this resource
      */
-    methods: {[key:string]:methods.Method08}
+    methods: methods.Method08[]
 }

@@ -7,8 +7,7 @@ import security = require("./security");
 /**
  * RAML 1.0 API definition
  */
-//TODO NOT READY
-export interface Api10 {
+export interface Api10 extends LibraryBase10{
 
     /**
      * Additional overall documentation for the API
@@ -60,7 +59,7 @@ export interface Api10 {
      * The default media type to use for request and response bodies (payloads),
      * e.g. \"application/json\"
      */
-    mediaType?: string | string[]
+    mediaType?: string[]
 
     /**
      * The security schemes that apply to every resource and method in the API
@@ -123,26 +122,26 @@ export interface LibraryBase10 {
     /**
      * Declarations of (data) types for use within this API
      */
-    types?: { [key: string]: datamodel.TypeDeclaration }
+    types?: datamodel.TypeDeclaration[]
 
     /**
      * Declarations of resource types for use within this API
      */
-    resourceTypes?: { [key: string]: resources.ResourceType10 }
+    resourceTypes?: resources.ResourceType10[]
 
     /**
      * Declarations of traits for use within this API
      */
-    traits?: { [key: string]: methods.Trait10 }
+    traits?: methods.Trait10[]
     /**
      * Declarations of security schemes for use within this API.
      */
-    securitySchemes?: { [key: string]: security.SecuritySchemeBase10 }
+    securitySchemes?: security.SecuritySchemeBase10[]
 
     /**
      * Declarations of annotation types for use by annotations
      */
-    annotationTypes?: { [key: string]: datamodel.TypeDeclaration }
+    annotationTypes?: datamodel.TypeDeclaration[]
 
 }
 

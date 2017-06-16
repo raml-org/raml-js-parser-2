@@ -128,14 +128,14 @@ export interface TypeDeclaration extends common.Annotable {
      * When extending from a type you can define new facets
      * (which can then be set to concrete values by subtypes).
      */
-    facets?: { [key: string]: TypeReference10 }
+    facets?: TypeReference10[]
 
     /**
      * Returns facets fixed by the type. Value is an object with
      * properties named after facets fixed. Value of each property is
      * a value of the corresponding facet.
      */
-    fixedFacets?: {[key:string]:any}
+    fixedFacets?: { name:string, value:any }[]
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration {
@@ -259,7 +259,7 @@ export interface ObjectTypeDeclaration extends TypeDeclaration {
     /**
      * The properties that instances of this type may or must have.
      */
-    properties?: { [key: string]: TypeDeclaration }
+    properties?: TypeDeclaration[]
 
     /**
      * The minimum number of properties allowed for instances of this type.

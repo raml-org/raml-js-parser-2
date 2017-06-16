@@ -4,9 +4,9 @@ export interface Annotable {
      * Most of RAML model elements may have attached annotations decribing
      * additional meta data about this element
      */
-    annotations: { [key: string]: AnnotationInstance | AnnotationInstance[] };
+    annotations: AnnotationInstance[];
 
-    scalarsAnnotations: { [key: string]: (AnnotationInstance | AnnotationInstance[])[] };
+    scalarsAnnotations: { [key: string]: AnnotationInstance[] };
 
     __METADATA__: any
 }

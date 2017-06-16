@@ -32,7 +32,7 @@ export interface Operation10 extends common.Annotable {
     /**
      * Headers that allowed at this position
      */
-    headers?: { [key: string]: datamodel.TypeReference10 }
+    headers?: datamodel.TypeReference10[]
 
     /**
      * An APIs resources MAY be filtered (to return a subset of results)
@@ -40,9 +40,14 @@ export interface Operation10 extends common.Annotable {
      * by the use of query strings. If the resource or its method supports
      * a query string, the query string MUST be defined by the queryParameters property
      */
-    queryParameters?: { [key: string]: datamodel.TypeReference10 }
+    queryParameters?: datamodel.TypeReference10[]
 
     queryString?: datamodel.ObjectTypeDeclaration
+
+    /**
+     * Information about the expected responses to a request
+     */
+    responses: Response10[]
 }
 /**
  * RESTful API methods are operations that are performed on a resource
@@ -89,14 +94,10 @@ export interface MethodBase10 extends Operation10 {
      * A method's body is defined in the body property as a hashmap, in which
      * the key MUST be a valid media type.
      */
-    body?: { [key: string]: datamodel.TypeReference10 }
+    body?:  datamodel.TypeReference10[]
 
     description?: string
 
-    /**
-     * Information about the expected responses to a request
-     */
-    responses: { [key: string]: Response10 }
 }
 
 /**
@@ -123,5 +124,5 @@ export interface Response10 extends common.Annotable {
     /**
      * The body of the response: a body declaration
      */
-    body?: { [key: string]: datamodel.TypeReference10 }
+    body?: datamodel.TypeReference10[]
 }

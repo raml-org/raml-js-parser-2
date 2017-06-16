@@ -42,7 +42,7 @@ export interface MethodBase08 extends common.HasMeta{
      * Responses MAY be described using the description property,
      * and MAY include example attributes or schema properties.
      */
-        responses: {[key:string]:bodies.Response08}
+        responses: bodies.Response08[]
 
     /**
      * Some method verbs expect the resource to be sent as a request body.
@@ -52,7 +52,7 @@ export interface MethodBase08 extends common.HasMeta{
      * representations. A method's body is defined in the body property as
      * a hashmap, in which the key MUST be a valid media type.
      */
-    body: {[key:string]: bodies.BodyLike08}
+    body: bodies.BodyLike08[]
 
     /**
      * A method can override an API's protocols value for that single
@@ -79,7 +79,7 @@ export interface MethodBase08 extends common.HasMeta{
      * any or all parameters defined at the root level baseUriParameters
      * property, as well as base URI parameters not specified at the root level.
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters: parameters.Parameter08[]
 
     /**
      * An APIs resources MAY be filtered (to return a subset of results)
@@ -87,12 +87,12 @@ export interface MethodBase08 extends common.HasMeta{
      * by the use of query strings. If the resource or its method supports a
      * query string, the query string MUST be defined by the queryParameters property
      */
-    queryParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    queryParameters: parameters.Parameter08[]
 
     /**
      * Headers that allowed at this position
      */
-    headers: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    headers: parameters.Parameter08[]
 
     description: string
 }
