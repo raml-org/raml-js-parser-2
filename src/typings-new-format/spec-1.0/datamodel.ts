@@ -55,6 +55,12 @@ export interface TypeDeclaration extends common.Annotable {
     examples?: ExampleSpec10[]
 
     /**
+     * An array containing plain example values.String, boolean and number
+     * values remain as is, while object and array values are serialized to string.
+     */
+    simplifiedExamples?: (string|number|boolean)[]
+
+    /**
      * name of the parameter
      */
     //TODO fix comment
