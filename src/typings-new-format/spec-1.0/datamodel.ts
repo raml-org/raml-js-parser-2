@@ -164,7 +164,7 @@ export interface ArrayTypeDeclaration extends TypeDeclaration {
     /**
      * Component type
      */
-    items: TypeReference10
+    items: TypeReference10[]
 }
 
 /**
