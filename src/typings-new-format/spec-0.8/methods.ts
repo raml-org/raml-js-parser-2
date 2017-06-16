@@ -1,6 +1,7 @@
 import bodies = require("./bodies");
 import common = require("./common");
 import parameters = require("./parameters");
+import security = require("./security");
 
 /**
  * A partial method definition that, like a method, can provide method-level
@@ -70,7 +71,7 @@ export interface MethodBase08 extends common.HasMeta{
      * may be declared, explicitly or implicitly, by defining the
      * resourceTypes or traits property for that resource.
      */
-    securedBy: string[]
+    securedBy: security.AbstractSecurityScheme08[]
 
     /**
      * A resource or a method can override a base URI template's values.

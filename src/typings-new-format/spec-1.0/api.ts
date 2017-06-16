@@ -64,7 +64,7 @@ export interface Api10 extends LibraryBase10{
     /**
      * The security schemes that apply to every resource and method in the API
      */
-    securedBy?: security.SecuritySchemeRef10[]
+    securedBy?: security.SecuritySchemeBase10[]
 }
 
 /**

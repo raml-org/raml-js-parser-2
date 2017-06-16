@@ -58,8 +58,11 @@ export interface Api08 extends common.HasMeta {
     /**
      * A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.
      */
-    securedBy: methods.Reference08[]
+    securedBy: security.AbstractSecurityScheme08[]
 
+    /**
+     * Declarations of security schemes for use within this API.
+     */
     securitySchemes: security.AbstractSecurityScheme08[]
 
     /**

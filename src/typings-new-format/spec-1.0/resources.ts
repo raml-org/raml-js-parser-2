@@ -82,7 +82,7 @@ export interface ResourceBase10 extends common.Annotable {
      * The security schemes that apply to all methods declared
      * (implicitly or explicitly) for this resource.
      */
-    securedBy?: security.SecuritySchemeRef10
+    securedBy?: security.SecuritySchemeBase10[]
 
     /**
      * Methods that are part of this resource type definition

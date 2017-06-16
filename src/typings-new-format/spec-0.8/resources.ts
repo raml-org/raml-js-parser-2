@@ -2,6 +2,7 @@ import bodies = require("./bodies");
 import common = require("./common");
 import methods = require("./methods");
 import parameters = require("./parameters");
+import security = require("./security");
 
 export interface Resource08 extends common.HasMeta{
 
@@ -30,7 +31,7 @@ export interface Resource08 extends common.HasMeta{
      * To indicate that the method may be called without applying any
      * securityScheme, the method may be annotated with the null securityScheme.
      */
-    securedBy: methods.Reference08[]
+    securedBy: security.AbstractSecurityScheme08[]
 
     /**
      * Uri parameters of this resource
@@ -107,7 +108,7 @@ export interface ResourceType08 extends common.HasMeta{
      * To indicate that the method may be called without applying any
      * securityScheme, the method may be annotated with the null securityScheme.
      */
-    securedBy: methods.Reference08[]
+    securedBy: security.AbstractSecurityScheme08[]
 
     /**
      * Uri parameters of this resource

@@ -79,7 +79,7 @@ export interface MethodBase10 extends Operation10 {
      * To indicate that the method may be called without applying any securityScheme,
      * the method may be annotated with the null securityScheme.
      */
-    securedBy?: security.SecuritySchemeRef10[]
+    securedBy?: security.SecuritySchemeBase10[]
 
     /**
      * Instantiation of applyed traits
