@@ -40,7 +40,7 @@ export interface ExampleSpec10 extends common.Annotable {
      */
     displayName?: string
 }
-export type TypeReference10 = string[] | TypeDeclaration;
+export type TypeReference10 = string | TypeDeclaration;
 
 export interface TypeDeclaration extends common.Annotable {
 
@@ -134,7 +134,8 @@ export interface TypeDeclaration extends common.Annotable {
      * When extending from a type you can define new facets
      * (which can then be set to concrete values by subtypes).
      */
-    facets?: TypeReference10[]
+    facets?: {[key:string]:TypeReference10}
+
 
     /**
      * Returns facets fixed by the type. Value is an object with
@@ -142,6 +143,11 @@ export interface TypeDeclaration extends common.Annotable {
      * a value of the corresponding facet.
      */
     fixedFacets?: { name:string, value:any }[]
+
+    /**
+     * Lists available options for union types.
+     */
+    oneOf?: TypeReference10[]
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration {
