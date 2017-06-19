@@ -84,7 +84,12 @@ export interface Api08 extends common.HasMeta {
 /**
  * Content of the schema
  */
-export type GlobalSchema = {[key:string]:string};
+export interface GlobalSchema{
+
+    name: string
+
+    value: string
+}
 
 export interface DocumentationItem08 {
 
