@@ -2,7 +2,15 @@ import common = require("./common");
 import datamodel = require("./datamodel");
 import security = require("./security");
 
-export type TraitRef10 = string | { [key: string]: any };
+export interface TemplateReference{
+
+    name: string
+
+    parameters?: {
+        name: string
+        value: any
+    }[]
+}
 
 export interface Trait10 extends MethodBase10 {
 
@@ -84,7 +92,7 @@ export interface MethodBase10 extends Operation10 {
     /**
      * Instantiation of applyed traits
      */
-    is?: TraitRef10[]
+    is?: TemplateReference[]
 
     /**
      * Some method verbs expect the resource to be sent as a request body.

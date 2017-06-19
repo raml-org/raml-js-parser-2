@@ -76,9 +76,9 @@ export interface ResourceBase10 extends common.Annotable {
      * (implicitly or explicitly) for this resource.
      * Individual methods may override this declaration
      */
-    is?: methods.TraitRef10[]
+    is?: methods.TemplateReference[]
 
-    type?: ResourceTypeRef10
+    type?: methods.TemplateReference
 
     /**
      * The security schemes that apply to all methods declared

@@ -16,12 +16,12 @@ export interface Resource08 extends common.HasMeta{
      */
     relativeUriPathSegments: string[]
 
-    type: methods.Reference08
+    type?: methods.TemplateReference
 
     /**
      * Instantiation of applyed traits
      */
-    is: methods.Reference08
+    is?: methods.TemplateReference[]
 
     /**
      * securityScheme may also be applied to a resource by using the
@@ -98,9 +98,9 @@ export interface ResourceType08 extends common.HasMeta{
     /**
      * Instantiation of applyed traits
      */
-    is: methods.Reference08[]
+    is?: methods.TemplateReference[]
 
-    type: methods.Reference08
+    type?: methods.TemplateReference
 
     /**
      * securityScheme may also be applied to a resource by using the

@@ -31,7 +31,16 @@ export interface Trait extends MethodBase08{
     isScalar: boolean
 }
 
-export type Reference08 = string|{[key:string]:any};
+export interface TemplateReference{
+
+    name: string
+
+    parameters?: {
+        name: string
+        value: any
+    }[]
+}
+
 
 /**
  * Method object allows description of http methods
@@ -108,7 +117,7 @@ export interface Method08 extends MethodBase08{
     /**
      * Instantiation of applyed traits
      */
-    is: Reference08[]
+    is?: TemplateReference[]
 
     allUriParameters: parameters.Parameter08[]
 }

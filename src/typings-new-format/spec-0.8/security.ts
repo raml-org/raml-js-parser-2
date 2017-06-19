@@ -49,7 +49,7 @@ export interface SecuritySchemePart08 extends methods.MethodBase08{
     /**
      * Instantiation of applyed traits
      */
-    is: methods.Reference08[]
+    is?: methods.TemplateReference[]
 }
 
 export interface OAuth2SecurityScheme08 extends AbstractSecurityScheme08{
