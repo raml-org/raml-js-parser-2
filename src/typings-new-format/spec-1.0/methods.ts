@@ -55,7 +55,7 @@ export interface Operation10 extends common.Annotable {
     /**
      * Information about the expected responses to a request
      */
-    responses: Response10[]
+    responses?: Response10[]
 }
 /**
  * RESTful API methods are operations that are performed on a resource
@@ -63,9 +63,8 @@ export interface Operation10 extends common.Annotable {
 export interface Method10 extends MethodBase10 {
 
     /**
-     * Method that can be called
+     * Method name
      */
-    //TODO fix description
     method: string
 }
 

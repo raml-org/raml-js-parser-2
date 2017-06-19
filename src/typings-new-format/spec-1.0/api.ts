@@ -40,7 +40,7 @@ export interface Api10 extends LibraryBase10{
     /**
      * Named parameters used in the baseUri (template)
      */
-    baseUriParameters?: { [key: string]: datamodel.TypeReference10 }
+    baseUriParameters?: datamodel.TypeReference10[]
 
     /**
      * The resources of the API, identified as relative URIs that
@@ -53,7 +53,7 @@ export interface Api10 extends LibraryBase10{
     /**
      * The protocols supported by the API
      */
-    protocols?: string[]
+    protocols: string[]
 
     /**
      * The default media type to use for request and response bodies (payloads),
@@ -117,7 +117,7 @@ export interface Overlay extends Api10 {
     usage?: string
 }
 
-export interface LibraryBase10 {
+export interface LibraryBase10 extends common.FragmentDeclaration {
 
     /**
      * Declarations of (data) types for use within this API

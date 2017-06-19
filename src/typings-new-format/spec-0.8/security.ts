@@ -21,9 +21,9 @@ export interface AbstractSecurityScheme08 extends common.HasMeta{
     /**
      * The description attribute MAY be used to describe a security schemes property.
      */
-    description: string
+    description?: string
 
-    describedBy: SecuritySchemePart08
+    describedBy?: SecuritySchemePart08
 
     /**
      * The settings attribute MAY be used to provide security scheme-specific
@@ -34,7 +34,7 @@ export interface AbstractSecurityScheme08 extends common.HasMeta{
      * MAY choose to recognize other properties for things such as token
      * lifetime, preferred cryptographic algorithms, and more.
      */
-    settings: Object
+    settings?: Object
  }
 
 /**
@@ -60,25 +60,25 @@ export interface OAuth2SecurityScheme08 extends AbstractSecurityScheme08{
           * The URI of the Token Endpoint as defined in RFC6749 Section 3.2.
           * Not required forby implicit grant type.
           */
-         accessTokenUri: string
+         accessTokenUri?: string
 
          /**
           * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1.
           * Required forby authorization_code and implicit grant types.
           */
-         authorizationUri: string
+         authorizationUri?: string
 
          /**
           * A list of the Authorization grants supported by the API as defined in
           * RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code,
           * password, client_credentials, implicit, or refresh_token.
           */
-         authorizationGrants: string[]
+         authorizationGrants?: string[]
 
          /**
           * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
           */
-         scopes: string[]
+         scopes?: string[]
      }
 }
 
@@ -90,18 +90,18 @@ export interface OAuth1SecurityScheme08 extends AbstractSecurityScheme08{
          * The URI of the Temporary Credential Request endpoint as defined
          * in RFC5849 Section 2.1
          */
-        requestTokenUri: string
+        requestTokenUri?: string
 
         /**
          * The URI of the Resource Owner Authorization endpoint as defined
          * in RFC5849 Section 2.2
          */
-        authorizationUri: string
+        authorizationUri?: string
 
         /**
          * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
          */
-        tokenCredentialsUri: string
+        tokenCredentialsUri?: string
 
     }
 }

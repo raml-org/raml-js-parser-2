@@ -35,9 +35,9 @@ export interface Resource10 extends ResourceBase10 {
 
     completeRelativeUri: string
 
-    parentUri: string
+    parentUri?: string
 
-    absoluteParentUri: string
+    absoluteParentUri?: string
 
 }
 

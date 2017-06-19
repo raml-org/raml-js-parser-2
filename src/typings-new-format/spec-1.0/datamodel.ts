@@ -61,9 +61,9 @@ export interface TypeDeclaration extends common.Annotable {
     simplifiedExamples?: (string|number|boolean)[]
 
     /**
-     * name of the parameter
+     * Type name for top level types. For properties and parameters -- property o parameter name, respectively.
+     * For bodies -- media type.
      */
-    //TODO fix comment
     name: string
 
     /**
@@ -117,9 +117,8 @@ export interface TypeDeclaration extends common.Annotable {
     }
 
     /**
-     * Sets if property is optional or not
+     * For property or parameter states if it is required.
      */
-    //TODO fix comment
     required?: boolean
 
     /**
@@ -128,7 +127,7 @@ export interface TypeDeclaration extends common.Annotable {
      * If displayName is not specified, it defaults to the element's key
      * (the name of the property itself
      */
-    displayName?: string
+    displayName: string
 
     /**
      * When extending from a type you can define new facets

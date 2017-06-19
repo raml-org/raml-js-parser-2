@@ -18,17 +18,12 @@ export interface Trait extends MethodBase08{
     /**
      * Instructions on how and when the trait should be used.
      */
-    usage: string
+    usage?: string
 
     /**
      * An alternate, human-friendly name for the trait
      */
-    displayName: string
-
-    /**
-     * Whether the type is scalar
-     */
-    isScalar: boolean
+    displayName?: string
 }
 
 export interface TemplateReference{
@@ -52,7 +47,7 @@ export interface MethodBase08 extends common.HasMeta{
      * Responses MAY be described using the description property,
      * and MAY include example attributes or schema properties.
      */
-        responses: bodies.Response08[]
+    responses?: bodies.Response08[]
 
     /**
      * Some method verbs expect the resource to be sent as a request body.
@@ -62,7 +57,7 @@ export interface MethodBase08 extends common.HasMeta{
      * representations. A method's body is defined in the body property as
      * a hashmap, in which the key MUST be a valid media type.
      */
-    body: bodies.BodyLike08[]
+    body?: bodies.BodyLike08[]
 
     /**
      * A method can override an API's protocols value for that single
@@ -80,7 +75,7 @@ export interface MethodBase08 extends common.HasMeta{
      * may be declared, explicitly or implicitly, by defining the
      * resourceTypes or traits property for that resource.
      */
-    securedBy: security.AbstractSecurityScheme08[]
+    securedBy?: security.AbstractSecurityScheme08[]
 
     /**
      * A resource or a method can override a base URI template's values.
@@ -89,7 +84,7 @@ export interface MethodBase08 extends common.HasMeta{
      * any or all parameters defined at the root level baseUriParameters
      * property, as well as base URI parameters not specified at the root level.
      */
-    baseUriParameters: parameters.Parameter08[]
+    baseUriParameters?: parameters.Parameter08[]
 
     /**
      * An APIs resources MAY be filtered (to return a subset of results)
@@ -97,14 +92,14 @@ export interface MethodBase08 extends common.HasMeta{
      * by the use of query strings. If the resource or its method supports a
      * query string, the query string MUST be defined by the queryParameters property
      */
-    queryParameters: parameters.Parameter08[]
+    queryParameters?: parameters.Parameter08[]
 
     /**
      * Headers that allowed at this position
      */
-    headers: parameters.Parameter08[]
+    headers?: parameters.Parameter08[]
 
-    description: string
+    description?: string
 }
 
 export interface Method08 extends MethodBase08{
@@ -119,5 +114,5 @@ export interface Method08 extends MethodBase08{
      */
     is?: TemplateReference[]
 
-    allUriParameters: parameters.Parameter08[]
+    allUriParameters?: parameters.Parameter08[]
 }

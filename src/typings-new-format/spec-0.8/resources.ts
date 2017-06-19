@@ -31,29 +31,29 @@ export interface Resource08 extends common.HasMeta{
      * To indicate that the method may be called without applying any
      * securityScheme, the method may be annotated with the null securityScheme.
      */
-    securedBy: security.AbstractSecurityScheme08[]
+    securedBy?: security.AbstractSecurityScheme08[]
 
     /**
      * Uri parameters of this resource
      */
-    uriParameters: parameters.Parameter08[]
+    uriParameters?: parameters.Parameter08[]
 
-    allUriParameters: parameters.Parameter08[]
+    allUriParameters?: parameters.Parameter08[]
 
     /**
      * Methods that can be called on this resource
      */
-    methods: methods.Method08[]
+    methods?: methods.Method08[]
 
     /**
      * Children resources
      */
-    resources: Resource08[]
+    resources?: Resource08[]
 
     /**
      * An alternate, human-friendly name for the resource
      */
-    displayName: string
+    displayName?: string
 
     /**
      * A resource or a method can override a base URI template's values.
@@ -63,21 +63,21 @@ export interface Resource08 extends common.HasMeta{
      * baseUriParameters property, as well as base URI parameters
      * not specified at the root level.
      */
-    baseUriParameters: parameters.Parameter08[]
+    baseUriParameters?: parameters.Parameter08[]
 
     /**
      * The description attribute describes the intended use or meaning of the $self.
      * This value MAY be formatted using Markdown.
      */
-    description: string
+    description?: string
 
     absoluteUri: string
 
     completeRelativeUri: string
 
-    parentUri: string
+    parentUri?: string
 
-    absoluteParentUri: string
+    absoluteParentUri?: string
 }
 
 /**
@@ -93,7 +93,7 @@ export interface ResourceType08 extends common.HasMeta{
     /**
      * Instructions on how and when the resource type should be used.
      */
-    usage: string
+    usage?: string
 
     /**
      * Instantiation of applyed traits
@@ -110,17 +110,17 @@ export interface ResourceType08 extends common.HasMeta{
      * To indicate that the method may be called without applying any
      * securityScheme, the method may be annotated with the null securityScheme.
      */
-    securedBy: security.AbstractSecurityScheme08[]
+    securedBy?: security.AbstractSecurityScheme08[]
 
     /**
      * Uri parameters of this resource
      */
-    uriParameters: parameters.Parameter08[]
+    uriParameters?: parameters.Parameter08[]
 
     /**
      * An alternate, human-friendly name for the resource type
      */
-    displayName: string
+    displayName?: string
 
     /**
      * A resource or a method can override a base URI template's values.
@@ -129,16 +129,16 @@ export interface ResourceType08 extends common.HasMeta{
      * any or all parameters defined at the root level baseUriParameters
      * property, as well as base URI parameters not specified at the root level.
      */
-    baseUriParameters: parameters.Parameter08[]
+    baseUriParameters?: parameters.Parameter08[]
 
     /**
      * The description attribute describes the intended use or meaning of the $self.
      * This value MAY be formatted using Markdown.
      */
-    description: string
+    description?: string
 
     /**
      * Methods that can be called on this resource
      */
-    methods: methods.Method08[]
+    methods?: methods.Method08[]
 }
