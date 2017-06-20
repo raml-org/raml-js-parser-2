@@ -458,9 +458,12 @@ export function addToNode(target:hlimpl.ASTNodeImpl,node:hl.IParseResult){
             //seq.items.push((<jsyaml.ASTNode>node.lowLevel())._actualNode());
             if (node.property().getAdapter(services.RAMLPropertyService).isEmbedMap()){
                 var v10 = target.definition().universe().version() == 'RAML10';
+
                 if(llnode.isValueMap() && v10)
                     nn = jsyaml.createMapNode(name);
-                else
+                else if(universeHelpers.isLibraryBaseSibling(target.definition()) && universeHelpers.isTypesProperty(node.property()) && v10) {
+                    nn = jsyaml.createMapNode(name);
+                } else
                     nn = jsyaml.createSeqNode(name);
                 //console.log('NN: ' + yaml.Kind[nn._actualNode().kind]);
                 nn.addChild(node.lowLevel());
