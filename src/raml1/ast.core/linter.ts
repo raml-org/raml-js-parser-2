@@ -254,9 +254,12 @@ function isSecuredBy(d:hl.IProperty){
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
  */
-function typeOfContainingTemplate(h:hl.IHighLevelNode):string{
-    var declRoot=h;
-    while (true){
+function typeOfContainingTemplate(h:hl.IParseResult):string{
+    if(!h.isElement()){
+        h = h.parent();
+    }
+    let declRoot = h && h.asElement();
+    while (declRoot){
         if (declRoot.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
             return declRoot.definition().nameId();
         }
@@ -267,7 +270,6 @@ function typeOfContainingTemplate(h:hl.IHighLevelNode):string{
         else{
             declRoot=np;
         }
-
     }
     return null;
 }
@@ -1538,7 +1540,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             return tm;
         }
         if (t.key() == universes.Universe08.StatusCodeString||t.key() == universes.Universe10.StatusCodeString){
-            var err:Error = validateResponseString(v);
+            var err:Error = validateResponseString(''+v);
             if(err!=null){
                 return err;
             }
@@ -1800,7 +1802,7 @@ class MediaTypeValidator implements PropertyValidator{
                     }
                 }
             }
-            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
+            if(typeOfContainingTemplate(node)!=null){
                 if(v.indexOf("<<")>=0){
                     return;
                 }

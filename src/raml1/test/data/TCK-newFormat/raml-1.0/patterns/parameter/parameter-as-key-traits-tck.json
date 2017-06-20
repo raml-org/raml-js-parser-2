@@ -1,0 +1,59 @@
+{
+  "specification": {
+    "traits": {
+      "respCode": {
+        "responses": {
+          "<<status>>": {
+            "code": "<<status>>",
+            "description": "<<description>>"
+          }
+        },
+        "name": "respCode"
+      }
+    },
+    "title": "Example API",
+    "version": "v1",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "responses": {
+              "201": {
+                "code": 201,
+                "description": "Post created, returns the created post."
+              }
+            },
+            "is": [
+              {
+                "respCode": {
+                  "status": 201,
+                  "description": "Post created, returns the created post."
+                }
+              }
+            ],
+            "description": "test",
+            "method": "get"
+          }
+        },
+        "relativeUri": "/servers",
+        "displayName": "/servers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "servers"
+        ],
+        "absoluteUri": "/servers",
+        "completeRelativeUri": "/servers",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}
