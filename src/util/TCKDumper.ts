@@ -1065,7 +1065,10 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
         return universeHelpers.isResourceTypeType(d)
             || universeHelpers.isTraitType(d)
             || universeHelpers.isMethodType(d)
-            || universeHelpers.isTypeDeclarationSibling(d);
+            || universeHelpers.isResponseType(d)
+            || universeHelpers.isParameterDescendant(d)
+            || universeHelpers.isBodyLikeType(d)
+            || universeHelpers.isTypeDeclarationDescendant(d);
 
     }
 

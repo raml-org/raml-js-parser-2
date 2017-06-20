@@ -606,6 +606,10 @@ export function isTypeDeclarationDescendant(type: hl.INodeDefinition | hl.ITypeD
     return type.isAssignableFrom(universe.Universe10.TypeDeclaration.name);
 }
 
+export function isParameterDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.isAssignableFrom(universe.Universe08.Parameter.name);
+}
+
 export function isStringTypeDeclarationDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.isAssignableFrom(universe.Universe10.StringTypeDeclaration.name);
 }

@@ -707,7 +707,7 @@ export function schemaContent(bodyDeclaration : RamlWrapper.BodyLike) : string {
  * __$meta__={"name":"parametrizedProperties","primary":true}
  **/
 export function getTemplateParametrizedProperties(
-    node:RamlWrapper.Trait|RamlWrapper.ResourceType):RamlWrapper.TypeInstance{
+    node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Response|RamlWrapper.Method|RamlWrapper.Parameter|RamlWrapper.BodyLike):RamlWrapper.TypeInstance{
 
     var highLevelNode = node.highLevel();
     if(highLevelNode==null){

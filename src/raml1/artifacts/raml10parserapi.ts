@@ -253,7 +253,7 @@ responses(  ):Response[]
 export interface TypeDeclaration extends Annotable{
 
         /**
-         * name of the parameter
+         * Type name for top level types. For properties and parameters -- property o parameter name, respectively. For bodies -- media type.
          **/
 name(  ):string
 
@@ -301,7 +301,7 @@ examples(  ):ExampleSpec[]
 
 
         /**
-         * Sets if property is optional or not
+         * For property or parameter states if it is required.
          **/
 required(  ):boolean
 
@@ -1064,7 +1064,7 @@ format(  ):AnnotationRef[]
 export interface FileTypeDeclaration extends TypeDeclaration{
 
         /**
-         * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
+         * A list of valid content-type strings for the file. The file type * /* should be a valid value.
          **/
 fileTypes(  ):ContentType[]
 
@@ -1141,6 +1141,12 @@ description(  ):MarkdownString
          * Most of RAML model elements may have attached annotations decribing additional meta data about this element
          **/
 annotations(  ):AnnotationRef[]
+
+
+        /**
+         * For responses defined in traits or resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
 
 
         /**

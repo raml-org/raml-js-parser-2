@@ -1561,6 +1561,9 @@ class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformati
             new BasicObjectPropertyMatcher(universes.Universe10.ResourceType.name,null,true),
             new BasicObjectPropertyMatcher(universes.Universe10.Trait.name,null,true),
             new BasicObjectPropertyMatcher(universes.Universe10.Method.name,null,true),
+            new BasicObjectPropertyMatcher(universes.Universe10.Response.name,null,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.Parameter.name,null,true),
+            new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,null,true),
             new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,null,true)
         ]));
     }

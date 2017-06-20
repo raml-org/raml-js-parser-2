@@ -2911,7 +2911,12 @@ class CompositeNodeValidator implements NodeValidator {
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
                 if (nodeValue!='~') {
-                    if(!checkIfIncludeTagIsMissing(node, acceptor, messageRegistry.SCALAR_PROHIBITED_2.code)) {
+                    let isParameter = typeOfContainingTemplate(node) != null
+                        && (typeof nodeValue == "string")
+                        && util.startsWith(nodeValue,"<<")
+                        && util.endsWith(nodeValue,">>")
+                    
+                    if(!isParameter && !checkIfIncludeTagIsMissing(node, acceptor, messageRegistry.SCALAR_PROHIBITED_2.code)) {
                         var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: nodeName}, node)
                         acceptor.accept(i);
                     }

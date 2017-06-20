@@ -1,0 +1,89 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resourceTypes": [
+      {
+        "myResourceType": {
+          "name": "myResourceType",
+          "<<param1>>": "<<param1value>>",
+          "post": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "<<param5>>": "<<param5value>>"
+              },
+              "<<param4>>": {
+                "code": "<<param4>>",
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "<<param3>>": "<<param3value>>"
+              }
+            },
+            "queryParameters": {
+              "<<qParam>>": {
+                "name": "<<qParam>>",
+                "displayName": "<<qParam>>",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "<<prop1>>": "<<prop1Value>>"
+              }
+            },
+            "method": "post",
+            "<<param2>>": "<<param2value>>"
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

@@ -1139,7 +1139,7 @@ function extractParams(
  * __$meta__={"name":"parametrizedProperties","primary":true}
  */
 export function getTemplateParametrizedProperties(
-    node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Method|RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
+    node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Method|RamlWrapper.Response|RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
     
     if(node.kind()==universeDef.Universe10.Method.name||universeHelpers.isTypeDeclarationSibling(node.definition())){
         var isInsideTemplate = false;

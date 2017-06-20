@@ -1067,6 +1067,10 @@ RAMLVersion(  ):string{return "RAML08";}
 isOkRange(  ):boolean{
             return helper.isOkRange(this);
         }
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
 }
 
 export class StringTypeImpl extends ValueTypeImpl implements StringType{
@@ -1362,6 +1366,10 @@ static isInstance( instance:any ):boolean{
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML08";}
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
 }
 
 export class ParameterLocationImpl implements ParameterLocation{
@@ -2006,6 +2014,10 @@ RAMLVersion(  ):string{return "RAML08";}
 
 schemaContent(  ):string{
             return helper.schemaContent(this);
+        }
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
         }
 }
 
@@ -3555,6 +3567,10 @@ methodId(  ):string{
          **/
 allSecuredBy(  ):SecuritySchemeRef[]{
             return helper.allSecuredBy(this);
+        }
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
         }
 }
 
