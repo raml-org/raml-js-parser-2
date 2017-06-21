@@ -452,7 +452,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
                     node: null,
                     start: ps,
                     end: pe,
-                    isWarning: false,
+                    isWarning: (<any>x).isWarning,
                     path: node.lowLevel().unit() == node.root().lowLevel().unit() ? null : node.lowLevel().unit().path(),
                     unit: node.lowLevel().unit()
                 }

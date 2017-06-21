@@ -87,7 +87,7 @@
   "errors": [
     {
       "code": "YAML_ERROR",
-      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 4, column 1",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 4, column 8",
       "path": "api.raml",
       "range": {
         "start": {
@@ -104,7 +104,7 @@
     },
     {
       "code": "YAML_ERROR",
-      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 14, column 13",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 14, column 19",
       "path": "api.raml",
       "range": {
         "start": {
@@ -138,7 +138,7 @@
     },
     {
       "code": "YAML_ERROR",
-      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 15, column 1",
+      "message": "JS-YAML: unknown tag <!includesome/arbitrary/path/to/nowhere/example.json> at line 15, column 22",
       "path": "api.raml",
       "range": {
         "start": {
