@@ -13,7 +13,7 @@ describe('Typing simulation based longivity tests (basic)',function() {
 
 
         it("application-monitoring", function () {
-            this.timeout(40000);
+            this.timeout(80000);
             test("../example-ramls/application-monitoring/api.raml");
         });
 
