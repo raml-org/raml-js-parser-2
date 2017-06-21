@@ -19,7 +19,9 @@ import expander=require("../ast.core/expander")
 import namespaceResolver=require("../ast.core/namespaceResolver");
 var Error=yaml.YAMLException
 
-export var Kind={
+export var Kind:{
+    SCALAR:yaml.Kind
+} = {
     SCALAR:yaml.Kind.SCALAR
 }
 
@@ -2637,7 +2639,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         return null;
     }
 
-    _actualNode(){
+    _actualNode():yaml.YAMLNode{
         return this._node
     }
     execute(cmd:lowlevel.CompositeCommand) {
@@ -3454,7 +3456,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         return map.value.kind;
     }
 
-    anchorValueKind(){
+    anchorValueKind():yaml.Kind{
         if(this.valueKind()==yaml.Kind.ANCHOR_REF){
             var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node.value;
             return ref && ref.value && ref.value.kind;
@@ -3462,7 +3464,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         return null;
     }
 
-    resolvedValueKind(){
+    resolvedValueKind():yaml.Kind{
         let vk = this.valueKind();
         if(vk==yaml.Kind.ANCHOR_REF) {
             let ak = this.anchorValueKind();

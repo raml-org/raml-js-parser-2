@@ -49,7 +49,7 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
         return this._originalNode.hasInnerIncludeError();
     }
 
-    keyKind(){
+    keyKind():yaml.Kind{
         return this._originalNode.keyKind();
     }
     primaryNode():ll.ILowLevelASTNode{
@@ -171,9 +171,9 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     valueKind(): yaml.Kind { return this._originalNode.valueKind(); }
 
-    anchorValueKind(){ return this._originalNode.anchorValueKind(); }
+    anchorValueKind(): yaml.Kind{ return this._originalNode.anchorValueKind(); }
 
-    resolvedValueKind(){ return this._originalNode.resolvedValueKind() };
+    resolvedValueKind(): yaml.Kind{ return this._originalNode.resolvedValueKind() };
 
     show(msg: string) { this._originalNode.show(msg); }
 

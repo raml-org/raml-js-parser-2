@@ -262,7 +262,7 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
 
     isValueLocal(){ return true; }
 
-    kind(){
+    kind():yaml.Kind{
         if(Array.isArray(this._object)){
             return yaml.Kind.SEQ;
         }
@@ -274,7 +274,7 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         }
     }
 
-    valueKind(){
+    valueKind():yaml.Kind{
         if(!this._object){
             return null;
         }
@@ -292,11 +292,11 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         return null;
     }
     
-    anchorValueKind(){
+    anchorValueKind():yaml.Kind{
         return null;
     }
 
-    resolvedValueKind(){
+    resolvedValueKind():yaml.Kind{
         return this.valueKind();
     }
 
