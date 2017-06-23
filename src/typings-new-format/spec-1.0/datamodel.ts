@@ -133,7 +133,7 @@ export interface TypeDeclaration extends common.Annotable {
      * When extending from a type you can define new facets
      * (which can then be set to concrete values by subtypes).
      */
-    facets?: {[key:string]:TypeReference10}
+    facets?: TypeDeclaration[]
 
 
     /**

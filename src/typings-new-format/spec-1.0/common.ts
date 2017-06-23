@@ -6,7 +6,7 @@ export interface Annotable {
      */
     annotations: AnnotationInstance[];
 
-    scalarsAnnotations: { [key: string]: AnnotationInstance[] };
+    scalarsAnnotations: { [key: string]: AnnotationInstance[][] };
 
     __METADATA__: any
 }
@@ -15,7 +15,7 @@ export interface AnnotationInstance {
 
     name: string
 
-    structuredValue: any
+    value: any
 }
 
 export interface UsesDeclaration {
@@ -23,6 +23,10 @@ export interface UsesDeclaration {
     key: string
 
     value: string
+
+    annotations?: AnnotationInstance[]
+
+    usage?: string
 }
 
 export interface FragmentDeclaration extends Annotable {
