@@ -115,4 +115,8 @@ export interface Method08 extends MethodBase08{
     is?: TemplateReference[]
 
     allUriParameters?: parameters.Parameter08[]
+
+    parentUri: string
+
+    absoluteParentUri: string
 }

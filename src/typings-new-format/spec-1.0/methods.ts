@@ -66,6 +66,10 @@ export interface Method10 extends MethodBase10 {
      * Method name
      */
     method: string
+    
+    parentUri: string
+
+    absoluteParentUri: string
 }
 
 export interface MethodBase10 extends Operation10 {
