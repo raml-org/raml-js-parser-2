@@ -1,0 +1,80 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Test",
+    "version": "1",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "example": {
+                      "data": [
+                        {
+                          "a": 1,
+                          "b": 2,
+                          "c": 3
+                        }
+                      ]
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": "{\n  \"data\": [\n    {\n      \"a\": 1,\n      \"b\": 2,\n      \"c\": 3\n    }\n  ]\n}",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "data": [
+                          {
+                            "a": 1,
+                            "b": 2,
+                            "c": 3
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Test",
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/foo",
+        "displayName": "/foo",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "foo"
+        ],
+        "absoluteUri": "/foo"
+      }
+    ]
+  },
+  "errors": []
+}

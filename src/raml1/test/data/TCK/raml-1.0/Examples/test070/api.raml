@@ -1,0 +1,17 @@
+#%RAML 1.0
+
+title: Test
+version: 1
+
+/foo:
+  get:
+    description: Test
+    responses:
+      200:
+        body:
+          application/json:
+            example: {
+              "data": [
+                !include ./data.yml
+              ]
+            }

@@ -368,11 +368,24 @@ export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
             if (resolved == null) {
                 return null;
             }
-            else if (resolved.isRAMLUnit() && this.canInclude(resolved)) {
+            else if (resolved.isRAMLUnit()) {
+                if(llImpl.ASTNode.isInstance(n)){
+                    if(!(<llImpl.ASTNode>n).canInclude(resolved)){
+                        return null;
+                    }
+                }
                 var ast = resolved.ast();
                 if (ast) {
                     return serialize2(ast,full);
                 }
+            }
+            else {
+                if(llImpl.ASTNode.isInstance(n)){
+                    if(!(<llImpl.ASTNode>n).canInclude(resolved)){
+                        return null;
+                    }
+                }
+                return resolved.contents();
             }
         }
         return null;
