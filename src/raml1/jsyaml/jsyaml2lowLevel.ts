@@ -212,7 +212,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     resolve(p:string):lowlevel.ICompilationUnit {
         if (typeof p!="string")
         {
-            p=""+p;
+            return null;
         }
         var unit=this._project.resolve(this._path,p);
         return unit;

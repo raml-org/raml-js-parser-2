@@ -428,9 +428,9 @@
     "code" : "INCLUDE_TAG_MISSING",
     "message" : "The '!include' tag is missing"
   },
-  "1105" : {
-    "code" : "1105",
-    "message" : ""
+  "LIBRARY_PATH_MUST_BE_A_STRING" : {
+    "code" : "LIBRARY_PATH_MUST_BE_A_STRING",
+    "message" : "Library path must be string"
   },
   "1106" : {
     "code" : "1106",

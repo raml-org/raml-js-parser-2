@@ -817,17 +817,18 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
             var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
-            if (vn&&vn.value()){
-                var rs=highLevelNode.lowLevel().unit().resolve(vn.value());
+            var libPath = vn.value();
+            if (libPath!=null && typeof libPath == "string" && vn){
+                var rs=highLevelNode.lowLevel().unit().resolve(libPath);
                 if (!rs || rs.contents() === null){
                     v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
-                        {path:vn.value()},highLevelNode,false));
-                } else if(!resourceRegistry.isWaitingFor(vn.value())){
+                        {path:libPath},highLevelNode,false));
+                } else if(!resourceRegistry.isWaitingFor(libPath)){
                     var issues:hl.ValidationIssue[]=[];
 
                     if(rs.contents().trim().length === 0) {
                         v.accept(createIssue1(messageRegistry.EMPTY_FILE,
-                            {path:vn.value()},highLevelNode,false));
+                            {path:libPath},highLevelNode,false));
                         return;
                     }
 
