@@ -817,8 +817,8 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
             var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
-            var libPath = vn.value();
-            if (libPath!=null && typeof libPath == "string" && vn){
+            var libPath = vn && vn.value();
+            if (libPath!=null && typeof libPath == "string"){
                 var rs=highLevelNode.lowLevel().unit().resolve(libPath);
                 if (!rs || rs.contents() === null){
                     v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
