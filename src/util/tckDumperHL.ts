@@ -49,7 +49,7 @@ export class TCKDumper {
     constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
         if (this.options.serializeMetadata == null) {
-            this.options.serializeMetadata = true;
+            this.options.serializeMetadata = false;
         }
         if (this.options.attributeDefaults == null) {
             this.options.attributeDefaults = true;
@@ -630,7 +630,7 @@ export interface SerializeOptions{
 
     /**
      * Whether to serialize metadata
-     * @default true
+     * @default false
      */
     serializeMetadata?:boolean
 
@@ -720,7 +720,7 @@ function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IPrope
     return extractParams(pVal, uri, resource,p,serializeMetadata);
 }
 
-function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=true):PropertyValue{
+function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=false):PropertyValue{
 
     var buriAttr = api.attr(universes.Universe10.Api.properties.baseUri.name);
     var uri = buriAttr ? buriAttr.value() : '';

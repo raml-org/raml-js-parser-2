@@ -84,4 +84,10 @@ export interface Options2 {
      **/
     httpResolver?:resolversApi.HTTPResolver
 
+    /**
+     * Whether to serialize metadata
+     * @default false
+     */
+    serializeMetadata?:boolean
+
 }
