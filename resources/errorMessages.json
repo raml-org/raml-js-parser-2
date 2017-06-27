@@ -63,9 +63,9 @@
     "code" : "RECURSIVE_DEFINITION",
     "message" : "Recursive definition: '{{name}}'"
   },
-  "PROPERTY_ALREADY_SPECIFIED" : {
-    "code" : "PROPERTY_ALREADY_SPECIFIED",
-    "message" : "'{{propName}}' is already specified.`"
+  "QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE" : {
+    "code" : "QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE",
+    "message" : "'queryString' and 'queryParameters' properties are mutually exclusive. '{{propName}}' is already specified."
   },
   "ISSUES_IN_THE_LIBRARY" : {
     "code" : "ISSUES_IN_THE_LIBRARY",

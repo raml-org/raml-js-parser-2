@@ -550,11 +550,11 @@ function createIssueForQueryDeclarations(node: ll.ILowLevelASTNode | hl.IParseRe
     var propertyName = isQueryParamsDeclaration ? universes.Universe10.Operation.properties.queryString.name : universes.Universe10.Operation.properties.queryParameters.name;
 
     if(asLowLevel.unit) {
-        return createLLIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED, {
+        return createLLIssue1(messageRegistry.QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE, {
             propName: propertyName
         }, asLowLevel, parentNode);
     } else {
-        return createIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED, {
+        return createIssue1(messageRegistry.QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE, {
             propName: propertyName
         }, asHighLevel);
     }
