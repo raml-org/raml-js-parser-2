@@ -30,7 +30,7 @@
               "minimum": [
                 {
                   "name": "a",
-                  "structuredValue": "abcdefghijkl"
+                  "value": "abcdefghijkl"
                 }
               ]
             },

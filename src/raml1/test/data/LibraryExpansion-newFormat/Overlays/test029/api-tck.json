@@ -11,7 +11,7 @@
       },
       "library.specAuthor": {
         "name": "library.specAuthor",
-        "structuredValue": "mulesoft.com"
+        "value": "mulesoft.com"
       },
       "library.devPortal": {
         "name": "library.devPortal",
@@ -19,7 +19,7 @@
       },
       "library.extraResources": {
         "name": "library.extraResources",
-        "structuredValue": [
+        "value": [
           {
             "title": "API Notebook",
             "type": "notebook",

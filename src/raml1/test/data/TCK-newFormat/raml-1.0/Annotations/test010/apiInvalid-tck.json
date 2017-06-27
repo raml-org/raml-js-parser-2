@@ -27,7 +27,7 @@
         "annotations": {
           "suborg": {
             "name": "suborg",
-            "structuredValue": {
+            "value": {
               "manager": {
                 "name": "Tom"
               },
@@ -58,7 +58,7 @@
         "annotations": {
           "suborg1": {
             "name": "suborg1",
-            "structuredValue": {
+            "value": {
               "manager": {
                 "name": "Tom"
               },

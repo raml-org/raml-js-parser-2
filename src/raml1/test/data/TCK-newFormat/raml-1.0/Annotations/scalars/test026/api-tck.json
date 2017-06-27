@@ -22,7 +22,7 @@
           "maxLength": [
             {
               "name": "a",
-              "structuredValue": "abcdefg"
+              "value": "abcdefg"
             }
           ]
         },

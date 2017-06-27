@@ -30,7 +30,7 @@
         "annotations": {
           "testHarness": {
             "name": "testHarness",
-            "structuredValue": "usersTest"
+            "value": "usersTest"
           }
         },
         "relativeUri": "/users",

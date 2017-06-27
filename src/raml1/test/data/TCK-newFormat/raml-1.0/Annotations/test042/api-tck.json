@@ -34,7 +34,7 @@
                 "annotations": {
                   "xz": {
                     "name": "xz",
-                    "structuredValue": "z"
+                    "value": "z"
                   }
                 },
                 "name": "application/json",

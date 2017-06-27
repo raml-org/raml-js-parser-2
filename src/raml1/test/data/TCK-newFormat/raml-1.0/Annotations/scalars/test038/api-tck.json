@@ -52,7 +52,7 @@
               "maxProperties": [
                 {
                   "name": "a",
-                  "structuredValue": "abcdefg"
+                  "value": "abcdefg"
                 }
               ]
             },

@@ -14,15 +14,15 @@
         "annotations": {
           "<<param1>>": {
             "name": "<<param1>>",
-            "structuredValue": "stringValue1"
+            "value": "stringValue1"
           },
           "<<param2>>": {
             "name": "<<param2>>",
-            "structuredValue": 5
+            "value": 5
           },
           "lib.lib.Monkey": {
             "name": "lib.lib.Monkey",
-            "structuredValue": true
+            "value": true
           }
         },
         "methods": {
@@ -30,7 +30,7 @@
             "annotations": {
               "<<param1>>": {
                 "name": "<<param1>>",
-                "structuredValue": "stringValue2"
+                "value": "stringValue2"
               }
             },
             "method": "get"
@@ -39,7 +39,7 @@
             "annotations": {
               "<<param2>>": {
                 "name": "<<param2>>",
-                "structuredValue": 8
+                "value": 8
               }
             },
             "method": "post"
@@ -57,15 +57,15 @@
             "annotations": {
               "<<param1>>": {
                 "name": "<<param1>>",
-                "structuredValue": "stringValue3"
+                "value": "stringValue3"
               },
               "<<param2>>": {
                 "name": "<<param2>>",
-                "structuredValue": 16
+                "value": 16
               },
               "lib.lib.Monkey": {
                 "name": "lib.lib.Monkey",
-                "structuredValue": true
+                "value": true
               }
             },
             "method": "delete"

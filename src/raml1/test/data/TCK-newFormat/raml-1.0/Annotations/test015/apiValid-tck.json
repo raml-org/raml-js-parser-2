@@ -68,7 +68,7 @@
         "annotations": {
           "meta": {
             "name": "meta",
-            "structuredValue": "users100500.gif"
+            "value": "users100500.gif"
           }
         },
         "relativeUri": "/users",

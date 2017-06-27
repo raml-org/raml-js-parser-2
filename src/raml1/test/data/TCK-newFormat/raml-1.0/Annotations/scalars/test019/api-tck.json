@@ -30,7 +30,7 @@
               "format": [
                 {
                   "name": "a",
-                  "structuredValue": "abcdefghijkl"
+                  "value": "abcdefghijkl"
                 }
               ]
             },

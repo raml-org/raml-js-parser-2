@@ -3,7 +3,7 @@
     "annotations": {
       "amazon-apigateway-integration": {
         "name": "amazon-apigateway-integration",
-        "structuredValue": "1s"
+        "value": "1s"
       }
     },
     "types": {

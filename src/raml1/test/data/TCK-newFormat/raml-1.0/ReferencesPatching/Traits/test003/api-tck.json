@@ -15,7 +15,7 @@
         "annotations": {
           "lib2.MyAnnotation": {
             "name": "lib2.MyAnnotation",
-            "structuredValue": "stringValue"
+            "value": "stringValue"
           }
         },
         "body": {
@@ -52,7 +52,7 @@
             "annotations": {
               "lib2.MyAnnotation": {
                 "name": "lib2.MyAnnotation",
-                "structuredValue": "stringValue"
+                "value": "stringValue"
               }
             },
             "body": {

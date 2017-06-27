@@ -58,6 +58,7 @@ export class TCKDumper {
         this.nodeTransformers = [
             new MethodsTransformer(),
             new ResourcesTransformer(),
+            new AnnotationTransformer(),
             //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
             new TypeTransformer(this.options),
             //new ParametersTransformer(),
@@ -1238,6 +1239,27 @@ class MethodsTransformer extends BasicTransformation{
         return value;
     }
 }
+
+class AnnotationTransformer extends BasicTransformation{
+
+    constructor(){
+        super(universes.Universe10.AnnotationRef.name,null,true);
+    }
+
+    transform(value:any,node:hl.IParseResult){
+        if(Array.isArray(value)){
+            return value;
+        }
+        var pName = universes.Universe10.Reference.properties.structuredValue.name;
+        let structuredValue = value[pName];
+        if(structuredValue){
+            delete value[pName];
+            value.value = structuredValue;
+        }
+        return value;
+    }
+}
+
 
 class TypeTransformer extends BasicTransformation{
 

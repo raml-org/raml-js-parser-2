@@ -189,15 +189,15 @@
         "annotations": {
           "testHarness": {
             "name": "testHarness",
-            "structuredValue": "usersTest"
+            "value": "usersTest"
           },
           "badge": {
             "name": "badge",
-            "structuredValue": "tested.gif"
+            "value": "tested.gif"
           },
           "clearanceLevel": {
             "name": "clearanceLevel",
-            "structuredValue": {
+            "value": {
               "level": "high",
               "signature": "230-ghtwvfrs1itr"
             }
@@ -216,7 +216,7 @@
               },
               "feedbackRequested": {
                 "name": "feedbackRequested",
-                "structuredValue": "Feedback committed!"
+                "value": "Feedback committed!"
               }
             },
             "responses": {

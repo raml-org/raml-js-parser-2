@@ -127,7 +127,7 @@
             "annotations": {
               "monitor": {
                 "name": "monitor",
-                "structuredValue": {
+                "value": {
                   "frequency": {
                     "interval": 5,
                     "unitOfMeasure": "minutes"

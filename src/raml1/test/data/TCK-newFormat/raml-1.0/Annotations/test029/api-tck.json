@@ -7,11 +7,11 @@
             "annotations": {
               "<<annotation>>": {
                 "name": "<<annotation>>",
-                "structuredValue": "simpleAnnotationValue"
+                "value": "simpleAnnotationValue"
               },
               "objectAnnotation": {
                 "name": "objectAnnotation",
-                "structuredValue": {
+                "value": {
                   "property1": {
                     "field1": "<<annotationField>>",
                     "field2": 15
@@ -207,11 +207,11 @@
             "annotations": {
               "simpleAnnotation": {
                 "name": "simpleAnnotation",
-                "structuredValue": "simpleAnnotationValue"
+                "value": "simpleAnnotationValue"
               },
               "objectAnnotation": {
                 "name": "objectAnnotation",
-                "structuredValue": {
+                "value": {
                   "property1": {
                     "field1": "someFieldValue",
                     "field2": 15

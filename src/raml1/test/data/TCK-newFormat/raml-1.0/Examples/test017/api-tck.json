@@ -3,7 +3,7 @@
     "annotations": {
       "MyAnnotationType1": {
         "name": "MyAnnotationType1",
-        "structuredValue": {
+        "value": {
           "pp": {
             "x1x": "2",
             "xx2": "3"

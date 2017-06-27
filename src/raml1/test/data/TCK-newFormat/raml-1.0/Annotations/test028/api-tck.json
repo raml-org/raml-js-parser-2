@@ -117,7 +117,7 @@
         "annotations": {
           "childAnnotation": {
             "name": "childAnnotation",
-            "structuredValue": {
+            "value": {
               "baseProperty1": {
                 "field1": "field1_value",
                 "field2": 15
@@ -262,7 +262,7 @@
             "annotations": {
               "childAnnotation": {
                 "name": "childAnnotation",
-                "structuredValue": {
+                "value": {
                   "baseProperty1": {
                     "field2": 19
                   },

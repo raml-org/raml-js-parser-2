@@ -96,14 +96,14 @@
         "annotations": {
           "test-harness": {
             "name": "test-harness",
-            "structuredValue": {
+            "value": {
               "name": "user-harness",
               "level": "medium"
             }
           },
           "logo": {
             "name": "logo",
-            "structuredValue": "google.com"
+            "value": "google.com"
           }
         },
         "relativeUri": "/users",

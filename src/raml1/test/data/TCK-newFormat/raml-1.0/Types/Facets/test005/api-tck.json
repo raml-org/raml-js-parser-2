@@ -5,11 +5,11 @@
         "annotations": {
           "reader": {
             "name": "reader",
-            "structuredValue": "myReaader.ts"
+            "value": "myReaader.ts"
           },
           "writer": {
             "name": "writer",
-            "structuredValue": "myWiter.ts"
+            "value": "myWiter.ts"
           }
         },
         "name": "myDate",

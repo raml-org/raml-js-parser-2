@@ -58,13 +58,13 @@
             [
               {
                 "name": "a",
-                "structuredValue": "qwertyuiop"
+                "value": "qwertyuiop"
               }
             ],
             [
               {
                 "name": "a",
-                "structuredValue": "asdfg"
+                "value": "asdfg"
               }
             ]
           ]

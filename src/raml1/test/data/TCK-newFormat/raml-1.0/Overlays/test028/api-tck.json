@@ -5,7 +5,7 @@
         "annotations": {
           "Test3": {
             "name": "Test3",
-            "structuredValue": {
+            "value": {
               "name": "Blah"
             }
           }

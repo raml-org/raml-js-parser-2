@@ -103,7 +103,7 @@
             "annotations": {
               "searchable": {
                 "name": "searchable",
-                "structuredValue": "someValue"
+                "value": "someValue"
               }
             },
             "queryParameters": {
@@ -111,7 +111,7 @@
                 "annotations": {
                   "sortable": {
                     "name": "sortable",
-                    "structuredValue": {
+                    "value": {
                       "default": "low"
                     }
                   },

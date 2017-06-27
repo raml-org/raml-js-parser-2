@@ -19,7 +19,7 @@
                 "annotations": {
                   "bindingDefinition": {
                     "name": "bindingDefinition",
-                    "structuredValue": [
+                    "value": [
                       {
                         "method": "GET",
                         "input": "NONE",

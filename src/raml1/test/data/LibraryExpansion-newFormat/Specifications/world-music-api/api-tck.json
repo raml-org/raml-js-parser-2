@@ -3,7 +3,7 @@
     "annotations": {
       "info": {
         "name": "info",
-        "structuredValue": {
+        "value": {
           "license": "MIT"
         }
       }
@@ -1628,7 +1628,7 @@
             "annotations": {
               "monitoringInterval": {
                 "name": "monitoringInterval",
-                "structuredValue": 30
+                "value": 30
               }
             },
             "queryParameters": {
@@ -1755,7 +1755,7 @@
                 "annotations": {
                   "deprecated": {
                     "name": "deprecated",
-                    "structuredValue": {
+                    "value": {
                       "date": "2016-02-28T16:41:41.090Z",
                       "deprecatedBy": {
                         "firstname": "Christian"
@@ -1912,7 +1912,7 @@
       "baseUri": [
         {
           "name": "rediractable",
-          "structuredValue": true
+          "value": true
         }
       ]
     }

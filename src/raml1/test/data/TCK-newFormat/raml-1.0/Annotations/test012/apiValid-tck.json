@@ -3,7 +3,7 @@
     "annotations": {
       "Type": {
         "name": "Type",
-        "structuredValue": {
+        "value": {
           "prop1": {
             "prop1": 1
           }

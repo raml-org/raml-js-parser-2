@@ -44,13 +44,13 @@
           "description": [
             {
               "name": "a1",
-              "structuredValue": 5
+              "value": 5
             }
           ],
           "displayName": [
             {
               "name": "a2",
-              "structuredValue": "value1"
+              "value": "value1"
             }
           ]
         },

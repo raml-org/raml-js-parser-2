@@ -33,7 +33,7 @@
               "default": [
                 {
                   "name": "a",
-                  "structuredValue": "abcdefghijk"
+                  "value": "abcdefghijk"
                 }
               ]
             },

@@ -5,7 +5,7 @@
         "annotations": {
           "meta-data": {
             "name": "meta-data",
-            "structuredValue": "on an object; on a data type declaration"
+            "value": "on an object; on a data type declaration"
           }
         },
         "name": "User",
@@ -18,7 +18,7 @@
             "annotations": {
               "meta-data": {
                 "name": "meta-data",
-                "structuredValue": "on a string property"
+                "value": "on a string property"
               }
             },
             "name": "name",
@@ -105,7 +105,7 @@
         "annotations": {
           "meta-resource-method": {
             "name": "meta-resource-method",
-            "structuredValue": "on a resource"
+            "value": "on a resource"
           }
         },
         "methods": {
@@ -113,7 +113,7 @@
             "annotations": {
               "meta-resource-method": {
                 "name": "meta-resource-method",
-                "structuredValue": "on a method"
+                "value": "on a method"
               }
             },
             "responses": {
@@ -124,7 +124,7 @@
                     "annotations": {
                       "meta-data": {
                         "name": "meta-data",
-                        "structuredValue": "on a body"
+                        "value": "on a body"
                       }
                     },
                     "name": "application/json",

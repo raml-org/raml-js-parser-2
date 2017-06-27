@@ -17,7 +17,7 @@
             "annotations": {
               "lib1.lib2.MyAnnotation": {
                 "name": "lib1.lib2.MyAnnotation",
-                "structuredValue": "stringValue"
+                "value": "stringValue"
               }
             },
             "name": "application/json",
@@ -71,7 +71,7 @@
                 "annotations": {
                   "lib1.lib2.MyAnnotation": {
                     "name": "lib1.lib2.MyAnnotation",
-                    "structuredValue": "stringValue"
+                    "value": "stringValue"
                   }
                 },
                 "name": "application/json",

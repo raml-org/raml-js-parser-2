@@ -124,7 +124,7 @@
       "baseUri": [
         {
           "name": "bindingDefinition",
-          "structuredValue": [
+          "value": [
             {
               "method": "GET",
               "input": "NONE",

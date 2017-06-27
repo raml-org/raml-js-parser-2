@@ -34,7 +34,7 @@
       "baseUri": [
         {
           "name": "redirectable",
-          "structuredValue": true
+          "value": true
         }
       ]
     }

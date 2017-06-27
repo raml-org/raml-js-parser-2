@@ -3,7 +3,7 @@
     "annotations": {
       "test": {
         "name": "test",
-        "structuredValue": {
+        "value": {
           "q": true,
           "items": "W"
         }

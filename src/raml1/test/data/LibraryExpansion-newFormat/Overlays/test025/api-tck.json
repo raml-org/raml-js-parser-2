@@ -82,11 +82,11 @@
         "annotations": {
           "lib.TestAnnotationType": {
             "name": "lib.TestAnnotationType",
-            "structuredValue": "TestAnnotationType2"
+            "value": "TestAnnotationType2"
           },
           "lib.AnotherAnnotationType": {
             "name": "lib.AnotherAnnotationType",
-            "structuredValue": {
+            "value": {
               "firstProp": "firstProp2",
               "secondProp": 101
             }

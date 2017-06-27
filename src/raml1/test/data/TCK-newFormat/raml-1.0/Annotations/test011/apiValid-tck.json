@@ -3,7 +3,7 @@
     "annotations": {
       "hello": {
         "name": "hello",
-        "structuredValue": {
+        "value": {
           "persons": {
             "156798654": {
               "Alice": {

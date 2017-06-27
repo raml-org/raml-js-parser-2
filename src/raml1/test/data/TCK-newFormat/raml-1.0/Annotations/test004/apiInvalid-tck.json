@@ -114,7 +114,7 @@
         "annotations": {
           "Label": {
             "name": "Label",
-            "structuredValue": {
+            "value": {
               "point": {
                 "x": 3
               }

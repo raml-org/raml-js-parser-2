@@ -3,7 +3,7 @@
     "annotations": {
       "MyAnnotation": {
         "name": "MyAnnotation",
-        "structuredValue": {
+        "value": {
           "numberProp": "10s"
         }
       }

@@ -3,7 +3,7 @@
     "annotations": {
       "MyAnnotationType1": {
         "name": "MyAnnotationType1",
-        "structuredValue": {
+        "value": {
           "cc": [
             1,
             2,
@@ -14,7 +14,7 @@
       },
       "MyAnnotationType2": {
         "name": "MyAnnotationType2",
-        "structuredValue": "a"
+        "value": "a"
       }
     },
     "types": {

@@ -172,7 +172,7 @@
             "annotations": {
               "views.views": {
                 "name": "views.views",
-                "structuredValue": [
+                "value": [
                   {
                     "id": "x",
                     "fixedParameters": {

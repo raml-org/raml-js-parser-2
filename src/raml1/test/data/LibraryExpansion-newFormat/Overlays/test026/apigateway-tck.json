@@ -712,11 +712,11 @@
             "annotations": {
               "AWS.amazon-apigateway-auth": {
                 "name": "AWS.amazon-apigateway-auth",
-                "structuredValue": "aws_iam"
+                "value": "aws_iam"
               },
               "AWS.amazon-apigateway-integration": {
                 "name": "AWS.amazon-apigateway-integration",
-                "structuredValue": {
+                "value": {
                   "type": "aws",
                   "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
                   "httpMethod": "POST",

@@ -19,7 +19,7 @@
           "minItems": [
             {
               "name": "a",
-              "structuredValue": "abcdefghijkl"
+              "value": "abcdefghijkl"
             }
           ]
         },

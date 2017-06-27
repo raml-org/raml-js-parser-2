@@ -5,11 +5,11 @@
         "annotations": {
           "simpleAnnotation": {
             "name": "simpleAnnotation",
-            "structuredValue": "simpleAnnotation_value_on_type"
+            "value": "simpleAnnotation_value_on_type"
           },
           "objectAnnotation": {
             "name": "objectAnnotation",
-            "structuredValue": {
+            "value": {
               "property1": {
                 "field1": "field1_value",
                 "field2": 15
@@ -218,11 +218,11 @@
             "annotations": {
               "simpleAnnotation": {
                 "name": "simpleAnnotation",
-                "structuredValue": "simpleAnnotation_value_on_method"
+                "value": "simpleAnnotation_value_on_method"
               },
               "objectAnnotation": {
                 "name": "objectAnnotation",
-                "structuredValue": {
+                "value": {
                   "property1": {
                     "field2": 19
                   }

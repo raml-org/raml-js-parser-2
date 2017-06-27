@@ -5,7 +5,7 @@
         "annotations": {
           "lib.MyAnnotation": {
             "name": "lib.MyAnnotation",
-            "structuredValue": "stringValueFromLibTrait1"
+            "value": "stringValueFromLibTrait1"
           }
         },
         "name": "libTrait1"
@@ -14,7 +14,7 @@
         "annotations": {
           "lib.MyAnnotation": {
             "name": "lib.MyAnnotation",
-            "structuredValue": "stringValueFromLibTrait2"
+            "value": "stringValueFromLibTrait2"
           }
         },
         "name": "libTrait2"
@@ -62,7 +62,7 @@
             "annotations": {
               "lib.MyAnnotation": {
                 "name": "lib.MyAnnotation",
-                "structuredValue": "stringValueFromLibTrait1"
+                "value": "stringValueFromLibTrait1"
               }
             },
             "is": [
@@ -76,7 +76,7 @@
             "annotations": {
               "lib.MyAnnotation": {
                 "name": "lib.MyAnnotation",
-                "structuredValue": "stringValueFromLibTrait2"
+                "value": "stringValueFromLibTrait2"
               }
             },
             "is": [

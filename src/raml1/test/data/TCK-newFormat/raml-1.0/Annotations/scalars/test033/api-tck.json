@@ -30,7 +30,7 @@
               "maximum": [
                 {
                   "name": "a",
-                  "structuredValue": "abcdefghijkl"
+                  "value": "abcdefghijkl"
                 }
               ]
             },

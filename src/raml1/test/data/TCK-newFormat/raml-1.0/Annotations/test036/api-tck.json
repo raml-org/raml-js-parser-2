@@ -25,7 +25,7 @@
         "annotations": {
           "Label": {
             "name": "Label",
-            "structuredValue": {
+            "value": {
               "field1": 7,
               "field2": true,
               "field3": "stringValue",

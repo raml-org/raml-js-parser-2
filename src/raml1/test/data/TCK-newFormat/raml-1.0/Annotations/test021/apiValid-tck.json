@@ -23,7 +23,7 @@
         "annotations": {
           "TestAnnotation": {
             "name": "TestAnnotation",
-            "structuredValue": "stringValue1"
+            "value": "stringValue1"
           }
         },
         "name": "TestScheme",
@@ -32,7 +32,7 @@
           "annotations": {
             "TestAnnotation": {
               "name": "TestAnnotation",
-              "structuredValue": "stringValue2"
+              "value": "stringValue2"
             }
           },
           "requestTokenUri": "https://example.com/requesttoken",
