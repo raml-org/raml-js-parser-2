@@ -115,6 +115,16 @@
                     "type": [
                       "object"
                     ],
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      },
+                      {
+                        "key": "types2",
+                        "value": "../libs/types2.raml"
+                      }
+                    ],
                     "properties": {
                       "ownLibProperty": {
                         "name": "ownLibProperty",
@@ -157,16 +167,6 @@
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
-                      }
-                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -228,6 +228,16 @@
                     "type": [
                       "object"
                     ],
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      },
+                      {
+                        "key": "types2",
+                        "value": "../libs/types2.raml"
+                      }
+                    ],
                     "properties": {
                       "ownLibProperty": {
                         "name": "ownLibProperty",
@@ -270,16 +280,6 @@
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
-                      }
-                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -319,7 +319,9 @@
                 "typePropertyKind": "INPLACE"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "put": {
             "body": {
@@ -347,7 +349,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "type": "rt",
@@ -365,7 +369,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

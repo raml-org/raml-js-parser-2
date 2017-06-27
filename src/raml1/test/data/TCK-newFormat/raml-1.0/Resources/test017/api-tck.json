@@ -14,7 +14,9 @@
                   5,
                   false
                 ],
-                "method": "get"
+                "method": "get",
+                "parentUri": "/users/{id}",
+                "absoluteParentUri": "/users/{id}"
               }
             },
             "type": true,
@@ -58,7 +60,8 @@
             ],
             "absoluteUri": "/users/{id}",
             "completeRelativeUri": "/users/{id}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -73,7 +76,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

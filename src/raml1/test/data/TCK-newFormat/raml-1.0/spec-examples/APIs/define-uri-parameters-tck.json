@@ -23,7 +23,8 @@
         ],
         "absoluteUri": "https://api.github.com/user",
         "completeRelativeUri": "/user",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com"
       },
       {
         "description": "All users",
@@ -69,7 +70,8 @@
             ],
             "absoluteUri": "https://api.github.com/users/{userId}",
             "completeRelativeUri": "/users/{userId}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.github.com/users"
           }
         ],
         "__METADATA__": {
@@ -84,7 +86,8 @@
         ],
         "absoluteUri": "https://api.github.com/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com"
       }
     ],
     "__METADATA__": {

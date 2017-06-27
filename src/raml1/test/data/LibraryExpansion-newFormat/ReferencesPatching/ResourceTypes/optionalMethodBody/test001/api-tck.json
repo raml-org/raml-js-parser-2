@@ -1,12 +1,9 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "types": {
       "lib.MyType": {
         "name": "MyType",
         "displayName": "MyType",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
@@ -14,11 +11,9 @@
           "p1": {
             "name": "p1",
             "displayName": "p1",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
-            "mediaType": "application/raml+yaml",
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -32,16 +27,16 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
           "p2": {
             "name": "p2",
             "displayName": "p2",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "string"
             ],
-            "mediaType": "application/raml+yaml",
             "required": true,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -55,10 +50,11 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
-        "mediaType": "application/raml+yaml",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -68,30 +64,31 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "resourceTypes": {
       "rt": {
-        "name": "rt",
         "methods": {
           "post": {
             "body": {
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "<<typeName>>"
                 ],
-                "mediaType": "application/raml+yaml",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
                     }
                   }
-                }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
             "method": "post",
@@ -99,7 +96,8 @@
               "optional": true
             }
           }
-        }
+        },
+        "name": "rt"
       }
     },
     "title": "test API",
@@ -124,9 +122,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

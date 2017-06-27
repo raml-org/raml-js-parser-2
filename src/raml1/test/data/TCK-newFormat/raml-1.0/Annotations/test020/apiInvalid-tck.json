@@ -169,7 +169,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/animals",
+            "absoluteParentUri": "/animals"
           }
         },
         "relativeUri": "/animals",
@@ -186,7 +188,8 @@
         ],
         "absoluteUri": "/animals",
         "completeRelativeUri": "/animals",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

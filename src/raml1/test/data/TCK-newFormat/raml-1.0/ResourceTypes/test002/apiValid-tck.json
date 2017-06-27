@@ -146,7 +146,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "get": {
             "responses": {
@@ -172,7 +174,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "type": "AnotherType",
@@ -190,7 +194,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -4,7 +4,6 @@
       "primitives.ExtLocale": {
         "name": "ExtLocale",
         "displayName": "ExtLocale",
-        "typePropertyKind": "JSON",
         "schemaPath": "schemas/locale.xsd",
         "type": [
           "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"language\": {\"type\": \"string\", \"minLength\": 2},\n    \"country\": {\"type\": \"string\", \"minLength\": 2}\n  },\n  \"required\": [\"language\"]\n}"
@@ -57,7 +56,9 @@
                 "mediaType": "application/json"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/exampleRes",
+            "absoluteParentUri": "/exampleRes"
           }
         },
         "relativeUri": "/exampleRes",
@@ -74,7 +75,8 @@
         ],
         "absoluteUri": "/exampleRes",
         "completeRelativeUri": "/exampleRes",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

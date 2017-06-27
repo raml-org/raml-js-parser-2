@@ -440,9 +440,9 @@
                 }
               }
             },
-            "items": "string",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "string"
           },
           "responses": {
             "name": "responses",
@@ -806,7 +806,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/products",
+            "absoluteParentUri": "https://api.uber.com/products"
           }
         },
         "description": "The Products endpoint returns information about the *Uber* products\noffered at a given location. The response includes the display name\nand other details about each product, and lists the products in the\nproper display order.\n",
@@ -817,7 +819,8 @@
         ],
         "absoluteUri": "https://api.uber.com/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.uber.com"
       }
     ],
     "extends": "apigateway.raml",

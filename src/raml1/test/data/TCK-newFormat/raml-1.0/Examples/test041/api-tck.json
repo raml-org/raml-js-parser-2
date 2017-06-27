@@ -184,7 +184,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test"
           }
         },
         "relativeUri": "/test",
@@ -201,7 +203,8 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -203,9 +203,9 @@
                 }
               }
             },
-            "items": "types.Location",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.Location"
           }
         },
         "__METADATA__": {
@@ -1117,9 +1117,9 @@
                 }
               }
             },
-            "items": "types.SubscriptionData",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.SubscriptionData"
           }
         },
         "__METADATA__": {
@@ -1388,9 +1388,9 @@
                 }
               }
             },
-            "items": "types.SerachTagItem",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.SerachTagItem"
           }
         },
         "__METADATA__": {
@@ -1554,9 +1554,9 @@
                 }
               }
             },
-            "items": "types.MediaLike",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.MediaLike"
           }
         },
         "__METADATA__": {
@@ -1745,9 +1745,9 @@
                 }
               }
             },
-            "items": "types.Comment",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.Comment"
           }
         },
         "__METADATA__": {
@@ -2033,9 +2033,9 @@
                 }
               }
             },
-            "items": "types.UsersItem",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.UsersItem"
           }
         },
         "__METADATA__": {
@@ -2178,9 +2178,9 @@
                 }
               }
             },
-            "items": "types.User",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.User"
           }
         },
         "__METADATA__": {
@@ -2430,9 +2430,9 @@
                 }
               }
             },
-            "items": "types.TagsRecentMediaItem",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.TagsRecentMediaItem"
           }
         },
         "__METADATA__": {
@@ -2543,9 +2543,9 @@
                 }
               }
             },
-            "items": "types.UsersInPhoto",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.UsersInPhoto"
           },
           "filter": {
             "name": "filter",
@@ -2584,9 +2584,9 @@
                 }
               }
             },
-            "items": "string",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "string"
           },
           "comments": {
             "name": "comments",
@@ -2613,9 +2613,9 @@
                     }
                   }
                 },
-                "items": "types.Comment",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.Comment"
               },
               "count": {
                 "name": "count",
@@ -3021,9 +3021,9 @@
                     }
                   }
                 },
-                "items": "types.UsersInPhoto",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.UsersInPhoto"
               },
               "filter": {
                 "name": "filter",
@@ -3062,9 +3062,9 @@
                     }
                   }
                 },
-                "items": "string",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "string"
               },
               "comments": {
                 "name": "comments",
@@ -3091,9 +3091,9 @@
                         }
                       }
                     },
-                    "items": "types.Comment",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "types.Comment"
                   },
                   "count": {
                     "name": "count",
@@ -3451,9 +3451,9 @@
                 }
               }
             },
-            "items": "types.UsersInPhoto",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.UsersInPhoto"
           },
           "filter": {
             "name": "filter",
@@ -3492,9 +3492,9 @@
                 }
               }
             },
-            "items": "string",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "string"
           },
           "comments": {
             "name": "comments",
@@ -3521,9 +3521,9 @@
                     }
                   }
                 },
-                "items": "types.Comment",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.Comment"
               },
               "count": {
                 "name": "count",
@@ -4033,9 +4033,9 @@
                     }
                   }
                 },
-                "items": "types.UsersInPhoto",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.UsersInPhoto"
               },
               "type": {
                 "name": "type",
@@ -4094,9 +4094,9 @@
                     }
                   }
                 },
-                "items": "string",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "string"
               },
               "comments": {
                 "name": "comments",
@@ -4123,9 +4123,9 @@
                         }
                       }
                     },
-                    "items": "types.Comment",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "types.Comment"
                   },
                   "count": {
                     "name": "count",
@@ -4518,9 +4518,9 @@
                 }
               }
             },
-            "items": "types.MediaSearchFirstType | types.MediaSearchSecondType",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.MediaSearchFirstType | types.MediaSearchSecondType"
           }
         },
         "__METADATA__": {
@@ -5769,7 +5769,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/media/{mediaId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               }
             },
             "type": "base",
@@ -5924,7 +5926,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/comments",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   },
                   "post": {
                     "responses": {
@@ -6030,7 +6034,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/comments",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   }
                 },
                 "type": {
@@ -6116,7 +6122,9 @@
                               "calculated": true
                             }
                           }
-                        }
+                        },
+                        "parentUri": "/media/{mediaId}/comments/{commentId}",
+                        "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}"
                       }
                     },
                     "type": {
@@ -6170,7 +6178,8 @@
                     ],
                     "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}",
                     "completeRelativeUri": "/media/{mediaId}/comments/{commentId}",
-                    "parentUri": "/media/{mediaId}/comments"
+                    "parentUri": "/media/{mediaId}/comments",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   }
                 ],
                 "__METADATA__": {
@@ -6185,7 +6194,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments",
                 "completeRelativeUri": "/media/{mediaId}/comments",
-                "parentUri": "/media/{mediaId}"
+                "parentUri": "/media/{mediaId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               },
               {
                 "methods": {
@@ -6305,7 +6315,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/likes",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   },
                   "post": {
                     "responses": {
@@ -6368,7 +6380,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/likes",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   },
                   "delete": {
                     "responses": {
@@ -6437,7 +6451,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/likes",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   }
                 },
                 "type": {
@@ -6468,7 +6484,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/likes",
                 "completeRelativeUri": "/media/{mediaId}/likes",
-                "parentUri": "/media/{mediaId}"
+                "parentUri": "/media/{mediaId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               }
             ],
             "__METADATA__": {
@@ -6486,7 +6503,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}",
             "completeRelativeUri": "/media/{mediaId}",
-            "parentUri": "/media"
+            "parentUri": "/media",
+            "absoluteParentUri": "https://api.instagram.com/{version}/media"
           },
           {
             "methods": {
@@ -6810,7 +6828,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/media/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/search"
               }
             },
             "type": "mediaSearch",
@@ -6835,7 +6855,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/media/search",
             "completeRelativeUri": "/media/search",
-            "parentUri": "/media"
+            "parentUri": "/media",
+            "absoluteParentUri": "https://api.instagram.com/{version}/media"
           },
           {
             "methods": {
@@ -7050,7 +7071,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/media/popular",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/popular"
               }
             },
             "type": "mediaSearch",
@@ -7075,7 +7098,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/media/popular",
             "completeRelativeUri": "/media/popular",
-            "parentUri": "/media"
+            "parentUri": "/media",
+            "absoluteParentUri": "https://api.instagram.com/{version}/media"
           }
         ],
         "__METADATA__": {
@@ -7093,7 +7117,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/media",
         "completeRelativeUri": "/media",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "securedBy": [
@@ -7216,7 +7241,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/tags/{tagName}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}"
               }
             },
             "type": "base",
@@ -7409,7 +7436,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/tags/{tagName}/media/recent",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent"
                   }
                 },
                 "type": "base",
@@ -7435,7 +7464,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent",
                 "completeRelativeUri": "/tags/{tagName}/media/recent",
-                "parentUri": "/tags/{tagName}"
+                "parentUri": "/tags/{tagName}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}"
               }
             ],
             "__METADATA__": {
@@ -7453,7 +7483,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}",
             "completeRelativeUri": "/tags/{tagName}",
-            "parentUri": "/tags"
+            "parentUri": "/tags",
+            "absoluteParentUri": "https://api.instagram.com/{version}/tags"
           },
           {
             "methods": {
@@ -7596,7 +7627,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/tags/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/tags/search"
               }
             },
             "type": "base",
@@ -7621,7 +7654,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/tags/search",
             "completeRelativeUri": "/tags/search",
-            "parentUri": "/tags"
+            "parentUri": "/tags",
+            "absoluteParentUri": "https://api.instagram.com/{version}/tags"
           }
         ],
         "__METADATA__": {
@@ -7639,7 +7673,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/tags",
         "completeRelativeUri": "/tags",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "securedBy": [
@@ -7762,7 +7797,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               }
             },
             "type": "base",
@@ -7948,7 +7985,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/follows",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/follows"
                   }
                 },
                 "type": "usersListing",
@@ -7975,7 +8014,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows",
                 "completeRelativeUri": "/users/{userId}/follows",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
                 "methods": {
@@ -8126,7 +8166,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/followed-by",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/followed-by"
                   }
                 },
                 "type": "usersListing",
@@ -8153,7 +8195,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by",
                 "completeRelativeUri": "/users/{userId}/followed-by",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
                 "methods": {
@@ -8545,7 +8588,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/media/recent",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/media/recent"
                   }
                 },
                 "type": "feedsListing",
@@ -8571,7 +8616,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent",
                 "completeRelativeUri": "/users/{userId}/media/recent",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
                 "methods": {
@@ -8691,7 +8737,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/relationship",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
                   },
                   "post": {
                     "responses": {
@@ -8808,7 +8856,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/relationship",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
                   }
                 },
                 "type": {
@@ -8839,7 +8889,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/relationship",
                 "completeRelativeUri": "/users/{userId}/relationship",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               }
             ],
             "__METADATA__": {
@@ -8857,7 +8908,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/users/{userId}",
             "completeRelativeUri": "/users/{userId}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.instagram.com/{version}/users"
           },
           {
             "methods": {
@@ -9036,7 +9088,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/users/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/search"
               }
             },
             "type": "usersListing",
@@ -9063,7 +9117,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/users/search",
             "completeRelativeUri": "/users/search",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.instagram.com/{version}/users"
           },
           {
             "methods": {
@@ -9183,7 +9238,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               }
             },
             "type": {
@@ -9550,7 +9607,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/self/feed",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/self/feed"
                   }
                 },
                 "type": "feedsListing",
@@ -9575,7 +9634,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/feed",
                 "completeRelativeUri": "/users/self/feed",
-                "parentUri": "/users/self"
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               },
               {
                 "methods": {
@@ -9726,7 +9786,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/self/requested-by",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/self/requested-by"
                   }
                 },
                 "type": "usersListing",
@@ -9753,7 +9815,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by",
                 "completeRelativeUri": "/users/self/requested-by",
-                "parentUri": "/users/self"
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               },
               {
                 "methods": {
@@ -10087,7 +10150,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/self/media/liked",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/self/media/liked"
                   }
                 },
                 "type": "feedsListing",
@@ -10113,7 +10178,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/media/liked",
                 "completeRelativeUri": "/users/self/media/liked",
-                "parentUri": "/users/self"
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               }
             ],
             "__METADATA__": {
@@ -10128,7 +10194,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/users/self",
             "completeRelativeUri": "/users/self",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.instagram.com/{version}/users"
           }
         ],
         "__METADATA__": {
@@ -10146,7 +10213,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "securedBy": [
@@ -10269,7 +10337,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/locations/{locId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}"
               }
             },
             "type": "base",
@@ -10692,7 +10762,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/locations/{locId}/media/recent",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent"
                   }
                 },
                 "type": "feedsListing",
@@ -10718,7 +10790,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent",
                 "completeRelativeUri": "/locations/{locId}/media/recent",
-                "parentUri": "/locations/{locId}"
+                "parentUri": "/locations/{locId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}"
               }
             ],
             "__METADATA__": {
@@ -10736,7 +10809,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}",
             "completeRelativeUri": "/locations/{locId}",
-            "parentUri": "/locations"
+            "parentUri": "/locations",
+            "absoluteParentUri": "https://api.instagram.com/{version}/locations"
           },
           {
             "methods": {
@@ -10965,7 +11039,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/locations/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/locations/search"
               }
             },
             "type": "base",
@@ -10990,7 +11066,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/locations/search",
             "completeRelativeUri": "/locations/search",
-            "parentUri": "/locations"
+            "parentUri": "/locations",
+            "absoluteParentUri": "https://api.instagram.com/{version}/locations"
           }
         ],
         "__METADATA__": {
@@ -11008,7 +11085,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/locations",
         "completeRelativeUri": "/locations",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "methods": {
@@ -11133,7 +11211,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/geographies/{geoId}/media/recent",
+            "absoluteParentUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent"
           }
         },
         "type": "base",
@@ -11187,7 +11267,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent",
         "completeRelativeUri": "/geographies/{geoId}/media/recent",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "methods": {
@@ -11340,7 +11421,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/subscriptions",
+            "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
           "post": {
             "responses": {
@@ -11612,7 +11695,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/subscriptions",
+            "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
           "delete": {
             "queryParameters": {
@@ -11755,7 +11840,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/subscriptions",
+            "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           }
         },
         "type": "base",
@@ -11780,7 +11867,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/subscriptions",
         "completeRelativeUri": "/subscriptions",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       }
     ],
     "documentation": [

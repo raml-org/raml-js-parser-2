@@ -133,7 +133,9 @@
                 "structuredValue": "stringValue2"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "post": {
             "annotations": {
@@ -142,7 +144,9 @@
                 "structuredValue": 8
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "put": {
             "annotations": {
@@ -151,7 +155,9 @@
                 "structuredValue": false
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "delete": {
             "annotations": {
@@ -168,7 +174,9 @@
                 "structuredValue": true
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "type": {
@@ -190,7 +198,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

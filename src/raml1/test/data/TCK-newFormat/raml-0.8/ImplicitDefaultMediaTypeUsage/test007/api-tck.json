@@ -54,7 +54,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/photos",
+            "absoluteParentUri": "/photos"
           }
         },
         "displayName": "/photos",
@@ -70,7 +72,8 @@
         ],
         "absoluteUri": "/photos",
         "completeRelativeUri": "/photos",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

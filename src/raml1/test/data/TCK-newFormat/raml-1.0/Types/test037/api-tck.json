@@ -1,12 +1,9 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "types": {
       "ArrayOfInt": {
         "name": "ArrayOfInt",
         "displayName": "ArrayOfInt",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
@@ -14,28 +11,29 @@
           {
             "name": "items",
             "displayName": "items",
-            "typePropertyKind": "TYPE_EXPRESSION",
             "type": [
               "integer"
             ],
-            "mediaType": "application/raml+yaml",
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
                   "calculated": true
                 }
               }
-            }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
-        "mediaType": "application/raml+yaml",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "TestApi",
@@ -47,11 +45,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "type": [
-                  "ArrayOfInt"
-                ],
-                "mediaType": "application/raml+yaml",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -61,15 +54,20 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "ArrayOfInt"
+                ],
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/persons",
+            "absoluteParentUri": "/persons"
           }
         },
         "relativeUri": "/persons",
-        "completeRelativeUri": "/persons",
-        "parentUri": "",
         "displayName": "/persons",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -81,9 +79,14 @@
         "relativeUriPathSegments": [
           "persons"
         ],
-        "absoluteUri": "/persons"
+        "absoluteUri": "/persons",
+        "completeRelativeUri": "/persons",
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": []
 }

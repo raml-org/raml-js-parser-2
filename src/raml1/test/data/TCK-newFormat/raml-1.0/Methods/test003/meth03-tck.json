@@ -5,25 +5,39 @@
       {
         "methods": {
           "post": {
-            "method": "post"
+            "method": "post",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           },
           "get": {
-            "method": "get"
+            "method": "get",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           },
           "put": {
-            "method": "put"
+            "method": "put",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           },
           "options": {
-            "method": "options"
+            "method": "options",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           },
           "head": {
-            "method": "head"
+            "method": "head",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           },
           "patch": {
-            "method": "patch"
+            "method": "patch",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           },
           "delete": {
-            "method": "delete"
+            "method": "delete",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods"
           }
         },
         "relativeUri": "/methods",
@@ -40,7 +54,8 @@
         ],
         "absoluteUri": "/methods",
         "completeRelativeUri": "/methods",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

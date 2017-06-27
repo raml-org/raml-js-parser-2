@@ -34,7 +34,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/customers",
+            "absoluteParentUri": "/customers"
           }
         },
         "relativeUri": "/customers",
@@ -51,7 +53,8 @@
         ],
         "absoluteUri": "/customers",
         "completeRelativeUri": "/customers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -46,7 +46,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/someChildUri",
+            "absoluteParentUri": "/some/base/uri/someChildUri"
           }
         },
         "relativeUri": "/someChildUri",
@@ -87,7 +89,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/someChildUri/anotherChild",
+                "absoluteParentUri": "/some/base/uri/someChildUri/anotherChild"
               }
             },
             "relativeUri": "/anotherChild",
@@ -104,7 +108,8 @@
             ],
             "absoluteUri": "/some/base/uri/someChildUri/anotherChild",
             "completeRelativeUri": "/someChildUri/anotherChild",
-            "parentUri": "/someChildUri"
+            "parentUri": "/someChildUri",
+            "absoluteParentUri": "/some/base/uri/someChildUri"
           }
         ],
         "__METADATA__": {
@@ -119,7 +124,8 @@
         ],
         "absoluteUri": "/some/base/uri/someChildUri",
         "completeRelativeUri": "/someChildUri",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/some/base/uri"
       }
     ],
     "__METADATA__": {

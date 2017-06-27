@@ -50,7 +50,8 @@
             ],
             "absoluteUri": "/policies/{id}",
             "completeRelativeUri": "/policies/{id}",
-            "parentUri": "/policies"
+            "parentUri": "/policies",
+            "absoluteParentUri": "/policies"
           }
         ],
         "__METADATA__": {
@@ -65,7 +66,8 @@
         ],
         "absoluteUri": "/policies",
         "completeRelativeUri": "/policies",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

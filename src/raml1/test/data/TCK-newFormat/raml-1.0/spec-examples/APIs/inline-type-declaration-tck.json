@@ -90,7 +90,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/users/{id}",
+            "absoluteParentUri": "/users/{id}"
           }
         },
         "uriParameters": {
@@ -134,7 +136,8 @@
         ],
         "absoluteUri": "/users/{id}",
         "completeRelativeUri": "/users/{id}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

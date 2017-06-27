@@ -72,7 +72,9 @@
               }
             },
             "description": "Parse the given RAML files",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/parseFiles",
+            "absoluteParentUri": "/parseFiles"
           }
         },
         "relativeUri": "/parseFiles",
@@ -89,7 +91,8 @@
         ],
         "absoluteUri": "/parseFiles",
         "completeRelativeUri": "/parseFiles",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

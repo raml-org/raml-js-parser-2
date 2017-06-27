@@ -53,7 +53,9 @@
         "methods": {
           "get": {
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           },
           "post": {
             "responses": {
@@ -87,7 +89,9 @@
               }
             },
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           }
         },
         "type": "collection",
@@ -106,7 +110,8 @@
         ],
         "absoluteUri": "/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

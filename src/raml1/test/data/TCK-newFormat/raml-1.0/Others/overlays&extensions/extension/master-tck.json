@@ -32,7 +32,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/items",
+            "absoluteParentUri": "http://myItems.com/items"
           }
         },
         "relativeUri": "/items",
@@ -49,7 +51,8 @@
         ],
         "absoluteUri": "http://myItems.com/items",
         "completeRelativeUri": "/items",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://myItems.com"
       },
       {
         "methods": {
@@ -59,7 +62,9 @@
                 "code": "200"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/elements",
+            "absoluteParentUri": "/elements"
           }
         },
         "relativeUri": "/elements",
@@ -76,7 +81,8 @@
         ],
         "absoluteUri": "/elements",
         "completeRelativeUri": "/elements",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ],
     "extends": "master.raml",

@@ -145,9 +145,9 @@
                 }
               }
             },
-            "items": "User",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "User"
           },
           "/^X/": {
             "name": "/^X/",

@@ -73,7 +73,9 @@
             "is": [
               "withQueryParameters"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/installer",
+            "absoluteParentUri": "/installer"
           }
         },
         "relativeUri": "/installer",
@@ -90,7 +92,8 @@
         ],
         "absoluteUri": "/installer",
         "completeRelativeUri": "/installer",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

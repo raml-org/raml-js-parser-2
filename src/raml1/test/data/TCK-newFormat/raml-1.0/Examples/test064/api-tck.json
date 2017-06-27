@@ -64,7 +64,9 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/login",
+            "absoluteParentUri": "/login"
           }
         },
         "relativeUri": "/login",
@@ -81,7 +83,8 @@
         ],
         "absoluteUri": "/login",
         "completeRelativeUri": "/login",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

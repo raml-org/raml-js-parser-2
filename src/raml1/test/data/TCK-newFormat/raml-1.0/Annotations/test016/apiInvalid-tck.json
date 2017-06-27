@@ -143,14 +143,16 @@
                         }
                       }
                     },
-                    "items": "User",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "User"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         },
         "relativeUri": "/users",
@@ -167,7 +169,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -85,7 +85,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/cats",
+            "absoluteParentUri": "/cats"
           }
         },
         "type": {
@@ -107,7 +109,8 @@
         ],
         "absoluteUri": "/cats",
         "completeRelativeUri": "/cats",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -19,7 +19,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/",
+            "absoluteParentUri": "/"
           }
         },
         "displayName": "/",
@@ -33,7 +35,8 @@
         "relativeUriPathSegments": [],
         "absoluteUri": "/",
         "completeRelativeUri": "/",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -293,7 +293,9 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "type": {
@@ -316,7 +318,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

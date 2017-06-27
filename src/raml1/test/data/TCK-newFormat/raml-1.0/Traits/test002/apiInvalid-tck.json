@@ -550,7 +550,9 @@
                 }
               }
             ],
-            "method": "put"
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "get": {
             "responses": {
@@ -673,7 +675,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "is": [
@@ -695,7 +699,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

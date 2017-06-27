@@ -323,7 +323,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "type": {
@@ -346,7 +348,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

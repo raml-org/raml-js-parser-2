@@ -56,6 +56,7 @@ export class TCKDumper {
         }
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
+            new MethodsTransformer(),
             new ResourcesTransformer(),
             //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
             new TypeTransformer(this.options),
@@ -1205,11 +1206,35 @@ class ResourcesTransformer extends BasicTransformation{
             value.completeRelativeUri = helpersHL.completeRelativeUri(node.asElement());
             if(universeHelpers.isResourceType(node.parent().definition())){
                 value.parentUri = helpersHL.completeRelativeUri(node.parent());
+                value.absoluteParentUri = helpersHL.absoluteUri(node.parent());
             }
             else{
                 value.parentUri = "";
+                let baseUriAttr = node.parent().attr(universes.Universe10.Api.properties.baseUri.name);
+                let baseUri = (baseUriAttr && baseUriAttr.value())||"";
+                value.absoluteParentUri = baseUri;
             }
         }
+        return value;
+    }
+}
+
+class MethodsTransformer extends BasicTransformation{
+
+    constructor(){
+        super(universes.Universe10.Method.name,null,true);
+    }
+
+    transform(value:any,node:hl.IParseResult){
+        if(Array.isArray(value)){
+            return value;
+        }
+        let parent = node.parent();
+        if(!universeHelpers.isResourceType(parent.definition())){
+            return value;
+        }
+        value.parentUri = helpersHL.completeRelativeUri(parent);
+        value.absoluteParentUri = helpersHL.absoluteUri(parent);
         return value;
     }
 }

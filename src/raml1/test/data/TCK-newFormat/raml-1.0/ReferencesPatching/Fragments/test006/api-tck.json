@@ -108,7 +108,9 @@
                 "typePropertyKind": "INPLACE"
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "relativeUri": "/resource",
@@ -125,7 +127,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

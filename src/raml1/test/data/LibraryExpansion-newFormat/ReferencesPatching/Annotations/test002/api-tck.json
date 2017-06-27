@@ -68,7 +68,9 @@
             "is": [
               "lib.libTrait1"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/{id}",
+            "absoluteParentUri": "/{id}"
           },
           "post": {
             "annotations": {
@@ -80,7 +82,9 @@
             "is": [
               "lib.libTrait1"
             ],
-            "method": "post"
+            "method": "post",
+            "parentUri": "/{id}",
+            "absoluteParentUri": "/{id}"
           }
         },
         "is": [
@@ -127,7 +131,8 @@
         ],
         "absoluteUri": "/{id}",
         "completeRelativeUri": "/{id}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

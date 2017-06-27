@@ -250,7 +250,9 @@
               "rateLimited"
             ],
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           },
           "post": {
             "headers": {
@@ -314,7 +316,9 @@
               }
             },
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         },
         "is": [
@@ -336,7 +340,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

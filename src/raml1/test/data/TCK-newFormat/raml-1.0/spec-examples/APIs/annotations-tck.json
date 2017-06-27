@@ -182,7 +182,8 @@
         ],
         "absoluteUri": "/groups",
         "completeRelativeUri": "/groups",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "annotations": {
@@ -223,7 +224,9 @@
                 "code": "200"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         },
         "relativeUri": "/users",
@@ -240,7 +243,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

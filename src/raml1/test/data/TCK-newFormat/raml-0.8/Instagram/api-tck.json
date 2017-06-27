@@ -910,7 +910,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/media/{mediaId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               }
             },
             "resources": [
@@ -1027,7 +1029,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/comments",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   },
                   "post": {
                     "responses": {
@@ -1095,7 +1099,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/comments",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   }
                 },
                 "resources": [
@@ -1179,7 +1185,9 @@
                               "calculated": true
                             }
                           }
-                        }
+                        },
+                        "parentUri": "/media/{mediaId}/comments/{commentId}",
+                        "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}"
                       }
                     },
                     "displayName": "/{commentId}",
@@ -1195,7 +1203,8 @@
                     ],
                     "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}",
                     "completeRelativeUri": "/media/{mediaId}/comments/{commentId}",
-                    "parentUri": "/media/{mediaId}/comments"
+                    "parentUri": "/media/{mediaId}/comments",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   }
                 ],
                 "displayName": "/comments",
@@ -1211,7 +1220,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments",
                 "completeRelativeUri": "/media/{mediaId}/comments",
-                "parentUri": "/media/{mediaId}"
+                "parentUri": "/media/{mediaId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               },
               {
                 "relativeUri": "/likes",
@@ -1326,7 +1336,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/likes",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   },
                   "post": {
                     "responses": {
@@ -1367,7 +1379,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/likes",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   },
                   "delete": {
                     "responses": {
@@ -1411,7 +1425,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/media/{mediaId}/likes",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   }
                 },
                 "displayName": "/likes",
@@ -1427,7 +1443,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/likes",
                 "completeRelativeUri": "/media/{mediaId}/likes",
-                "parentUri": "/media/{mediaId}"
+                "parentUri": "/media/{mediaId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               }
             ],
             "displayName": "/{mediaId}",
@@ -1446,7 +1463,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}",
             "completeRelativeUri": "/media/{mediaId}",
-            "parentUri": "/media"
+            "parentUri": "/media",
+            "absoluteParentUri": "https://api.instagram.com/{version}/media"
           },
           {
             "relativeUri": "/search",
@@ -1654,7 +1672,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/media/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/search"
               }
             },
             "displayName": "/search",
@@ -1673,7 +1693,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/media/search",
             "completeRelativeUri": "/media/search",
-            "parentUri": "/media"
+            "parentUri": "/media",
+            "absoluteParentUri": "https://api.instagram.com/{version}/media"
           },
           {
             "relativeUri": "/popular",
@@ -1772,7 +1793,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/media/popular",
+                "absoluteParentUri": "https://api.instagram.com/{version}/media/popular"
               }
             },
             "displayName": "/popular",
@@ -1791,7 +1814,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/media/popular",
             "completeRelativeUri": "/media/popular",
-            "parentUri": "/media"
+            "parentUri": "/media",
+            "absoluteParentUri": "https://api.instagram.com/{version}/media"
           }
         ],
         "displayName": "/media",
@@ -1810,7 +1834,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/media",
         "completeRelativeUri": "/media",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "relativeUri": "/tags",
@@ -1942,7 +1967,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/tags/{tagName}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}"
               }
             },
             "resources": [
@@ -2086,7 +2113,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/tags/{tagName}/media/recent",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent"
                   }
                 },
                 "displayName": "/media/recent",
@@ -2106,7 +2135,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent",
                 "completeRelativeUri": "/tags/{tagName}/media/recent",
-                "parentUri": "/tags/{tagName}"
+                "parentUri": "/tags/{tagName}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}"
               }
             ],
             "displayName": "/{tagName}",
@@ -2125,7 +2155,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}",
             "completeRelativeUri": "/tags/{tagName}",
-            "parentUri": "/tags"
+            "parentUri": "/tags",
+            "absoluteParentUri": "https://api.instagram.com/{version}/tags"
           },
           {
             "relativeUri": "/search",
@@ -2246,7 +2277,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/tags/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/tags/search"
               }
             },
             "displayName": "/search",
@@ -2265,7 +2298,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/tags/search",
             "completeRelativeUri": "/tags/search",
-            "parentUri": "/tags"
+            "parentUri": "/tags",
+            "absoluteParentUri": "https://api.instagram.com/{version}/tags"
           }
         ],
         "displayName": "/tags",
@@ -2284,7 +2318,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/tags",
         "completeRelativeUri": "/tags",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "relativeUri": "/users",
@@ -2416,7 +2451,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               }
             },
             "resources": [
@@ -2529,7 +2566,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/follows",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/follows"
                   }
                 },
                 "displayName": "/follows",
@@ -2545,7 +2584,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows",
                 "completeRelativeUri": "/users/{userId}/follows",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
                 "relativeUri": "/followed-by",
@@ -2656,7 +2696,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/followed-by",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/followed-by"
                   }
                 },
                 "displayName": "/followed-by",
@@ -2672,7 +2714,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by",
                 "completeRelativeUri": "/users/{userId}/followed-by",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
                 "relativeUri": "/media/recent",
@@ -2857,7 +2900,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/media/recent",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/media/recent"
                   }
                 },
                 "displayName": "/media/recent",
@@ -2877,7 +2922,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent",
                 "completeRelativeUri": "/users/{userId}/media/recent",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
                 "relativeUri": "/relationship",
@@ -2992,7 +3038,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/relationship",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
                   },
                   "post": {
                     "responses": {
@@ -3071,7 +3119,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/{userId}/relationship",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
                   }
                 },
                 "displayName": "/relationship",
@@ -3087,7 +3137,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/relationship",
                 "completeRelativeUri": "/users/{userId}/relationship",
-                "parentUri": "/users/{userId}"
+                "parentUri": "/users/{userId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               }
             ],
             "displayName": "/{userId}",
@@ -3106,7 +3157,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/users/{userId}",
             "completeRelativeUri": "/users/{userId}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.instagram.com/{version}/users"
           },
           {
             "relativeUri": "/search",
@@ -3239,7 +3291,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/users/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/search"
               }
             },
             "displayName": "/search",
@@ -3255,7 +3309,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/users/search",
             "completeRelativeUri": "/users/search",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.instagram.com/{version}/users"
           },
           {
             "relativeUri": "/self",
@@ -3370,7 +3425,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               }
             },
             "resources": [
@@ -3514,7 +3571,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/self/feed",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/self/feed"
                   }
                 },
                 "displayName": "/feed",
@@ -3533,7 +3592,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/feed",
                 "completeRelativeUri": "/users/self/feed",
-                "parentUri": "/users/self"
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               },
               {
                 "relativeUri": "/requested-by",
@@ -3658,7 +3718,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/self/requested-by",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/self/requested-by"
                   }
                 },
                 "displayName": "/requested-by",
@@ -3674,7 +3736,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by",
                 "completeRelativeUri": "/users/self/requested-by",
-                "parentUri": "/users/self"
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               },
               {
                 "relativeUri": "/media/liked",
@@ -3795,7 +3858,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/users/self/media/liked",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/users/self/media/liked"
                   }
                 },
                 "displayName": "/media/liked",
@@ -3815,7 +3880,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/users/self/media/liked",
                 "completeRelativeUri": "/users/self/media/liked",
-                "parentUri": "/users/self"
+                "parentUri": "/users/self",
+                "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               }
             ],
             "displayName": "/self",
@@ -3831,7 +3897,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/users/self",
             "completeRelativeUri": "/users/self",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.instagram.com/{version}/users"
           }
         ],
         "displayName": "/users",
@@ -3850,7 +3917,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "relativeUri": "/locations",
@@ -3978,7 +4046,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/locations/{locId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}"
               }
             },
             "resources": [
@@ -4165,7 +4235,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/locations/{locId}/media/recent",
+                    "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent"
                   }
                 },
                 "displayName": "/media/recent",
@@ -4185,7 +4257,8 @@
                 ],
                 "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent",
                 "completeRelativeUri": "/locations/{locId}/media/recent",
-                "parentUri": "/locations/{locId}"
+                "parentUri": "/locations/{locId}",
+                "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}"
               }
             ],
             "displayName": "/{locId}",
@@ -4204,7 +4277,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}",
             "completeRelativeUri": "/locations/{locId}",
-            "parentUri": "/locations"
+            "parentUri": "/locations",
+            "absoluteParentUri": "https://api.instagram.com/{version}/locations"
           },
           {
             "relativeUri": "/search",
@@ -4417,7 +4491,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/locations/search",
+                "absoluteParentUri": "https://api.instagram.com/{version}/locations/search"
               }
             },
             "displayName": "/search",
@@ -4436,7 +4512,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/locations/search",
             "completeRelativeUri": "/locations/search",
-            "parentUri": "/locations"
+            "parentUri": "/locations",
+            "absoluteParentUri": "https://api.instagram.com/{version}/locations"
           }
         ],
         "displayName": "/locations",
@@ -4455,7 +4532,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/locations",
         "completeRelativeUri": "/locations",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "relativeUri": "/geographies/{geoId}/media/recent",
@@ -4594,7 +4672,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/geographies/{geoId}/media/recent",
+            "absoluteParentUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent"
           }
         },
         "displayName": "/geographies/{geoId}/media/recent",
@@ -4616,7 +4696,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent",
         "completeRelativeUri": "/geographies/{geoId}/media/recent",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
         "relativeUri": "/subscriptions",
@@ -4753,7 +4834,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/subscriptions",
+            "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
           "post": {
             "responses": {
@@ -4999,7 +5082,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/subscriptions",
+            "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
           "delete": {
             "responses": {
@@ -5132,7 +5217,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/subscriptions",
+            "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           }
         },
         "displayName": "/subscriptions",
@@ -5151,7 +5238,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/subscriptions",
         "completeRelativeUri": "/subscriptions",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       }
     ],
     "documentation": [

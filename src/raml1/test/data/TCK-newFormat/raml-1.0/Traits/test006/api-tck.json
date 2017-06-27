@@ -111,7 +111,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "http://api.samplehost.com/resource"
           }
         },
         "relativeUri": "/resource",
@@ -128,7 +130,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com"
       }
     ],
     "__METADATA__": {

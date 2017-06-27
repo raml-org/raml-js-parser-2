@@ -108,7 +108,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users/{userid}/gists",
+            "absoluteParentUri": "https://api.github.com/users/{userid}/gists"
           }
         },
         "uriParameters": {
@@ -153,7 +155,8 @@
         ],
         "absoluteUri": "https://api.github.com/users/{userid}/gists",
         "completeRelativeUri": "/users/{userid}/gists",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com"
       }
     ],
     "__METADATA__": {

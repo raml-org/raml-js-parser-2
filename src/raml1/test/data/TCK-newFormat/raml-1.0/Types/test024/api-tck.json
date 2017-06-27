@@ -635,9 +635,9 @@
                 }
               }
             },
-            "items": "User|Team",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "User|Team"
           },
           "info": {
             "name": "info",
@@ -798,9 +798,9 @@
                         }
                       }
                     },
-                    "items": "Team",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "Team"
                   }
                 }
               }
@@ -815,7 +815,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           },
           "post": {
             "responses": {
@@ -902,7 +904,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           }
         },
         "relativeUri": "/teams",
@@ -968,7 +972,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/teams/{id}",
+                "absoluteParentUri": "http://api.samplehost.com/{version}/teams/{id}"
               }
             },
             "uriParameters": {
@@ -1011,7 +1017,8 @@
             ],
             "absoluteUri": "http://api.samplehost.com/{version}/teams/{id}",
             "completeRelativeUri": "/teams/{id}",
-            "parentUri": "/teams"
+            "parentUri": "/teams",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           }
         ],
         "__METADATA__": {
@@ -1026,7 +1033,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams",
         "completeRelativeUri": "/teams",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -1048,9 +1056,9 @@
                         }
                       }
                     },
-                    "items": "User",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "User"
                   }
                 }
               }
@@ -1065,7 +1073,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/users"
           }
         },
         "relativeUri": "/users",
@@ -1082,7 +1092,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -1123,7 +1134,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users/{id}",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/users/{id}"
           }
         },
         "uriParameters": {
@@ -1167,7 +1180,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/users/{id}",
         "completeRelativeUri": "/users/{id}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       }
     ],
     "__METADATA__": {

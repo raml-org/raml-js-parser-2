@@ -35,7 +35,9 @@
             "is": [
               "files.hello"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/files",
+            "absoluteParentUri": "/files"
           }
         },
         "type": "file",
@@ -53,7 +55,8 @@
         ],
         "absoluteUri": "/files",
         "completeRelativeUri": "/files",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

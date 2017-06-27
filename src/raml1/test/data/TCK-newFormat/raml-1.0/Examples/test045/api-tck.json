@@ -52,9 +52,9 @@
                 }
               }
             },
-            "items": "dept_code",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "dept_code"
           }
         },
         "name": "chargeable"
@@ -93,15 +93,17 @@
                     }
                   }
                 },
-                "items": "dept_code",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "dept_code"
               }
             },
             "is": [
               "chargeable"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "relativeUri": "/resource",
@@ -118,7 +120,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

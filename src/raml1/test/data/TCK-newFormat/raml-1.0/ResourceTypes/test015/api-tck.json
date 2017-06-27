@@ -91,7 +91,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource1",
+            "absoluteParentUri": "/resource1"
           }
         },
         "type": {
@@ -113,7 +115,8 @@
         ],
         "absoluteUri": "/resource1",
         "completeRelativeUri": "/resource1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "methods": {
@@ -158,7 +161,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource2",
+            "absoluteParentUri": "/resource2"
           }
         },
         "type": {
@@ -180,7 +185,8 @@
         ],
         "absoluteUri": "/resource2",
         "completeRelativeUri": "/resource2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

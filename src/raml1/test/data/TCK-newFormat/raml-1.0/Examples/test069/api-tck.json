@@ -80,7 +80,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/testURI",
+            "absoluteParentUri": "/testURI"
           }
         },
         "type": {
@@ -111,7 +113,8 @@
         ],
         "absoluteUri": "/testURI",
         "completeRelativeUri": "/testURI",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

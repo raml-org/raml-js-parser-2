@@ -141,9 +141,9 @@
                 }
               }
             },
-            "items": " Phone | Notebook ",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": " Phone | Notebook "
           },
           "reports": {
             "name": "reports",
@@ -162,9 +162,9 @@
                 }
               }
             },
-            "items": "Person",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "Person"
           }
         },
         "__METADATA__": {

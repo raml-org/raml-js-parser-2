@@ -236,7 +236,9 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/books",
+            "absoluteParentUri": "/books"
           }
         },
         "type": {
@@ -259,7 +261,8 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

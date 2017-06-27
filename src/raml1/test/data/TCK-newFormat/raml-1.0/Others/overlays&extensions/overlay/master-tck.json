@@ -23,7 +23,9 @@
               }
             },
             "description": "describing your method here\n",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/elements",
+            "absoluteParentUri": "/elements"
           }
         },
         "relativeUri": "/elements",
@@ -40,7 +42,8 @@
         ],
         "absoluteUri": "/elements",
         "completeRelativeUri": "/elements",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ],
     "extends": "master.raml"

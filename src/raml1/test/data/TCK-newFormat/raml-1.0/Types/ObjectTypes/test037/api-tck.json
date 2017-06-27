@@ -323,7 +323,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/pets",
+            "absoluteParentUri": "/shop/pets"
           },
           "post": {
             "body": {
@@ -354,7 +356,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/pets",
+            "absoluteParentUri": "/shop/pets"
           }
         },
         "type": {
@@ -383,7 +387,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/pets/{id}",
+                "absoluteParentUri": "/shop/pets/{id}"
               },
               "put": {
                 "body": {
@@ -414,7 +420,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/pets/{id}",
+                "absoluteParentUri": "/shop/pets/{id}"
               }
             },
             "type": {
@@ -462,7 +470,8 @@
             ],
             "absoluteUri": "/shop/pets/{id}",
             "completeRelativeUri": "/pets/{id}",
-            "parentUri": "/pets"
+            "parentUri": "/pets",
+            "absoluteParentUri": "/shop/pets"
           }
         ],
         "__METADATA__": {
@@ -477,7 +486,8 @@
         ],
         "absoluteUri": "/shop/pets",
         "completeRelativeUri": "/pets",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/shop"
       },
       {
         "methods": {
@@ -561,7 +571,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/birds",
+            "absoluteParentUri": "/shop/birds"
           },
           "post": {
             "body": {
@@ -592,7 +604,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/birds",
+            "absoluteParentUri": "/shop/birds"
           }
         },
         "type": {
@@ -621,7 +635,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/birds/{id}",
+                "absoluteParentUri": "/shop/birds/{id}"
               },
               "put": {
                 "body": {
@@ -652,7 +668,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/birds/{id}",
+                "absoluteParentUri": "/shop/birds/{id}"
               }
             },
             "type": {
@@ -700,7 +718,8 @@
             ],
             "absoluteUri": "/shop/birds/{id}",
             "completeRelativeUri": "/birds/{id}",
-            "parentUri": "/birds"
+            "parentUri": "/birds",
+            "absoluteParentUri": "/shop/birds"
           }
         ],
         "__METADATA__": {
@@ -715,7 +734,8 @@
         ],
         "absoluteUri": "/shop/birds",
         "completeRelativeUri": "/birds",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/shop"
       },
       {
         "methods": {
@@ -799,7 +819,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/mammals",
+            "absoluteParentUri": "/shop/mammals"
           },
           "post": {
             "body": {
@@ -830,7 +852,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/mammals",
+            "absoluteParentUri": "/shop/mammals"
           }
         },
         "type": {
@@ -859,7 +883,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/mammals/{id}",
+                "absoluteParentUri": "/shop/mammals/{id}"
               },
               "put": {
                 "body": {
@@ -890,7 +916,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/mammals/{id}",
+                "absoluteParentUri": "/shop/mammals/{id}"
               }
             },
             "type": {
@@ -938,7 +966,8 @@
             ],
             "absoluteUri": "/shop/mammals/{id}",
             "completeRelativeUri": "/mammals/{id}",
-            "parentUri": "/mammals"
+            "parentUri": "/mammals",
+            "absoluteParentUri": "/shop/mammals"
           }
         ],
         "__METADATA__": {
@@ -953,7 +982,8 @@
         ],
         "absoluteUri": "/shop/mammals",
         "completeRelativeUri": "/mammals",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/shop"
       }
     ],
     "__METADATA__": {

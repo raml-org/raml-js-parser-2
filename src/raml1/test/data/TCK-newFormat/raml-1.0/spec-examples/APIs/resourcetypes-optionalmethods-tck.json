@@ -41,7 +41,9 @@
       {
         "methods": {
           "get": {
-            "method": "get"
+            "method": "get",
+            "parentUri": "/servers",
+            "absoluteParentUri": "/servers"
           },
           "post": {
             "headers": {
@@ -67,7 +69,9 @@
               }
             },
             "description": "Some info about post method.",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/servers",
+            "absoluteParentUri": "/servers"
           }
         },
         "type": {
@@ -89,12 +93,15 @@
         ],
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "methods": {
           "get": {
-            "method": "get"
+            "method": "get",
+            "parentUri": "/queues",
+            "absoluteParentUri": "/queues"
           }
         },
         "type": "corpResource",
@@ -112,7 +119,8 @@
         ],
         "absoluteUri": "/queues",
         "completeRelativeUri": "/queues",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

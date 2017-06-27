@@ -48,7 +48,8 @@
         ],
         "absoluteUri": "/users{ext}",
         "completeRelativeUri": "/users{ext}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

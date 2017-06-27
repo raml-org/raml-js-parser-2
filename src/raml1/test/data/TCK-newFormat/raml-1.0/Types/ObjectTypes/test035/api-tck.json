@@ -31,7 +31,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/planets",
+            "absoluteParentUri": "/planets"
           }
         },
         "relativeUri": "/planets",
@@ -48,7 +50,8 @@
         ],
         "absoluteUri": "/planets",
         "completeRelativeUri": "/planets",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

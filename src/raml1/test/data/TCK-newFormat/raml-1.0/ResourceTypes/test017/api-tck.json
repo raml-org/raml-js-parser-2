@@ -162,7 +162,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/folders",
+            "absoluteParentUri": "/folders"
           }
         },
         "type": {
@@ -184,7 +186,8 @@
         ],
         "absoluteUri": "/folders",
         "completeRelativeUri": "/folders",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

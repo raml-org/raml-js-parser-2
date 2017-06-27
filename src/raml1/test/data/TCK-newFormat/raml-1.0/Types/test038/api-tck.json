@@ -48,7 +48,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource1",
+            "absoluteParentUri": "/resource1"
           }
         },
         "relativeUri": "/resource1",
@@ -65,7 +67,8 @@
         ],
         "absoluteUri": "/resource1",
         "completeRelativeUri": "/resource1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "methods": {
@@ -113,7 +116,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource2",
+            "absoluteParentUri": "/resource2"
           }
         },
         "relativeUri": "/resource2",
@@ -130,7 +135,8 @@
         ],
         "absoluteUri": "/resource2",
         "completeRelativeUri": "/resource2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -135,7 +135,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "https://example.com/raml/resource"
           }
         },
         "is": [
@@ -160,7 +162,8 @@
         ],
         "absoluteUri": "https://example.com/raml/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://example.com/raml"
       }
     ],
     "__METADATA__": {

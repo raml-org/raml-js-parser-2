@@ -33,7 +33,9 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/single-query-record/{code}",
+            "absoluteParentUri": "/single-query-record/{code}"
           }
         },
         "displayName": "/single-query-record/{code}",
@@ -50,7 +52,8 @@
         ],
         "absoluteUri": "/single-query-record/{code}",
         "completeRelativeUri": "/single-query-record/{code}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

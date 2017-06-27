@@ -692,7 +692,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/api",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api"
           },
           "post": {
             "body": {
@@ -729,7 +731,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/api",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api"
           }
         },
         "securedBy": [
@@ -752,7 +756,8 @@
         ],
         "absoluteUri": "http://{environment}.musicapi.com/{version}/api",
         "completeRelativeUri": "/api",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://{environment}.musicapi.com/{version}"
       },
       {
         "methods": {
@@ -795,7 +800,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/entry",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry"
           },
           "get": {
             "responses": {
@@ -840,7 +847,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/entry",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry"
           }
         },
         "type": "collection",
@@ -864,7 +873,8 @@
         ],
         "absoluteUri": "http://{environment}.musicapi.com/{version}/entry",
         "completeRelativeUri": "/entry",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://{environment}.musicapi.com/{version}"
       },
       {
         "annotations": {
@@ -941,7 +951,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/songs",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs"
           },
           "post": {
             "queryParameters": {
@@ -982,7 +994,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/songs",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs"
           }
         },
         "is": [
@@ -1033,7 +1047,6 @@
                       "application/xml": {
                         "name": "application/xml",
                         "displayName": "application/xml",
-                        "typePropertyKind": "XML",
                         "schemaPath": "schemas/songs.xsd",
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
@@ -1074,7 +1087,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/songs/{songId}",
+                "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs/{songId}"
               }
             },
             "securedBy": [
@@ -1123,7 +1138,8 @@
             ],
             "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
             "completeRelativeUri": "/songs/{songId}",
-            "parentUri": "/songs"
+            "parentUri": "/songs",
+            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs"
           }
         ],
         "__METADATA__": {
@@ -1138,7 +1154,8 @@
         ],
         "absoluteUri": "http://{environment}.musicapi.com/{version}/songs",
         "completeRelativeUri": "/songs",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://{environment}.musicapi.com/{version}"
       }
     ],
     "documentation": [

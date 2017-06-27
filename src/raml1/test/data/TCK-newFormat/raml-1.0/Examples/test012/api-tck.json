@@ -87,7 +87,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/hello",
+            "absoluteParentUri": "/hello"
           }
         },
         "relativeUri": "/hello",
@@ -104,7 +106,8 @@
         ],
         "absoluteUri": "/hello",
         "completeRelativeUri": "/hello",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -21,7 +21,9 @@
                 "name": "application/x-www-form-urlencoded"
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/rere",
+            "absoluteParentUri": "/rere"
           }
         },
         "displayName": "/rere",
@@ -37,7 +39,8 @@
         ],
         "absoluteUri": "/rere",
         "completeRelativeUri": "/rere",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -17,7 +17,9 @@
         "methods": {
           "post": {
             "description": "Create a Users",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         },
         "type": "collection",
@@ -35,7 +37,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

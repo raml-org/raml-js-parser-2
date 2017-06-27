@@ -92,7 +92,8 @@
         ],
         "absoluteUri": "/assets",
         "completeRelativeUri": "/assets",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

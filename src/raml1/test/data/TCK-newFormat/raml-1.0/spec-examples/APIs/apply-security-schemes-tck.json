@@ -151,7 +151,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.dropbox.com/{version}/users"
           }
         },
         "securedBy": [
@@ -174,7 +176,8 @@
         ],
         "absoluteUri": "https://api.dropbox.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.dropbox.com/{version}"
       }
     ],
     "__METADATA__": {

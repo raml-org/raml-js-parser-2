@@ -81,7 +81,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/songs",
+            "absoluteParentUri": "/songs"
           }
         },
         "type": {
@@ -104,7 +106,8 @@
         ],
         "absoluteUri": "/songs",
         "completeRelativeUri": "/songs",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

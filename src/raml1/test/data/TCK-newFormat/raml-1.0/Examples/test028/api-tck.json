@@ -51,7 +51,9 @@
       {
         "methods": {
           "get": {
-            "method": "get"
+            "method": "get",
+            "parentUri": "/hello",
+            "absoluteParentUri": "/hello"
           },
           "post": {
             "responses": {
@@ -169,7 +171,9 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/hello",
+            "absoluteParentUri": "/hello"
           }
         },
         "relativeUri": "/hello",
@@ -186,7 +190,8 @@
         ],
         "absoluteUri": "/hello",
         "completeRelativeUri": "/hello",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "relativeUri": "/world",
@@ -203,7 +208,8 @@
         ],
         "absoluteUri": "/world",
         "completeRelativeUri": "/world",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

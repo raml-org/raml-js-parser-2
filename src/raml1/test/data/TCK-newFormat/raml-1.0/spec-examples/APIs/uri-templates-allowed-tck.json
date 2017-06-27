@@ -44,7 +44,8 @@
         ],
         "absoluteUri": "/users/{userId}",
         "completeRelativeUri": "/users/{userId}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "uriParameters": {
@@ -88,7 +89,8 @@
         ],
         "absoluteUri": "/users/{username}",
         "completeRelativeUri": "/users/{username}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "relativeUri": "/users/me",
@@ -106,7 +108,8 @@
         ],
         "absoluteUri": "/users/me",
         "completeRelativeUri": "/users/me",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

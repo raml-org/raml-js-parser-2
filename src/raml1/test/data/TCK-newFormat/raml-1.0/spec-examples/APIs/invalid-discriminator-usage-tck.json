@@ -111,7 +111,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/inline",
+            "absoluteParentUri": "/inline"
           }
         },
         "relativeUri": "/inline",
@@ -128,7 +130,8 @@
         ],
         "absoluteUri": "/inline",
         "completeRelativeUri": "/inline",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

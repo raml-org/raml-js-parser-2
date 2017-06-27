@@ -173,7 +173,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/search/code",
+                "absoluteParentUri": "https://api.github.com/search/code"
               }
             },
             "type": "collection",
@@ -198,7 +200,8 @@
             ],
             "absoluteUri": "https://api.github.com/search/code",
             "completeRelativeUri": "/search/code",
-            "parentUri": "/search"
+            "parentUri": "/search",
+            "absoluteParentUri": "https://api.github.com/search"
           }
         ],
         "__METADATA__": {
@@ -216,7 +219,8 @@
         ],
         "absoluteUri": "https://api.github.com/search",
         "completeRelativeUri": "/search",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com"
       }
     ],
     "__METADATA__": {

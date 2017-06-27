@@ -14,9 +14,9 @@
             }
           }
         },
-        "items": "string[] | number",
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "items": "string[] | number"
       },
       "TypeWithUnionProps": {
         "name": "TypeWithUnionProps",

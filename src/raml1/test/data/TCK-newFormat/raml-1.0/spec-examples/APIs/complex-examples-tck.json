@@ -211,7 +211,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/organization",
+            "absoluteParentUri": "/organization"
           },
           "get": {
             "responses": {
@@ -256,7 +258,9 @@
               }
             },
             "description": "Returns an organization entity.",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/organization",
+            "absoluteParentUri": "/organization"
           }
         },
         "relativeUri": "/organization",
@@ -273,7 +277,8 @@
         ],
         "absoluteUri": "/organization",
         "completeRelativeUri": "/organization",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

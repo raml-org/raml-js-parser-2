@@ -109,7 +109,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/flights",
+            "absoluteParentUri": "/flights"
           }
         },
         "type": {
@@ -158,7 +160,8 @@
         ],
         "absoluteUri": "/flights",
         "completeRelativeUri": "/flights",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -170,7 +170,9 @@
                 "items": "(T1|T2)|T3"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "relativeUri": "/resource",
@@ -187,7 +189,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

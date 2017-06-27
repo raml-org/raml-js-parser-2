@@ -112,7 +112,9 @@
                 "typePropertyKind": "INPLACE"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/orders",
+            "absoluteParentUri": "/orders"
           }
         },
         "relativeUri": "/orders",
@@ -129,7 +131,8 @@
         ],
         "absoluteUri": "/orders",
         "completeRelativeUri": "/orders",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

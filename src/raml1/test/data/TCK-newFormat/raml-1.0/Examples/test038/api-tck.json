@@ -94,7 +94,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/s",
+            "absoluteParentUri": "/s"
           }
         },
         "relativeUri": "/s",
@@ -111,7 +113,8 @@
         ],
         "absoluteUri": "/s",
         "completeRelativeUri": "/s",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

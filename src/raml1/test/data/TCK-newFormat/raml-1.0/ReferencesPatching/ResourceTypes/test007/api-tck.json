@@ -183,7 +183,9 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           }
         },
         "type": "rt.Collection",
@@ -201,7 +203,8 @@
         ],
         "absoluteUri": "/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

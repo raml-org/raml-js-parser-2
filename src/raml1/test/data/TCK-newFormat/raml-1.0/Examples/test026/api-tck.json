@@ -375,7 +375,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/test/helloWorldddd1234ddd2",
+                "absoluteParentUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2"
               }
             },
             "relativeUri": "/helloWorldddd1234ddd2",
@@ -392,7 +394,8 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
             "completeRelativeUri": "/test/helloWorldddd1234ddd2",
-            "parentUri": "/test"
+            "parentUri": "/test",
+            "absoluteParentUri": "https://api.instagram.com/{version}/test"
           }
         ],
         "__METADATA__": {
@@ -407,7 +410,8 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.instagram.com/{version}/"
       }
     ],
     "__METADATA__": {

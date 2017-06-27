@@ -175,7 +175,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/animals/{animalId}",
+            "absoluteParentUri": "/animals/{animalId}"
           }
         },
         "uriParameters": {
@@ -219,7 +221,8 @@
         ],
         "absoluteUri": "/animals/{animalId}",
         "completeRelativeUri": "/animals/{animalId}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

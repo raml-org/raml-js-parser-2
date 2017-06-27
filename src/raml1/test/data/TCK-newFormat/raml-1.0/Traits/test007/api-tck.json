@@ -65,7 +65,9 @@
             "is": [
               "pagination"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/some",
+            "absoluteParentUri": "/some"
           }
         },
         "relativeUri": "/some",
@@ -82,7 +84,8 @@
         ],
         "absoluteUri": "/some",
         "completeRelativeUri": "/some",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

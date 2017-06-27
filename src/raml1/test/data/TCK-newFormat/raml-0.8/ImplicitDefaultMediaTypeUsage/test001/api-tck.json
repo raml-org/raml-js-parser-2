@@ -50,7 +50,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/schemes",
+            "absoluteParentUri": "/schemes"
           }
         },
         "displayName": "/schemes",
@@ -66,7 +68,8 @@
         ],
         "absoluteUri": "/schemes",
         "completeRelativeUri": "/schemes",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

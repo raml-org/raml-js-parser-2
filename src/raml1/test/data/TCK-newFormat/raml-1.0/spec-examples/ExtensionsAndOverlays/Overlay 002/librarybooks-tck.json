@@ -5,7 +5,9 @@
       {
         "methods": {
           "get": {
-            "method": "get"
+            "method": "get",
+            "parentUri": "/books",
+            "absoluteParentUri": "/books"
           }
         },
         "description": "La colección de libros de la biblioteca",
@@ -23,7 +25,8 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ],
     "documentation": [

@@ -100,7 +100,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/customer",
+            "absoluteParentUri": "/customer"
           }
         },
         "relativeUri": "/customer",
@@ -117,7 +119,8 @@
         ],
         "absoluteUri": "/customer",
         "completeRelativeUri": "/customer",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

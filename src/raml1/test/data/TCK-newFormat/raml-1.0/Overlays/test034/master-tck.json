@@ -63,7 +63,9 @@
         "methods": {
           "get": {
             "description": "Recuperar una lista de clientes",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/customers",
+            "absoluteParentUri": "/customers"
           },
           "post": {
             "body": {
@@ -85,7 +87,9 @@
               }
             },
             "description": "Agregue un nuevo cliente",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/customers",
+            "absoluteParentUri": "/customers"
           }
         },
         "type": "collection",
@@ -103,7 +107,8 @@
         ],
         "absoluteUri": "/customers",
         "completeRelativeUri": "/customers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ],
     "usage": "Spanish localization",

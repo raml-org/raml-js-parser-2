@@ -156,7 +156,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/alpha/letters",
+                "absoluteParentUri": "https://example.com/alpha/letters"
               }
             },
             "type": {
@@ -178,7 +180,8 @@
             ],
             "absoluteUri": "https://example.com/alpha/letters",
             "completeRelativeUri": "/alpha/letters",
-            "parentUri": "/alpha"
+            "parentUri": "/alpha",
+            "absoluteParentUri": "https://example.com/alpha"
           }
         ],
         "__METADATA__": {
@@ -193,7 +196,8 @@
         ],
         "absoluteUri": "https://example.com/alpha",
         "completeRelativeUri": "/alpha",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://example.com"
       }
     ],
     "__METADATA__": {

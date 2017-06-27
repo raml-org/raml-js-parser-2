@@ -111,7 +111,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users",
+            "absoluteParentUri": "https://api.github.com/{version}/users"
           }
         },
         "relativeUri": "/users",
@@ -128,7 +130,8 @@
         ],
         "absoluteUri": "https://api.github.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://api.github.com/{version}"
       }
     ],
     "__METADATA__": {

@@ -32,7 +32,9 @@
               }
             ],
             "description": "test",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/servers",
+            "absoluteParentUri": "/servers"
           }
         },
         "relativeUri": "/servers",
@@ -49,7 +51,8 @@
         ],
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

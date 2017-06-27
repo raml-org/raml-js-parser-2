@@ -94,7 +94,9 @@
             "is": [
               "foo"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/foobar",
+            "absoluteParentUri": "/foobar"
           }
         },
         "relativeUri": "/foobar",
@@ -111,7 +113,8 @@
         ],
         "absoluteUri": "/foobar",
         "completeRelativeUri": "/foobar",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ],
     "extends": "./base.raml"

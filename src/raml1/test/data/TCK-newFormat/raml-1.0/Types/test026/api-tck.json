@@ -130,7 +130,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           }
         },
         "relativeUri": "/teams",
@@ -147,7 +149,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams",
         "completeRelativeUri": "/teams",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -181,7 +184,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams2",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams2"
           }
         },
         "relativeUri": "/teams2",
@@ -198,7 +203,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams2",
         "completeRelativeUri": "/teams2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -235,7 +241,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams3",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams3"
           }
         },
         "relativeUri": "/teams3",
@@ -252,7 +260,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams3",
         "completeRelativeUri": "/teams3",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -288,7 +297,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams4",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams4"
           }
         },
         "relativeUri": "/teams4",
@@ -305,7 +316,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams4",
         "completeRelativeUri": "/teams4",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -338,7 +350,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams5",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams5"
           }
         },
         "relativeUri": "/teams5",
@@ -355,7 +369,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams5",
         "completeRelativeUri": "/teams5",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
         "methods": {
@@ -388,7 +403,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/teams6",
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams6"
           }
         },
         "relativeUri": "/teams6",
@@ -405,7 +422,8 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams6",
         "completeRelativeUri": "/teams6",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.samplehost.com/{version}"
       }
     ],
     "__METADATA__": {

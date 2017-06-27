@@ -45,9 +45,9 @@
                 }
               }
             },
-            "items": "VV",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "VV"
           }
         },
         "__METADATA__": {
@@ -240,7 +240,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test"
           }
         },
         "relativeUri": "/test",
@@ -257,7 +259,8 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

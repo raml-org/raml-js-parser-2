@@ -77,10 +77,14 @@
             "is": [
               "bodyTrait"
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           },
           "post": {
-            "method": "post"
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "type": {
@@ -103,7 +107,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

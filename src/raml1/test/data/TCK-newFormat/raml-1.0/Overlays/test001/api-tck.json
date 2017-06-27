@@ -71,7 +71,8 @@
         ],
         "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1"
       }
     ],
     "extends": "api.raml"

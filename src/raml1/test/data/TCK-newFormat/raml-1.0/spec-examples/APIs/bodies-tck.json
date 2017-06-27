@@ -95,7 +95,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         },
         "relativeUri": "/users",
@@ -112,7 +114,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "methods": {
@@ -185,7 +188,6 @@
               "text/xml": {
                 "name": "text/xml",
                 "displayName": "text/xml",
-                "typePropertyKind": "XML",
                 "schemaPath": "schemas/group.xsd",
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"group\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"name\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
@@ -201,7 +203,9 @@
                 "typePropertyKind": "XML"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/groups",
+            "absoluteParentUri": "/groups"
           }
         },
         "relativeUri": "/groups",
@@ -218,7 +222,8 @@
         ],
         "absoluteUri": "/groups",
         "completeRelativeUri": "/groups",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

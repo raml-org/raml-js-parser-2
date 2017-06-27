@@ -66,7 +66,8 @@
             ],
             "absoluteUri": "/users/{userIds}",
             "completeRelativeUri": "/users/{userIds}",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -81,7 +82,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

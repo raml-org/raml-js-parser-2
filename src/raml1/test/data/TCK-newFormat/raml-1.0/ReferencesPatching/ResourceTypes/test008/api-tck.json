@@ -383,7 +383,9 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           },
           "delete": {
             "responses": {
@@ -409,7 +411,9 @@
                 }
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           },
           "post": {
             "responses": {
@@ -444,7 +448,9 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           },
           "put": {
             "responses": {
@@ -470,7 +476,9 @@
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/products",
+            "absoluteParentUri": "/products"
           }
         },
         "type": {
@@ -494,7 +502,8 @@
         ],
         "absoluteUri": "/products",
         "completeRelativeUri": "/products",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

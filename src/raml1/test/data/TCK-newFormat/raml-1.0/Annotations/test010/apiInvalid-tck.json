@@ -51,7 +51,8 @@
         ],
         "absoluteUri": "/assets",
         "completeRelativeUri": "/assets",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "annotations": {
@@ -81,7 +82,8 @@
         ],
         "absoluteUri": "/foods",
         "completeRelativeUri": "/foods",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

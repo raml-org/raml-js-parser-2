@@ -107,9 +107,9 @@
                 }
               }
             },
-            "items": "object",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "object"
           },
           "_links": {
             "name": "_links",
@@ -385,7 +385,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/v1",
+            "absoluteParentUri": "http://api.planet.com/v1"
           }
         },
         "relativeUri": "/v1",
@@ -405,7 +407,9 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "parentUri": "/v1/scenes",
+                "absoluteParentUri": "http://api.planet.com/v1/scenes"
               }
             },
             "relativeUri": "/scenes",
@@ -452,9 +456,9 @@
                                 "name": null
                               }
                             ],
-                            "items": "PlanetScene",
                             "mediaType": "application/raml+yaml",
-                            "typePropertyKind": "TYPE_EXPRESSION"
+                            "typePropertyKind": "TYPE_EXPRESSION",
+                            "items": "PlanetScene"
                           }
                         }
                       }
@@ -470,7 +474,9 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "parentUri": "/v1/scenes/planetscope",
+                    "absoluteParentUri": "http://api.planet.com/v1/scenes/planetscope"
                   }
                 },
                 "relativeUri": "/planetscope",
@@ -487,7 +493,8 @@
                 ],
                 "absoluteUri": "http://api.planet.com/v1/scenes/planetscope",
                 "completeRelativeUri": "/v1/scenes/planetscope",
-                "parentUri": "/v1/scenes"
+                "parentUri": "/v1/scenes",
+                "absoluteParentUri": "http://api.planet.com/v1/scenes"
               }
             ],
             "__METADATA__": {
@@ -502,7 +509,8 @@
             ],
             "absoluteUri": "http://api.planet.com/v1/scenes",
             "completeRelativeUri": "/v1/scenes",
-            "parentUri": "/v1"
+            "parentUri": "/v1",
+            "absoluteParentUri": "http://api.planet.com/v1"
           }
         ],
         "__METADATA__": {
@@ -517,7 +525,8 @@
         ],
         "absoluteUri": "http://api.planet.com/v1",
         "completeRelativeUri": "/v1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://api.planet.com"
       }
     ]
   },

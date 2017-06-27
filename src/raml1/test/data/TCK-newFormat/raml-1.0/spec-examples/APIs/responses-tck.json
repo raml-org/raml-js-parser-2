@@ -120,7 +120,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/invoices",
+            "absoluteParentUri": "/invoices"
           },
           "post": {
             "responses": {
@@ -162,7 +164,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "typePropertyKind": "JSON",
                     "schemaPath": "schemas/invoice.json",
                     "type": [
                       "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}\n"
@@ -180,7 +181,6 @@
                   "text/xml": {
                     "name": "text/xml",
                     "displayName": "text/xml",
-                    "typePropertyKind": "XML",
                     "schemaPath": "schemas/invoice.xsd",
                     "type": [
                       "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"invoice\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"accountID\" type=\"xs:string\"/>\n        <xs:element name=\"amount\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
@@ -274,7 +274,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/invoices",
+            "absoluteParentUri": "/invoices"
           }
         },
         "relativeUri": "/invoices",
@@ -291,7 +293,8 @@
         ],
         "absoluteUri": "/invoices",
         "completeRelativeUri": "/invoices",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

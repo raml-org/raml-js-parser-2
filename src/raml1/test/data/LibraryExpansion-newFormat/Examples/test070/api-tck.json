@@ -48,7 +48,9 @@
               }
             },
             "description": "Test",
-            "method": "get"
+            "method": "get",
+            "parentUri": "/foo",
+            "absoluteParentUri": "/foo"
           }
         },
         "relativeUri": "/foo",
@@ -65,7 +67,8 @@
         ],
         "absoluteUri": "/foo",
         "completeRelativeUri": "/foo",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

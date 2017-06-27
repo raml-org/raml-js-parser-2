@@ -18,7 +18,8 @@
         ],
         "absoluteUri": "/root/{id",
         "completeRelativeUri": "/root/{id",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

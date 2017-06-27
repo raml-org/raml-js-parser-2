@@ -127,7 +127,9 @@
                   "headerName": "c"
                 }
               }
-            ]
+            ],
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
           }
         },
         "displayName": "/resource",
@@ -143,7 +145,8 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

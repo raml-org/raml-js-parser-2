@@ -221,7 +221,9 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test"
           }
         },
         "relativeUri": "/test",
@@ -238,7 +240,8 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

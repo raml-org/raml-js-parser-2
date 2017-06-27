@@ -89,7 +89,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/someChildUri/{blah}",
+            "absoluteParentUri": "/some/base/uri/someChildUri/{blah}"
           }
         },
         "uriParameters": {
@@ -129,7 +131,8 @@
         ],
         "absoluteUri": "/some/base/uri/someChildUri/{blah}",
         "completeRelativeUri": "/someChildUri/{blah}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/some/base/uri"
       }
     ],
     "__METADATA__": {

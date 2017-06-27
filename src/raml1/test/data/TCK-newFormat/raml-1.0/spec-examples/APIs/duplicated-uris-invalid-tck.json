@@ -21,7 +21,8 @@
             ],
             "absoluteUri": "/users/foo",
             "completeRelativeUri": "/users/foo",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -36,7 +37,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       },
       {
         "relativeUri": "/users/foo",
@@ -54,7 +56,8 @@
         ],
         "absoluteUri": "/users/foo",
         "completeRelativeUri": "/users/foo",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

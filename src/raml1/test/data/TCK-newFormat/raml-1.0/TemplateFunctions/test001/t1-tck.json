@@ -156,7 +156,9 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/users",
+            "absoluteParentUri": "/api/{version}/users"
           }
         },
         "relativeUri": "/users",
@@ -173,7 +175,8 @@
         ],
         "absoluteUri": "/api/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/api/{version}"
       }
     ],
     "__METADATA__": {

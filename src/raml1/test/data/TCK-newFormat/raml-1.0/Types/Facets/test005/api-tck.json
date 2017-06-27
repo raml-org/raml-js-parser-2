@@ -119,7 +119,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "post"
+            "method": "post",
+            "parentUri": "/q",
+            "absoluteParentUri": "/q"
           },
           "put": {
             "body": {
@@ -159,7 +161,9 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             },
-            "method": "put"
+            "method": "put",
+            "parentUri": "/q",
+            "absoluteParentUri": "/q"
           }
         },
         "relativeUri": "/q",
@@ -176,7 +180,8 @@
         ],
         "absoluteUri": "/q",
         "completeRelativeUri": "/q",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

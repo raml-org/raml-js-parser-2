@@ -7,6 +7,24 @@
         "type": [
           "object"
         ],
+        "examples": [
+          {
+            "value": {
+              "title": "Attention needed",
+              "body": "You have been added to group 274"
+            },
+            "strict": true,
+            "name": "message"
+          },
+          {
+            "value": {
+              "name": "log item",
+              "comment": "permission check"
+            },
+            "strict": true,
+            "name": "record"
+          }
+        ],
         "properties": {
           "title": {
             "name": "title",
@@ -99,24 +117,6 @@
             }
           }
         },
-        "examples": [
-          {
-            "value": {
-              "title": "Attention needed",
-              "body": "You have been added to group 274"
-            },
-            "strict": true,
-            "name": "message"
-          },
-          {
-            "value": {
-              "name": "log item",
-              "comment": "permission check"
-            },
-            "strict": true,
-            "name": "record"
-          }
-        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

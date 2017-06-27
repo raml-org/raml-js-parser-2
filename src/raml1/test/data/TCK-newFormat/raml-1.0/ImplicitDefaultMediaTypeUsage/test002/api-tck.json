@@ -107,7 +107,9 @@
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/schemes",
+            "absoluteParentUri": "/schemes"
           }
         },
         "type": "collection",
@@ -125,7 +127,8 @@
         ],
         "absoluteUri": "/schemes",
         "completeRelativeUri": "/schemes",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },

@@ -86,7 +86,8 @@
             ],
             "absoluteUri": "https://app.zencoder.com/api/{version}/jobs/{jobId}",
             "completeRelativeUri": "/jobs/{jobId}",
-            "parentUri": "/jobs"
+            "parentUri": "/jobs",
+            "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs"
           }
         ],
         "__METADATA__": {
@@ -101,7 +102,8 @@
         ],
         "absoluteUri": "https://app.zencoder.com/api/{version}/jobs",
         "completeRelativeUri": "/jobs",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://app.zencoder.com/api/{version}"
       }
     ],
     "__METADATA__": {

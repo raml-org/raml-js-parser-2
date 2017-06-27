@@ -29,7 +29,9 @@
                 "structuredValue": null
               }
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users"
           }
         },
         "relativeUri": "/users",
@@ -46,7 +48,8 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": ""
       }
     ]
   },
