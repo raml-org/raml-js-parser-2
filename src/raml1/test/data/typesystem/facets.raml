@@ -6,8 +6,7 @@ types:
   MyObjectType:
     type: object
     displayName: Test Object Type
-    description: test object type
-    usage: type for testing object type built in facets
+    description: test object type. type for testing object type built in facets.
     properties:
       kind:
       /[a-z]+/:
@@ -20,8 +19,7 @@ types:
   MyFileType:
     type: file
     displayName: Test File Type
-    description: test file type
-    usage: type for testing file type built in facets
+    description: test file type. type for testing file type built in facets.
     minLength: 1024
     maxLength: 8192
     fileTypes: [ text/txt, text/doc ]
@@ -29,8 +27,7 @@ types:
   MyArrayType:
     type: array
     displayName: Test Array Type
-    description: test array type
-    usage: type for testing array type built in facets
+    description: test array type. type for testing array type built in facets.
     minItems: 1
     maxItems: 10
     uniqueItems: true
@@ -38,8 +35,7 @@ types:
   MyStringType:
     type:
     displayName: Test String Type
-    description: test string type
-    usage: type for testing string type built in facets
+    description: test string type. type for testing string type built in facets.
     minLength: 3
     maxLength: 128
     enum: [ "abcd", "12345" ]
@@ -49,8 +45,7 @@ types:
   MyNumberType:
     type: number
     displayName: Test Number Type
-    description: test number type
-    usage: type for testing number type built in facets
+    description: test number type. type for testing number type built in facets.
     minimum: 1
     maximum: 1000
     multipleOf: 5
@@ -61,6 +56,5 @@ types:
 annotationTypes:
   MyAnnotationType:
     displayName: Test Annotation Type
-    description: test Annotation type
-    usage: type for testing annotation type built in 'allowedTarget' facet
+    description: test Annotation type. type for testing annotation type built in 'allowedTarget' facet.
     allowedTargets: [ Method, Resource ]

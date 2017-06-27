@@ -464,8 +464,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).types()[0];
         var expected = {
             "displayName": "Test Object Type",
-            "description": "test object type",
-            "usage": "type for testing object type built in facets",
+            "description": "test object type. type for testing object type built in facets.",
             "minProperties": 1,
             "maxProperties": 2,
             "discriminator": "kind",
@@ -492,8 +491,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).types()[1];
         var expected = {
             "displayName": "Test File Type",
-            "description": "test file type",
-            "usage": "type for testing file type built in facets",
+            "description": "test file type. type for testing file type built in facets.",
             "minLength" : 1024,
             "maxLength" : 8192,
             "fileTypes" : [ "text/txt", "text/doc" ]
@@ -507,8 +505,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).types()[2];
         var expected = {
             "displayName": "Test Array Type",
-            "description": "test array type",
-            "usage": "type for testing array type built in facets",
+            "description": "test array type. type for testing array type built in facets.",
             "minItems": 1,
             "maxItems": 10,
             "uniqueItems": true
@@ -524,8 +521,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).types()[3];
         var expected = {
             "displayName": "Test String Type",
-            "description": "test string type",
-            "usage": "type for testing string type built in facets",
+            "description": "test string type. type for testing string type built in facets.",
             "minLength": 3,
             "maxLength": 128,
             "enum": [ "abcd", "12345" ],
@@ -543,8 +539,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).types()[4];
         var expected = {
             "displayName": "Test Number Type",
-            "description": "test number type",
-            "usage": "type for testing number type built in facets",
+            "description": "test number type. type for testing number type built in facets.",
             "minimum": 1,
             "maximum": 1000,
             "multipleOf": 5,
@@ -560,8 +555,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = (<RamlWrapper.Api>api).annotationTypes()[0];
         var expected = {
             "displayName": "Test Annotation Type",
-            "description": "test Annotation type",
-            "usage": "type for testing annotation type built in 'allowedTarget' facet",
+            "description": "test Annotation type. type for testing annotation type built in 'allowedTarget' facet.",
             "allowedTargets": [ "Method", "Resource" ]
         };
         var ignore: any = {};
@@ -576,7 +570,7 @@ function testFacets(typeNode:core.BasicNode,expected:any,ignoredProperties:any={
     var runtimeType = (<RamlWrapper.TypeDeclaration>typeNode).runtimeType();
     var fixedBuiltInFacets:any = all ? runtimeType.allFixedBuiltInFacets() : runtimeType.fixedBuiltInFacets();
 
-    var props = [ "displayName", "description", "usage" ];
+    var props = [ "displayName", "description" ];
     typeNode.highLevel().definition().universe().type(typeNode.kind())
         .properties().filter(x=>!ignoredProperties[x.nameId()]).forEach(x=>{
         props.push(x.nameId())
