@@ -17,13 +17,15 @@
             "headers": {
               "type": "array",
               "description": "Detailed information about any response headers returned by this method",
-              "items": {"$ref": "datamodel.json#/definitions/Type"}
+              "items": {
+                "$ref": "datamodel.json#/definitions/Type"
+              }
             },
             "body": {
-              "type": "object",
+              "type": "array",
               "description": "The body of the response: a body declaration",
-              "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+              "items": {
+                "$ref": "datamodel.json#/definitions/TypeReference10"
               }
             },
             "code": {

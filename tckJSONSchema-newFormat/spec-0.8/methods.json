@@ -22,10 +22,6 @@
                           "type": "string",
                           "description": "An alternate, human-friendly name for the trait"
                       },
-                      "isScalar": {
-                          "type": "boolean",
-                          "description": "Whether the type is scalar"
-                      },
                       "__METADATA__": {
                           "type": "object"
                       }
@@ -33,50 +29,53 @@
               }
           ]
       },
-      "Reference08":{
-          "oneOf": [
-              {"type":"string"},
-              {
-                  "type": "object",
-                  "patternProperties":{
-                      "^[a-zA-Z0-9<>]+": {
-                          "type": "object",
-                          "patternProperties":{
-                              "^[a-zA-Z0-9<>]+":{
-                                  "type": ["boolean", "integer", "number", "null","string"]
-                              }
+      "TemplateReference": {
+          "type": "object",
+          "properties": {
+              "name": {
+                  "type": "string",
+                  "description": "Template name"
+              },
+              "parameters": {
+                  "type": "array",
+                  "description": "Template parameters if any",
+                  "items": {
+                      "type": "object",
+                      "properties": {
+                          "name": {
+                              "type": "string",
+                              "description": "Parameter name"
                           },
-                          "additionalProperties": false
+                          "value": {
+                              "type": "string",
+                              "description": "Parameter value"
+                          }
                       }
-                  },
-                  "additionalProperties": false
+                  }
               }
-          ]
+          },
+          "required": [
+              "name"
+          ],
+          "additionalProperties": false
       },
       "MethodBase08":{
           "type": "object",
           "description": "Method object allows description of http methods",
           "properties":{
               "responses":{
-                  "type": "object",
+                  "type": "array",
                   "description": "Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.",
-                  "patternProperties": {
-                      "^[a-zA-Z0-9<>]+": {"$ref": "bodies.json#/definitions/Response08"}
-                  },
-                  "additionalProperties": false
+                  "items": {
+                      "$ref": "bodies.json#/definitions/Response08"
+                  }
               },
               "body":{
-                  "type": "object",
+                  "type": "array",
                   "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
-                  "patternProperties": {
-                      "^[a-zA-Z0-9<>]+":{
-                          "oneOf":[
-                              {"$ref": "bodies.json#/definitions/BodyLike08"},
-                              {"type":["null"]}
-                          ]
-                      }
-                  },
-                  "additionalProperties": false
+                  "items": {
+                      "$ref": "bodies.json#/definitions/BodyLike08"
+                  }
               },
               "protocols":{
                   "type": "array",
@@ -89,57 +88,29 @@
                   "type": "array",
                   "description": "A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.",
                   "items":{
-                      "$ref": "#/definitions/Reference08"
+                      "$ref": "security.json#/definitions/AbstractSecurityScheme08"
                   }
               },
               "baseUriParameters":{
-                  "type": "object",
+                  "type": "array",
                   "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
-                  "patternProperties": {
-                      "^[a-zA-Z0-9<>]+": {
-                          "oneOf":[
-                              {"$ref": "parameters.json#/definitions/Parameter08"},
-                              {
-                                  "type": "array",
-                                  "items": {"$ref": "parameters.json#/definitions/Parameter08"}
-                              }
-                          ]
-                      }
-                  },
-                  "additionalProperties": false
+                  "items": {
+                      "$ref": "parameters.json#/definitions/Parameter08"
+                  }
               },
               "queryParameters":{
-                  "type": "object",
+                  "type": "array",
                   "description": "An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property",
-                  "patternProperties": {
-                      "^[a-zA-Z0-9<>]+": {
-                          "oneOf":[
-                              {"$ref": "parameters.json#/definitions/Parameter08"},
-                              {"type":["null"]},
-                              {
-                                  "type": "array",
-                                  "items": {"$ref": "parameters.json#/definitions/Parameter08"}
-                              }
-                          ]
-                      }
-                  },
-                  "additionalProperties": false
+                  "items": {
+                      "$ref": "parameters.json#/definitions/Parameter08"
+                  }
               },
               "headers":{
-                  "type": "object",
+                  "type": "array",
                   "description": "Headers that allowed at this position",
-                  "patternProperties": {
-                      "^[a-zA-Z0-9<>]+": {
-                          "oneOf":[
-                              {"$ref": "parameters.json#/definitions/Parameter08"},
-                              {
-                                  "type": "array",
-                                  "items": {"$ref": "parameters.json#/definitions/Parameter08"}
-                              }
-                          ]
-                      }
-                  },
-                  "additionalProperties": false
+                  "items": {
+                      "$ref": "parameters.json#/definitions/Parameter08"
+                  }
               },
               "description":{
                   "type": [ "string", "null" ]
@@ -161,12 +132,23 @@
                           "type": "array",
                           "description": "Instantiation of applyed traits",
                           "items": {
-                              "$ref": "#/definitions/Reference08"
+                              "$ref": "#/definitions/TemplateReference"
                           }
                       },
-                      "allUriParameters":{
+                      "uriParameters":{
                           "type": "array",
-                          "items": {"$ref": "parameters.json#/definitions/Parameter08"}
+                          "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
+                          "items": {
+                              "$ref": "parameters.json#/definitions/Parameter08"
+                          }
+                      },
+                      "parentUri": {
+                          "type": "string",
+                          "description": "Complete relative URI of the owner resource"
+                      },
+                      "absoluteParentUri": {
+                          "type": "string",
+                          "description": "Absolute URI of the owner resource"
                       },
                       "__METADATA__": {
                         "type": "object"

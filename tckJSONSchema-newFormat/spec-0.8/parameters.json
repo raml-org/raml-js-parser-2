@@ -88,20 +88,6 @@
         }
       ]
     },
-    "ParameterTypeDeclaration08":{
-      "allOf":[
-        {"$ref": "#/definitions/ParameterBase08"},
-        {
-          "properties":{
-            "type": {
-              "type": "string",
-              "description": "Value must be a boolean or date or file",
-              "enum":["boolean", "date", "file"]
-            }
-          }
-        }
-      ]
-    },
     "NumberTypeDeclaration08":{
       "allOf":[
         {"$ref": "#/definitions/ParameterBase08"},
