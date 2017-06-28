@@ -1,4 +1,4 @@
-interface SourceInfo{
+export interface SourceInfo{
 
     /**
      * Path to file which contains definition
@@ -12,7 +12,7 @@ interface SourceInfo{
 
 }
 
-interface HasSource extends SourceInfo{
+export interface HasSource extends SourceInfo{
 
     scalarsSources?: { [key:string]:SourceInfo[] }
 
