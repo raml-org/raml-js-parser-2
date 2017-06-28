@@ -36,12 +36,12 @@
         "start": {
           "line": 7,
           "column": 5,
-          "position": 70
+          "position": 63
         },
         "end": {
           "line": 7,
           "column": 9,
-          "position": 74
+          "position": 67
         }
       }
     }

@@ -36,12 +36,12 @@
         "start": {
           "line": 7,
           "column": 5,
-          "position": 72
+          "position": 65
         },
         "end": {
           "line": 7,
           "column": 9,
-          "position": 76
+          "position": 69
         }
       },
       "trace": [
@@ -53,12 +53,12 @@
             "start": {
               "line": 3,
               "column": 3,
-              "position": 32
+              "position": 29
             },
             "end": {
               "line": 3,
               "column": 7,
-              "position": 36
+              "position": 33
             }
           },
           "isWarning": true
@@ -73,12 +73,12 @@
         "start": {
           "line": 7,
           "column": 5,
-          "position": 72
+          "position": 65
         },
         "end": {
           "line": 7,
           "column": 9,
-          "position": 76
+          "position": 69
         }
       }
     }
