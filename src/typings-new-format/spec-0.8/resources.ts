@@ -38,8 +38,6 @@ export interface Resource08 extends common.HasMeta{
      */
     uriParameters?: parameters.Parameter08[]
 
-    allUriParameters?: parameters.Parameter08[]
-
     /**
      * Methods that can be called on this resource
      */

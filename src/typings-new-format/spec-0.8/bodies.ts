@@ -22,7 +22,7 @@ export interface Response08 {
      * This is particularly useful for APIs that allow HTTP headers that
      * conform to some naming convention to send arbitrary, custom data.
      */
-    headers?: parameters.Parameter08[]
+    headers?: { [key: string]: parameters.Parameter08 }
 
     /**
      * Each response MAY contain a body property, which conforms to
@@ -35,7 +35,7 @@ export interface Response08 {
      * Processing applications MUST match the most descriptive
      * media type first if `* /*` is used.
      */
-    body?: BodyLike08
+    body?: BodyLike08[]
 
     /**
      * The description attribute describes the intended use or meaning
@@ -92,7 +92,7 @@ export interface BodyLike08{
      * parameter, and the value is itself a map the specifies the web
      * form parameter's attributes.
      */
-    formParameters?: parameters.Parameter08[]
+    formParameters?: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
 
     /**
      * Returns schema content for the cases when schema is inlined,

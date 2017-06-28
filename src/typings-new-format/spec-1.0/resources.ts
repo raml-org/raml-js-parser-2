@@ -3,8 +3,6 @@ import datamodel = require("./datamodel");
 import security = require("./security");
 import methods = require("./methods");
 
-export type ResourceTypeRef10 = string | { [key: string]: any };
-
 /**
  * Web resource
  */

@@ -1,8 +1,6 @@
 import common = require("./common");
 import methods = require("./methods");
 
-export type SecuritySchemeRef10 = string | Object;
-
 export interface OAuth10SecuritySettings10 extends common.Annotable {
 
     /**

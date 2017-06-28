@@ -114,9 +114,15 @@ export interface Method08 extends MethodBase08{
      */
     is?: TemplateReference[]
 
-    allUriParameters?: parameters.Parameter08[]
+    uriParameters?: parameters.Parameter08[]
 
+    /**
+     * Complete relative URI of the owner resource
+     */
     parentUri: string
 
+    /**
+     * AbsoluteComplete relative URI of the owner resource
+     */
     absoluteParentUri: string
 }
