@@ -188,8 +188,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "petKind": {
+            "queryParameters": [
+              {
                 "name": "petKind",
                 "displayName": "petKind",
                 "type": [
@@ -216,7 +216,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",
@@ -348,8 +348,8 @@
                 "absoluteParentUri": "/shop/pets/{id}"
               }
             },
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -373,7 +373,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -541,8 +541,8 @@
                 "absoluteParentUri": "/shop/birds/{id}"
               }
             },
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -566,7 +566,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -734,8 +734,8 @@
                 "absoluteParentUri": "/shop/mammals/{id}"
               }
             },
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -759,7 +759,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {

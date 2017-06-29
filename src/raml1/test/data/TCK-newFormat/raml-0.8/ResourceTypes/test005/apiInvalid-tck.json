@@ -3,8 +3,8 @@
     "title": "A",
     "traits": {
       "SomeTrait": {
-        "queryParameters": {
-          "<<propertyName1>>": {
+        "queryParameters": [
+          {
             "name": "<<propertyName1>>",
             "displayName": "<<propertyName1>>",
             "type": "number",
@@ -24,7 +24,7 @@
               }
             }
           },
-          "<<propertyName2>>": {
+          {
             "name": "<<propertyName2>>",
             "displayName": "<<propertyName2>>",
             "type": "boolean",
@@ -44,7 +44,7 @@
               }
             }
           },
-          "<<propertyName3>>": {
+          {
             "name": "<<propertyName3>>",
             "displayName": "<<propertyName3>>",
             "type": "string",
@@ -64,7 +64,7 @@
               }
             }
           }
-        },
+        ],
         "name": "SomeTrait"
       }
     },
@@ -76,8 +76,8 @@
             "body": {
               "application/json": {
                 "name": "application/json",
-                "formParameters": {
-                  "formParam": {
+                "formParameters": [
+                  {
                     "name": "formParam",
                     "displayName": "formParam",
                     "type": "number",
@@ -97,7 +97,7 @@
                       }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"
@@ -120,8 +120,8 @@
             "body": {
               "application/json": {
                 "name": "application/json",
-                "formParameters": {
-                  "formParam": {
+                "formParameters": [
+                  {
                     "name": "formParam",
                     "displayName": "formParam",
                     "type": "boolean",
@@ -141,7 +141,7 @@
                       }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"
@@ -186,8 +186,8 @@
             "body": {
               "application/json": {
                 "name": "application/json",
-                "formParameters": {
-                  "formParam": {
+                "formParameters": [
+                  {
                     "name": "formParam",
                     "displayName": "formParam",
                     "type": "boolean",
@@ -208,11 +208,11 @@
                       }
                     }
                   }
-                }
+                ]
               }
             },
-            "queryParameters": {
-              "c": {
+            "queryParameters": [
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "number",
@@ -233,7 +233,7 @@
                   }
                 }
               },
-              "b": {
+              {
                 "name": "b",
                 "displayName": "b",
                 "type": "string",
@@ -254,7 +254,7 @@
                   }
                 }
               },
-              "a": {
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "boolean",
@@ -275,7 +275,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

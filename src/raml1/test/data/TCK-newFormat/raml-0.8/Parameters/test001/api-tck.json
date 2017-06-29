@@ -6,8 +6,8 @@
         "relativeUri": "/test",
         "methods": {
           "post": {
-            "queryParameters": {
-              "limit": {
+            "queryParameters": [
+              {
                 "name": "limit",
                 "displayName": "limit",
                 "type": "integer",
@@ -28,7 +28,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test"

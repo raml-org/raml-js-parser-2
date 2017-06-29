@@ -5,8 +5,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "qp1": {
+            "queryParameters": [
+              {
                 "name": "qp1",
                 "displayName": "qp1",
                 "type": [
@@ -27,7 +27,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "qp2": {
+              {
                 "name": "qp2",
                 "displayName": "qp2",
                 "type": [
@@ -47,7 +47,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource1",
             "absoluteParentUri": "/resource1"
@@ -73,8 +73,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "qp11": {
+            "queryParameters": [
+              {
                 "name": "qp11",
                 "displayName": "qp11",
                 "type": [
@@ -95,7 +95,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "qp21": {
+              {
                 "name": "qp21",
                 "displayName": "qp21",
                 "type": [
@@ -115,7 +115,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource2",
             "absoluteParentUri": "/resource2"

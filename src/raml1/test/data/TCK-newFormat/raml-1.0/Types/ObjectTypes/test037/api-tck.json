@@ -64,8 +64,8 @@
     },
     "traits": {
       "NewLibrary.FilterableByPrice": {
-        "queryParameters": {
-          "priceLessThen": {
+        "queryParameters": [
+          {
             "name": "priceLessThen",
             "displayName": "priceLessThen",
             "type": [
@@ -85,7 +85,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "priceMoreThen": {
+          {
             "name": "priceMoreThen",
             "displayName": "priceMoreThen",
             "type": [
@@ -105,7 +105,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "NewLibrary.FilterableByPrice",
         "__METADATA__": {
           "calculated": true
@@ -217,8 +217,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "petKind": {
+            "queryParameters": [
+              {
                 "name": "petKind",
                 "displayName": "petKind",
                 "type": [
@@ -245,7 +245,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "priceLessThen": {
+              {
                 "name": "priceLessThen",
                 "displayName": "priceLessThen",
                 "type": [
@@ -265,7 +265,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "priceMoreThen": {
+              {
                 "name": "priceMoreThen",
                 "displayName": "priceMoreThen",
                 "type": [
@@ -285,7 +285,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",
@@ -430,8 +430,8 @@
                 "item": "NewLibrary.Pet"
               }
             },
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -455,7 +455,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -492,8 +492,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "priceLessThen": {
+            "queryParameters": [
+              {
                 "name": "priceLessThen",
                 "displayName": "priceLessThen",
                 "type": [
@@ -513,7 +513,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "priceMoreThen": {
+              {
                 "name": "priceMoreThen",
                 "displayName": "priceMoreThen",
                 "type": [
@@ -533,7 +533,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",
@@ -678,8 +678,8 @@
                 "item": "Bird"
               }
             },
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -703,7 +703,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -740,8 +740,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "priceLessThen": {
+            "queryParameters": [
+              {
                 "name": "priceLessThen",
                 "displayName": "priceLessThen",
                 "type": [
@@ -761,7 +761,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "priceMoreThen": {
+              {
                 "name": "priceMoreThen",
                 "displayName": "priceMoreThen",
                 "type": [
@@ -781,7 +781,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",
@@ -926,8 +926,8 @@
                 "item": "Mammal"
               }
             },
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -951,7 +951,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {

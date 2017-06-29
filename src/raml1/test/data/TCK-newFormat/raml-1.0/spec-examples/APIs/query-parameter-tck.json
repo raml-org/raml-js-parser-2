@@ -3,8 +3,8 @@
     "title": "GitHub API",
     "version": "v3",
     "baseUri": "https://api.github.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -34,7 +34,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],
@@ -42,8 +42,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "page": {
+            "queryParameters": [
+              {
                 "name": "page",
                 "displayName": "page",
                 "type": [
@@ -68,7 +68,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "per_page": {
+              {
                 "name": "per_page",
                 "displayName": "per_page",
                 "type": [
@@ -99,7 +99,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],

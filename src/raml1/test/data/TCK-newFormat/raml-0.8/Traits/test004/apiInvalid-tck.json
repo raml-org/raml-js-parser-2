@@ -3,8 +3,8 @@
     "title": "A",
     "traits": {
       "SomeTrait": {
-        "queryParameters": {
-          "<<queryParamName>>": {
+        "queryParameters": [
+          {
             "name": "<<queryParamName>>",
             "displayName": "<<queryParamName>>",
             "type": "number",
@@ -24,9 +24,9 @@
               }
             }
           }
-        },
-        "headers": {
-          "<<headerName>>": {
+        ],
+        "headers": [
+          {
             "name": "<<headerName>>",
             "displayName": "<<headerName>>",
             "type": "boolean",
@@ -46,7 +46,7 @@
               }
             }
           }
-        },
+        ],
         "name": "SomeTrait"
       },
       "Trait1": {
@@ -73,8 +73,8 @@
                 }
               }
             },
-            "queryParameters": {
-              "a": {
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -95,9 +95,9 @@
                   }
                 }
               }
-            },
-            "headers": {
-              "c": {
+            ],
+            "headers": [
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "boolean",
@@ -118,7 +118,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get",
             "is": [
               {

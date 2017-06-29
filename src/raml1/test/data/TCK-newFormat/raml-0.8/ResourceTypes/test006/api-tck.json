@@ -3,8 +3,8 @@
     "title": "Transactor Thor API",
     "version": "1.0",
     "baseUri": "http://server/api/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -34,7 +34,7 @@
           }
         }
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],

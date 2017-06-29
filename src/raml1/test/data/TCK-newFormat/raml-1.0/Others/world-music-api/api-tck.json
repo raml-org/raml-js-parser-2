@@ -128,8 +128,8 @@
     },
     "traits": {
       "secured": {
-        "queryParameters": {
-          "access_token": {
+        "queryParameters": [
+          {
             "name": "access_token",
             "displayName": "access_token",
             "type": [
@@ -149,7 +149,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "securedBy": [
           "custom_scheme"
         ],
@@ -432,8 +432,8 @@
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
         "describedBy": {
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -454,9 +454,9 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          },
-          "headers": {
-            "Authorization": {
+          ],
+          "headers": [
+            {
               "name": "Authorization",
               "displayName": "Authorization",
               "type": [
@@ -477,7 +477,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          },
+          ],
           "responses": [
             {
               "code": "401",
@@ -504,8 +504,8 @@
         "type": "x-custom",
         "description": "A custom security scheme for authenticating requests.\n",
         "describedBy": {
-          "headers": {
-            "SpecialToken": {
+          "headers": [
+            {
               "name": "SpecialToken",
               "displayName": "SpecialToken",
               "type": [
@@ -526,7 +526,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          },
+          ],
           "responses": [
             {
               "code": "401",
@@ -543,8 +543,8 @@
     "description": "This is an example of a music API.",
     "version": "v1",
     "baseUri": "http://{environment}.musicapi.com/{version}",
-    "baseUriParameters": {
-      "environment": {
+    "baseUriParameters": [
+      {
         "name": "environment",
         "displayName": "environment",
         "type": [
@@ -570,7 +570,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "version": {
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -600,7 +600,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "protocols": [
       "HTTP",
       "HTTPS"
@@ -891,8 +891,8 @@
                 "value": 30
               }
             },
-            "queryParameters": {
-              "genre": {
+            "queryParameters": [
+              {
                 "name": "genre",
                 "displayName": "genre",
                 "type": [
@@ -916,7 +916,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "access_token": {
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -936,7 +936,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -956,8 +956,8 @@
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs"
           },
           "post": {
-            "queryParameters": {
-              "access_token": {
+            "queryParameters": [
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -977,7 +977,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -1095,8 +1095,8 @@
             "securedBy": [
               "custom_scheme"
             ],
-            "uriParameters": {
-              "songId": {
+            "uriParameters": [
+              {
                 "name": "songId",
                 "displayName": "songId",
                 "type": [
@@ -1120,7 +1120,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{songId}",
             "displayName": "/{songId}",
             "__METADATA__": {

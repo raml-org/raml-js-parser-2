@@ -6,8 +6,8 @@
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
         "describedBy": {
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -28,9 +28,9 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          },
-          "headers": {
-            "Authorization": {
+          ],
+          "headers": [
+            {
               "name": "Authorization",
               "displayName": "Authorization",
               "type": [
@@ -51,7 +51,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          },
+          ],
           "responses": [
             {
               "code": "401",

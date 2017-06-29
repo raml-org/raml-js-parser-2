@@ -3,8 +3,8 @@
     "title": "URI Templates",
     "resources": [
       {
-        "uriParameters": {
-          "userId": {
+        "uriParameters": [
+          {
             "name": "userId",
             "displayName": "userId",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/users/{userId}",
         "displayName": "/users/{userId}",
         "__METADATA__": {
@@ -48,8 +48,8 @@
         "absoluteParentUri": ""
       },
       {
-        "uriParameters": {
-          "username": {
+        "uriParameters": [
+          {
             "name": "username",
             "displayName": "username",
             "type": [
@@ -73,7 +73,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/users/{username}",
         "displayName": "/users/{username}",
         "__METADATA__": {

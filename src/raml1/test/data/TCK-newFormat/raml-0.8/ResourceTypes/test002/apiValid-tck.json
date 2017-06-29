@@ -6,8 +6,8 @@
         "name": "Resource",
         "methods": {
           "get": {
-            "queryParameters": {
-              "b": {
+            "queryParameters": [
+              {
                 "name": "b",
                 "displayName": "b",
                 "type": "number",
@@ -27,7 +27,7 @@
                   }
                 }
               },
-              "a": {
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "boolean",
@@ -47,7 +47,7 @@
                   }
                 }
               },
-              "c": {
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -67,7 +67,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get"
           }
         }
@@ -89,8 +89,8 @@
                 }
               }
             },
-            "queryParameters": {
-              "a": {
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "boolean",
@@ -111,7 +111,7 @@
                   }
                 }
               },
-              "b": {
+              {
                 "name": "b",
                 "displayName": "b",
                 "type": "number",
@@ -132,7 +132,7 @@
                   }
                 }
               },
-              "c": {
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -153,7 +153,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

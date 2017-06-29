@@ -11,8 +11,8 @@
         "resources": [
           {
             "relativeUri": "/{resourceId}",
-            "uriParameters": {
-              "resourceId": {
+            "uriParameters": [
+              {
                 "name": "resourceId",
                 "displayName": "resourceId",
                 "type": "string",
@@ -36,60 +36,58 @@
                   }
                 }
               }
-            },
+            ],
             "methods": {
               "post": {
                 "body": {
                   "application/x-www-form-urlencoded": {
                     "name": "application/x-www-form-urlencoded",
-                    "formParameters": {
-                      "name": [
-                        {
-                          "name": "name",
-                          "displayName": "name",
-                          "type": "string",
-                          "required": false,
-                          "example": "Comment",
-                          "repeat": false,
-                          "description": "The name of the resource to create",
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              },
-                              "repeat": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "name": "name",
-                          "displayName": "name",
-                          "type": "string",
-                          "required": false,
-                          "example": "Comment1",
-                          "repeat": false,
-                          "description": "The name 1 of the resource to create",
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              },
-                              "repeat": {
-                                "insertedAsDefault": true
-                              }
+                    "formParameters": [
+                      {
+                        "name": "name",
+                        "displayName": "name",
+                        "type": "string",
+                        "required": false,
+                        "example": "Comment",
+                        "repeat": false,
+                        "description": "The name of the resource to create",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
                             }
                           }
                         }
-                      ],
-                      "description": {
+                      },
+                      {
+                        "name": "name",
+                        "displayName": "name",
+                        "type": "string",
+                        "required": false,
+                        "example": "Comment1",
+                        "repeat": false,
+                        "description": "The name 1 of the resource to create",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      },
+                      {
                         "name": "description",
                         "displayName": "description",
                         "type": "string",
@@ -111,7 +109,7 @@
                           }
                         }
                       }
-                    }
+                    ]
                   }
                 },
                 "protocols": [

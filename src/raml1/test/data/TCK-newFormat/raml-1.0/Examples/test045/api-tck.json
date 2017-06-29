@@ -24,8 +24,8 @@
     },
     "traits": {
       "chargeable": {
-        "headers": {
-          "X-Dept": {
+        "headers": [
+          {
             "name": "X-Dept",
             "displayName": "X-Dept",
             "type": [
@@ -56,7 +56,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "dept_code"
           }
-        },
+        ],
         "name": "chargeable"
       }
     },
@@ -65,8 +65,8 @@
       {
         "methods": {
           "get": {
-            "headers": {
-              "X-Dept": {
+            "headers": [
+              {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
                 "type": [
@@ -97,7 +97,7 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": "dept_code"
               }
-            },
+            ],
             "is": [
               "chargeable"
             ],

@@ -3,8 +3,8 @@
     "title": "A",
     "traits": {
       "SomeTrait": {
-        "queryParameters": {
-          "<<propertyName1>>": {
+        "queryParameters": [
+          {
             "name": "<<propertyName1>>",
             "displayName": "<<propertyName1>>",
             "type": "number",
@@ -24,7 +24,7 @@
               }
             }
           },
-          "<<propertyName2>>": {
+          {
             "name": "<<propertyName2>>",
             "displayName": "<<propertyName2>>",
             "type": "boolean",
@@ -44,7 +44,7 @@
               }
             }
           },
-          "<<propertyName3>>": {
+          {
             "name": "<<propertyName3>>",
             "displayName": "<<propertyName3>>",
             "type": "string",
@@ -64,7 +64,7 @@
               }
             }
           }
-        },
+        ],
         "name": "SomeTrait"
       }
     },
@@ -83,8 +83,8 @@
                 }
               }
             },
-            "queryParameters": {
-              "a": {
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -105,7 +105,7 @@
                   }
                 }
               },
-              "b": {
+              {
                 "name": "b",
                 "displayName": "b",
                 "type": "boolean",
@@ -126,7 +126,7 @@
                   }
                 }
               },
-              "c": {
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -147,7 +147,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get",
             "is": [
               {

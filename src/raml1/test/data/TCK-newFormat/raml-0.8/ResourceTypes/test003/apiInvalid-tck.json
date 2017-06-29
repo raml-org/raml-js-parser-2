@@ -3,8 +3,8 @@
     "title": "A",
     "traits": {
       "SomeTrait": {
-        "queryParameters": {
-          "<<queryParamName>>": {
+        "queryParameters": [
+          {
             "name": "<<queryParamName>>",
             "displayName": "<<queryParamName>>",
             "type": "number",
@@ -24,9 +24,9 @@
               }
             }
           }
-        },
-        "headers": {
-          "<<headerName>>": {
+        ],
+        "headers": [
+          {
             "name": "<<headerName>>",
             "displayName": "<<headerName>>",
             "type": "string",
@@ -46,7 +46,7 @@
               }
             }
           }
-        },
+        ],
         "name": "SomeTrait"
       }
     },
@@ -58,8 +58,8 @@
             "body": {
               "application/json": {
                 "name": "application/json",
-                "formParameters": {
-                  "param": {
+                "formParameters": [
+                  {
                     "name": "param",
                     "displayName": "param",
                     "type": "number",
@@ -79,7 +79,7 @@
                       }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"
@@ -122,8 +122,8 @@
             "body": {
               "application/json": {
                 "name": "application/json",
-                "formParameters": {
-                  "param": {
+                "formParameters": [
+                  {
                     "name": "param",
                     "displayName": "param",
                     "type": "number",
@@ -144,11 +144,11 @@
                       }
                     }
                   }
-                }
+                ]
               }
             },
-            "queryParameters": {
-              "a": {
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -169,9 +169,9 @@
                   }
                 }
               }
-            },
-            "headers": {
-              "c": {
+            ],
+            "headers": [
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -192,7 +192,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

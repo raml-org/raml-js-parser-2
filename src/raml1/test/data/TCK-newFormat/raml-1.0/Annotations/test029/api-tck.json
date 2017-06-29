@@ -165,8 +165,8 @@
     "title": "TCK Sample. RAML 1.0 Annotations 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -196,7 +196,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],

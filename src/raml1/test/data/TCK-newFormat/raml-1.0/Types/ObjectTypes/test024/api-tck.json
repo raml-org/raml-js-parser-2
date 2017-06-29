@@ -398,8 +398,8 @@
             "absoluteParentUri": "/orgs/{orgId}"
           }
         },
-        "uriParameters": {
-          "orgId": {
+        "uriParameters": [
+          {
             "name": "orgId",
             "displayName": "orgId",
             "type": [
@@ -423,7 +423,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/orgs/{orgId}",
         "displayName": "/orgs/{orgId}",
         "__METADATA__": {

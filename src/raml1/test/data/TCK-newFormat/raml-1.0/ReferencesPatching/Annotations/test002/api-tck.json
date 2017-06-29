@@ -88,8 +88,8 @@
           "lib.libTrait2"
         ],
         "type": "lib.libResourceType",
-        "uriParameters": {
-          "id": {
+        "uriParameters": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -113,7 +113,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/{id}",
         "displayName": "/{id}",
         "__METADATA__": {

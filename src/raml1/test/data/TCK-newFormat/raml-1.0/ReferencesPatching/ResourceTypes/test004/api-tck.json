@@ -12,8 +12,8 @@
     ],
     "traits": {
       "lib1.lib2.myTrait": {
-        "queryParameters": {
-          "q": {
+        "queryParameters": [
+          {
             "name": "q",
             "displayName": "<<paramName>>",
             "type": [
@@ -33,7 +33,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "body": {
           "application/json": {
             "name": "application/json",
@@ -83,8 +83,8 @@
       {
         "methods": {
           "post": {
-            "queryParameters": {
-              "q": {
+            "queryParameters": [
+              {
                 "name": "q",
                 "displayName": "QParam",
                 "type": [
@@ -104,7 +104,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "body": {
               "application/json": {
                 "name": "application/json",

@@ -5004,8 +5004,8 @@
     },
     "traits": {
       "acceptCallback": {
-        "queryParameters": {
-          "callback": {
+        "queryParameters": [
+          {
             "name": "callback",
             "displayName": "callback",
             "type": [
@@ -5036,12 +5036,12 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "acceptCallback"
       },
       "limitableByGeoPoint": {
-        "queryParameters": {
-          "lat": {
+        "queryParameters": [
+          {
             "name": "lat",
             "displayName": "lat",
             "type": [
@@ -5062,7 +5062,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lng": {
+          {
             "name": "lng",
             "displayName": "lng",
             "type": [
@@ -5083,7 +5083,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "distance": {
+          {
             "name": "distance",
             "displayName": "distance",
             "type": [
@@ -5106,12 +5106,12 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "limitableByGeoPoint"
       },
       "limitable": {
-        "queryParameters": {
-          "count": {
+        "queryParameters": [
+          {
             "name": "count",
             "displayName": "count",
             "type": [
@@ -5139,12 +5139,12 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "limitable"
       },
       "limitableByTime": {
-        "queryParameters": {
-          "max_timestamp": {
+        "queryParameters": [
+          {
             "name": "max_timestamp",
             "displayName": "max_timestamp",
             "type": [
@@ -5165,7 +5165,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "min_timestamp": {
+          {
             "name": "min_timestamp",
             "displayName": "min_timestamp",
             "type": [
@@ -5186,12 +5186,12 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "limitableByTime"
       },
       "limitableById": {
-        "queryParameters": {
-          "min_id": {
+        "queryParameters": [
+          {
             "name": "min_id",
             "displayName": "min_id",
             "type": [
@@ -5212,7 +5212,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "max_id": {
+          {
             "name": "max_id",
             "displayName": "max_id",
             "type": [
@@ -5233,7 +5233,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "limitableById"
       }
     },
@@ -5851,8 +5851,8 @@
         "type": "OAuth 2.0",
         "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
         "describedBy": {
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -5876,7 +5876,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          }
+          ]
         },
         "settings": {
           "accessTokenUri": "https://api.instagram.com/oauth/access_token",
@@ -5897,8 +5897,8 @@
         "type": "x-customHeader",
         "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
         "describedBy": {
-          "queryParameters": {
-            "client_id": {
+          "queryParameters": [
+            {
               "name": "client_id",
               "displayName": "client_id",
               "type": [
@@ -5929,7 +5929,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          }
+          ]
         }
       }
     }

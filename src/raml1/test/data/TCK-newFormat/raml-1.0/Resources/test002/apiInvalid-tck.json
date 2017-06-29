@@ -51,8 +51,8 @@
             "absoluteParentUri": "/some/base/uri/someChildUri/{blah1}"
           }
         },
-        "uriParameters": {
-          "blah1": {
+        "uriParameters": [
+          {
             "name": "blah1",
             "displayName": "blah1",
             "type": [
@@ -76,7 +76,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "blah": {
+          {
             "name": "blah",
             "displayName": "blah",
             "type": [
@@ -96,7 +96,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/someChildUri/{blah1}",
         "displayName": "/someChildUri/{blah1}",
         "__METADATA__": {

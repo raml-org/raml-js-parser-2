@@ -182,8 +182,8 @@
                 ]
               }
             },
-            "queryParameters": {
-              "a": {
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": [
@@ -203,9 +203,9 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
-            "headers": {
-              "b": {
+            ],
+            "headers": [
+              {
                 "name": "b",
                 "displayName": "b",
                 "type": [
@@ -225,7 +225,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",
@@ -293,8 +293,8 @@
             "absoluteParentUri": "/hello/{id}"
           }
         },
-        "uriParameters": {
-          "id": {
+        "uriParameters": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -318,7 +318,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/hello/{id}",
         "displayName": "/hello/{id}",
         "__METADATA__": {

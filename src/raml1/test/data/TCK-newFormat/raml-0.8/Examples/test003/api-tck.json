@@ -4,19 +4,19 @@
     "resources": [
       {
         "relativeUri": "/single-query-record/{code}",
-        "uriParameters": {
-          "code": {
+        "uriParameters": [
+          {
             "name": "code",
             "displayName": "code",
             "type": "string",
             "required": false,
             "repeat": false
           }
-        },
+        ],
         "methods": {
           "post": {
-            "queryParameters": {
-              "query...": {
+            "queryParameters": [
+              {
                 "name": "query...",
                 "displayName": "query...",
                 "type": "string",
@@ -32,7 +32,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/single-query-record/{code}",
             "absoluteParentUri": "/single-query-record/{code}"

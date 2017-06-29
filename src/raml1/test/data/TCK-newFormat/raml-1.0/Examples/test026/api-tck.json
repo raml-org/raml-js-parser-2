@@ -200,8 +200,8 @@
     "title": "Blah",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -231,7 +231,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],
@@ -243,8 +243,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "bbb": {
+                "queryParameters": [
+                  {
                     "name": "bbb",
                     "displayName": "bbb",
                     "type": [
@@ -264,9 +264,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
-                "headers": {
-                  "blah": {
+                ],
+                "headers": [
+                  {
                     "name": "blah",
                     "displayName": "blah",
                     "type": [
@@ -286,7 +286,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",

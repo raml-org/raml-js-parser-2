@@ -93,7 +93,7 @@ export class TCKDumper {
         new ResourceTypesTransformer(),
         //new ResourcesTransformer(),
         //new TypeExampleTransformer(),
-        new ParametersTransformer(),
+        //new ParametersTransformer(),
         //new TypesTransformer(),
         //new UsesTransformer(),
         new PropertiesTransformer(),

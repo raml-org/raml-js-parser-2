@@ -3,8 +3,8 @@
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -34,7 +34,7 @@
           }
         }
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],

@@ -180,8 +180,8 @@
             "absoluteParentUri": "/animals/{animalId}"
           }
         },
-        "uriParameters": {
-          "animalId": {
+        "uriParameters": [
+          {
             "name": "animalId",
             "displayName": "animalId",
             "type": [
@@ -205,7 +205,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/animals/{animalId}",
         "displayName": "/animals/{animalId}",
         "__METADATA__": {

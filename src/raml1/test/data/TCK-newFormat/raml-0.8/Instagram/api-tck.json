@@ -3,8 +3,8 @@
     "title": "Instagram",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -34,7 +34,7 @@
           }
         }
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],
@@ -104,8 +104,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "queryParameters": {
-          "callback": {
+        "queryParameters": [
+          {
             "name": "callback",
             "displayName": "callback",
             "type": "string",
@@ -130,7 +130,7 @@
               }
             }
           }
-        },
+        ],
         "name": "acceptCallback",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -145,8 +145,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "queryParameters": {
-          "lat": {
+        "queryParameters": [
+          {
             "name": "lat",
             "displayName": "lat",
             "type": "number",
@@ -167,7 +167,7 @@
               }
             }
           },
-          "lng": {
+          {
             "name": "lng",
             "displayName": "lng",
             "type": "number",
@@ -188,7 +188,7 @@
               }
             }
           },
-          "distance": {
+          {
             "name": "distance",
             "displayName": "distance",
             "type": "integer",
@@ -211,7 +211,7 @@
               }
             }
           }
-        },
+        ],
         "name": "limitableByGeoPoint",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -226,8 +226,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "queryParameters": {
-          "count": {
+        "queryParameters": [
+          {
             "name": "count",
             "displayName": "count",
             "type": "integer",
@@ -249,7 +249,7 @@
               }
             }
           }
-        },
+        ],
         "name": "limitable",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -264,8 +264,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "queryParameters": {
-          "max_timestamp": {
+        "queryParameters": [
+          {
             "name": "max_timestamp",
             "displayName": "max_timestamp",
             "type": "integer",
@@ -286,7 +286,7 @@
               }
             }
           },
-          "min_timestamp": {
+          {
             "name": "min_timestamp",
             "displayName": "min_timestamp",
             "type": "integer",
@@ -307,7 +307,7 @@
               }
             }
           }
-        },
+        ],
         "name": "limitableByTime",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -322,8 +322,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "queryParameters": {
-          "min_id": {
+        "queryParameters": [
+          {
             "name": "min_id",
             "displayName": "min_id",
             "type": "integer",
@@ -344,7 +344,7 @@
               }
             }
           },
-          "max_id": {
+          {
             "name": "max_id",
             "displayName": "max_id",
             "type": "integer",
@@ -365,7 +365,7 @@
               }
             }
           }
-        },
+        ],
         "name": "limitableById",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -390,8 +390,8 @@
             "oauth_2_0",
             "clientId"
           ],
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": "string",
@@ -415,7 +415,7 @@
                 }
               }
             }
-          },
+          ],
           "__METADATA__": {
             "primitiveValuesMeta": {
               "securedBy": {
@@ -448,8 +448,8 @@
             "oauth_2_0",
             "clientId"
           ],
-          "queryParameters": {
-            "client_id": {
+          "queryParameters": [
+            {
               "name": "client_id",
               "displayName": "client_id",
               "type": "string",
@@ -474,7 +474,7 @@
                 }
               }
             }
-          },
+          ],
           "__METADATA__": {
             "primitiveValuesMeta": {
               "securedBy": {
@@ -794,8 +794,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "mediaId": {
+            "uriParameters": [
+              {
                 "name": "mediaId",
                 "displayName": "mediaId",
                 "type": "string",
@@ -819,7 +819,7 @@
                   }
                 }
               }
-            },
+            ],
             "methods": {
               "get": {
                 "responses": {
@@ -846,8 +846,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -869,7 +869,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -894,7 +894,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Get information about a media object. The returned type key will allow you\nto differentiate between image and video media.\nNote: if you authenticate with an OAuth Token, you will receive the\nuser_has_liked key which quickly tells you whether the current user has liked\nthis media item.\n",
                 "method": "get",
                 "is": [
@@ -965,8 +965,8 @@
                         }
                       }
                     ],
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -988,7 +988,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -1013,7 +1013,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get a full list of comments on a media.",
                     "method": "get",
                     "is": [
@@ -1054,8 +1054,8 @@
                     "body": {
                       "application/x-www-form-urlencoded": {
                         "name": "application/x-www-form-urlencoded",
-                        "formParameters": {
-                          "text": {
+                        "formParameters": [
+                          {
                             "name": "text",
                             "displayName": "text",
                             "type": "string",
@@ -1076,7 +1076,7 @@
                               }
                             }
                           }
-                        }
+                        ]
                       }
                     },
                     "protocols": [
@@ -1122,8 +1122,8 @@
                         }
                       }
                     ],
-                    "uriParameters": {
-                      "commentId": {
+                    "uriParameters": [
+                      {
                         "name": "commentId",
                         "displayName": "commentId",
                         "type": "integer",
@@ -1144,7 +1144,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "methods": {
                       "delete": {
                         "responses": {
@@ -1272,8 +1272,8 @@
                         }
                       }
                     ],
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -1295,7 +1295,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -1320,7 +1320,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get a list of users who have liked this media.\nRequired scope: likes.\n",
                     "method": "get",
                     "is": [
@@ -1499,8 +1499,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "max_timestamp": {
+                "queryParameters": [
+                  {
                     "name": "max_timestamp",
                     "displayName": "max_timestamp",
                     "type": "integer",
@@ -1521,7 +1521,7 @@
                       }
                     }
                   },
-                  "min_timestamp": {
+                  {
                     "name": "min_timestamp",
                     "displayName": "min_timestamp",
                     "type": "integer",
@@ -1542,7 +1542,7 @@
                       }
                     }
                   },
-                  "lat": {
+                  {
                     "name": "lat",
                     "displayName": "lat",
                     "type": "number",
@@ -1563,7 +1563,7 @@
                       }
                     }
                   },
-                  "lng": {
+                  {
                     "name": "lng",
                     "displayName": "lng",
                     "type": "number",
@@ -1584,7 +1584,7 @@
                       }
                     }
                   },
-                  "distance": {
+                  {
                     "name": "distance",
                     "displayName": "distance",
                     "type": "integer",
@@ -1607,7 +1607,7 @@
                       }
                     }
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -1629,7 +1629,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -1654,7 +1654,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Search for media in a given area. The default time span is set to 5 days.\nThe time span must not exceed 7 days. Defaults time stamps cover the\nlast 5 days.\n",
                 "method": "get",
                 "is": [
@@ -1729,8 +1729,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -1752,7 +1752,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -1777,7 +1777,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Get a list of what media is most popular at the moment.\n",
                 "method": "get",
                 "is": [
@@ -1851,8 +1851,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "tagName": {
+            "uriParameters": [
+              {
                 "name": "tagName",
                 "displayName": "tagName",
                 "type": "string",
@@ -1876,7 +1876,7 @@
                   }
                 }
               }
-            },
+            ],
             "methods": {
               "get": {
                 "responses": {
@@ -1903,8 +1903,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -1926,7 +1926,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -1951,7 +1951,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Get information about a tag object.",
                 "method": "get",
                 "is": [
@@ -2006,8 +2006,8 @@
                       "oauth_2_0",
                       "clientId"
                     ],
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": "integer",
@@ -2028,7 +2028,7 @@
                           }
                         }
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": "integer",
@@ -2049,7 +2049,7 @@
                           }
                         }
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -2071,7 +2071,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -2096,7 +2096,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get a list of recently tagged media. Note that this media is ordered by when the media was tagged\nwith this tag, rather than the order it was posted. Use the max_tag_id and min_tag_id parameters\nin the pagination response to paginate through these objects.\n",
                     "method": "get",
                     "is": [
@@ -2191,8 +2191,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "q": {
+                "queryParameters": [
+                  {
                     "name": "q",
                     "displayName": "q",
                     "type": "string",
@@ -2214,7 +2214,7 @@
                       }
                     }
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -2236,7 +2236,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -2261,7 +2261,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Search for tags by name. Results are ordered first as an exact match, then by popularity.\nShort tags will be treated as exact matches.\n",
                 "method": "get",
                 "is": [
@@ -2335,8 +2335,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "userId": {
+            "uriParameters": [
+              {
                 "name": "userId",
                 "displayName": "userId",
                 "type": "string",
@@ -2360,7 +2360,7 @@
                   }
                 }
               }
-            },
+            ],
             "methods": {
               "get": {
                 "responses": {
@@ -2387,8 +2387,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -2410,7 +2410,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -2435,7 +2435,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Get basic information about a user.",
                 "method": "get",
                 "is": [
@@ -2502,8 +2502,8 @@
                         }
                       }
                     ],
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -2525,7 +2525,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -2550,7 +2550,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get the list of users this user follows.",
                     "method": "get",
                     "is": [
@@ -2632,8 +2632,8 @@
                         }
                       }
                     ],
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -2655,7 +2655,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -2680,7 +2680,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get the list of users this user is followed by.",
                     "method": "get",
                     "is": [
@@ -2750,8 +2750,8 @@
                       "oauth_2_0",
                       "clientId"
                     ],
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": "integer",
@@ -2772,7 +2772,7 @@
                           }
                         }
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": "integer",
@@ -2793,7 +2793,7 @@
                           }
                         }
                       },
-                      "max_timestamp": {
+                      {
                         "name": "max_timestamp",
                         "displayName": "max_timestamp",
                         "type": "integer",
@@ -2814,7 +2814,7 @@
                           }
                         }
                       },
-                      "min_timestamp": {
+                      {
                         "name": "min_timestamp",
                         "displayName": "min_timestamp",
                         "type": "integer",
@@ -2835,7 +2835,7 @@
                           }
                         }
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -2857,7 +2857,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -2882,7 +2882,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "See the authenticated user's feed. May return a mix of both image and\nvideo types.\n",
                     "method": "get",
                     "is": [
@@ -2974,8 +2974,8 @@
                         }
                       }
                     ],
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -2997,7 +2997,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -3022,7 +3022,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get information about a relationship to another user.",
                     "method": "get",
                     "is": [
@@ -3063,8 +3063,8 @@
                     "body": {
                       "application/x-www-form-urlencoded": {
                         "name": "application/x-www-form-urlencoded",
-                        "formParameters": {
-                          "action": {
+                        "formParameters": [
+                          {
                             "name": "action",
                             "displayName": "action",
                             "type": "string",
@@ -3096,7 +3096,7 @@
                               }
                             }
                           }
-                        }
+                        ]
                       }
                     },
                     "protocols": [
@@ -3205,8 +3205,8 @@
                     }
                   }
                 ],
-                "queryParameters": {
-                  "q": {
+                "queryParameters": [
+                  {
                     "name": "q",
                     "displayName": "q",
                     "type": "string",
@@ -3228,7 +3228,7 @@
                       }
                     }
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -3250,7 +3250,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -3275,7 +3275,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Search for a user by name.",
                 "method": "get",
                 "is": [
@@ -3361,8 +3361,8 @@
                     }
                   }
                 ],
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -3384,7 +3384,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -3409,7 +3409,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Retrieve the authenticated user",
                 "method": "get",
                 "is": [
@@ -3464,8 +3464,8 @@
                       "oauth_2_0",
                       "clientId"
                     ],
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": "integer",
@@ -3486,7 +3486,7 @@
                           }
                         }
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": "integer",
@@ -3507,7 +3507,7 @@
                           }
                         }
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -3529,7 +3529,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -3554,7 +3554,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "See the authenticated user's feed. May return a mix of both image and\nvideo types.\n",
                     "method": "get",
                     "is": [
@@ -3654,8 +3654,8 @@
                         }
                       }
                     ],
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -3677,7 +3677,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -3702,7 +3702,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "List the users who have requested this user's permission to follow.",
                     "method": "get",
                     "is": [
@@ -3772,8 +3772,8 @@
                       "oauth_2_0",
                       "clientId"
                     ],
-                    "queryParameters": {
-                      "max_like_id": {
+                    "queryParameters": [
+                      {
                         "name": "max_like_id",
                         "displayName": "max_like_id",
                         "type": "integer",
@@ -3795,7 +3795,7 @@
                           }
                         }
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -3817,7 +3817,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -3842,7 +3842,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "See the authenticated user's list of media they've liked. May return a mix\nof both image and video types.\nNote: This list is ordered by the order in which the user liked the media.\nPrivate media is returned as long as the authenticated user has permission\nto view that media. Liked media lists are only available for the currently\nauthenticated user.\n",
                     "method": "get",
                     "is": [
@@ -3934,8 +3934,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "locId": {
+            "uriParameters": [
+              {
                 "name": "locId",
                 "displayName": "locId",
                 "type": "integer",
@@ -3955,7 +3955,7 @@
                   }
                 }
               }
-            },
+            ],
             "methods": {
               "get": {
                 "responses": {
@@ -3982,8 +3982,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -4005,7 +4005,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -4030,7 +4030,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Get information about a location.",
                 "method": "get",
                 "is": [
@@ -4085,8 +4085,8 @@
                       "oauth_2_0",
                       "clientId"
                     ],
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": "integer",
@@ -4107,7 +4107,7 @@
                           }
                         }
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": "integer",
@@ -4128,7 +4128,7 @@
                           }
                         }
                       },
-                      "max_timestamp": {
+                      {
                         "name": "max_timestamp",
                         "displayName": "max_timestamp",
                         "type": "integer",
@@ -4149,7 +4149,7 @@
                           }
                         }
                       },
-                      "min_timestamp": {
+                      {
                         "name": "min_timestamp",
                         "displayName": "min_timestamp",
                         "type": "integer",
@@ -4170,7 +4170,7 @@
                           }
                         }
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": "integer",
@@ -4192,7 +4192,7 @@
                           }
                         }
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": "string",
@@ -4217,7 +4217,7 @@
                           }
                         }
                       }
-                    },
+                    ],
                     "description": "Get a list of recent media objects from a given location. May return a\nmix of both image and video types.\n",
                     "method": "get",
                     "is": [
@@ -4313,8 +4313,8 @@
                   "oauth_2_0",
                   "clientId"
                 ],
-                "queryParameters": {
-                  "foursquare_v2_id": {
+                "queryParameters": [
+                  {
                     "name": "foursquare_v2_id",
                     "displayName": "foursquare_v2_id",
                     "type": "string",
@@ -4338,7 +4338,7 @@
                       }
                     }
                   },
-                  "foursquare_id": {
+                  {
                     "name": "foursquare_id",
                     "displayName": "foursquare_id",
                     "type": "string",
@@ -4362,7 +4362,7 @@
                       }
                     }
                   },
-                  "lat": {
+                  {
                     "name": "lat",
                     "displayName": "lat",
                     "type": "number",
@@ -4383,7 +4383,7 @@
                       }
                     }
                   },
-                  "lng": {
+                  {
                     "name": "lng",
                     "displayName": "lng",
                     "type": "number",
@@ -4404,7 +4404,7 @@
                       }
                     }
                   },
-                  "distance": {
+                  {
                     "name": "distance",
                     "displayName": "distance",
                     "type": "integer",
@@ -4427,7 +4427,7 @@
                       }
                     }
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": "integer",
@@ -4449,7 +4449,7 @@
                       }
                     }
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": "string",
@@ -4474,7 +4474,7 @@
                       }
                     }
                   }
-                },
+                ],
                 "description": "Search for a location by geographic coordinate.",
                 "method": "get",
                 "is": [
@@ -4542,8 +4542,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "uriParameters": {
-          "geoId": {
+        "uriParameters": [
+          {
             "name": "geoId",
             "displayName": "geoId",
             "type": "string",
@@ -4567,7 +4567,7 @@
               }
             }
           }
-        },
+        ],
         "methods": {
           "get": {
             "responses": {
@@ -4586,8 +4586,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "queryParameters": {
-              "min_id": {
+            "queryParameters": [
+              {
                 "name": "min_id",
                 "displayName": "min_id",
                 "type": "integer",
@@ -4609,7 +4609,7 @@
                   }
                 }
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": "integer",
@@ -4631,7 +4631,7 @@
                   }
                 }
               },
-              "callback": {
+              {
                 "name": "callback",
                 "displayName": "callback",
                 "type": "string",
@@ -4656,7 +4656,7 @@
                   }
                 }
               }
-            },
+            ],
             "description": "Get recent media from a geography subscription that you created.\nNote: You can only access Geographies that were explicitly created by your\nOAuth client. Check the Geography Subscriptions section of the real-time\nupdates page. When you create a subscription to some geography that you\ndefine, you will be returned a unique geo-id that can be used in this\nquery. To backfill photos from the location covered by this geography,\nuse the media search endpoint.\n",
             "method": "get",
             "is": [
@@ -4731,8 +4731,8 @@
             "securedBy": [
               "oauth_2_0"
             ],
-            "queryParameters": {
-              "client_id": {
+            "queryParameters": [
+              {
                 "name": "client_id",
                 "displayName": "client_id",
                 "type": "string",
@@ -4753,7 +4753,7 @@
                   }
                 }
               },
-              "client_secret": {
+              {
                 "name": "client_secret",
                 "displayName": "client_secret",
                 "type": "string",
@@ -4774,7 +4774,7 @@
                   }
                 }
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": "integer",
@@ -4796,7 +4796,7 @@
                   }
                 }
               },
-              "callback": {
+              {
                 "name": "callback",
                 "displayName": "callback",
                 "type": "string",
@@ -4821,7 +4821,7 @@
                   }
                 }
               }
-            },
+            ],
             "description": "List subscriptions",
             "method": "get",
             "is": [
@@ -4859,8 +4859,8 @@
             "body": {
               "application/x-www-form-urlencoded": {
                 "name": "application/x-www-form-urlencoded",
-                "formParameters": {
-                  "client_id": {
+                "formParameters": [
+                  {
                     "name": "client_id",
                     "displayName": "client_id",
                     "type": "string",
@@ -4881,7 +4881,7 @@
                       }
                     }
                   },
-                  "client_secret": {
+                  {
                     "name": "client_secret",
                     "displayName": "client_secret",
                     "type": "string",
@@ -4902,7 +4902,7 @@
                       }
                     }
                   },
-                  "object": {
+                  {
                     "name": "object",
                     "displayName": "object",
                     "type": "string",
@@ -4932,7 +4932,7 @@
                       }
                     }
                   },
-                  "object_id": {
+                  {
                     "name": "object_id",
                     "displayName": "object_id",
                     "type": "string",
@@ -4956,7 +4956,7 @@
                       }
                     }
                   },
-                  "aspect": {
+                  {
                     "name": "aspect",
                     "displayName": "aspect",
                     "type": "string",
@@ -4980,7 +4980,7 @@
                       }
                     }
                   },
-                  "callback_url": {
+                  {
                     "name": "callback_url",
                     "displayName": "callback_url",
                     "type": "string",
@@ -5001,7 +5001,7 @@
                       }
                     }
                   },
-                  "lat": {
+                  {
                     "name": "lat",
                     "displayName": "",
                     "type": "number",
@@ -5019,7 +5019,7 @@
                       }
                     }
                   },
-                  "lng": {
+                  {
                     "name": "lng",
                     "displayName": "lng",
                     "type": "number",
@@ -5040,7 +5040,7 @@
                       }
                     }
                   },
-                  "radius": {
+                  {
                     "name": "radius",
                     "displayName": "radius",
                     "type": "number",
@@ -5061,7 +5061,7 @@
                       }
                     }
                   }
-                }
+                ]
               }
             },
             "protocols": [
@@ -5110,8 +5110,8 @@
             "securedBy": [
               "oauth_2_0"
             ],
-            "queryParameters": {
-              "client_id": {
+            "queryParameters": [
+              {
                 "name": "client_id",
                 "displayName": "client_id",
                 "type": "string",
@@ -5132,7 +5132,7 @@
                   }
                 }
               },
-              "client_secret": {
+              {
                 "name": "client_secret",
                 "displayName": "client_secret",
                 "type": "string",
@@ -5153,7 +5153,7 @@
                   }
                 }
               },
-              "id": {
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": "string",
@@ -5177,7 +5177,7 @@
                   }
                 }
               },
-              "object": {
+              {
                 "name": "object",
                 "displayName": "object",
                 "type": "string",
@@ -5208,7 +5208,7 @@
                   }
                 }
               }
-            },
+            ],
             "description": "Delete a subscriptionsss",
             "method": "delete",
             "__METADATA__": {

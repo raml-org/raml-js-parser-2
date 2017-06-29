@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "withQueryParameters": {
-        "queryParameters": {
-          "platform": {
+        "queryParameters": [
+          {
             "name": "platform",
             "displayName": "platform",
             "type": [
@@ -30,7 +30,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "withQueryParameters"
       }
     },
@@ -40,8 +40,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "platform": {
+            "queryParameters": [
+              {
                 "name": "platform",
                 "displayName": "platform",
                 "type": [
@@ -69,7 +69,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "is": [
               "withQueryParameters"
             ],

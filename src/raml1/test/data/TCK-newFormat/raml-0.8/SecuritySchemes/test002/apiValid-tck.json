@@ -17,8 +17,8 @@
           "protocols": [
             "HTTP"
           ],
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": "string",
@@ -39,9 +39,9 @@
                 }
               }
             }
-          },
-          "headers": {
-            "Authorization": {
+          ],
+          "headers": [
+            {
               "name": "Authorization",
               "displayName": "Authorization",
               "type": "string",
@@ -62,7 +62,7 @@
                 }
               }
             }
-          }
+          ]
         }
       }
     }

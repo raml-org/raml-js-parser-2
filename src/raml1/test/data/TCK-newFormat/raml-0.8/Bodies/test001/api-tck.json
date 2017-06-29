@@ -3,8 +3,8 @@
     "title": "TCK Bodies 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -34,7 +34,7 @@
           }
         }
       }
-    },
+    ],
     "protocols": [
       "HTTP"
     ],

@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "trait1": {
-        "queryParameters": {
-          "param1": {
+        "queryParameters": [
+          {
             "name": "param1",
             "displayName": "param1",
             "type": [
@@ -23,7 +23,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "trait1"
       }
     },
@@ -37,8 +37,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "param1": {
+            "queryParameters": [
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": [
@@ -58,7 +58,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "body": {
               "application/json": {
                 "name": "application/json",

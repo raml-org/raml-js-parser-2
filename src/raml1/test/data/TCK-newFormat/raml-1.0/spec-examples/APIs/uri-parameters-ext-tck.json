@@ -4,8 +4,8 @@
     "version": "v1",
     "resources": [
       {
-        "uriParameters": {
-          "ext": {
+        "uriParameters": [
+          {
             "name": "ext",
             "displayName": "ext",
             "type": [
@@ -33,7 +33,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/users{ext}",
         "displayName": "/users{ext}",
         "__METADATA__": {

@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "secured": {
-        "queryParameters": {
-          "<<tokenName>>": {
+        "queryParameters": [
+          {
             "name": "<<tokenName>>",
             "displayName": "<<tokenName>>",
             "type": [
@@ -27,12 +27,12 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "secured"
       },
       "paged": {
-        "queryParameters": {
-          "numPages": {
+        "queryParameters": [
+          {
             "name": "numPages",
             "displayName": "numPages",
             "type": [
@@ -56,7 +56,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "paged"
       }
     },
@@ -64,8 +64,8 @@
       "searchableCollection": {
         "methods": {
           "get": {
-            "queryParameters": {
-              "<<queryParamName>>": {
+            "queryParameters": [
+              {
                 "name": "<<queryParamName>>",
                 "displayName": "<<queryParamName>>",
                 "type": [
@@ -89,7 +89,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "<<fallbackParamName>>": {
+              {
                 "name": "<<fallbackParamName>>",
                 "displayName": "<<fallbackParamName>>",
                 "type": [
@@ -113,7 +113,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "method": "get"
           }
         },
@@ -126,8 +126,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "title": {
+            "queryParameters": [
+              {
                 "name": "title",
                 "displayName": "title",
                 "type": [
@@ -151,7 +151,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "digest_all_fields": {
+              {
                 "name": "digest_all_fields",
                 "displayName": "digest_all_fields",
                 "type": [
@@ -175,7 +175,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "access_token": {
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -199,7 +199,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "numPages": {
+              {
                 "name": "numPages",
                 "displayName": "numPages",
                 "type": [
@@ -223,7 +223,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "is": [
               {
                 "secured": {

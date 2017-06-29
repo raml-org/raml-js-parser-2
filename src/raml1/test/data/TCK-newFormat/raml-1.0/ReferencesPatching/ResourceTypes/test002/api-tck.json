@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "myTrait": {
-        "queryParameters": {
-          "<<param>>": {
+        "queryParameters": [
+          {
             "name": "<<param>>",
             "displayName": "<<param>>",
             "type": [
@@ -23,7 +23,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "body": {
           "application/json": {
             "name": "application/json",
@@ -48,8 +48,8 @@
         "name": "myTrait"
       },
       "simpleTrait": {
-        "queryParameters": {
-          "stringParam": {
+        "queryParameters": [
+          {
             "name": "stringParam",
             "displayName": "stringParam",
             "type": [
@@ -69,7 +69,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "simpleTrait"
       }
     },
@@ -104,8 +104,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "qParam": {
+            "queryParameters": [
+              {
                 "name": "qParam",
                 "displayName": "qParam",
                 "type": [
@@ -125,7 +125,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "stringParam": {
+              {
                 "name": "stringParam",
                 "displayName": "stringParam",
                 "type": [
@@ -145,7 +145,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "body": {
               "application/json": {
                 "name": "application/json",
@@ -172,8 +172,8 @@
             "absoluteParentUri": "/resource"
           },
           "post": {
-            "queryParameters": {
-              "qParam": {
+            "queryParameters": [
+              {
                 "name": "qParam",
                 "displayName": "qParam",
                 "type": [
@@ -193,7 +193,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "stringParam": {
+              {
                 "name": "stringParam",
                 "displayName": "stringParam",
                 "type": [
@@ -213,7 +213,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "body": {
               "application/json": {
                 "name": "application/json",

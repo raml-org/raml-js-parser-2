@@ -4,8 +4,8 @@
       "corpResource": {
         "methods": {
           "post": {
-            "headers": {
-              "X-Chargeback": {
+            "headers": [
+              {
                 "name": "X-Chargeback",
                 "displayName": "X-Chargeback",
                 "type": [
@@ -25,7 +25,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "description": "Some info about <<TextAboutPost>>.",
             "method": "post",
             "__METADATA__": {
@@ -46,8 +46,8 @@
             "absoluteParentUri": "/servers"
           },
           "post": {
-            "headers": {
-              "X-Chargeback": {
+            "headers": [
+              {
                 "name": "X-Chargeback",
                 "displayName": "X-Chargeback",
                 "type": [
@@ -67,7 +67,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "description": "Some info about post method.",
             "method": "post",
             "parentUri": "/servers",

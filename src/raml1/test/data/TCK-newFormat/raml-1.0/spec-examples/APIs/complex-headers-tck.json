@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "chargeable": {
-        "headers": {
-          "X-Dept": {
+        "headers": [
+          {
             "name": "X-Dept",
             "displayName": "X-Dept",
             "type": [
@@ -53,12 +53,12 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "chargeable"
       },
       "traceable": {
-        "headers": {
-          "X-Tracker": {
+        "headers": [
+          {
             "name": "X-Tracker",
             "displayName": "X-Tracker",
             "type": [
@@ -90,7 +90,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "traceable"
       }
     },
@@ -99,8 +99,8 @@
       {
         "methods": {
           "get": {
-            "headers": {
-              "X-Dept": {
+            "headers": [
+              {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
                 "type": [
@@ -160,7 +160,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "X-Tracker": {
+              {
                 "name": "X-Tracker",
                 "displayName": "X-Tracker",
                 "type": [
@@ -192,7 +192,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "is": [
               "chargeable",
               "traceable"

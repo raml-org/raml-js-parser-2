@@ -4536,8 +4536,8 @@
     },
     "traits": {
       "acceptCallback": {
-        "queryParameters": {
-          "callback": {
+        "queryParameters": [
+          {
             "name": "callback",
             "displayName": "callback",
             "type": [
@@ -4568,7 +4568,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0",
           "clientId"
@@ -4583,8 +4583,8 @@
         }
       },
       "limitableByGeoPoint": {
-        "queryParameters": {
-          "lat": {
+        "queryParameters": [
+          {
             "name": "lat",
             "displayName": "lat",
             "type": [
@@ -4605,7 +4605,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lng": {
+          {
             "name": "lng",
             "displayName": "lng",
             "type": [
@@ -4626,7 +4626,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "distance": {
+          {
             "name": "distance",
             "displayName": "distance",
             "type": [
@@ -4649,7 +4649,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0",
           "clientId"
@@ -4664,8 +4664,8 @@
         }
       },
       "limitable": {
-        "queryParameters": {
-          "count": {
+        "queryParameters": [
+          {
             "name": "count",
             "displayName": "count",
             "type": [
@@ -4693,7 +4693,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0",
           "clientId"
@@ -4708,8 +4708,8 @@
         }
       },
       "limitableByTime": {
-        "queryParameters": {
-          "max_timestamp": {
+        "queryParameters": [
+          {
             "name": "max_timestamp",
             "displayName": "max_timestamp",
             "type": [
@@ -4730,7 +4730,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "min_timestamp": {
+          {
             "name": "min_timestamp",
             "displayName": "min_timestamp",
             "type": [
@@ -4751,7 +4751,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0",
           "clientId"
@@ -4766,8 +4766,8 @@
         }
       },
       "limitableById": {
-        "queryParameters": {
-          "min_id": {
+        "queryParameters": [
+          {
             "name": "min_id",
             "displayName": "min_id",
             "type": [
@@ -4788,7 +4788,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "max_id": {
+          {
             "name": "max_id",
             "displayName": "max_id",
             "type": [
@@ -4809,7 +4809,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0",
           "clientId"
@@ -5520,8 +5520,8 @@
         "type": "OAuth 2.0",
         "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
         "describedBy": {
-          "queryParameters": {
-            "access_token": {
+          "queryParameters": [
+            {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -5545,7 +5545,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          }
+          ]
         },
         "settings": {
           "accessTokenUri": "https://api.instagram.com/oauth/access_token",
@@ -5566,8 +5566,8 @@
         "type": "x-customHeader",
         "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
         "describedBy": {
-          "queryParameters": {
-            "client_id": {
+          "queryParameters": [
+            {
               "name": "client_id",
               "displayName": "client_id",
               "type": [
@@ -5598,15 +5598,15 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          }
+          ]
         }
       }
     },
     "title": "Instagram",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -5636,7 +5636,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],
@@ -5659,8 +5659,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -5688,7 +5688,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -5719,7 +5719,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -5779,8 +5779,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "mediaId": {
+            "uriParameters": [
+              {
                 "name": "mediaId",
                 "displayName": "mediaId",
                 "type": [
@@ -5804,15 +5804,15 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{mediaId}",
             "displayName": "/{mediaId}",
             "resources": [
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -5840,7 +5840,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -5871,7 +5871,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -6141,8 +6141,8 @@
                         }
                       }
                     ],
-                    "uriParameters": {
-                      "commentId": {
+                    "uriParameters": [
+                      {
                         "name": "commentId",
                         "displayName": "commentId",
                         "type": [
@@ -6163,7 +6163,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "relativeUri": "/{commentId}",
                     "displayName": "/{commentId}",
                     "__METADATA__": {
@@ -6200,8 +6200,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -6229,7 +6229,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -6260,7 +6260,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -6509,8 +6509,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "max_timestamp": {
+                "queryParameters": [
+                  {
                     "name": "max_timestamp",
                     "displayName": "max_timestamp",
                     "type": [
@@ -6531,7 +6531,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "min_timestamp": {
+                  {
                     "name": "min_timestamp",
                     "displayName": "min_timestamp",
                     "type": [
@@ -6552,7 +6552,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "lat": {
+                  {
                     "name": "lat",
                     "displayName": "lat",
                     "type": [
@@ -6573,7 +6573,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "lng": {
+                  {
                     "name": "lng",
                     "displayName": "lng",
                     "type": [
@@ -6594,7 +6594,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "distance": {
+                  {
                     "name": "distance",
                     "displayName": "distance",
                     "type": [
@@ -6617,7 +6617,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -6645,7 +6645,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -6676,7 +6676,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -6861,8 +6861,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -6890,7 +6890,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -6921,7 +6921,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -7131,8 +7131,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -7160,7 +7160,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -7191,7 +7191,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -7251,8 +7251,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "tagName": {
+            "uriParameters": [
+              {
                 "name": "tagName",
                 "displayName": "tagName",
                 "type": [
@@ -7276,15 +7276,15 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{tagName}",
             "displayName": "/{tagName}",
             "resources": [
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": [
@@ -7305,7 +7305,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": [
@@ -7326,7 +7326,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -7354,7 +7354,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -7385,7 +7385,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -7489,8 +7489,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "q": {
+                "queryParameters": [
+                  {
                     "name": "q",
                     "displayName": "q",
                     "type": [
@@ -7518,7 +7518,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -7546,7 +7546,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -7577,7 +7577,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -7687,8 +7687,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -7716,7 +7716,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -7747,7 +7747,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -7807,8 +7807,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "userId": {
+            "uriParameters": [
+              {
                 "name": "userId",
                 "displayName": "userId",
                 "type": [
@@ -7832,15 +7832,15 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{userId}",
             "displayName": "/{userId}",
             "resources": [
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -7868,7 +7868,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -7899,7 +7899,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -8020,8 +8020,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -8049,7 +8049,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -8080,7 +8080,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -8201,8 +8201,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": [
@@ -8223,7 +8223,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": [
@@ -8244,7 +8244,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "max_timestamp": {
+                      {
                         "name": "max_timestamp",
                         "displayName": "max_timestamp",
                         "type": [
@@ -8265,7 +8265,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "min_timestamp": {
+                      {
                         "name": "min_timestamp",
                         "displayName": "min_timestamp",
                         "type": [
@@ -8286,7 +8286,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -8314,7 +8314,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -8345,7 +8345,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -8622,8 +8622,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -8651,7 +8651,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -8682,7 +8682,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -8914,8 +8914,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "q": {
+                "queryParameters": [
+                  {
                     "name": "q",
                     "displayName": "q",
                     "type": [
@@ -8943,7 +8943,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -8971,7 +8971,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -9002,7 +9002,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -9123,8 +9123,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -9152,7 +9152,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -9183,7 +9183,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -9263,8 +9263,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": [
@@ -9285,7 +9285,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": [
@@ -9306,7 +9306,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -9334,7 +9334,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -9365,7 +9365,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -9640,8 +9640,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "count": {
+                    "queryParameters": [
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -9669,7 +9669,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -9700,7 +9700,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -9821,8 +9821,8 @@
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "max_like_id": {
+                    "queryParameters": [
+                      {
                         "name": "max_like_id",
                         "displayName": "max_like_id",
                         "type": [
@@ -9850,7 +9850,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -9878,7 +9878,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -9909,7 +9909,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -10227,8 +10227,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "count": {
+                "queryParameters": [
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -10256,7 +10256,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -10287,7 +10287,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -10347,8 +10347,8 @@
               "oauth_2_0",
               "clientId"
             ],
-            "uriParameters": {
-              "locId": {
+            "uriParameters": [
+              {
                 "name": "locId",
                 "displayName": "locId",
                 "type": [
@@ -10368,15 +10368,15 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{locId}",
             "displayName": "/{locId}",
             "resources": [
               {
                 "methods": {
                   "get": {
-                    "queryParameters": {
-                      "min_id": {
+                    "queryParameters": [
+                      {
                         "name": "min_id",
                         "displayName": "min_id",
                         "type": [
@@ -10397,7 +10397,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "max_id": {
+                      {
                         "name": "max_id",
                         "displayName": "max_id",
                         "type": [
@@ -10418,7 +10418,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "max_timestamp": {
+                      {
                         "name": "max_timestamp",
                         "displayName": "max_timestamp",
                         "type": [
@@ -10439,7 +10439,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "min_timestamp": {
+                      {
                         "name": "min_timestamp",
                         "displayName": "min_timestamp",
                         "type": [
@@ -10460,7 +10460,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "count": {
+                      {
                         "name": "count",
                         "displayName": "count",
                         "type": [
@@ -10488,7 +10488,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "callback": {
+                      {
                         "name": "callback",
                         "displayName": "callback",
                         "type": [
@@ -10519,7 +10519,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "responses": {
                       "200": {
                         "code": "200",
@@ -10815,8 +10815,8 @@
           {
             "methods": {
               "get": {
-                "queryParameters": {
-                  "foursquare_v2_id": {
+                "queryParameters": [
+                  {
                     "name": "foursquare_v2_id",
                     "displayName": "foursquare_v2_id",
                     "type": [
@@ -10840,7 +10840,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "foursquare_id": {
+                  {
                     "name": "foursquare_id",
                     "displayName": "foursquare_id",
                     "type": [
@@ -10864,7 +10864,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "lat": {
+                  {
                     "name": "lat",
                     "displayName": "lat",
                     "type": [
@@ -10885,7 +10885,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "lng": {
+                  {
                     "name": "lng",
                     "displayName": "lng",
                     "type": [
@@ -10906,7 +10906,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "distance": {
+                  {
                     "name": "distance",
                     "displayName": "distance",
                     "type": [
@@ -10929,7 +10929,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "count": {
+                  {
                     "name": "count",
                     "displayName": "count",
                     "type": [
@@ -10957,7 +10957,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "callback": {
+                  {
                     "name": "callback",
                     "displayName": "callback",
                     "type": [
@@ -10988,7 +10988,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "responses": {
                   "200": {
                     "code": "200",
@@ -11091,8 +11091,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "min_id": {
+            "queryParameters": [
+              {
                 "name": "min_id",
                 "displayName": "min_id",
                 "type": [
@@ -11120,7 +11120,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": [
@@ -11148,7 +11148,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "callback": {
+              {
                 "name": "callback",
                 "displayName": "callback",
                 "type": [
@@ -11179,7 +11179,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200"
@@ -11221,8 +11221,8 @@
           "oauth_2_0",
           "clientId"
         ],
-        "uriParameters": {
-          "geoId": {
+        "uriParameters": [
+          {
             "name": "geoId",
             "displayName": "geoId",
             "type": [
@@ -11246,7 +11246,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "relativeUri": "/geographies/{geoId}/media/recent",
         "displayName": "/geographies/{geoId}/media/recent",
         "__METADATA__": {
@@ -11273,8 +11273,8 @@
       {
         "methods": {
           "get": {
-            "queryParameters": {
-              "client_id": {
+            "queryParameters": [
+              {
                 "name": "client_id",
                 "displayName": "client_id",
                 "type": [
@@ -11295,7 +11295,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "client_secret": {
+              {
                 "name": "client_secret",
                 "displayName": "client_secret",
                 "type": [
@@ -11316,7 +11316,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "count": {
+              {
                 "name": "count",
                 "displayName": "count",
                 "type": [
@@ -11344,7 +11344,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "callback": {
+              {
                 "name": "callback",
                 "displayName": "callback",
                 "type": [
@@ -11375,7 +11375,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",
@@ -11700,8 +11700,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
           "delete": {
-            "queryParameters": {
-              "client_id": {
+            "queryParameters": [
+              {
                 "name": "client_id",
                 "displayName": "client_id",
                 "type": [
@@ -11722,7 +11722,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "client_secret": {
+              {
                 "name": "client_secret",
                 "displayName": "client_secret",
                 "type": [
@@ -11743,7 +11743,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "id": {
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -11767,7 +11767,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "object": {
+              {
                 "name": "object",
                 "displayName": "object",
                 "type": [
@@ -11798,7 +11798,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "200": {
                 "code": "200",

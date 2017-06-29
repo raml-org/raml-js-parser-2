@@ -33,8 +33,8 @@
         "resources": [
           {
             "description": "A specific user",
-            "uriParameters": {
-              "userId": {
+            "uriParameters": [
+              {
                 "name": "userId",
                 "displayName": "userId",
                 "type": [
@@ -55,7 +55,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "relativeUri": "/{userId}",
             "displayName": "/{userId}",
             "__METADATA__": {

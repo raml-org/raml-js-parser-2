@@ -26,8 +26,8 @@
                 "<<param3>>": "<<param3value>>"
               }
             },
-            "queryParameters": {
-              "<<qParam>>": {
+            "queryParameters": [
+              {
                 "name": "<<qParam>>",
                 "displayName": "<<qParam>>",
                 "type": "string",
@@ -50,7 +50,7 @@
                   }
                 }
               },
-              "param1": {
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": "string",
@@ -74,7 +74,7 @@
                 },
                 "<<prop1>>": "<<prop1Value>>"
               }
-            },
+            ],
             "method": "post",
             "<<param2>>": "<<param2value>>"
           }

@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "secured": {
-        "headers": {
-          "access_token": {
+        "headers": [
+          {
             "name": "access_token",
             "displayName": "access_token",
             "type": [
@@ -31,14 +31,14 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "description": "Some requests require authentication.",
         "name": "secured",
         "usage": "Apply this to any method that needs to be secured"
       },
       "paged": {
-        "headers": {
-          "page": {
+        "headers": [
+          {
             "name": "page",
             "displayName": "page",
             "type": [
@@ -63,14 +63,14 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "description": "Some responses require paging.",
         "name": "paged",
         "usage": "Apply this to any method that needs to be paged"
       },
       "rateLimited": {
-        "headers": {
-          "limit": {
+        "headers": [
+          {
             "name": "limit",
             "displayName": "limit",
             "type": [
@@ -95,7 +95,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "description": "Some requests require rate limiting.",
         "name": "rateLimited",
         "usage": "Apply this to any method that needs to be rate limited"
@@ -165,8 +165,8 @@
       {
         "methods": {
           "get": {
-            "headers": {
-              "page": {
+            "headers": [
+              {
                 "name": "page",
                 "displayName": "page",
                 "type": [
@@ -191,7 +191,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "limit": {
+              {
                 "name": "limit",
                 "displayName": "limit",
                 "type": [
@@ -216,7 +216,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "access_token": {
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -244,7 +244,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "is": [
               "paged",
               "rateLimited"
@@ -255,8 +255,8 @@
             "absoluteParentUri": "/users"
           },
           "post": {
-            "headers": {
-              "access_token": {
+            "headers": [
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -284,7 +284,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "responses": {
               "201": {
                 "code": "201",

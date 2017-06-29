@@ -2,8 +2,8 @@
   "specification": {
     "traits": {
       "secured": {
-        "headers": {
-          "access_token": {
+        "headers": [
+          {
             "name": "access_token",
             "displayName": "access_token",
             "type": [
@@ -31,7 +31,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "description": "Some requests require authentication.",
         "name": "secured",
         "usage": "Apply this to any method that needs to be secured"

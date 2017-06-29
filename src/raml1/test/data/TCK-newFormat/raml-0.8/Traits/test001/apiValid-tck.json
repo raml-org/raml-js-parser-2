@@ -3,8 +3,8 @@
     "title": "A",
     "traits": {
       "SomeTrait": {
-        "queryParameters": {
-          "numericParam": {
+        "queryParameters": [
+          {
             "name": "numericParam",
             "displayName": "numericParam",
             "type": "number",
@@ -24,7 +24,7 @@
               }
             }
           }
-        },
+        ],
         "name": "SomeTrait"
       }
     },
@@ -43,8 +43,8 @@
                 }
               }
             },
-            "queryParameters": {
-              "numericParam": {
+            "queryParameters": [
+              {
                 "name": "numericParam",
                 "displayName": "numericParam",
                 "type": "number",
@@ -65,7 +65,7 @@
                   }
                 }
               }
-            },
+            ],
             "method": "get",
             "is": [
               "SomeTrait"
