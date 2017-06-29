@@ -1162,6 +1162,11 @@ describe("Include tests + typesystem",function (){
         this.timeout(15000);
         testErrors(util.data("parser/include/emptyInclude.raml"),["JS-YAML: !include without value", "Can not resolve null"]);
     })
+
+    it("Including empty fragments" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/include/includeEmptyFiles/api.raml"),["Missing required property 'type'"]);
+    })
 })
 
 

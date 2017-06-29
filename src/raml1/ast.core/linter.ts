@@ -2916,8 +2916,14 @@ class CompositeNodeValidator implements NodeValidator {
                         && (typeof nodeValue == "string")
                         && util.startsWith(nodeValue,"<<")
                         && util.endsWith(nodeValue,">>")
-                    
-                    if(!isParameter && !checkIfIncludeTagIsMissing(node, acceptor, messageRegistry.SCALAR_PROHIBITED_2.code)) {
+                    let report = true;
+                    if(nodeValue == ""){
+                        var actualValue:any = node.lowLevel().actual()&&node.lowLevel().actual().value;
+                        if(!actualValue || !(actualValue.doubleQuoted || actualValue.singleQuoted)){
+                            report = false;
+                        }
+                    }
+                    if(report && !isParameter && !checkIfIncludeTagIsMissing(node, acceptor, messageRegistry.SCALAR_PROHIBITED_2.code)) {
                         var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: nodeName}, node)
                         acceptor.accept(i);
                     }
