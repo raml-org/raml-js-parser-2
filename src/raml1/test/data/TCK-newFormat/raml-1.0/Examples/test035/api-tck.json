@@ -66,14 +66,14 @@
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 7,
-          "column": 4,
-          "position": 87
+          "line": 9,
+          "column": 6,
+          "position": 128
         },
         "end": {
-          "line": 7,
+          "line": 9,
           "column": 11,
-          "position": 94
+          "position": 133
         }
       }
     }
