@@ -226,11 +226,11 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -246,12 +246,12 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               },
-              "400": {
+              {
                 "code": "400",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -267,11 +267,11 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -287,7 +287,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "method": "put",
             "parentUri": "/hello/{id}",
             "absoluteParentUri": "/hello/{id}"

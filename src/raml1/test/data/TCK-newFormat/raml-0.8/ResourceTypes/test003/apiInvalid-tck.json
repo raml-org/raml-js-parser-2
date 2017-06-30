@@ -55,8 +55,8 @@
         "name": "Resource",
         "methods": {
           "get": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "formParameters": [
                   {
@@ -81,7 +81,7 @@
                   }
                 ]
               }
-            },
+            ],
             "method": "get"
           }
         },
@@ -109,18 +109,18 @@
         ],
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "formParameters": [
                   {
@@ -146,7 +146,7 @@
                   }
                 ]
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "a",

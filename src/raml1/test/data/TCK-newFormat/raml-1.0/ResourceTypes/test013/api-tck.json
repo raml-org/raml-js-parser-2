@@ -29,11 +29,11 @@
     ],
     "traits": [
       {
-        "responses": {
-          "200": {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -49,18 +49,18 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            }
+            ]
           }
-        },
+        ],
         "name": "hasResponseCollection",
         "usage": "Use this trait for resources whose response body is a collection of items"
       },
       {
-        "responses": {
-          "200": {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -76,9 +76,9 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            }
+            ]
           }
-        },
+        ],
         "name": "lib.hasResponseCollection",
         "usage": "Use this trait for resources whose response body is a collection of items",
         "__METADATA__": {
@@ -113,11 +113,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -133,9 +133,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "is": [
               "lib.hasResponseCollection"
             ],
@@ -145,11 +145,11 @@
             "absoluteParentUri": "/example"
           },
           "post": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -165,9 +165,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "is": [
               "hasResponseCollection"
             ],

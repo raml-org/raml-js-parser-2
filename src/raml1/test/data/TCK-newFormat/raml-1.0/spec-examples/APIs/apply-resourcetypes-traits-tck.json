@@ -109,8 +109,8 @@
             "method": "get"
           },
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -138,7 +138,7 @@
                   }
                 ]
               }
-            },
+            ],
             "description": "Add an item",
             "method": "post"
           }
@@ -285,8 +285,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -314,7 +314,7 @@
                   }
                 ]
               }
-            },
+            ],
             "description": "Add an item",
             "method": "post",
             "parentUri": "/users",

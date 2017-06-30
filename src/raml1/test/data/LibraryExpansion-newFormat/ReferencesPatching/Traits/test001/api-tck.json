@@ -20,11 +20,11 @@
     ],
     "traits": [
       {
-        "responses": {
-          "200": {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -40,9 +40,9 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            }
+            ]
           }
-        },
+        ],
         "name": "lib.libTrait1"
       }
     ],
@@ -56,11 +56,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -76,9 +76,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],

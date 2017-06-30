@@ -13,18 +13,18 @@
         "name": "emailed",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/atom+xml": {
+                "body": [
+                  {
                     "name": "application/atom+xml",
                     "schema": "atom",
                     "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "__METADATA__": {
               "optional": true
@@ -39,21 +39,21 @@
         "type": "emailed",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "image/*": {
+                "body": [
+                  {
                     "name": "image/*"
                   },
-                  "application/atom+xml": {
+                  {
                     "name": "application/atom+xml",
                     "schema": "atom",
                     "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/photos",
             "absoluteParentUri": "/photos"

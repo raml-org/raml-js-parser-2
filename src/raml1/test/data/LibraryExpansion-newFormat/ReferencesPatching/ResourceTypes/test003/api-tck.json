@@ -20,8 +20,8 @@
     ],
     "traits": [
       {
-        "body": {
-          "application/json": {
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -37,7 +37,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "lib1.lib2.myTrait"
       }
     ],
@@ -59,8 +59,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -76,7 +76,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],

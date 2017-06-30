@@ -56,11 +56,11 @@
             "absoluteParentUri": "/hello"
           },
           "post": {
-            "responses": {
-              "202": {
+            "responses": [
+              {
                 "code": "202",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -152,7 +152,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -168,9 +168,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/hello",
             "absoluteParentUri": "/hello"

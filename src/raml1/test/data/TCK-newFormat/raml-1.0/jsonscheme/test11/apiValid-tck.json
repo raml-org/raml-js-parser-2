@@ -24,8 +24,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -52,7 +52,7 @@
                 ],
                 "mediaType": "application/json"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

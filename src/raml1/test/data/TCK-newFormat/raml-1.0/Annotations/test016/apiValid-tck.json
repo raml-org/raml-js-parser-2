@@ -116,11 +116,11 @@
                 "value": "on a method"
               }
             },
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "annotations": {
                       "meta-data": {
                         "name": "meta-data",
@@ -143,9 +143,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "User"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/users",
             "absoluteParentUri": "/users"

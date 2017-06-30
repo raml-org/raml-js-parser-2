@@ -5,11 +5,11 @@
       {
         "methods": {
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -28,9 +28,9 @@
                     "mediaType": "application/json",
                     "typePropertyKind": "JSON"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test"

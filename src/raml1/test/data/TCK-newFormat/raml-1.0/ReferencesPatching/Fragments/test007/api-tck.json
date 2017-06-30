@@ -18,8 +18,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -119,7 +119,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }
-            },
+            ],
             "method": "post"
           }
         },
@@ -131,8 +131,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -232,14 +232,14 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
           "put": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -262,7 +262,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "method": "put",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

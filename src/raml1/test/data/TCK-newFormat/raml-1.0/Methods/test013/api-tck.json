@@ -8,11 +8,11 @@
       {
         "methods": {
           "post": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -31,7 +31,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "description": {
+                  {
                     "name": "description",
                     "displayName": "description",
                     "type": [
@@ -47,11 +47,11 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -70,7 +70,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "description": "Parse the given RAML files",
             "method": "post",
             "parentUri": "/parseFiles",

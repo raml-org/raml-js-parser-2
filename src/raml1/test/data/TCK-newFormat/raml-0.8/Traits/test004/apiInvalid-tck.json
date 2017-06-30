@@ -50,11 +50,11 @@
         "name": "SomeTrait"
       },
       {
-        "responses": {
-          "200": {
+        "responses": [
+          {
             "code": "200"
           }
-        },
+        ],
         "name": "Trait1"
       }
     ],
@@ -63,16 +63,16 @@
         "relativeUri": "/resource",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json"
                   }
-                }
+                ]
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "a",

@@ -2,8 +2,8 @@
   "specification": {
     "traits": [
       {
-        "body": {
-          "application/json": {
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -22,7 +22,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "bodyTrait"
       }
     ],
@@ -53,8 +53,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -73,7 +73,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "is": [
               "bodyTrait"
             ],

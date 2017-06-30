@@ -6,13 +6,13 @@
         "relativeUri": "/resource",
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "schema": "{\n  \"$schema\": \"http:\\/\\/json-schema.org\\/draft-04\\/schema#\",\n  \"type\": \"object\",\n  \"properties\": null\n}\n",
                 "schemaContent": "{\n  \"$schema\": \"http:\\/\\/json-schema.org\\/draft-04\\/schema#\",\n  \"type\": \"object\",\n  \"properties\": null\n}\n"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

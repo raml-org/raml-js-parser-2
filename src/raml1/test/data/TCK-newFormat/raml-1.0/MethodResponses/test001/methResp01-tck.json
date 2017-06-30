@@ -54,11 +54,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/test",
             "absoluteParentUri": "/test"

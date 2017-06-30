@@ -18,18 +18,18 @@
         "name": "collection",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "t1",
                     "schemaContent": "{}"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get"
           }
         }
@@ -41,23 +41,23 @@
         "type": "collection",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "t2",
                     "schemaContent": "{}"
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "schema": "t3",
                     "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/schemes",
             "absoluteParentUri": "/schemes"

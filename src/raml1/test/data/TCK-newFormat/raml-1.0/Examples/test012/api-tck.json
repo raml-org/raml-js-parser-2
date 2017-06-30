@@ -51,11 +51,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -84,9 +84,9 @@
                     "mediaType": "application/json",
                     "typePropertyKind": "JSON"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/hello",
             "absoluteParentUri": "/hello"

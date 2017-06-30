@@ -2,12 +2,12 @@
   "specification": {
     "traits": [
       {
-        "responses": {
-          "<<status>>": {
+        "responses": [
+          {
             "code": "<<status>>",
             "description": "<<description>>"
           }
-        },
+        ],
         "name": "respCode"
       }
     ],
@@ -17,12 +17,12 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": 201,
                 "description": "Post created, returns the created post."
               }
-            },
+            ],
             "is": [
               {
                 "respCode": {

@@ -4,11 +4,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "schemaPath": "list.json",
@@ -25,9 +25,9 @@
                     "mediaType": "application/json",
                     "typePropertyKind": "JSON"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get"
           }
         },

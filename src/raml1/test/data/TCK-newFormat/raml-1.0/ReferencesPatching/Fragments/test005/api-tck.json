@@ -11,8 +11,8 @@
       {
         "methods": {
           "put": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -107,7 +107,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }
-            },
+            ],
             "method": "put",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

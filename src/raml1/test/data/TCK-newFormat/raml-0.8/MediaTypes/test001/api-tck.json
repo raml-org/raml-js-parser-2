@@ -6,16 +6,16 @@
         "relativeUri": "/g",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "applicationjson": {
+                "body": [
+                  {
                     "name": "applicationjson"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/g",
             "absoluteParentUri": "/g"

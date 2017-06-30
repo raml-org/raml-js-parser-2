@@ -19,11 +19,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -78,9 +78,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "Types.Feature"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],

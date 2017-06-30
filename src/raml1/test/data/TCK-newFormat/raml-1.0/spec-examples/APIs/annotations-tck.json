@@ -219,11 +219,11 @@
                 "value": "Feedback committed!"
               }
             },
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/users",
             "absoluteParentUri": "/users"

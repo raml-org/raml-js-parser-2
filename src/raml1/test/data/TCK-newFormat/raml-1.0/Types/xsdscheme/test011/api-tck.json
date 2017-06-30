@@ -24,8 +24,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schemas/A.xml",
@@ -42,7 +42,7 @@
                 "mediaType": "application/xml",
                 "typePropertyKind": "XML"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/res",
             "absoluteParentUri": "/res"

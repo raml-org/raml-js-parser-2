@@ -34,8 +34,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schemas/A.json",
@@ -62,7 +62,7 @@
                 "mediaType": "application/json",
                 "typePropertyKind": "JSON"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/res",
             "absoluteParentUri": "/res"

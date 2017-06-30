@@ -42,8 +42,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -119,7 +119,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -155,8 +155,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -173,7 +173,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -209,8 +209,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "__METADATA__": {
@@ -230,7 +230,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -266,8 +266,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "__METADATA__": {
@@ -286,7 +286,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -322,8 +322,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -339,7 +339,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -375,8 +375,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "__METADATA__": {
@@ -392,7 +392,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

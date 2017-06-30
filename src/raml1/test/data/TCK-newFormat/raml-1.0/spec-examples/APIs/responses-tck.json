@@ -75,11 +75,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -117,16 +117,16 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/invoices",
             "absoluteParentUri": "/invoices"
           },
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -160,8 +160,8 @@
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "schemaPath": "schemas/invoice.json",
@@ -178,7 +178,7 @@
                     "mediaType": "application/json",
                     "typePropertyKind": "JSON"
                   },
-                  "text/xml": {
+                  {
                     "name": "text/xml",
                     "displayName": "text/xml",
                     "schemaPath": "schemas/invoice.xsd",
@@ -195,12 +195,12 @@
                     "mediaType": "application/xml",
                     "typePropertyKind": "XML"
                   }
-                }
+                ]
               },
-              "422": {
+              {
                 "code": "422",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -253,11 +253,11 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -273,7 +273,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/invoices",
             "absoluteParentUri": "/invoices"

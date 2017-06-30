@@ -5241,11 +5241,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5292,9 +5292,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "securedBy": [
               {
                 "oauth_2_0": {
@@ -5329,11 +5329,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5449,9 +5449,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get"
           }
         },
@@ -5461,11 +5461,11 @@
       {
         "methods": {
           "delete": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -5496,9 +5496,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "securedBy": [
               {
                 "oauth_2_0": {
@@ -5514,11 +5514,11 @@
             }
           },
           "post": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5546,9 +5546,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "securedBy": [
               {
                 "oauth_2_0": {
@@ -5579,36 +5579,36 @@
       {
         "methods": {
           "delete": {
-            "responses": {
-              "503": {
+            "responses": [
+              {
                 "code": "503",
                 "description": "Server Unavailable. Check Your Rate Limits.\n"
               }
-            },
+            ],
             "method": "delete",
             "__METADATA__": {
               "optional": true
             }
           },
           "post": {
-            "responses": {
-              "503": {
+            "responses": [
+              {
                 "code": "503",
                 "description": "Server Unavailable. Check Your Rate Limits.\n"
               }
-            },
+            ],
             "method": "post",
             "__METADATA__": {
               "optional": true
             }
           },
           "get": {
-            "responses": {
-              "503": {
+            "responses": [
+              {
                 "code": "503",
                 "description": "Server Unavailable. Check Your Rate Limits.\n"
               }
-            },
+            ],
             "is": [
               "limitable",
               "acceptCallback"
@@ -5624,11 +5624,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -5835,9 +5835,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get"
           }
         },

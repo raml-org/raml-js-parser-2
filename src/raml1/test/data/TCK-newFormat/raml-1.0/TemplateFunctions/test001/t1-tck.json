@@ -2,52 +2,52 @@
   "specification": {
     "traits": [
       {
-        "responses": {
-          "401": {
+        "responses": [
+          {
             "code": "401",
             "description": "<<param | !singularize>> cannot be found"
           },
-          "402": {
+          {
             "code": "402",
             "description": "<<param | !pluralize>> cannot be found"
           },
-          "403": {
+          {
             "code": "403",
             "description": "<<param | !uppercase>> cannot be found"
           },
-          "404": {
+          {
             "code": "404",
             "description": "<<param | !lowercase>> cannot be found"
           },
-          "405": {
+          {
             "code": "405",
             "description": "<<param | !lowercamelcase>> cannot be found"
           },
-          "406": {
+          {
             "code": "406",
             "description": "<<param | !uppercamelcase>> cannot be found"
           },
-          "407": {
+          {
             "code": "407",
             "description": "<<param | !lowerunderscorecase>> cannot be found"
           },
-          "408": {
+          {
             "code": "408",
             "description": "<<param | !upperunderscorecase>> cannot be found"
           },
-          "409": {
+          {
             "code": "409",
             "description": "<<param | !lowerhyphencase>> cannot be found"
           },
-          "410": {
+          {
             "code": "410",
             "description": "<<param | !upperhyphencase>> cannot be found"
           },
-          "411": {
+          {
             "code": "411",
             "description": "<<param | !unknown>> cannot be found"
           }
-        },
+        ],
         "name": "notAlwaysPresent"
       }
     ],
@@ -93,52 +93,52 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "401": {
+            "responses": [
+              {
                 "code": "401",
                 "description": "user cannot be found"
               },
-              "402": {
+              {
                 "code": "402",
                 "description": "users cannot be found"
               },
-              "403": {
+              {
                 "code": "403",
                 "description": "USER cannot be found"
               },
-              "404": {
+              {
                 "code": "404",
                 "description": "user cannot be found"
               },
-              "405": {
+              {
                 "code": "405",
                 "description": "user cannot be found"
               },
-              "406": {
+              {
                 "code": "406",
                 "description": "User cannot be found"
               },
-              "407": {
+              {
                 "code": "407",
                 "description": "user cannot be found"
               },
-              "408": {
+              {
                 "code": "408",
                 "description": "USER cannot be found"
               },
-              "409": {
+              {
                 "code": "409",
                 "description": "user cannot be found"
               },
-              "410": {
+              {
                 "code": "410",
                 "description": "USER cannot be found"
               },
-              "411": {
+              {
                 "code": "411",
                 "description": "<<param | !unknown>> cannot be found"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

@@ -217,11 +217,11 @@
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -238,9 +238,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "NewLibrary.Pet"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -256,8 +256,8 @@
             "absoluteParentUri": "/shop/pets"
           },
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -273,7 +273,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -295,11 +295,11 @@
           {
             "methods": {
               "delete": {
-                "responses": {
-                  "204": {
+                "responses": [
+                  {
                     "code": "204"
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -315,8 +315,8 @@
                 "absoluteParentUri": "/shop/pets/{id}"
               },
               "put": {
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -332,7 +332,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -410,11 +410,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -431,9 +431,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "Bird"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -449,8 +449,8 @@
             "absoluteParentUri": "/shop/birds"
           },
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -466,7 +466,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -488,11 +488,11 @@
           {
             "methods": {
               "delete": {
-                "responses": {
-                  "204": {
+                "responses": [
+                  {
                     "code": "204"
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -508,8 +508,8 @@
                 "absoluteParentUri": "/shop/birds/{id}"
               },
               "put": {
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -525,7 +525,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -603,11 +603,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -624,9 +624,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "Mammal"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -642,8 +642,8 @@
             "absoluteParentUri": "/shop/mammals"
           },
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -659,7 +659,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -681,11 +681,11 @@
           {
             "methods": {
               "delete": {
-                "responses": {
-                  "204": {
+                "responses": [
+                  {
                     "code": "204"
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -701,8 +701,8 @@
                 "absoluteParentUri": "/shop/mammals/{id}"
               },
               "put": {
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -718,7 +718,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],

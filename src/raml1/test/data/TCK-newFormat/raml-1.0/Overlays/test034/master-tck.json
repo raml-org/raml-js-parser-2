@@ -25,8 +25,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -42,7 +42,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "description": "Add a new <<resourcePathName | !singularize>>",
             "method": "post"
           }
@@ -68,8 +68,8 @@
             "absoluteParentUri": "/customers"
           },
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -85,7 +85,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "description": "Agregue un nuevo cliente",
             "method": "post",
             "parentUri": "/customers",

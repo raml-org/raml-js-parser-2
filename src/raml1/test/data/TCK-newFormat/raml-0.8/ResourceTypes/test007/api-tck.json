@@ -6,26 +6,26 @@
         "name": "myResourceType",
         "methods": {
           "post": {
-            "responses": {
-              "200": {
-                "code": "200",
-                "<<param5>>": "<<param5value>>"
-              },
-              "<<param4>>": {
+            "responses": [
+              {
                 "code": "<<param4>>",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json"
                   }
-                }
+                ]
+              },
+              {
+                "code": "200",
+                "<<param5>>": "<<param5value>>"
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "<<param3>>": "<<param3value>>"
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "<<qParam>>",

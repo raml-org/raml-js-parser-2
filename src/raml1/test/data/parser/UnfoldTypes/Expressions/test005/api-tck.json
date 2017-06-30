@@ -159,8 +159,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -219,7 +219,7 @@
                 },
                 "items": "(T1|T2)[]|T3"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

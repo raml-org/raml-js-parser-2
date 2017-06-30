@@ -5,8 +5,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schema.xsd",
@@ -30,7 +30,7 @@
                 "mediaType": "application/xml",
                 "typePropertyKind": "XML"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/example",
             "absoluteParentUri": "/example"

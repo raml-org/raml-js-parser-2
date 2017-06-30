@@ -5,8 +5,8 @@
       {
         "methods": {
           "get": {
-            "body": {
-              "application/xml": {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "schemaPath": "schema.xsd#City",
@@ -30,7 +30,7 @@
                 "mediaType": "application/xml",
                 "typePropertyKind": "XML"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

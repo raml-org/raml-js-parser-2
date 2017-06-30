@@ -29,11 +29,11 @@
                 "structuredValue": null
               }
             },
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200"
               }
-            },
+            ],
             "description": "describing your method here\n",
             "method": "get",
             "parentUri": "/elements",

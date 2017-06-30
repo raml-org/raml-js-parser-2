@@ -44,27 +44,27 @@
         "relativeUri": "/resource",
         "methods": {
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "{}",
                     "example": "{}",
                     "schemaContent": "{}"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "schema": "{}",
                 "example": "{}",
                 "schemaContent": "{}"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

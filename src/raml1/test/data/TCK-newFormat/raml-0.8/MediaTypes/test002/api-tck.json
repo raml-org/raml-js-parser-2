@@ -6,21 +6,21 @@
         "relativeUri": "/rere",
         "methods": {
           "put": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/x-www-form-urlencoded": {
+                "body": [
+                  {
                     "name": "application/x-www-form-urlencoded"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/x-www-form-urlencoded": {
+            ],
+            "body": [
+              {
                 "name": "application/x-www-form-urlencoded"
               }
-            },
+            ],
             "method": "put",
             "parentUri": "/rere",
             "absoluteParentUri": "/rere"

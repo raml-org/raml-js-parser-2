@@ -64,8 +64,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -122,7 +122,7 @@
                 "mediaType": "application/json",
                 "typePropertyKind": "INPLACE"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/res",
             "absoluteParentUri": "/res"

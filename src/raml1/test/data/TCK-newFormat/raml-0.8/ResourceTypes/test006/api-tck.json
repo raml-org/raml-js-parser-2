@@ -48,18 +48,18 @@
         "name": "collection",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "<<schema>>",
                     "schemaContent": "<<schema>>"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get"
           }
         }
@@ -75,18 +75,18 @@
         },
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "member",
                     "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

@@ -73,16 +73,16 @@
         "relativeUri": "/resource",
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json"
                   }
-                }
+                ]
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "a",

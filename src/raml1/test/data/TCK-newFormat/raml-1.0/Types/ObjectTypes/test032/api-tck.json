@@ -6,8 +6,8 @@
       {
         "methods": {
           "post": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "__METADATA__": {
@@ -38,7 +38,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               },
-              "application/xml": {
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -111,7 +111,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/orders",
             "absoluteParentUri": "/orders"

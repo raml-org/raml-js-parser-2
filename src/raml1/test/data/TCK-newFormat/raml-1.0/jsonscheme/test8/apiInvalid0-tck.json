@@ -6,14 +6,14 @@
         "relativeUri": "/resource",
         "methods": {
           "get": {
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "schema": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n",
                 "example": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName1\": \"anothername\"\n  }\n}\n",
                 "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

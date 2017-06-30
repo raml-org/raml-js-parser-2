@@ -5,8 +5,8 @@
       {
         "methods": {
           "post": {
-            "responses": {
-              "203": {
+            "responses": [
+              {
                 "code": "203",
                 "headers": [
                   {
@@ -36,9 +36,9 @@
                   }
                 ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "__METADATA__": {
@@ -56,7 +56,7 @@
                 ],
                 "mediaType": "application/json"
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test"

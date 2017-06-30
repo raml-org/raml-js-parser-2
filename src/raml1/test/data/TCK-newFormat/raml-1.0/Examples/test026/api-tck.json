@@ -287,35 +287,11 @@
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
-                "responses": {
-                  "200": {
-                    "code": "200",
-                    "body": {
-                      "application/json": {
-                        "name": "application/json",
-                        "displayName": "application/json",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            },
-                            "type": {
-                              "insertedAsDefault": true
-                            }
-                          }
-                        },
-                        "type": [
-                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
-                        ],
-                        "mediaType": "application/json",
-                        "typePropertyKind": "JSON"
-                      }
-                    }
-                  },
-                  "201": {
+                "responses": [
+                  {
                     "code": "201",
-                    "body": {
-                      "application/json": {
+                    "body": [
+                      {
                         "name": "application/json",
                         "displayName": "application/json",
                         "__METADATA__": {
@@ -334,12 +310,36 @@
                         "mediaType": "application/json",
                         "typePropertyKind": "JSON"
                       }
-                    }
+                    ]
                   },
-                  "202": {
+                  {
+                    "code": "200",
+                    "body": [
+                      {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "type": [
+                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
+                        ],
+                        "mediaType": "application/json",
+                        "typePropertyKind": "JSON"
+                      }
+                    ]
+                  },
+                  {
                     "code": "202",
-                    "body": {
-                      "application/json": {
+                    "body": [
+                      {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
@@ -362,9 +362,9 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    }
+                    ]
                   }
-                },
+                ],
                 "protocols": [
                   "HTTPS"
                 ],

@@ -6,18 +6,18 @@
         "relativeUri": "/test",
         "methods": {
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "{\"name\": \"someName\"}\n",
                     "schemaContent": "{\"name\": \"someName\"}\n"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test"

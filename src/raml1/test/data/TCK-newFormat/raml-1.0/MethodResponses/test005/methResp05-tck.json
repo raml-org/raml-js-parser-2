@@ -5,11 +5,11 @@
       {
         "methods": {
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -57,9 +57,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test"

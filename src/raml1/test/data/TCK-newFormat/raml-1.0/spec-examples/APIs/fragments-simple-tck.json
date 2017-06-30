@@ -8,8 +8,8 @@
             "method": "get"
           },
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -37,7 +37,7 @@
                   }
                 ]
               }
-            },
+            ],
             "description": "Add an item",
             "method": "post"
           }
@@ -58,8 +58,8 @@
             "absoluteParentUri": "/products"
           },
           "post": {
-            "responses": {
-              "201": {
+            "responses": [
+              {
                 "code": "201",
                 "headers": [
                   {
@@ -87,7 +87,7 @@
                   }
                 ]
               }
-            },
+            ],
             "description": "Add an item",
             "method": "post",
             "parentUri": "/products",

@@ -781,11 +781,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/xml": {
+                "body": [
+                  {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -802,9 +802,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "Team"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -820,11 +820,11 @@
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           },
           "post": {
-            "responses": {
-              "204": {
+            "responses": [
+              {
                 "code": "204",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -843,11 +843,11 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -892,7 +892,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -915,11 +915,11 @@
           {
             "methods": {
               "get": {
-                "responses": {
-                  "200": {
+                "responses": [
+                  {
                     "code": "200",
-                    "body": {
-                      "application/json": {
+                    "body": [
+                      {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
@@ -935,12 +935,12 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    }
+                    ]
                   },
-                  "404": {
+                  {
                     "code": "404",
-                    "body": {
-                      "text/plain": {
+                    "body": [
+                      {
                         "name": "text/plain",
                         "displayName": "text/plain",
                         "type": [
@@ -959,9 +959,9 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    }
+                    ]
                   }
-                },
+                ],
                 "protocols": [
                   "HTTP"
                 ],
@@ -1039,11 +1039,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -1060,9 +1060,9 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": "User"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -1098,11 +1098,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -1121,9 +1121,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

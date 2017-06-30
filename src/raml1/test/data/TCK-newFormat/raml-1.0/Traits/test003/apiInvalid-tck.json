@@ -168,8 +168,8 @@
     ],
     "traits": [
       {
-        "body": {
-          "application/json": {
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -185,15 +185,15 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "name": "RTTrait"
       },
       {
-        "responses": {
-          "200": {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -274,17 +274,17 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            }
+            ]
           }
-        },
+        ],
         "name": "Trait1"
       },
       {
-        "responses": {
-          "200": {
+        "responses": [
+          {
             "code": "200",
-            "body": {
-              "application/json": {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -365,9 +365,9 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            }
+            ]
           }
-        },
+        ],
         "name": "Trait2"
       }
     ],
@@ -408,11 +408,11 @@
       {
         "methods": {
           "put": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -513,11 +513,11 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -542,7 +542,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "is": [
               {
                 "RTTrait": {
@@ -555,11 +555,11 @@
             "absoluteParentUri": "/resource"
           },
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -672,9 +672,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"

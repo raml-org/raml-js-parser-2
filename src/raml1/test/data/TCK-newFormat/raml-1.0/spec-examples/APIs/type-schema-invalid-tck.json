@@ -27,11 +27,11 @@
       {
         "methods": {
           "get": {
-            "responses": {
-              "200": {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -50,9 +50,9 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "INPLACE"
                   }
-                }
+                ]
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
