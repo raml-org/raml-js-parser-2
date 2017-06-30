@@ -1488,14 +1488,14 @@ describe('JSON Extension default attributes',function(){
         var p = util.data("extensions/test58Extension.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
+        assert(spec['resources'][0]['methods'][0]['securedBy'][0]=="oauth2_0");
     });
 
     it("securedBy2", function () {
         var p = util.data("extensions/test59Extension.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
+        assert(spec['resources'][0]['methods'][0]['securedBy'][0]=="oauth2_0");
     });
 });
 
