@@ -1,8 +1,8 @@
 {
   "specification": {
     "title": "Test API",
-    "resourceTypes": {
-      "a": {
+    "resourceTypes": [
+      {
         "name": "a",
         "methods": {
           "delete": {
@@ -43,7 +43,7 @@
           }
         }
       }
-    }
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

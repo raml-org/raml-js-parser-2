@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "a": {
+    "resourceTypes": [
+      {
         "methods": {
           "delete": {
             "responses": {
@@ -42,7 +42,7 @@
         },
         "name": "a"
       }
-    },
+    ],
     "title": "Test API"
   },
   "ramlVersion": "RAML10",

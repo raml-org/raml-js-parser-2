@@ -10,8 +10,8 @@
         "value": "lib2.raml"
       }
     ],
-    "traits": {
-      "lib1.lib2.myTrait": {
+    "traits": [
+      {
         "body": {
           "application/json": {
             "name": "application/json",
@@ -35,9 +35,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "lib1.rt": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
           "lib1.lib2.myTrait"
         ],
@@ -46,7 +46,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",

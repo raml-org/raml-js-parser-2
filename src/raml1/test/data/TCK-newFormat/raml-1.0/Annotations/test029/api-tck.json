@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt1": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "annotations": {
@@ -25,9 +25,9 @@
         },
         "name": "rt1"
       }
-    },
-    "annotationTypes": {
-      "simpleAnnotation": {
+    ],
+    "annotationTypes": [
+      {
         "name": "simpleAnnotation",
         "displayName": "simpleAnnotation",
         "type": [
@@ -49,7 +49,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "objectAnnotation": {
+      {
         "name": "objectAnnotation",
         "displayName": "objectAnnotation",
         "type": [
@@ -161,7 +161,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "TCK Sample. RAML 1.0 Annotations 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",

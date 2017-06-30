@@ -1,11 +1,11 @@
 {
   "specification": {
-    "traits": {
-      "lib.boolean": {
+    "traits": [
+      {
         "securedBy": [
           "lib.number"
         ],
-        "name": "boolean",
+        "name": "lib.boolean",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "securedBy": {
@@ -14,9 +14,9 @@
           }
         }
       }
-    },
-    "resourceTypes": {
-      "lib.number": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
           "lib.boolean"
         ],
@@ -24,19 +24,19 @@
           "lib.oauth",
           "lib.number"
         ],
-        "name": "number"
+        "name": "lib.number"
       }
-    },
-    "securitySchemes": {
-      "lib.oauth": {
-        "name": "oauth",
+    ],
+    "securitySchemes": [
+      {
+        "name": "lib.oauth",
         "type": "OAuth 2.0"
       },
-      "lib.number": {
-        "name": "number",
+      {
+        "name": "lib.number",
         "type": "Basic Authentication"
       }
-    },
+    ],
     "title": "test API",
     "securedBy": [
       "lib.number"

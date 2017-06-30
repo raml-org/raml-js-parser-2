@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "T1": {
+    "types": [
+      {
         "name": "T1",
         "displayName": "T1",
         "type": [
@@ -33,7 +33,7 @@
           "typePropertyKind": "TYPE_EXPRESSION"
         }
       },
-      "T2": {
+      {
         "name": "T2",
         "displayName": "T2",
         "type": [
@@ -65,7 +65,7 @@
           "typePropertyKind": "TYPE_EXPRESSION"
         }
       },
-      "T3": {
+      {
         "name": "T3",
         "displayName": "T3",
         "type": [
@@ -253,7 +253,7 @@
           "typePropertyKind": "TYPE_EXPRESSION"
         }
       },
-      "T4": {
+      {
         "name": "T4",
         "displayName": "T4",
         "type": [
@@ -291,7 +291,7 @@
           "typePropertyKind": "TYPE_EXPRESSION"
         }
       }
-    },
+    ],
     "title": "Test API"
   },
   "ramlVersion": "RAML10",

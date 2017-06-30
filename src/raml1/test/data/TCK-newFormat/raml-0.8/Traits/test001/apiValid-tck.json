@@ -1,8 +1,8 @@
 {
   "specification": {
     "title": "A",
-    "traits": {
-      "SomeTrait": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "numericParam",
@@ -27,7 +27,7 @@
         ],
         "name": "SomeTrait"
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/resource",

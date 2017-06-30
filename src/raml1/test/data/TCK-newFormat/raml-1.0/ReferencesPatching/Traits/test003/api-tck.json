@@ -10,8 +10,8 @@
         "value": "libraries/annotations.raml"
       }
     ],
-    "traits": {
-      "tr": {
+    "traits": [
+      {
         "annotations": {
           "lib2.MyAnnotation": {
             "name": "lib2.MyAnnotation",
@@ -38,7 +38,7 @@
         },
         "name": "tr"
       }
-    },
+    ],
     "title": "test API.",
     "version": "v1",
     "baseUri": "https://example.com/raml",

@@ -10,8 +10,8 @@
         "t2": "{}"
       }
     ],
-    "resourceTypes": {
-      "collection": {
+    "resourceTypes": [
+      {
         "name": "collection",
         "methods": {
           "get": {
@@ -31,7 +31,7 @@
           }
         }
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/schemes",

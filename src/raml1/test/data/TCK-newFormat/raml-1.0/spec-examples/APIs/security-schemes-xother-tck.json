@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": {
-      "custom_scheme": {
+    "securitySchemes": [
+      {
         "name": "custom_scheme",
         "type": "x-custom",
         "description": "A custom security scheme for authenticating requests.\n",
@@ -40,7 +40,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "Custom API",
     "version": "1",
     "baseUri": "https://api.custom.com/{version}",

@@ -1,8 +1,8 @@
 {
   "specification": {
-    "types": {
-      "dataTypes.Customer": {
-        "name": "Customer",
+    "types": [
+      {
+        "name": "dataTypes.Customer",
         "displayName": "Customer",
         "type": [
           {
@@ -279,7 +279,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE"
       }
-    },
+    ],
     "title": "sample-api",
     "version": "v0.1",
     "baseUri": "http://api.samplehost.com",

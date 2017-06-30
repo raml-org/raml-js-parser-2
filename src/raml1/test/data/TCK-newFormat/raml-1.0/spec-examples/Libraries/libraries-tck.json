@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "File": {
+    "types": [
+      {
         "name": "File",
         "displayName": "File",
         "type": [
@@ -65,9 +65,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "drm": {
+    ],
+    "traits": [
+      {
         "headers": [
           {
             "name": "drm-key",
@@ -95,9 +95,9 @@
         ],
         "name": "drm"
       }
-    },
-    "resourceTypes": {
-      "file": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -114,7 +114,7 @@
         },
         "name": "file"
       }
-    },
+    ],
     "usage": "Use to define some basic file-related constructs.\n"
   },
   "ramlVersion": "RAML10",

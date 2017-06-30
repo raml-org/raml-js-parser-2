@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "t1": {
+    "types": [
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
@@ -20,7 +20,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "t2": {
+      {
         "name": "t2",
         "displayName": "t2",
         "type": [
@@ -39,7 +39,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "t3": {
+      {
         "name": "t3",
         "displayName": "t3",
         "type": [
@@ -58,9 +58,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -107,7 +107,7 @@
         },
         "name": "collection"
       }
-    },
+    ],
     "title": "test API",
     "mediaType": [
       "application/json"

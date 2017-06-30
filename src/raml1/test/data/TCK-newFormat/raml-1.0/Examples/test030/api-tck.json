@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "amazon-apigateway-auth-type": {
+    "types": [
+      {
         "name": "amazon-apigateway-auth-type",
         "displayName": "amazon-apigateway-auth-type",
         "type": [
@@ -23,7 +23,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "amazon-apigateway-integration-lambda": {
+      {
         "name": "amazon-apigateway-integration-lambda",
         "displayName": "amazon-apigateway-integration-lambda",
         "type": [
@@ -70,7 +70,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "amazon-apigateway-integration-HTTP": {
+      {
         "name": "amazon-apigateway-integration-HTTP",
         "displayName": "amazon-apigateway-integration-HTTP",
         "type": [
@@ -117,7 +117,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "amazon-apigateway-integration-mock": {
+      {
         "name": "amazon-apigateway-integration-mock",
         "displayName": "amazon-apigateway-integration-mock",
         "type": [
@@ -164,7 +164,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "amazon-apigateway-integration-aws": {
+      {
         "name": "amazon-apigateway-integration-aws",
         "displayName": "amazon-apigateway-integration-aws",
         "type": [
@@ -211,7 +211,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "amazon-apigateway-integration": {
+      {
         "name": "amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
@@ -227,9 +227,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "amazon-apigateway-auth": {
+    ],
+    "annotationTypes": [
+      {
         "name": "amazon-apigateway-auth",
         "displayName": "amazon-apigateway-auth",
         "type": [
@@ -270,7 +270,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "amazon-apigateway-integration": {
+      {
         "name": "amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
@@ -311,9 +311,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "securitySchemes": {
-      "key": {
+    ],
+    "securitySchemes": [
+      {
         "name": "key",
         "type": "Pass Through",
         "describedBy": {
@@ -344,7 +344,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "tr": {
+    "traits": [
+      {
         "body": {
           "application/json": {
             "name": "application/json",
@@ -47,7 +47,7 @@
         },
         "name": "tr"
       }
-    }
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Library",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "myTrait": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "<<param>>",
@@ -47,7 +47,7 @@
         },
         "name": "myTrait"
       },
-      "simpleTrait": {
+      {
         "queryParameters": [
           {
             "name": "stringParam",
@@ -72,9 +72,9 @@
         ],
         "name": "simpleTrait"
       }
-    },
-    "resourceTypes": {
-      "rt1": {
+    ],
+    "resourceTypes": [
+      {
         "type": {
           "rt2": {
             "param": "<<param>>"
@@ -82,7 +82,7 @@
         },
         "name": "rt1"
       },
-      "rt2": {
+      {
         "methods": {
           "post": {
             "method": "post"
@@ -98,7 +98,7 @@
         ],
         "name": "rt2"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "t0": {
+    "types": [
+      {
         "name": "t0",
         "displayName": "t0",
         "type": [
@@ -20,7 +20,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "t1": {
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
@@ -46,9 +46,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "a": {
+    ],
+    "annotationTypes": [
+      {
         "name": "a",
         "displayName": "a",
         "type": [
@@ -69,7 +69,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "testAPI",
     "version": "v1"
   },

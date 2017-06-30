@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "Label": {
+    "annotationTypes": [
+      {
         "name": "Label",
         "displayName": "Label",
         "type": [
@@ -17,7 +17,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "New API",
     "version": "v1",
     "resources": [

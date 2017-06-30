@@ -6,8 +6,8 @@
         "value": "library.raml"
       }
     ],
-    "types": {
-      "Example": {
+    "types": [
+      {
         "name": "Example",
         "displayName": "Example",
         "type": [
@@ -26,9 +26,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "hasResponseCollection": {
+    ],
+    "traits": [
+      {
         "responses": {
           "200": {
             "code": "200",
@@ -55,7 +55,7 @@
         "name": "hasResponseCollection",
         "usage": "Use this trait for resources whose response body is a collection of items"
       },
-      "lib.hasResponseCollection": {
+      {
         "responses": {
           "200": {
             "code": "200",
@@ -85,9 +85,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -107,7 +107,7 @@
         "description": "A collection of <<resourcePathName|!uppercamelcase>>",
         "name": "collection"
       }
-    },
+    ],
     "title": "My API",
     "resources": [
       {

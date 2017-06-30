@@ -10,8 +10,8 @@
         "value": "libB.raml"
       }
     ],
-    "types": {
-      "Monkey": {
+    "types": [
+      {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -27,9 +27,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "resourceTypes": {
-      "lib.lib.rt": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "body": {
@@ -106,7 +106,7 @@
           "calculated": true
         }
       },
-      "lib.rt": {
+      {
         "type": {
           "lib.lib.rt": {
             "param1": "<<param1>>",
@@ -118,7 +118,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {

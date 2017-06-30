@@ -6,8 +6,8 @@
         "value": "myLibrary.raml"
       }
     ],
-    "traits": {
-      "security.auth": {
+    "traits": [
+      {
         "headers": [
           {
             "name": "Authorization",
@@ -39,15 +39,15 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "myResource": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
           "security.auth"
         ],
         "name": "myResource"
       }
-    },
+    ],
     "title": "Test API"
   },
   "ramlVersion": "RAML10",

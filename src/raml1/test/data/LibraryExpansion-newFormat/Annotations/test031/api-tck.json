@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "cards": {
+    "types": [
+      {
         "name": "cards",
         "displayName": "cards",
         "type": [
@@ -75,10 +75,10 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "lib.bindingDefinition": {
-        "name": "bindingDefinition",
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.bindingDefinition",
         "displayName": "BindingDefinition",
         "type": [
           "array"
@@ -183,7 +183,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Test API"
   },
   "ramlVersion": "RAML10",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Weight": {
+    "types": [
+      {
         "name": "Weight",
         "displayName": "Weight",
         "type": [
@@ -21,7 +21,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Number Type"
   },
   "ramlVersion": "RAML10",

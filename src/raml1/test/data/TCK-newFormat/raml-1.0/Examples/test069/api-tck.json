@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "collection": {
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "body": {
@@ -37,7 +37,7 @@
         },
         "name": "collection"
       }
-    },
+    ],
     "title": "A title",
     "resources": [
       {

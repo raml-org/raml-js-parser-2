@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "withQueryParameters": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "platform",
@@ -33,7 +33,7 @@
         ],
         "name": "withQueryParameters"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "resources": [

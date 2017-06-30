@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "notAlwaysPresent": {
+    "traits": [
+      {
         "responses": {
           "401": {
             "code": "401",
@@ -50,7 +50,7 @@
         },
         "name": "notAlwaysPresent"
       }
-    },
+    ],
     "title": "Test",
     "version": "1",
     "baseUri": "/api/{version}",

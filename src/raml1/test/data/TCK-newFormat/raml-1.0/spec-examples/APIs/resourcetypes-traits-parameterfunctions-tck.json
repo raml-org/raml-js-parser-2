@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Users": {
+    "types": [
+      {
         "name": "Users",
         "displayName": "Users",
         "type": [
@@ -20,7 +20,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "User": {
+      {
         "name": "User",
         "displayName": "User",
         "type": [
@@ -39,9 +39,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "secured": {
+    ],
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "<<methodName>>",
@@ -78,9 +78,9 @@
         "description": "Some requests require authentication",
         "name": "secured"
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -137,7 +137,7 @@
         },
         "name": "collection"
       },
-      "member": {
+      {
         "methods": {
           "get": {
             "responses": {
@@ -168,7 +168,7 @@
         },
         "name": "member"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "mediaType": [

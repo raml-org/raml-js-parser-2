@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MyType": {
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "scheme.json",
@@ -18,7 +18,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
+    ],
     "title": "Api",
     "resources": [
       {

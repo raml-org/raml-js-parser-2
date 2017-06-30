@@ -10,8 +10,8 @@
         "value": "libB.raml"
       }
     ],
-    "resourceTypes": {
-      "lib.lib.rt": {
+    "resourceTypes": [
+      {
         "annotations": {
           "<<param1>>": {
             "name": "<<param1>>",
@@ -77,7 +77,7 @@
           "calculated": true
         }
       },
-      "lib.rt": {
+      {
         "type": {
           "lib.lib.rt": {
             "param1": "<<param1>>",
@@ -89,9 +89,9 @@
           "calculated": true
         }
       }
-    },
-    "annotationTypes": {
-      "Monkey": {
+    ],
+    "annotationTypes": [
+      {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -107,7 +107,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {

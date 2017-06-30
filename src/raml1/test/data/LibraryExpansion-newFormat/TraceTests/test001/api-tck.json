@@ -1,8 +1,8 @@
 {
   "specification": {
-    "types": {
-      "lib1.LibType1": {
-        "name": "LibType1",
+    "types": [
+      {
+        "name": "lib1.LibType1",
         "displayName": "LibType1",
         "type": [
           "object"
@@ -42,8 +42,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib1.lib2.LibType2": {
-        "name": "LibType2",
+      {
+        "name": "lib1.lib2.LibType2",
         "displayName": "LibType2",
         "type": [
           "object"
@@ -92,7 +92,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "testAPI",
     "version": "v1",
     "mediaType": [

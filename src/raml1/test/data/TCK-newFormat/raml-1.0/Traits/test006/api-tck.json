@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "trait1": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "param1",
@@ -26,7 +26,7 @@
         ],
         "name": "trait1"
       }
-    },
+    ],
     "title": "TCK test. Trait 002",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",

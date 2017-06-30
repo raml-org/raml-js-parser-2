@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "secured": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "<<tokenName>>",
@@ -30,7 +30,7 @@
         ],
         "name": "secured"
       },
-      "paged": {
+      {
         "queryParameters": [
           {
             "name": "numPages",
@@ -59,9 +59,9 @@
         ],
         "name": "paged"
       }
-    },
-    "resourceTypes": {
-      "searchableCollection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "queryParameters": [
@@ -119,7 +119,7 @@
         },
         "name": "searchableCollection"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "resources": [

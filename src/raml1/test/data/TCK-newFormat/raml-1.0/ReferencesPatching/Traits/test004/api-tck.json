@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "bodyTrait": {
+    "traits": [
+      {
         "body": {
           "application/json": {
             "name": "application/json",
@@ -25,9 +25,9 @@
         },
         "name": "bodyTrait"
       }
-    },
-    "resourceTypes": {
-      "oneRT": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -39,7 +39,7 @@
         "type": "<<parentResourceType | !singularize>>",
         "name": "oneRT"
       },
-      "twoRT": {
+      {
         "methods": {
           "post": {
             "method": "post"
@@ -47,7 +47,7 @@
         },
         "name": "twoRT"
       }
-    },
+    ],
     "title": "API",
     "resources": [
       {

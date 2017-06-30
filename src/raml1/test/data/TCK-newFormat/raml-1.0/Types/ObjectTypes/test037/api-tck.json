@@ -6,8 +6,8 @@
         "value": "NewLibrary.raml"
       }
     ],
-    "types": {
-      "Mammal": {
+    "types": [
+      {
         "name": "Mammal",
         "displayName": "Mammal",
         "type": [
@@ -23,7 +23,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Bird": {
+      {
         "name": "Bird",
         "displayName": "Bird",
         "type": [
@@ -61,9 +61,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "NewLibrary.FilterableByPrice": {
+    ],
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "priceLessThen",
@@ -111,9 +111,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "NewLibrary.Collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -169,7 +169,7 @@
           "calculated": true
         }
       },
-      "NewLibrary.Member": {
+      {
         "methods": {
           "delete": {
             "responses": {
@@ -206,7 +206,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "Pet Shop",
     "version": "v1",
     "baseUri": "/shop",

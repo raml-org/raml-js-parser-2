@@ -1,8 +1,8 @@
 {
   "specification": {
-    "types": {
-      "types.Location": {
-        "name": "Location",
+    "types": [
+      {
+        "name": "types.Location",
         "displayName": "Location",
         "type": [
           "object"
@@ -132,8 +132,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Meta": {
-        "name": "Meta",
+      {
+        "name": "types.Meta",
         "displayName": "Meta",
         "type": [
           "object"
@@ -179,8 +179,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Locations": {
-        "name": "Locations",
+      {
+        "name": "types.Locations",
         "displayName": "Locations",
         "type": [
           "types.OkStatus"
@@ -237,8 +237,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Counts": {
-        "name": "Counts",
+      {
+        "name": "types.Counts",
         "displayName": "Counts",
         "type": [
           "object"
@@ -326,8 +326,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.UserAccount": {
-        "name": "UserAccount",
+      {
+        "name": "types.UserAccount",
         "displayName": "UserAccount",
         "type": [
           "object"
@@ -526,8 +526,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.User": {
-        "name": "User",
+      {
+        "name": "types.User",
         "displayName": "User",
         "type": [
           "object"
@@ -705,8 +705,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionPost": {
-        "name": "SubscriptionPost",
+      {
+        "name": "types.SubscriptionPost",
         "displayName": "SubscriptionPost",
         "type": [
           "types.OkStatus"
@@ -944,8 +944,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionData": {
-        "name": "SubscriptionData",
+      {
+        "name": "types.SubscriptionData",
         "displayName": "SubscriptionData",
         "type": [
           "object"
@@ -1093,8 +1093,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionsGet": {
-        "name": "SubscriptionsGet",
+      {
+        "name": "types.SubscriptionsGet",
         "displayName": "SubscriptionsGet",
         "type": [
           "types.OkStatus"
@@ -1150,8 +1150,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SubscriptionsDelete": {
-        "name": "SubscriptionsDelete",
+      {
+        "name": "types.SubscriptionsDelete",
         "displayName": "SubscriptionsDelete",
         "type": [
           "types.OkStatus"
@@ -1204,8 +1204,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Tag": {
-        "name": "Tag",
+      {
+        "name": "types.Tag",
         "displayName": "Tag",
         "type": [
           "object"
@@ -1296,8 +1296,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.SerachTagItem": {
-        "name": "SerachTagItem",
+      {
+        "name": "types.SerachTagItem",
         "displayName": "SerachTagItem",
         "type": [
           "object"
@@ -1364,8 +1364,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.TagsSearch": {
-        "name": "TagsSearch",
+      {
+        "name": "types.TagsSearch",
         "displayName": "TagsSearch",
         "type": [
           "types.OkStatus"
@@ -1420,8 +1420,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaLike": {
-        "name": "MediaLike",
+      {
+        "name": "types.MediaLike",
         "displayName": "MediaLike",
         "type": [
           "object"
@@ -1530,8 +1530,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaLikes": {
-        "name": "MediaLikes",
+      {
+        "name": "types.MediaLikes",
         "displayName": "MediaLikes",
         "type": [
           "object"
@@ -1585,8 +1585,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Comment": {
-        "name": "Comment",
+      {
+        "name": "types.Comment",
         "displayName": "Comment",
         "type": [
           "object"
@@ -1721,8 +1721,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaComment": {
-        "name": "MediaComment",
+      {
+        "name": "types.MediaComment",
         "displayName": "MediaComment",
         "type": [
           "types.OkStatus"
@@ -1783,8 +1783,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Oembed": {
-        "name": "Oembed",
+      {
+        "name": "types.Oembed",
         "displayName": "Oembed",
         "type": [
           "object"
@@ -2061,8 +2061,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.RelationshipsPost": {
-        "name": "RelationshipsPost",
+      {
+        "name": "types.RelationshipsPost",
         "displayName": "RelationshipsPost",
         "type": [
           "types.OkStatus"
@@ -2135,8 +2135,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Relationships": {
-        "name": "Relationships",
+      {
+        "name": "types.Relationships",
         "displayName": "Relationships",
         "type": [
           "types.OkStatus"
@@ -2230,8 +2230,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.RequestedBy": {
-        "name": "RequestedBy",
+      {
+        "name": "types.RequestedBy",
         "displayName": "RequestedBy",
         "type": [
           "types.OkStatus"
@@ -2346,8 +2346,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.UsersItem": {
-        "name": "UsersItem",
+      {
+        "name": "types.UsersItem",
         "displayName": "UsersItem",
         "type": [
           "object"
@@ -2477,8 +2477,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Users": {
-        "name": "Users",
+      {
+        "name": "types.Users",
         "displayName": "Users",
         "type": [
           "object"
@@ -2533,8 +2533,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.OkStatus": {
-        "name": "OkStatus",
+      {
+        "name": "types.OkStatus",
         "displayName": "OkStatus",
         "type": [
           "object"
@@ -2602,8 +2602,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Likes": {
-        "name": "Likes",
+      {
+        "name": "types.Likes",
         "displayName": "Likes",
         "type": [
           "object"
@@ -2684,8 +2684,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Resolution": {
-        "name": "Resolution",
+      {
+        "name": "types.Resolution",
         "displayName": "Resolution",
         "type": [
           "object"
@@ -2773,8 +2773,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Image": {
-        "name": "Image",
+      {
+        "name": "types.Image",
         "displayName": "Image",
         "type": [
           "object"
@@ -2874,8 +2874,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.TagsRecentMedia": {
-        "name": "TagsRecentMedia",
+      {
+        "name": "types.TagsRecentMedia",
         "displayName": "TagsRecentMedia",
         "type": [
           "object"
@@ -2967,8 +2967,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.TagsRecentMediaItem": {
-        "name": "TagsRecentMediaItem",
+      {
+        "name": "types.TagsRecentMediaItem",
         "displayName": "TagsRecentMediaItem",
         "type": [
           "object"
@@ -3333,8 +3333,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.UsersInPhoto": {
-        "name": "UsersInPhoto",
+      {
+        "name": "types.UsersInPhoto",
         "displayName": "UsersInPhoto",
         "type": [
           "object"
@@ -3457,8 +3457,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.Media": {
-        "name": "Media",
+      {
+        "name": "types.Media",
         "displayName": "Media",
         "type": [
           "object"
@@ -3855,8 +3855,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearchFirstType": {
-        "name": "MediaSearchFirstType",
+      {
+        "name": "types.MediaSearchFirstType",
         "displayName": "MediaSearchFirstType",
         "type": [
           "object"
@@ -4285,8 +4285,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearchSecondType": {
-        "name": "MediaSearchSecondType",
+      {
+        "name": "types.MediaSearchSecondType",
         "displayName": "MediaSearchSecondType",
         "type": [
           "object"
@@ -4924,8 +4924,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearch": {
-        "name": "MediaSearch",
+      {
+        "name": "types.MediaSearch",
         "displayName": "MediaSearch",
         "type": [
           "types.OkStatus"
@@ -4962,8 +4962,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types.MediaSearchArray": {
-        "name": "MediaSearchArray",
+      {
+        "name": "types.MediaSearchArray",
         "displayName": "MediaSearchArray",
         "type": [
           "types.OkStatus"
@@ -5001,9 +5001,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "acceptCallback": {
+    ],
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "callback",
@@ -5039,7 +5039,7 @@
         ],
         "name": "acceptCallback"
       },
-      "limitableByGeoPoint": {
+      {
         "queryParameters": [
           {
             "name": "lat",
@@ -5109,7 +5109,7 @@
         ],
         "name": "limitableByGeoPoint"
       },
-      "limitable": {
+      {
         "queryParameters": [
           {
             "name": "count",
@@ -5142,7 +5142,7 @@
         ],
         "name": "limitable"
       },
-      "limitableByTime": {
+      {
         "queryParameters": [
           {
             "name": "max_timestamp",
@@ -5189,7 +5189,7 @@
         ],
         "name": "limitableByTime"
       },
-      "limitableById": {
+      {
         "queryParameters": [
           {
             "name": "min_id",
@@ -5236,9 +5236,9 @@
         ],
         "name": "limitableById"
       }
-    },
-    "resourceTypes": {
-      "usersListing": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -5326,7 +5326,7 @@
         ],
         "name": "usersListing"
       },
-      "mediaSearch": {
+      {
         "methods": {
           "get": {
             "responses": {
@@ -5458,7 +5458,7 @@
         "type": "base",
         "name": "mediaSearch"
       },
-      "secured": {
+      {
         "methods": {
           "delete": {
             "responses": {
@@ -5576,7 +5576,7 @@
         ],
         "name": "secured"
       },
-      "base": {
+      {
         "methods": {
           "delete": {
             "responses": {
@@ -5621,7 +5621,7 @@
         },
         "name": "base"
       },
-      "feedsListing": {
+      {
         "methods": {
           "get": {
             "responses": {
@@ -5844,9 +5844,9 @@
         "type": "base",
         "name": "feedsListing"
       }
-    },
-    "securitySchemes": {
-      "oauth_2_0": {
+    ],
+    "securitySchemes": [
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
@@ -5892,7 +5892,7 @@
           ]
         }
       },
-      "clientId": {
+      {
         "name": "clientId",
         "type": "x-customHeader",
         "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
@@ -5932,7 +5932,7 @@
           ]
         }
       }
-    }
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Library",

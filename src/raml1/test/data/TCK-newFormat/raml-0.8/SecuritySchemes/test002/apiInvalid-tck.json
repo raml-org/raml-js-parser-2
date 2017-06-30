@@ -2,8 +2,8 @@
   "specification": {
     "title": "New API",
     "version": "v1",
-    "securitySchemes": {
-      "oauth_2_0": {
+    "securitySchemes": [
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
@@ -62,7 +62,7 @@
           ]
         }
       }
-    }
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

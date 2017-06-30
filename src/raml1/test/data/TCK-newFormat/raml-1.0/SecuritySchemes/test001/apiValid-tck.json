@@ -1,11 +1,11 @@
 {
   "specification": {
-    "securitySchemes": {
-      "auth": {
+    "securitySchemes": [
+      {
         "name": "auth",
         "type": "x-sls"
       }
-    },
+    ],
     "title": "New API",
     "version": "v1"
   },

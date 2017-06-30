@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "respCode": {
+    "traits": [
+      {
         "responses": {
           "<<status>>": {
             "code": "<<status>>",
@@ -10,7 +10,7 @@
         },
         "name": "respCode"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "resources": [

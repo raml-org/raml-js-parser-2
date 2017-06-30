@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "IsMarried": {
+    "types": [
+      {
         "name": "IsMarried",
         "displayName": "IsMarried",
         "type": [
@@ -17,7 +17,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Boolean Type"
   },
   "ramlVersion": "RAML10",

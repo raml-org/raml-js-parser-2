@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "birthday": {
+    "types": [
+      {
         "name": "birthday",
         "displayName": "birthday",
         "type": [
@@ -24,7 +24,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lunchtime": {
+      {
         "name": "lunchtime",
         "displayName": "lunchtime",
         "type": [
@@ -47,7 +47,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "fireworks": {
+      {
         "name": "fireworks",
         "displayName": "fireworks",
         "type": [
@@ -70,7 +70,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "created": {
+      {
         "name": "created",
         "displayName": "created",
         "type": [
@@ -94,7 +94,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "If-Modified-Since": {
+      {
         "name": "If-Modified-Since",
         "displayName": "If-Modified-Since",
         "type": [
@@ -118,7 +118,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Date Types"
   },
   "ramlVersion": "RAML10",

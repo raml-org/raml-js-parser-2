@@ -1,8 +1,8 @@
 {
   "specification": {
-    "types": {
-      "primitives.ExtLocale": {
-        "name": "ExtLocale",
+    "types": [
+      {
+        "name": "primitives.ExtLocale",
         "displayName": "ExtLocale",
         "schemaPath": "schemas/locale.xsd",
         "type": [
@@ -18,8 +18,8 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       },
-      "primitives.Locale": {
-        "name": "Locale",
+      {
+        "name": "primitives.Locale",
         "displayName": "Locale",
         "type": [
           "primitives.ExtLocale"
@@ -33,7 +33,7 @@
         },
         "mediaType": "application/json"
       }
-    },
+    ],
     "title": "Library test",
     "resources": [
       {

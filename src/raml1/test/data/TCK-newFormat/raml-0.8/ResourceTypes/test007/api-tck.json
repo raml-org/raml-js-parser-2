@@ -1,8 +1,8 @@
 {
   "specification": {
     "title": "test API",
-    "resourceTypes": {
-      "myResourceType": {
+    "resourceTypes": [
+      {
         "name": "myResourceType",
         "methods": {
           "post": {
@@ -81,7 +81,7 @@
         },
         "<<param1>>": "<<param1value>>"
       }
-    }
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "__METADATA__": {
@@ -20,7 +20,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE"
       }
-    },
+    ],
     "title": "Types / Schema mutual exclusive",
     "description": "This RAML illustrates an invalid case where type and schema has been used on the same node.",
     "resources": [

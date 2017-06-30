@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": {
-      "oauth_2_0": {
+    "securitySchemes": [
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
@@ -77,7 +77,7 @@
           ]
         }
       },
-      "oauth_1_0": {
+      {
         "name": "oauth_1_0",
         "type": "OAuth 1.0",
         "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
@@ -91,7 +91,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",

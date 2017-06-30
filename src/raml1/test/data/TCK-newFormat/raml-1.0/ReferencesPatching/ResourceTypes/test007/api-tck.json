@@ -14,8 +14,8 @@
         "value": "lib/traits.raml"
       }
     ],
-    "traits": {
-      "rt.tr.ResponseCommonErrors": {
+    "traits": [
+      {
         "responses": {
           "400": {
             "code": "400",
@@ -85,9 +85,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "rt.Collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -105,7 +105,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "Test API",
     "version": "v1z",
     "resources": [

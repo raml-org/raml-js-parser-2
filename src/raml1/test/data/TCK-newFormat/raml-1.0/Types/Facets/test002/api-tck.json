@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "myDate": {
+    "types": [
+      {
         "annotations": {
           "reader": {
             "name": "reader",
@@ -45,7 +45,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "year": {
+      {
         "name": "year",
         "displayName": "year",
         "type": [
@@ -64,7 +64,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "yee": {
+      {
         "name": "yee",
         "displayName": "yee",
         "type": [
@@ -83,9 +83,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "reader": {
+    ],
+    "annotationTypes": [
+      {
         "name": "reader",
         "displayName": "reader",
         "type": [
@@ -101,7 +101,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "writer": {
+      {
         "name": "writer",
         "displayName": "writer",
         "type": [
@@ -117,7 +117,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "A",
     "resources": [
       {

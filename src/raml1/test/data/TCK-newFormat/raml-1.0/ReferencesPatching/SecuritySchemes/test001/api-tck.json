@@ -6,16 +6,16 @@
         "value": "lib.raml"
       }
     ],
-    "traits": {
-      "lib.boolean": {
+    "traits": [
+      {
         "name": "lib.boolean",
         "__METADATA__": {
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "lib.number": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
           "lib.boolean"
         ],
@@ -28,7 +28,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "test API",
     "securedBy": [
       "lib.number"

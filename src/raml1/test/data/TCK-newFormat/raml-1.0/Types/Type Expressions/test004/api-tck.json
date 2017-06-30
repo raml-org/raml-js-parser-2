@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "PersonAccounts": {
+    "types": [
+      {
         "name": "PersonAccounts",
         "displayName": "PersonAccounts",
         "type": [
@@ -18,7 +18,7 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": "string[]"
       }
-    },
+    ],
     "title": "Dropbox API"
   },
   "ramlVersion": "RAML10",

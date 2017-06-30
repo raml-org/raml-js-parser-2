@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SimpleType1": {
+    "types": [
+      {
         "name": "SimpleType1",
         "displayName": "SimpleType1",
         "type": [
@@ -62,7 +62,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "SimpleType2": {
+      {
         "name": "SimpleType2",
         "displayName": "SimpleType2",
         "type": [
@@ -123,7 +123,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "SimpleUnion": {
+      {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
         "type": [
@@ -139,7 +139,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "TypeWithUnionProps": {
+      {
         "name": "TypeWithUnionProps",
         "displayName": "TypeWithUnionProps",
         "type": [
@@ -213,7 +213,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "API"
   },
   "ramlVersion": "RAML10",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Email": {
+    "types": [
+      {
         "name": "Email",
         "displayName": "Email",
         "type": [
@@ -59,7 +59,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Emails": {
+      {
         "name": "Emails",
         "displayName": "Emails",
         "type": [
@@ -94,7 +94,7 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": "Email"
       }
-    },
+    ],
     "title": "Simple Array Type with Example"
   },
   "ramlVersion": "RAML10",

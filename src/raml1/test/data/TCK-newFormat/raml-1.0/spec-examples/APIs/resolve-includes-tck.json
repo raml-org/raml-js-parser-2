@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "chargeable": {
+    "traits": [
+      {
         "headers": [
           {
             "name": "dept_code",
@@ -32,7 +32,7 @@
           "calculated": true
         }
       },
-      "paged": {
+      {
         "queryParameters": [
           {
             "name": "start",
@@ -60,9 +60,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -79,7 +79,7 @@
           "calculated": true
         }
       },
-      "member": {
+      {
         "methods": {
           "get": {
             "method": "get"
@@ -96,7 +96,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1"
   },

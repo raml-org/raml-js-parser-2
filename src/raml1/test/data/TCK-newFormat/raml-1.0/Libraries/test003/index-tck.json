@@ -6,16 +6,16 @@
         "value": "libraries/files.raml"
       }
     ],
-    "traits": {
-      "files.hello": {
+    "traits": [
+      {
         "name": "files.hello",
         "__METADATA__": {
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "file": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -26,7 +26,7 @@
         },
         "name": "file"
       }
-    },
+    ],
     "title": "Files API",
     "resources": [
       {

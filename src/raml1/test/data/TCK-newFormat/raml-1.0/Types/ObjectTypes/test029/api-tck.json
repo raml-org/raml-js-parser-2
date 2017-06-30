@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Error": {
+    "types": [
+      {
         "name": "Error",
         "displayName": "Error",
         "type": [
@@ -52,7 +52,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ServerError": {
+      {
         "name": "ServerError",
         "displayName": "ServerError",
         "type": [
@@ -69,7 +69,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test API"
   },
   "ramlVersion": "RAML10",

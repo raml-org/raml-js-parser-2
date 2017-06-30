@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "FilterableByPrice": {
+    "traits": [
+      {
         "annotations": {
           "Test3": {
             "name": "Test3",
@@ -54,9 +54,9 @@
         ],
         "name": "FilterableByPrice"
       }
-    },
-    "annotationTypes": {
-      "Test3": {
+    ],
+    "annotationTypes": [
+      {
         "name": "Test3",
         "displayName": "Test3",
         "type": [
@@ -97,7 +97,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "blah",
     "extends": "api.raml"
   },

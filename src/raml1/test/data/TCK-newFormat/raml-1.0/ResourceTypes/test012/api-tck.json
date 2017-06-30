@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -42,7 +42,7 @@
         },
         "name": "rt"
       }
-    },
+    ],
     "title": "My API",
     "resources": [
       {

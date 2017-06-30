@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "externalType": {
+    "types": [
+      {
         "name": "externalType",
         "displayName": "externalType",
         "schemaPath": "schemas/A.xml",
@@ -18,7 +18,7 @@
         "mediaType": "application/xml",
         "typePropertyKind": "XML"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {

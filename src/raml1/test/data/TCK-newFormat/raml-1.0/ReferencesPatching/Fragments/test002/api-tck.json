@@ -10,8 +10,8 @@
         "value": "libs/lib.raml"
       }
     ],
-    "resourceTypes": {
-      "rt": {
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "body": {
@@ -46,7 +46,7 @@
         },
         "name": "rt"
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {

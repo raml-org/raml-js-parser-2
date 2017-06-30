@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Org": {
+    "types": [
+      {
         "name": "Org",
         "displayName": "Org",
         "type": [
@@ -59,7 +59,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Person": {
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -158,7 +158,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Phone": {
+      {
         "name": "Phone",
         "displayName": "Phone",
         "type": [
@@ -175,7 +175,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Manager": {
+      {
         "name": "Manager",
         "displayName": "Manager",
         "type": [
@@ -234,7 +234,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Admin": {
+      {
         "name": "Admin",
         "displayName": "Admin",
         "type": [
@@ -279,7 +279,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AlertableAdmin": {
+      {
         "name": "AlertableAdmin",
         "displayName": "AlertableAdmin",
         "type": [
@@ -317,7 +317,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Alertable": {
+      {
         "name": "Alertable",
         "displayName": "Alertable",
         "type": [
@@ -333,7 +333,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "My API with Types",
     "mediaType": [
       "application/json"

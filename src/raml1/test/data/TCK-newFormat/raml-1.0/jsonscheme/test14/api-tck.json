@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "externalType": {
+    "types": [
+      {
         "name": "externalType",
         "displayName": "externalType",
         "schemaPath": "schemas/A.json",
@@ -28,7 +28,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {

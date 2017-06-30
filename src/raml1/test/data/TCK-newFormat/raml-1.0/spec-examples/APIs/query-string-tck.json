@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "lat-long": {
+    "types": [
+      {
         "name": "lat-long",
         "displayName": "lat-long",
         "type": [
@@ -62,7 +62,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "loc": {
+      {
         "name": "loc",
         "displayName": "loc",
         "type": [
@@ -106,7 +106,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "paging": {
+      {
         "name": "paging",
         "displayName": "paging",
         "type": [
@@ -167,7 +167,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Illustrate query parameter variations",
     "resources": [
       {

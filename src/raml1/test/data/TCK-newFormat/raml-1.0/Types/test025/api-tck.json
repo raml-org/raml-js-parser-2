@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Player1": {
+    "types": [
+      {
         "name": "Player1",
         "displayName": "Player1",
         "type": [
@@ -17,7 +17,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       },
-      "Player2": {
+      {
         "name": "Player2",
         "displayName": "Player2",
         "type": [
@@ -33,7 +33,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
+    ],
     "title": "Types 002.",
     "version": "v1",
     "baseUri": "https://example.com/raml",

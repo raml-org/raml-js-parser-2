@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Mammal": {
+    "types": [
+      {
         "name": "Mammal",
         "displayName": "Mammal",
         "type": [
@@ -17,7 +17,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Bird": {
+      {
         "name": "Bird",
         "displayName": "Bird",
         "type": [
@@ -55,8 +55,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "NewLibrary.Pet": {
-        "name": "Pet",
+      {
+        "name": "NewLibrary.Pet",
         "displayName": "Pet",
         "type": [
           "object"
@@ -177,7 +177,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Pet Shop",
     "version": "v1",
     "baseUri": "/shop",

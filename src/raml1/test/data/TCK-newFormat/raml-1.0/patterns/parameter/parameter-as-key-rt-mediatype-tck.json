@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "thingy": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -32,7 +32,7 @@
         },
         "name": "thingy"
       }
-    },
+    ],
     "title": "Parameterizing media type must be valid",
     "resources": [
       {

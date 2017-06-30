@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Message": {
+    "types": [
+      {
         "name": "Message",
         "displayName": "Message",
         "type": [
@@ -120,7 +120,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Multiple examples"
   },
   "ramlVersion": "RAML10",

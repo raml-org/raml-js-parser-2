@@ -1,8 +1,8 @@
 {
   "specification": {
-    "types": {
-      "lib1.lib2.MyLibType": {
-        "name": "MyLibType",
+    "types": [
+      {
+        "name": "lib1.lib2.MyLibType",
         "displayName": "MyLibType",
         "type": [
           "object"
@@ -17,9 +17,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "lib1.lib2.myTrait": {
+    ],
+    "traits": [
+      {
         "body": {
           "application/json": {
             "name": "application/json",
@@ -38,17 +38,17 @@
             "typePropertyKind": "TYPE_EXPRESSION"
           }
         },
-        "name": "myTrait"
+        "name": "lib1.lib2.myTrait"
       }
-    },
-    "resourceTypes": {
-      "lib1.rt": {
+    ],
+    "resourceTypes": [
+      {
         "is": [
           "lib1.lib2.myTrait"
         ],
-        "name": "rt"
+        "name": "lib1.rt"
       }
-    },
+    ],
     "title": "test API.",
     "version": "v1",
     "baseUri": "https://example.com/raml",

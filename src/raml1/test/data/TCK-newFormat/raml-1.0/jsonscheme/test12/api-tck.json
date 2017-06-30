@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Foo": {
+    "types": [
+      {
         "name": "Foo",
         "displayName": "Foo",
         "schemaPath": "schema.json#Foo",
@@ -18,7 +18,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {

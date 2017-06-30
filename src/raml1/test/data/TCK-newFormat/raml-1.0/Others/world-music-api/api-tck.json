@@ -18,8 +18,8 @@
         "value": "libraries/api-library.raml"
       }
     ],
-    "types": {
-      "Entry": {
+    "types": [
+      {
         "name": "Entry",
         "displayName": "Entry",
         "type": [
@@ -35,7 +35,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       },
-      "AnotherEntry": {
+      {
         "name": "AnotherEntry",
         "displayName": "AnotherEntry",
         "type": [
@@ -51,7 +51,7 @@
         },
         "mediaType": "application/json"
       },
-      "User": {
+      {
         "name": "User",
         "displayName": "User",
         "type": [
@@ -125,9 +125,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "secured": {
+    ],
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "access_token",
@@ -163,9 +163,9 @@
           }
         }
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -220,9 +220,9 @@
           }
         }
       }
-    },
-    "annotationTypes": {
-      "deprecated": {
+    ],
+    "annotationTypes": [
+      {
         "name": "deprecated",
         "displayName": "deprecated",
         "type": [
@@ -303,7 +303,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "monitoringInterval": {
+      {
         "name": "monitoringInterval",
         "displayName": "monitoringInterval",
         "type": [
@@ -327,7 +327,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ready": {
+      {
         "name": "ready",
         "displayName": "ready",
         "type": [
@@ -347,7 +347,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "info": {
+      {
         "name": "info",
         "displayName": "info",
         "type": [
@@ -395,7 +395,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "rediractable": {
+      {
         "name": "rediractable",
         "displayName": "rediractable",
         "type": [
@@ -411,9 +411,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "securitySchemes": {
-      "oauth_1_0": {
+    ],
+    "securitySchemes": [
+      {
         "name": "oauth_1_0",
         "type": "OAuth 1.0",
         "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
@@ -427,7 +427,7 @@
           ]
         }
       },
-      "oauth_2_0": {
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
@@ -499,7 +499,7 @@
           ]
         }
       },
-      "custom_scheme": {
+      {
         "name": "custom_scheme",
         "type": "x-custom",
         "description": "A custom security scheme for authenticating requests.\n",
@@ -538,7 +538,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "World Music API",
     "description": "This is an example of a music API.",
     "version": "v1",

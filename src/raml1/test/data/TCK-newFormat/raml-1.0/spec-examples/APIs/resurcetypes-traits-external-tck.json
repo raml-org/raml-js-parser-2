@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "secured": {
+    "traits": [
+      {
         "headers": [
           {
             "name": "access_token",
@@ -36,7 +36,7 @@
         "name": "secured",
         "usage": "Apply this to any method that needs to be secured"
       },
-      "rateLimited": {
+      {
         "headers": [
           {
             "name": "limit",
@@ -68,9 +68,9 @@
         "name": "rateLimited",
         "usage": "Apply this to any method that needs to be rate limited"
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "description": "Retrieve all items",
@@ -115,7 +115,7 @@
         "name": "collection",
         "usage": "Use this to describe a resource that lists items"
       },
-      "member": {
+      {
         "methods": {
           "get": {
             "description": "Get a <<resourcePathName | !singularize>>",
@@ -126,7 +126,7 @@
         "name": "member",
         "usage": "This resourceType should be used for any specific member of a collection"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1"
   },

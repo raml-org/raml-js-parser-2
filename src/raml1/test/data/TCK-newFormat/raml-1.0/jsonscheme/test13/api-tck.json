@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "test": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -33,7 +33,7 @@
         },
         "name": "test"
       }
-    },
+    ],
     "title": "test API"
   },
   "ramlVersion": "RAML10",

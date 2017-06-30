@@ -1,8 +1,8 @@
 {
   "specification": {
-    "annotationTypes": {
-      "lib.TestAnnotationType": {
-        "name": "TestAnnotationType",
+    "annotationTypes": [
+      {
+        "name": "lib.TestAnnotationType",
         "displayName": "TestAnnotationType",
         "type": [
           "string"
@@ -17,8 +17,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.AnotherAnnotationType": {
-        "name": "AnotherAnnotationType",
+      {
+        "name": "lib.AnotherAnnotationType",
         "displayName": "AnotherAnnotationType",
         "type": [
           "object"
@@ -75,7 +75,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Overlay 2",
     "resources": [
       {

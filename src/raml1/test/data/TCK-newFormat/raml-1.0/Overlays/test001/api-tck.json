@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "env-org-pair": {
+    "traits": [
+      {
         "securedBy": [
           "x-ttt"
         ],
@@ -14,9 +14,9 @@
           }
         }
       }
-    },
-    "resourceTypes": {
-      "servers-collection": {
+    ],
+    "resourceTypes": [
+      {
         "securedBy": [
           "x-ttt"
         ],
@@ -30,13 +30,13 @@
           }
         }
       }
-    },
-    "securitySchemes": {
-      "x-ttt": {
+    ],
+    "securitySchemes": [
+      {
         "name": "x-ttt",
         "type": "Digest Authentication"
       }
-    },
+    ],
     "title": "Extension",
     "version": "0.4",
     "baseUri": "https://anypoint.mulesoft.com/hybrid/api/v1",

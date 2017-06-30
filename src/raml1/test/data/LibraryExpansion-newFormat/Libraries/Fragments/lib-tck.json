@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "workItem": {
+    "types": [
+      {
         "name": "workItem",
         "displayName": "workItem",
         "type": [
@@ -100,7 +100,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    }
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Library",

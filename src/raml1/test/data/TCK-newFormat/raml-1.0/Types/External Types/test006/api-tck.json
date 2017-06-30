@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "mySchema": {
+    "types": [
+      {
         "name": "mySchema",
         "displayName": "mySchema",
         "type": [
@@ -17,7 +17,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       },
-      "z2": {
+      {
         "name": "z2",
         "displayName": "z2",
         "type": [
@@ -41,7 +41,7 @@
         ],
         "mediaType": "application/json"
       }
-    },
+    ],
     "title": "A"
   },
   "ramlVersion": "RAML10",

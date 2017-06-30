@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "ObjectType1": {
+    "types": [
+      {
         "name": "ObjectType1",
         "displayName": "ObjectType1",
         "type": [
@@ -54,7 +54,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Example API test 02"
   },
   "ramlVersion": "RAML10",

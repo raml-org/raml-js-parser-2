@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
@@ -18,7 +18,7 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": "SomeType"
       }
-    },
+    ],
     "title": "API"
   },
   "ramlVersion": "RAML10",

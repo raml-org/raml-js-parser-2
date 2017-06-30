@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "StringType_10": {
+    "types": [
+      {
         "name": "StringType_10",
         "displayName": "StringType_10",
         "type": [
@@ -20,7 +20,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_11": {
+      {
         "name": "StringType_11",
         "displayName": "StringType_11",
         "type": [
@@ -46,7 +46,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_12": {
+      {
         "name": "StringType_12",
         "displayName": "StringType_12",
         "type": [
@@ -72,7 +72,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_20": {
+      {
         "name": "StringType_20",
         "displayName": "StringType_20",
         "type": [
@@ -88,7 +88,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_21": {
+      {
         "name": "StringType_21",
         "displayName": "StringType_21",
         "type": [
@@ -111,7 +111,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_30": {
+      {
         "name": "StringType_30",
         "displayName": "StringType_30",
         "type": [
@@ -130,7 +130,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_31": {
+      {
         "name": "StringType_31",
         "displayName": "StringType_31",
         "type": [
@@ -156,7 +156,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_40": {
+      {
         "name": "StringType_40",
         "displayName": "StringType_40",
         "type": [
@@ -172,7 +172,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_41": {
+      {
         "name": "StringType_41",
         "displayName": "StringType_41",
         "type": [
@@ -195,7 +195,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_50": {
+      {
         "name": "StringType_50",
         "displayName": "StringType_50",
         "type": [
@@ -211,7 +211,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_51": {
+      {
         "name": "StringType_51",
         "displayName": "StringType_51",
         "type": [
@@ -234,7 +234,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_60": {
+      {
         "name": "StringType_60",
         "displayName": "StringType_60",
         "type": [
@@ -253,7 +253,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_61": {
+      {
         "name": "StringType_61",
         "displayName": "StringType_61",
         "type": [
@@ -279,7 +279,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_70": {
+      {
         "name": "StringType_70",
         "displayName": "StringType_70",
         "type": [
@@ -298,7 +298,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "StringType_71": {
+      {
         "name": "StringType_71",
         "displayName": "StringType_71",
         "type": [
@@ -324,7 +324,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "TypeWithStringProperties": {
+      {
         "name": "TypeWithStringProperties",
         "displayName": "TypeWithStringProperties",
         "type": [
@@ -689,7 +689,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "API"
   },
   "ramlVersion": "RAML10",

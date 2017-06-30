@@ -8,8 +8,8 @@
         "atom": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
       }
     ],
-    "resourceTypes": {
-      "emailed": {
+    "resourceTypes": [
+      {
         "name": "emailed",
         "methods": {
           "get": {
@@ -32,7 +32,7 @@
           }
         }
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/photos",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "T1": {
+    "types": [
+      {
         "name": "T1",
         "displayName": "T1",
         "type": [
@@ -62,7 +62,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Customer API",
     "version": "1.0",
     "mediaType": [

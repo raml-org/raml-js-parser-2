@@ -14,9 +14,9 @@
         "structuredValue": null
       }
     },
-    "annotationTypes": {
-      "lib0.a0": {
-        "name": "a0",
+    "annotationTypes": [
+      {
+        "name": "lib0.a0",
         "displayName": "a0",
         "type": [
           "nil"
@@ -31,8 +31,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib1.a1": {
-        "name": "a1",
+      {
+        "name": "lib1.a1",
         "displayName": "a1",
         "type": [
           "nil"
@@ -47,8 +47,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib2.a2": {
-        "name": "a2",
+      {
+        "name": "lib2.a2",
         "displayName": "a2",
         "type": [
           "nil"
@@ -63,7 +63,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test API",
     "extends": "o1.raml"
   },

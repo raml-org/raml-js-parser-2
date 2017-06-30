@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "strType1": {
+    "types": [
+      {
         "name": "strType1",
         "displayName": "strType1",
         "type": [
@@ -43,7 +43,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "strType2": {
+      {
         "name": "strType2",
         "displayName": "strType2",
         "type": [
@@ -85,7 +85,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ParentType": {
+      {
         "name": "ParentType",
         "displayName": "ParentType",
         "type": [
@@ -126,7 +126,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Childtype": {
+      {
         "name": "Childtype",
         "displayName": "Childtype",
         "type": [
@@ -164,7 +164,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test API"
   },
   "ramlVersion": "RAML10",

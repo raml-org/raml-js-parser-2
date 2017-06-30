@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": {
-      "passthrough": {
+    "securitySchemes": [
+      {
         "name": "passthrough",
         "type": "Pass Through",
         "description": "This API supports Pass Through Authentication.\n",
@@ -52,7 +52,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",

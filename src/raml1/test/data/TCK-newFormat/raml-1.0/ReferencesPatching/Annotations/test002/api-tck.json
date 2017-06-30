@@ -6,8 +6,8 @@
         "value": "lib.raml"
       }
     ],
-    "traits": {
-      "lib.libTrait1": {
+    "traits": [
+      {
         "annotations": {
           "lib.MyAnnotation": {
             "name": "lib.MyAnnotation",
@@ -19,7 +19,7 @@
           "calculated": true
         }
       },
-      "lib.libTrait2": {
+      {
         "annotations": {
           "lib.MyAnnotation": {
             "name": "lib.MyAnnotation",
@@ -31,9 +31,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "lib.libResourceType": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "is": [
@@ -50,7 +50,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "RAML spec",
     "resources": [
       {

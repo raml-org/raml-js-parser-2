@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "PropertyType1": {
+    "types": [
+      {
         "name": "PropertyType1",
         "displayName": "PropertyType1",
         "type": [
@@ -18,7 +18,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PropertyType2": {
+      {
         "name": "PropertyType2",
         "displayName": "PropertyType2",
         "type": [
@@ -35,7 +35,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Type1": {
+      {
         "name": "Type1",
         "displayName": "Type1",
         "type": [
@@ -76,7 +76,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Type2": {
+      {
         "name": "Type2",
         "displayName": "Type2",
         "type": [
@@ -114,7 +114,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test"
   },
   "ramlVersion": "RAML10",

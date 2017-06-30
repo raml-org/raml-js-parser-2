@@ -1,27 +1,27 @@
 {
   "specification": {
-    "traits": {
-      "lib.libTrait1": {
+    "traits": [
+      {
         "annotations": {
           "lib.MyAnnotation": {
             "name": "lib.MyAnnotation",
             "value": "stringValueFromLibTrait1"
           }
         },
-        "name": "libTrait1"
+        "name": "lib.libTrait1"
       },
-      "lib.libTrait2": {
+      {
         "annotations": {
           "lib.MyAnnotation": {
             "name": "lib.MyAnnotation",
             "value": "stringValueFromLibTrait2"
           }
         },
-        "name": "libTrait2"
+        "name": "lib.libTrait2"
       }
-    },
-    "resourceTypes": {
-      "lib.libResourceType": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "is": [
@@ -33,12 +33,12 @@
         "is": [
           "lib.libTrait2"
         ],
-        "name": "libResourceType"
+        "name": "lib.libResourceType"
       }
-    },
-    "annotationTypes": {
-      "lib.MyAnnotation": {
-        "name": "MyAnnotation",
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.MyAnnotation",
         "displayName": "MyAnnotation",
         "type": [
           "string"
@@ -53,7 +53,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    }
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Library",

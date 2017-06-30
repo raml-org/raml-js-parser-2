@@ -1,8 +1,8 @@
 {
   "specification": {
-    "types": {
-      "lib0.MyType": {
-        "name": "MyType",
+    "types": [
+      {
+        "name": "lib0.MyType",
         "displayName": "MyType",
         "type": [
           "object"
@@ -42,8 +42,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.MyType": {
-        "name": "MyType",
+      {
+        "name": "lib.MyType",
         "displayName": "MyType",
         "type": [
           "string"
@@ -58,8 +58,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "types2.MyObjectType": {
-        "name": "MyObjectType",
+      {
+        "name": "types2.MyObjectType",
         "displayName": "MyObjectType",
         "type": [
           "object"
@@ -99,9 +99,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "resourceTypes": {
-      "rt": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "body": {
@@ -114,16 +114,6 @@
                     "displayName": "type",
                     "type": [
                       "object"
-                    ],
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
-                      }
                     ],
                     "properties": {
                       "ownLibProperty": {
@@ -167,6 +157,16 @@
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      },
+                      {
+                        "key": "types2",
+                        "value": "../libs/types2.raml"
+                      }
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -211,7 +211,7 @@
         },
         "name": "rt"
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {
@@ -227,16 +227,6 @@
                     "displayName": "type",
                     "type": [
                       "object"
-                    ],
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
-                      }
                     ],
                     "properties": {
                       "ownLibProperty": {
@@ -280,6 +270,16 @@
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     },
+                    "uses": [
+                      {
+                        "key": "lib",
+                        "value": "../libs/lib.raml"
+                      },
+                      {
+                        "key": "types2",
+                        "value": "../libs/types2.raml"
+                      }
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Phone": {
+    "types": [
+      {
         "name": "Phone",
         "displayName": "Phone",
         "type": [
@@ -79,7 +79,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Notebook": {
+      {
         "name": "Notebook",
         "displayName": "Notebook",
         "type": [
@@ -157,7 +157,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Device": {
+      {
         "name": "Device",
         "displayName": "Device",
         "type": [
@@ -173,7 +173,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "My API With Types"
   },
   "ramlVersion": "RAML10",

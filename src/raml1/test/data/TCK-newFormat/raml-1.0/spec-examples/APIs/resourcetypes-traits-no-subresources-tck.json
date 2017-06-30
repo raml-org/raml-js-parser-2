@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "hasGroups": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "method": "get"
@@ -15,7 +15,7 @@
         },
         "name": "hasGroups"
       }
-    },
+    ],
     "title": "Invalid sub resource usage"
   },
   "ramlVersion": "RAML10",

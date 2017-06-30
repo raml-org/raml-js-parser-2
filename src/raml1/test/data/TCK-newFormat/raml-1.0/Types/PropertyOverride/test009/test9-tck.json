@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SuperType": {
+    "types": [
+      {
         "name": "SuperType",
         "displayName": "SuperType",
         "facets": {
@@ -38,7 +38,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "SubType": {
+      {
         "name": "SubType",
         "displayName": "SubType",
         "facets": {
@@ -72,7 +72,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test"
   },
   "ramlVersion": "RAML10",

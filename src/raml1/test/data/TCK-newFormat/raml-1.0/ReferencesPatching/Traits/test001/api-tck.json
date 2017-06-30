@@ -6,8 +6,8 @@
         "value": "lib.raml"
       }
     ],
-    "traits": {
-      "lib.libTrait1": {
+    "traits": [
+      {
         "responses": {
           "200": {
             "code": "200",
@@ -36,7 +36,7 @@
           "calculated": true
         }
       }
-    },
+    ],
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",

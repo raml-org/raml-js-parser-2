@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "User": {
+    "types": [
+      {
         "annotations": {
           "meta-data": {
             "name": "meta-data",
@@ -51,9 +51,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "meta-resource-method": {
+    ],
+    "annotationTypes": [
+      {
         "name": "meta-resource-method",
         "displayName": "meta-resource-method",
         "type": [
@@ -76,7 +76,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "meta-data": {
+      {
         "name": "meta-data",
         "displayName": "meta-data",
         "type": [
@@ -95,7 +95,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Testing TypeDeclaration targets",
     "mediaType": [
       "application/json"

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MM": {
+    "types": [
+      {
         "name": "MM",
         "displayName": "MM",
         "type": [
@@ -78,7 +78,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "VV": {
+      {
         "name": "VV",
         "displayName": "VV",
         "type": [
@@ -162,9 +162,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "qq": {
+    ],
+    "annotationTypes": [
+      {
         "name": "qq",
         "displayName": "qq",
         "type": [
@@ -205,7 +205,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "WebOfMe",
     "mediaType": [
       "application/json"

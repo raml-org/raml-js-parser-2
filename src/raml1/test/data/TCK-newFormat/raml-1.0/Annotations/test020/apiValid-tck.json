@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "helloNightmare": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "nightMare",
@@ -30,9 +30,9 @@
         ],
         "name": "helloNightmare"
       }
-    },
-    "annotationTypes": {
-      "searchable": {
+    ],
+    "annotationTypes": [
+      {
         "name": "searchable",
         "displayName": "searchable",
         "type": [
@@ -48,7 +48,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "sortable": {
+      {
         "name": "sortable",
         "displayName": "sortable",
         "type": [
@@ -94,7 +94,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test",
     "resources": [
       {

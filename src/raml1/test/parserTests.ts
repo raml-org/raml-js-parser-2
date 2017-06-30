@@ -1478,7 +1478,7 @@ describe('New API',function(){
         var json = index.loadSync(p);
         var spec = json['specification'];
         assert(!spec.hasOwnProperty("uses"));
-        assert(spec['traits']['files.hello']['name']=="hello");
+        assert(spec['traits'][0]['name']=='files.hello');
     });
 });
 

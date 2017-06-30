@@ -6,8 +6,8 @@
         "value": "aws-lib.raml"
       }
     ],
-    "securitySchemes": {
-      "key": {
+    "securitySchemes": [
+      {
         "name": "key",
         "type": "Pass Through",
         "describedBy": {
@@ -38,7 +38,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",

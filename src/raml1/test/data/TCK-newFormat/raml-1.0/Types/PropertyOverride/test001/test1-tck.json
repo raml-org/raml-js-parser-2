@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Feature": {
+    "types": [
+      {
         "name": "Feature",
         "displayName": "Feature",
         "type": [
@@ -82,7 +82,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ZoomEmbed": {
+      {
         "name": "ZoomEmbed",
         "displayName": "ZoomEmbed",
         "type": [
@@ -143,7 +143,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Scene": {
+      {
         "name": "Scene",
         "displayName": "Scene",
         "type": [
@@ -182,7 +182,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PlanetScene": {
+      {
         "name": "PlanetScene",
         "displayName": "PlanetScene",
         "type": [
@@ -263,7 +263,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "BaseProperties": {
+      {
         "name": "BaseProperties",
         "displayName": "BaseProperties",
         "type": [
@@ -304,7 +304,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PlanetProperties": {
+      {
         "name": "PlanetProperties",
         "displayName": "PlanetProperties",
         "type": [
@@ -343,7 +343,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ResourceURL": {
+      {
         "name": "ResourceURL",
         "displayName": "ResourceURL",
         "type": [
@@ -360,7 +360,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Planet RAML Experiments",
     "version": "v1",
     "baseUri": "http://api.planet.com",

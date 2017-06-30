@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Initial_comments": {
+    "types": [
+      {
         "name": "Initial_comments",
         "displayName": "Initial_comments",
         "type": [
@@ -77,7 +77,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE"
       }
-    },
+    ],
     "title": "My API With Types"
   },
   "ramlVersion": "RAML10",

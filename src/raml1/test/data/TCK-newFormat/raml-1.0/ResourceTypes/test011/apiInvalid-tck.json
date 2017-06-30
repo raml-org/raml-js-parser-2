@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Type1": {
+    "types": [
+      {
         "name": "Type1",
         "displayName": "Type1",
         "type": [
@@ -42,7 +42,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Type2": {
+      {
         "name": "Type2",
         "displayName": "Type2",
         "type": [
@@ -83,9 +83,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "resourceTypes": {
-      "ResourceTypeWithParams": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "body": {
@@ -134,7 +134,7 @@
         "type": "<<resourceTypeParam>>",
         "name": "ResourceTypeWithParams"
       },
-      "ResourceType1": {
+      {
         "methods": {
           "get": {
             "body": {
@@ -185,7 +185,7 @@
         },
         "name": "ResourceType1"
       },
-      "ResourceType2": {
+      {
         "methods": {
           "get": {
             "body": {
@@ -236,7 +236,7 @@
         },
         "name": "ResourceType2"
       },
-      "Resource": {
+      {
         "type": {
           "ResourceTypeWithParams": {
             "resourceTypeParam": "ResourceType1",
@@ -245,7 +245,7 @@
         },
         "name": "Resource"
       }
-    },
+    ],
     "title": "API",
     "resources": [
       {

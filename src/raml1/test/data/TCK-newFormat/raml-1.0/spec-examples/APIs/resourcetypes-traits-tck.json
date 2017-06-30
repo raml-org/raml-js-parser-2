@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "secured": {
+    "traits": [
+      {
         "headers": [
           {
             "name": "access_token",
@@ -36,9 +36,9 @@
         "name": "secured",
         "usage": "Apply this to any method that needs to be secured"
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "description": "Get all <<resourcePathName>>, optionally filtered",
@@ -53,7 +53,7 @@
         "name": "collection",
         "usage": "This resourceType should be used for any collection of items"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1"
   },

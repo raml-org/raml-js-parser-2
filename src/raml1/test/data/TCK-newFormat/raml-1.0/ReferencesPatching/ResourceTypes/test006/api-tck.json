@@ -10,8 +10,8 @@
         "value": "types/error-types.raml"
       }
     ],
-    "traits": {
-      "defaultResponses.general": {
+    "traits": [
+      {
         "responses": {
           "422": {
             "code": "422",
@@ -61,9 +61,9 @@
           "calculated": true
         }
       }
-    },
-    "resourceTypes": {
-      "collection": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "is": [
@@ -78,7 +78,7 @@
         },
         "name": "collection"
       }
-    },
+    ],
     "title": "test API",
     "baseUri": "https://example.com",
     "protocols": [

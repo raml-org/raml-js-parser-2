@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "corpResource": {
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "headers": [
@@ -35,7 +35,7 @@
         },
         "name": "corpResource"
       }
-    },
+    ],
     "title": "Example of Optional Properties",
     "resources": [
       {

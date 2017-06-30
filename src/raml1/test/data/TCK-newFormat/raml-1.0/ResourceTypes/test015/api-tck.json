@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "member": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -42,7 +42,7 @@
         },
         "name": "member"
       }
-    },
+    ],
     "title": "test API",
     "mediaType": [
       "application/json"

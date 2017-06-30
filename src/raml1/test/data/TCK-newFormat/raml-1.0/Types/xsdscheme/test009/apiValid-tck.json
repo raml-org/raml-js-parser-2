@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "schemaPath": "root.xsd",
@@ -25,7 +25,7 @@
         "mediaType": "application/xml",
         "typePropertyKind": "XML"
       }
-    },
+    ],
     "title": "API"
   },
   "ramlVersion": "RAML10",

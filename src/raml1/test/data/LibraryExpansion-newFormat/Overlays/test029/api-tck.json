@@ -28,9 +28,9 @@
         ]
       }
     },
-    "types": {
-      "library.apiResource": {
-        "name": "apiResource",
+    "types": [
+      {
+        "name": "library.apiResource",
         "displayName": "apiResource",
         "type": [
           "object"
@@ -110,10 +110,10 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "annotationTypes": {
-      "library.highLevelApiDescription": {
-        "name": "highLevelApiDescription",
+    ],
+    "annotationTypes": [
+      {
+        "name": "library.highLevelApiDescription",
         "displayName": "Api Description",
         "type": [
           "string"
@@ -129,8 +129,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "library.apiLogo": {
-        "name": "apiLogo",
+      {
+        "name": "library.apiLogo",
         "displayName": "Logo",
         "type": [
           "string"
@@ -146,8 +146,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "library.specAuthor": {
-        "name": "specAuthor",
+      {
+        "name": "library.specAuthor",
         "displayName": "Spec Author",
         "type": [
           "string"
@@ -163,8 +163,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "library.devPortal": {
-        "name": "devPortal",
+      {
+        "name": "library.devPortal",
         "displayName": "Developer Portal",
         "type": [
           "string"
@@ -180,8 +180,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "library.extraResources": {
-        "name": "extraResources",
+      {
+        "name": "library.extraResources",
         "displayName": "extraResources",
         "type": [
           "array"
@@ -201,7 +201,7 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": "library.apiResource"
       }
-    },
+    ],
     "title": "Api",
     "extends": "api.raml"
   },

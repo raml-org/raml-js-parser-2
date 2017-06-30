@@ -1,8 +1,8 @@
 {
   "specification": {
     "title": "A",
-    "traits": {
-      "SomeTrait": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "<<queryParamName>>",
@@ -49,9 +49,9 @@
         ],
         "name": "SomeTrait"
       }
-    },
-    "resourceTypes": {
-      "Resource": {
+    ],
+    "resourceTypes": [
+      {
         "name": "Resource",
         "methods": {
           "get": {
@@ -94,7 +94,7 @@
           }
         ]
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/resource",

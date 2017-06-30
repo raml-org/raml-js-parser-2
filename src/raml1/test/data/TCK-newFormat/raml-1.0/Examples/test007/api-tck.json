@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MyType1": {
+    "types": [
+      {
         "name": "MyType1",
         "displayName": "MyType1",
         "type": [
@@ -56,7 +56,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Test API"
   },
   "ramlVersion": "RAML10",

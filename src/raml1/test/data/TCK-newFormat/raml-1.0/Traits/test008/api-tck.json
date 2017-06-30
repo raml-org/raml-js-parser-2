@@ -1,7 +1,7 @@
 {
   "specification": {
-    "traits": {
-      "box": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "param",
@@ -26,7 +26,7 @@
         ],
         "name": "box"
       },
-      "container": {
+      {
         "headers": [
           {
             "name": "auth",
@@ -94,7 +94,7 @@
         ],
         "name": "container"
       }
-    },
+    ],
     "title": "Traits"
   },
   "ramlVersion": "RAML10",

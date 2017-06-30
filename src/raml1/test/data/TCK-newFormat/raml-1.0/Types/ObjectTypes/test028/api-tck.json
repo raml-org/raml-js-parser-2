@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "ParentType": {
+    "types": [
+      {
         "name": "ParentType",
         "displayName": "ParentType",
         "type": [
@@ -63,7 +63,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ChildType1": {
+      {
         "name": "ChildType1",
         "displayName": "ChildType1",
         "type": [
@@ -80,7 +80,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ChildType2": {
+      {
         "name": "ChildType2",
         "displayName": "ChildType2",
         "type": [
@@ -120,7 +120,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ArrayType1": {
+      {
         "name": "ArrayType1",
         "displayName": "ArrayType1",
         "type": [
@@ -137,7 +137,7 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": "ChildType1"
       },
-      "ArrayType2": {
+      {
         "name": "ArrayType2",
         "displayName": "ArrayType2",
         "type": [
@@ -154,7 +154,7 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": "ChildType2"
       },
-      "ArrayType": {
+      {
         "name": "ArrayType",
         "displayName": "ArrayType",
         "type": [
@@ -182,7 +182,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "test API"
   },
   "ramlVersion": "RAML10",

@@ -1,8 +1,8 @@
 {
   "specification": {
     "title": "A",
-    "traits": {
-      "SomeTrait": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "<<queryParamName>>",
@@ -49,7 +49,7 @@
         ],
         "name": "SomeTrait"
       },
-      "Trait1": {
+      {
         "responses": {
           "200": {
             "code": "200"
@@ -57,7 +57,7 @@
         },
         "name": "Trait1"
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/resource",

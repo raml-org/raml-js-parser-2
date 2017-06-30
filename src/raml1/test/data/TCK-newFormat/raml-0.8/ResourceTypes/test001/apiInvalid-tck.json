@@ -1,8 +1,8 @@
 {
   "specification": {
     "title": "A",
-    "resourceTypes": {
-      "Resource": {
+    "resourceTypes": [
+      {
         "name": "Resource",
         "methods": {
           "get": {
@@ -72,7 +72,7 @@
           }
         }
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/resource",

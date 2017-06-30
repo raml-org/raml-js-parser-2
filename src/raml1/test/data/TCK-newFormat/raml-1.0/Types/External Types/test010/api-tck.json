@@ -1,11 +1,11 @@
 {
   "specification": {
-    "traits": {
-      "bar": {
+    "traits": [
+      {
         "name": "bar",
         "usage": "bar usage"
       }
-    },
+    ],
     "title": "Foo API",
     "version": "0.1.0",
     "baseUri": "https://example.com",

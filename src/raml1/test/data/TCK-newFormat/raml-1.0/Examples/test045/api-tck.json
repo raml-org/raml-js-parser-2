@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "dept_code": {
+    "types": [
+      {
         "name": "dept_code",
         "displayName": "dept_code",
         "type": [
@@ -21,9 +21,9 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "traits": {
-      "chargeable": {
+    ],
+    "traits": [
+      {
         "headers": [
           {
             "name": "X-Dept",
@@ -59,7 +59,7 @@
         ],
         "name": "chargeable"
       }
-    },
+    ],
     "title": "Test named parameters",
     "resources": [
       {

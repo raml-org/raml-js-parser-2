@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -20,7 +20,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Dog": {
+      {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
@@ -39,7 +39,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "PersonOrDog": {
+      {
         "name": "PersonOrDog",
         "displayName": "PersonOrDog",
         "type": [
@@ -55,7 +55,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Invalid Discriminator Usage",
     "description": "This RAML illustrates two examples that discriminator is not allowed in any inline\ntype declaration and for union types.\n",
     "resources": [

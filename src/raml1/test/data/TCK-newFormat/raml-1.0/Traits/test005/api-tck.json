@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": {
-      "oauth2": {
+    "securitySchemes": [
+      {
         "name": "oauth2",
         "type": "OAuth 2.0",
         "settings": {
@@ -12,7 +12,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "Demo",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",

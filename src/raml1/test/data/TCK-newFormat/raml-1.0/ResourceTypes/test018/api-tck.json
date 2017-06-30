@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "myResourceType": {
+    "resourceTypes": [
+      {
         "methods": {
           "post": {
             "responses": {
@@ -63,7 +63,7 @@
         "name": "myResourceType",
         "<<param1>>": "<<param1value>>"
       }
-    },
+    ],
     "title": "test API"
   },
   "ramlVersion": "RAML10",

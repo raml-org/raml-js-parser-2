@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MyType": {
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test2/remoteScheme.json",
@@ -18,7 +18,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
-    },
+    ],
     "title": "Api",
     "resources": [
       {

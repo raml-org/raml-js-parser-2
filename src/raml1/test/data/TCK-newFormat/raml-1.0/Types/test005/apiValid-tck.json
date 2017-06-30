@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
@@ -39,7 +39,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "AnotherType": {
+      {
         "name": "AnotherType",
         "displayName": "AnotherType",
         "type": [
@@ -78,7 +78,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "ComplexTypeWithArrayProperty": {
+      {
         "name": "ComplexTypeWithArrayProperty",
         "displayName": "ComplexTypeWithArrayProperty",
         "type": [
@@ -138,7 +138,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "API"
   },
   "ramlVersion": "RAML10",

@@ -6,8 +6,8 @@
         "value": "types.raml"
       }
     ],
-    "traits": {
-      "acceptCallback": {
+    "traits": [
+      {
         "queryParameters": [
           {
             "name": "callback",
@@ -54,7 +54,7 @@
           }
         }
       },
-      "limitableByGeoPoint": {
+      {
         "queryParameters": [
           {
             "name": "lat",
@@ -135,7 +135,7 @@
           }
         }
       },
-      "limitable": {
+      {
         "queryParameters": [
           {
             "name": "count",
@@ -179,7 +179,7 @@
           }
         }
       },
-      "limitableByTime": {
+      {
         "queryParameters": [
           {
             "name": "max_timestamp",
@@ -237,7 +237,7 @@
           }
         }
       },
-      "limitableById": {
+      {
         "queryParameters": [
           {
             "name": "min_id",
@@ -295,9 +295,9 @@
           }
         }
       }
-    },
-    "resourceTypes": {
-      "usersListing": {
+    ],
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "responses": {
@@ -385,7 +385,7 @@
         ],
         "name": "usersListing"
       },
-      "mediaSearch": {
+      {
         "methods": {
           "get": {
             "responses": {
@@ -539,7 +539,7 @@
           }
         }
       },
-      "secured": {
+      {
         "methods": {
           "delete": {
             "responses": {
@@ -657,7 +657,7 @@
         ],
         "name": "secured"
       },
-      "base": {
+      {
         "methods": {
           "delete": {
             "responses": {
@@ -740,7 +740,7 @@
           }
         }
       },
-      "feedsListing": {
+      {
         "methods": {
           "get": {
             "responses": {
@@ -985,9 +985,9 @@
           }
         }
       }
-    },
-    "securitySchemes": {
-      "oauth_2_0": {
+    ],
+    "securitySchemes": [
+      {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n",
@@ -1033,7 +1033,7 @@
           ]
         }
       },
-      "clientId": {
+      {
         "name": "clientId",
         "type": "x-customHeader",
         "description": "in many situations, you may not need to authenticate users at all.\nFor instance, you may request popular photos without authenticating\n(i.e. you do not need to provide an access_token; just use your client ID with your request).\nWe only require authentication in cases where your application is making requests on behalf of a user\n(commenting, liking, browsing a user's feed, etc.).\n",
@@ -1073,7 +1073,7 @@
           ]
         }
       }
-    },
+    ],
     "title": "Instagram",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",

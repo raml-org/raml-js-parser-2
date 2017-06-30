@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Monkey": {
+    "types": [
+      {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -17,8 +17,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.Monkey": {
-        "name": "Monkey",
+      {
+        "name": "lib.Monkey",
         "displayName": "Monkey",
         "type": [
           "number"
@@ -33,8 +33,8 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "lib.lib.Monkey": {
-        "name": "Monkey",
+      {
+        "name": "lib.lib.Monkey",
         "displayName": "Monkey",
         "type": [
           "boolean"
@@ -49,18 +49,18 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
-    "resourceTypes": {
-      "lib.rt": {
+    ],
+    "resourceTypes": [
+      {
         "type": {
           "lib.lib.rt": {
             "param1": "<<param1>>",
             "param2": "Monkey"
           }
         },
-        "name": "rt"
+        "name": "lib.rt"
       },
-      "lib.lib.rt": {
+      {
         "methods": {
           "post": {
             "body": {
@@ -132,9 +132,9 @@
             "method": "post"
           }
         },
-        "name": "rt"
+        "name": "lib.lib.rt"
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {

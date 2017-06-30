@@ -1,7 +1,7 @@
 {
   "specification": {
-    "resourceTypes": {
-      "collection": {
+    "resourceTypes": [
+      {
         "methods": {
           "get": {
             "description": "Retrieve all items",
@@ -46,7 +46,7 @@
         "name": "collection",
         "usage": "Use this to describe a resource that lists items"
       }
-    },
+    ],
     "title": "Products API",
     "resources": [
       {

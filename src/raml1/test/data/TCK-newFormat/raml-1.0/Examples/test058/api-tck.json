@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "CatOrDog": {
+    "types": [
+      {
         "name": "CatOrDog",
         "displayName": "CatOrDog",
         "type": [
@@ -17,7 +17,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Cat": {
+      {
         "name": "Cat",
         "displayName": "Cat",
         "type": [
@@ -75,7 +75,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
-      "Dog": {
+      {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
@@ -133,7 +133,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Animals test",
     "mediaType": [
       "application/json"

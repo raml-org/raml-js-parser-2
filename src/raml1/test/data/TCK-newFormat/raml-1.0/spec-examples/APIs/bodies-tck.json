@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "User": {
+    "types": [
+      {
         "name": "User",
         "displayName": "User",
         "type": [
@@ -68,7 +68,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "Example of request bodies",
     "mediaType": [
       "application/json"

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -76,7 +76,7 @@
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
-    },
+    ],
     "title": "My API With Types",
     "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n"
   },

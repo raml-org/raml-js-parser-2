@@ -87,10 +87,10 @@ export class TCKDumper {
 
     nodePropertyTransformers:Transformation[] = [
         new MethodsToMapTransformer(),
-        new TypesTransformer(),
-        new TraitsTransformer(),
-        new SecuritySchemesTransformer(),
-        new ResourceTypesTransformer(),
+        //new TypesTransformer(),
+        //new TraitsTransformer(),
+        //new SecuritySchemesTransformer(),
+        //new ResourceTypesTransformer(),
         //new ResourcesTransformer(),
         //new TypeExampleTransformer(),
         //new ParametersTransformer(),
@@ -1586,14 +1586,14 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
 
         var llNode = node.lowLevel();
         var key = llNode.key();
-        value["$$name"] = key;
+        //value["$$name"] = key;
         var original:ll.ILowLevelASTNode = llNode;
         while(proxy.LowLevelProxyNode.isInstance(original)){
             original = (<proxy.LowLevelProxyNode>original).originalNode();
         }
         var oKey = original.key();
         var aVal =  value;
-        aVal.name = oKey;
+        //aVal.name = oKey;
         if(aVal.displayName==key){
             aVal.displayName = oKey;
         }
@@ -1910,11 +1910,7 @@ class Api10SchemasTransformer extends MatcherBasedTransformation{
         }
         else{
             var typesValue = value["types"];
-            Object.keys(schemasValue).forEach(x=>{
-                if(!typesValue.hasOwnProperty(x)){
-                    typesValue[x] = schemasValue[x];
-                }
-            });
+            value["types"] = typesValue.concat(schemasValue);
         }
         delete value["schemas"];
         return value;
