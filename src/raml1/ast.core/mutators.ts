@@ -461,10 +461,15 @@ export function addToNode(target:hlimpl.ASTNodeImpl,node:hl.IParseResult){
 
                 if(llnode.isValueMap() && v10)
                     nn = jsyaml.createMapNode(name);
-                else if(universeHelpers.isLibraryBaseSibling(target.definition()) && universeHelpers.isTypesProperty(node.property()) && v10) {
+                else if(universeHelpers.isLibraryType(target.definition()) && universeHelpers.isTraitsProperty(node.property()) && v10) {
                     nn = jsyaml.createMapNode(name);
-                } else
+                } else if(universeHelpers.isLibraryType(target.definition()) && universeHelpers.isResourceTypesProperty(node.property()) && v10) {
+                    nn = jsyaml.createMapNode(name);
+                } else if(universeHelpers.isLibraryBaseSibling(target.definition()) && universeHelpers.isTypesProperty(node.property()) && v10) {
+                    nn = jsyaml.createMapNode(name);
+                } else {
                     nn = jsyaml.createSeqNode(name);
+                }
                 //console.log('NN: ' + yaml.Kind[nn._actualNode().kind]);
                 nn.addChild(node.lowLevel());
                 //newLowLevel=nn;
