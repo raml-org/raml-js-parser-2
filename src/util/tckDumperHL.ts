@@ -107,7 +107,7 @@ export class TCKDumper {
         //new TemplateParametrizedPropertiesTransformer(),
         //new TraitsTransformer(),
         //new ResourceTypesTransformer(),
-        new FacetsTransformer(),
+        //new FacetsTransformer(),
         //new SchemasTransformer(),
         //new ProtocolsToUpperCaseTransformer(),
         //new ResourceTypeMethodsToMapTransformer(),
@@ -1144,47 +1144,47 @@ class CompositeObjectPropertyMatcher extends AbstractObjectPropertyMatcher{
     }
 }
 
-class ArrayToMapTransformer implements Transformation{
-
-    constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
-
-    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
-        return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
-    }
-
-    transform(value:any,node:hl.IParseResult){
-        if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
-            var obj = {};
-            value.forEach(x=>{
-                var key = x["$$"+this.propName];
-                if(key!=null){
-                    delete x["$$"+this.propName];
-                }
-                else{
-                    key = x[this.propName];
-                }
-                var previous = obj[key];
-                if(previous){
-                    if(Array.isArray(previous)){
-                        previous.push(x);
-                    }
-                    else{
-                        obj[key] = [ previous, x ];
-                    }
-                }
-                else {
-                    obj[key] = x;
-                }
-            });
-            return obj;
-        }
-        return value;
-    }
-
-    registrationInfo():Object{
-        return this.matcher.registrationInfo();
-    }
-}
+// class ArrayToMapTransformer implements Transformation{
+//
+//     constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
+//
+//     match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+//         return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
+//     }
+//
+//     transform(value:any,node:hl.IParseResult){
+//         if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
+//             var obj = {};
+//             value.forEach(x=>{
+//                 var key = x["$$"+this.propName];
+//                 if(key!=null){
+//                     delete x["$$"+this.propName];
+//                 }
+//                 else{
+//                     key = x[this.propName];
+//                 }
+//                 var previous = obj[key];
+//                 if(previous){
+//                     if(Array.isArray(previous)){
+//                         previous.push(x);
+//                     }
+//                     else{
+//                         obj[key] = [ previous, x ];
+//                     }
+//                 }
+//                 else {
+//                     obj[key] = x;
+//                 }
+//             });
+//             return obj;
+//         }
+//         return value;
+//     }
+//
+//     registrationInfo():Object{
+//         return this.matcher.registrationInfo();
+//     }
+// }
 
 class ResourcesTransformer extends BasicTransformation{
 
@@ -1631,16 +1631,16 @@ class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformati
     }
 
 }
-
-class PropertiesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
-        ]),"name");
-    }
-
-}
+//
+// class PropertiesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
+//         ]),"name");
+//     }
+//
+// }
 
 
 class SchemasTransformer extends BasicTransformation{
@@ -1776,117 +1776,117 @@ class AllUriParametersTransformer extends MatcherBasedTransformation{
         return value;
     }
 }
-
-class MethodsToMapTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
-        ]),"method");
-    }
-}
-
-class TypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
-        ]),"name");
-    }
-}
-
-class TraitsTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
-                universes.Universe10.LibraryBase.properties.traits.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
-                universes.Universe08.Api.properties.traits.name,true)
-        ]),"name");
-    }
-}
-
-class ResourceTypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class SecuritySchemesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class ParametersTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
-        ]),"name");
-    }
-
-}
-
-class ResponsesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
-        ]),"code");
-    }
-}
-
-class AnnotationsTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
-        ]),"name");
-    }
-}
-
-class BodiesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
-        ]),"name");
-    }
-
-}
-
-class FacetsTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
-        ]),"name");
-    }
-}
+//
+// class MethodsToMapTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
+//         ]),"method");
+//     }
+// }
+//
+// class TypesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class TraitsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
+//                 universes.Universe10.LibraryBase.properties.traits.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
+//                 universes.Universe08.Api.properties.traits.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class ResourceTypesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
+//         ]),"name");
+//     }
+// }
+//
+// class SecuritySchemesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
+//         ]),"name");
+//     }
+// }
+//
+// class ParametersTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
+//         ]),"name");
+//     }
+//
+// }
+//
+// class ResponsesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
+//         ]),"code");
+//     }
+// }
+//
+// class AnnotationsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class BodiesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
+//         ]),"name");
+//     }
+//
+// }
+//
+// class FacetsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
+//         ]),"name");
+//     }
+// }
 
 class Api10SchemasTransformer extends MatcherBasedTransformation{
 

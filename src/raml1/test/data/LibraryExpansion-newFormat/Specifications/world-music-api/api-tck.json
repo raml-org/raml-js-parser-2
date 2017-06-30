@@ -737,8 +737,8 @@
       {
         "name": "ApiLib.CustomDate",
         "displayName": "CustomDate",
-        "facets": {
-          "onlyFutureDates": {
+        "facets": [
+          {
             "name": "onlyFutureDates",
             "displayName": "onlyFutureDates",
             "type": [
@@ -754,7 +754,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "noHolidays": {
+          {
             "name": "noHolidays",
             "displayName": "noHolidays",
             "type": [
@@ -770,7 +770,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "type": [
           "date-only"
         ],

@@ -4,8 +4,8 @@
       {
         "name": "Object",
         "displayName": "Object",
-        "facets": {
-          "methods": {
+        "facets": [
+          {
             "name": "methods",
             "displayName": "methods",
             "type": [
@@ -24,7 +24,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "type": [
           "object"
         ],
