@@ -58,8 +58,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -119,7 +119,7 @@
             "parentUri": "/hello",
             "absoluteParentUri": "/hello"
           }
-        },
+        ],
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {

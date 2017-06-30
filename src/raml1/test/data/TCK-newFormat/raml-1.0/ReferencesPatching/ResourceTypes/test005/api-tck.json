@@ -55,8 +55,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -89,7 +89,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "https://example.com/raml/resource"
           }
-        },
+        ],
         "is": [
           "lib1.lib2.myTrait"
         ],

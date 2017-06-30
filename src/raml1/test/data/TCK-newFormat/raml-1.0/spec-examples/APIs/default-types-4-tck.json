@@ -3,8 +3,8 @@
     "title": "Default Type 4",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -35,7 +35,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

@@ -2,17 +2,17 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get"
           },
-          "patch": {
+          {
             "method": "patch"
           },
-          "delete": {
+          {
             "method": "delete"
           }
-        },
+        ],
         "name": "hasGroups"
       }
     ],

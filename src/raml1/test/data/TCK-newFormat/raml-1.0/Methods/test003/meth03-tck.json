@@ -3,43 +3,43 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "method": "post",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           },
-          "get": {
+          {
             "method": "get",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           },
-          "put": {
+          {
             "method": "put",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           },
-          "options": {
+          {
             "method": "options",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           },
-          "head": {
+          {
             "method": "head",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           },
-          "patch": {
+          {
             "method": "patch",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           },
-          "delete": {
+          {
             "method": "delete",
             "parentUri": "/methods",
             "absoluteParentUri": "/methods"
           }
-        },
+        ],
         "relativeUri": "/methods",
         "displayName": "/methods",
         "__METADATA__": {

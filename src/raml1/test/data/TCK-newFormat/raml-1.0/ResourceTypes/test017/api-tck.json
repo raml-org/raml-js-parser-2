@@ -8,8 +8,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "201",
@@ -53,7 +53,7 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "type": {
           "standardResponse": {
             "objectName": "types.Folder"
@@ -62,8 +62,8 @@
         "name": "standardResponse"
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "201",
@@ -107,7 +107,7 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "type": {
           "standardResponse": {
             "objectName": "types.Folder"
@@ -119,8 +119,8 @@
     "title": "Box",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "201",
@@ -166,7 +166,7 @@
             "parentUri": "/folders",
             "absoluteParentUri": "/folders"
           }
-        },
+        ],
         "type": {
           "collection": {
             "objectName": "types.Folder"

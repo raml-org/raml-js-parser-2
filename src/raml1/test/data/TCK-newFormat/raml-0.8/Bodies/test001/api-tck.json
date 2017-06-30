@@ -42,8 +42,8 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "201",
@@ -79,7 +79,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "http://api.samplehost.com/{version}/resource"
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {

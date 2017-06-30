@@ -340,8 +340,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -397,7 +397,7 @@
             "parentUri": "/orgs/{orgId}",
             "absoluteParentUri": "/orgs/{orgId}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "orgId",

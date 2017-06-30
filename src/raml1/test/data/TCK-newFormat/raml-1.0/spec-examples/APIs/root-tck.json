@@ -155,8 +155,8 @@
         "displayName": "/search",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "protocols": [
                   "HTTPS"
                 ],
@@ -177,7 +177,7 @@
                 "parentUri": "/search/code",
                 "absoluteParentUri": "https://api.github.com/search/code"
               }
-            },
+            ],
             "type": "collection",
             "description": "represents a collection",
             "securedBy": [

@@ -47,8 +47,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "lib2.MyAnnotation",
@@ -97,7 +97,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "https://example.com/raml/resource"
           }
-        },
+        ],
         "is": [
           "tr"
         ],

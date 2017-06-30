@@ -81,8 +81,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -108,7 +108,7 @@
             ],
             "method": "get"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -134,12 +134,12 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "name": "collection"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -165,7 +165,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "member"
       }
     ],

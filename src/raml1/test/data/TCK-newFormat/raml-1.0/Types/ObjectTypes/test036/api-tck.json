@@ -70,8 +70,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "petKind",
@@ -139,7 +139,7 @@
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -172,13 +172,13 @@
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets"
           }
-        },
+        ],
         "relativeUri": "/pets",
         "displayName": "/pets",
         "resources": [
           {
-            "methods": {
-              "delete": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "204"
@@ -198,7 +198,7 @@
                 "parentUri": "/pets/{id}",
                 "absoluteParentUri": "/shop/pets/{id}"
               },
-              "put": {
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -231,7 +231,7 @@
                 "parentUri": "/pets/{id}",
                 "absoluteParentUri": "/shop/pets/{id}"
               }
-            },
+            ],
             "uriParameters": [
               {
                 "name": "id",
@@ -292,8 +292,8 @@
         "absoluteParentUri": "/shop"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -332,7 +332,7 @@
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -365,13 +365,13 @@
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds"
           }
-        },
+        ],
         "relativeUri": "/birds",
         "displayName": "/birds",
         "resources": [
           {
-            "methods": {
-              "delete": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "204"
@@ -391,7 +391,7 @@
                 "parentUri": "/birds/{id}",
                 "absoluteParentUri": "/shop/birds/{id}"
               },
-              "put": {
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -424,7 +424,7 @@
                 "parentUri": "/birds/{id}",
                 "absoluteParentUri": "/shop/birds/{id}"
               }
-            },
+            ],
             "uriParameters": [
               {
                 "name": "id",
@@ -485,8 +485,8 @@
         "absoluteParentUri": "/shop"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -525,7 +525,7 @@
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -558,13 +558,13 @@
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals"
           }
-        },
+        ],
         "relativeUri": "/mammals",
         "displayName": "/mammals",
         "resources": [
           {
-            "methods": {
-              "delete": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "204"
@@ -584,7 +584,7 @@
                 "parentUri": "/mammals/{id}",
                 "absoluteParentUri": "/shop/mammals/{id}"
               },
-              "put": {
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -617,7 +617,7 @@
                 "parentUri": "/mammals/{id}",
                 "absoluteParentUri": "/shop/mammals/{id}"
               }
-            },
+            ],
             "uriParameters": [
               {
                 "name": "id",

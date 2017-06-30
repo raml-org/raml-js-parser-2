@@ -4,8 +4,8 @@
     "resourceTypes": [
       {
         "name": "myResourceType",
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "<<param4>>",
@@ -78,7 +78,7 @@
             "method": "post",
             "<<param2>>": "<<param2value>>"
           }
-        },
+        ],
         "<<param1>>": "<<param1value>>"
       }
     ]

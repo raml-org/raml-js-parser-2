@@ -100,8 +100,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -124,7 +124,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

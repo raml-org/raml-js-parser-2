@@ -34,8 +34,8 @@
     "title": "API Animals & People!",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "<<queryParamName>>",
@@ -69,7 +69,7 @@
             "parentUri": "/some",
             "absoluteParentUri": "/some"
           }
-        },
+        ],
         "relativeUri": "/some",
         "displayName": "/some",
         "__METADATA__": {

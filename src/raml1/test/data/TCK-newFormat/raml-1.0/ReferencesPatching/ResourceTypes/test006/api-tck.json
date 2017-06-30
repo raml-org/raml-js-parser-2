@@ -64,8 +64,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               {
                 "defaultResponses.general": {
@@ -75,7 +75,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "collection"
       }
     ],
@@ -93,8 +93,8 @@
         "displayName": "/alpha",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "422",
@@ -160,7 +160,7 @@
                 "parentUri": "/alpha/letters",
                 "absoluteParentUri": "https://example.com/alpha/letters"
               }
-            },
+            ],
             "type": {
               "collection": {
                 "parentType": "alpha"

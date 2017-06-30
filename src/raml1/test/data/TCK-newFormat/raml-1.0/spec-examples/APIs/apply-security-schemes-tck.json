@@ -135,8 +135,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "protocols": [
               "HTTPS"
             ],
@@ -155,7 +155,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "https://api.dropbox.com/{version}/users"
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0"
         ],

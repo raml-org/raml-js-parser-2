@@ -9,8 +9,8 @@
     "title": "Slave RAML",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "decls.important",
@@ -27,7 +27,7 @@
             "parentUri": "/elements",
             "absoluteParentUri": "/elements"
           }
-        },
+        ],
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {

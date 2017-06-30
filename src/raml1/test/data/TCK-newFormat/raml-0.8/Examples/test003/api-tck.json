@@ -13,8 +13,8 @@
             "repeat": false
           }
         ],
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "query...",
@@ -37,7 +37,7 @@
             "parentUri": "/single-query-record/{code}",
             "absoluteParentUri": "/single-query-record/{code}"
           }
-        },
+        ],
         "displayName": "/single-query-record/{code}",
         "__METADATA__": {
           "primitiveValuesMeta": {

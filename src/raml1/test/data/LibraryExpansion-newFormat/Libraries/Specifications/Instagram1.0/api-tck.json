@@ -5239,8 +5239,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5313,7 +5313,7 @@
               }
             }
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           {
@@ -5327,8 +5327,8 @@
         "name": "usersListing"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5454,13 +5454,13 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "type": "base",
         "name": "mediaSearch"
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5513,7 +5513,7 @@
               "optional": true
             }
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -5563,7 +5563,7 @@
               "optional": true
             }
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           {
@@ -5577,8 +5577,8 @@
         "name": "secured"
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "503",
@@ -5590,7 +5590,7 @@
               "optional": true
             }
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "503",
@@ -5602,7 +5602,7 @@
               "optional": true
             }
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "503",
@@ -5618,12 +5618,12 @@
               "optional": true
             }
           }
-        },
+        ],
         "name": "base"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5840,7 +5840,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "type": "base",
         "name": "feedsListing"
       }

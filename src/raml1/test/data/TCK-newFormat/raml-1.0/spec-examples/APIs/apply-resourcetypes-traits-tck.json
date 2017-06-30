@@ -103,12 +103,12 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "description": "Retrieve all items",
             "method": "get"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "201",
@@ -142,18 +142,18 @@
             "description": "Add an item",
             "method": "post"
           }
-        },
+        ],
         "description": "A collection resource",
         "name": "collection",
         "usage": "Use this to describe a resource that lists items"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "description": "Get a <<resourcePathName | !singularize>>",
             "method": "get"
           }
-        },
+        ],
         "description": "A single <<resourcePathName | !singularize>>",
         "name": "member",
         "usage": "This resourceType should be used for any specific member of a collection"
@@ -163,8 +163,8 @@
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "headers": [
               {
                 "name": "page",
@@ -254,7 +254,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           },
-          "post": {
+          {
             "headers": [
               {
                 "name": "access_token",
@@ -320,7 +320,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           }
-        },
+        ],
         "is": [
           "secured"
         ],

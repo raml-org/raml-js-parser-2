@@ -3,13 +3,13 @@
     "title": "Book Library API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get",
             "parentUri": "/books",
             "absoluteParentUri": "/books"
           }
-        },
+        ],
         "description": "La colección de libros de la biblioteca",
         "relativeUri": "/books",
         "displayName": "/books",

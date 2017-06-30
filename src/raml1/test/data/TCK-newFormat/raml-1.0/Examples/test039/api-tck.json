@@ -3,8 +3,8 @@
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "param1",
@@ -38,7 +38,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

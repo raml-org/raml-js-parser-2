@@ -35,8 +35,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "param1",
@@ -115,7 +115,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "http://api.samplehost.com/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

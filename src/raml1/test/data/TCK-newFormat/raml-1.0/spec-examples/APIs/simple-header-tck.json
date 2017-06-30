@@ -40,8 +40,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "headers": [
               {
                 "name": "Zencoder-Api-Key",
@@ -83,7 +83,7 @@
             "parentUri": "/jobs",
             "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs"
           }
-        },
+        ],
         "relativeUri": "/jobs",
         "displayName": "/jobs",
         "__METADATA__": {

@@ -97,8 +97,8 @@
     "title": "Example with headers",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "headers": [
               {
                 "name": "X-Dept",
@@ -202,7 +202,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

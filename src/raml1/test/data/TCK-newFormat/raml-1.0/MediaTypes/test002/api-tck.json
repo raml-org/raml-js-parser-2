@@ -28,8 +28,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -75,7 +75,7 @@
             "parentUri": "/list",
             "absoluteParentUri": "/list"
           }
-        },
+        ],
         "relativeUri": "/list",
         "displayName": "/list",
         "__METADATA__": {
@@ -94,8 +94,8 @@
         "absoluteParentUri": ""
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -134,7 +134,7 @@
             "parentUri": "/send",
             "absoluteParentUri": "/send"
           }
-        },
+        ],
         "relativeUri": "/send",
         "displayName": "/send",
         "__METADATA__": {

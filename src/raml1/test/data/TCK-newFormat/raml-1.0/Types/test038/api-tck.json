@@ -3,8 +3,8 @@
     "title": "Anchor breaks queryParameter/uriParameter type parsing",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "qp1",
@@ -52,7 +52,7 @@
             "parentUri": "/resource1",
             "absoluteParentUri": "/resource1"
           }
-        },
+        ],
         "relativeUri": "/resource1",
         "displayName": "/resource1",
         "__METADATA__": {
@@ -71,8 +71,8 @@
         "absoluteParentUri": ""
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "qp11",
@@ -120,7 +120,7 @@
             "parentUri": "/resource2",
             "absoluteParentUri": "/resource2"
           }
-        },
+        ],
         "relativeUri": "/resource2",
         "displayName": "/resource2",
         "__METADATA__": {

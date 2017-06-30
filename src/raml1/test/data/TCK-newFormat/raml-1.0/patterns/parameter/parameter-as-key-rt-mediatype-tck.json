@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -29,15 +29,15 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "thingy"
       }
     ],
     "title": "Parameterizing media type must be valid",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -65,7 +65,7 @@
             "parentUri": "/books",
             "absoluteParentUri": "/books"
           }
-        },
+        ],
         "type": {
           "thingy": {
             "mediaType": "application/json"

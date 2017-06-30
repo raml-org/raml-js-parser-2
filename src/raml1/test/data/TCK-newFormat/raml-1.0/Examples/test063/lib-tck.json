@@ -70,8 +70,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -104,7 +104,7 @@
             "parentUri": "/customer",
             "absoluteParentUri": "/customer"
           }
-        },
+        ],
         "relativeUri": "/customer",
         "displayName": "/customer",
         "__METADATA__": {

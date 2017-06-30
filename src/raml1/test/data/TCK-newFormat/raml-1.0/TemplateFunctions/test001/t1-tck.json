@@ -91,8 +91,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "401",
@@ -160,7 +160,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/api/{version}/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

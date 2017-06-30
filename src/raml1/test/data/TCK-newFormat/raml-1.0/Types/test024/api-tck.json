@@ -779,8 +779,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -819,7 +819,7 @@
             "parentUri": "/teams",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "204",
@@ -908,13 +908,13 @@
             "parentUri": "/teams",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
           }
-        },
+        ],
         "relativeUri": "/teams",
         "displayName": "/teams",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "200",
@@ -976,7 +976,7 @@
                 "parentUri": "/teams/{id}",
                 "absoluteParentUri": "http://api.samplehost.com/{version}/teams/{id}"
               }
-            },
+            ],
             "uriParameters": [
               {
                 "name": "id",
@@ -1037,8 +1037,8 @@
         "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -1077,7 +1077,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "http://api.samplehost.com/{version}/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -1096,8 +1096,8 @@
         "absoluteParentUri": "http://api.samplehost.com/{version}"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -1138,7 +1138,7 @@
             "parentUri": "/users/{id}",
             "absoluteParentUri": "http://api.samplehost.com/{version}/users/{id}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "id",

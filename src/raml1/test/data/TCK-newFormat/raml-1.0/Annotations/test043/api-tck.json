@@ -50,8 +50,8 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -96,7 +96,7 @@
             "parentUri": "/g",
             "absoluteParentUri": "/g"
           }
-        },
+        ],
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {

@@ -62,8 +62,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "<<queryParamName>>",
@@ -116,7 +116,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "searchableCollection"
       }
     ],
@@ -124,8 +124,8 @@
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "title",
@@ -240,7 +240,7 @@
             "parentUri": "/books",
             "absoluteParentUri": "/books"
           }
-        },
+        ],
         "type": {
           "searchableCollection": {
             "queryParamName": "title",

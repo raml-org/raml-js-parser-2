@@ -7,8 +7,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/xml",
@@ -93,7 +93,7 @@
             "parentUri": "/someChildUri/{blah}",
             "absoluteParentUri": "/some/base/uri/someChildUri/{blah}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "blah",

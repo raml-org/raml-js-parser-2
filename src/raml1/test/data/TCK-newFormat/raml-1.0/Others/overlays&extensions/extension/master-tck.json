@@ -13,8 +13,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "decls.important",
@@ -36,7 +36,7 @@
             "parentUri": "/items",
             "absoluteParentUri": "http://myItems.com/items"
           }
-        },
+        ],
         "relativeUri": "/items",
         "displayName": "/items",
         "__METADATA__": {
@@ -55,8 +55,8 @@
         "absoluteParentUri": "http://myItems.com"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200"
@@ -66,7 +66,7 @@
             "parentUri": "/elements",
             "absoluteParentUri": "/elements"
           }
-        },
+        ],
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {

@@ -2,12 +2,12 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "description": "Retrieve all items",
             "method": "get"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "201",
@@ -41,7 +41,7 @@
             "description": "Add an item",
             "method": "post"
           }
-        },
+        ],
         "description": "A collection resource",
         "name": "collection",
         "usage": "Use this to describe a resource that lists items"
@@ -50,14 +50,14 @@
     "title": "Products API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "description": "Retrieve all items",
             "method": "get",
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "201",
@@ -93,7 +93,7 @@
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           }
-        },
+        ],
         "type": "collection",
         "description": "All products",
         "relativeUri": "/products",

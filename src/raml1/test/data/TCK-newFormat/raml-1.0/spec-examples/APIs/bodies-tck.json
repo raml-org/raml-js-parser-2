@@ -75,8 +75,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -99,7 +99,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -118,8 +118,8 @@
         "absoluteParentUri": ""
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -207,7 +207,7 @@
             "parentUri": "/groups",
             "absoluteParentUri": "/groups"
           }
-        },
+        ],
         "relativeUri": "/groups",
         "displayName": "/groups",
         "__METADATA__": {

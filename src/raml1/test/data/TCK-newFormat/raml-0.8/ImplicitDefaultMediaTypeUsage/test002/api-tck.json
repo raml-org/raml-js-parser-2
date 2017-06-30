@@ -13,8 +13,8 @@
     "resourceTypes": [
       {
         "name": "collection",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -29,15 +29,15 @@
             ],
             "method": "get"
           }
-        }
+        ]
       }
     ],
     "resources": [
       {
         "relativeUri": "/schemes",
         "type": "collection",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -61,7 +61,7 @@
             "parentUri": "/schemes",
             "absoluteParentUri": "/schemes"
           }
-        },
+        ],
         "displayName": "/schemes",
         "__METADATA__": {
           "primitiveValuesMeta": {

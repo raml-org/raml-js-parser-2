@@ -3,8 +3,8 @@
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -68,7 +68,7 @@
             "parentUri": "/login",
             "absoluteParentUri": "/login"
           }
-        },
+        ],
         "relativeUri": "/login",
         "displayName": "/login",
         "__METADATA__": {

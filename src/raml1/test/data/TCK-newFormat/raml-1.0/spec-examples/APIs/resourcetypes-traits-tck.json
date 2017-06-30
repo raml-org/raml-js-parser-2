@@ -39,16 +39,16 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "description": "Get all <<resourcePathName>>, optionally filtered",
             "method": "get"
           },
-          "post": {
+          {
             "description": "Create a new <<resourcePathName | !singularize>>",
             "method": "post"
           }
-        },
+        ],
         "description": "The collection of <<resourcePathName>>",
         "name": "collection",
         "usage": "This resourceType should be used for any collection of items"

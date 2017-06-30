@@ -7,8 +7,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -50,13 +50,13 @@
             "parentUri": "/someChildUri",
             "absoluteParentUri": "/some/base/uri/someChildUri"
           }
-        },
+        ],
         "relativeUri": "/someChildUri",
         "displayName": "/someChildUri",
         "resources": [
           {
-            "methods": {
-              "put": {
+            "methods": [
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -93,7 +93,7 @@
                 "parentUri": "/someChildUri/anotherChild",
                 "absoluteParentUri": "/some/base/uri/someChildUri/anotherChild"
               }
-            },
+            ],
             "relativeUri": "/anotherChild",
             "displayName": "/anotherChild",
             "__METADATA__": {

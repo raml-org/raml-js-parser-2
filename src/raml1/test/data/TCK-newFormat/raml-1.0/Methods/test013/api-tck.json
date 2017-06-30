@@ -6,8 +6,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -76,7 +76,7 @@
             "parentUri": "/parseFiles",
             "absoluteParentUri": "/parseFiles"
           }
-        },
+        ],
         "relativeUri": "/parseFiles",
         "displayName": "/parseFiles",
         "__METADATA__": {

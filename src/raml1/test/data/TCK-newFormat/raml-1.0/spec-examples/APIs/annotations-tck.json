@@ -203,8 +203,8 @@
             }
           }
         ],
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "deprecated",
@@ -228,7 +228,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

@@ -37,8 +37,8 @@
     "title": "Library test",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -60,7 +60,7 @@
             "parentUri": "/exampleRes",
             "absoluteParentUri": "/exampleRes"
           }
-        },
+        ],
         "relativeUri": "/exampleRes",
         "displayName": "/exampleRes",
         "__METADATA__": {

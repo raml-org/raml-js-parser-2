@@ -8,8 +8,8 @@
         "displayName": "/users",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "is": [
                   5,
                   false
@@ -18,7 +18,7 @@
                 "parentUri": "/users/{id}",
                 "absoluteParentUri": "/users/{id}"
               }
-            },
+            ],
             "type": true,
             "uriParameters": [
               {

@@ -23,8 +23,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -46,7 +46,7 @@
             "description": "Add a new <<resourcePathName | !singularize>>",
             "method": "post"
           }
-        },
+        ],
         "name": "collection",
         "__METADATA__": {
           "calculated": true
@@ -60,14 +60,14 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "description": "Recuperar una lista de clientes",
             "method": "get",
             "parentUri": "/customers",
             "absoluteParentUri": "/customers"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -91,7 +91,7 @@
             "parentUri": "/customers",
             "absoluteParentUri": "/customers"
           }
-        },
+        ],
         "type": "collection",
         "relativeUri": "/customers",
         "displayName": "/customers",

@@ -241,8 +241,8 @@
         "displayName": "/test",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "bbb",
@@ -379,7 +379,7 @@
                 "parentUri": "/test/helloWorldddd1234ddd2",
                 "absoluteParentUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2"
               }
-            },
+            ],
             "relativeUri": "/helloWorldddd1234ddd2",
             "displayName": "/helloWorldddd1234ddd2",
             "__METADATA__": {

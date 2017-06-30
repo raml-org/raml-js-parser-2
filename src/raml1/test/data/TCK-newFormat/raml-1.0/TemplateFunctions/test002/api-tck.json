@@ -2,26 +2,26 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "description": "Create a <<resourcePathName|!singularize|!uppercamelcase>>",
             "method": "post"
           }
-        },
+        ],
         "name": "collection"
       }
     ],
     "title": "testAPI",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "description": "Create a User",
             "method": "post",
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           }
-        },
+        ],
         "type": "collection",
         "relativeUri": "/users",
         "displayName": "/users",

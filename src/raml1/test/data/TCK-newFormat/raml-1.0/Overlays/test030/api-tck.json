@@ -36,8 +36,8 @@
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "q1",
@@ -70,7 +70,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

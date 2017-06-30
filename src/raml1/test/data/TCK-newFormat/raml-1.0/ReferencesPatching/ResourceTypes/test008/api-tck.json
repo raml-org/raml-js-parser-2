@@ -114,8 +114,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -148,7 +148,7 @@
             ],
             "method": "get"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -183,7 +183,7 @@
             ],
             "method": "post"
           },
-          "put": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -209,7 +209,7 @@
             ],
             "method": "put"
           }
-        },
+        ],
         "name": "rt.lib.lib.rt",
         "__METADATA__": {
           "calculated": true
@@ -228,8 +228,8 @@
         }
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               {
                 "rt.tr.ResponseCommonErrors": {
@@ -239,7 +239,7 @@
             ],
             "method": "get"
           },
-          "delete": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -265,7 +265,7 @@
             ],
             "method": "delete"
           }
-        },
+        ],
         "type": {
           "rt.lib.rt": {
             "param1": "MyType"
@@ -282,8 +282,8 @@
     "version": "v1z",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -387,7 +387,7 @@
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           },
-          "delete": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -415,7 +415,7 @@
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -452,7 +452,7 @@
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           },
-          "put": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -480,7 +480,7 @@
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           }
-        },
+        ],
         "type": {
           "rt.Collection": {
             "desc": "stringValue",

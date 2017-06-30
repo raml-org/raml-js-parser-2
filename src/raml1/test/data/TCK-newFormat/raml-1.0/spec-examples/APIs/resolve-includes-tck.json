@@ -63,34 +63,34 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               "paged"
             ],
             "method": "get"
           },
-          "post": {
+          {
             "method": "post"
           }
-        },
+        ],
         "name": "collection",
         "__METADATA__": {
           "calculated": true
         }
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get"
           },
-          "patch": {
+          {
             "method": "patch"
           },
-          "delete": {
+          {
             "method": "delete"
           }
-        },
+        ],
         "name": "member",
         "__METADATA__": {
           "calculated": true

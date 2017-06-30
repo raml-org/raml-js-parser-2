@@ -83,8 +83,8 @@
     "title": "API with Types",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -112,7 +112,7 @@
             "parentUri": "/users/{id}",
             "absoluteParentUri": "/users/{id}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "id",

@@ -38,8 +38,8 @@
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "platform",
@@ -77,7 +77,7 @@
             "parentUri": "/installer",
             "absoluteParentUri": "/installer"
           }
-        },
+        ],
         "relativeUri": "/installer",
         "displayName": "/installer",
         "__METADATA__": {

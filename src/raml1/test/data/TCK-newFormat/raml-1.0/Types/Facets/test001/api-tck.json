@@ -102,8 +102,8 @@
     "title": "A",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "y",
@@ -130,7 +130,7 @@
             "parentUri": "/q",
             "absoluteParentUri": "/q"
           }
-        },
+        ],
         "relativeUri": "/q",
         "displayName": "/q",
         "__METADATA__": {

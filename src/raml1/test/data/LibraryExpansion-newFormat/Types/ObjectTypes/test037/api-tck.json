@@ -227,8 +227,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -255,7 +255,7 @@
             ],
             "method": "get"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -276,12 +276,12 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "name": "NewLibrary.Collection"
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "204"
@@ -289,7 +289,7 @@
             ],
             "method": "delete"
           },
-          "put": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -310,7 +310,7 @@
             ],
             "method": "put"
           }
-        },
+        ],
         "name": "NewLibrary.Member"
       }
     ],
@@ -322,8 +322,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "petKind",
@@ -434,7 +434,7 @@
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -467,7 +467,7 @@
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets"
           }
-        },
+        ],
         "type": {
           "NewLibrary.Collection": {
             "item": "NewLibrary.Pet"
@@ -477,8 +477,8 @@
         "displayName": "/pets",
         "resources": [
           {
-            "methods": {
-              "delete": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "204"
@@ -498,7 +498,7 @@
                 "parentUri": "/pets/{id}",
                 "absoluteParentUri": "/shop/pets/{id}"
               },
-              "put": {
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -531,7 +531,7 @@
                 "parentUri": "/pets/{id}",
                 "absoluteParentUri": "/shop/pets/{id}"
               }
-            },
+            ],
             "type": {
               "NewLibrary.Member": {
                 "item": "NewLibrary.Pet"
@@ -597,8 +597,8 @@
         "absoluteParentUri": "/shop"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "priceLessThen",
@@ -682,7 +682,7 @@
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -715,7 +715,7 @@
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds"
           }
-        },
+        ],
         "type": {
           "NewLibrary.Collection": {
             "item": "Bird"
@@ -725,8 +725,8 @@
         "displayName": "/birds",
         "resources": [
           {
-            "methods": {
-              "delete": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "204"
@@ -746,7 +746,7 @@
                 "parentUri": "/birds/{id}",
                 "absoluteParentUri": "/shop/birds/{id}"
               },
-              "put": {
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -779,7 +779,7 @@
                 "parentUri": "/birds/{id}",
                 "absoluteParentUri": "/shop/birds/{id}"
               }
-            },
+            ],
             "type": {
               "NewLibrary.Member": {
                 "item": "Bird"
@@ -845,8 +845,8 @@
         "absoluteParentUri": "/shop"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "priceLessThen",
@@ -930,7 +930,7 @@
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -963,7 +963,7 @@
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals"
           }
-        },
+        ],
         "type": {
           "NewLibrary.Collection": {
             "item": "Mammal"
@@ -973,8 +973,8 @@
         "displayName": "/mammals",
         "resources": [
           {
-            "methods": {
-              "delete": {
+            "methods": [
+              {
                 "responses": [
                   {
                     "code": "204"
@@ -994,7 +994,7 @@
                 "parentUri": "/mammals/{id}",
                 "absoluteParentUri": "/shop/mammals/{id}"
               },
-              "put": {
+              {
                 "body": [
                   {
                     "name": "application/json",
@@ -1027,7 +1027,7 @@
                 "parentUri": "/mammals/{id}",
                 "absoluteParentUri": "/shop/mammals/{id}"
               }
-            },
+            ],
             "type": {
               "NewLibrary.Member": {
                 "item": "Mammal"

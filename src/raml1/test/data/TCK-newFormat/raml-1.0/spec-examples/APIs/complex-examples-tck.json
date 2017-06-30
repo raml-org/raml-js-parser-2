@@ -151,8 +151,8 @@
     "title": "API with Examples",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "headers": [
               {
                 "name": "UserID",
@@ -215,7 +215,7 @@
             "parentUri": "/organization",
             "absoluteParentUri": "/organization"
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "201",
@@ -262,7 +262,7 @@
             "parentUri": "/organization",
             "absoluteParentUri": "/organization"
           }
-        },
+        ],
         "relativeUri": "/organization",
         "displayName": "/organization",
         "__METADATA__": {

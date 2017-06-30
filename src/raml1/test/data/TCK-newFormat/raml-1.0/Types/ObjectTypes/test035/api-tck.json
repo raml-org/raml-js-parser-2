@@ -3,8 +3,8 @@
     "title": "Test",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -35,7 +35,7 @@
             "parentUri": "/planets",
             "absoluteParentUri": "/planets"
           }
-        },
+        ],
         "relativeUri": "/planets",
         "displayName": "/planets",
         "__METADATA__": {

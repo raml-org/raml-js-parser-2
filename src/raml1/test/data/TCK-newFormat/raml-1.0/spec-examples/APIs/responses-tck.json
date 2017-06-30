@@ -73,8 +73,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -124,7 +124,7 @@
             "parentUri": "/invoices",
             "absoluteParentUri": "/invoices"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "201",
@@ -278,7 +278,7 @@
             "parentUri": "/invoices",
             "absoluteParentUri": "/invoices"
           }
-        },
+        ],
         "relativeUri": "/invoices",
         "displayName": "/invoices",
         "__METADATA__": {

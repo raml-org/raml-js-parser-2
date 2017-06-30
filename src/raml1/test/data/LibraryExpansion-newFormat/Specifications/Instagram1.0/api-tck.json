@@ -4826,8 +4826,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -4900,7 +4900,7 @@
               }
             }
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           {
@@ -4914,8 +4914,8 @@
         "name": "usersListing"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5052,7 +5052,7 @@
               }
             }
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           "oauth_2_0",
@@ -5068,8 +5068,8 @@
         }
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5122,7 +5122,7 @@
               "optional": true
             }
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -5172,7 +5172,7 @@
               "optional": true
             }
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           {
@@ -5186,8 +5186,8 @@
         "name": "secured"
       },
       {
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "503",
@@ -5208,7 +5208,7 @@
               }
             }
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "503",
@@ -5229,7 +5229,7 @@
               }
             }
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "503",
@@ -5254,7 +5254,7 @@
               }
             }
           }
-        },
+        ],
         "securedBy": [
           "oauth_2_0",
           "clientId"
@@ -5269,8 +5269,8 @@
         }
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -5498,7 +5498,7 @@
               }
             }
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           "oauth_2_0",
@@ -5657,8 +5657,8 @@
         "displayName": "/media",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "count",
@@ -5773,7 +5773,7 @@
                 "parentUri": "/media/{mediaId}",
                 "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               }
-            },
+            ],
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -5809,8 +5809,8 @@
             "displayName": "/{mediaId}",
             "resources": [
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "count",
@@ -5930,7 +5930,7 @@
                     "parentUri": "/media/{mediaId}/comments",
                     "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   },
-                  "post": {
+                  {
                     "responses": [
                       {
                         "code": "200",
@@ -6038,7 +6038,7 @@
                     "parentUri": "/media/{mediaId}/comments",
                     "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
                   }
-                },
+                ],
                 "type": {
                   "secured": {
                     "scope": "comments"
@@ -6057,8 +6057,8 @@
                 "displayName": "/comments",
                 "resources": [
                   {
-                    "methods": {
-                      "delete": {
+                    "methods": [
+                      {
                         "responses": [
                           {
                             "code": "200",
@@ -6126,7 +6126,7 @@
                         "parentUri": "/media/{mediaId}/comments/{commentId}",
                         "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}"
                       }
-                    },
+                    ],
                     "type": {
                       "secured": {
                         "scope": "comments"
@@ -6198,8 +6198,8 @@
                 "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}"
               },
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "count",
@@ -6319,7 +6319,7 @@
                     "parentUri": "/media/{mediaId}/likes",
                     "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   },
-                  "post": {
+                  {
                     "responses": [
                       {
                         "code": "200",
@@ -6384,7 +6384,7 @@
                     "parentUri": "/media/{mediaId}/likes",
                     "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   },
-                  "delete": {
+                  {
                     "responses": [
                       {
                         "code": "200",
@@ -6455,7 +6455,7 @@
                     "parentUri": "/media/{mediaId}/likes",
                     "absoluteParentUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
                   }
-                },
+                ],
                 "type": {
                   "secured": {
                     "scope": "likes"
@@ -6507,8 +6507,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/media"
           },
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "max_timestamp",
@@ -6832,7 +6832,7 @@
                 "parentUri": "/media/search",
                 "absoluteParentUri": "https://api.instagram.com/{version}/media/search"
               }
-            },
+            ],
             "type": "mediaSearch",
             "securedBy": [
               "oauth_2_0",
@@ -6859,8 +6859,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/media"
           },
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "count",
@@ -7075,7 +7075,7 @@
                 "parentUri": "/media/popular",
                 "absoluteParentUri": "https://api.instagram.com/{version}/media/popular"
               }
-            },
+            ],
             "type": "mediaSearch",
             "securedBy": [
               "oauth_2_0",
@@ -7129,8 +7129,8 @@
         "displayName": "/tags",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "count",
@@ -7245,7 +7245,7 @@
                 "parentUri": "/tags/{tagName}",
                 "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}"
               }
-            },
+            ],
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -7281,8 +7281,8 @@
             "displayName": "/{tagName}",
             "resources": [
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "min_id",
@@ -7440,7 +7440,7 @@
                     "parentUri": "/tags/{tagName}/media/recent",
                     "absoluteParentUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent"
                   }
-                },
+                ],
                 "type": "base",
                 "securedBy": [
                   "oauth_2_0",
@@ -7487,8 +7487,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/tags"
           },
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "q",
@@ -7631,7 +7631,7 @@
                 "parentUri": "/tags/search",
                 "absoluteParentUri": "https://api.instagram.com/{version}/tags/search"
               }
-            },
+            ],
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -7685,8 +7685,8 @@
         "displayName": "/users",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "count",
@@ -7801,7 +7801,7 @@
                 "parentUri": "/users/{userId}",
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               }
-            },
+            ],
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -7837,8 +7837,8 @@
             "displayName": "/{userId}",
             "resources": [
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "count",
@@ -7989,7 +7989,7 @@
                     "parentUri": "/users/{userId}/follows",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/follows"
                   }
-                },
+                ],
                 "type": "usersListing",
                 "securedBy": [
                   {
@@ -8018,8 +8018,8 @@
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "count",
@@ -8170,7 +8170,7 @@
                     "parentUri": "/users/{userId}/followed-by",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/followed-by"
                   }
-                },
+                ],
                 "type": "usersListing",
                 "securedBy": [
                   {
@@ -8199,8 +8199,8 @@
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "min_id",
@@ -8592,7 +8592,7 @@
                     "parentUri": "/users/{userId}/media/recent",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/media/recent"
                   }
-                },
+                ],
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -8620,8 +8620,8 @@
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}"
               },
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "count",
@@ -8741,7 +8741,7 @@
                     "parentUri": "/users/{userId}/relationship",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
                   },
-                  "post": {
+                  {
                     "responses": [
                       {
                         "code": "200",
@@ -8860,7 +8860,7 @@
                     "parentUri": "/users/{userId}/relationship",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
                   }
-                },
+                ],
                 "type": {
                   "secured": {
                     "scope": "comments"
@@ -8912,8 +8912,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/users"
           },
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "q",
@@ -9092,7 +9092,7 @@
                 "parentUri": "/users/search",
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/search"
               }
-            },
+            ],
             "type": "usersListing",
             "securedBy": [
               {
@@ -9121,8 +9121,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/users"
           },
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "count",
@@ -9242,7 +9242,7 @@
                 "parentUri": "/users/self",
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               }
-            },
+            ],
             "type": {
               "secured": {
                 "scope": "basic"
@@ -9261,8 +9261,8 @@
             "displayName": "/self",
             "resources": [
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "min_id",
@@ -9611,7 +9611,7 @@
                     "parentUri": "/users/self/feed",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/self/feed"
                   }
-                },
+                ],
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -9638,8 +9638,8 @@
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               },
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "count",
@@ -9790,7 +9790,7 @@
                     "parentUri": "/users/self/requested-by",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/self/requested-by"
                   }
-                },
+                ],
                 "type": "usersListing",
                 "securedBy": [
                   {
@@ -9819,8 +9819,8 @@
                 "absoluteParentUri": "https://api.instagram.com/{version}/users/self"
               },
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "max_like_id",
@@ -10154,7 +10154,7 @@
                     "parentUri": "/users/self/media/liked",
                     "absoluteParentUri": "https://api.instagram.com/{version}/users/self/media/liked"
                   }
-                },
+                ],
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -10225,8 +10225,8 @@
         "displayName": "/locations",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "count",
@@ -10341,7 +10341,7 @@
                 "parentUri": "/locations/{locId}",
                 "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}"
               }
-            },
+            ],
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -10373,8 +10373,8 @@
             "displayName": "/{locId}",
             "resources": [
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "queryParameters": [
                       {
                         "name": "min_id",
@@ -10766,7 +10766,7 @@
                     "parentUri": "/locations/{locId}/media/recent",
                     "absoluteParentUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent"
                   }
-                },
+                ],
                 "type": "feedsListing",
                 "securedBy": [
                   "oauth_2_0",
@@ -10813,8 +10813,8 @@
             "absoluteParentUri": "https://api.instagram.com/{version}/locations"
           },
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "queryParameters": [
                   {
                     "name": "foursquare_v2_id",
@@ -11043,7 +11043,7 @@
                 "parentUri": "/locations/search",
                 "absoluteParentUri": "https://api.instagram.com/{version}/locations/search"
               }
-            },
+            ],
             "type": "base",
             "securedBy": [
               "oauth_2_0",
@@ -11089,8 +11089,8 @@
         "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "min_id",
@@ -11215,7 +11215,7 @@
             "parentUri": "/geographies/{geoId}/media/recent",
             "absoluteParentUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent"
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           "oauth_2_0",
@@ -11271,8 +11271,8 @@
         "absoluteParentUri": "https://api.instagram.com/{version}/"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "client_id",
@@ -11425,7 +11425,7 @@
             "parentUri": "/subscriptions",
             "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -11699,7 +11699,7 @@
             "parentUri": "/subscriptions",
             "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           },
-          "delete": {
+          {
             "queryParameters": [
               {
                 "name": "client_id",
@@ -11844,7 +11844,7 @@
             "parentUri": "/subscriptions",
             "absoluteParentUri": "https://api.instagram.com/{version}/subscriptions"
           }
-        },
+        ],
         "type": "base",
         "securedBy": [
           "oauth_2_0",

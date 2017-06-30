@@ -61,8 +61,8 @@
         "name": "lib.rt"
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -131,7 +131,7 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "name": "lib.lib.rt"
       }
     ]

@@ -4,8 +4,8 @@
     "version": "1",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -52,7 +52,7 @@
             "parentUri": "/foo",
             "absoluteParentUri": "/foo"
           }
-        },
+        ],
         "relativeUri": "/foo",
         "displayName": "/foo",
         "__METADATA__": {

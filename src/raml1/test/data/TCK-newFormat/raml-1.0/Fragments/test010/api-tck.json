@@ -3,8 +3,8 @@
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -35,7 +35,7 @@
             "parentUri": "/example",
             "absoluteParentUri": "/example"
           }
-        },
+        ],
         "relativeUri": "/example",
         "displayName": "/example",
         "__METADATA__": {

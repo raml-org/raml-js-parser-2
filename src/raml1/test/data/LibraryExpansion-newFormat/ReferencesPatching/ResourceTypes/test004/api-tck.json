@@ -83,8 +83,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "q",
@@ -139,7 +139,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "https://example.com/raml/resource"
           }
-        },
+        ],
         "is": [
           {
             "lib1.lib2.myTrait": {

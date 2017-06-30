@@ -16,22 +16,22 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               "files.hello"
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "file"
       }
     ],
     "title": "Files API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               "files.hello"
             ],
@@ -39,7 +39,7 @@
             "parentUri": "/files",
             "absoluteParentUri": "/files"
           }
-        },
+        ],
         "type": "file",
         "relativeUri": "/files",
         "displayName": "/files",

@@ -171,8 +171,8 @@
     "title": "Illustrate query parameter variations",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
@@ -222,7 +222,7 @@
             "parentUri": "/locations",
             "absoluteParentUri": "/locations"
           }
-        },
+        ],
         "relativeUri": "/locations",
         "displayName": "/locations",
         "__METADATA__": {

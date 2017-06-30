@@ -111,8 +111,8 @@
             "value": "on a resource"
           }
         ],
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "meta-resource-method",
@@ -153,7 +153,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

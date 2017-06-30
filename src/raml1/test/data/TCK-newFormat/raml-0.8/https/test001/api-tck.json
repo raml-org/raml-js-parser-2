@@ -4,8 +4,8 @@
     "resourceTypes": [
       {
         "name": "a",
-        "methods": {
-          "delete": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "503",
@@ -17,7 +17,7 @@
               "optional": true
             }
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "503",
@@ -29,7 +29,7 @@
               "optional": true
             }
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "503",
@@ -41,7 +41,7 @@
               "optional": true
             }
           }
-        }
+        ]
       }
     ]
   },

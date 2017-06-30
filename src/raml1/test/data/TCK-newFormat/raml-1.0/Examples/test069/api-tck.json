@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -34,15 +34,15 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "name": "collection"
       }
     ],
     "title": "A title",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -84,7 +84,7 @@
             "parentUri": "/testURI",
             "absoluteParentUri": "/testURI"
           }
-        },
+        ],
         "type": {
           "collection": {
             "postRequestBodyExample": {

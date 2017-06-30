@@ -3,19 +3,19 @@
     "title": "Book Library API",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "description": "Add a new book to the collection",
             "method": "post",
             "parentUri": "/books",
             "absoluteParentUri": "/books"
           },
-          "get": {
+          {
             "method": "get",
             "parentUri": "/books",
             "absoluteParentUri": "/books"
           }
-        },
+        ],
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",

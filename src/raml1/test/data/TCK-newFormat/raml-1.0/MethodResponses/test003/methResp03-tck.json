@@ -3,8 +3,8 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "2xx",
@@ -225,7 +225,7 @@
             "parentUri": "/test",
             "absoluteParentUri": "/test"
           }
-        },
+        ],
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {

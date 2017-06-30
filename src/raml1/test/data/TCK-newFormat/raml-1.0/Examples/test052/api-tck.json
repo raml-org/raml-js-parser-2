@@ -17,8 +17,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -95,7 +95,7 @@
             "parentUri": "/features",
             "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features"
           }
-        },
+        ],
         "relativeUri": "/features",
         "displayName": "/features",
         "__METADATA__": {

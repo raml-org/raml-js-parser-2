@@ -40,8 +40,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "page",
@@ -115,7 +115,7 @@
             "parentUri": "/users",
             "absoluteParentUri": "https://api.github.com/{version}/users"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

@@ -49,13 +49,13 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get",
             "parentUri": "/hello",
             "absoluteParentUri": "/hello"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "202",
@@ -175,7 +175,7 @@
             "parentUri": "/hello",
             "absoluteParentUri": "/hello"
           }
-        },
+        ],
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {

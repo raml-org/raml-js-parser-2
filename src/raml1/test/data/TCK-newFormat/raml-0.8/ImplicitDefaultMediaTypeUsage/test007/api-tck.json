@@ -11,8 +11,8 @@
     "resourceTypes": [
       {
         "name": "emailed",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -30,15 +30,15 @@
               "optional": true
             }
           }
-        }
+        ]
       }
     ],
     "resources": [
       {
         "relativeUri": "/photos",
         "type": "emailed",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -58,7 +58,7 @@
             "parentUri": "/photos",
             "absoluteParentUri": "/photos"
           }
-        },
+        ],
         "displayName": "/photos",
         "__METADATA__": {
           "primitiveValuesMeta": {

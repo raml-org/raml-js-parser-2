@@ -46,8 +46,8 @@
     "resourceTypes": [
       {
         "name": "collection",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -62,7 +62,7 @@
             ],
             "method": "get"
           }
-        }
+        ]
       }
     ],
     "resources": [
@@ -73,8 +73,8 @@
             "schema": "member"
           }
         },
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -101,7 +101,7 @@
             "parentUri": "/members",
             "absoluteParentUri": "http://server/api/{version}/members"
           }
-        },
+        ],
         "displayName": "/members",
         "__METADATA__": {
           "primitiveValuesMeta": {

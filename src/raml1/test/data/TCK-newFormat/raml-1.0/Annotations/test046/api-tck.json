@@ -167,8 +167,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "put": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "views.views",
@@ -292,7 +292,7 @@
             "parentUri": "/hello/{id}",
             "absoluteParentUri": "/hello/{id}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "id",

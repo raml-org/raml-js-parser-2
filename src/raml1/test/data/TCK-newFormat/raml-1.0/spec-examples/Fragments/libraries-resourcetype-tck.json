@@ -1,13 +1,13 @@
 {
   "specification": {
-    "methods": {
-      "get": {
+    "methods": [
+      {
         "is": [
           "files.drm"
         ],
         "method": "get"
       }
-    },
+    ],
     "uses": [
       {
         "key": "files",

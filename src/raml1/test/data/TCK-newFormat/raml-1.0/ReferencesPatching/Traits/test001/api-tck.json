@@ -45,8 +45,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -87,7 +87,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "https://example.com/raml/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

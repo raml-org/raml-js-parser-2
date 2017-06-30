@@ -83,8 +83,8 @@
     "title": "A",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "type",
@@ -123,7 +123,7 @@
             "parentUri": "/q",
             "absoluteParentUri": "/q"
           },
-          "put": {
+          {
             "body": [
               {
                 "name": "type",
@@ -165,7 +165,7 @@
             "parentUri": "/q",
             "absoluteParentUri": "/q"
           }
-        },
+        ],
         "relativeUri": "/q",
         "displayName": "/q",
         "__METADATA__": {

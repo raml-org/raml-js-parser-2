@@ -17,8 +17,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -76,7 +76,7 @@
             "parentUri": "/baz",
             "absoluteParentUri": "https://example.com/baz"
           }
-        },
+        ],
         "relativeUri": "/baz",
         "displayName": "/baz",
         "__METADATA__": {

@@ -4,8 +4,8 @@
     "version": "2.0",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -116,7 +116,7 @@
             "parentUri": "/orders",
             "absoluteParentUri": "/orders"
           }
-        },
+        ],
         "relativeUri": "/orders",
         "displayName": "/orders",
         "__METADATA__": {

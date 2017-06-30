@@ -86,7 +86,7 @@ export class TCKDumper {
     nodeTransformers:Transformation[];
 
     nodePropertyTransformers:Transformation[] = [
-        new MethodsToMapTransformer(),
+        //new MethodsToMapTransformer(),
         //new TypesTransformer(),
         //new TraitsTransformer(),
         //new SecuritySchemesTransformer(),

@@ -28,31 +28,31 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               "<<trait | !singularize>>"
             ],
             "method": "get"
           }
-        },
+        ],
         "type": "<<parentResourceType | !singularize>>",
         "name": "oneRT"
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "method": "post"
           }
-        },
+        ],
         "name": "twoRT"
       }
     ],
     "title": "API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -81,12 +81,12 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "post": {
+          {
             "method": "post",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": {
           "oneRT": {
             "parentResourceType": "twoRT",

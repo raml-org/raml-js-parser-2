@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "headers": [
               {
                 "name": "X-Chargeback",
@@ -32,20 +32,20 @@
               "optional": true
             }
           }
-        },
+        ],
         "name": "corpResource"
       }
     ],
     "title": "Example of Optional Properties",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get",
             "parentUri": "/servers",
             "absoluteParentUri": "/servers"
           },
-          "post": {
+          {
             "headers": [
               {
                 "name": "X-Chargeback",
@@ -73,7 +73,7 @@
             "parentUri": "/servers",
             "absoluteParentUri": "/servers"
           }
-        },
+        ],
         "type": {
           "corpResource": {
             "TextAboutPost": "post method"
@@ -97,13 +97,13 @@
         "absoluteParentUri": ""
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "method": "get",
             "parentUri": "/queues",
             "absoluteParentUri": "/queues"
           }
-        },
+        ],
         "type": "corpResource",
         "relativeUri": "/queues",
         "displayName": "/queues",

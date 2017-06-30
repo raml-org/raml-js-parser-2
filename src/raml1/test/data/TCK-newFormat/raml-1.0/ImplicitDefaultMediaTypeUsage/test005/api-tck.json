@@ -42,8 +42,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -69,7 +69,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "collection"
       }
     ],
@@ -79,8 +79,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -127,7 +127,7 @@
             "parentUri": "/schemes",
             "absoluteParentUri": "/schemes"
           }
-        },
+        ],
         "type": "collection",
         "relativeUri": "/schemes",
         "displayName": "/schemes",

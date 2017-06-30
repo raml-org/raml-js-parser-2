@@ -66,8 +66,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "annotations": [
@@ -109,7 +109,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "https://example.com/raml/resource"
           }
-        },
+        ],
         "is": [
           "lib1.lib2.myTrait"
         ],

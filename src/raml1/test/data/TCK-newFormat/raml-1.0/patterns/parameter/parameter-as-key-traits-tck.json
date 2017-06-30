@@ -15,8 +15,8 @@
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": 201,
@@ -36,7 +36,7 @@
             "parentUri": "/servers",
             "absoluteParentUri": "/servers"
           }
-        },
+        ],
         "relativeUri": "/servers",
         "displayName": "/servers",
         "__METADATA__": {

@@ -4,8 +4,8 @@
     "resourceTypes": [
       {
         "name": "Resource",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "a",
@@ -70,15 +70,15 @@
             ],
             "method": "get"
           }
-        }
+        ]
       }
     ],
     "resources": [
       {
         "relativeUri": "/resource",
         "type": "Resource",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -158,7 +158,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {

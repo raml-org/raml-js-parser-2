@@ -26,8 +26,8 @@
             "value": true
           }
         ],
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "<<param1>>",
@@ -36,7 +36,7 @@
             ],
             "method": "get"
           },
-          "post": {
+          {
             "annotations": [
               {
                 "name": "<<param2>>",
@@ -45,7 +45,7 @@
             ],
             "method": "post"
           },
-          "put": {
+          {
             "annotations": [
               {
                 "name": "lib.lib.Monkey",
@@ -54,7 +54,7 @@
             ],
             "method": "put"
           },
-          "delete": {
+          {
             "annotations": [
               {
                 "name": "<<param1>>",
@@ -71,7 +71,7 @@
             ],
             "method": "delete"
           }
-        },
+        ],
         "name": "lib.lib.rt",
         "__METADATA__": {
           "calculated": true
@@ -125,8 +125,8 @@
             "value": true
           }
         ],
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "Monkey",
@@ -137,7 +137,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "post": {
+          {
             "annotations": [
               {
                 "name": "lib.Monkey",
@@ -148,7 +148,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "put": {
+          {
             "annotations": [
               {
                 "name": "lib.lib.Monkey",
@@ -159,7 +159,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "delete": {
+          {
             "annotations": [
               {
                 "name": "Monkey",
@@ -178,7 +178,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": {
           "lib.rt": {
             "param1": "Monkey"

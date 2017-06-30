@@ -88,22 +88,22 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               "lib.hasResponseCollection"
             ],
             "description": "Get all <<resourcePathName|!uppercamelcase>>,\noptionally filtered\n",
             "method": "get"
           },
-          "post": {
+          {
             "is": [
               "hasResponseCollection"
             ],
             "description": "Create a <<resourcePathName|!uppercamelcase>>\n",
             "method": "post"
           }
-        },
+        ],
         "description": "A collection of <<resourcePathName|!uppercamelcase>>",
         "name": "collection"
       }
@@ -111,8 +111,8 @@
     "title": "My API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -144,7 +144,7 @@
             "parentUri": "/example",
             "absoluteParentUri": "/example"
           },
-          "post": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -176,7 +176,7 @@
             "parentUri": "/example",
             "absoluteParentUri": "/example"
           }
-        },
+        ],
         "type": "collection",
         "description": "A collection of Example",
         "relativeUri": "/example",

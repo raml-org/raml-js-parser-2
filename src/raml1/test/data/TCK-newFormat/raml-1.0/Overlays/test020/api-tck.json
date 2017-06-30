@@ -3,8 +3,8 @@
     "title": "Pet shop",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -50,7 +50,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "resources": [

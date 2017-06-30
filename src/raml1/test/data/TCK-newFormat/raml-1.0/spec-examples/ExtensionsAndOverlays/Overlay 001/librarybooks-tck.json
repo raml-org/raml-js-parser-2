@@ -122,8 +122,8 @@
     "title": "Book Library API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "monitor",
@@ -140,7 +140,7 @@
             "parentUri": "/books",
             "absoluteParentUri": "/books"
           }
-        },
+        ],
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",

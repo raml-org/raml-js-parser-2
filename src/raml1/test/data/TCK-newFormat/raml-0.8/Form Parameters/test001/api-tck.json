@@ -37,8 +37,8 @@
                 }
               }
             ],
-            "methods": {
-              "post": {
+            "methods": [
+              {
                 "body": [
                   {
                     "name": "application/x-www-form-urlencoded",
@@ -126,7 +126,7 @@
                 "parentUri": "/resource/{resourceId}",
                 "absoluteParentUri": "http://example.com/resource/{resourceId}"
               }
-            },
+            ],
             "displayName": "/{resourceId}",
             "__METADATA__": {
               "primitiveValuesMeta": {

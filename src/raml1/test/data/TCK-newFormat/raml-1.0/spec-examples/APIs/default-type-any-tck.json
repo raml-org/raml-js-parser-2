@@ -3,8 +3,8 @@
     "title": "Default type any with media type",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -35,7 +35,7 @@
             "parentUri": "/customers",
             "absoluteParentUri": "/customers"
           }
-        },
+        ],
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {

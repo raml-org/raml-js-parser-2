@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -39,7 +39,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "collection"
       }
     ],
@@ -47,8 +47,8 @@
     "version": "1.0",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -113,7 +113,7 @@
             "parentUri": "/flights",
             "absoluteParentUri": "/flights"
           }
-        },
+        ],
         "type": {
           "collection": {
             "exampleCollection": [

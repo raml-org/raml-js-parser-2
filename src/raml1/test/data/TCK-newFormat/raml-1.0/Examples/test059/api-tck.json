@@ -140,8 +140,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -179,7 +179,7 @@
             "parentUri": "/animals/{animalId}",
             "absoluteParentUri": "/animals/{animalId}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "animalId",

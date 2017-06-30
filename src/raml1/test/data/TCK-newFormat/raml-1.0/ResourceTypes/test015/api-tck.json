@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -39,7 +39,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "member"
       }
     ],
@@ -49,8 +49,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -95,7 +95,7 @@
             "parentUri": "/resource1",
             "absoluteParentUri": "/resource1"
           }
-        },
+        ],
         "type": {
           "member": {
             "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
@@ -119,8 +119,8 @@
         "absoluteParentUri": ""
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -165,7 +165,7 @@
             "parentUri": "/resource2",
             "absoluteParentUri": "/resource2"
           }
-        },
+        ],
         "type": {
           "member": {
             "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"

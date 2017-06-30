@@ -3,8 +3,8 @@
     "title": "Inline type declaration",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -94,7 +94,7 @@
             "parentUri": "/users/{id}",
             "absoluteParentUri": "/users/{id}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "id",

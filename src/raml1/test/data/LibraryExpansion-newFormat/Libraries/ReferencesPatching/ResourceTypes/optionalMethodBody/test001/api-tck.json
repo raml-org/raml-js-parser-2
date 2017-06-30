@@ -71,8 +71,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -96,7 +96,7 @@
               "optional": true
             }
           }
-        },
+        ],
         "name": "rt"
       }
     ]

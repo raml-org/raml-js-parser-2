@@ -60,8 +60,8 @@
     "description": "This RAML illustrates two examples that discriminator is not allowed in any inline\ntype declaration and for union types.\n",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -115,7 +115,7 @@
             "parentUri": "/inline",
             "absoluteParentUri": "/inline"
           }
-        },
+        ],
         "relativeUri": "/inline",
         "displayName": "/inline",
         "__METADATA__": {

@@ -16,8 +16,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -122,15 +122,15 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "name": "rt"
       }
     ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -237,7 +237,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "put": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -267,7 +267,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": "rt",
         "relativeUri": "/resource",
         "displayName": "/resource",

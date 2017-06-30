@@ -34,14 +34,14 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "is": [
               "lib.libTrait1"
             ],
             "method": "post"
           }
-        },
+        ],
         "is": [
           "lib.libTrait2"
         ],
@@ -54,8 +54,8 @@
     "title": "RAML spec",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "lib.MyAnnotation",
@@ -69,7 +69,7 @@
             "parentUri": "/{id}",
             "absoluteParentUri": "/{id}"
           },
-          "post": {
+          {
             "annotations": [
               {
                 "name": "lib.MyAnnotation",
@@ -83,7 +83,7 @@
             "parentUri": "/{id}",
             "absoluteParentUri": "/{id}"
           }
-        },
+        ],
         "is": [
           "lib.libTrait2"
         ],

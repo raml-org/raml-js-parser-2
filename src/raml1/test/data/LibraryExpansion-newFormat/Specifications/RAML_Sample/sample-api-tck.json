@@ -288,8 +288,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -365,7 +365,7 @@
             "parentUri": "/customers",
             "absoluteParentUri": "http://api.samplehost.com/customers"
           }
-        },
+        ],
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {

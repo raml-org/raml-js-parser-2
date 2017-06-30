@@ -27,8 +27,8 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "annotations": [
@@ -60,7 +60,7 @@
             "parentUri": "/g",
             "absoluteParentUri": "/g"
           }
-        },
+        ],
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {

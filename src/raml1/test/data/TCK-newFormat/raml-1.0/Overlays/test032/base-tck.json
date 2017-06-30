@@ -67,8 +67,8 @@
     "title": "foo",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "foo",
@@ -98,7 +98,7 @@
             "parentUri": "/foobar",
             "absoluteParentUri": "/foobar"
           }
-        },
+        ],
         "relativeUri": "/foobar",
         "displayName": "/foobar",
         "__METADATA__": {

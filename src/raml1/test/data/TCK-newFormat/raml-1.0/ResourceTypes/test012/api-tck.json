@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -39,15 +39,15 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "rt"
       }
     ],
     "title": "My API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -85,7 +85,7 @@
             "parentUri": "/songs",
             "absoluteParentUri": "/songs"
           }
-        },
+        ],
         "type": {
           "rt": {
             "param1": "can not resolve unexisting-file.txt",

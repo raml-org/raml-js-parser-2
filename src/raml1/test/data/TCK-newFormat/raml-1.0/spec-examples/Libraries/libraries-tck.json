@@ -98,20 +98,20 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               "drm"
             ],
             "method": "get"
           },
-          "put": {
+          {
             "is": [
               "drm"
             ],
             "method": "put"
           }
-        },
+        ],
         "name": "file"
       }
     ],

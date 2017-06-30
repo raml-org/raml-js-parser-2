@@ -373,8 +373,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "put": {
+        "methods": [
+          {
             "is": [
               {
                 "RTTrait": {
@@ -384,12 +384,12 @@
             ],
             "method": "put"
           }
-        },
+        ],
         "name": "ResourceType1"
       },
       {
-        "methods": {
-          "put": {
+        "methods": [
+          {
             "is": [
               {
                 "RTTrait": {
@@ -399,15 +399,15 @@
             ],
             "method": "put"
           }
-        },
+        ],
         "name": "ResourceType2"
       }
     ],
     "title": "API",
     "resources": [
       {
-        "methods": {
-          "put": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -554,7 +554,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -679,7 +679,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "is": [
           "Trait1",
           "Trait2"

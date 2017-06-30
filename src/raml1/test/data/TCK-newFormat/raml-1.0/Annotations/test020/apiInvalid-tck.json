@@ -98,8 +98,8 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "searchable",
@@ -173,7 +173,7 @@
             "parentUri": "/animals",
             "absoluteParentUri": "/animals"
           }
-        },
+        ],
         "relativeUri": "/animals",
         "displayName": "/animals",
         "__METADATA__": {

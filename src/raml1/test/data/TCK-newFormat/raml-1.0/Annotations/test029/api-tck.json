@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "<<annotation>>",
@@ -22,7 +22,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "rt1"
       }
     ],
@@ -202,8 +202,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "simpleAnnotation",
@@ -234,7 +234,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "http://api.samplehost.com/{version}/resource"
           }
-        },
+        ],
         "type": {
           "rt1": {
             "annotation": "simpleAnnotation",

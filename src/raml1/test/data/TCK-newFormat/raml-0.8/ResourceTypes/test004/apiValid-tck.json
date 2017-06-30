@@ -71,8 +71,8 @@
     "resourceTypes": [
       {
         "name": "Resource1",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -102,7 +102,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "is": [
           {
             "SomeTrait": {
@@ -115,8 +115,8 @@
       },
       {
         "name": "Resource2",
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -146,7 +146,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "is": [
           {
             "SomeTrait": {
@@ -171,8 +171,8 @@
             }
           }
         ],
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -280,7 +280,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {

@@ -86,8 +86,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "protocols": [
               "HTTPS"
             ],
@@ -112,7 +112,7 @@
             "parentUri": "/users/{userid}/gists",
             "absoluteParentUri": "https://api.github.com/users/{userid}/gists"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "userid",

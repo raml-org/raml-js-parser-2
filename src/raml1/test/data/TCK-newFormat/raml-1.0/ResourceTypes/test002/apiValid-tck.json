@@ -65,8 +65,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -92,12 +92,12 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "SomeType"
       },
       {
-        "methods": {
-          "put": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -118,7 +118,7 @@
             ],
             "method": "put"
           }
-        },
+        ],
         "type": "SomeType",
         "name": "AnotherType"
       }
@@ -126,8 +126,8 @@
     "title": "API",
     "resources": [
       {
-        "methods": {
-          "put": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -150,7 +150,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -178,7 +178,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": "AnotherType",
         "relativeUri": "/resource",
         "displayName": "/resource",

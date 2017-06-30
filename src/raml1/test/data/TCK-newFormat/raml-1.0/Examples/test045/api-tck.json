@@ -63,8 +63,8 @@
     "title": "Test named parameters",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "headers": [
               {
                 "name": "X-Dept",
@@ -105,7 +105,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

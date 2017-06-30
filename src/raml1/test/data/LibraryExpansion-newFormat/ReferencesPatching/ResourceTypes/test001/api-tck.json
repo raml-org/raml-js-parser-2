@@ -61,8 +61,8 @@
         "name": "lib.rt"
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -131,15 +131,15 @@
             ],
             "method": "post"
           }
-        },
+        ],
         "name": "lib.lib.rt"
       }
     ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -210,7 +210,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": {
           "lib.rt": {
             "param1": "Monkey"

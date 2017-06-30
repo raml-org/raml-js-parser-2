@@ -65,8 +65,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -92,15 +92,15 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "SomeType"
       }
     ],
     "title": "API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -128,7 +128,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": "SomeType",
         "relativeUri": "/resource",
         "displayName": "/resource",

@@ -7,8 +7,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -98,7 +98,7 @@
             "parentUri": "/someChildUri/{blah}",
             "absoluteParentUri": "/some/base/uri/someChildUri/{blah}"
           }
-        },
+        ],
         "uriParameters": [
           {
             "name": "blah",

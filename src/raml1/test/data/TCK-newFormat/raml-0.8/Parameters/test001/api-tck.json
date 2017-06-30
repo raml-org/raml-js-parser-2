@@ -4,8 +4,8 @@
     "resources": [
       {
         "relativeUri": "/test",
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "queryParameters": [
               {
                 "name": "limit",
@@ -33,7 +33,7 @@
             "parentUri": "/test",
             "absoluteParentUri": "/test"
           }
-        },
+        ],
         "displayName": "/test",
         "__METADATA__": {
           "primitiveValuesMeta": {

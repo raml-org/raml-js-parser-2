@@ -86,8 +86,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -113,15 +113,15 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "rt1"
       }
     ],
     "title": "Zero as array element 1",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -149,7 +149,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": "rt1",
         "relativeUri": "/resource",
         "displayName": "/resource",

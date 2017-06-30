@@ -166,8 +166,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -207,7 +207,7 @@
               }
             }
           }
-        },
+        ],
         "securedBy": [
           "custom_scheme"
         ],
@@ -613,8 +613,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
@@ -696,7 +696,7 @@
             "parentUri": "/api",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api"
           },
-          "post": {
+          {
             "body": [
               {
                 "name": "application/json",
@@ -735,7 +735,7 @@
             "parentUri": "/api",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api"
           }
-        },
+        ],
         "securedBy": [
           "custom_scheme"
         ],
@@ -760,8 +760,8 @@
         "absoluteParentUri": "http://{environment}.musicapi.com/{version}"
       },
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -804,7 +804,7 @@
             "parentUri": "/entry",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry"
           },
-          "get": {
+          {
             "responses": [
               {
                 "code": "200",
@@ -851,7 +851,7 @@
             "parentUri": "/entry",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry"
           }
-        },
+        ],
         "type": "collection",
         "securedBy": [
           "custom_scheme"
@@ -883,8 +883,8 @@
             "structuredValue": null
           }
         ],
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "annotations": [
               {
                 "name": "monitoringInterval",
@@ -955,7 +955,7 @@
             "parentUri": "/songs",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs"
           },
-          "post": {
+          {
             "queryParameters": [
               {
                 "name": "access_token",
@@ -998,7 +998,7 @@
             "parentUri": "/songs",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs"
           }
-        },
+        ],
         "is": [
           "secured"
         ],
@@ -1010,8 +1010,8 @@
         "displayName": "Songs",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "annotations": [
                   {
                     "name": "deprecated",
@@ -1091,7 +1091,7 @@
                 "parentUri": "/songs/{songId}",
                 "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs/{songId}"
               }
-            },
+            ],
             "securedBy": [
               "custom_scheme"
             ],

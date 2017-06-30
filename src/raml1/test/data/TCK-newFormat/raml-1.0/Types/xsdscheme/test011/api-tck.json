@@ -22,8 +22,8 @@
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -47,7 +47,7 @@
             "parentUri": "/res",
             "absoluteParentUri": "/res"
           }
-        },
+        ],
         "relativeUri": "/res",
         "displayName": "/res",
         "__METADATA__": {

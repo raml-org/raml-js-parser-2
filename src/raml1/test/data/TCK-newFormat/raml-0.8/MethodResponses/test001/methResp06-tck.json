@@ -4,8 +4,8 @@
     "resources": [
       {
         "relativeUri": "/test",
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "201",
@@ -22,7 +22,7 @@
             "parentUri": "/test",
             "absoluteParentUri": "/test"
           }
-        },
+        ],
         "displayName": "/test",
         "__METADATA__": {
           "primitiveValuesMeta": {

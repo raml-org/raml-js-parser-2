@@ -86,8 +86,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -130,13 +130,13 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "type": "<<resourceTypeParam>>",
         "name": "ResourceTypeWithParams"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -182,12 +182,12 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "ResourceType1"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -233,12 +233,12 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "ResourceType2"
       },
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -273,7 +273,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "type": {
           "ResourceTypeWithParams": {
             "resourceTypeParam": "ResourceType2",
@@ -286,8 +286,8 @@
     "title": "API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "body": [
               {
                 "name": "application/json",
@@ -363,7 +363,7 @@
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           }
-        },
+        ],
         "type": "Resource",
         "relativeUri": "/resource",
         "displayName": "/resource",

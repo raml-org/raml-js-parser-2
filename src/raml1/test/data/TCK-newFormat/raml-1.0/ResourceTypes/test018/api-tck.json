@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "200",
@@ -59,7 +59,7 @@
             "method": "post",
             "<<param2>>": "<<param2value>>"
           }
-        },
+        ],
         "name": "myResourceType",
         "<<param1>>": "<<param1value>>"
       }

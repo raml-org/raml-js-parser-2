@@ -88,8 +88,8 @@
     ],
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               {
                 "rt.tr.ResponseCommonErrors": {
@@ -99,7 +99,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "rt.Collection",
         "__METADATA__": {
           "calculated": true
@@ -110,8 +110,8 @@
     "version": "v1z",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "400",
@@ -187,7 +187,7 @@
             "parentUri": "/products",
             "absoluteParentUri": "/products"
           }
-        },
+        ],
         "type": "rt.Collection",
         "relativeUri": "/products",
         "displayName": "/products",

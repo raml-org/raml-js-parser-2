@@ -2,8 +2,8 @@
   "specification": {
     "resourceTypes": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "responses": [
               {
                 "code": "201",
@@ -30,7 +30,7 @@
             ],
             "method": "get"
           }
-        },
+        ],
         "name": "test"
       }
     ],

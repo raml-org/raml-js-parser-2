@@ -372,8 +372,8 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "protocols": [
               "HTTP"
             ],
@@ -389,13 +389,13 @@
             "parentUri": "/v1",
             "absoluteParentUri": "http://api.planet.com/v1"
           }
-        },
+        ],
         "relativeUri": "/v1",
         "displayName": "/v1",
         "resources": [
           {
-            "methods": {
-              "get": {
+            "methods": [
+              {
                 "protocols": [
                   "HTTP"
                 ],
@@ -411,13 +411,13 @@
                 "parentUri": "/v1/scenes",
                 "absoluteParentUri": "http://api.planet.com/v1/scenes"
               }
-            },
+            ],
             "relativeUri": "/scenes",
             "displayName": "/scenes",
             "resources": [
               {
-                "methods": {
-                  "get": {
+                "methods": [
+                  {
                     "responses": [
                       {
                         "code": "200",
@@ -478,7 +478,7 @@
                     "parentUri": "/v1/scenes/planetscope",
                     "absoluteParentUri": "http://api.planet.com/v1/scenes/planetscope"
                   }
-                },
+                ],
                 "relativeUri": "/planetscope",
                 "displayName": "/planetscope",
                 "__METADATA__": {
