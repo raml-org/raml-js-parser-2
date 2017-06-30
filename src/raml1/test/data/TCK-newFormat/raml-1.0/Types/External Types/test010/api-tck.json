@@ -26,8 +26,8 @@
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "quz": {
+                "properties": [
+                  {
                     "name": "quz",
                     "displayName": "quz",
                     "type": [
@@ -50,7 +50,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

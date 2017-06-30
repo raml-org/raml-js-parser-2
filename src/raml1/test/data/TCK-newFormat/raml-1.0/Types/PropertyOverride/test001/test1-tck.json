@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -31,7 +31,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "geometry": {
+          {
             "name": "geometry",
             "displayName": "geometry",
             "type": [
@@ -51,7 +51,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "properties": {
+          {
             "name": "properties",
             "displayName": "properties",
             "type": [
@@ -71,7 +71,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -88,8 +88,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "_embeds": {
+        "properties": [
+          {
             "name": "_embeds",
             "displayName": "_embeds",
             "type": [
@@ -111,7 +111,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "object"
           },
-          "_links": {
+          {
             "name": "_links",
             "displayName": "_links",
             "type": [
@@ -129,7 +129,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -150,8 +150,8 @@
           "ZoomEmbed",
           "Feature"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -171,7 +171,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -188,8 +188,8 @@
         "type": [
           "Scene"
         ],
-        "properties": {
-          "properties": {
+        "properties": [
+          {
             "name": "properties",
             "displayName": "properties",
             "type": [
@@ -209,7 +209,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "_links": {
+          {
             "name": "_links",
             "displayName": "_links",
             "type": [
@@ -217,8 +217,8 @@
             ],
             "required": true,
             "description": "Links to related resources and actions.",
-            "properties": {
-              "licenses": {
+            "properties": [
+              {
                 "name": "licenses",
                 "displayName": "licenses",
                 "type": [
@@ -238,7 +238,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -252,7 +252,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -269,8 +269,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "acquired": {
+        "properties": [
+          {
             "name": "acquired",
             "displayName": "acquired",
             "type": [
@@ -290,7 +290,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -310,8 +310,8 @@
         "type": [
           "BaseProperties"
         ],
-        "properties": {
-          "vnd_camera_gain": {
+        "properties": [
+          {
             "name": "vnd_camera_gain",
             "displayName": "vnd_camera_gain",
             "type": [
@@ -332,7 +332,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

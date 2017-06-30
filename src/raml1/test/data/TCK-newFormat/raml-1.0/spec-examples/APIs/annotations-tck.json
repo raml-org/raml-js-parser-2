@@ -90,8 +90,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "level": {
+        "properties": [
+          {
             "name": "level",
             "displayName": "level",
             "type": [
@@ -116,7 +116,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "signature": {
+          {
             "name": "signature",
             "displayName": "signature",
             "type": [
@@ -137,7 +137,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

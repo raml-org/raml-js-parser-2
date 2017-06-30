@@ -25,8 +25,8 @@
             "name": "record"
           }
         ],
-        "properties": {
-          "title": {
+        "properties": [
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -46,7 +46,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "body": {
+          {
             "name": "body",
             "displayName": "body",
             "type": [
@@ -66,7 +66,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -86,7 +86,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "comment": {
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -106,7 +106,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

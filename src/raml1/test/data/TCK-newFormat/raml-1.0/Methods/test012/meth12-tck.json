@@ -15,8 +15,8 @@
                     "type": [
                       "TestType"
                     ],
-                    "properties": {
-                      "additionalField": {
+                    "properties": [
+                      {
                         "name": "additionalField",
                         "displayName": "additionalField",
                         "type": [
@@ -36,7 +36,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -126,8 +126,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "baseField": {
+        "properties": [
+          {
             "name": "baseField",
             "displayName": "baseField",
             "type": [
@@ -147,7 +147,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -173,8 +173,8 @@
         "type": [
           "TypeBase"
         ],
-        "properties": {
-          "field": {
+        "properties": [
+          {
             "name": "field",
             "displayName": "field",
             "type": [
@@ -194,7 +194,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

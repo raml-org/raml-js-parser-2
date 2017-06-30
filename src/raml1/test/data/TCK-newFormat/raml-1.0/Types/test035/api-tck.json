@@ -23,8 +23,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "reports": {
+        "properties": [
+          {
             "name": "reports",
             "displayName": "reports",
             "type": [
@@ -45,7 +45,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "Person"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

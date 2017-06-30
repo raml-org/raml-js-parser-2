@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "/[a-z]+/": {
+        "properties": [
+          {
             "name": "/[a-z]+/",
             "displayName": "/[a-z]+/",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "minProperties": 5,
         "__METADATA__": {
           "primitiveValuesMeta": {

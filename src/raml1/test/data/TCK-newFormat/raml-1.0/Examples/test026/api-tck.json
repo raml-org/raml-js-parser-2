@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name2": {
+          {
             "name": "name2",
             "displayName": "name2",
             "type": [
@@ -48,7 +48,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name3": {
+          {
             "name": "name3",
             "displayName": "name3",
             "type": [
@@ -68,7 +68,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -88,8 +88,8 @@
         "type": [
           "TestType"
         ],
-        "properties": {
-          "name4": {
+        "properties": [
+          {
             "name": "name4",
             "displayName": "name4",
             "type": [
@@ -109,7 +109,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -126,8 +126,8 @@
         "type": [
           "TestType2"
         ],
-        "properties": {
-          "name5": {
+        "properties": [
+          {
             "name": "name5",
             "displayName": "name5",
             "type": [
@@ -147,7 +147,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -164,8 +164,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "proppp": {
+        "properties": [
+          {
             "name": "proppp",
             "displayName": "proppp",
             "type": [
@@ -185,7 +185,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

@@ -7,16 +7,16 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "prop": {
+        "properties": [
+          {
             "name": "prop",
             "displayName": "prop",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "/[a-z]+/": {
+            "properties": [
+              {
                 "name": "/[a-z]+/",
                 "displayName": "/[a-z]+/",
                 "type": [
@@ -36,7 +36,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "maxProperties": 5,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -61,7 +61,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

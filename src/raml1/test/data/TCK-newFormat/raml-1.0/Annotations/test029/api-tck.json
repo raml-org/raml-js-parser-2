@@ -55,16 +55,16 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "property1": {
+        "properties": [
+          {
             "name": "property1",
             "displayName": "property1",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "field1": {
+            "properties": [
+              {
                 "name": "field1",
                 "displayName": "field1",
                 "type": [
@@ -87,7 +87,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "field2": {
+              {
                 "name": "field2",
                 "displayName": "field2",
                 "type": [
@@ -107,7 +107,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -124,7 +124,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "property2": {
+          {
             "name": "property2",
             "displayName": "property2",
             "type": [
@@ -147,7 +147,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -45,8 +45,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "/post|get|put/": {
+        "properties": [
+          {
             "name": "/post|get|put/",
             "displayName": "/post|get|put/",
             "type": [
@@ -66,7 +66,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "Description": {
+        "properties": [
+          {
             "name": "Description",
             "displayName": "Description",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "reference": {
+          {
             "name": "reference",
             "displayName": "reference",
             "type": [
@@ -48,7 +48,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "weight": {
+          {
             "name": "weight",
             "displayName": "weight",
             "type": [
@@ -68,7 +68,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "workItmes": {
+          {
             "name": "workItmes",
             "displayName": "workItmes",
             "type": [
@@ -89,7 +89,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "workItem"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

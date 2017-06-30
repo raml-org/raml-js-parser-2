@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "prop": {
+        "properties": [
+          {
             "name": "prop",
             "displayName": "prop",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -81,8 +81,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "integerProperty": {
+        "properties": [
+          {
             "name": "integerProperty",
             "displayName": "integerProperty",
             "type": [
@@ -102,7 +102,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -142,8 +142,8 @@
                         "value": "../libs/types2.raml"
                       }
                     ],
-                    "properties": {
-                      "ownLibProperty": {
+                    "properties": [
+                      {
                         "name": "ownLibProperty",
                         "displayName": "ownLibProperty",
                         "type": [
@@ -163,7 +163,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "rootLibProperty": {
+                      {
                         "name": "rootLibProperty",
                         "displayName": "rootLibProperty",
                         "type": [
@@ -183,7 +183,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {

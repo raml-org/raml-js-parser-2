@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "firstName": {
+        "properties": [
+          {
             "name": "firstName",
             "displayName": "firstName",
             "type": [
@@ -31,7 +31,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lastName": {
+          {
             "name": "lastName",
             "displayName": "lastName",
             "type": [
@@ -54,7 +54,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -127,8 +127,8 @@
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "groupName": {
+                "properties": [
+                  {
                     "name": "groupName",
                     "displayName": "groupName",
                     "type": [
@@ -151,7 +151,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "deptCode": {
+                  {
                     "name": "deptCode",
                     "displayName": "deptCode",
                     "type": [
@@ -171,7 +171,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

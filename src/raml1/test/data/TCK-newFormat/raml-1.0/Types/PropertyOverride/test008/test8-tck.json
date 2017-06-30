@@ -41,8 +41,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "testProperty": {
+        "properties": [
+          {
             "name": "testProperty",
             "displayName": "testProperty",
             "type": [
@@ -62,7 +62,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -82,8 +82,8 @@
         "type": [
           "Type1"
         ],
-        "properties": {
-          "testProperty": {
+        "properties": [
+          {
             "name": "testProperty",
             "displayName": "testProperty",
             "type": [
@@ -103,7 +103,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

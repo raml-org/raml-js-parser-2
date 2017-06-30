@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "selfReference": {
+        "properties": [
+          {
             "name": "selfReference",
             "displayName": "selfReference",
             "type": [
@@ -29,7 +29,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "SomeType"
           },
-          "someProperty": {
+          {
             "name": "someProperty",
             "displayName": "someProperty",
             "type": [
@@ -49,7 +49,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "additionalProperties": false,
         "__METADATA__": {
           "primitiveValuesMeta": {

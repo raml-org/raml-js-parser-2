@@ -13,8 +13,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "annotations": [
               {
                 "name": "meta-data",
@@ -40,7 +40,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

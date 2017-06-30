@@ -58,8 +58,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "/\\w+/\\w+/": {
+        "properties": [
+          {
             "name": "/\\w+/\\w+/",
             "displayName": "/\\w+/\\w+/",
             "type": [
@@ -82,7 +82,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -124,8 +124,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -151,7 +151,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -171,8 +171,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -198,7 +198,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -218,8 +218,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -245,7 +245,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -265,8 +265,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -292,7 +292,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "uri": {
+          {
             "name": "uri",
             "displayName": "uri",
             "type": [
@@ -315,7 +315,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "httpMethod": {
+          {
             "name": "httpMethod",
             "displayName": "httpMethod",
             "type": [
@@ -335,7 +335,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "credentials": {
+          {
             "name": "credentials",
             "displayName": "credentials",
             "type": [
@@ -358,7 +358,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "requestTemplates": {
+          {
             "name": "requestTemplates",
             "displayName": "requestTemplates",
             "type": [
@@ -378,7 +378,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "requestParameters": {
+          {
             "name": "requestParameters",
             "displayName": "requestParameters",
             "type": [
@@ -398,7 +398,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "cacheNamespace": {
+          {
             "name": "cacheNamespace",
             "displayName": "cacheNamespace",
             "type": [
@@ -421,7 +421,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "cacheKeyParameters": {
+          {
             "name": "cacheKeyParameters",
             "displayName": "cacheKeyParameters",
             "type": [
@@ -442,23 +442,23 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "string"
           },
-          "responses": {
+          {
             "name": "responses",
             "displayName": "responses",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "/.*/": {
+            "properties": [
+              {
                 "name": "/.*/",
                 "displayName": "/.*/",
                 "type": [
                   "object"
                 ],
                 "required": true,
-                "properties": {
-                  "statusCode": {
+                "properties": [
+                  {
                     "name": "statusCode",
                     "displayName": "statusCode",
                     "type": [
@@ -478,7 +478,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "responseParameters": {
+                  {
                     "name": "responseParameters",
                     "displayName": "responseParameters",
                     "type": [
@@ -498,7 +498,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  "responseTemplates": {
+                  {
                     "name": "responseTemplates",
                     "displayName": "responseTemplates",
                     "type": [
@@ -518,7 +518,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -535,7 +535,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -552,7 +552,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

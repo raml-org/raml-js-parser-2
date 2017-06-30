@@ -29,8 +29,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "ownLibProperty": {
+                    "properties": [
+                      {
                         "name": "ownLibProperty",
                         "displayName": "ownLibProperty",
                         "type": [
@@ -50,7 +50,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "rootLibProperty": {
+                      {
                         "name": "rootLibProperty",
                         "displayName": "rootLibProperty",
                         "type": [
@@ -70,7 +70,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "uses": [
                       {
                         "key": "lib",
@@ -142,8 +142,8 @@
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "ownLibProperty": {
+                    "properties": [
+                      {
                         "name": "ownLibProperty",
                         "displayName": "ownLibProperty",
                         "type": [
@@ -163,7 +163,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      "rootLibProperty": {
+                      {
                         "name": "rootLibProperty",
                         "displayName": "rootLibProperty",
                         "type": [
@@ -183,7 +183,7 @@
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    },
+                    ],
                     "uses": [
                       {
                         "key": "lib",

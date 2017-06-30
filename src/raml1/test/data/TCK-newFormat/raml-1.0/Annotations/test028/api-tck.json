@@ -7,16 +7,16 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "baseProperty1": {
+        "properties": [
+          {
             "name": "baseProperty1",
             "displayName": "baseProperty1",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "field1": {
+            "properties": [
+              {
                 "name": "field1",
                 "displayName": "field1",
                 "type": [
@@ -39,7 +39,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "field2": {
+              {
                 "name": "field2",
                 "displayName": "field2",
                 "type": [
@@ -59,7 +59,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -76,7 +76,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "baseProperty2": {
+          {
             "name": "baseProperty2",
             "displayName": "baseProperty2",
             "type": [
@@ -99,7 +99,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -154,8 +154,8 @@
         "type": [
           "baseAnnotation"
         ],
-        "properties": {
-          "childProperty1": {
+        "properties": [
+          {
             "name": "childProperty1",
             "displayName": "childProperty1",
             "type": [
@@ -184,7 +184,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "childProperty2": {
+          {
             "name": "childProperty2",
             "displayName": "childProperty2",
             "type": [
@@ -205,7 +205,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

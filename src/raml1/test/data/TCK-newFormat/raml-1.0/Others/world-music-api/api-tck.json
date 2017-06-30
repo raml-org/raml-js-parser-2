@@ -57,8 +57,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "firstname": {
+        "properties": [
+          {
             "name": "firstname",
             "displayName": "firstname",
             "type": [
@@ -78,7 +78,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lastname": {
+          {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -102,7 +102,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -228,8 +228,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "date": {
+        "properties": [
+          {
             "name": "date",
             "displayName": "date",
             "type": [
@@ -249,7 +249,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "deprecatedBy": {
+          {
             "name": "deprecatedBy",
             "displayName": "deprecatedBy",
             "type": [
@@ -269,7 +269,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "comment": {
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -289,7 +289,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -356,8 +356,8 @@
         "allowedTargets": [
           "API"
         ],
-        "properties": {
-          "license": {
+        "properties": [
+          {
             "name": "license",
             "displayName": "license",
             "type": [
@@ -381,7 +381,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -621,8 +621,8 @@
               "type": [
                 "object"
               ],
-              "properties": {
-                "start": {
+              "properties": [
+                {
                   "name": "start",
                   "displayName": "start",
                   "type": [
@@ -642,7 +642,7 @@
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION"
                 },
-                "page-size": {
+                {
                   "name": "page-size",
                   "displayName": "page-size",
                   "type": [
@@ -662,7 +662,7 @@
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION"
                 }
-              },
+              ],
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {

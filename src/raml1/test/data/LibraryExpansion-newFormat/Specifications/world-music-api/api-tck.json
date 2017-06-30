@@ -47,8 +47,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "firstname": {
+        "properties": [
+          {
             "name": "firstname",
             "displayName": "firstname",
             "type": [
@@ -68,7 +68,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lastname": {
+          {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -92,7 +92,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -121,8 +121,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "propString": {
+        "properties": [
+          {
             "name": "propString",
             "displayName": "propString",
             "type": [
@@ -142,7 +142,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "propStringArray1": {
+          {
             "name": "propStringArray1",
             "displayName": "propStringArray1",
             "type": [
@@ -163,7 +163,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "string"
           },
-          "ideas": {
+          {
             "name": "ideas",
             "displayName": "ideas",
             "type": [
@@ -177,8 +177,8 @@
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "comment": {
+                "properties": [
+                  {
                     "name": "comment",
                     "displayName": "comment",
                     "type": [
@@ -198,7 +198,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -226,7 +226,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "extIdeas": {
+          {
             "name": "extIdeas",
             "displayName": "extIdeas",
             "type": [
@@ -236,8 +236,8 @@
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "comment": {
+                "properties": [
+                  {
                     "name": "comment",
                     "displayName": "comment",
                     "type": [
@@ -257,7 +257,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -273,8 +273,8 @@
               }
             ],
             "required": true,
-            "properties": {
-              "createdBy": {
+            "properties": [
+              {
                 "name": "createdBy",
                 "displayName": "createdBy",
                 "type": [
@@ -294,7 +294,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -308,7 +308,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "INPLACE"
           },
-          "feedback": {
+          {
             "name": "feedback",
             "displayName": "feedback",
             "type": [
@@ -339,7 +339,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "propNumber": {
+          {
             "name": "propNumber",
             "displayName": "propNumber",
             "type": [
@@ -363,7 +363,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "propInteger": {
+          {
             "name": "propInteger",
             "displayName": "propInteger",
             "type": [
@@ -387,7 +387,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "propBoolean": {
+          {
             "name": "propBoolean",
             "displayName": "propBoolean",
             "type": [
@@ -407,7 +407,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "propDate": {
+          {
             "name": "propDate",
             "displayName": "propDate",
             "type": [
@@ -434,7 +434,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "userPicture": {
+          {
             "name": "userPicture",
             "displayName": "userPicture",
             "type": [
@@ -459,15 +459,15 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "NilValue": {
+          {
             "name": "NilValue",
             "displayName": "NilValue",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "name": {
+            "properties": [
+              {
                 "name": "name",
                 "displayName": "name",
                 "type": [
@@ -490,7 +490,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "comment": {
+              {
                 "name": "comment",
                 "displayName": "comment",
                 "type": [
@@ -510,7 +510,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -524,7 +524,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "CatOrDog": {
+          {
             "name": "CatOrDog",
             "displayName": "CatOrDog",
             "type": [
@@ -544,49 +544,47 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "CatAndDog": [
-            {
-              "name": "CatAndDog",
-              "displayName": "CatAndDog",
-              "type": [
-                "ApiLib.Cat"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+          {
+            "name": "CatAndDog",
+            "displayName": "CatAndDog",
+            "type": [
+              "ApiLib.Cat"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              }
             },
-            {
-              "name": "CatAndDog",
-              "displayName": "CatAndDog",
-              "type": [
-                "ApiLib.Dog"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          {
+            "name": "CatAndDog",
+            "displayName": "CatAndDog",
+            "type": [
+              "ApiLib.Dog"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
                 }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
-          ],
-          "PossibleMeetingDate": {
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          {
             "name": "PossibleMeetingDate",
             "displayName": "PossibleMeetingDate",
             "type": [
@@ -609,7 +607,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -626,8 +624,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -647,7 +645,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "color": {
+          {
             "name": "color",
             "displayName": "color",
             "type": [
@@ -667,7 +665,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -684,8 +682,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -705,7 +703,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "fangs": {
+          {
             "name": "fangs",
             "displayName": "fangs",
             "type": [
@@ -725,7 +723,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -810,8 +808,8 @@
             "name": "song2"
           }
         ],
-        "properties": {
-          "title": {
+        "properties": [
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -831,7 +829,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "length": {
+          {
             "name": "length",
             "displayName": "length",
             "type": [
@@ -851,7 +849,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -968,8 +966,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "date": {
+        "properties": [
+          {
             "name": "date",
             "displayName": "date",
             "type": [
@@ -989,7 +987,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "deprecatedBy": {
+          {
             "name": "deprecatedBy",
             "displayName": "deprecatedBy",
             "type": [
@@ -1009,7 +1007,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "comment": {
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -1029,7 +1027,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -1096,8 +1094,8 @@
         "allowedTargets": [
           "API"
         ],
-        "properties": {
-          "license": {
+        "properties": [
+          {
             "name": "license",
             "displayName": "license",
             "type": [
@@ -1121,7 +1119,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -1361,8 +1359,8 @@
               "type": [
                 "object"
               ],
-              "properties": {
-                "start": {
+              "properties": [
+                {
                   "name": "start",
                   "displayName": "start",
                   "type": [
@@ -1382,7 +1380,7 @@
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION"
                 },
-                "page-size": {
+                {
                   "name": "page-size",
                   "displayName": "page-size",
                   "type": [
@@ -1402,7 +1400,7 @@
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION"
                 }
-              },
+              ],
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {

@@ -30,8 +30,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "country": {
+        "properties": [
+          {
             "name": "country",
             "displayName": "country",
             "type": [
@@ -60,7 +60,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "city": {
+          {
             "name": "city",
             "displayName": "city",
             "type": [
@@ -83,7 +83,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "street": {
+          {
             "name": "street",
             "displayName": "street",
             "type": [
@@ -106,7 +106,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "house": {
+          {
             "name": "house",
             "displayName": "house",
             "type": [
@@ -129,7 +129,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "zip": {
+          {
             "name": "zip",
             "displayName": "zip",
             "type": [
@@ -149,7 +149,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -271,8 +271,8 @@
             "name": "value2"
           }
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -292,7 +292,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -315,7 +315,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "email": {
+          {
             "name": "email",
             "displayName": "email",
             "type": [
@@ -335,7 +335,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "phone": {
+          {
             "name": "phone",
             "displayName": "phone",
             "type": [
@@ -361,7 +361,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "address": {
+          {
             "name": "address",
             "displayName": "address",
             "type": [
@@ -381,7 +381,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -435,8 +435,8 @@
             "name": "manager2"
           }
         ],
-        "properties": {
-          "managerId": {
+        "properties": [
+          {
             "name": "managerId",
             "displayName": "managerId",
             "type": [
@@ -456,7 +456,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -476,8 +476,8 @@
         "type": [
           "User"
         ],
-        "properties": {
-          "adminId": {
+        "properties": [
+          {
             "name": "adminId",
             "displayName": "adminId",
             "type": [
@@ -497,7 +497,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -533,8 +533,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -554,7 +554,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "title": {
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -578,7 +578,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "manager": {
+          {
             "name": "manager",
             "displayName": "manager",
             "type": [
@@ -598,7 +598,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "admin": {
+          {
             "name": "admin",
             "displayName": "admin",
             "type": [
@@ -618,7 +618,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "members": {
+          {
             "name": "members",
             "displayName": "members",
             "type": [
@@ -639,15 +639,15 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "User|Team"
           },
-          "info": {
+          {
             "name": "info",
             "displayName": "info",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "address": {
+            "properties": [
+              {
                 "name": "address",
                 "displayName": "address",
                 "type": [
@@ -667,7 +667,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "email": {
+              {
                 "name": "email",
                 "displayName": "email",
                 "type": [
@@ -687,7 +687,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "size": {
+              {
                 "name": "size",
                 "displayName": "size",
                 "type": [
@@ -707,7 +707,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -724,7 +724,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -853,8 +853,8 @@
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "title": {
+                "properties": [
+                  {
                     "name": "title",
                     "displayName": "title",
                     "type": [
@@ -878,7 +878,7 @@
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

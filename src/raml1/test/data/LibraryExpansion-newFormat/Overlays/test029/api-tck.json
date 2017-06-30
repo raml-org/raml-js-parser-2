@@ -35,8 +35,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "title": {
+        "properties": [
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -56,7 +56,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "type": {
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -76,7 +76,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "uri": {
+          {
             "name": "uri",
             "displayName": "uri",
             "type": [
@@ -96,7 +96,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

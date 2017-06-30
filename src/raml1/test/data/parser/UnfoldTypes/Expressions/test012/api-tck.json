@@ -71,8 +71,8 @@
         "type": [
           "T1"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -120,7 +120,7 @@
               "typePropertyKind": "TYPE_EXPRESSION"
             }
           },
-          "p2": {
+          {
             "name": "p2",
             "displayName": "p2",
             "type": [
@@ -168,7 +168,7 @@
               "typePropertyKind": "TYPE_EXPRESSION"
             }
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -184,8 +184,8 @@
           "type": [
             "T1"
           ],
-          "properties": {
-            "p1": {
+          "properties": [
+            {
               "name": "p1",
               "displayName": "p1",
               "type": [
@@ -213,7 +213,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             },
-            "p2": {
+            {
               "name": "p2",
               "displayName": "p2",
               "type": [
@@ -241,7 +241,7 @@
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
-          },
+          ],
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {

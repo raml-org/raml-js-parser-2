@@ -23,8 +23,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "firstProp": {
+        "properties": [
+          {
             "name": "firstProp",
             "displayName": "firstProp",
             "type": [
@@ -44,7 +44,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "secondProp": {
+          {
             "name": "secondProp",
             "displayName": "secondProp",
             "type": [
@@ -64,7 +64,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

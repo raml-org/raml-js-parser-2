@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "items": {
+        "properties": [
+          {
             "name": "items",
             "displayName": "items",
             "type": [
@@ -30,7 +30,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "number"
           },
-          "items2": {
+          {
             "name": "items2",
             "displayName": "items2",
             "type": [
@@ -52,7 +52,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "number"
           },
-          "items3": {
+          {
             "name": "items3",
             "displayName": "items3",
             "type": [
@@ -74,7 +74,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "number"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

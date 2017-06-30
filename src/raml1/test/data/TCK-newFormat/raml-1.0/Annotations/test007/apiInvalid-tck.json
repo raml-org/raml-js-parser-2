@@ -18,8 +18,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "v": {
+        "properties": [
+          {
             "name": "v",
             "displayName": "v",
             "type": [
@@ -40,7 +40,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "boolean"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

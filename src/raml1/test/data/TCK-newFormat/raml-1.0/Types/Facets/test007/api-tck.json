@@ -44,8 +44,8 @@
         "type": [
           "Object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -65,7 +65,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -85,7 +85,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "lastName": {
+          {
             "name": "lastName",
             "displayName": "lastName",
             "type": [
@@ -105,7 +105,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

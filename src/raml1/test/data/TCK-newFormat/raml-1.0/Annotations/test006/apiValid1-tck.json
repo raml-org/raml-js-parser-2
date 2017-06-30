@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "x": {
+        "properties": [
+          {
             "name": "x",
             "displayName": "x",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "y": {
+          {
             "name": "y",
             "displayName": "y",
             "type": [
@@ -48,7 +48,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -67,8 +67,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "point": {
+        "properties": [
+          {
             "name": "point",
             "displayName": "point",
             "type": [
@@ -89,7 +89,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "Point"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

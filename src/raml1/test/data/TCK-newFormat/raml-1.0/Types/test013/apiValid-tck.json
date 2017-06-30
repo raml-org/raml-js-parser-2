@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "someProperty": {
+        "properties": [
+          {
             "name": "someProperty",
             "displayName": "someProperty",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

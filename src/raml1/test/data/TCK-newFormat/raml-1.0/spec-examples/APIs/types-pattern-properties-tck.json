@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -25,7 +25,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "age": {
+          {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -42,7 +42,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "/^note\\d+$/": {
+          {
             "name": "/^note\\d+$/",
             "displayName": "/^note\\d+$/",
             "type": [
@@ -62,7 +62,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

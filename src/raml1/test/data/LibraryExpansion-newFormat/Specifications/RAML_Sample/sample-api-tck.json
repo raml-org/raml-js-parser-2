@@ -11,8 +11,8 @@
             "type": [
               "object"
             ],
-            "properties": {
-              "id": {
+            "properties": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -32,7 +32,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "eTag": {
+              {
                 "name": "eTag",
                 "displayName": "eTag",
                 "type": [
@@ -52,7 +52,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -64,8 +64,8 @@
             "typePropertyKind": "TYPE_EXPRESSION"
           }
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -85,7 +85,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "age": {
+          {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -102,7 +102,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "email": {
+          {
             "name": "email",
             "displayName": "email",
             "type": [
@@ -122,7 +122,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "mobile": {
+          {
             "name": "mobile",
             "displayName": "mobile",
             "type": [
@@ -142,15 +142,15 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "addresses": {
+          {
             "name": "addresses",
             "displayName": "addresses",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": {
-              "addressType": {
+            "properties": [
+              {
                 "name": "addressType",
                 "displayName": "addressType",
                 "type": [
@@ -177,7 +177,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "line1": {
+              {
                 "name": "line1",
                 "displayName": "line1",
                 "type": [
@@ -197,7 +197,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "line2": {
+              {
                 "name": "line2",
                 "displayName": "line2",
                 "type": [
@@ -217,7 +217,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "suburb": {
+              {
                 "name": "suburb",
                 "displayName": "suburb",
                 "type": [
@@ -237,7 +237,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
-              "postcode": {
+              {
                 "name": "postcode",
                 "displayName": "postcode",
                 "type": [
@@ -257,7 +257,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -268,7 +268,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

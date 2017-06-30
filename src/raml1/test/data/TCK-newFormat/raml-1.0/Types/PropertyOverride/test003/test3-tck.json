@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -28,7 +28,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -48,8 +48,8 @@
         "type": [
           "PropertyType1"
         ],
-        "properties": {
-          "name2": {
+        "properties": [
+          {
             "name": "name2",
             "displayName": "name2",
             "type": [
@@ -69,7 +69,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -86,8 +86,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -107,7 +107,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -127,8 +127,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "testProperty": {
+        "properties": [
+          {
             "name": "testProperty",
             "displayName": "testProperty",
             "type": [
@@ -148,7 +148,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -168,8 +168,8 @@
         "type": [
           "Type1"
         ],
-        "properties": {
-          "testProperty": {
+        "properties": [
+          {
             "name": "testProperty",
             "displayName": "testProperty",
             "type": [
@@ -189,7 +189,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

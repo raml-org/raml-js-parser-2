@@ -7,8 +7,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -31,7 +31,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "p2": {
+          {
             "name": "p2",
             "displayName": "p2",
             "type": [
@@ -51,7 +51,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "p3": {
+          {
             "name": "p3",
             "displayName": "p3",
             "type": [
@@ -71,7 +71,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -91,8 +91,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "comment": {
+        "properties": [
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -115,7 +115,7 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
-          "value": {
+          {
             "name": "value",
             "displayName": "value",
             "type": [
@@ -136,7 +136,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "ComponentType"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

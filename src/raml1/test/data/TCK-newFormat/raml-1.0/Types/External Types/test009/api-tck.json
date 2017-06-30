@@ -23,8 +23,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "c": {
+        "properties": [
+          {
             "name": "c",
             "displayName": "c",
             "type": [
@@ -43,7 +43,7 @@
             },
             "mediaType": "application/json"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {

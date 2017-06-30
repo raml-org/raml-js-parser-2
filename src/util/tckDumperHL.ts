@@ -96,7 +96,7 @@ export class TCKDumper {
         //new ParametersTransformer(),
         //new TypesTransformer(),
         //new UsesTransformer(),
-        new PropertiesTransformer(),
+        //new PropertiesTransformer(),
 //        new TypeValueTransformer(),
         // //new ExamplesTransformer(),
         //new ResponsesTransformer(),

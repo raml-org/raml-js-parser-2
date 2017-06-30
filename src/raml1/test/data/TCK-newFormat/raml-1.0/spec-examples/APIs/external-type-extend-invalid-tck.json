@@ -25,8 +25,8 @@
         "type": [
           "object"
         ],
-        "properties": {
-          "members": {
+        "properties": [
+          {
             "name": "members",
             "displayName": "members",
             "type": [
@@ -47,7 +47,7 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "Person"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
