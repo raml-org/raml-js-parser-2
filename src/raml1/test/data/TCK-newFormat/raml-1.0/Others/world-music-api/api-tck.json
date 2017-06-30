@@ -1,13 +1,13 @@
 {
   "specification": {
-    "annotations": {
-      "info": {
+    "annotations": [
+      {
         "name": "info",
         "value": {
           "license": "MIT"
         }
       }
-    },
+    ],
     "uses": [
       {
         "key": "SongsLib",
@@ -877,20 +877,20 @@
         "absoluteParentUri": "http://{environment}.musicapi.com/{version}"
       },
       {
-        "annotations": {
-          "ready": {
+        "annotations": [
+          {
             "name": "ready",
             "structuredValue": null
           }
-        },
+        ],
         "methods": {
           "get": {
-            "annotations": {
-              "monitoringInterval": {
+            "annotations": [
+              {
                 "name": "monitoringInterval",
                 "value": 30
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "genre",
@@ -1012,8 +1012,8 @@
           {
             "methods": {
               "get": {
-                "annotations": {
-                  "deprecated": {
+                "annotations": [
+                  {
                     "name": "deprecated",
                     "value": {
                       "date": "2016-02-28T16:41:41.090Z",
@@ -1023,7 +1023,7 @@
                       "comment": "no comment"
                     }
                   }
-                },
+                ],
                 "responses": [
                   {
                     "code": "200",
@@ -1170,10 +1170,12 @@
     ],
     "scalarsAnnotations": {
       "baseUri": [
-        {
-          "name": "rediractable",
-          "value": true
-        }
+        [
+          {
+            "name": "rediractable",
+            "value": true
+          }
+        ]
       ]
     }
   },

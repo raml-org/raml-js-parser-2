@@ -9,19 +9,19 @@
     "title": "Overlay 2",
     "resources": [
       {
-        "annotations": {
-          "lib.TestAnnotationType": {
+        "annotations": [
+          {
             "name": "lib.TestAnnotationType",
             "value": "TestAnnotationType2"
           },
-          "lib.AnotherAnnotationType": {
+          {
             "name": "lib.AnotherAnnotationType",
             "value": {
               "firstProp": "firstProp2",
               "secondProp": 101
             }
           }
-        },
+        ],
         "relativeUri": "/servers",
         "displayName": "/servers",
         "__METADATA__": {

@@ -39,10 +39,12 @@
         },
         "scalarsAnnotations": {
           "minProperties": [
-            {
-              "name": "a",
-              "value": "abcdefghijkl"
-            }
+            [
+              {
+                "name": "a",
+                "value": "abcdefghijkl"
+              }
+            ]
           ]
         },
         "mediaType": "application/raml+yaml",

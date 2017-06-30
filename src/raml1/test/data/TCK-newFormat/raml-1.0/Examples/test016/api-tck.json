@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotationType1": {
+    "annotations": [
+      {
         "name": "MyAnnotationType1",
         "value": {
           "pp": {
@@ -10,7 +10,7 @@
           }
         }
       }
-    },
+    ],
     "types": [
       {
         "name": "MyType1",

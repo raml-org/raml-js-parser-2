@@ -2,12 +2,12 @@
   "specification": {
     "types": [
       {
-        "annotations": {
-          "meta-data": {
+        "annotations": [
+          {
             "name": "meta-data",
             "value": "on an object; on a data type declaration"
           }
-        },
+        ],
         "name": "User",
         "displayName": "User",
         "type": [
@@ -15,12 +15,12 @@
         ],
         "properties": {
           "name": {
-            "annotations": {
-              "meta-data": {
+            "annotations": [
+              {
                 "name": "meta-data",
                 "value": "on a string property"
               }
-            },
+            ],
             "name": "name",
             "displayName": "name",
             "type": [
@@ -102,35 +102,35 @@
     ],
     "resources": [
       {
-        "annotations": {
-          "meta-resource-method": {
+        "annotations": [
+          {
             "name": "meta-resource-method",
             "value": "on a resource"
           }
-        },
+        ],
         "methods": {
           "get": {
-            "annotations": {
-              "meta-resource-method": {
+            "annotations": [
+              {
                 "name": "meta-resource-method",
                 "value": "on a method"
               },
-              "meta-data": {
+              {
                 "name": "meta-data",
                 "value": "stringValue1"
               }
-            },
+            ],
             "responses": [
               {
                 "code": "200",
                 "body": [
                   {
-                    "annotations": {
-                      "meta-data": {
+                    "annotations": [
+                      {
                         "name": "meta-data",
                         "value": "on a body"
                       }
-                    },
+                    ],
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [

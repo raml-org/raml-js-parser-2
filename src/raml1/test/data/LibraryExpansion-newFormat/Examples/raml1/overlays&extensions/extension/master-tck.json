@@ -27,12 +27,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "decls.important": {
+            "annotations": [
+              {
                 "name": "decls.important",
                 "structuredValue": null
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

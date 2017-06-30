@@ -158,16 +158,16 @@
     ],
     "resources": [
       {
-        "annotations": {
-          "experimental": {
+        "annotations": [
+          {
             "name": "experimental",
             "structuredValue": null
           },
-          "feedbackRequested": {
+          {
             "name": "feedbackRequested",
             "structuredValue": null
           }
-        },
+        ],
         "relativeUri": "/groups",
         "displayName": "/groups",
         "__METADATA__": {
@@ -186,39 +186,39 @@
         "absoluteParentUri": ""
       },
       {
-        "annotations": {
-          "testHarness": {
+        "annotations": [
+          {
             "name": "testHarness",
             "value": "usersTest"
           },
-          "badge": {
+          {
             "name": "badge",
             "value": "tested.gif"
           },
-          "clearanceLevel": {
+          {
             "name": "clearanceLevel",
             "value": {
               "level": "high",
               "signature": "230-ghtwvfrs1itr"
             }
           }
-        },
+        ],
         "methods": {
           "get": {
-            "annotations": {
-              "deprecated": {
+            "annotations": [
+              {
                 "name": "deprecated",
                 "structuredValue": null
               },
-              "experimental": {
+              {
                 "name": "experimental",
                 "structuredValue": null
               },
-              "feedbackRequested": {
+              {
                 "name": "feedbackRequested",
                 "value": "Feedback committed!"
               }
-            },
+            ],
             "responses": [
               {
                 "code": "200"

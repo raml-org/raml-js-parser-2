@@ -63,8 +63,8 @@
     "title": "Annotation with arbitrary properties",
     "resources": [
       {
-        "annotations": {
-          "suborg": {
+        "annotations": [
+          {
             "name": "suborg",
             "value": {
               "prop1": 4,
@@ -79,7 +79,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/assets",
         "displayName": "/assets",
         "__METADATA__": {

@@ -1,23 +1,23 @@
 {
   "specification": {
-    "annotations": {
-      "library.highLevelApiDescription": {
+    "annotations": [
+      {
         "name": "library.highLevelApiDescription",
         "structuredValue": null
       },
-      "library.apiLogo": {
+      {
         "name": "library.apiLogo",
         "structuredValue": null
       },
-      "library.specAuthor": {
+      {
         "name": "library.specAuthor",
         "value": "mulesoft.com"
       },
-      "library.devPortal": {
+      {
         "name": "library.devPortal",
         "structuredValue": null
       },
-      "library.extraResources": {
+      {
         "name": "library.extraResources",
         "value": [
           {
@@ -27,7 +27,7 @@
           }
         ]
       }
-    },
+    ],
     "uses": [
       {
         "key": "library",

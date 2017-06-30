@@ -24,8 +24,8 @@
     "title": "Annotation with arbitrary properties",
     "resources": [
       {
-        "annotations": {
-          "suborg": {
+        "annotations": [
+          {
             "name": "suborg",
             "value": {
               "manager": {
@@ -36,7 +36,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/assets",
         "displayName": "/assets",
         "__METADATA__": {
@@ -55,8 +55,8 @@
         "absoluteParentUri": ""
       },
       {
-        "annotations": {
-          "suborg1": {
+        "annotations": [
+          {
             "name": "suborg1",
             "value": {
               "manager": {
@@ -67,7 +67,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/foods",
         "displayName": "/foods",
         "__METADATA__": {

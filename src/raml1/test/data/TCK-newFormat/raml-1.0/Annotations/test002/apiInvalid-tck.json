@@ -1,14 +1,14 @@
 {
   "specification": {
-    "annotations": {
-      "test": {
+    "annotations": [
+      {
         "name": "test",
         "value": {
           "q": "true2",
           "items": "W"
         }
       }
-    },
+    ],
     "annotationTypes": [
       {
         "name": "test",

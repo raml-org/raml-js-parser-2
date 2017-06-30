@@ -102,18 +102,18 @@
           "get": {
             "queryParameters": [
               {
-                "annotations": {
-                  "sortable": {
+                "annotations": [
+                  {
                     "name": "sortable",
                     "value": {
                       "default": "low"
                     }
                   },
-                  "searchable": {
+                  {
                     "name": "searchable",
                     "structuredValue": null
                   }
-                },
+                ],
                 "name": "kind",
                 "displayName": "kind",
                 "type": [

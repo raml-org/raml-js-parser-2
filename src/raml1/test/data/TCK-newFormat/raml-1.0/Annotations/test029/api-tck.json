@@ -4,12 +4,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "<<annotation>>": {
+            "annotations": [
+              {
                 "name": "<<annotation>>",
                 "value": "simpleAnnotationValue"
               },
-              "objectAnnotation": {
+              {
                 "name": "objectAnnotation",
                 "value": {
                   "property1": {
@@ -19,7 +19,7 @@
                   "property2": "baseProperty2_value"
                 }
               }
-            },
+            ],
             "method": "get"
           }
         },
@@ -204,12 +204,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "simpleAnnotation": {
+            "annotations": [
+              {
                 "name": "simpleAnnotation",
                 "value": "simpleAnnotationValue"
               },
-              "objectAnnotation": {
+              {
                 "name": "objectAnnotation",
                 "value": {
                   "property1": {
@@ -219,7 +219,7 @@
                   "property2": "baseProperty2_value"
                 }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

@@ -2,14 +2,14 @@
   "specification": {
     "traits": [
       {
-        "annotations": {
-          "Test3": {
+        "annotations": [
+          {
             "name": "Test3",
             "value": {
               "name": "Blah"
             }
           }
-        },
+        ],
         "queryParameters": [
           {
             "name": "priceLessThen",

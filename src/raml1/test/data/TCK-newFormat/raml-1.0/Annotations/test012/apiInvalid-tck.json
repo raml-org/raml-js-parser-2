@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotations": {
-      "Type": {
+    "annotations": [
+      {
         "name": "Type",
         "value": {
           "prop1": {
@@ -9,7 +9,7 @@
           }
         }
       }
-    },
+    ],
     "annotationTypes": [
       {
         "name": "Type",

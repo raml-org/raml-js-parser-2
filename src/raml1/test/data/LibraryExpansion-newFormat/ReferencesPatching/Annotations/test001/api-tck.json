@@ -4,12 +4,12 @@
       {
         "body": [
           {
-            "annotations": {
-              "lib1.lib2.MyAnnotation": {
+            "annotations": [
+              {
                 "name": "lib1.lib2.MyAnnotation",
                 "value": "stringValue"
               }
-            },
+            ],
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -70,12 +70,12 @@
           "post": {
             "body": [
               {
-                "annotations": {
-                  "lib1.lib2.MyAnnotation": {
+                "annotations": [
+                  {
                     "name": "lib1.lib2.MyAnnotation",
                     "value": "stringValue"
                   }
-                },
+                ],
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [

@@ -64,18 +64,16 @@
     "title": "Annotations 14",
     "resources": [
       {
-        "annotations": {
-          "meta": [
-            {
-              "name": "meta",
-              "value": "users.gif"
-            },
-            {
-              "name": "meta",
-              "value": "stringValue"
-            }
-          ]
-        },
+        "annotations": [
+          {
+            "name": "meta",
+            "value": "users.gif"
+          },
+          {
+            "name": "meta",
+            "value": "stringValue"
+          }
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

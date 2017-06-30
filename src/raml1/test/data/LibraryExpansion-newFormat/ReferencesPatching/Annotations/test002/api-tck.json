@@ -2,21 +2,21 @@
   "specification": {
     "traits": [
       {
-        "annotations": {
-          "lib.MyAnnotation": {
+        "annotations": [
+          {
             "name": "lib.MyAnnotation",
             "value": "stringValueFromLibTrait1"
           }
-        },
+        ],
         "name": "lib.libTrait1"
       },
       {
-        "annotations": {
-          "lib.MyAnnotation": {
+        "annotations": [
+          {
             "name": "lib.MyAnnotation",
             "value": "stringValueFromLibTrait2"
           }
-        },
+        ],
         "name": "lib.libTrait2"
       }
     ],
@@ -59,12 +59,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "lib.MyAnnotation": {
+            "annotations": [
+              {
                 "name": "lib.MyAnnotation",
                 "value": "stringValueFromLibTrait1"
               }
-            },
+            ],
             "is": [
               "lib.libTrait1"
             ],
@@ -73,12 +73,12 @@
             "absoluteParentUri": "/{id}"
           },
           "post": {
-            "annotations": {
-              "lib.MyAnnotation": {
+            "annotations": [
+              {
                 "name": "lib.MyAnnotation",
                 "value": "stringValueFromLibTrait2"
               }
-            },
+            ],
             "is": [
               "lib.libTrait1"
             ],

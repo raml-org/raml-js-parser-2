@@ -11,12 +11,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "decls.important": {
+            "annotations": [
+              {
                 "name": "decls.important",
                 "structuredValue": null
               }
-            },
+            ],
             "responses": [
               {
                 "code": "200"

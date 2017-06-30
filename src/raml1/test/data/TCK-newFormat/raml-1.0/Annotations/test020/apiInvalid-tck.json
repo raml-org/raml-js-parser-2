@@ -100,26 +100,26 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "searchable": {
+            "annotations": [
+              {
                 "name": "searchable",
                 "value": "someValue"
               }
-            },
+            ],
             "queryParameters": [
               {
-                "annotations": {
-                  "sortable": {
+                "annotations": [
+                  {
                     "name": "sortable",
                     "value": {
                       "default": "low"
                     }
                   },
-                  "searchable": {
+                  {
                     "name": "searchable",
                     "structuredValue": null
                   }
-                },
+                ],
                 "name": "kind",
                 "displayName": "kind",
                 "type": [

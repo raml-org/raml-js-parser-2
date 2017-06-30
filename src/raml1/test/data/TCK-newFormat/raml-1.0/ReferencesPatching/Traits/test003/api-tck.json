@@ -12,12 +12,12 @@
     ],
     "traits": [
       {
-        "annotations": {
-          "lib2.MyAnnotation": {
+        "annotations": [
+          {
             "name": "lib2.MyAnnotation",
             "value": "stringValue"
           }
-        },
+        ],
         "body": [
           {
             "name": "application/json",
@@ -49,12 +49,12 @@
       {
         "methods": {
           "post": {
-            "annotations": {
-              "lib2.MyAnnotation": {
+            "annotations": [
+              {
                 "name": "lib2.MyAnnotation",
                 "value": "stringValue"
               }
-            },
+            ],
             "body": [
               {
                 "name": "application/json",

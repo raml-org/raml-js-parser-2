@@ -114,8 +114,8 @@
         "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
-        "annotations": {
-          "childAnnotation": {
+        "annotations": [
+          {
             "name": "childAnnotation",
             "value": {
               "baseProperty1": {
@@ -127,7 +127,7 @@
               "childProperty2": 17
             }
           }
-        },
+        ],
         "name": "MyType",
         "displayName": "MyType",
         "type": [
@@ -259,8 +259,8 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "childAnnotation": {
+            "annotations": [
+              {
                 "name": "childAnnotation",
                 "value": {
                   "baseProperty1": {
@@ -269,7 +269,7 @@
                   "childProperty1": "enum_value2"
                 }
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],

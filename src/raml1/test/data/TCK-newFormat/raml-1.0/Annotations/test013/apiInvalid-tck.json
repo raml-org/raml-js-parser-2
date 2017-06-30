@@ -93,19 +93,19 @@
     "title": "Playing with annotations",
     "resources": [
       {
-        "annotations": {
-          "test-harness": {
+        "annotations": [
+          {
             "name": "test-harness",
             "value": {
               "name": "user-harness",
               "level": "medium1"
             }
           },
-          "logo": {
+          {
             "name": "logo",
             "value": "google.com"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

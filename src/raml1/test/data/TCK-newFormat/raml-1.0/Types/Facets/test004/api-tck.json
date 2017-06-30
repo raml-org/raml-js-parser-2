@@ -2,16 +2,16 @@
   "specification": {
     "types": [
       {
-        "annotations": {
-          "reader": {
+        "annotations": [
+          {
             "name": "reader",
             "value": "myReaader.ts"
           },
-          "writer": {
+          {
             "name": "writer",
             "value": "myWiter.ts"
           }
-        },
+        ],
         "name": "myDate",
         "displayName": "myDate",
         "facets": {

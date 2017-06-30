@@ -11,63 +11,63 @@
         "name": "lib.rt"
       },
       {
-        "annotations": {
-          "<<param1>>": {
+        "annotations": [
+          {
             "name": "<<param1>>",
             "value": "stringValue1"
           },
-          "<<param2>>": {
+          {
             "name": "<<param2>>",
             "value": 5
           },
-          "lib.lib.Monkey": {
+          {
             "name": "lib.lib.Monkey",
             "value": true
           }
-        },
+        ],
         "methods": {
           "get": {
-            "annotations": {
-              "<<param1>>": {
+            "annotations": [
+              {
                 "name": "<<param1>>",
                 "value": "stringValue2"
               }
-            },
+            ],
             "method": "get"
           },
           "post": {
-            "annotations": {
-              "<<param2>>": {
+            "annotations": [
+              {
                 "name": "<<param2>>",
                 "value": 8
               }
-            },
+            ],
             "method": "post"
           },
           "put": {
-            "annotations": {
-              "lib.lib.Monkey": {
+            "annotations": [
+              {
                 "name": "lib.lib.Monkey",
                 "structuredValue": false
               }
-            },
+            ],
             "method": "put"
           },
           "delete": {
-            "annotations": {
-              "<<param1>>": {
+            "annotations": [
+              {
                 "name": "<<param1>>",
                 "value": "stringValue3"
               },
-              "<<param2>>": {
+              {
                 "name": "<<param2>>",
                 "value": 16
               },
-              "lib.lib.Monkey": {
+              {
                 "name": "lib.lib.Monkey",
                 "value": true
               }
-            },
+            ],
             "method": "delete"
           }
         },

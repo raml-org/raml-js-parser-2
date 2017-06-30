@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotations": {
-      "hello": {
+    "annotations": [
+      {
         "name": "hello",
         "value": {
           "persons": {
@@ -13,7 +13,7 @@
           }
         }
       }
-    },
+    ],
     "types": [
       {
         "name": "Pet",

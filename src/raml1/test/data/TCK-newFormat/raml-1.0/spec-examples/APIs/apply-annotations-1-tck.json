@@ -24,12 +24,12 @@
     ],
     "resources": [
       {
-        "annotations": {
-          "testHarness": {
+        "annotations": [
+          {
             "name": "testHarness",
             "value": "usersTest"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

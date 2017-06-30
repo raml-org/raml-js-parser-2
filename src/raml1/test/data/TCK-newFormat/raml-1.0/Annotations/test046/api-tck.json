@@ -169,8 +169,8 @@
       {
         "methods": {
           "put": {
-            "annotations": {
-              "views.views": {
+            "annotations": [
+              {
                 "name": "views.views",
                 "value": [
                   {
@@ -181,7 +181,7 @@
                   }
                 ]
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "a",

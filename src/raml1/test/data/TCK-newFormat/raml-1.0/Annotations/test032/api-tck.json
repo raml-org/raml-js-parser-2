@@ -122,21 +122,23 @@
     },
     "scalarsAnnotations": {
       "baseUri": [
-        {
-          "name": "bindingDefinition",
-          "value": [
-            {
-              "method": "GET",
-              "input": "NONE",
-              "output": "REQUIRED"
-            },
-            {
-              "method": "POST",
-              "input": "NONE",
-              "output": "REQUIRED"
-            }
-          ]
-        }
+        [
+          {
+            "name": "bindingDefinition",
+            "value": [
+              {
+                "method": "GET",
+                "input": "NONE",
+                "output": "REQUIRED"
+              },
+              {
+                "method": "POST",
+                "input": "NONE",
+                "output": "REQUIRED"
+              }
+            ]
+          }
+        ]
       ]
     }
   },

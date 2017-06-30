@@ -21,10 +21,12 @@
     "title": "Hello",
     "scalarsAnnotations": {
       "title": [
-        {
-          "name": "z",
-          "value": 3
-        }
+        [
+          {
+            "name": "z",
+            "value": 3
+          }
+        ]
       ]
     }
   },

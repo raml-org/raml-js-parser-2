@@ -45,10 +45,12 @@
         },
         "scalarsAnnotations": {
           "discriminator": [
-            {
-              "name": "a",
-              "value": "abcdefg"
-            }
+            [
+              {
+                "name": "a",
+                "value": "abcdefg"
+              }
+            ]
           ]
         },
         "mediaType": "application/raml+yaml",

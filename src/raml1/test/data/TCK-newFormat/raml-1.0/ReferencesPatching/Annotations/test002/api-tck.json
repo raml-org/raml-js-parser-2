@@ -8,24 +8,24 @@
     ],
     "traits": [
       {
-        "annotations": {
-          "lib.MyAnnotation": {
+        "annotations": [
+          {
             "name": "lib.MyAnnotation",
             "value": "stringValueFromLibTrait1"
           }
-        },
+        ],
         "name": "lib.libTrait1",
         "__METADATA__": {
           "calculated": true
         }
       },
       {
-        "annotations": {
-          "lib.MyAnnotation": {
+        "annotations": [
+          {
             "name": "lib.MyAnnotation",
             "value": "stringValueFromLibTrait2"
           }
-        },
+        ],
         "name": "lib.libTrait2",
         "__METADATA__": {
           "calculated": true
@@ -56,12 +56,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "lib.MyAnnotation": {
+            "annotations": [
+              {
                 "name": "lib.MyAnnotation",
                 "value": "stringValueFromLibTrait1"
               }
-            },
+            ],
             "is": [
               "lib.libTrait1"
             ],
@@ -70,12 +70,12 @@
             "absoluteParentUri": "/{id}"
           },
           "post": {
-            "annotations": {
-              "lib.MyAnnotation": {
+            "annotations": [
+              {
                 "name": "lib.MyAnnotation",
                 "value": "stringValueFromLibTrait2"
               }
-            },
+            ],
             "is": [
               "lib.libTrait1"
             ],

@@ -23,12 +23,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "deprecated": {
+            "annotations": [
+              {
                 "name": "deprecated",
                 "structuredValue": null
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/users",
             "absoluteParentUri": "/users"

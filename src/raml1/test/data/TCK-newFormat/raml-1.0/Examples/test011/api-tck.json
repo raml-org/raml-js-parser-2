@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotationType1": {
+    "annotations": [
+      {
         "name": "MyAnnotationType1",
         "value": {
           "cc": [
@@ -12,11 +12,11 @@
           ]
         }
       },
-      "MyAnnotationType2": {
+      {
         "name": "MyAnnotationType2",
         "value": "a"
       }
-    },
+    ],
     "types": [
       {
         "name": "SmallArray",

@@ -65,12 +65,12 @@
     "title": "Annotations 14",
     "resources": [
       {
-        "annotations": {
-          "meta": {
+        "annotations": [
+          {
             "name": "meta",
             "value": "users100500.gif"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

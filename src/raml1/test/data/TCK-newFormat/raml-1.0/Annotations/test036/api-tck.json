@@ -22,8 +22,8 @@
     "version": "v1",
     "resources": [
       {
-        "annotations": {
-          "Label": {
+        "annotations": [
+          {
             "name": "Label",
             "value": {
               "field1": 7,
@@ -35,7 +35,7 @@
               }
             }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

@@ -20,21 +20,21 @@
     ],
     "securitySchemes": [
       {
-        "annotations": {
-          "TestAnnotation": {
+        "annotations": [
+          {
             "name": "TestAnnotation",
             "value": "stringValue1"
           }
-        },
+        ],
         "name": "TestScheme",
         "type": "OAuth 1.0",
         "settings": {
-          "annotations": {
-            "TestAnnotation": {
+          "annotations": [
+            {
               "name": "TestAnnotation",
               "value": "stringValue2"
             }
-          },
+          ],
           "requestTokenUri": "https://example.com/requesttoken",
           "authorizationUri": "https://example.com/authorize",
           "tokenCredentialsUri": "https://example.com/credentials"

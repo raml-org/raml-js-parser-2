@@ -101,7 +101,7 @@ export class TCKDumper {
         // //new ExamplesTransformer(),
         //new ResponsesTransformer(),
         //new BodiesTransformer(),
-        new AnnotationsTransformer(),
+        //new AnnotationsTransformer(),
         //new SecuritySchemesTransformer(),
         //new AnnotationTypesTransformer(),
         //new TemplateParametrizedPropertiesTransformer(),
@@ -326,7 +326,7 @@ export class TCKDumper {
                                 if (attr.isAnnotatedScalar()) {
                                     var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     if (sAnnotations.length > 0) {
-                                        scalarsAnnotations[pName] = sAnnotations;
+                                        scalarsAnnotations[pName] = [ sAnnotations ];
                                     }
                                 }
                             }

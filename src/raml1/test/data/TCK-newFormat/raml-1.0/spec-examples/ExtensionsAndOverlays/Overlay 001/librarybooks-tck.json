@@ -124,8 +124,8 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "monitor": {
+            "annotations": [
+              {
                 "name": "monitor",
                 "value": {
                   "frequency": {
@@ -135,7 +135,7 @@
                   "script": "randomBooksFetch"
                 }
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/books",
             "absoluteParentUri": "/books"

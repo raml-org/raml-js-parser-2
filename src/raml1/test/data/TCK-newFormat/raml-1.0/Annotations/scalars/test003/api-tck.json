@@ -31,10 +31,12 @@
             },
             "scalarsAnnotations": {
               "default": [
-                {
-                  "name": "a",
-                  "value": "abcdefghijk"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "abcdefghijk"
+                  }
+                ]
               ]
             },
             "mediaType": "application/raml+yaml",

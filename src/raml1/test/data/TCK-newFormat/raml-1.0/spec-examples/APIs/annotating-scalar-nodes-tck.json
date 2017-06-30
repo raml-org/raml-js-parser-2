@@ -32,10 +32,12 @@
     },
     "scalarsAnnotations": {
       "baseUri": [
-        {
-          "name": "redirectable",
-          "value": true
-        }
+        [
+          {
+            "name": "redirectable",
+            "value": true
+          }
+        ]
       ]
     }
   },

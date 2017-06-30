@@ -1,11 +1,11 @@
 {
   "specification": {
-    "annotations": {
-      "amazon-apigateway-integration": {
+    "annotations": [
+      {
         "name": "amazon-apigateway-integration",
         "value": "1s"
       }
-    },
+    ],
     "types": [
       {
         "name": "amazon-apigateway-integration",

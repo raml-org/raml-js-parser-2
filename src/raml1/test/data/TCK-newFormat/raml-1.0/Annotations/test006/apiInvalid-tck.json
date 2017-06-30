@@ -113,8 +113,8 @@
     ],
     "resources": [
       {
-        "annotations": {
-          "Label": {
+        "annotations": [
+          {
             "name": "Label",
             "value": {
               "point": [
@@ -130,7 +130,7 @@
               ]
             }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotations": {
-      "x": {
+    "annotations": [
+      {
         "name": "x",
         "value": {
           "v": [
@@ -10,7 +10,7 @@
           ]
         }
       }
-    },
+    ],
     "annotationTypes": [
       {
         "name": "x",

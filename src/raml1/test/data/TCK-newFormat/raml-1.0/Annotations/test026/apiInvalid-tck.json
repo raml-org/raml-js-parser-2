@@ -42,16 +42,20 @@
         "displayName": "myResource",
         "scalarsAnnotations": {
           "description": [
-            {
-              "name": "a1",
-              "value": 5
-            }
+            [
+              {
+                "name": "a1",
+                "value": 5
+              }
+            ]
           ],
           "displayName": [
-            {
-              "name": "a2",
-              "value": "value1"
-            }
+            [
+              {
+                "name": "a2",
+                "value": "value1"
+              }
+            ]
           ]
         },
         "relativeUriPathSegments": [

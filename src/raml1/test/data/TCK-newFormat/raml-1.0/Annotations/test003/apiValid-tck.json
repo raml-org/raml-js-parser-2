@@ -1,13 +1,13 @@
 {
   "specification": {
-    "annotations": {
-      "test": {
+    "annotations": [
+      {
         "name": "test",
         "value": {
           "q": true
         }
       }
-    },
+    ],
     "annotationTypes": [
       {
         "name": "test",

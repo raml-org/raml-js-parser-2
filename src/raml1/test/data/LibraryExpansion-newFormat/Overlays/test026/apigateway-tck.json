@@ -709,12 +709,12 @@
       {
         "methods": {
           "get": {
-            "annotations": {
-              "AWS.amazon-apigateway-auth": {
+            "annotations": [
+              {
                 "name": "AWS.amazon-apigateway-auth",
                 "value": "aws_iam"
               },
-              "AWS.amazon-apigateway-integration": {
+              {
                 "name": "AWS.amazon-apigateway-integration",
                 "value": {
                   "type": "aws",
@@ -755,7 +755,7 @@
                   }
                 }
               }
-            },
+            ],
             "queryParameters": [
               {
                 "name": "latitude",

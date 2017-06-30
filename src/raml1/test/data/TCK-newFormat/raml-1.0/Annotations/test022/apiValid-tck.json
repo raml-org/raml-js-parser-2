@@ -1,13 +1,13 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotation": {
+    "annotations": [
+      {
         "name": "MyAnnotation",
         "value": {
           "numberProp": 10
         }
       }
-    },
+    ],
     "types": [
       {
         "name": "MyType",

@@ -31,12 +31,12 @@
           "get": {
             "body": [
               {
-                "annotations": {
-                  "xz": {
+                "annotations": [
+                  {
                     "name": "xz",
                     "value": "z"
                   }
-                },
+                ],
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [

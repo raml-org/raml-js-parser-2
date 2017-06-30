@@ -16,8 +16,8 @@
             ],
             "properties": {
               "cardId": {
-                "annotations": {
-                  "lib.bindingDefinition": {
+                "annotations": [
+                  {
                     "name": "lib.bindingDefinition",
                     "value": [
                       {
@@ -32,7 +32,7 @@
                       }
                     ]
                   }
-                },
+                ],
                 "name": "cardId",
                 "displayName": "cardId",
                 "type": [

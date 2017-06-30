@@ -11,63 +11,63 @@
         "name": "lib.rt"
       },
       {
-        "annotations": {
-          "<<param1>>": {
+        "annotations": [
+          {
             "name": "<<param1>>",
             "value": 17
           },
-          "<<param2>>": {
+          {
             "name": "<<param2>>",
             "value": 5
           },
-          "lib.lib.Monkey": {
+          {
             "name": "lib.lib.Monkey",
             "value": true
           }
-        },
+        ],
         "methods": {
           "get": {
-            "annotations": {
-              "<<param1>>": {
+            "annotations": [
+              {
                 "name": "<<param1>>",
                 "value": "stringValue2"
               }
-            },
+            ],
             "method": "get"
           },
           "post": {
-            "annotations": {
-              "<<param2>>": {
+            "annotations": [
+              {
                 "name": "<<param2>>",
                 "value": 8
               }
-            },
+            ],
             "method": "post"
           },
           "put": {
-            "annotations": {
-              "lib.lib.Monkey": {
+            "annotations": [
+              {
                 "name": "lib.lib.Monkey",
                 "structuredValue": false
               }
-            },
+            ],
             "method": "put"
           },
           "delete": {
-            "annotations": {
-              "<<param1>>": {
+            "annotations": [
+              {
                 "name": "<<param1>>",
                 "value": "stringValue3"
               },
-              "<<param2>>": {
+              {
                 "name": "<<param2>>",
                 "value": 16
               },
-              "lib.lib.Monkey": {
+              {
                 "name": "lib.lib.Monkey",
                 "value": true
               }
-            },
+            ],
             "method": "delete"
           }
         },
@@ -127,69 +127,69 @@
     "title": "Test API",
     "resources": [
       {
-        "annotations": {
-          "Monkey": {
+        "annotations": [
+          {
             "name": "Monkey",
             "value": 17
           },
-          "lib.Monkey": {
+          {
             "name": "lib.Monkey",
             "value": 5
           },
-          "lib.lib.Monkey": {
+          {
             "name": "lib.lib.Monkey",
             "value": true
           }
-        },
+        ],
         "methods": {
           "get": {
-            "annotations": {
-              "Monkey": {
+            "annotations": [
+              {
                 "name": "Monkey",
                 "value": "stringValue2"
               }
-            },
+            ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
           "post": {
-            "annotations": {
-              "lib.Monkey": {
+            "annotations": [
+              {
                 "name": "lib.Monkey",
                 "value": 8
               }
-            },
+            ],
             "method": "post",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
           "put": {
-            "annotations": {
-              "lib.lib.Monkey": {
+            "annotations": [
+              {
                 "name": "lib.lib.Monkey",
                 "structuredValue": false
               }
-            },
+            ],
             "method": "put",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
           },
           "delete": {
-            "annotations": {
-              "Monkey": {
+            "annotations": [
+              {
                 "name": "Monkey",
                 "value": "stringValue3"
               },
-              "lib.Monkey": {
+              {
                 "name": "lib.Monkey",
                 "value": 16
               },
-              "lib.lib.Monkey": {
+              {
                 "name": "lib.lib.Monkey",
                 "value": true
               }
-            },
+            ],
             "method": "delete",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource"
