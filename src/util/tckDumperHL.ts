@@ -59,25 +59,15 @@ export class TCKDumper {
             new MethodsTransformer(),
             new ResourcesTransformer(),
             new AnnotationTransformer(),
-            //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
             new TypeTransformer(this.options),
-            //new ParametersTransformer(),
-            //new ArrayExpressionTransformer(),
-            //new UsesTransformer(),
-            //new PropertiesTransformer(),
-            //new ResponsesTransformer(),
-            //new BodiesTransformer(),
-            //new AnnotationsTransformer(),
+            //new UsesDeclarationTransformer(),
             new SimpleNamesTransformer(),
             new TemplateParametrizedPropertiesTransformer(),
-
-            //new FacetsTransformer(),
             new SchemasTransformer(),
             new ProtocolsToUpperCaseTransformer(),
             new ReferencesTransformer(),
             new Api10SchemasTransformer(),
             new AllUriParametersTransformer(this.options.allUriParameters)
-            //new OneElementArrayTransformer()
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
         fillTransformersMap(this.nodePropertyTransformers,this.nodePropertyTransformersMap);
@@ -97,8 +87,8 @@ export class TCKDumper {
         //new TypesTransformer(),
         //new UsesTransformer(),
         //new PropertiesTransformer(),
-//        new TypeValueTransformer(),
-        // //new ExamplesTransformer(),
+        //new TypeValueTransformer(),
+        //new ExamplesTransformer(),
         //new ResponsesTransformer(),
         //new BodiesTransformer(),
         //new AnnotationsTransformer(),
