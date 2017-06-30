@@ -50,6 +50,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"name\":\"somename\",\"child\":{\"innerTypeName1\":\"anothername\"}}"
+                ],
                 "mediaType": "application/json"
               }
             ],

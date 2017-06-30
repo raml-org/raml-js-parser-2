@@ -39,6 +39,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"message\":2}"
+        ],
         "mediaType": "application/json"
       },
       {
@@ -62,6 +65,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "{\"id\":\"4\"}"
         ],
         "mediaType": "application/json"
       }

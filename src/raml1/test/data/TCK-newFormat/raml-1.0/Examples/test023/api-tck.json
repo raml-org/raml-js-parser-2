@@ -48,6 +48,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"a\":5}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
@@ -86,6 +89,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"message\":4,\"vlue\":3}"
                     ],
                     "type": [
                       "{\n  \"required\": [\"message\"],\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"

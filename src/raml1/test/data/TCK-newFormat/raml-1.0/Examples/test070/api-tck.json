@@ -41,6 +41,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"data\":[{\"a\":1,\"b\":2,\"c\":3}]}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

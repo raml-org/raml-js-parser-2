@@ -48,6 +48,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"a\":5}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
@@ -108,6 +111,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      null
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"

@@ -58,6 +58,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"body\":{\"id\":7}}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

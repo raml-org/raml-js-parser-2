@@ -55,6 +55,10 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"p1\":5}",
+          "{\"p1\":8}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

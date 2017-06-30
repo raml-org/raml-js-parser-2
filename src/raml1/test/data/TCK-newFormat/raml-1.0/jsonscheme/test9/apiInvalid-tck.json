@@ -53,6 +53,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"rootName\":\"rootname\",\"parent\":{\"parentName\":\"somename\",\"child\":{\"childName1\":\"anothername\"}}}"
+                ],
                 "mediaType": "application/json"
               }
             ],

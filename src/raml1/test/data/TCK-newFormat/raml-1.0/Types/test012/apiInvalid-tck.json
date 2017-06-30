@@ -78,6 +78,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"selfReference\":[{\"selfReference\":[{\"selfReference\":[],\"someProperty1\":\"val1\"}],\"someProperty\":\"val2\"}],\"someProperty\":\"val3\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

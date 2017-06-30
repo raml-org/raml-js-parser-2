@@ -49,6 +49,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"type\":\"internal_server_error\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },

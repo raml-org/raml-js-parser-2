@@ -539,6 +539,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"rtTypeProperty2\":\"stringValue\"}"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
@@ -668,6 +671,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"traitProperty1\":1,\"traitProperty2\":true,\"traitProperty1_3\":\"stringValue1\",\"traitProperty2_3\":\"stringValue2\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"

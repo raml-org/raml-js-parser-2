@@ -52,6 +52,9 @@
                 }
               }
             },
+            "simplifiedExamples": [
+              "[\"230-OCTO\",\"InvalidHere\"]"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": "dept_code"
@@ -93,6 +96,9 @@
                     }
                   }
                 },
+                "simplifiedExamples": [
+                  "[\"230-OCTO\",\"InvalidHere\"]"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": "dept_code"

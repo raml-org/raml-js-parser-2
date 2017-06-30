@@ -68,6 +68,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p2\":{\"p1\":{\"p2\":{\"p1\":{\"p2\":{\"p1\":{\"p2\":{\"p1\":null}}}}}}}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

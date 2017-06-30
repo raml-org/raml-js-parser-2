@@ -69,6 +69,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":\"Fred\",\"size\":0}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

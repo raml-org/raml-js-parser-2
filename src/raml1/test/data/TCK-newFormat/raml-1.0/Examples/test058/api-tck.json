@@ -169,6 +169,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"name\":\"Rex\",\"fangs\":\"big ones\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

@@ -104,6 +104,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"objectProperty\":{\"prop\":\"string\"},\"stringProperty\":\"stringValue\"}"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }

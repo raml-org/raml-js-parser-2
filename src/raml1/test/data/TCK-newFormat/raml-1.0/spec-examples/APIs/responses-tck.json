@@ -156,6 +156,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "/invoices/45612"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -249,6 +252,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"error\":\"Amount cannot be negative\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"

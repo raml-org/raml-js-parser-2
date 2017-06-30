@@ -67,6 +67,10 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "null\n",
+          "null\n"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -92,6 +96,9 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "null\n"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

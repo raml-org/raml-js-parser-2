@@ -22,6 +22,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "<shiporder orderid=\"123456\">\n  <remoteref>\n    <someProp> </someProp>\n  </remoteref>\n  <orderperson></orderperson>\n\n  <shipto>\n    <name>blah</name>\n\n    <address>blah</address>\n    <city>blah</city>\n    <country>blah</country>\n  </shipto>\n  <item>\n    <title></title>\n    <note></note>\n    <quantity>1</quantity>\n    <price>100500</price>\n  </item>\n</shiporder>\n"
+        ],
         "mediaType": "application/xml",
         "typePropertyKind": "XML"
       }

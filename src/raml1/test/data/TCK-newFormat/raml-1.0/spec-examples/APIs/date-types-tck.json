@@ -21,6 +21,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "2015-05-23"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -44,6 +47,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "12:30:00"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -66,6 +72,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "2015-07-04T21:00:00"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -91,6 +100,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "2016-02-28T16:41:41.090Z"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -114,6 +126,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "Sun, 28 Feb 2016 16:41:41 GMT"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"

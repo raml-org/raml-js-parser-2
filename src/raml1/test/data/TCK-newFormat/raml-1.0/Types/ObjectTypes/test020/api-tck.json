@@ -86,6 +86,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"firstname\":\"eleo\",\"lastname\":\"ortega\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

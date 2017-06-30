@@ -231,6 +231,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"a\":3,\"items\":[{\"c\":3},{\"b\":\"4\",\"c1\":\"3\"}]}"
+                    ],
                     "type": [
                       "MM"
                     ],

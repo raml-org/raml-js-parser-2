@@ -89,6 +89,9 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              "Doe"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
@@ -111,6 +114,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "{\"firstname\":\"John\"}"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -336,6 +342,9 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              "very well made"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           },
@@ -430,6 +439,9 @@
                 "strict": true,
                 "name": null
               }
+            ],
+            "simplifiedExamples": [
+              "2015-05-23"
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
@@ -860,6 +872,10 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"title\":\"My Song\",\"length\":12}",
+          "{\"title\":\"Last\",\"length\":3}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }
@@ -1061,6 +1077,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          2
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -1802,6 +1821,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
                         ],
                         "mediaType": "application/xml",
                         "typePropertyKind": "XML"

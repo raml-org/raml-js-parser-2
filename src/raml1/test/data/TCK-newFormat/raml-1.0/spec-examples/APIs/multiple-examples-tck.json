@@ -117,6 +117,10 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"title\":\"Attention needed\",\"body\":\"You have been added to group 274\"}",
+          "{\"name\":\"log item\",\"comment\":\"permission check\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

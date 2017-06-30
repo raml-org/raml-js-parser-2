@@ -47,6 +47,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"innerTypeName1\":\"somenam\"}"
+                ],
                 "mediaType": "application/json"
               }
             ],

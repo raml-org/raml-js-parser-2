@@ -31,6 +31,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "<<param1>>"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -92,6 +95,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"id\":\"987\",\"at\":\"Sun, 20 Jul 2014 21:20:00 GMT\",\"toAddressId\":\"273hh79\",\"orderItemId\":\"9877292\",\"status\":\"scheduled\",\"droneId\":\"f\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -162,6 +168,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"id\":\"987\",\"at\":\"Sun, 20 Jul 2014 21:20:00 GMT\",\"toAddressId\":\"273hh79\",\"orderItemId\":\"9877292\",\"status\":\"scheduled\",\"droneId\":\"f\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"

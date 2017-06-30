@@ -96,6 +96,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"name\":\"john\",\"age\":\"34s\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

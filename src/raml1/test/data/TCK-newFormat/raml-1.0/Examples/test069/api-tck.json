@@ -28,6 +28,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "<<postRequestBodyExample>>"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
@@ -75,6 +78,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "{\"subscriptionID\":\"8f19cb50-3f57-4d38\",\"name\":\"NewSub\",\"description\":\"This is the new subscription.\",\"startDate\":\"2015-01-01\",\"endDate\":\"2018-01-01\",\"quantity\":5,\"productName\":\"ABC Product\",\"supportLevel\":4}"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"

@@ -37,6 +37,9 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              "callbackFunction"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
@@ -161,6 +164,9 @@
                 "strict": true,
                 "name": null
               }
+            ],
+            "simplifiedExamples": [
+              1
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
@@ -348,6 +354,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -505,6 +514,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"data\":{\"distance\":50,\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Walden\",\"tags\":[],\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"...\",\"bio\":\"...\",\"website\":\"...\",\"id\":\"3\"},\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\"width\":612,\"height\":612}},\"id\":\"3\",\"location\":{\"id\":\"id\",\"latitude\":-34,\"longitude\":-53,\"name\":\"some place\"}}}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -571,6 +583,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"meta\":{\"code\":200},\"data\":null}"
+                    ],
                     "type": [
                       "types.OkStatus | string"
                     ],
@@ -623,6 +638,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"meta\":{\"code\":200},\"data\":null}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -951,6 +969,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -1067,6 +1088,9 @@
                   "name": null
                 }
               ],
+              "simplifiedExamples": [
+                "9e0dbc0a3b8d436ca65ae2df9825c893"
+              ],
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION"
             }
@@ -1157,6 +1181,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -1187,6 +1214,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -1309,6 +1339,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -1339,6 +1372,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -1431,6 +1467,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -1559,6 +1598,9 @@
                                     "strict": true,
                                     "name": null
                                   }
+                                ],
+                                "simplifiedExamples": [
+                                  "{\"meta\":{\"code\":200},\"data\":null}"
                                 ],
                                 "type": [
                                   "types.OkStatus | string"
@@ -1698,6 +1740,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -1728,6 +1773,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -1821,6 +1869,9 @@
                                 "name": null
                               }
                             ],
+                            "simplifiedExamples": [
+                              "{\"meta\":{\"code\":200},\"data\":null}"
+                            ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
@@ -1885,6 +1936,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "type": [
                               "types.OkStatus | string"
@@ -2114,6 +2168,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -2144,6 +2201,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -2265,6 +2325,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "{\"data\":{\"distance\":50,\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Walden\",\"tags\":[],\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"...\",\"bio\":\"...\",\"website\":\"...\",\"id\":\"3\"},\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\"width\":612,\"height\":612}},\"id\":\"3\",\"location\":{\"id\":\"id\",\"latitude\":-34,\"longitude\":-53,\"name\":\"some place\"}}}"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -2359,6 +2422,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -2389,6 +2455,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -2510,6 +2579,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "{\"data\":{\"distance\":50,\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Walden\",\"tags\":[],\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"...\",\"bio\":\"...\",\"website\":\"...\",\"id\":\"3\"},\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\"width\":612,\"height\":612}},\"id\":\"3\",\"location\":{\"id\":\"id\",\"latitude\":-34,\"longitude\":-53,\"name\":\"some place\"}}}"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -2629,6 +2701,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -2659,6 +2734,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -2823,6 +2901,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -2853,6 +2934,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -2987,6 +3071,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "nofilter"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -3014,6 +3101,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      1
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -3045,6 +3135,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -3185,6 +3278,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -3215,6 +3311,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -3337,6 +3436,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -3367,6 +3469,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -3419,6 +3524,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -3518,6 +3626,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -3548,6 +3659,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -3600,6 +3714,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -3783,6 +3900,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -3813,6 +3933,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -4026,6 +4149,9 @@
                                 "name": null
                               }
                             ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
+                            ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
@@ -4120,6 +4246,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -4150,6 +4279,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -4242,6 +4374,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -4412,6 +4547,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "some query"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -4439,6 +4577,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      10
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -4470,6 +4611,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -4522,6 +4666,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -4621,6 +4768,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -4651,6 +4801,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -4803,6 +4956,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -4833,6 +4989,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -5046,6 +5205,9 @@
                                 "name": null
                               }
                             ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
+                            ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
                           }
@@ -5138,6 +5300,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -5168,6 +5333,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -5220,6 +5388,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -5319,6 +5490,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          100
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -5346,6 +5520,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          1
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -5377,6 +5554,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -5589,6 +5769,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -5725,6 +5908,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -5755,6 +5941,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -5957,6 +6146,9 @@
                             "name": null
                           }
                         ],
+                        "simplifiedExamples": [
+                          1
+                        ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
                       },
@@ -5987,6 +6179,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "callbackFunction"
                         ],
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
@@ -6199,6 +6394,9 @@
                                 "strict": true,
                                 "name": null
                               }
+                            ],
+                            "simplifiedExamples": [
+                              "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION"
@@ -6426,6 +6624,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      1
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   },
@@ -6456,6 +6657,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "callbackFunction"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -6589,6 +6793,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  0
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
@@ -6616,6 +6823,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  1
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
@@ -6647,6 +6857,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "callbackFunction"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
@@ -6813,6 +7026,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  1
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               },
@@ -6843,6 +7059,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "callbackFunction"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"

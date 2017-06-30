@@ -193,6 +193,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"unionArray\":[{\"property1\":\"val1\",\"property2\":\"val2\"},{\"property1\":1,\"property2\":2}]}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

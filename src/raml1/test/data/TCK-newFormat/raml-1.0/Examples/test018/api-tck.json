@@ -25,6 +25,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "d"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -51,6 +54,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "d1111"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"

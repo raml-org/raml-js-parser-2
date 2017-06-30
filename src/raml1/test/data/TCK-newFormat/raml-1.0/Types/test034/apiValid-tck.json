@@ -43,6 +43,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "stringValue"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -68,6 +71,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "stringValue"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -107,6 +113,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "stringValue"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -153,6 +162,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "stringValue"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -192,6 +204,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "stringValue"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -230,6 +245,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "stringValue"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -276,6 +294,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "stringValue"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -320,6 +341,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "stringValue"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -686,6 +710,10 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"strProp_10\":\"stringValue_StringType_10\",\"strProp_11\":\"stringValue_StringType_11\",\"strProp_12\":\"stringValue_StringType_12\",\"strProp_20\":\"stringValue_StringType_20\",\"strProp_21\":\"stringValue_StringType_21\",\"strProp_30\":\"stringValue_StringType_30\",\"strProp_31\":\"stringValue_StringType_31\",\"strProp_40\":\"stringValue_StringType_40\",\"strProp_41\":\"stringValue_StringType_41\",\"strProp_50\":\"stringValue_StringType_50\",\"strProp_51\":\"stringValue_StringType_51\",\"strProp_60\":\"stringValue_StringType_60\",\"strProp_61\":\"stringValue_StringType_61\",\"strProp_70\":\"stringValue_StringType_70\",\"strProp_71\":\"stringValue_StringType_71\"}",
+          "{\"strProp_10\":\"\",\"strProp_11\":\"\",\"strProp_12\":\"\",\"strProp_20\":\"\",\"strProp_21\":\"\",\"strProp_30\":\"\",\"strProp_31\":\"\",\"strProp_40\":\"\",\"strProp_41\":\"\",\"strProp_50\":\"\",\"strProp_51\":\"\",\"strProp_60\":\"\",\"strProp_61\":\"\",\"strProp_70\":\"\",\"strProp_71\":\"\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

@@ -210,6 +210,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"union1\":{\"property1\":\"blahblah\",\"property2\":\"blahblah\"},\"union2\":{\"property3\":\"blahblah\",\"property4\":\"blahblah\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

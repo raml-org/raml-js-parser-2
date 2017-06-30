@@ -99,6 +99,9 @@
                 "name": null
               }
             ],
+            "simplifiedExamples": [
+              "Doe"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION"
           }
@@ -121,6 +124,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "{\"firstname\":\"John\"}"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -323,6 +329,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          2
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -1064,6 +1073,9 @@
                             "strict": true,
                             "name": null
                           }
+                        ],
+                        "simplifiedExamples": [
+                          "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
                         ],
                         "mediaType": "application/xml",
                         "typePropertyKind": "XML"

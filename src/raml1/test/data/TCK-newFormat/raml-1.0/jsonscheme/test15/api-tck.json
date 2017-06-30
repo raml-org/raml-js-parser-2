@@ -55,6 +55,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p1\":false,\"p2\":15}"
+        ],
         "mediaType": "application/json",
         "typePropertyKind": "INPLACE"
       }
@@ -107,6 +110,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"p1\":false,\"p2\":15}"
                     ],
                     "mediaType": "application/json",
                     "typePropertyKind": "INPLACE"

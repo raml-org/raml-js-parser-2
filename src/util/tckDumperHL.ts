@@ -1277,6 +1277,21 @@ class TypeTransformer extends BasicTransformation{
             }
         }
         delete value["example"];
+        if(value["examples"]!=null){
+            value["simplifiedExamples"] = value["examples"].map(x=>{
+                if(x==null){
+                    return x;
+                }
+                let val = x["value"];
+                if(val==null){
+                    return val;
+                }
+                else if(typeof val === "object"){
+                    return JSON.stringify(val);
+                }
+                return val;
+            });
+        }
         if(value.hasOwnProperty("schema")){
             if(!value.hasOwnProperty("type")){
                 value["type"] = value["schema"];

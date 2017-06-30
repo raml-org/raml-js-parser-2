@@ -69,6 +69,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":null,\"data\":null}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },

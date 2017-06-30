@@ -22,6 +22,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "<city><country_name>France</country_name>\n<population>59.7</population></city>\n"
+        ],
         "mediaType": "application/xml",
         "typePropertyKind": "XML"
       }

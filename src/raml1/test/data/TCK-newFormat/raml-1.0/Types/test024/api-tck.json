@@ -21,6 +21,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          630128
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -173,6 +176,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"country\":\"US\",\"city\":\"SF\",\"street\":\"Geary Street\",\"house\":\"77, Suite 400\",\"zip\":94108}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -201,6 +207,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "press@mulesoft.com"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
@@ -392,6 +401,10 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"id\":11,\"name\":\"John Johnson\",\"email\":\"press@mulesoft.com\",\"phone\":\"+7-913-111-1111\",\"address\":{\"country\":\"RUS\",\"city\":\"Novosibirsk\",\"zip\":630090}}",
+          "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -467,6 +480,10 @@
         "fixedFacets": {
           "role": "manager"
         },
+        "simplifiedExamples": [
+          "{\"id\":11,\"name\":\"John Johnson\",\"email\":\"press@mulesoft.com\",\"phone\":\"+7-913-111-1111\",\"address\":{\"country\":\"RUS\",\"city\":\"Novosibirsk\",\"zip\":630090},\"managerId\":77}",
+          "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456},\"managerId\":88}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },

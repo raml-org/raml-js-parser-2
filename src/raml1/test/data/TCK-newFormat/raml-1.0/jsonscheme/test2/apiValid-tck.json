@@ -47,6 +47,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"name\":\"somename\"}"
+                ],
                 "mediaType": "application/json"
               }
             ],

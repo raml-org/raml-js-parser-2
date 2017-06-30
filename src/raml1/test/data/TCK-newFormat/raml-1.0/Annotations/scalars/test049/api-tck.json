@@ -57,6 +57,9 @@
             "description": "my example"
           }
         ],
+        "simplifiedExamples": [
+          "{\"prop\":\"stringValue\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

@@ -25,6 +25,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p1\":false,\"p2\":15}"
+        ],
         "mediaType": "application/json",
         "typePropertyKind": "JSON"
       }
@@ -58,6 +61,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "{\"p1\":false,\"p2\":15}"
                 ],
                 "mediaType": "application/json",
                 "typePropertyKind": "JSON"

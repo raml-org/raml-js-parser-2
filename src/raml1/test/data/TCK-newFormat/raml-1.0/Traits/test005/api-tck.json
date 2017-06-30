@@ -55,6 +55,10 @@
                         }
                       }
                     },
+                    "simplifiedExamples": [
+                      "<doc><property1>value1</property1></doc>\n",
+                      "<doc><property2>value2</property2></doc>\n"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

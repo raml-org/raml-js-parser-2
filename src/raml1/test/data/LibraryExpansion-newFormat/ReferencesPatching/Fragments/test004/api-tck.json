@@ -177,6 +177,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"ownLibProperty\":{\"prop\":\"stringValue\"},\"rootLibProperty\":{\"integerProperty\":true}}"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
@@ -212,6 +215,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "stringValue"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
@@ -294,6 +300,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "{\"ownLibProperty\":{\"prop\":\"stringValue\"},\"rootLibProperty\":{\"integerProperty\":true}}"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"

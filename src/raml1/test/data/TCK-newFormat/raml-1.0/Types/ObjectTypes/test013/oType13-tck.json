@@ -88,6 +88,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"put\":{\"name\":\"update method\"},\"post\":{\"name\":\"create method\"}}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

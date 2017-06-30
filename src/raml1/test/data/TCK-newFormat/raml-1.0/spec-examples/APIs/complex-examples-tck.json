@@ -66,6 +66,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":\"Bob\",\"lastname\":\"Marley\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -179,6 +182,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "SWED-123"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
@@ -206,6 +212,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "{\"name\":\"Doe Enterprise\",\"value\":\"Silver\"}"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
@@ -251,6 +260,10 @@
                         }
                       }
                     },
+                    "simplifiedExamples": [
+                      "{\"name\":\"Acme\"}",
+                      "{\"name\":\"Software Corp\",\"address\":\"35 Central Street\",\"value\":\"Gold\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

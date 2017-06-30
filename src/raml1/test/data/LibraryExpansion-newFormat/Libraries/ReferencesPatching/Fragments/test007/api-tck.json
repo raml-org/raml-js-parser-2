@@ -219,6 +219,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"ownLibProperty\":{\"prop\":\"stringValue\"},\"rootLibProperty\":{\"integerProperty\":5}}"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE"
               }

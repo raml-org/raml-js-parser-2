@@ -69,6 +69,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"code\":\"abc123\",\"message\":\"Bad request\"}"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
@@ -99,6 +102,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "{\"code\":\"xyz123\",\"message\":\"Server error\"}"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
@@ -140,6 +146,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      8
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -174,6 +183,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"p1\":\"stringValue\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -308,6 +320,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      8
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -339,6 +354,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"code\":\"abc123\",\"message\":\"Bad request\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
@@ -369,6 +387,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"code\":\"xyz123\",\"message\":\"Server error\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
@@ -441,6 +462,9 @@
                         "strict": true,
                         "name": null
                       }
+                    ],
+                    "simplifiedExamples": [
+                      "{\"p1\":\"stringValue\"}"
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"

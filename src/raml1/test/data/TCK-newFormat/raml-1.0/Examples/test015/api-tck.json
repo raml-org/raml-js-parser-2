@@ -50,6 +50,9 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"d\":\"a\",\"dd\":\"2\"}"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       },
@@ -74,6 +77,9 @@
             "strict": true,
             "name": null
           }
+        ],
+        "simplifiedExamples": [
+          "{\"x\":\"3\"}"
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"

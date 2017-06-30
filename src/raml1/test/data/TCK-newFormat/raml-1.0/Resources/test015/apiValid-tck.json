@@ -135,6 +135,9 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"propertyFromResourceType1\":\"stringValue1\",\"propertyFromType1\":\"stringValue2\",\"extraProperty\":\"stringValue3\"}"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"
               }
@@ -319,6 +322,9 @@
                     "strict": true,
                     "name": null
                   }
+                ],
+                "simplifiedExamples": [
+                  "{\"propertyFromResourceType1\":\"stringValue1\",\"propertyFromType1\":\"stringValue2\",\"extraProperty\":\"stringValue3\"}"
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION"

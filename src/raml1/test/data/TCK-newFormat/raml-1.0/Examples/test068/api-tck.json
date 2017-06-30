@@ -193,6 +193,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"value\":[{\"p1\":\"stringValue\",\"p2\":15,\"p3\":true}]}"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }

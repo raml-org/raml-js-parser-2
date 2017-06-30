@@ -157,6 +157,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"a\":3}"
+                    ],
                     "type": [
                       "MM"
                     ],

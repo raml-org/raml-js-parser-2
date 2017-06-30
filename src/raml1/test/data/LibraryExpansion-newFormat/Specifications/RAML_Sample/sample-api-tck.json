@@ -345,6 +345,9 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "[{\"id\":\"ID124\",\"eTag\":\"13298308323\",\"name\":\"Smith\",\"age\":30,\"addresses\":{\"addressType\":\"postal\",\"line1\":\"Walker Street\",\"suburb\":\"Sydney\",\"postcode\":1234}}]"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION"
                   }
