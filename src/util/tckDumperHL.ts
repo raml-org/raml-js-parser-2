@@ -67,6 +67,7 @@ export class TCKDumper {
             new ProtocolsToUpperCaseTransformer(),
             new ReferencesTransformer(),
             new Api10SchemasTransformer(),
+            new SecurityExpandingTransformer(this.options.expandSecurity),
             new AllUriParametersTransformer(this.options.allUriParameters)
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
@@ -633,6 +634,8 @@ export interface SerializeOptions{
     attributeDefaults?:boolean
 
     allUriParameters?:boolean
+
+    expandSecurity?:boolean
 
     unfoldTypes?:boolean
 }
@@ -1722,6 +1725,107 @@ class ReferencesTransformer extends MatcherBasedTransformation{
         }
     }
 
+}
+
+class SecurityExpandingTransformer extends MatcherBasedTransformation {
+
+    constructor(private enabled: boolean = false) {
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name, null, true)
+        ]));
+    }
+
+    match(node: hl.IParseResult, prop: nominals.IProperty): boolean {
+        return this.enabled ? super.match(node, prop) : false;
+    }
+
+    registrationInfo(): Object {
+        return this.enabled ? super.registrationInfo() : null;
+    }
+
+    transform(value:any,_node?:hl.IParseResult){
+        this.processApi(value);
+        return value;
+    }
+
+    private processApi(value:any){
+        let securitySchemesArr = value[def.universesInfo.Universe10.Api.properties.securitySchemes.name];
+        if(!securitySchemesArr || securitySchemesArr.length==0){
+            return;
+        }
+        let securitySchemes:any = {};
+        for(let ss of securitySchemesArr){
+            securitySchemes[ss.name] = ss;
+        }
+        this.expandSecuredBy(value, securitySchemes);
+        let resources = value[def.universesInfo.Universe10.Api.properties.resources.name];
+        if(resources) {
+            for (let r of resources) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+        return value;
+    }
+
+    private processResource(res:any,securitySchemes:any){
+
+        this.expandSecuredBy(res,securitySchemes);
+
+        let methods = res[def.universesInfo.Universe10.Resource.properties.methods.name];
+        if(methods) {
+            for (let m of methods) {
+                this.expandSecuredBy(m, securitySchemes);
+            }
+        }
+
+        let resources = res[def.universesInfo.Universe10.Resource.properties.resources.name];
+        if(resources) {
+            for (let r of resources) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+    }
+
+    private expandSecuredBy(obj:any,securitySchemes:any){
+
+        let securedBy = obj[def.universesInfo.Universe10.ResourceBase.properties.securedBy.name];
+        if(!securedBy){
+            return;
+        }
+        for(let i = 0 ; i < securedBy.length ; i++){
+            let ref = securedBy[i];
+            if(ref==null){
+                continue;
+            }
+            let sch:any;
+            if(typeof ref == "string"){
+                sch = securitySchemes[ref];
+            }
+            else if (typeof ref == "object"){
+                let refObj = ref;
+                ref = Object.keys(refObj)[0];;
+                sch = JSON.parse(JSON.stringify(securitySchemes[ref]));
+                let params = refObj[ref];
+                if(params) {
+                    let paramNames = Object.keys(params);
+                    if (paramNames.length > 0) {
+                        let settings: any = sch.settings;
+                        if (!settings) {
+                            settings = {};
+                            sch.settings = settings;
+                        }
+                        for (let pn of paramNames) {
+                            settings[pn] = params[pn];
+                        }
+                    }
+                }
+            }
+            if(!sch){
+                continue;
+            }
+            securedBy[i] = sch;
+        }
+    }
 }
 
 class AllUriParametersTransformer extends MatcherBasedTransformation{

@@ -39,7 +39,10 @@
     ],
     "title": "test API",
     "securedBy": [
-      "lib.number"
+      {
+        "name": "lib.number",
+        "type": "Basic Authentication"
+      }
     ],
     "resources": [
       {
@@ -48,8 +51,14 @@
         ],
         "type": "lib.number",
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth",
+            "type": "OAuth 2.0"
+          },
+          {
+            "name": "lib.number",
+            "type": "Basic Authentication"
+          }
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",

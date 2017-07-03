@@ -61,7 +61,10 @@
       "application/json"
     ],
     "securedBy": [
-      "x-ttt"
+      {
+        "name": "x-ttt",
+        "type": "Basic Authentication"
+      }
     ],
     "resources": [
       {
@@ -69,7 +72,10 @@
           "env-org-pair"
         ],
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Basic Authentication"
+          }
         ],
         "relativeUri": "/servers",
         "displayName": "/servers",

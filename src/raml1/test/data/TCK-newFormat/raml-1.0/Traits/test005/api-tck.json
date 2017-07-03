@@ -70,7 +70,17 @@
             ],
             "securedBy": [
               null,
-              "oauth2"
+              {
+                "name": "oauth2",
+                "type": "OAuth 2.0",
+                "settings": {
+                  "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
+                  "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
+                  "authorizationGrants": [
+                    "client_credentials"
+                  ]
+                }
+              }
             ],
             "method": "get",
             "__METADATA__": {
