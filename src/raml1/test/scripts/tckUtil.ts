@@ -472,7 +472,7 @@ function doTestAPI(
     callTests:boolean=true,
     doAssert:boolean = true,
     expandLib:boolean = false,
-    unfoldTypes = true):TestResult{
+    unfoldTypes = false):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
