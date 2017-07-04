@@ -55,7 +55,9 @@
                     "type": [
                       "array"
                     ],
-                    "items": "T2"
+                    "items": [
+                      "T2"
+                    ]
                   }
                 ],
                 "__METADATA__": {

@@ -101,15 +101,17 @@
                         "type": [
                           "array"
                         ],
-                        "items": {
-                          "type": [
-                            "union"
-                          ],
-                          "oneOf": [
-                            "<<param1>>",
-                            "T1"
-                          ]
-                        }
+                        "items": [
+                          {
+                            "type": [
+                              "union"
+                            ],
+                            "oneOf": [
+                              "<<param1>>",
+                              "T1"
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }
@@ -155,15 +157,17 @@
                         "type": [
                           "array"
                         ],
-                        "items": {
-                          "type": [
-                            "union"
-                          ],
-                          "oneOf": [
-                            "T1",
-                            "T2"
-                          ]
-                        }
+                        "items": [
+                          {
+                            "type": [
+                              "union"
+                            ],
+                            "oneOf": [
+                              "T1",
+                              "T2"
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }

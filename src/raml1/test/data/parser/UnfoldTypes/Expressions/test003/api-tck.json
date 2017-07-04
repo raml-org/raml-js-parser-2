@@ -87,7 +87,9 @@
                     "type": [
                       "array"
                     ],
-                    "items": "T3"
+                    "items": [
+                      "T3"
+                    ]
                   }
                 ]
               }

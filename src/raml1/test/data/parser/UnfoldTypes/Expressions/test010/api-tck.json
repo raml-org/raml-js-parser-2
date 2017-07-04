@@ -102,15 +102,17 @@
                         "type": [
                           "array"
                         ],
-                        "items": {
-                          "type": [
-                            "union"
-                          ],
-                          "oneOf": [
-                            "T1",
-                            "T2"
-                          ]
-                        }
+                        "items": [
+                          {
+                            "type": [
+                              "union"
+                            ],
+                            "oneOf": [
+                              "T1",
+                              "T2"
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }
