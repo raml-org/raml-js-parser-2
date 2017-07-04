@@ -135,7 +135,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "ChildType1"
+        "items": [
+          "ChildType1"
+        ]
       },
       {
         "name": "ArrayType2",
@@ -152,7 +154,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "ChildType2"
+        "items": [
+          "ChildType2"
+        ]
       },
       {
         "name": "ArrayType",

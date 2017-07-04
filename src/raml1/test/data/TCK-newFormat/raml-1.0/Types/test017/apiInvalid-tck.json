@@ -32,7 +32,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "AnotherType[] | OneMoreType"
+        "items": [
+          "AnotherType[] | OneMoreType"
+        ]
       },
       {
         "name": "AnotherType",

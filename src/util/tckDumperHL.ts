@@ -1400,7 +1400,7 @@ class TypeTransformer extends BasicTransformation{
                         itemsStr = itemsStr.substring(1,itemsStr.length-1);
                     }
                     value.type[0] = "array";
-                    value.items = itemsStr;
+                    value.items = [ itemsStr ];
                 }
             }
         }

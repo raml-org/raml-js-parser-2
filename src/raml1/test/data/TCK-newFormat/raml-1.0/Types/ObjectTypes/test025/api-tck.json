@@ -36,7 +36,9 @@
             ],
             "required": false,
             "description": "An array of boundaries",
-            "items": "object",
+            "items": [
+              "object"
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {

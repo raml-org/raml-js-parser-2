@@ -143,7 +143,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": " Phone | Notebook "
+            "items": [
+              " Phone | Notebook "
+            ]
           },
           {
             "name": "reports",
@@ -164,7 +166,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "Person"
+            "items": [
+              "Person"
+            ]
           }
         ],
         "__METADATA__": {

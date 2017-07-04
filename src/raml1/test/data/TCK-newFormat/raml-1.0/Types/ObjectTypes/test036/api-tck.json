@@ -120,7 +120,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "NewLibrary.Pet"
+                    "items": [
+                      "NewLibrary.Pet"
+                    ]
                   }
                 ]
               }
@@ -365,7 +367,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Bird"
+                    "items": [
+                      "Bird"
+                    ]
                   }
                 ]
               }
@@ -610,7 +614,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Mammal"
+                    "items": [
+                      "Mammal"
+                    ]
                   }
                 ]
               }
