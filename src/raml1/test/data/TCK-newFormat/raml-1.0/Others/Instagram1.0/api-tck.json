@@ -587,10 +587,14 @@
                       "{\"meta\":{\"code\":200},\"data\":null}"
                     ],
                     "type": [
-                      "types.OkStatus | string"
+                      "union"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "oneOf": [
+                      "string",
+                      "types.OkStatus"
+                    ]
                   }
                 ]
               }
@@ -618,7 +622,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "types.OkStatus | string"
+                      "union"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -643,7 +647,11 @@
                       "{\"meta\":{\"code\":200},\"data\":null}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "oneOf": [
+                      "string",
+                      "types.OkStatus"
+                    ]
                   }
                 ]
               }
@@ -2058,7 +2066,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "types.OkStatus | string"
+                              "union"
                             ],
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -2083,7 +2091,11 @@
                               "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "mediaType": "application/raml+yaml",
-                            "typePropertyKind": "TYPE_EXPRESSION"
+                            "typePropertyKind": "TYPE_EXPRESSION",
+                            "oneOf": [
+                              "string",
+                              "types.OkStatus"
+                            ]
                           }
                         ]
                       },
@@ -2369,10 +2381,14 @@
                                   "{\"meta\":{\"code\":200},\"data\":null}"
                                 ],
                                 "type": [
-                                  "types.OkStatus | string"
+                                  "union"
                                 ],
                                 "mediaType": "application/raml+yaml",
-                                "typePropertyKind": "TYPE_EXPRESSION"
+                                "typePropertyKind": "TYPE_EXPRESSION",
+                                "oneOf": [
+                                  "string",
+                                  "types.OkStatus"
+                                ]
                               }
                             ],
                             "description": "Comment removed."
@@ -3072,7 +3088,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "types.OkStatus | string"
+                              "union"
                             ],
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -3097,7 +3113,11 @@
                               "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "mediaType": "application/raml+yaml",
-                            "typePropertyKind": "TYPE_EXPRESSION"
+                            "typePropertyKind": "TYPE_EXPRESSION",
+                            "oneOf": [
+                              "string",
+                              "types.OkStatus"
+                            ]
                           }
                         ],
                         "description": "Successfully liked a media object\n"
@@ -3284,10 +3304,14 @@
                               "{\"meta\":{\"code\":200},\"data\":null}"
                             ],
                             "type": [
-                              "types.OkStatus | string"
+                              "union"
                             ],
                             "mediaType": "application/raml+yaml",
-                            "typePropertyKind": "TYPE_EXPRESSION"
+                            "typePropertyKind": "TYPE_EXPRESSION",
+                            "oneOf": [
+                              "string",
+                              "types.OkStatus"
+                            ]
                           }
                         ]
                       },

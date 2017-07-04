@@ -542,7 +542,7 @@
             "name": "CatOrDog",
             "displayName": "CatOrDog",
             "type": [
-              "ApiLib.Cat | ApiLib.Dog"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -556,7 +556,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "ApiLib.Cat",
+              "ApiLib.Dog"
+            ]
           },
           {
             "name": "CatAndDog",
@@ -1029,7 +1033,7 @@
             "name": "comment",
             "displayName": "comment",
             "type": [
-              "nil | string"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -1043,7 +1047,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "string"
+            ]
           }
         ],
         "__METADATA__": {

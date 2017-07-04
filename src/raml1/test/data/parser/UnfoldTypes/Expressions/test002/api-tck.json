@@ -18,26 +18,7 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T1",
-          "displayName": "T1",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "T2",
@@ -56,26 +37,7 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T2",
-          "displayName": "T2",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",
@@ -89,7 +51,12 @@
                 "displayName": "application/json",
                 "type": [
                   "T1",
-                  "T2[]"
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": "T2"
+                  }
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -99,29 +66,7 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "unfolded": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    "T1",
-                    {
-                      "type": [
-                        "array"
-                      ],
-                      "items": "T2"
-                    }
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION"
-                }
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "method": "post",

@@ -18,26 +18,7 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T1",
-          "displayName": "T1",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "T2",
@@ -56,26 +37,7 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T2",
-          "displayName": "T2",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "T3",
@@ -94,26 +56,7 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T3",
-          "displayName": "T3",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       {
         "name": "T4",
@@ -132,26 +75,7 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T4",
-          "displayName": "T4",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     ],
     "title": "Test API",
@@ -164,8 +88,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "(T1|T2)|T3[]",
-                  "T4"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -176,37 +99,16 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "unfolded": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    {
-                      "type": [
-                        "union"
-                      ],
-                      "options": [
-                        "T1",
-                        "T2",
-                        {
-                          "type": [
-                            "array"
-                          ],
-                          "items": "T3"
-                        }
-                      ]
-                    },
-                    "T4"
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION"
-                }
+                "oneOf": [
+                  "T1",
+                  "T2",
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": "T3"
+                  }
+                ]
               }
             ],
             "method": "post",

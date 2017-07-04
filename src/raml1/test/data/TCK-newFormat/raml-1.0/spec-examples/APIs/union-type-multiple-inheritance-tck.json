@@ -160,7 +160,15 @@
         "displayName": "HomeAnimal",
         "type": [
           "HasHome",
-          "Dog | Cat"
+          {
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "Cat",
+              "Dog"
+            ]
+          }
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {

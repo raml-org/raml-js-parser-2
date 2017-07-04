@@ -116,7 +116,7 @@
                 "name": "atom/xml",
                 "displayName": "atom/xml",
                 "type": [
-                  "<<param1>> | <<param2>> | lib.lib.Monkey"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -126,7 +126,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "<<param1>>",
+                  "<<param2>>",
+                  "lib.lib.Monkey"
+                ]
               }
             ],
             "method": "post"
@@ -193,7 +198,7 @@
                 "name": "atom/xml",
                 "displayName": "atom/xml",
                 "type": [
-                  "Monkey | lib.Monkey | lib.lib.Monkey"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -203,7 +208,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "Monkey",
+                  "lib.Monkey",
+                  "lib.lib.Monkey"
+                ]
               }
             ],
             "method": "post",

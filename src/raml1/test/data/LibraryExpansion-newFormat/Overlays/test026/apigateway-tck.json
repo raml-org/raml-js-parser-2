@@ -624,7 +624,7 @@
         "name": "AWS.amazon-apigateway-integration",
         "displayName": "amazon-apigateway-integration",
         "type": [
-          "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -634,7 +634,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "AWS.amazon-apigateway-integration-HTTP",
+          "AWS.amazon-apigateway-integration-aws",
+          "AWS.amazon-apigateway-integration-lambda",
+          "AWS.amazon-apigateway-integration-mock"
+        ]
       }
     ],
     "annotationTypes": [

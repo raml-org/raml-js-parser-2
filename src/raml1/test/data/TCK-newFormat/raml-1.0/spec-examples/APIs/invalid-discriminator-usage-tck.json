@@ -43,7 +43,7 @@
         "name": "PersonOrDog",
         "displayName": "PersonOrDog",
         "type": [
-          "Person | Dog"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -53,7 +53,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "Dog",
+          "Person"
+        ]
       }
     ],
     "title": "Invalid Discriminator Usage",

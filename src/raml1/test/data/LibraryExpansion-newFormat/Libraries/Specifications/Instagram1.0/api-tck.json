@@ -2645,7 +2645,7 @@
             "name": "data",
             "displayName": "data",
             "type": [
-              "any | nil"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
@@ -2659,7 +2659,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "any",
+              "nil"
+            ]
           }
         ],
         "__METADATA__": {
@@ -3229,7 +3233,7 @@
             "name": "caption",
             "displayName": "caption",
             "type": [
-              "nil | types.Comment"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
@@ -3243,7 +3247,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "types.Comment"
+            ]
           },
           {
             "name": "likes",
@@ -3349,7 +3357,7 @@
             "name": "location",
             "displayName": "location",
             "type": [
-              "nil | types.Location"
+              "union"
             ],
             "required": false,
             "__METADATA__": {
@@ -3363,7 +3371,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "types.Location"
+            ]
           }
         ],
         "__METADATA__": {
@@ -3719,7 +3731,7 @@
                 "name": "caption",
                 "displayName": "caption",
                 "type": [
-                  "nil | types.Comment"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -3733,7 +3745,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "nil",
+                  "types.Comment"
+                ]
               },
               {
                 "name": "likes",
@@ -3839,7 +3855,7 @@
                 "name": "location",
                 "displayName": "location",
                 "type": [
-                  "types.Location | nil"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -3853,7 +3869,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "nil",
+                  "types.Location"
+                ]
               }
             ],
             "__METADATA__": {
@@ -4158,7 +4178,7 @@
             "name": "caption",
             "displayName": "caption",
             "type": [
-              "nil | types.Comment"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -4172,7 +4192,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "types.Comment"
+            ]
           },
           {
             "name": "likes",
@@ -4298,7 +4322,7 @@
             "name": "location",
             "displayName": "location",
             "type": [
-              "nil | types.Location"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -4312,7 +4336,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "types.Location"
+            ]
           }
         ],
         "__METADATA__": {
@@ -4769,7 +4797,7 @@
                 "name": "caption",
                 "displayName": "caption",
                 "type": [
-                  "nil | types.Comment"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -4783,7 +4811,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "nil",
+                  "types.Comment"
+                ]
               },
               {
                 "name": "likes",
@@ -4909,7 +4941,7 @@
                 "name": "location",
                 "displayName": "location",
                 "type": [
-                  "nil | types.Location"
+                  "union"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -4923,7 +4955,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "nil",
+                  "types.Location"
+                ]
               }
             ],
             "__METADATA__": {
@@ -5074,7 +5110,7 @@
             "name": "data",
             "displayName": "data",
             "type": [
-              "types.MediaSearchFirstType | types.MediaSearchSecondType"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -5088,7 +5124,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "types.MediaSearchFirstType",
+              "types.MediaSearchSecondType"
+            ]
           }
         ],
         "__METADATA__": {
@@ -5128,7 +5168,15 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
-              "types.MediaSearchFirstType | types.MediaSearchSecondType"
+              {
+                "type": [
+                  "union"
+                ],
+                "oneOf": [
+                  "types.MediaSearchFirstType",
+                  "types.MediaSearchSecondType"
+                ]
+              }
             ]
           }
         ],
@@ -5647,10 +5695,14 @@
                       "{\"meta\":{\"code\":200},\"data\":null}"
                     ],
                     "type": [
-                      "types.OkStatus | string"
+                      "union"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "oneOf": [
+                      "string",
+                      "types.OkStatus"
+                    ]
                   }
                 ]
               }
@@ -5678,7 +5730,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "types.OkStatus | string"
+                      "union"
                     ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -5703,7 +5755,11 @@
                       "{\"meta\":{\"code\":200},\"data\":null}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "oneOf": [
+                      "string",
+                      "types.OkStatus"
+                    ]
                   }
                 ]
               }

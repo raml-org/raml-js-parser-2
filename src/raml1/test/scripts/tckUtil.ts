@@ -472,7 +472,7 @@ function doTestAPI(
     callTests:boolean=true,
     doAssert:boolean = true,
     expandLib:boolean = false,
-    unfoldTypes = false):TestResult{
+    unfoldTypes = true):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
@@ -493,7 +493,6 @@ function doTestAPI(
         }
         json = index.loadSync(apiPath,{
             expandLibraries: expandLib,
-            unfoldTypes: unfoldTypes,
             serializeMetadata: true
         });
     }

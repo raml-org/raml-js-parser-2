@@ -46,7 +46,7 @@
         "name": "nt1",
         "displayName": "nt1",
         "type": [
-          "t | nil"
+          "union"
         ],
         "examples": [
           {
@@ -72,13 +72,17 @@
           "null\n"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "nil",
+          "t"
+        ]
       },
       {
         "name": "tn2",
         "displayName": "tn2",
         "type": [
-          "nil | t"
+          "union"
         ],
         "examples": [
           {
@@ -100,7 +104,11 @@
           "null\n"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "nil",
+          "t"
+        ]
       }
     ],
     "traits": [

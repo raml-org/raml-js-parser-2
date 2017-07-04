@@ -12,7 +12,7 @@
             "name": "name",
             "displayName": "name",
             "type": [
-              "nil | string"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -26,13 +26,17 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "string"
+            ]
           },
           {
             "name": "data",
             "displayName": "data",
             "type": [
-              "nil | Data"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -46,7 +50,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "Data",
+              "nil"
+            ]
           }
         ],
         "__METADATA__": {

@@ -60,6 +60,9 @@ export class TCKDumper {
         if (this.options.attributeDefaults == null) {
             this.options.attributeDefaults = true;
         }
+        if(this.options.unfoldTypes == null){
+            this.options.unfoldTypes = true;
+        }
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
             new MethodsTransformer(),
@@ -1385,43 +1388,29 @@ class TypeTransformer extends BasicTransformation{
             value["typePropertyKind"] = "INPLACE";
         }
         if(this.options.unfoldTypes) {
-            value.unfolded = this.processExpressions(value);
-        }
-        if(value.type.length==1){
-            var typeVal = value.type[0];
-            if(typeof(typeVal) == "string"){
-                typeVal = typeVal.trim();
-                var isArr = util.stringEndsWith(typeVal,"[]");
-                if(isArr){
-                    var itemsStr = typeVal.substring(0,typeVal.length-"[]".length).trim();
-                    while(itemsStr.length>0
-                    &&itemsStr.charAt(0)=="("
-                    &&itemsStr.charAt(itemsStr.length-1)==")"){
-                        itemsStr = itemsStr.substring(1,itemsStr.length-1);
-                    }
-                    value.type[0] = "array";
-                    value.items = [ itemsStr ];
-                }
-            }
+            this.processExpressions(value);
         }
         return _value;
     }
 
     private processExpressions(value:any):any{
-        let copy = util.deepCopy(value);
-        this.parseExpressions(copy);
-        return copy;
+        this.parseExpressions(value);
     }
 
     private parseExpressions(obj){
-        this.parseExpressionsForProperty(obj,"type");
+        let typeValue = obj.type;
+        let isSingleString = Array.isArray(typeValue)
+            && typeof typeValue[0] == "string";
+
         this.parseExpressionsForProperty(obj,"items");
-        if(obj.properties){
-            for(var pName of Object.keys(obj.properties)){
-                let p = obj.properties[pName];
-                if(p.unfolded){
-                    obj.properties[pName] = p.unfolded;
-                }
+        this.parseExpressionsForProperty(obj,"type");
+
+        if(isSingleString){
+            let newTypeValue = obj.type[0];
+            if(newTypeValue && typeof newTypeValue == "object"){
+                Object.keys(newTypeValue).forEach(x=>{
+                   obj[x] = newTypeValue[x];
+                });
             }
         }
     }
@@ -1434,7 +1423,7 @@ class TypeTransformer extends BasicTransformation{
         }
         let isSingleString = false;
         if(!Array.isArray(value)){
-            if(typeof value == "object"){
+            if(value && typeof value == "object"){
                 if(value.unfolded){
                     obj.prop = value.unfolded;
                 }
@@ -1451,7 +1440,7 @@ class TypeTransformer extends BasicTransformation{
         let resultingArray:any[] = [];
         for(var i = 0 ; i < value.length ; i++) {
             let expr = value[i];
-            if(typeof expr=="object"){
+            if(expr && typeof expr=="object"){
                 if(expr.unfolded){
                     expr = expr.unfolded;
                 }
@@ -1524,7 +1513,7 @@ class TypeTransformer extends BasicTransformation{
             let union = <typeExpressions.Union>expr;
             result = {
                 type: ["union"],
-                options: []
+                oneOf: []
             };
             let components = this.toOptionsArray(union);
             for(var c of components){
@@ -1533,9 +1522,9 @@ class TypeTransformer extends BasicTransformation{
                     break;
                 }
                 let c1 = this.expressionToObject(c,escapeData);
-                result.options.push(c1);
+                result.oneOf.push(c1);
             }
-            result.options = _.unique(result.options).sort()
+            result.oneOf = _.unique(result.oneOf).sort()
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
@@ -1546,7 +1535,7 @@ class TypeTransformer extends BasicTransformation{
             while (arr-- > 0) {
                 result = {
                     type: ["array"],
-                    items: result
+                    items: [ result ]
                 };
             }
         }

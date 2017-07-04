@@ -41,7 +41,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -51,7 +51,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "oneOf": [
+                  "<<parentType>><<resourcePathName>>-errors",
+                  "string"
+                ]
               }
             ]
           }
@@ -124,7 +128,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "error-types.alpha-letters-errors | string"
+                          "union"
                         ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -134,7 +138,11 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "oneOf": [
+                          "error-types.alpha-letters-errors",
+                          "string"
+                        ]
                       }
                     ]
                   }
