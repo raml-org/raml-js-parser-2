@@ -71,7 +71,30 @@
                 "absoluteUri": "https://api.github.com/users/{userId}/followers",
                 "completeRelativeUri": "/users/{userId}/followers",
                 "parentUri": "/users/{userId}",
-                "absoluteParentUri": "https://api.github.com/users/{userId}"
+                "absoluteParentUri": "https://api.github.com/users/{userId}",
+                "uriParameters": [
+                  {
+                    "name": "userId",
+                    "displayName": "userId",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               },
               {
                 "relativeUri": "/following",
@@ -89,7 +112,30 @@
                 "absoluteUri": "https://api.github.com/users/{userId}/following",
                 "completeRelativeUri": "/users/{userId}/following",
                 "parentUri": "/users/{userId}",
-                "absoluteParentUri": "https://api.github.com/users/{userId}"
+                "absoluteParentUri": "https://api.github.com/users/{userId}",
+                "uriParameters": [
+                  {
+                    "name": "userId",
+                    "displayName": "userId",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               },
               {
                 "relativeUri": "/keys",
@@ -97,6 +143,27 @@
                 "resources": [
                   {
                     "uriParameters": [
+                      {
+                        "name": "userId",
+                        "displayName": "userId",
+                        "type": [
+                          "integer"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          },
+                          "calculated": true
+                        },
+                        "mediaType": "application/raml+yaml",
+                        "typePropertyKind": "TYPE_EXPRESSION"
+                      },
                       {
                         "name": "keyId",
                         "displayName": "keyId",
@@ -149,7 +216,30 @@
                 "absoluteUri": "https://api.github.com/users/{userId}/keys",
                 "completeRelativeUri": "/users/{userId}/keys",
                 "parentUri": "/users/{userId}",
-                "absoluteParentUri": "https://api.github.com/users/{userId}"
+                "absoluteParentUri": "https://api.github.com/users/{userId}",
+                "uriParameters": [
+                  {
+                    "name": "userId",
+                    "displayName": "userId",
+                    "type": [
+                      "integer"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      },
+                      "calculated": true
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               }
             ],
             "__METADATA__": {

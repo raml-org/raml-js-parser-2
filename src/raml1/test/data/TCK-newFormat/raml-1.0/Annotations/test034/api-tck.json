@@ -241,7 +241,39 @@
               }
             },
             "parentUri": "/helloWorld",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/helloWorld"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/helloWorld",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/helloWorld",
@@ -259,7 +291,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/helloWorld",
         "completeRelativeUri": "/helloWorld",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       }
     ],
     "__METADATA__": {

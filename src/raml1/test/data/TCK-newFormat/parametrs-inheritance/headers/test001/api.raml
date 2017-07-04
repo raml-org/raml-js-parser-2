@@ -1,0 +1,24 @@
+#%RAML 1.0
+
+title: test API
+
+securitySchemes:
+  s1:
+    type: x-custom
+    describedBy:
+      headers:
+        securityHeader: string
+
+resourceTypes:
+  rt:
+    get:
+      headers:
+        rtHeader: string
+
+securedBy: [ s1 ]
+
+/resource:
+  type: rt
+  get:
+    headers:
+      methodHeader: string

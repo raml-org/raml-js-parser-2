@@ -99,7 +99,39 @@
               }
             },
             "parentUri": "/members",
-            "absoluteParentUri": "http://server/api/{version}/members"
+            "absoluteParentUri": "http://server/api/{version}/members",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": "string",
+                "required": true,
+                "repeat": false,
+                "enum": [
+                  "1.0"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            ]
           }
         ],
         "displayName": "/members",
@@ -116,7 +148,39 @@
         "absoluteUri": "http://server/api/{version}/members",
         "completeRelativeUri": "/members",
         "parentUri": "",
-        "absoluteParentUri": "http://server/api/{version}"
+        "absoluteParentUri": "http://server/api/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": "string",
+            "required": true,
+            "repeat": false,
+            "enum": [
+              "1.0"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ]
       }
     ],
     "__METADATA__": {

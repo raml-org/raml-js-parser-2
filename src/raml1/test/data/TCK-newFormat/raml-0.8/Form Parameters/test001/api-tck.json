@@ -124,7 +124,33 @@
                   }
                 },
                 "parentUri": "/resource/{resourceId}",
-                "absoluteParentUri": "http://example.com/resource/{resourceId}"
+                "absoluteParentUri": "http://example.com/resource/{resourceId}",
+                "uriParameters": [
+                  {
+                    "name": "resourceId",
+                    "displayName": "resourceId",
+                    "type": "string",
+                    "required": true,
+                    "repeat": false,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             ],
             "displayName": "/{resourceId}",

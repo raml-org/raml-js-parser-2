@@ -380,7 +380,39 @@
                   }
                 },
                 "parentUri": "/test/helloWorldddd1234ddd2",
-                "absoluteParentUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2"
+                "absoluteParentUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
+                "uriParameters": [
+                  {
+                    "name": "version",
+                    "displayName": "version",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "enum": [
+                      "v1"
+                    ],
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "enum": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               }
             ],
             "relativeUri": "/helloWorldddd1234ddd2",
@@ -398,7 +430,39 @@
             "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
             "completeRelativeUri": "/test/helloWorldddd1234ddd2",
             "parentUri": "/test",
-            "absoluteParentUri": "https://api.instagram.com/{version}/test"
+            "absoluteParentUri": "https://api.instagram.com/{version}/test",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "__METADATA__": {
@@ -414,7 +478,39 @@
         "absoluteUri": "https://api.instagram.com/{version}/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": "https://api.instagram.com/{version}/"
+        "absoluteParentUri": "https://api.instagram.com/{version}/",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       }
     ],
     "__METADATA__": {

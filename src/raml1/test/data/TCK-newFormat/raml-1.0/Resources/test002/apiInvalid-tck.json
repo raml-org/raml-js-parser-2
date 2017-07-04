@@ -48,7 +48,54 @@
               }
             },
             "parentUri": "/someChildUri/{blah1}",
-            "absoluteParentUri": "/some/base/uri/someChildUri/{blah1}"
+            "absoluteParentUri": "/some/base/uri/someChildUri/{blah1}",
+            "uriParameters": [
+              {
+                "name": "blah1",
+                "displayName": "blah1",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              {
+                "name": "blah",
+                "displayName": "blah",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  },
+                  "calculated": true
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "uriParameters": [

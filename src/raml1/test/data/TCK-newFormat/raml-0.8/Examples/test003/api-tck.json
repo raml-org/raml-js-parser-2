@@ -35,7 +35,19 @@
             ],
             "method": "post",
             "parentUri": "/single-query-record/{code}",
-            "absoluteParentUri": "/single-query-record/{code}"
+            "absoluteParentUri": "/single-query-record/{code}",
+            "uriParameters": [
+              {
+                "name": "code",
+                "displayName": "code",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "__METADATA__": {
+                  "calculated": true
+                }
+              }
+            ]
           }
         ],
         "displayName": "/single-query-record/{code}",

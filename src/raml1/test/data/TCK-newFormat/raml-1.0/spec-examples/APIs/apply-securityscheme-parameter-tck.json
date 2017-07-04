@@ -178,7 +178,97 @@
               }
             },
             "parentUri": "/users/{userid}/gists",
-            "absoluteParentUri": "https://api.github.com/users/{userid}/gists"
+            "absoluteParentUri": "https://api.github.com/users/{userid}/gists",
+            "headers": [
+              {
+                "name": "Authorization",
+                "displayName": "Authorization",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  },
+                  "calculated": true
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "responses": [
+              {
+                "code": "401",
+                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
+                "__METADATA__": {
+                  "calculated": true
+                }
+              },
+              {
+                "code": "403",
+                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
+                "__METADATA__": {
+                  "calculated": true
+                }
+              }
+            ],
+            "queryParameters": [
+              {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  },
+                  "calculated": true
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ],
+            "uriParameters": [
+              {
+                "name": "userid",
+                "displayName": "userid",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "uriParameters": [

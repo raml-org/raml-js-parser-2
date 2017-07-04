@@ -48,6 +48,12 @@ export class TCKDumper {
 
     constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
+        if (this.options.allParameters == null) {
+            this.options.allParameters = true;
+        }
+        if (this.options.expandSecurity == null) {
+            this.options.expandSecurity = true;
+        }
         if (this.options.serializeMetadata == null) {
             this.options.serializeMetadata = false;
         }
@@ -68,7 +74,7 @@ export class TCKDumper {
             new ReferencesTransformer(),
             new Api10SchemasTransformer(),
             new SecurityExpandingTransformer(this.options.expandSecurity),
-            new AllUriParametersTransformer(this.options.allUriParameters)
+            new AllParametersTransformer(this.options.allParameters)
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
         fillTransformersMap(this.nodePropertyTransformers,this.nodePropertyTransformersMap);
@@ -633,7 +639,7 @@ export interface SerializeOptions{
 
     attributeDefaults?:boolean
 
-    allUriParameters?:boolean
+    allParameters?:boolean
 
     expandSecurity?:boolean
 
@@ -1828,7 +1834,7 @@ class SecurityExpandingTransformer extends MatcherBasedTransformation {
     }
 }
 
-class AllUriParametersTransformer extends MatcherBasedTransformation{
+class AllParametersTransformer extends MatcherBasedTransformation{
 
     constructor(private enabled:boolean=false){
         super(new CompositeObjectPropertyMatcher([
@@ -1853,38 +1859,106 @@ class AllUriParametersTransformer extends MatcherBasedTransformation{
     private static resourcesPropName
         = universes.Universe10.Api.properties.resources.name;
 
+    private static queryParametersPropName
+        = universes.Universe10.Method.properties.queryParameters.name;
+
+    private static headersPropName
+        = universes.Universe10.Method.properties.headers.name;
+
+    private static securedByPropName = universes.Universe10.Method.properties.securedBy.name;
+
+    private static responsesPropName = universes.Universe10.Method.properties.responses.name;
+
     transform(value:any,node?:hl.IParseResult,uriParams?:any){
 
-        var params:any[] = uriParams;
-        var ownParams = value[AllUriParametersTransformer.uriParamsPropName];
-        if(ownParams){
-            params = [].concat(uriParams||[]);
-            Object.keys(ownParams).forEach(x=>{
-                var obj = ownParams[x];
-                if(Array.isArray(obj)){
-                    obj.forEach(y=>params.push(y));
-                }
-                else{
-                    params.push(obj);
-                }
-            });
-        }
-        if(params){
-            value["allUriParameters"] = params;
-            var methods = value[AllUriParametersTransformer.methodsPropName];
-            if(methods){
-                Object.keys(methods).forEach(x=>
-                    methods[x]["allUriParameters"] = params
-                );
-            }
-        }
-        var resources = value[AllUriParametersTransformer.resourcesPropName];
-        if(resources){
-            resources.forEach(x=>this.transform(x,null,params));
-        }
+        this.processApi(value);
         return value;
     }
+
+    private processApi(api:any){
+
+        let params = this.extract(api,def.universesInfo.Universe10.Api.properties.baseUriParameters.name);
+        let resources = api[def.universesInfo.Universe10.Resource.properties.resources.name]||[];
+        for(let r of resources){
+            this.processResource(r,params);
+        }
+    }
+
+    private processResource(resource:any,uriParams:any[]){
+
+        this.appendSecurityData(resource);
+        let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
+        let params1 = this.extract(resource,pName);
+        let newParams = uriParams.concat(resource[pName]||[]);
+        if(newParams.length>0) {
+            resource[pName] = newParams;
+        }
+        let params2 = uriParams.concat(params1);
+
+        let methods = resource[def.universesInfo.Universe10.ResourceBase.properties.methods.name]||[];
+        for(let m of methods){
+            this.processMethod(m,params2);
+        }
+
+        let resources = resource[def.universesInfo.Universe10.Resource.properties.resources.name]||[];
+        for(let r of resources){
+            this.processResource(r,params2);
+        }
+    }
+
+    private processMethod(method:any,uriParams:any[]){
+        this.appendSecurityData(method);
+
+        let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
+        let newParams = uriParams.concat(method[pName]||[]);
+        if(newParams.length>0) {
+            method[pName] = newParams;
+        }
+    }
+
+    private appendSecurityData(obj:any){
+        let headerPName = def.universesInfo.Universe10.Operation.properties.headers.name;
+        let responsesPName = def.universesInfo.Universe10.Operation.properties.responses.name;
+        let queryPName = def.universesInfo.Universe10.Operation.properties.queryParameters.name;
+
+        let securedBy = obj[def.universesInfo.Universe10.Method.properties.securedBy.name]||[];
+        for(let sSch of securedBy){
+            if(!sSch){
+                continue;
+            }
+            let describedBy = sSch[def.universesInfo.Universe10.AbstractSecurityScheme.properties.describedBy.name]||{};
+            let sHeaders = this.extract(describedBy,headerPName);
+            let sResponses = this.extract(describedBy,responsesPName);
+            let sQParams = this.extract(describedBy,queryPName);
+            if(sHeaders.length>0){
+                obj[headerPName] = (obj[headerPName]||[]).concat(sHeaders);
+            }
+            if(sResponses.length>0){
+                obj[responsesPName] = (obj[responsesPName]||[]).concat(sResponses);
+            }
+            if(sQParams.length>0){
+                obj[queryPName] = (obj[queryPName]||[]).concat(sQParams);
+            }
+        }
+    }
+
+    private extract(api: any,pName:string) {
+        let arr = api[pName] || [];
+        arr = JSON.parse(JSON.stringify(arr));
+        for(let x of arr){
+            let mtd = x["__METADATA__"];
+            if(!mtd){
+                mtd = {};
+                x["__METADATA__"] = mtd;
+            }
+            mtd["calculated"] = true;
+        }
+        return arr;
+    }
+
 }
+
+
 //
 // class MethodsToMapTransformer extends ArrayToMapTransformer{
 //

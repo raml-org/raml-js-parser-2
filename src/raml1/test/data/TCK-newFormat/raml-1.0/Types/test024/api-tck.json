@@ -834,7 +834,39 @@
               }
             },
             "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           },
           {
             "responses": [
@@ -923,7 +955,39 @@
               }
             },
             "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams",
@@ -991,10 +1055,96 @@
                   }
                 },
                 "parentUri": "/teams/{id}",
-                "absoluteParentUri": "http://api.samplehost.com/{version}/teams/{id}"
+                "absoluteParentUri": "http://api.samplehost.com/{version}/teams/{id}",
+                "uriParameters": [
+                  {
+                    "name": "version",
+                    "displayName": "version",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "enum": [
+                      "v1"
+                    ],
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        },
+                        "enum": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               }
             ],
             "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
               {
                 "name": "id",
                 "displayName": "id",
@@ -1051,7 +1201,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams",
         "completeRelativeUri": "/teams",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -1092,7 +1274,39 @@
               }
             },
             "parentUri": "/users",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/users"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/users",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/users",
@@ -1110,7 +1324,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/users",
         "completeRelativeUri": "/users",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -1153,10 +1399,96 @@
               }
             },
             "parentUri": "/users/{id}",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/users/{id}"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/users/{id}",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              {
+                "name": "id",
+                "displayName": "id",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
           {
             "name": "id",
             "displayName": "id",

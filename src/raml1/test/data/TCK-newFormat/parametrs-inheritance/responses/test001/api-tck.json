@@ -1,0 +1,164 @@
+{
+  "specification": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "description": "resource type response"
+              }
+            ],
+            "securedBy": [
+              "s1"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "securedBy": [
+          "s1"
+        ],
+        "name": "rt",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    ],
+    "securitySchemes": [
+      {
+        "name": "s1",
+        "type": "x-custom",
+        "describedBy": {
+          "responses": [
+            {
+              "code": "401",
+              "description": "security response"
+            }
+          ]
+        }
+      }
+    ],
+    "title": "test API",
+    "securedBy": [
+      {
+        "name": "s1",
+        "type": "x-custom",
+        "describedBy": {
+          "responses": [
+            {
+              "code": "401",
+              "description": "security response"
+            }
+          ]
+        }
+      }
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "description": "resource type response"
+              },
+              {
+                "code": "202",
+                "description": "method response"
+              },
+              {
+                "code": "401",
+                "description": "security response",
+                "__METADATA__": {
+                  "calculated": true
+                }
+              }
+            ],
+            "securedBy": [
+              {
+                "name": "s1",
+                "type": "x-custom",
+                "describedBy": {
+                  "responses": [
+                    {
+                      "code": "401",
+                      "description": "security response"
+                    }
+                  ]
+                }
+              }
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
+          }
+        ],
+        "type": "rt",
+        "securedBy": [
+          {
+            "name": "s1",
+            "type": "x-custom",
+            "describedBy": {
+              "responses": [
+                {
+                  "code": "401",
+                  "description": "security response"
+                }
+              ]
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "responses": [
+          {
+            "code": "401",
+            "description": "security response",
+            "__METADATA__": {
+              "calculated": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

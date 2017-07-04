@@ -315,7 +315,33 @@
                   }
                 },
                 "parentUri": "/pets/{id}",
-                "absoluteParentUri": "/shop/pets/{id}"
+                "absoluteParentUri": "/shop/pets/{id}",
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               },
               {
                 "body": [
@@ -348,7 +374,33 @@
                   }
                 },
                 "parentUri": "/pets/{id}",
-                "absoluteParentUri": "/shop/pets/{id}"
+                "absoluteParentUri": "/shop/pets/{id}",
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               }
             ],
             "uriParameters": [
@@ -508,7 +560,33 @@
                   }
                 },
                 "parentUri": "/birds/{id}",
-                "absoluteParentUri": "/shop/birds/{id}"
+                "absoluteParentUri": "/shop/birds/{id}",
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               },
               {
                 "body": [
@@ -541,7 +619,33 @@
                   }
                 },
                 "parentUri": "/birds/{id}",
-                "absoluteParentUri": "/shop/birds/{id}"
+                "absoluteParentUri": "/shop/birds/{id}",
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               }
             ],
             "uriParameters": [
@@ -701,7 +805,33 @@
                   }
                 },
                 "parentUri": "/mammals/{id}",
-                "absoluteParentUri": "/shop/mammals/{id}"
+                "absoluteParentUri": "/shop/mammals/{id}",
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               },
               {
                 "body": [
@@ -734,7 +864,33 @@
                   }
                 },
                 "parentUri": "/mammals/{id}",
-                "absoluteParentUri": "/shop/mammals/{id}"
+                "absoluteParentUri": "/shop/mammals/{id}",
+                "uriParameters": [
+                  {
+                    "name": "id",
+                    "displayName": "id",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "calculated": true,
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
               }
             ],
             "uriParameters": [

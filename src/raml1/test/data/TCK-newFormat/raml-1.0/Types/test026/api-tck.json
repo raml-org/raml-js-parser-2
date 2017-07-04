@@ -132,7 +132,39 @@
               }
             },
             "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams",
@@ -150,7 +182,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams",
         "completeRelativeUri": "/teams",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -186,7 +250,39 @@
               }
             },
             "parentUri": "/teams2",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams2"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams2",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams2",
@@ -204,7 +300,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams2",
         "completeRelativeUri": "/teams2",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -243,7 +371,39 @@
               }
             },
             "parentUri": "/teams3",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams3"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams3",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams3",
@@ -261,7 +421,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams3",
         "completeRelativeUri": "/teams3",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -299,7 +491,39 @@
               }
             },
             "parentUri": "/teams4",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams4"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams4",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams4",
@@ -317,7 +541,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams4",
         "completeRelativeUri": "/teams4",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -352,7 +608,39 @@
               }
             },
             "parentUri": "/teams5",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams5"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams5",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams5",
@@ -370,7 +658,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams5",
         "completeRelativeUri": "/teams5",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       },
       {
         "methods": [
@@ -405,7 +725,39 @@
               }
             },
             "parentUri": "/teams6",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams6"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams6",
+            "uriParameters": [
+              {
+                "name": "version",
+                "displayName": "version",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "enum": [
+                  "v1"
+                ],
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "enum": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            ]
           }
         ],
         "relativeUri": "/teams6",
@@ -423,7 +775,39 @@
         "absoluteUri": "http://api.samplehost.com/{version}/teams6",
         "completeRelativeUri": "/teams6",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "uriParameters": [
+          {
+            "name": "version",
+            "displayName": "version",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "enum": [
+              "v1"
+            ],
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "enum": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ]
       }
     ],
     "__METADATA__": {
