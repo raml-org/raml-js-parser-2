@@ -40,7 +40,8 @@
     ],
     "schemas": [
       {
-        "member": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+        "value": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
+        "name": "member"
       }
     ],
     "resourceTypes": [

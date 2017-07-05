@@ -5,7 +5,8 @@
     "mediaType": "application/atom+xml",
     "schemas": [
       {
-        "atom": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+        "value": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
+        "name": "atom"
       }
     ],
     "resourceTypes": [

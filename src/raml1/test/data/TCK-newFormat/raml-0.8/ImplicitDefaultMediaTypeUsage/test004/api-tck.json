@@ -4,13 +4,16 @@
     "mediaType": "application/json",
     "schemas": [
       {
-        "t1": "{}"
+        "value": "{}",
+        "name": "t1"
       },
       {
-        "t2": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+        "value": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+        "name": "t2"
       },
       {
-        "t3": "{}"
+        "value": "{}",
+        "name": "t3"
       }
     ],
     "resourceTypes": [

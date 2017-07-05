@@ -4,10 +4,12 @@
     "mediaType": "application/json",
     "schemas": [
       {
-        "t1": "{}"
+        "value": "{}",
+        "name": "t1"
       },
       {
-        "t2": "{}"
+        "value": "{}",
+        "name": "t2"
       }
     ],
     "resourceTypes": [

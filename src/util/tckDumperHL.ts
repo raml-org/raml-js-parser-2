@@ -1657,9 +1657,9 @@ class SchemasTransformer extends BasicTransformation{
             return value;
         }
         else {
-            var obj = {};
-            obj[value.key] = value.value;
-            return obj;
+            value.name = value.key;
+            delete value.key;
+            return value;
         }
     }
 }
