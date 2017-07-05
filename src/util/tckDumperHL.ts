@@ -1765,6 +1765,18 @@ class SecurityExpandingTransformer extends MatcherBasedTransformation {
                 this.processResource(r, securitySchemes);
             }
         }
+        let resourceTypes = value[def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name];
+        if(resourceTypes) {
+            for (let r of resourceTypes) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+        let traits = value[def.universesInfo.Universe10.LibraryBase.properties.traits.name];
+        if(traits) {
+            for (let t of traits) {
+                this.expandSecuredBy(t, securitySchemes);
+            }
+        }
         return value;
     }
 

@@ -3,7 +3,10 @@
     "traits": [
       {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Basic Authentication"
+          }
         ],
         "name": "env-org-pair2",
         "__METADATA__": {
@@ -16,7 +19,10 @@
       },
       {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Basic Authentication"
+          }
         ],
         "name": "env-org-pair",
         "__METADATA__": {
@@ -32,7 +38,10 @@
     "resourceTypes": [
       {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Basic Authentication"
+          }
         ],
         "name": "servers-collection",
         "__METADATA__": {

@@ -3,7 +3,10 @@
     "traits": [
       {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Digest Authentication"
+          }
         ],
         "displayName": "overlayDisplayName2",
         "name": "env-org-pair",
@@ -19,7 +22,10 @@
     "resourceTypes": [
       {
         "securedBy": [
-          "x-ttt"
+          {
+            "name": "x-ttt",
+            "type": "Digest Authentication"
+          }
         ],
         "name": "servers-collection",
         "__METADATA__": {

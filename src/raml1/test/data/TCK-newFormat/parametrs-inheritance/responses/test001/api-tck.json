@@ -11,7 +11,18 @@
               }
             ],
             "securedBy": [
-              "s1"
+              {
+                "name": "s1",
+                "type": "x-custom",
+                "describedBy": {
+                  "responses": [
+                    {
+                      "code": "401",
+                      "description": "security response"
+                    }
+                  ]
+                }
+              }
             ],
             "method": "get",
             "__METADATA__": {
@@ -24,7 +35,18 @@
           }
         ],
         "securedBy": [
-          "s1"
+          {
+            "name": "s1",
+            "type": "x-custom",
+            "describedBy": {
+              "responses": [
+                {
+                  "code": "401",
+                  "description": "security response"
+                }
+              ]
+            }
+          }
         ],
         "name": "rt",
         "__METADATA__": {

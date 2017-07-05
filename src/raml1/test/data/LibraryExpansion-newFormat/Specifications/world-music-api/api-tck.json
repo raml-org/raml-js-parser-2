@@ -911,7 +911,45 @@
           }
         ],
         "securedBy": [
-          "custom_scheme"
+          {
+            "name": "custom_scheme",
+            "type": "x-custom",
+            "description": "A custom security scheme for authenticating requests.\n",
+            "describedBy": {
+              "headers": [
+                {
+                  "name": "SpecialToken",
+                  "displayName": "SpecialToken",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "description": "Used to send a custom token.\n",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              ],
+              "responses": [
+                {
+                  "code": "401",
+                  "description": "Bad token.\n"
+                },
+                {
+                  "code": "403"
+                }
+              ]
+            }
+          }
         ],
         "name": "secured",
         "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
@@ -955,7 +993,45 @@
               }
             ],
             "securedBy": [
-              "custom_scheme"
+              {
+                "name": "custom_scheme",
+                "type": "x-custom",
+                "description": "A custom security scheme for authenticating requests.\n",
+                "describedBy": {
+                  "headers": [
+                    {
+                      "name": "SpecialToken",
+                      "displayName": "SpecialToken",
+                      "type": [
+                        "string"
+                      ],
+                      "required": true,
+                      "description": "Used to send a custom token.\n",
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      },
+                      "mediaType": "application/raml+yaml",
+                      "typePropertyKind": "TYPE_EXPRESSION"
+                    }
+                  ],
+                  "responses": [
+                    {
+                      "code": "401",
+                      "description": "Bad token.\n"
+                    },
+                    {
+                      "code": "403"
+                    }
+                  ]
+                }
+              }
             ],
             "description": "returns a list of <<resourcePathName|!singularize>>",
             "method": "get",
@@ -969,7 +1045,45 @@
           }
         ],
         "securedBy": [
-          "custom_scheme"
+          {
+            "name": "custom_scheme",
+            "type": "x-custom",
+            "description": "A custom security scheme for authenticating requests.\n",
+            "describedBy": {
+              "headers": [
+                {
+                  "name": "SpecialToken",
+                  "displayName": "SpecialToken",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true,
+                  "description": "Used to send a custom token.\n",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              ],
+              "responses": [
+                {
+                  "code": "401",
+                  "description": "Bad token.\n"
+                },
+                {
+                  "code": "403"
+                }
+              ]
+            }
+          }
         ],
         "name": "collection",
         "__METADATA__": {

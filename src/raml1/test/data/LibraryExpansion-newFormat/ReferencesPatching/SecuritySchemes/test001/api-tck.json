@@ -3,7 +3,10 @@
     "traits": [
       {
         "securedBy": [
-          "lib.number"
+          {
+            "name": "lib.number",
+            "type": "Basic Authentication"
+          }
         ],
         "name": "lib.boolean",
         "__METADATA__": {
@@ -21,8 +24,14 @@
           "lib.boolean"
         ],
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth",
+            "type": "OAuth 2.0"
+          },
+          {
+            "name": "lib.number",
+            "type": "Basic Authentication"
+          }
         ],
         "name": "lib.number"
       }
