@@ -234,7 +234,7 @@ describe('Regressions', function () {
       'version: v0.1',
       '---'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/end of the stream or a document separator is expected/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/expected a single document in the stream, but found more/).and.notify(done);
   });
   //
 
