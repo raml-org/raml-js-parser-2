@@ -103,9 +103,13 @@
           }
         ],
         "type": {
-          "member": {
-            "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
-          }
+          "name": "member",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
+            }
+          ]
         },
         "relativeUri": "/resource1",
         "displayName": "/resource1",
@@ -176,9 +180,13 @@
           }
         ],
         "type": {
-          "member": {
-            "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
-          }
+          "name": "member",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
+            }
+          ]
         },
         "relativeUri": "/resource2",
         "displayName": "/resource2",

@@ -98,9 +98,13 @@
           {
             "is": [
               {
-                "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "ty.ErrorResponseType"
-                }
+                "name": "rt.tr.ResponseCommonErrors",
+                "parameters": [
+                  {
+                    "name": "errorResponseType",
+                    "value": "ty.ErrorResponseType"
+                  }
+                ]
               }
             ],
             "method": "get"
@@ -190,9 +194,13 @@
             ],
             "is": [
               {
-                "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "rt.ty.ErrorResponseType"
-                }
+                "name": "rt.tr.ResponseCommonErrors",
+                "parameters": [
+                  {
+                    "name": "errorResponseType",
+                    "value": "rt.ty.ErrorResponseType"
+                  }
+                ]
               }
             ],
             "method": "get",

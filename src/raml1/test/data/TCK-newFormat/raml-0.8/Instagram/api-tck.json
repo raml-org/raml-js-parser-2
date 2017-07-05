@@ -625,12 +625,19 @@
             ],
             "securedBy": [
               {
-                "oauth_2_0": {
-                  "scopes": [
-                    "relationships"
-                  ],
-                  "clientId": []
-                }
+                "name": "oauth_2_0",
+                "parameters": [
+                  {
+                    "name": "scopes",
+                    "value": [
+                      "relationships"
+                    ]
+                  },
+                  {
+                    "name": "clientId",
+                    "value": []
+                  }
+                ]
               }
             ],
             "method": "get",
@@ -646,12 +653,19 @@
         "type": "base",
         "securedBy": [
           {
-            "oauth_2_0": {
-              "scopes": [
-                "relationships"
-              ],
-              "clientId": []
-            }
+            "name": "oauth_2_0",
+            "parameters": [
+              {
+                "name": "scopes",
+                "value": [
+                  "relationships"
+                ]
+              },
+              {
+                "name": "clientId",
+                "value": []
+              }
+            ]
           }
         ]
       },
@@ -718,11 +732,15 @@
             ],
             "securedBy": [
               {
-                "oauth_2_0": {
-                  "scopes": [
-                    "<<scope>>"
-                  ]
-                }
+                "name": "oauth_2_0",
+                "parameters": [
+                  {
+                    "name": "scopes",
+                    "value": [
+                      "<<scope>>"
+                    ]
+                  }
+                ]
               }
             ],
             "method": "delete",
@@ -746,11 +764,15 @@
             ],
             "securedBy": [
               {
-                "oauth_2_0": {
-                  "scopes": [
-                    "<<scope>>"
-                  ]
-                }
+                "name": "oauth_2_0",
+                "parameters": [
+                  {
+                    "name": "scopes",
+                    "value": [
+                      "<<scope>>"
+                    ]
+                  }
+                ]
               }
             ],
             "method": "post",
@@ -762,12 +784,19 @@
         "type": "base",
         "securedBy": [
           {
-            "oauth_2_0": {
-              "scopes": [
-                "<<scope>>"
-              ],
-              "clientId": []
-            }
+            "name": "oauth_2_0",
+            "parameters": [
+              {
+                "name": "scopes",
+                "value": [
+                  "<<scope>>"
+                ]
+              },
+              {
+                "name": "clientId",
+                "value": []
+              }
+            ]
           }
         ]
       },
@@ -1479,9 +1508,13 @@
               {
                 "relativeUri": "/comments",
                 "type": {
-                  "secured": {
-                    "scope": "comments"
-                  }
+                  "name": "secured",
+                  "parameters": [
+                    {
+                      "name": "scope",
+                      "value": "comments"
+                    }
+                  ]
                 },
                 "securedBy": [
                   {
@@ -1976,9 +2009,13 @@
                   {
                     "relativeUri": "/{commentId}",
                     "type": {
-                      "secured": {
-                        "scope": "comments"
-                      }
+                      "name": "secured",
+                      "parameters": [
+                        {
+                          "name": "scope",
+                          "value": "comments"
+                        }
+                      ]
                     },
                     "securedBy": [
                       {
@@ -2459,9 +2496,13 @@
               {
                 "relativeUri": "/likes",
                 "type": {
-                  "secured": {
-                    "scope": "likes"
-                  }
+                  "name": "secured",
+                  "parameters": [
+                    {
+                      "name": "scope",
+                      "value": "likes"
+                    }
+                  ]
                 },
                 "securedBy": [
                   {
@@ -8308,9 +8349,13 @@
               {
                 "relativeUri": "/relationship",
                 "type": {
-                  "secured": {
-                    "scope": "comments"
-                  }
+                  "name": "secured",
+                  "parameters": [
+                    {
+                      "name": "scope",
+                      "value": "comments"
+                    }
+                  ]
                 },
                 "securedBy": [
                   {
@@ -9351,9 +9396,13 @@
           {
             "relativeUri": "/self",
             "type": {
-              "secured": {
-                "scope": "basic"
-              }
+              "name": "secured",
+              "parameters": [
+                {
+                  "name": "scope",
+                  "value": "basic"
+                }
+              ]
             },
             "securedBy": [
               {

@@ -70,9 +70,13 @@
       {
         "relativeUri": "/members",
         "type": {
-          "collection": {
-            "schema": "member"
-          }
+          "name": "collection",
+          "parameters": [
+            {
+              "name": "schema",
+              "value": "member"
+            }
+          ]
         },
         "methods": [
           {

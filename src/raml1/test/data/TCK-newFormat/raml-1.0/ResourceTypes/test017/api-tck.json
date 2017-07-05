@@ -55,9 +55,13 @@
           }
         ],
         "type": {
-          "standardResponse": {
-            "objectName": "types.Folder"
-          }
+          "name": "standardResponse",
+          "parameters": [
+            {
+              "name": "objectName",
+              "value": "types.Folder"
+            }
+          ]
         },
         "name": "standardResponse"
       },
@@ -109,9 +113,13 @@
           }
         ],
         "type": {
-          "standardResponse": {
-            "objectName": "types.Folder"
-          }
+          "name": "standardResponse",
+          "parameters": [
+            {
+              "name": "objectName",
+              "value": "types.Folder"
+            }
+          ]
         },
         "name": "collection"
       }
@@ -168,9 +176,13 @@
           }
         ],
         "type": {
-          "collection": {
-            "objectName": "types.Folder"
-          }
+          "name": "collection",
+          "parameters": [
+            {
+              "name": "objectName",
+              "value": "types.Folder"
+            }
+          ]
         },
         "relativeUri": "/folders",
         "displayName": "/folders",

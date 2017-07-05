@@ -278,10 +278,17 @@
           }
         ],
         "type": {
-          "ResourceTypeWithParams": {
-            "resourceTypeParam": "ResourceType2",
-            "bodyTypeParam": "Type2"
-          }
+          "name": "ResourceTypeWithParams",
+          "parameters": [
+            {
+              "name": "resourceTypeParam",
+              "value": "ResourceType2"
+            },
+            {
+              "name": "bodyTypeParam",
+              "value": "Type2"
+            }
+          ]
         },
         "name": "Resource"
       }

@@ -229,10 +229,17 @@
       },
       {
         "type": {
-          "rt.lib.lib.rt": {
-            "param1": "<<param1>>",
-            "param2": "MyType"
-          }
+          "name": "rt.lib.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "<<param1>>"
+            },
+            {
+              "name": "param2",
+              "value": "MyType"
+            }
+          ]
         },
         "name": "rt.lib.rt",
         "__METADATA__": {
@@ -244,9 +251,13 @@
           {
             "is": [
               {
-                "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "ty.ErrorResponseType"
-                }
+                "name": "rt.tr.ResponseCommonErrors",
+                "parameters": [
+                  {
+                    "name": "errorResponseType",
+                    "value": "ty.ErrorResponseType"
+                  }
+                ]
               }
             ],
             "method": "get"
@@ -279,9 +290,13 @@
           }
         ],
         "type": {
-          "rt.lib.rt": {
-            "param1": "MyType"
-          }
+          "name": "rt.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "MyType"
+            }
+          ]
         },
         "description": "<<desc>>",
         "name": "rt.Collection",
@@ -399,9 +414,13 @@
             ],
             "is": [
               {
-                "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "rt.ty.ErrorResponseType"
-                }
+                "name": "rt.tr.ResponseCommonErrors",
+                "parameters": [
+                  {
+                    "name": "errorResponseType",
+                    "value": "rt.ty.ErrorResponseType"
+                  }
+                ]
               }
             ],
             "method": "get",
@@ -506,10 +525,17 @@
           }
         ],
         "type": {
-          "rt.Collection": {
-            "desc": "stringValue",
-            "param1": "MyType"
-          }
+          "name": "rt.Collection",
+          "parameters": [
+            {
+              "name": "desc",
+              "value": "stringValue"
+            },
+            {
+              "name": "param1",
+              "value": "MyType"
+            }
+          ]
         },
         "description": "stringValue",
         "relativeUri": "/products",

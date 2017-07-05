@@ -1706,18 +1706,24 @@ class ReferencesTransformer extends MatcherBasedTransformation{
 
     private toSimpleValue(x):any {
         if(typeof(x)=="string"){
-            return x;
+            return {
+                name: x
+            };
         }
-        var name = x['name'];
+        let result:any = {
+            name: x['name']
+        }
         var params = x['structuredValue'];
         if (params) {
-            var obj = {};
-            obj[name] = params;
-            return obj;
+            Object.keys(params).forEach(y=>{
+                result.parameters = result.parameters||[];
+                result.parameters.push({
+                    name: y,
+                    value: params[y]
+                });
+            });
         }
-        else {
-            return name;
-        }
+        return result;
     }
 
 }
@@ -1798,21 +1804,21 @@ class SecurityExpandingTransformer extends MatcherBasedTransformation {
             }
             else if (typeof ref == "object"){
                 let refObj = ref;
-                ref = Object.keys(refObj)[0];;
+                ref = ref.name;//Object.keys(refObj)[0];
                 sch = JSON.parse(JSON.stringify(securitySchemes[ref]));
-                let params = refObj[ref];
-                if(params) {
-                    let paramNames = Object.keys(params);
-                    if (paramNames.length > 0) {
+                let params = refObj.parameters;
+                if(params && params.length>0) {
+                    // let paramNames = Object.keys(params);
+                    // if (paramNames.length > 0) {
                         let settings: any = sch.settings;
                         if (!settings) {
                             settings = {};
                             sch.settings = settings;
                         }
-                        for (let pn of paramNames) {
-                            settings[pn] = params[pn];
+                        for (let pn of params) {
+                            settings[pn.name] = pn.value;
                         }
-                    }
+                    //}
                 }
             }
             if(!sch){

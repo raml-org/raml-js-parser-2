@@ -75,9 +75,13 @@
           }
         ],
         "type": {
-          "corpResource": {
-            "TextAboutPost": "post method"
-          }
+          "name": "corpResource",
+          "parameters": [
+            {
+              "name": "TextAboutPost",
+              "value": "post method"
+            }
+          ]
         },
         "relativeUri": "/servers",
         "displayName": "/servers",

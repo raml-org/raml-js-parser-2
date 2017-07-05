@@ -92,18 +92,22 @@
           }
         ],
         "type": {
-          "collection": {
-            "postRequestBodyExample": {
-              "subscriptionID": "8f19cb50-3f57-4d38",
-              "name": "NewSub",
-              "description": "This is the new subscription.",
-              "startDate": "2015-01-01",
-              "endDate": "2018-01-01",
-              "quantity": 5,
-              "productName": "ABC Product",
-              "supportLevel": 4
+          "name": "collection",
+          "parameters": [
+            {
+              "name": "postRequestBodyExample",
+              "value": {
+                "subscriptionID": "8f19cb50-3f57-4d38",
+                "name": "NewSub",
+                "description": "This is the new subscription.",
+                "startDate": "2015-01-01",
+                "endDate": "2018-01-01",
+                "quantity": 5,
+                "productName": "ABC Product",
+                "supportLevel": 4
+              }
             }
-          }
+          ]
         },
         "relativeUri": "/testURI",
         "displayName": "/testURI",

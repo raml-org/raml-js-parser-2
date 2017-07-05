@@ -76,9 +76,13 @@
     "resourceTypes": [
       {
         "type": {
-          "rt2": {
-            "param": "<<param>>"
-          }
+          "name": "rt2",
+          "parameters": [
+            {
+              "name": "param",
+              "value": "<<param>>"
+            }
+          ]
         },
         "name": "rt1"
       },
@@ -90,9 +94,13 @@
         ],
         "is": [
           {
-            "myTrait": {
-              "param": "<<param>>"
-            }
+            "name": "myTrait",
+            "parameters": [
+              {
+                "name": "param",
+                "value": "<<param>>"
+              }
+            ]
           },
           "simpleTrait"
         ],
@@ -242,16 +250,24 @@
         ],
         "is": [
           {
-            "myTrait": {
-              "param": "qParam"
-            }
+            "name": "myTrait",
+            "parameters": [
+              {
+                "name": "param",
+                "value": "qParam"
+              }
+            ]
           },
           "simpleTrait"
         ],
         "type": {
-          "rt1": {
-            "param": "qParam"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "param",
+              "value": "qParam"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",

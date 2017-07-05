@@ -268,10 +268,17 @@
           }
         ],
         "type": {
-          "rt1": {
-            "annotation": "simpleAnnotation",
-            "annotationField": "someFieldValue"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "annotation",
+              "value": "simpleAnnotation"
+            },
+            {
+              "name": "annotationField",
+              "value": "someFieldValue"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",

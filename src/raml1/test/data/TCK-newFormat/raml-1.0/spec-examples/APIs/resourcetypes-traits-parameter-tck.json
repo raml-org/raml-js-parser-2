@@ -226,14 +226,22 @@
             ],
             "is": [
               {
-                "secured": {
-                  "tokenName": "access_token"
-                }
+                "name": "secured",
+                "parameters": [
+                  {
+                    "name": "tokenName",
+                    "value": "access_token"
+                  }
+                ]
               },
               {
-                "paged": {
-                  "maxPages": 10
-                }
+                "name": "paged",
+                "parameters": [
+                  {
+                    "name": "maxPages",
+                    "value": 10
+                  }
+                ]
               }
             ],
             "method": "get",
@@ -242,10 +250,17 @@
           }
         ],
         "type": {
-          "searchableCollection": {
-            "queryParamName": "title",
-            "fallbackParamName": "digest_all_fields"
-          }
+          "name": "searchableCollection",
+          "parameters": [
+            {
+              "name": "queryParamName",
+              "value": "title"
+            },
+            {
+              "name": "fallbackParamName",
+              "value": "digest_all_fields"
+            }
+          ]
         },
         "relativeUri": "/books",
         "displayName": "/books",

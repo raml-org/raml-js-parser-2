@@ -67,9 +67,13 @@
       {
         "is": [
           {
-            "lib1.lib2.myTrait": {
-              "paramName": "QParam"
-            }
+            "name": "lib1.lib2.myTrait",
+            "parameters": [
+              {
+                "name": "paramName",
+                "value": "QParam"
+              }
+            ]
           }
         ],
         "name": "lib1.rt"
@@ -142,9 +146,13 @@
         ],
         "is": [
           {
-            "lib1.lib2.myTrait": {
-              "paramName": "QParam"
-            }
+            "name": "lib1.lib2.myTrait",
+            "parameters": [
+              {
+                "name": "paramName",
+                "value": "QParam"
+              }
+            ]
           }
         ],
         "type": "lib1.rt",

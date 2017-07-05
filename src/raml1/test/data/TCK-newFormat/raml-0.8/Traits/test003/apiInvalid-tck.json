@@ -151,11 +151,21 @@
             "method": "get",
             "is": [
               {
-                "SomeTrait": {
-                  "propertyName1": "a",
-                  "propertyName2": "c",
-                  "propertyName3": "b"
-                }
+                "name": "SomeTrait",
+                "parameters": [
+                  {
+                    "name": "propertyName1",
+                    "value": "a"
+                  },
+                  {
+                    "name": "propertyName2",
+                    "value": "c"
+                  },
+                  {
+                    "name": "propertyName3",
+                    "value": "b"
+                  }
+                ]
               }
             ],
             "parentUri": "/resource",

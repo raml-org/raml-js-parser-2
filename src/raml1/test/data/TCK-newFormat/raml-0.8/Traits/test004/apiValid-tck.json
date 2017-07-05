@@ -122,10 +122,17 @@
             "method": "get",
             "is": [
               {
-                "SomeTrait": {
-                  "queryParamName": "a",
-                  "headerName": "c"
-                }
+                "name": "SomeTrait",
+                "parameters": [
+                  {
+                    "name": "queryParamName",
+                    "value": "a"
+                  },
+                  {
+                    "name": "headerName",
+                    "value": "c"
+                  }
+                ]
               }
             ],
             "parentUri": "/resource",

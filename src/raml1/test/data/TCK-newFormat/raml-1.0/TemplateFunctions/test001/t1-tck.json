@@ -144,9 +144,13 @@
             ],
             "is": [
               {
-                "notAlwaysPresent": {
-                  "param": "user"
-                }
+                "name": "notAlwaysPresent",
+                "parameters": [
+                  {
+                    "name": "param",
+                    "value": "user"
+                  }
+                ]
               }
             ],
             "method": "get",

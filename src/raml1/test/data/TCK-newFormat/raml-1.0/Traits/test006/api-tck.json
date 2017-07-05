@@ -97,14 +97,21 @@
             ],
             "is": [
               {
-                "trait1": {
-                  "type1": "number",
-                  "body1": {
-                    "application/json": {
-                      "example": "{\n  \"prop\": \"value\"\n}\n"
+                "name": "trait1",
+                "parameters": [
+                  {
+                    "name": "type1",
+                    "value": "number"
+                  },
+                  {
+                    "name": "body1",
+                    "value": {
+                      "application/json": {
+                        "example": "{\n  \"prop\": \"value\"\n}\n"
+                      }
                     }
                   }
-                }
+                ]
               }
             ],
             "method": "get",

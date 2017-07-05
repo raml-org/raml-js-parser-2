@@ -88,10 +88,17 @@
           }
         ],
         "type": {
-          "oneRT": {
-            "parentResourceType": "twoRT",
-            "trait": "bodyTrait"
-          }
+          "name": "oneRT",
+          "parameters": [
+            {
+              "name": "parentResourceType",
+              "value": "twoRT"
+            },
+            {
+              "name": "trait",
+              "value": "bodyTrait"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",

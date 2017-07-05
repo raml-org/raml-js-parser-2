@@ -476,9 +476,13 @@
           }
         ],
         "type": {
-          "NewLibrary.Collection": {
-            "item": "NewLibrary.Pet"
-          }
+          "name": "NewLibrary.Collection",
+          "parameters": [
+            {
+              "name": "item",
+              "value": "NewLibrary.Pet"
+            }
+          ]
         },
         "relativeUri": "/pets",
         "displayName": "/pets",
@@ -592,9 +596,13 @@
               }
             ],
             "type": {
-              "NewLibrary.Member": {
-                "item": "NewLibrary.Pet"
-              }
+              "name": "NewLibrary.Member",
+              "parameters": [
+                {
+                  "name": "item",
+                  "value": "NewLibrary.Pet"
+                }
+              ]
             },
             "uriParameters": [
               {
@@ -778,9 +786,13 @@
           }
         ],
         "type": {
-          "NewLibrary.Collection": {
-            "item": "Bird"
-          }
+          "name": "NewLibrary.Collection",
+          "parameters": [
+            {
+              "name": "item",
+              "value": "Bird"
+            }
+          ]
         },
         "relativeUri": "/birds",
         "displayName": "/birds",
@@ -894,9 +906,13 @@
               }
             ],
             "type": {
-              "NewLibrary.Member": {
-                "item": "Bird"
-              }
+              "name": "NewLibrary.Member",
+              "parameters": [
+                {
+                  "name": "item",
+                  "value": "Bird"
+                }
+              ]
             },
             "uriParameters": [
               {
@@ -1080,9 +1096,13 @@
           }
         ],
         "type": {
-          "NewLibrary.Collection": {
-            "item": "Mammal"
-          }
+          "name": "NewLibrary.Collection",
+          "parameters": [
+            {
+              "name": "item",
+              "value": "Mammal"
+            }
+          ]
         },
         "relativeUri": "/mammals",
         "displayName": "/mammals",
@@ -1196,9 +1216,13 @@
               }
             ],
             "type": {
-              "NewLibrary.Member": {
-                "item": "Mammal"
-              }
+              "name": "NewLibrary.Member",
+              "parameters": [
+                {
+                  "name": "item",
+                  "value": "Mammal"
+                }
+              ]
             },
             "uriParameters": [
               {

@@ -25,10 +25,17 @@
             ],
             "is": [
               {
-                "respCode": {
-                  "status": 201,
-                  "description": "Post created, returns the created post."
-                }
+                "name": "respCode",
+                "parameters": [
+                  {
+                    "name": "status",
+                    "value": 201
+                  },
+                  {
+                    "name": "description",
+                    "value": "Post created, returns the created post."
+                  }
+                ]
               }
             ],
             "description": "test",

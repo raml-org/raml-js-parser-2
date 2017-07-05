@@ -377,9 +377,13 @@
           {
             "is": [
               {
-                "RTTrait": {
-                  "RTType": "RTType1"
-                }
+                "name": "RTTrait",
+                "parameters": [
+                  {
+                    "name": "RTType",
+                    "value": "RTType1"
+                  }
+                ]
               }
             ],
             "method": "put"
@@ -392,9 +396,13 @@
           {
             "is": [
               {
-                "RTTrait": {
-                  "RTType": "RTType2"
-                }
+                "name": "RTTrait",
+                "parameters": [
+                  {
+                    "name": "RTType",
+                    "value": "RTType2"
+                  }
+                ]
               }
             ],
             "method": "put"
@@ -548,9 +556,13 @@
             ],
             "is": [
               {
-                "RTTrait": {
-                  "RTType": "RTType2"
-                }
+                "name": "RTTrait",
+                "parameters": [
+                  {
+                    "name": "RTType",
+                    "value": "RTType2"
+                  }
+                ]
               }
             ],
             "method": "put",

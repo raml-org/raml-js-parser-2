@@ -72,9 +72,13 @@
           {
             "is": [
               {
-                "defaultResponses.general": {
-                  "parentType": "<<parentType>>"
-                }
+                "name": "defaultResponses.general",
+                "parameters": [
+                  {
+                    "name": "parentType",
+                    "value": "<<parentType>>"
+                  }
+                ]
               }
             ],
             "method": "get"
@@ -152,9 +156,13 @@
                 ],
                 "is": [
                   {
-                    "defaultResponses.general": {
-                      "parentType": "alpha"
-                    }
+                    "name": "defaultResponses.general",
+                    "parameters": [
+                      {
+                        "name": "parentType",
+                        "value": "alpha"
+                      }
+                    ]
                   }
                 ],
                 "method": "get",
@@ -170,9 +178,13 @@
               }
             ],
             "type": {
-              "collection": {
-                "parentType": "alpha"
-              }
+              "name": "collection",
+              "parameters": [
+                {
+                  "name": "parentType",
+                  "value": "alpha"
+                }
+              ]
             },
             "relativeUri": "/letters",
             "displayName": "/letters",

@@ -189,10 +189,17 @@
           }
         ],
         "type": {
-          "rt": {
-            "param1": "T2",
-            "param2": "T4"
-          }
+          "name": "rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "T2"
+            },
+            {
+              "name": "param2",
+              "value": "T4"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",

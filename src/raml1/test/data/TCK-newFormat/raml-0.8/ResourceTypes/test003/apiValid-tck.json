@@ -87,10 +87,17 @@
         ],
         "is": [
           {
-            "SomeTrait": {
-              "queryParamName": "a",
-              "headerName": "c"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "queryParamName",
+                "value": "a"
+              },
+              {
+                "name": "headerName",
+                "value": "c"
+              }
+            ]
           }
         ]
       }
@@ -101,10 +108,17 @@
         "type": "Resource",
         "is": [
           {
-            "SomeTrait": {
-              "queryParamName": "a",
-              "headerName": "c"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "queryParamName",
+                "value": "a"
+              },
+              {
+                "name": "headerName",
+                "value": "c"
+              }
+            ]
           }
         ],
         "methods": [

@@ -105,11 +105,21 @@
         ],
         "is": [
           {
-            "SomeTrait": {
-              "propertyName1": "a",
-              "propertyName2": "b",
-              "propertyName3": "c"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "propertyName1",
+                "value": "a"
+              },
+              {
+                "name": "propertyName2",
+                "value": "b"
+              },
+              {
+                "name": "propertyName3",
+                "value": "c"
+              }
+            ]
           }
         ]
       },
@@ -149,11 +159,21 @@
         ],
         "is": [
           {
-            "SomeTrait": {
-              "propertyName1": "c",
-              "propertyName2": "a",
-              "propertyName3": "b"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "propertyName1",
+                "value": "c"
+              },
+              {
+                "name": "propertyName2",
+                "value": "a"
+              },
+              {
+                "name": "propertyName3",
+                "value": "b"
+              }
+            ]
           }
         ]
       }
@@ -164,11 +184,21 @@
         "type": "Resource2",
         "is": [
           {
-            "SomeTrait": {
-              "propertyName1": "c",
-              "propertyName2": "a",
-              "propertyName3": "b"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "propertyName1",
+                "value": "c"
+              },
+              {
+                "name": "propertyName2",
+                "value": "a"
+              },
+              {
+                "name": "propertyName3",
+                "value": "b"
+              }
+            ]
           }
         ],
         "methods": [

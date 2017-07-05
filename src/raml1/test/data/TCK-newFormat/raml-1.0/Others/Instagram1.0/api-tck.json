@@ -365,11 +365,15 @@
             ],
             "securedBy": [
               {
-                "oauth_2_0": {
-                  "scopes": [
-                    "relationships"
-                  ]
-                }
+                "name": "oauth_2_0",
+                "parameters": [
+                  {
+                    "name": "scopes",
+                    "value": [
+                      "relationships"
+                    ]
+                  }
+                ]
               }
             ],
             "method": "get",
@@ -385,11 +389,15 @@
         "type": "base",
         "securedBy": [
           {
-            "oauth_2_0": {
-              "scopes": [
-                "relationships"
-              ]
-            }
+            "name": "oauth_2_0",
+            "parameters": [
+              {
+                "name": "scopes",
+                "value": [
+                  "relationships"
+                ]
+              }
+            ]
           }
         ],
         "name": "usersListing"
@@ -601,11 +609,15 @@
             ],
             "securedBy": [
               {
-                "oauth_2_0": {
-                  "scopes": [
-                    "<<scope>>"
-                  ]
-                }
+                "name": "oauth_2_0",
+                "parameters": [
+                  {
+                    "name": "scopes",
+                    "value": [
+                      "<<scope>>"
+                    ]
+                  }
+                ]
               }
             ],
             "method": "delete",
@@ -658,11 +670,15 @@
             ],
             "securedBy": [
               {
-                "oauth_2_0": {
-                  "scopes": [
-                    "<<scope>>"
-                  ]
-                }
+                "name": "oauth_2_0",
+                "parameters": [
+                  {
+                    "name": "scopes",
+                    "value": [
+                      "<<scope>>"
+                    ]
+                  }
+                ]
               }
             ],
             "method": "post",
@@ -674,11 +690,15 @@
         "type": "base",
         "securedBy": [
           {
-            "oauth_2_0": {
-              "scopes": [
-                "<<scope>>"
-              ]
-            }
+            "name": "oauth_2_0",
+            "parameters": [
+              {
+                "name": "scopes",
+                "value": [
+                  "<<scope>>"
+                ]
+              }
+            ]
           }
         ],
         "name": "secured"
@@ -2293,9 +2313,13 @@
                   }
                 ],
                 "type": {
-                  "secured": {
-                    "scope": "comments"
-                  }
+                  "name": "secured",
+                  "parameters": [
+                    {
+                      "name": "scope",
+                      "value": "comments"
+                    }
+                  ]
                 },
                 "securedBy": [
                   {
@@ -2565,9 +2589,13 @@
                       }
                     ],
                     "type": {
-                      "secured": {
-                        "scope": "comments"
-                      }
+                      "name": "secured",
+                      "parameters": [
+                        {
+                          "name": "scope",
+                          "value": "comments"
+                        }
+                      ]
                     },
                     "securedBy": [
                       {
@@ -3469,9 +3497,13 @@
                   }
                 ],
                 "type": {
-                  "secured": {
-                    "scope": "likes"
-                  }
+                  "name": "secured",
+                  "parameters": [
+                    {
+                      "name": "scope",
+                      "value": "likes"
+                    }
+                  ]
                 },
                 "securedBy": [
                   {
@@ -9807,9 +9839,13 @@
                   }
                 ],
                 "type": {
-                  "secured": {
-                    "scope": "comments"
-                  }
+                  "name": "secured",
+                  "parameters": [
+                    {
+                      "name": "scope",
+                      "value": "comments"
+                    }
+                  ]
                 },
                 "securedBy": [
                   {
@@ -10669,9 +10705,13 @@
               }
             ],
             "type": {
-              "secured": {
-                "scope": "basic"
-              }
+              "name": "secured",
+              "parameters": [
+                {
+                  "name": "scope",
+                  "value": "basic"
+                }
+              ]
             },
             "securedBy": [
               {

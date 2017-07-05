@@ -67,9 +67,13 @@
           }
         ],
         "type": {
-          "thingy": {
-            "mediaType": "application/json"
-          }
+          "name": "thingy",
+          "parameters": [
+            {
+              "name": "mediaType",
+              "value": "application/json"
+            }
+          ]
         },
         "relativeUri": "/books",
         "displayName": "/books",
