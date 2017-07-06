@@ -1477,7 +1477,6 @@ describe('New API',function(){
         var p = util.data("parser/libraries/nestedUses/index.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(!spec.hasOwnProperty("uses"));
         assert(spec['traits'][0]['name']=='files.hello');
     });
 });
