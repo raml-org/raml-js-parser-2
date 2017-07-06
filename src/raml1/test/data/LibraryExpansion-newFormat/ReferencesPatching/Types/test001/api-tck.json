@@ -1,5 +1,11 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "primitives",
+        "value": "library.raml"
+      }
+    ],
     "types": [
       {
         "name": "primitives.ExtLocale",

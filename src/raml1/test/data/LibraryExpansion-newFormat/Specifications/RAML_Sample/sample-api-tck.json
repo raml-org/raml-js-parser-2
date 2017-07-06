@@ -1,5 +1,11 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "dataTypes",
+        "value": "libraries/type.raml"
+      }
+    ],
     "types": [
       {
         "name": "dataTypes.Customer",

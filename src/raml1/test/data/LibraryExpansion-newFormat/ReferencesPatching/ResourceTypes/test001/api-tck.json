@@ -1,5 +1,15 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libA.raml"
+      },
+      {
+        "key": "lib.lib",
+        "value": "libB.raml"
+      }
+    ],
     "types": [
       {
         "name": "Monkey",

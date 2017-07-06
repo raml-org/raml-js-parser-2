@@ -1,5 +1,15 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib/lib1.raml"
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib/lib2.raml"
+      }
+    ],
     "types": [
       {
         "name": "lib1.ComponentType",

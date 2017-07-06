@@ -1,5 +1,11 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "decls",
+        "value": "lib/decls.raml"
+      }
+    ],
     "annotationTypes": [
       {
         "name": "decls.important",

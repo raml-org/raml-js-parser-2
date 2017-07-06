@@ -1,0 +1,235 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml",
+        "usage": "string value 1",
+        "annotations": [
+          {
+            "name": "lib.lib1.MyAnnotationType",
+            "value": {
+              "p1": "ggg"
+            }
+          }
+        ]
+      },
+      {
+        "key": "lib.lib1",
+        "value": "lib1.raml",
+        "usage": "string value 2",
+        "annotations": [
+          {
+            "name": "lib.lib1.lib.MyAnnotationType1",
+            "value": {
+              "p1": "str"
+            }
+          }
+        ]
+      },
+      {
+        "key": "lib.lib1.lib",
+        "value": "lib2.raml",
+        "usage": "string value 3"
+      }
+    ],
+    "types": [
+      {
+        "name": "lib.T1",
+        "displayName": "T1",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "lib.lib1.StrType",
+        "displayName": "StrType",
+        "type": [
+          "string"
+        ],
+        "minLength": 3,
+        "maxLength": 3,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "lib.lib1.lib.StrType1",
+        "displayName": "StrType1",
+        "type": [
+          "string"
+        ],
+        "minLength": 3,
+        "maxLength": 3,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.lib1.MyAnnotationType",
+        "displayName": "MyAnnotationType",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "lib.lib1.StrType"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      {
+        "name": "lib.lib1.lib.MyAnnotationType1",
+        "displayName": "MyAnnotationType1",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "lib.lib1.lib.StrType1"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "lib.T1"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
+              }
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -100,6 +100,9 @@ export class ReferencePatcher{
         if(universeHelpers.isTypeDeclarationDescendant(node.definition())){
             var appended = this.appendUnitIfNeeded(node,units);
             this.patchType(node,rootNode,resolver,units);
+            if(appended){
+                this.removeUses(node);
+            }
             this.popUnitIfNeeded(units,appended);
         }
         
@@ -765,7 +768,7 @@ export class ReferencePatcher{
                     var libUnit = project.unit(ns, true);
                     var usesInfo = resolver.resolveNamespace(unit, libUnit);
                     if (libUnit && usesInfo != null && usesInfo.namespace() != null) {
-                        libModel = this.extractLibModel(libUnit);
+                        libModel = this.extractLibModel(libUnit,unit);
                     }
                 }
                 if (libModel) {
@@ -792,7 +795,7 @@ export class ReferencePatcher{
                 }
             }
         }
-        this.removeUses(api);
+        this.patchUses(api,resolver);
         api.lowLevel().actual().libExpanded = true;
         this.resetTypes(api);
     }
@@ -906,7 +909,7 @@ export class ReferencePatcher{
 
 
 
-    private extractLibModel(unit:ll.ICompilationUnit):LibModel{
+    private extractLibModel(unit:ll.ICompilationUnit,rootUnit:ll.ICompilationUnit):LibModel{
         var result:LibModel = this._libModels[unit.absolutePath()];
         if(result!=null){
             return result;
@@ -915,12 +918,32 @@ export class ReferencePatcher{
         this._libModels[unit.absolutePath()] = result;
         var hlNode = (<jsyaml.CompilationUnit>unit).highLevel();
         if(hlNode && hlNode.isElement()){
+            let eNode = hlNode.asElement();
             for(var cName of ["resourceTypes", "traits", "types", "annotationTypes", "securitySchemes"]){
                 var collection = new ElementsCollection(cName);
-                for(var el of hlNode.asElement().elementsOfKind(cName)){
+                for(var el of eNode.elementsOfKind(cName)){
                     collection.array.push(el);
                 }
                 result[cName] = collection;
+            }
+            let annotations = eNode.attributes(
+                def.universesInfo.Universe10.Annotable.properties.annotations.name);
+
+            if(annotations.length>0) {
+                let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
+                for (let aNode of annotations) {
+                    let aName = aNode.lowLevel().key();
+                    let l = aName.length;
+                    if(aName.charAt(0)=="(" && aName.charAt(l-1)==")"){
+                        aName = aName.substring(1,l-1);
+                    }
+                    let range = aNode.property().range();
+                    let patchedReference = this.resolveReferenceValueBasic(
+                        aName, rootUnit, resolver, [rootUnit, unit],range);
+                    if(patchedReference) {
+                        this.registerPatchedReference(patchedReference);
+                    }
+                }
             }
         }
         return result;

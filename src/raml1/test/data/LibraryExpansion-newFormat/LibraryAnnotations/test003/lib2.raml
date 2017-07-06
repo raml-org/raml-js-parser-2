@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+
+usage: string value 3
+
+types:
+  StrType1:
+    minLength: 3
+    maxLength: 3
+
+annotationTypes:
+  MyAnnotationType1:
+    properties:
+      p1: StrType1

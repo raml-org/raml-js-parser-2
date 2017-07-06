@@ -2,6 +2,16 @@
   "ramlVersion": "RAML10",
   "type": "Library",
   "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib/lib1.raml"
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib/lib2.raml"
+      }
+    ],
     "traits": [
       {
         "lib1.lib2.myTrait": {

@@ -1,5 +1,15 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "Types",
+        "value": "libraries/types.raml"
+      },
+      {
+        "key": "Types.SharedTypes",
+        "value": "libraries/SharedTypes.raml"
+      }
+    ],
     "types": [
       {
         "name": "Types.SharedTypes.StandardInt64",

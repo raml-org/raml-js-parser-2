@@ -4,6 +4,7 @@ import proxy = require("../raml1/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
 import hl = require("../raml1/highLevelAST");
 import ll = require("../raml1/lowLevelAST");
+import llImpl = require("../raml1/jsyaml/jsyaml2lowLevel");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
 import expander=require("../raml1/ast.core/expanderHL");
@@ -69,7 +70,7 @@ export class TCKDumper {
             new ResourcesTransformer(),
             new AnnotationTransformer(),
             new TypeTransformer(this.options),
-            //new UsesDeclarationTransformer(),
+            new UsesDeclarationTransformer(this),
             new SimpleNamesTransformer(),
             new TemplateParametrizedPropertiesTransformer(),
             new SchemasTransformer(),
@@ -1726,6 +1727,86 @@ class ReferencesTransformer extends MatcherBasedTransformation{
         return result;
     }
 
+}
+
+class UsesDeclarationTransformer extends BasicTransformation {
+
+    constructor(private dumper:TCKDumper) {
+        super(universes.Universe10.LibraryBase.name, null, true, ["RAML10"]);
+    }
+
+    private referencePatcher:referencePatcher.ReferencePatcher;
+
+    private getReferencePatcher(){
+        this.referencePatcher = this.referencePatcher || new referencePatcher.ReferencePatcher();
+        return this.referencePatcher;
+    }
+
+    transform(_value:any,node?:hl.IParseResult){
+        let llNode = node.lowLevel();
+        let actual = llNode && llNode.actual();
+        let libExpanded = actual && actual.libExpanded;
+        if(!libExpanded){
+            return _value;
+        }
+        let usesArray = _value[def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name];
+        if(!usesArray||!Array.isArray(usesArray)||usesArray.length==0){
+            return _value;
+        }
+        let unit = llNode.unit();
+        let resolver = (<llImpl.Project>unit.project()).namespaceResolver();
+        if(!resolver){
+            return _value;
+        }
+        let nsMap = resolver.expandedNSMap(unit);
+        if(!nsMap){
+            return _value;
+        }
+        let usagePropName = def.universesInfo.Universe10.Library.properties.usage.name;
+        let annotationsPropName = def.universesInfo.Universe10.Annotable.properties.annotations.name;
+        for(let u of usesArray){
+            let namespace = u.key;
+            let usesEntry = nsMap[namespace];
+            if(!usesEntry){
+                continue;
+            }
+            let libUnit = usesEntry.unit;
+            let lib = libUnit.highLevel();
+            if(!lib.isElement()){
+                continue;
+            }
+            let libAnnotations = lib.asElement().attributes(annotationsPropName);
+            let libUsage = lib.asElement().attr(usagePropName);
+
+            if(libUsage){
+                u[usagePropName] = libUsage.value();
+            }
+            if(libAnnotations.length>0){
+                let usesEntryAnnotations:any[] = [];
+                for(let a of libAnnotations){
+                    let aObj = this.dumper.dump(a);
+                    if(!aObj || !aObj.name){
+                        continue;
+                    }
+                    let aName = aObj.name;
+                    let range = a.property().range();
+                    let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
+                        aName, unit, resolver, [unit, libUnit],range);
+
+                    if(!patchedReference){
+                        continue;
+                    }
+                    aObj.name = patchedReference.value();
+                    usesEntryAnnotations.push(aObj);
+                }
+                if(usesEntryAnnotations.length>0){
+                    u[annotationsPropName] = usesEntryAnnotations;
+                }
+            }
+
+        }
+        return _value;
+    }
 }
 
 class SecurityExpandingTransformer extends MatcherBasedTransformation {

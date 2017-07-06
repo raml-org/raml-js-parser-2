@@ -14,6 +14,20 @@
         "structuredValue": null
       }
     ],
+    "uses": [
+      {
+        "key": "lib2",
+        "value": "lib2.raml"
+      },
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      },
+      {
+        "key": "lib0",
+        "value": "lib0.raml"
+      }
+    ],
     "annotationTypes": [
       {
         "name": "lib0.a0",

@@ -1,0 +1,134 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml",
+        "usage": "string value 1",
+        "annotations": [
+          {
+            "name": "lib.lib1.MyAnnotationType",
+            "value": {
+              "p1": "str"
+            }
+          }
+        ]
+      },
+      {
+        "key": "lib.lib1",
+        "value": "lib1.raml",
+        "usage": "string value 2"
+      }
+    ],
+    "types": [
+      {
+        "name": "lib.T1",
+        "displayName": "T1",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "body": [
+                  {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "lib.T1"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                ]
+              }
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": "",
+        "absoluteParentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNRESOLVED_REFERENCE",
+      "message": "Reference: 'lib1.MyAnnotationType' can not be resolved",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/LibraryExpansion-newFormat/LibraryAnnotations/test002/lib.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 0,
+          "position": 69
+        },
+        "end": {
+          "line": 8,
+          "column": 23,
+          "position": 92
+        }
+      },
+      "trace": [
+        {
+          "code": "ISSUES_IN_THE_LIBRARY",
+          "message": "Issues in the used library: 'lib.raml'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 3,
+              "column": 2,
+              "position": 35
+            },
+            "end": {
+              "line": 3,
+              "column": 5,
+              "position": 38
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    }
+  ]
+}

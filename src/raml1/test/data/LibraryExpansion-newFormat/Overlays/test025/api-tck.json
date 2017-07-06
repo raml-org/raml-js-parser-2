@@ -1,5 +1,11 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
     "annotationTypes": [
       {
         "name": "lib.TestAnnotationType",

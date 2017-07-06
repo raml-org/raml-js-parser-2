@@ -1,5 +1,11 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib/lib.raml"
+      }
+    ],
     "traits": [
       {
         "name": "lib.boolean"

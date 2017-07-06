@@ -71,16 +71,6 @@
                         "typePropertyKind": "TYPE_EXPRESSION"
                       }
                     ],
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
-                      }
-                    ],
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -185,16 +175,6 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION"
-                      }
-                    ],
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
                       }
                     ],
                     "__METADATA__": {

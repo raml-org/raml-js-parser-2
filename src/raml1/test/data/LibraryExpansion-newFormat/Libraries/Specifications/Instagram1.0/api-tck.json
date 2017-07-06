@@ -1,5 +1,11 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "types",
+        "value": "./lib/types.raml"
+      }
+    ],
     "types": [
       {
         "name": "types.Location",

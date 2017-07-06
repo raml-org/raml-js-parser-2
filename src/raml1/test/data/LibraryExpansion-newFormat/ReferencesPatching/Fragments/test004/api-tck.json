@@ -1,5 +1,19 @@
 {
   "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libs/types.raml"
+      },
+      {
+        "key": "types2",
+        "value": "libs/types2.raml"
+      },
+      {
+        "key": "lib0",
+        "value": "libs/lib.raml"
+      }
+    ],
     "types": [
       {
         "name": "lib0.MyType",
