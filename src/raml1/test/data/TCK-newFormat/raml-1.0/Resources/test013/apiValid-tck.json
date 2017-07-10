@@ -150,7 +150,9 @@
             "path": "apiValid.raml"
           }
         ],
-        "type": "<<resourceTypeParam>>",
+        "type": {
+          "name": "<<resourceTypeParam>>"
+        },
         "name": "ResourceTypeWithParams",
         "path": "apiValid.raml"
       },

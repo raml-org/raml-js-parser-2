@@ -21,7 +21,9 @@
         "methods": [
           {
             "is": [
-              "files.hello"
+              {
+                "name": "files.hello"
+              }
             ],
             "method": "get",
             "path": "files-resource.raml"
@@ -37,7 +39,9 @@
         "methods": [
           {
             "is": [
-              "files.hello"
+              {
+                "name": "files.hello"
+              }
             ],
             "method": "get",
             "parentUri": "/files",
@@ -45,7 +49,9 @@
             "path": "files-resource.raml"
           }
         ],
-        "type": "file",
+        "type": {
+          "name": "file"
+        },
         "relativeUri": "/files",
         "displayName": "/files",
         "__METADATA__": {

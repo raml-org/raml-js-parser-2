@@ -99,7 +99,9 @@
         "methods": [
           {
             "is": [
-              "lib.hasResponseCollection"
+              {
+                "name": "lib.hasResponseCollection"
+              }
             ],
             "description": "Get all <<resourcePathName|!uppercamelcase>>,\noptionally filtered\n",
             "method": "get",
@@ -107,7 +109,9 @@
           },
           {
             "is": [
-              "hasResponseCollection"
+              {
+                "name": "hasResponseCollection"
+              }
             ],
             "description": "Create a <<resourcePathName|!uppercamelcase>>\n",
             "method": "post",
@@ -150,7 +154,9 @@
               }
             ],
             "is": [
-              "lib.hasResponseCollection"
+              {
+                "name": "lib.hasResponseCollection"
+              }
             ],
             "description": "Get all Example,\noptionally filtered\n",
             "method": "get",
@@ -185,7 +191,9 @@
               }
             ],
             "is": [
-              "hasResponseCollection"
+              {
+                "name": "hasResponseCollection"
+              }
             ],
             "description": "Create a Example\n",
             "method": "post",
@@ -194,7 +202,9 @@
             "path": "collection.raml"
           }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "description": "A collection of Example",
         "relativeUri": "/example",
         "displayName": "/example",

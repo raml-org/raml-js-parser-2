@@ -128,7 +128,9 @@
             "path": "apiValid.raml"
           }
         ],
-        "type": "SomeType",
+        "type": {
+          "name": "SomeType"
+        },
         "name": "AnotherType",
         "path": "apiValid.raml"
       }
@@ -194,7 +196,9 @@
             "path": "apiValid.raml"
           }
         ],
-        "type": "AnotherType",
+        "type": {
+          "name": "AnotherType"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

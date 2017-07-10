@@ -19,11 +19,17 @@
     "resourceTypes": [
       {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth"
+          },
+          {
+            "name": "lib.number"
+          }
         ],
         "name": "lib.number",
         "__METADATA__": {
@@ -34,17 +40,27 @@
     ],
     "title": "test API",
     "securedBy": [
-      "lib.number"
+      {
+        "name": "lib.number"
+      }
     ],
     "resources": [
       {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
-        "type": "lib.number",
+        "type": {
+          "name": "lib.number"
+        },
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth"
+          },
+          {
+            "name": "lib.number"
+          }
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",

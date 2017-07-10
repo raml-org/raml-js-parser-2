@@ -152,7 +152,9 @@
             "path": "apiInvalid.raml"
           }
         ],
-        "type": "<<resourceTypeParam>>",
+        "type": {
+          "name": "<<resourceTypeParam>>"
+        },
         "name": "ResourceTypeWithParams",
         "path": "apiInvalid.raml"
       },

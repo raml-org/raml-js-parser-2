@@ -5748,7 +5748,9 @@
             "path": "resourceTypes/usersListing.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -5900,7 +5902,9 @@
             "path": "resourceTypes/mediaSearch.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "name": "mediaSearch",
         "path": "resourceTypes/mediaSearch.raml"
       },
@@ -6038,7 +6042,9 @@
             "path": "resourceTypes/secured.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -6094,8 +6100,12 @@
               }
             ],
             "is": [
-              "limitable",
-              "acceptCallback"
+              {
+                "name": "limitable"
+              },
+              {
+                "name": "acceptCallback"
+              }
             ],
             "method": "get",
             "__METADATA__": {
@@ -6333,7 +6343,9 @@
             "path": "resourceTypes/feedsListing.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "name": "feedsListing",
         "path": "resourceTypes/feedsListing.raml"
       }

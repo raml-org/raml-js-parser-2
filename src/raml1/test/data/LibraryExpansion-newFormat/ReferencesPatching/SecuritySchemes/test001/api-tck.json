@@ -30,7 +30,9 @@
     "resourceTypes": [
       {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
         "securedBy": [
           {
@@ -71,9 +73,13 @@
     "resources": [
       {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
-        "type": "lib.number",
+        "type": {
+          "name": "lib.number"
+        },
         "securedBy": [
           {
             "name": "lib.oauth",

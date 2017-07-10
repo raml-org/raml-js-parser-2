@@ -139,7 +139,9 @@
             "path": "apiValid.raml"
           }
         ],
-        "type": "SomeType",
+        "type": {
+          "name": "SomeType"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

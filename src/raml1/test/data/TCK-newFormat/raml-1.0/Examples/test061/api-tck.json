@@ -154,7 +154,9 @@
             "path": "api.raml"
           }
         ],
-        "type": "rt1",
+        "type": {
+          "name": "rt1"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

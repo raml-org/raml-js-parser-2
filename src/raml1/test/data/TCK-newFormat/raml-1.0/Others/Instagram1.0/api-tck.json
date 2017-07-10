@@ -910,7 +910,9 @@
             "path": "resourceTypes/usersListing.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -1203,7 +1205,9 @@
             "path": "resourceTypes/mediaSearch.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -1518,7 +1522,9 @@
             "path": "resourceTypes/secured.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -1816,8 +1822,12 @@
               }
             ],
             "is": [
-              "limitable",
-              "acceptCallback"
+              {
+                "name": "limitable"
+              },
+              {
+                "name": "acceptCallback"
+              }
             ],
             "securedBy": [
               {
@@ -2368,7 +2378,9 @@
             "path": "resourceTypes/feedsListing.raml"
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -2987,8 +2999,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -3163,7 +3179,9 @@
                 ]
               }
             ],
-            "type": "base",
+            "type": {
+              "name": "base"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -3455,8 +3473,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -4540,8 +4562,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -5707,10 +5733,18 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitableByTime",
-                  "limitableByGeoPoint",
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitableByTime"
+                  },
+                  {
+                    "name": "limitableByGeoPoint"
+                  },
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -5860,7 +5894,9 @@
                 ]
               }
             ],
-            "type": "mediaSearch",
+            "type": {
+              "name": "mediaSearch"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -6348,8 +6384,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -6499,7 +6539,9 @@
                 ]
               }
             ],
-            "type": "mediaSearch",
+            "type": {
+              "name": "mediaSearch"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -7103,8 +7145,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -7280,7 +7326,9 @@
                 ]
               }
             ],
-            "type": "base",
+            "type": {
+              "name": "base"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -7652,9 +7700,15 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitableById",
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitableById"
+                      },
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -7830,7 +7884,9 @@
                     ]
                   }
                 ],
-                "type": "base",
+                "type": {
+                  "name": "base"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -8358,8 +8414,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -8509,7 +8569,9 @@
                 ]
               }
             ],
-            "type": "base",
+            "type": {
+              "name": "base"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -9113,8 +9175,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -9289,7 +9355,9 @@
                 ]
               }
             ],
-            "type": "base",
+            "type": {
+              "name": "base"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -9615,8 +9683,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -9742,7 +9814,9 @@
                     ]
                   }
                 ],
-                "type": "usersListing",
+                "type": {
+                  "name": "usersListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -10062,8 +10136,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -10189,7 +10267,9 @@
                     ]
                   }
                 ],
-                "type": "usersListing",
+                "type": {
+                  "name": "usersListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -10793,10 +10873,18 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitableById",
-                      "limitableByTime",
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitableById"
+                      },
+                      {
+                        "name": "limitableByTime"
+                      },
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -10971,7 +11059,9 @@
                     ]
                   }
                 ],
-                "type": "feedsListing",
+                "type": {
+                  "name": "feedsListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -11346,8 +11436,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -12171,8 +12265,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -12273,7 +12371,9 @@
                 ]
               }
             ],
-            "type": "usersListing",
+            "type": {
+              "name": "usersListing"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -12534,8 +12634,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -13103,9 +13207,15 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitableById",
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitableById"
+                      },
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -13255,7 +13365,9 @@
                     ]
                   }
                 ],
-                "type": "feedsListing",
+                "type": {
+                  "name": "feedsListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -13638,8 +13750,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -13740,7 +13856,9 @@
                     ]
                   }
                 ],
-                "type": "usersListing",
+                "type": {
+                  "name": "usersListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -14263,8 +14381,12 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -14414,7 +14536,9 @@
                     ]
                   }
                 ],
-                "type": "feedsListing",
+                "type": {
+                  "name": "feedsListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -15097,8 +15221,12 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -15270,7 +15398,9 @@
                 ]
               }
             ],
-            "type": "base",
+            "type": {
+              "name": "base"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -15876,10 +16006,18 @@
                       "HTTPS"
                     ],
                     "is": [
-                      "limitableById",
-                      "limitableByTime",
-                      "limitable",
-                      "acceptCallback"
+                      {
+                        "name": "limitableById"
+                      },
+                      {
+                        "name": "limitableByTime"
+                      },
+                      {
+                        "name": "limitable"
+                      },
+                      {
+                        "name": "acceptCallback"
+                      }
                     ],
                     "securedBy": [
                       {
@@ -16051,7 +16189,9 @@
                     ]
                   }
                 ],
-                "type": "feedsListing",
+                "type": {
+                  "name": "feedsListing"
+                },
                 "securedBy": [
                   {
                     "name": "oauth_2_0",
@@ -16661,9 +16801,15 @@
                   "HTTPS"
                 ],
                 "is": [
-                  "limitableByGeoPoint",
-                  "limitable",
-                  "acceptCallback"
+                  {
+                    "name": "limitableByGeoPoint"
+                  },
+                  {
+                    "name": "limitable"
+                  },
+                  {
+                    "name": "acceptCallback"
+                  }
                 ],
                 "securedBy": [
                   {
@@ -16813,7 +16959,9 @@
                 ]
               }
             ],
-            "type": "base",
+            "type": {
+              "name": "base"
+            },
             "securedBy": [
               {
                 "name": "oauth_2_0",
@@ -17328,8 +17476,12 @@
               "HTTPS"
             ],
             "is": [
-              "limitable",
-              "acceptCallback"
+              {
+                "name": "limitable"
+              },
+              {
+                "name": "acceptCallback"
+              }
             ],
             "securedBy": [
               {
@@ -17504,7 +17656,9 @@
             ]
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",
@@ -17925,8 +18079,12 @@
               "HTTPS"
             ],
             "is": [
-              "limitable",
-              "acceptCallback"
+              {
+                "name": "limitable"
+              },
+              {
+                "name": "acceptCallback"
+              }
             ],
             "securedBy": [
               {
@@ -18767,7 +18925,9 @@
             ]
           }
         ],
-        "type": "base",
+        "type": {
+          "name": "base"
+        },
         "securedBy": [
           {
             "name": "oauth_2_0",

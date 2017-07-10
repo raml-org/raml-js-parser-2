@@ -99,7 +99,9 @@
             "path": "overlay.raml"
           }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {

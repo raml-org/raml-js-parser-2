@@ -116,7 +116,9 @@
             "path": "resourcetypes-optionalmethods.raml"
           }
         ],
-        "type": "corpResource",
+        "type": {
+          "name": "corpResource"
+        },
         "relativeUri": "/queues",
         "displayName": "/queues",
         "__METADATA__": {

@@ -103,7 +103,9 @@
             "path": "resourceTypes/collection.raml"
           }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "description": "All products",
         "relativeUri": "/products",
         "displayName": "/products",

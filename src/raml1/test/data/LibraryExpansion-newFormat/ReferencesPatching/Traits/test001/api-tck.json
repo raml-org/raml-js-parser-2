@@ -96,7 +96,9 @@
               "HTTPS"
             ],
             "is": [
-              "lib.libTrait1"
+              {
+                "name": "lib.libTrait1"
+              }
             ],
             "method": "get",
             "__METADATA__": {

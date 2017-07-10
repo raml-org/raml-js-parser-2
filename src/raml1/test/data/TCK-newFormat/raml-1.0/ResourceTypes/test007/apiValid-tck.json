@@ -138,7 +138,9 @@
             "path": "apiValid.raml"
           }
         ],
-        "type": "<<resourceTypeParam>>",
+        "type": {
+          "name": "<<resourceTypeParam>>"
+        },
         "name": "ResourceTypeWithParams",
         "path": "apiValid.raml"
       },
@@ -399,7 +401,9 @@
             "path": "apiValid.raml"
           }
         ],
-        "type": "Resource",
+        "type": {
+          "name": "Resource"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

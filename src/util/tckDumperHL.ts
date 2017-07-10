@@ -488,7 +488,6 @@ export class TCKDumper {
                 }
             }
             if (val!=null&&(typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean')) {
-                result = val;
             }
             else {
                 if (hlImpl.isStructuredValue(val)) {
@@ -541,9 +540,9 @@ export class TCKDumper {
                         }
                     }
                 }
-                val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
-                result = val;
             }
+            val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
+            result = val;
         }
         else {
             let llNode = _node.lowLevel();
@@ -1717,7 +1716,7 @@ class ReferencesTransformer extends MatcherBasedTransformation{
     }
 
     transform(value:any){
-        if(!value){
+        if(value==null){
             return null;
         }
         if(Array.isArray(value)){
@@ -1727,7 +1726,7 @@ class ReferencesTransformer extends MatcherBasedTransformation{
     }
 
     private toSimpleValue(x):any {
-        if(typeof(x)=="string"){
+        if(typeof(x) !== "object"){
             return {
                 name: x
             };

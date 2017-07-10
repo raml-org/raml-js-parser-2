@@ -46,7 +46,9 @@
     "resourceTypes": [
       {
         "is": [
-          "security.auth"
+          {
+            "name": "security.auth"
+          }
         ],
         "name": "myResource",
         "path": "rt0.raml"

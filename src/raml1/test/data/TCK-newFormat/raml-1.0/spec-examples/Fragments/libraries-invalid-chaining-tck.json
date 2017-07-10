@@ -28,7 +28,9 @@
           }
         ],
         "is": [
-          "files.drm"
+          {
+            "name": "files.drm"
+          }
         ],
         "method": "get",
         "path": "libraries-invalid-chaining.raml"

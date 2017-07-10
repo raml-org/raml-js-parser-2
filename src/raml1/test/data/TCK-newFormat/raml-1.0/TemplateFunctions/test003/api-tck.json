@@ -25,7 +25,9 @@
             "path": "api.raml"
           }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {

@@ -740,10 +740,16 @@
           }
         ],
         "is": [
-          "Trait1",
-          "Trait2"
+          {
+            "name": "Trait1"
+          },
+          {
+            "name": "Trait2"
+          }
         ],
-        "type": "ResourceType2",
+        "type": {
+          "name": "ResourceType2"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

@@ -193,7 +193,9 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "type": "Resource1",
+        "type": {
+          "name": "Resource1"
+        },
         "is": [
           {
             "name": "SomeTrait",

@@ -33,13 +33,17 @@
         "methods": [
           {
             "is": [
-              "<<trait | !singularize>>"
+              {
+                "name": "<<trait | !singularize>>"
+              }
             ],
             "method": "get",
             "path": "api.raml"
           }
         ],
-        "type": "<<parentResourceType | !singularize>>",
+        "type": {
+          "name": "<<parentResourceType | !singularize>>"
+        },
         "name": "oneRT",
         "path": "api.raml"
       },
@@ -82,7 +86,9 @@
               }
             ],
             "is": [
-              "bodyTrait"
+              {
+                "name": "bodyTrait"
+              }
             ],
             "method": "get",
             "parentUri": "/resource",

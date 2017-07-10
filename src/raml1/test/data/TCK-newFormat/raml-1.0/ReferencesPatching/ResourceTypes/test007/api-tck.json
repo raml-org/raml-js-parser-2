@@ -223,7 +223,9 @@
             "path": "lib/resource-types.raml"
           }
         ],
-        "type": "rt.Collection",
+        "type": {
+          "name": "rt.Collection"
+        },
         "relativeUri": "/products",
         "displayName": "/products",
         "__METADATA__": {

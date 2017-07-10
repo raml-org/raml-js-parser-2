@@ -16,11 +16,17 @@
     "resourceTypes": [
       {
         "is": [
-          "lib.boolean"
+          {
+            "name": "lib.boolean"
+          }
         ],
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          {
+            "name": "lib.oauth"
+          },
+          {
+            "name": "lib.number"
+          }
         ],
         "name": "lib.number",
         "path": "lib/lib.raml"

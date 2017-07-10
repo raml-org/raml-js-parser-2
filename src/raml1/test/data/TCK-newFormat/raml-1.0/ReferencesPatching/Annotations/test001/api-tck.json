@@ -52,7 +52,9 @@
     "resourceTypes": [
       {
         "is": [
-          "lib1.lib2.myTrait"
+          {
+            "name": "lib1.lib2.myTrait"
+          }
         ],
         "name": "lib1.rt",
         "__METADATA__": {
@@ -116,9 +118,13 @@
           }
         ],
         "is": [
-          "lib1.lib2.myTrait"
+          {
+            "name": "lib1.lib2.myTrait"
+          }
         ],
-        "type": "lib1.rt",
+        "type": {
+          "name": "lib1.rt"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

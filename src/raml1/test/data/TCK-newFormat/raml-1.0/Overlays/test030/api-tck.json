@@ -67,7 +67,9 @@
               }
             ],
             "is": [
-              "tr1"
+              {
+                "name": "tr1"
+              }
             ],
             "method": "get",
             "parentUri": "/resource",

@@ -49,7 +49,9 @@
     "resourceTypes": [
       {
         "is": [
-          "lib1.lib2.myTrait"
+          {
+            "name": "lib1.lib2.myTrait"
+          }
         ],
         "name": "lib1.rt",
         "path": "lib/lib1.raml"

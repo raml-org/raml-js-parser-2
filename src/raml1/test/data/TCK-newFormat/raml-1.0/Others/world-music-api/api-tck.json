@@ -1814,7 +1814,9 @@
             ]
           }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "securedBy": [
           {
             "name": "custom_scheme",
@@ -2465,7 +2467,9 @@
           }
         ],
         "is": [
-          "secured"
+          {
+            "name": "secured"
+          }
         ],
         "description": "Access to all songs inside the music world library.",
         "securedBy": [

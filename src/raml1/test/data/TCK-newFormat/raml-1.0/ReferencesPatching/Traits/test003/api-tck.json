@@ -108,7 +108,9 @@
           }
         ],
         "is": [
-          "tr"
+          {
+            "name": "tr"
+          }
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",

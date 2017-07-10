@@ -95,7 +95,9 @@
           }
         ],
         "is": [
-          "box"
+          {
+            "name": "box"
+          }
         ],
         "name": "container",
         "path": "api.raml"

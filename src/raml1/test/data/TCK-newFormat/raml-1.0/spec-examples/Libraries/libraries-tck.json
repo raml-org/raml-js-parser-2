@@ -106,14 +106,18 @@
         "methods": [
           {
             "is": [
-              "drm"
+              {
+                "name": "drm"
+              }
             ],
             "method": "get",
             "path": "libraries.raml"
           },
           {
             "is": [
-              "drm"
+              {
+                "name": "drm"
+              }
             ],
             "method": "put",
             "path": "libraries.raml"

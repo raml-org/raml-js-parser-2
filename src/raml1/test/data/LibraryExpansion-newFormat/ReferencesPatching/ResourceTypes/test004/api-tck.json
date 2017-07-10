@@ -175,7 +175,9 @@
             ]
           }
         ],
-        "type": "lib1.rt",
+        "type": {
+          "name": "lib1.rt"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

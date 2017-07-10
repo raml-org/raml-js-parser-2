@@ -67,7 +67,9 @@
     "resources": [
       {
         "is": [
-          "env-org-pair"
+          {
+            "name": "env-org-pair"
+          }
         ],
         "securedBy": [
           {

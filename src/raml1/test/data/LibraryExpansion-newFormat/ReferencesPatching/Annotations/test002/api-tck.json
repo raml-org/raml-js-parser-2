@@ -34,14 +34,18 @@
         "methods": [
           {
             "is": [
-              "lib.libTrait1"
+              {
+                "name": "lib.libTrait1"
+              }
             ],
             "method": "post",
             "path": "lib.raml"
           }
         ],
         "is": [
-          "lib.libTrait2"
+          {
+            "name": "lib.libTrait2"
+          }
         ],
         "name": "lib.libResourceType",
         "path": "lib.raml"
@@ -78,7 +82,9 @@
               }
             ],
             "is": [
-              "lib.libTrait1"
+              {
+                "name": "lib.libTrait1"
+              }
             ],
             "method": "get",
             "parentUri": "/{id}",
@@ -120,7 +126,9 @@
               }
             ],
             "is": [
-              "lib.libTrait1"
+              {
+                "name": "lib.libTrait1"
+              }
             ],
             "method": "post",
             "parentUri": "/{id}",
@@ -156,9 +164,13 @@
           }
         ],
         "is": [
-          "lib.libTrait2"
+          {
+            "name": "lib.libTrait2"
+          }
         ],
-        "type": "lib.libResourceType",
+        "type": {
+          "name": "lib.libResourceType"
+        },
         "uriParameters": [
           {
             "name": "id",

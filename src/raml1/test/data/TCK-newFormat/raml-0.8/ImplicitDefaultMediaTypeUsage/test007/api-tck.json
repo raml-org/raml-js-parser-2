@@ -42,7 +42,9 @@
     "resources": [
       {
         "relativeUri": "/photos",
-        "type": "emailed",
+        "type": {
+          "name": "emailed"
+        },
         "methods": [
           {
             "responses": [

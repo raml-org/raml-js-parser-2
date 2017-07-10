@@ -97,7 +97,9 @@
               }
             ],
             "is": [
-              "foo"
+              {
+                "name": "foo"
+              }
             ],
             "method": "get",
             "parentUri": "/foobar",

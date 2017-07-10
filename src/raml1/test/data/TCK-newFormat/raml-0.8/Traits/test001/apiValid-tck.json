@@ -73,7 +73,9 @@
             ],
             "method": "get",
             "is": [
-              "SomeTrait"
+              {
+                "name": "SomeTrait"
+              }
             ],
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",

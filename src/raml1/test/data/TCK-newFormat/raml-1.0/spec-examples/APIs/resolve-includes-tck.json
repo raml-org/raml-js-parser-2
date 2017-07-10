@@ -70,7 +70,9 @@
         "methods": [
           {
             "is": [
-              "paged"
+              {
+                "name": "paged"
+              }
             ],
             "method": "get",
             "path": "patterns/resourceTypes.raml"

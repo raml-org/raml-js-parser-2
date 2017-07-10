@@ -54,7 +54,9 @@
     "resources": [
       {
         "relativeUri": "/schemes",
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "methods": [
           {
             "responses": [

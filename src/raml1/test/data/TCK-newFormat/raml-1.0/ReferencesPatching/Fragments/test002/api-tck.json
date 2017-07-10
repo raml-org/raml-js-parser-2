@@ -132,7 +132,9 @@
             "path": "fragments/rt.raml"
           }
         ],
-        "type": "rt",
+        "type": {
+          "name": "rt"
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

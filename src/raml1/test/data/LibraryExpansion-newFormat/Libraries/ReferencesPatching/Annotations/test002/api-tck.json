@@ -34,14 +34,18 @@
         "methods": [
           {
             "is": [
-              "lib.libTrait1"
+              {
+                "name": "lib.libTrait1"
+              }
             ],
             "method": "post",
             "path": "lib/lib.raml"
           }
         ],
         "is": [
-          "lib.libTrait2"
+          {
+            "name": "lib.libTrait2"
+          }
         ],
         "name": "lib.libResourceType",
         "path": "lib/lib.raml"

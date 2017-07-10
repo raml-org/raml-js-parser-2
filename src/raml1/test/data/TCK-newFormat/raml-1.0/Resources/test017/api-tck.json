@@ -3,7 +3,9 @@
     "title": "Example",
     "resources": [
       {
-        "type": 4,
+        "type": {
+          "name": 4
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "resources": [
@@ -11,8 +13,12 @@
             "methods": [
               {
                 "is": [
-                  5,
-                  false
+                  {
+                    "name": 5
+                  },
+                  {
+                    "name": false
+                  }
                 ],
                 "method": "get",
                 "parentUri": "/users/{id}",
@@ -47,7 +53,9 @@
                 ]
               }
             ],
-            "type": true,
+            "type": {
+              "name": true
+            },
             "uriParameters": [
               {
                 "name": "id",

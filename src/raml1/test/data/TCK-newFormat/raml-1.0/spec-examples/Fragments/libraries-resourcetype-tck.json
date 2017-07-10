@@ -3,7 +3,9 @@
     "methods": [
       {
         "is": [
-          "files.drm"
+          {
+            "name": "files.drm"
+          }
         ],
         "method": "get",
         "path": "libraries-resourcetype.raml"

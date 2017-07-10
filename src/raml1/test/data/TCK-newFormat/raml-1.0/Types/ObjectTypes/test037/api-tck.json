@@ -341,7 +341,9 @@
               "HTTP"
             ],
             "is": [
-              "NewLibrary.FilterableByPrice"
+              {
+                "name": "NewLibrary.FilterableByPrice"
+              }
             ],
             "method": "get",
             "__METADATA__": {
@@ -667,7 +669,9 @@
               "HTTP"
             ],
             "is": [
-              "NewLibrary.FilterableByPrice"
+              {
+                "name": "NewLibrary.FilterableByPrice"
+              }
             ],
             "method": "get",
             "__METADATA__": {
@@ -993,7 +997,9 @@
               "HTTP"
             ],
             "is": [
-              "NewLibrary.FilterableByPrice"
+              {
+                "name": "NewLibrary.FilterableByPrice"
+              }
             ],
             "method": "get",
             "__METADATA__": {

@@ -280,8 +280,12 @@
               }
             ],
             "is": [
-              "paged",
-              "rateLimited"
+              {
+                "name": "paged"
+              },
+              {
+                "name": "rateLimited"
+              }
             ],
             "description": "Retrieve all items",
             "method": "get",
@@ -364,9 +368,13 @@
           }
         ],
         "is": [
-          "secured"
+          {
+            "name": "secured"
+          }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "description": "A collection resource",
         "relativeUri": "/users",
         "displayName": "/users",

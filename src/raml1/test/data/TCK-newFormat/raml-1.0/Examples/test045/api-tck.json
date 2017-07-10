@@ -113,7 +113,9 @@
               }
             ],
             "is": [
-              "chargeable"
+              {
+                "name": "chargeable"
+              }
             ],
             "method": "get",
             "parentUri": "/resource",

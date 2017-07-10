@@ -109,7 +109,9 @@
               }
             ]
           },
-          "simpleTrait"
+          {
+            "name": "simpleTrait"
+          }
         ],
         "name": "rt2",
         "path": "rt2.raml"
@@ -274,7 +276,9 @@
               }
             ]
           },
-          "simpleTrait"
+          {
+            "name": "simpleTrait"
+          }
         ],
         "type": {
           "name": "rt1",

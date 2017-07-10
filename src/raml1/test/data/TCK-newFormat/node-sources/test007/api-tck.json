@@ -238,7 +238,9 @@
               }
             ],
             "is": [
-              "lib.trait1"
+              {
+                "name": "lib.trait1"
+              }
             ],
             "method": "post",
             "parentUri": "/resource",
@@ -246,7 +248,9 @@
             "path": "api.raml"
           }
         ],
-        "type": "lib.resourceType1",
+        "type": {
+          "name": "lib.resourceType1"
+        },
         "description": "string value 1\n",
         "relativeUri": "/resource",
         "displayName": "/resource",

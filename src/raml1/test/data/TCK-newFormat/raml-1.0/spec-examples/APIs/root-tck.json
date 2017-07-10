@@ -585,7 +585,9 @@
                 ]
               }
             ],
-            "type": "collection",
+            "type": {
+              "name": "collection"
+            },
             "description": "represents a collection",
             "securedBy": [
               {

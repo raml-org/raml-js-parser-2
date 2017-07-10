@@ -121,7 +121,9 @@
             "path": "api.raml"
           }
         ],
-        "type": "collection",
+        "type": {
+          "name": "collection"
+        },
         "relativeUri": "/schemes",
         "displayName": "/schemes",
         "__METADATA__": {
