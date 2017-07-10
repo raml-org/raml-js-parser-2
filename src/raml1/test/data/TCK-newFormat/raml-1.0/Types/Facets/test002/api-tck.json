@@ -60,9 +60,12 @@
             }
           }
         },
-        "fixedFacets": {
-          "format": "YYYY"
-        },
+        "fixedFacets": [
+          {
+            "name": "format",
+            "value": "YYYY"
+          }
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "path": "api.raml"
@@ -80,9 +83,12 @@
             }
           }
         },
-        "fixedFacets": {
-          "format": 1332
-        },
+        "fixedFacets": [
+          {
+            "name": "format",
+            "value": 1332
+          }
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "path": "api.raml"

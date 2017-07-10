@@ -431,19 +431,31 @@ export function getTemplateParametrizedProperties(node:hl.IHighLevelNode):any{
  * __$helperMethod__
  * __$meta__={"name":"fixedFacets","primary":true}
  */
-export function typeFixedFacets(td:hl.IHighLevelNode):any{
+export function typeFixedFacets(td:hl.IHighLevelNode):any[]{
     var rDef = td.localType();
     var obj = rDef.fixedFacets();
     var keys = Object.keys(obj);
+    let arr:any[] = [];
     if(!rDef.hasUnionInHierarchy()) {
         for (var key of keys) {
-            if (rDef.facet(key) == null) {
-                delete obj[key];
+            if (rDef.facet(key) != null) {
+                arr.push({
+                    name: key,
+                    value: obj[key]
+                });
             }
         }
     }
-    if(Object.keys(obj).length==0){
+    else{
+        arr = keys.map(key=>{
+            return {
+                name: key,
+                value: obj[key]
+            };
+        })
+    }
+    if(arr.length==0){
         return null;
     }
-    return obj;
+    return arr;
 }

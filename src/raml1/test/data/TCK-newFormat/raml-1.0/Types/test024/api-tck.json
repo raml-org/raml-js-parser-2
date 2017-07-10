@@ -493,9 +493,12 @@
             }
           }
         },
-        "fixedFacets": {
-          "role": "manager"
-        },
+        "fixedFacets": [
+          {
+            "name": "role",
+            "value": "manager"
+          }
+        ],
         "simplifiedExamples": [
           "{\"id\":11,\"name\":\"John Johnson\",\"email\":\"press@mulesoft.com\",\"phone\":\"+7-913-111-1111\",\"address\":{\"country\":\"RUS\",\"city\":\"Novosibirsk\",\"zip\":630090},\"managerId\":77}",
           "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456},\"managerId\":88}"
@@ -540,9 +543,12 @@
             }
           }
         },
-        "fixedFacets": {
-          "role": "admin"
-        },
+        "fixedFacets": [
+          {
+            "name": "role",
+            "value": "admin"
+          }
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
         "path": "api.raml"
@@ -937,9 +943,12 @@
                         }
                       }
                     },
-                    "fixedFacets": {
-                      "role": "admin"
-                    },
+                    "fixedFacets": [
+                      {
+                        "name": "role",
+                        "value": "admin"
+                      }
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "path": "api.raml"
@@ -1455,9 +1464,12 @@
                         }
                       }
                     },
-                    "fixedFacets": {
-                      "role": "admin"
-                    },
+                    "fixedFacets": [
+                      {
+                        "name": "role",
+                        "value": "admin"
+                      }
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "path": "api.raml"
