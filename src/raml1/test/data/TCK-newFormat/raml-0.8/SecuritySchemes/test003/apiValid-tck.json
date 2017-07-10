@@ -32,7 +32,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "apiValid.raml"
       }
     ],
     "protocols": [
@@ -46,8 +47,10 @@
         "settings": {
           "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
           "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
-          "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token"
-        }
+          "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+          "path": "apiValid.raml"
+        },
+        "path": "apiValid.raml"
       }
     ],
     "__METADATA__": {
@@ -56,7 +59,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

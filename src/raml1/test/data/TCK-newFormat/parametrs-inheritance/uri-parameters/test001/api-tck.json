@@ -32,7 +32,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "param1",
@@ -56,7 +57,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "protocols": [
@@ -93,7 +95,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "param1",
@@ -117,7 +120,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "param2",
@@ -141,7 +145,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource/{param2}",
@@ -163,6 +168,7 @@
                 },
                 "parentUri": "/resource/{param2}/subresource{param3}",
                 "absoluteParentUri": "http://example.com/{version}/{param1}/resource/{param2}/subresource{param3}",
+                "path": "api.raml",
                 "uriParameters": [
                   {
                     "name": "version",
@@ -192,7 +198,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "param1",
@@ -216,7 +223,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "param2",
@@ -240,7 +248,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "param3",
@@ -264,7 +273,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
                 ]
               },
@@ -282,6 +292,7 @@
                 },
                 "parentUri": "/resource/{param2}/subresource{param3}",
                 "absoluteParentUri": "http://example.com/{version}/{param1}/resource/{param2}/subresource{param3}",
+                "path": "api.raml",
                 "uriParameters": [
                   {
                     "name": "version",
@@ -311,7 +322,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "param1",
@@ -335,7 +347,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "param2",
@@ -359,7 +372,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "param3",
@@ -383,7 +397,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
                 ]
               }
@@ -417,7 +432,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "param1",
@@ -441,7 +457,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "param2",
@@ -465,7 +482,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "param3",
@@ -489,7 +507,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "relativeUri": "/subresource{param3}",
@@ -507,7 +526,8 @@
             "absoluteUri": "http://example.com/{version}/{param1}/resource/{param2}/subresource{param3}",
             "completeRelativeUri": "/resource/{param2}/subresource{param3}",
             "parentUri": "/resource/{param2}",
-            "absoluteParentUri": "http://example.com/{version}/{param1}/resource/{param2}"
+            "absoluteParentUri": "http://example.com/{version}/{param1}/resource/{param2}",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -524,7 +544,8 @@
         "absoluteUri": "http://example.com/{version}/{param1}/resource/{param2}",
         "completeRelativeUri": "/resource/{param2}",
         "parentUri": "",
-        "absoluteParentUri": "http://example.com/{version}/{param1}"
+        "absoluteParentUri": "http://example.com/{version}/{param1}",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -533,7 +554,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

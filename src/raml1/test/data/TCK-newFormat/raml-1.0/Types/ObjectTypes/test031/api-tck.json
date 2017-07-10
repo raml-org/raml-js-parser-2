@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "name",
@@ -46,7 +47,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "age",
@@ -66,7 +68,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "enum": [
@@ -94,10 +97,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "title": "myApi"
+    "title": "myApi",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

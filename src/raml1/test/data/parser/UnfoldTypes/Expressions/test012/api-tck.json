@@ -15,7 +15,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "T2",
@@ -31,7 +32,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "T3",
@@ -62,7 +64,8 @@
             "oneOf": [
               "T4",
               "boolean"
-            ]
+            ],
+            "path": "api.raml"
           },
           {
             "name": "p2",
@@ -86,7 +89,8 @@
             "oneOf": [
               "T2",
               "number"
-            ]
+            ],
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -97,7 +101,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "T4",
@@ -116,10 +121,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

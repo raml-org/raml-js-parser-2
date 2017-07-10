@@ -17,10 +17,12 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "external-types.raml"
       }
     ],
-    "title": "External Types"
+    "title": "External Types",
+    "path": "external-types.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

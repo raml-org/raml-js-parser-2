@@ -35,15 +35,19 @@
                       "<<exampleCollection>>"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "api.raml"
           }
         ],
-        "name": "collection"
+        "name": "collection",
+        "path": "api.raml"
       }
     ],
     "title": "Flights-01",
@@ -110,14 +114,17 @@
                       "[{\"ID\":1,\"code\":\"ER38sd\",\"price\":400,\"departureDate\":\"2016/03/20\",\"origin\":\"MUA\",\"destination\":\"SFO\",\"emptySeats\":0,\"plane\":{\"type\":\"Boeing 737\",\"totalSeats\":150}},{\"ID\":2,\"code\":\"ER45if\",\"price\":345.99,\"departureDate\":\"2016/02/11\",\"origin\":\"MUA\",\"destination\":\"LAX\",\"emptySeats\":52,\"plane\":{\"type\":\"Boeing 777\",\"totalSeats\":300}}]"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/flights",
-            "absoluteParentUri": "/flights"
+            "absoluteParentUri": "/flights",
+            "path": "api.raml"
           }
         ],
         "type": {
@@ -171,9 +178,11 @@
         "absoluteUri": "/flights",
         "completeRelativeUri": "/flights",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

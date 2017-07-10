@@ -31,12 +31,14 @@
                   "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
                 ],
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML"
+                "typePropertyKind": "XML",
+                "path": "apiInvalid.raml"
               }
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "apiInvalid.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -54,9 +56,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

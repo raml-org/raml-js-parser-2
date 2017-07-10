@@ -11,19 +11,23 @@
                 "code": "200",
                 "body": [
                   {
-                    "name": "application/x-www-form-urlencoded"
+                    "name": "application/x-www-form-urlencoded",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "body": [
               {
-                "name": "application/x-www-form-urlencoded"
+                "name": "application/x-www-form-urlencoded",
+                "path": "api.raml"
               }
             ],
             "method": "put",
             "parentUri": "/rere",
-            "absoluteParentUri": "/rere"
+            "absoluteParentUri": "/rere",
+            "path": "api.raml"
           }
         ],
         "displayName": "/rere",
@@ -40,9 +44,11 @@
         "absoluteUri": "/rere",
         "completeRelativeUri": "/rere",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

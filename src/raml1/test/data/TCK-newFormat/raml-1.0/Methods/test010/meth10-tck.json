@@ -23,7 +23,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "application/vnd.xara",
@@ -42,7 +43,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "audio/EVRCB",
@@ -61,7 +63,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "audio/vnd.dts",
@@ -80,7 +83,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "image/tiff",
@@ -99,7 +103,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "message/global",
@@ -118,7 +123,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "model/vnd.moml+xml",
@@ -137,7 +143,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "multipart/voice-message",
@@ -156,7 +163,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "text/turtle",
@@ -175,7 +183,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "video/JPEG",
@@ -194,7 +203,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
               {
                 "name": "mime/type",
@@ -213,12 +223,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               }
             ],
             "method": "post",
             "parentUri": "/test",
-            "absoluteParentUri": "/test"
+            "absoluteParentUri": "/test",
+            "path": "meth10.raml"
           }
         ],
         "relativeUri": "/test",
@@ -236,9 +248,11 @@
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "meth10.raml"
       }
-    ]
+    ],
+    "path": "meth10.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

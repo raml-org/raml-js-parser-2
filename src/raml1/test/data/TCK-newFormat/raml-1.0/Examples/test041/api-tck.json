@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "b",
@@ -46,7 +47,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -57,7 +59,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "VV",
@@ -84,7 +87,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -95,7 +99,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "annotationTypes": [
@@ -124,7 +129,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -138,7 +144,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "title": "WebOfMe",
@@ -182,14 +189,17 @@
                       "VV"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/test",
-            "absoluteParentUri": "/test"
+            "absoluteParentUri": "/test",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/test",
@@ -207,9 +217,11 @@
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

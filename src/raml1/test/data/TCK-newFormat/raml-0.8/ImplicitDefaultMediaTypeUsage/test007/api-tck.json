@@ -6,7 +6,8 @@
     "schemas": [
       {
         "value": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
-        "name": "atom"
+        "name": "atom",
+        "path": "api.raml"
       }
     ],
     "resourceTypes": [
@@ -21,17 +22,21 @@
                   {
                     "name": "application/atom+xml",
                     "schema": "atom",
-                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "api.raml"
           }
-        ]
+        ],
+        "path": "api.raml"
       }
     ],
     "resources": [
@@ -45,19 +50,23 @@
                 "code": "200",
                 "body": [
                   {
-                    "name": "image/*"
+                    "name": "image/*",
+                    "path": "api.raml"
                   },
                   {
                     "name": "application/atom+xml",
                     "schema": "atom",
-                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/photos",
-            "absoluteParentUri": "/photos"
+            "absoluteParentUri": "/photos",
+            "path": "api.raml"
           }
         ],
         "displayName": "/photos",
@@ -74,9 +83,11 @@
         "absoluteUri": "/photos",
         "completeRelativeUri": "/photos",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

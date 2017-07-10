@@ -7,37 +7,44 @@
           {
             "method": "post",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
           {
             "method": "get",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
           {
             "method": "put",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
           {
             "method": "options",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
           {
             "method": "head",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
           {
             "method": "patch",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
           {
             "method": "delete",
             "parentUri": "/methods",
-            "absoluteParentUri": "/methods"
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           }
         ],
         "relativeUri": "/methods",
@@ -55,9 +62,11 @@
         "absoluteUri": "/methods",
         "completeRelativeUri": "/methods",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "meth03.raml"
       }
-    ]
+    ],
+    "path": "meth03.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

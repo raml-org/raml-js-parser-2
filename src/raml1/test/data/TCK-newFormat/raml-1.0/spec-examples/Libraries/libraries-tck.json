@@ -29,7 +29,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "libraries.raml"
           },
           {
             "name": "length",
@@ -49,7 +50,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "libraries.raml"
           }
         ],
         "__METADATA__": {
@@ -63,7 +65,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "libraries.raml"
       }
     ],
     "traits": [
@@ -90,10 +93,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "libraries.raml"
           }
         ],
-        "name": "drm"
+        "name": "drm",
+        "path": "libraries.raml"
       }
     ],
     "resourceTypes": [
@@ -103,19 +108,23 @@
             "is": [
               "drm"
             ],
-            "method": "get"
+            "method": "get",
+            "path": "libraries.raml"
           },
           {
             "is": [
               "drm"
             ],
-            "method": "put"
+            "method": "put",
+            "path": "libraries.raml"
           }
         ],
-        "name": "file"
+        "name": "file",
+        "path": "libraries.raml"
       }
     ],
-    "usage": "Use to define some basic file-related constructs.\n"
+    "usage": "Use to define some basic file-related constructs.\n",
+    "path": "libraries.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

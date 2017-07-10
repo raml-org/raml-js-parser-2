@@ -38,7 +38,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
         ],
         "__METADATA__": {
@@ -49,7 +50,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
     ],
     "annotationTypes": [
@@ -74,7 +76,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       },
       {
         "name": "meta-data",
@@ -93,7 +96,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
     ],
     "title": "Testing TypeDeclaration targets",
@@ -147,14 +151,17 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "User"
-                    ]
+                    ],
+                    "path": "apiInvalid.raml"
                   }
-                ]
+                ],
+                "path": "apiInvalid.raml"
               }
             ],
             "method": "get",
             "parentUri": "/users",
-            "absoluteParentUri": "/users"
+            "absoluteParentUri": "/users",
+            "path": "apiInvalid.raml"
           }
         ],
         "relativeUri": "/users",
@@ -172,9 +179,11 @@
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

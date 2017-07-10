@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "NewOverlay2.raml"
       }
     ],
     "title": "Overlay 2",
@@ -37,10 +38,12 @@
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "NewOverlay2.raml"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "path": "NewOverlay2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

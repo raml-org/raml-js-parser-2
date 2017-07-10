@@ -30,7 +30,8 @@
             "oneOf": [
               "nil",
               "string"
-            ]
+            ],
+            "path": "lib.raml"
           },
           {
             "name": "data",
@@ -54,7 +55,8 @@
             "oneOf": [
               "Data",
               "nil"
-            ]
+            ],
+            "path": "lib.raml"
           }
         ],
         "__METADATA__": {
@@ -81,7 +83,8 @@
           "{\"name\":null,\"data\":null}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib.raml"
       },
       {
         "name": "Data",
@@ -111,7 +114,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib.raml"
           },
           {
             "name": "p2",
@@ -134,7 +138,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib.raml"
           }
         ],
         "__METADATA__": {
@@ -148,9 +153,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib.raml"
       }
-    ]
+    ],
+    "path": "lib.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

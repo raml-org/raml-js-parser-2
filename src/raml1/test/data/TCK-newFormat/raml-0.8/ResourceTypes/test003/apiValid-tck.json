@@ -22,7 +22,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiValid.raml"
           }
         ],
         "headers": [
@@ -44,10 +45,12 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiValid.raml"
           }
         ],
-        "name": "SomeTrait"
+        "name": "SomeTrait",
+        "path": "apiValid.raml"
       }
     ],
     "resourceTypes": [
@@ -77,12 +80,15 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "path": "apiValid.raml"
                   }
-                ]
+                ],
+                "path": "apiValid.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "apiValid.raml"
           }
         ],
         "is": [
@@ -99,7 +105,8 @@
               }
             ]
           }
-        ]
+        ],
+        "path": "apiValid.raml"
       }
     ],
     "resources": [
@@ -128,9 +135,11 @@
                 "code": "200",
                 "body": [
                   {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "path": "apiValid.raml"
                   }
-                ]
+                ],
+                "path": "apiValid.raml"
               }
             ],
             "body": [
@@ -156,9 +165,11 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "path": "apiValid.raml"
                   }
-                ]
+                ],
+                "path": "apiValid.raml"
               }
             ],
             "queryParameters": [
@@ -181,7 +192,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiValid.raml"
               }
             ],
             "headers": [
@@ -204,12 +216,14 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiValid.raml"
               }
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "apiValid.raml"
           }
         ],
         "displayName": "/resource",
@@ -226,9 +240,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiValid.raml"
       }
-    ]
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

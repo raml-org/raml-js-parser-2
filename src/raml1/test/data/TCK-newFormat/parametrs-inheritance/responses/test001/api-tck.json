@@ -7,7 +7,8 @@
             "responses": [
               {
                 "code": "200",
-                "description": "resource type response"
+                "description": "resource type response",
+                "path": "api.raml"
               }
             ],
             "securedBy": [
@@ -18,10 +19,13 @@
                   "responses": [
                     {
                       "code": "401",
-                      "description": "security response"
+                      "description": "security response",
+                      "path": "api.raml"
                     }
-                  ]
-                }
+                  ],
+                  "path": "api.raml"
+                },
+                "path": "api.raml"
               }
             ],
             "method": "get",
@@ -31,7 +35,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "path": "api.raml"
           }
         ],
         "securedBy": [
@@ -42,10 +47,13 @@
               "responses": [
                 {
                   "code": "401",
-                  "description": "security response"
+                  "description": "security response",
+                  "path": "api.raml"
                 }
-              ]
-            }
+              ],
+              "path": "api.raml"
+            },
+            "path": "api.raml"
           }
         ],
         "name": "rt",
@@ -55,7 +63,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "securitySchemes": [
@@ -66,10 +75,13 @@
           "responses": [
             {
               "code": "401",
-              "description": "security response"
+              "description": "security response",
+              "path": "api.raml"
             }
-          ]
-        }
+          ],
+          "path": "api.raml"
+        },
+        "path": "api.raml"
       }
     ],
     "title": "test API",
@@ -81,10 +93,13 @@
           "responses": [
             {
               "code": "401",
-              "description": "security response"
+              "description": "security response",
+              "path": "api.raml"
             }
-          ]
-        }
+          ],
+          "path": "api.raml"
+        },
+        "path": "api.raml"
       }
     ],
     "resources": [
@@ -94,15 +109,18 @@
             "responses": [
               {
                 "code": "200",
-                "description": "resource type response"
+                "description": "resource type response",
+                "path": "api.raml"
               },
               {
                 "code": "202",
-                "description": "method response"
+                "description": "method response",
+                "path": "api.raml"
               },
               {
                 "code": "401",
                 "description": "security response",
+                "path": "api.raml",
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -116,10 +134,13 @@
                   "responses": [
                     {
                       "code": "401",
-                      "description": "security response"
+                      "description": "security response",
+                      "path": "api.raml"
                     }
-                  ]
-                }
+                  ],
+                  "path": "api.raml"
+                },
+                "path": "api.raml"
               }
             ],
             "method": "get",
@@ -131,7 +152,8 @@
               }
             },
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
         ],
         "type": "rt",
@@ -143,10 +165,13 @@
               "responses": [
                 {
                   "code": "401",
-                  "description": "security response"
+                  "description": "security response",
+                  "path": "api.raml"
                 }
-              ]
-            }
+              ],
+              "path": "api.raml"
+            },
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -168,17 +193,20 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
+        "path": "api.raml",
         "responses": [
           {
             "code": "401",
             "description": "security response",
+            "path": "api.raml",
             "__METADATA__": {
               "calculated": true
             }
           }
         ]
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

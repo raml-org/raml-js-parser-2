@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "types",
-        "value": "./lib/types.raml"
+        "value": "./lib/types.raml",
+        "path": "api.raml"
       }
     ],
     "types": [
@@ -32,7 +33,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "name",
@@ -52,7 +54,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "latitude",
@@ -72,7 +75,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "longitude",
@@ -92,7 +96,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "street_address",
@@ -112,7 +117,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -139,7 +145,8 @@
           "{\"id\":\"1\",\"name\":\"John\",\"latitude\":34.016242,\"longitude\":-95.800781,\"street_address\":\"\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Meta",
@@ -166,7 +173,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -189,7 +197,8 @@
           "{\"code\":200}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Locations",
@@ -219,7 +228,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.Location"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -252,7 +262,8 @@
           "{\"meta\":{\"code\":200},\"data\":[{\"id\":\"1\",\"name\":\"John\",\"latitude\":34.016242,\"longitude\":-95.800781}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Counts",
@@ -279,7 +290,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "follows",
@@ -299,7 +311,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "followed_by",
@@ -319,7 +332,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -344,7 +358,8 @@
           "{\"media\":2,\"follows\":3,\"followed_by\":5}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.UserAccount",
@@ -379,7 +394,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "username",
@@ -399,7 +415,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "full_name",
@@ -419,7 +436,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "profile_picture",
@@ -439,7 +457,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "bio",
@@ -459,7 +478,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "website",
@@ -479,7 +499,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "count",
@@ -499,7 +520,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -513,7 +535,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -547,7 +570,8 @@
           "{\"data\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.User",
@@ -574,7 +598,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "username",
@@ -594,7 +619,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "full_name",
@@ -614,7 +640,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "profile_picture",
@@ -637,7 +664,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "bio",
@@ -657,7 +685,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "website",
@@ -677,7 +706,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "count",
@@ -697,7 +727,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -729,7 +760,8 @@
           "{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.SubscriptionPost",
@@ -764,7 +796,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "object_id",
@@ -784,7 +817,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "aspect",
@@ -804,7 +838,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "callback_url",
@@ -824,7 +859,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "type",
@@ -844,7 +880,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "id",
@@ -864,7 +901,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "lat",
@@ -884,7 +922,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "lng",
@@ -904,7 +943,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "radius",
@@ -924,7 +964,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -938,7 +979,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -971,7 +1013,8 @@
           "{\"meta\":{\"code\":200},\"data\":{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\",\"lat\":34.016242,\"lng\":-95.800781,\"radius\":20}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.SubscriptionData",
@@ -998,7 +1041,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "type",
@@ -1018,7 +1062,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "object",
@@ -1038,7 +1083,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "aspect",
@@ -1058,7 +1104,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "callback_url",
@@ -1078,7 +1125,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "object_id",
@@ -1098,7 +1146,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1123,7 +1172,8 @@
           "{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.SubscriptionsGet",
@@ -1153,7 +1203,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.SubscriptionData"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1185,7 +1236,8 @@
           "{\"meta\":{\"code\":200},\"data\":[{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\"}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.SubscriptionsDelete",
@@ -1212,7 +1264,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1242,7 +1295,8 @@
           "{\"meta\":{\"code\":200},\"data\":{\"object_id\":\"25\",\"callback_url\":\"url\",\"id\":\"22\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Tag",
@@ -1277,7 +1331,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "name",
@@ -1297,7 +1352,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -1311,7 +1367,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1337,7 +1394,8 @@
           "{\"data\":{\"media_count\":2,\"name\":\"forest\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.SerachTagItem",
@@ -1364,7 +1422,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "name",
@@ -1384,7 +1443,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1408,7 +1468,8 @@
           "{\"media_count\":2,\"name\":\"forest\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.TagsSearch",
@@ -1438,7 +1499,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.SerachTagItem"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1469,7 +1531,8 @@
           "{\"meta\":{\"code\":200},\"data\":[{\"media_count\":2,\"name\":\"forest\"}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaLike",
@@ -1496,7 +1559,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "last_name",
@@ -1516,7 +1580,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "id",
@@ -1536,7 +1601,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "type",
@@ -1556,7 +1622,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1582,7 +1649,8 @@
           "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"id\":\"2\",\"type\":\"string\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaLikes",
@@ -1612,7 +1680,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.MediaLike"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1642,7 +1711,8 @@
           "{\"data\":[{\"first_name\":\"John\",\"last_name\":\"Smith\",\"id\":\"2\",\"type\":\"string\"}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Comment",
@@ -1669,7 +1739,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "text",
@@ -1689,7 +1760,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "from",
@@ -1717,7 +1789,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -1731,7 +1804,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "id",
@@ -1751,7 +1825,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1781,7 +1856,8 @@
           "{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaComment",
@@ -1811,7 +1887,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.Comment"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -1848,7 +1925,8 @@
           "{\"meta\":{\"code\":200},\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Oembed",
@@ -1875,7 +1953,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "author_name",
@@ -1895,7 +1974,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "author_url",
@@ -1915,7 +1995,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "heght",
@@ -1935,7 +2016,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "media_id",
@@ -1955,7 +2037,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "provider_name",
@@ -1975,7 +2058,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "provider_url",
@@ -1995,7 +2079,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "title",
@@ -2015,7 +2100,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "type",
@@ -2035,7 +2121,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "url",
@@ -2055,7 +2142,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "version",
@@ -2075,7 +2163,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "width",
@@ -2095,7 +2184,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2129,7 +2219,8 @@
           "{\"author_id\":20,\"author_name\":\"John\",\"author_url\":\"URL\",\"heght\":400,\"media_id\":\"29\",\"provider_name\":\"Alex\",\"provider_url\":\"URL\",\"title\":\"Photos\",\"type\":\"media\",\"url\":\"URL\",\"version\":\"2.11\",\"width\":600}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.RelationshipsPost",
@@ -2164,7 +2255,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -2178,7 +2270,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2206,7 +2299,8 @@
           "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"none\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Relationships",
@@ -2241,7 +2335,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "incoming_status",
@@ -2261,7 +2356,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -2275,7 +2371,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2304,7 +2401,8 @@
           "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"none\",\"incoming_status\":\"requested_by\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.RequestedBy",
@@ -2339,7 +2437,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "profile_picture",
@@ -2359,7 +2458,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "id",
@@ -2379,7 +2479,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -2393,7 +2494,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2423,7 +2525,8 @@
           "{\"meta\":{\"code\":200},\"data\":{\"username\":\"John\",\"profile_picture\":\"URL\",\"id\":\"25\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.UsersItem",
@@ -2450,7 +2553,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "first_name",
@@ -2470,7 +2574,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "profile_picture",
@@ -2490,7 +2595,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "id",
@@ -2510,7 +2616,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "last_name",
@@ -2530,7 +2637,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2557,7 +2665,8 @@
           "{\"username\":\"John\",\"first_name\":\"John\",\"profile_picture\":\"URL\",\"id\":\"25\",\"last_name\":\"Smith\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Users",
@@ -2587,7 +2696,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.UsersItem"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2618,7 +2728,8 @@
           "{\"data\":[{\"username\":\"John\",\"first_name\":\"John\",\"profile_picture\":\"URL\",\"id\":\"25\",\"last_name\":\"Smith\"}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.OkStatus",
@@ -2645,7 +2756,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "data",
@@ -2669,7 +2781,8 @@
             "oneOf": [
               "any",
               "nil"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2694,7 +2807,8 @@
           "{\"meta\":{\"code\":200}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Likes",
@@ -2721,7 +2835,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "data",
@@ -2744,7 +2859,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.User"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2781,7 +2897,8 @@
           "{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Resolution",
@@ -2808,7 +2925,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "width",
@@ -2828,7 +2946,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "height",
@@ -2848,7 +2967,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2873,7 +2993,8 @@
           "{\"url\":\"URL\",\"width\":400,\"height\":600}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Image",
@@ -2900,7 +3021,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "thumbnail",
@@ -2920,7 +3042,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "standard_resolution",
@@ -2940,7 +3063,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -2977,7 +3101,8 @@
           "{\"low_resolution\":{\"url\":\"URL\",\"width\":200,\"height\":400},\"thumbnail\":{\"url\":\"URL\",\"width\":400,\"height\":600},\"standard_resolution\":{\"url\":\"URL\",\"width\":600,\"height\":800}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.TagsRecentMedia",
@@ -3007,7 +3132,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.TagsRecentMediaItem"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -3075,7 +3201,8 @@
           "{\"data\":[{\"type\":\"photo\",\"tags\":[\"forest\",\"flovers\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}],\"count\":1},\"caption\":null,\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":null}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.TagsRecentMediaItem",
@@ -3102,7 +3229,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "users_in_photo",
@@ -3125,7 +3253,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.UsersInPhoto"
-            ]
+            ],
+            "path": "lib/types.raml"
           },
           {
             "name": "filter",
@@ -3145,7 +3274,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "tags",
@@ -3168,7 +3298,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "string"
-            ]
+            ],
+            "path": "lib/types.raml"
           },
           {
             "name": "comments",
@@ -3199,7 +3330,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "types.Comment"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "count",
@@ -3219,7 +3351,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -3233,7 +3366,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "caption",
@@ -3257,7 +3391,8 @@
             "oneOf": [
               "nil",
               "types.Comment"
-            ]
+            ],
+            "path": "lib/types.raml"
           },
           {
             "name": "likes",
@@ -3277,7 +3412,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "link",
@@ -3297,7 +3433,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "created_time",
@@ -3317,7 +3454,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "images",
@@ -3337,7 +3475,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "id",
@@ -3357,7 +3496,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "location",
@@ -3381,7 +3521,8 @@
             "oneOf": [
               "nil",
               "types.Location"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -3458,7 +3599,8 @@
           "{\"type\":\"photo\",\"tags\":[\"forest\",\"flovers\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}],\"count\":2},\"caption\":{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\"}},\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":{\"latitude\":37.77872018361018,\"longitude\":-122.3962783813477,\"id\":\"520640\",\"street_address\":\"\",\"name\":\"Le Truc\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.UsersInPhoto",
@@ -3485,7 +3627,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "position",
@@ -3513,7 +3656,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "y",
@@ -3533,7 +3677,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -3547,7 +3692,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -3585,7 +3731,8 @@
           "{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.Media",
@@ -3623,7 +3770,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "types.UsersInPhoto"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "filter",
@@ -3643,7 +3791,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "tags",
@@ -3666,7 +3815,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "string"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "comments",
@@ -3697,7 +3847,8 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "types.Comment"
-                    ]
+                    ],
+                    "path": "lib/types.raml"
                   },
                   {
                     "name": "count",
@@ -3717,7 +3868,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -3731,7 +3883,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "caption",
@@ -3755,7 +3908,8 @@
                 "oneOf": [
                   "nil",
                   "types.Comment"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "likes",
@@ -3775,7 +3929,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "link",
@@ -3795,7 +3950,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "user",
@@ -3815,7 +3971,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "created_time",
@@ -3835,7 +3992,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "id",
@@ -3855,7 +4013,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "location",
@@ -3879,7 +4038,8 @@
                 "oneOf": [
                   "nil",
                   "types.Location"
-                ]
+                ],
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -3893,7 +4053,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -4000,7 +4161,8 @@
           "{\"data\":{\"users_in_photo\":[{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}],\"filter\":\"filter\",\"tags\":[\"forest\",\"animals\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":null,\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaSearchFirstType",
@@ -4027,7 +4189,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "type",
@@ -4047,7 +4210,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "users_in_photo",
@@ -4070,7 +4234,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "types.UsersInPhoto"
-            ]
+            ],
+            "path": "lib/types.raml"
           },
           {
             "name": "filter",
@@ -4090,7 +4255,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "tags",
@@ -4113,7 +4279,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "string"
-            ]
+            ],
+            "path": "lib/types.raml"
           },
           {
             "name": "comments",
@@ -4144,7 +4311,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "types.Comment"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "count",
@@ -4164,7 +4332,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -4178,7 +4347,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "caption",
@@ -4202,7 +4372,8 @@
             "oneOf": [
               "nil",
               "types.Comment"
-            ]
+            ],
+            "path": "lib/types.raml"
           },
           {
             "name": "likes",
@@ -4222,7 +4393,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "link",
@@ -4242,7 +4414,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "user",
@@ -4262,7 +4435,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "created_time",
@@ -4282,7 +4456,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "id",
@@ -4302,7 +4477,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "images",
@@ -4322,7 +4498,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "location",
@@ -4346,7 +4523,8 @@
             "oneOf": [
               "nil",
               "types.Location"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -4447,7 +4625,8 @@
           "{\"distance\":50,\"users_in_photo\":[{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}],\"filter\":\"filter\",\"tags\":[\"forest\",\"animals\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]},\"caption\":null,\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":{\"id\":\"833\",\"latitude\":37.77956,\"longitude\":-122.4138,\"name\":\"Civic Center BART\"},\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaSearchSecondType",
@@ -4474,7 +4653,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           },
           {
             "name": "videos",
@@ -4510,7 +4690,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   },
                   {
                     "name": "width",
@@ -4530,7 +4711,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   },
                   {
                     "name": "height",
@@ -4550,7 +4732,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -4564,7 +4747,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "standard_resolution",
@@ -4592,7 +4776,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   },
                   {
                     "name": "width",
@@ -4612,7 +4797,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   },
                   {
                     "name": "height",
@@ -4632,7 +4818,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -4646,7 +4833,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "users_in_photo",
@@ -4669,7 +4857,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "types.UsersInPhoto"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "type",
@@ -4689,7 +4878,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "filter",
@@ -4709,7 +4899,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "tags",
@@ -4732,7 +4923,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "string"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "comments",
@@ -4763,7 +4955,8 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "types.Comment"
-                    ]
+                    ],
+                    "path": "lib/types.raml"
                   },
                   {
                     "name": "count",
@@ -4783,7 +4976,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/types.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -4797,7 +4991,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "caption",
@@ -4821,7 +5016,8 @@
                 "oneOf": [
                   "nil",
                   "types.Comment"
-                ]
+                ],
+                "path": "lib/types.raml"
               },
               {
                 "name": "likes",
@@ -4841,7 +5037,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "link",
@@ -4861,7 +5058,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "user",
@@ -4881,7 +5079,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "created_time",
@@ -4901,7 +5100,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "id",
@@ -4921,7 +5121,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "images",
@@ -4941,7 +5142,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/types.raml"
               },
               {
                 "name": "location",
@@ -4965,7 +5167,8 @@
                 "oneOf": [
                   "nil",
                   "types.Location"
-                ]
+                ],
+                "path": "lib/types.raml"
               }
             ],
             "__METADATA__": {
@@ -4979,7 +5182,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -5103,7 +5307,8 @@
           "{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"URL\",\"width\":200,\"height\":400},\"standard_resolution\":{\"url\":\"URL\",\"width\":400,\"height\":600},\"users_in_photo\":[{\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}},\"position\":{\"x\":275,\"y\":705}}],\"filter\":\"filter\",\"tags\":[\"forest\",\"animals\"],\"comments\":{\"data\":[{\"created_time\":\"1382576494\",\"text\":\"text\",\"from\":{\"username\":\"John\",\"id\":\"2000\",\"full_name\":\"John Smith\"},\"id\":\"200\"}]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":42,\"data\":[{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}]},\"link\":\"link\",\"created_time\":\"1386312776\",\"id\":\"id\",\"location\":{\"latitude\":37.77872018361018,\"longitude\":-122.3962783813477,\"id\":\"520640\",\"street_address\":\"\",\"name\":\"Le Truc\"},\"user\":{\"id\":\"1\",\"username\":\"John\",\"full_name\":\"John Smith\",\"profile_picture\":\"URL\",\"website\":\"example.org\",\"count\":{\"media\":2,\"follows\":3,\"followed_by\":5}}}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaSearch",
@@ -5134,7 +5339,8 @@
             "oneOf": [
               "types.MediaSearchFirstType",
               "types.MediaSearchSecondType"
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -5145,7 +5351,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       },
       {
         "name": "types.MediaSearchArray",
@@ -5183,7 +5390,8 @@
                   "types.MediaSearchSecondType"
                 ]
               }
-            ]
+            ],
+            "path": "lib/types.raml"
           }
         ],
         "__METADATA__": {
@@ -5194,7 +5402,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/types.raml"
       }
     ],
     "traits": [
@@ -5232,10 +5441,12 @@
               "callbackFunction"
             ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/acceptCallback.raml"
           }
         ],
-        "name": "acceptCallback"
+        "name": "acceptCallback",
+        "path": "traits/acceptCallback.raml"
       },
       {
         "queryParameters": [
@@ -5258,7 +5469,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableByGeoPoint.raml"
           },
           {
             "name": "lng",
@@ -5279,7 +5491,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableByGeoPoint.raml"
           },
           {
             "name": "distance",
@@ -5302,10 +5515,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableByGeoPoint.raml"
           }
         ],
-        "name": "limitableByGeoPoint"
+        "name": "limitableByGeoPoint",
+        "path": "traits/limitableByGeoPoint.raml"
       },
       {
         "queryParameters": [
@@ -5338,10 +5553,12 @@
               1
             ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitable.raml"
           }
         ],
-        "name": "limitable"
+        "name": "limitable",
+        "path": "traits/limitable.raml"
       },
       {
         "queryParameters": [
@@ -5364,7 +5581,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableByTime.raml"
           },
           {
             "name": "min_timestamp",
@@ -5385,10 +5603,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableByTime.raml"
           }
         ],
-        "name": "limitableByTime"
+        "name": "limitableByTime",
+        "path": "traits/limitableByTime.raml"
       },
       {
         "queryParameters": [
@@ -5411,7 +5631,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableById.raml"
           },
           {
             "name": "max_id",
@@ -5432,10 +5653,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/limitableById.raml"
           }
         ],
-        "name": "limitableById"
+        "name": "limitableById",
+        "path": "traits/limitableById.raml"
       }
     ],
     "resourceTypes": [
@@ -5494,9 +5717,11 @@
                       "{\"data\":[{\"username\":\"jack\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\"id\":\"66\",\"last_name\":\"Dorsey\"},{\"username\":\"sammyjack\",\"first_name\":\"Sammy\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\"id\":\"29648\",\"last_name\":\"Jack\"},{\"username\":\"jacktiddy\",\"first_name\":\"Jack\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\"id\":\"13096\",\"last_name\":\"Tiddy\"}]}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "resourceTypes/usersListing.raml"
                   }
-                ]
+                ],
+                "path": "resourceTypes/usersListing.raml"
               }
             ],
             "securedBy": [
@@ -5519,7 +5744,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "path": "resourceTypes/usersListing.raml"
           }
         ],
         "type": "base",
@@ -5536,7 +5762,8 @@
             ]
           }
         ],
-        "name": "usersListing"
+        "name": "usersListing",
+        "path": "resourceTypes/usersListing.raml"
       },
       {
         "methods": [
@@ -5662,16 +5889,20 @@
                       "{\"data\":{\"distance\":50,\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Walden\",\"tags\":[],\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"...\",\"bio\":\"...\",\"website\":\"...\",\"id\":\"3\"},\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\"width\":612,\"height\":612}},\"id\":\"3\",\"location\":{\"id\":\"id\",\"latitude\":-34,\"longitude\":-53,\"name\":\"some place\"}}}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "resourceTypes/mediaSearch.raml"
                   }
-                ]
+                ],
+                "path": "resourceTypes/mediaSearch.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "resourceTypes/mediaSearch.raml"
           }
         ],
         "type": "base",
-        "name": "mediaSearch"
+        "name": "mediaSearch",
+        "path": "resourceTypes/mediaSearch.raml"
       },
       {
         "methods": [
@@ -5716,9 +5947,11 @@
                     "oneOf": [
                       "string",
                       "types.OkStatus"
-                    ]
+                    ],
+                    "path": "resourceTypes/secured.raml"
                   }
-                ]
+                ],
+                "path": "resourceTypes/secured.raml"
               }
             ],
             "securedBy": [
@@ -5737,7 +5970,8 @@
             "method": "delete",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourceTypes/secured.raml"
           },
           {
             "responses": [
@@ -5777,9 +6011,11 @@
                     "oneOf": [
                       "string",
                       "types.OkStatus"
-                    ]
+                    ],
+                    "path": "resourceTypes/secured.raml"
                   }
-                ]
+                ],
+                "path": "resourceTypes/secured.raml"
               }
             ],
             "securedBy": [
@@ -5798,7 +6034,8 @@
             "method": "post",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourceTypes/secured.raml"
           }
         ],
         "type": "base",
@@ -5815,7 +6052,8 @@
             ]
           }
         ],
-        "name": "secured"
+        "name": "secured",
+        "path": "resourceTypes/secured.raml"
       },
       {
         "methods": [
@@ -5823,31 +6061,36 @@
             "responses": [
               {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "path": "resourceTypes/base.raml"
               }
             ],
             "method": "delete",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourceTypes/base.raml"
           },
           {
             "responses": [
               {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "path": "resourceTypes/base.raml"
               }
             ],
             "method": "post",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourceTypes/base.raml"
           },
           {
             "responses": [
               {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "path": "resourceTypes/base.raml"
               }
             ],
             "is": [
@@ -5857,10 +6100,12 @@
             "method": "get",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourceTypes/base.raml"
           }
         ],
-        "name": "base"
+        "name": "base",
+        "path": "resourceTypes/base.raml"
       },
       {
         "methods": [
@@ -6077,16 +6322,20 @@
                       "{\"data\":[{\"distance\":50,\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"},\"comments\":{\"count\":16,\"data\":[]},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"link\":\"http://instagr.am/p/BXsFz/\",\"likes\":{\"count\":190,\"data\":[{\"username\":\"shayne\",\"full_name\":\"Shayne Sweeney\",\"id\":\"20\",\"profile_picture\":\"...\"},{}]},\"created_time\":\"1296748524\",\"images\":{\"low_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"image\",\"users_in_photo\":[{\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"position\":{\"x\":0.315,\"y\":0.9111}}],\"filter\":\"Earlybird\",\"tags\":[],\"id\":\"22987123\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"}},{\"distance\":50,\"videos\":{\"low_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\"width\":480,\"height\":480},\"standard_resolution\":{\"url\":\"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\"width\":640,\"height\":640},\"comments\":{\"data\":[{\"created_time\":\"1279332030\",\"text\":\"Love the sign here\",\"from\":{\"username\":\"mikeyk\",\"full_name\":\"Mikey Krieger\",\"id\":\"4\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"},\"id\":\"8\"},{\"created_time\":\"1279341004\",\"text\":\"Chilako taco\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"id\":\"3\",\"profile_picture\":\"...\"},\"id\":\"3\"}],\"count\":2},\"caption\":{\"created_time\":\"1296710352\",\"text\":\"Inside le truc #foodtruck\",\"from\":{\"username\":\"kevin\",\"full_name\":\"Kevin Systrom\",\"type\":\"user\",\"id\":\"3\"},\"id\":\"26621408\"},\"likes\":{\"count\":1,\"data\":[{\"username\":\"mikeyk\",\"full_name\":\"Mikeyk\",\"id\":\"4\",\"profile_picture\":\"...\"}]},\"link\":\"http://instagr.am/p/D/\",\"created_time\":\"1279340983\",\"images\":{\"low_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\"width\":306,\"height\":306},\"thumbnail\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\"width\":150,\"height\":150},\"standard_resolution\":{\"url\":\"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\"width\":612,\"height\":612}},\"type\":\"video\",\"users_in_photo\":[],\"filter\":\"Vesper\",\"tags\":[],\"id\":\"363839373298\",\"user\":{\"username\":\"kevin\",\"full_name\":\"Kevin S\",\"profile_picture\":\"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\"id\":\"3\"},\"location\":{\"id\":\"833\",\"latitude\":37.77956816727314,\"longitude\":-122.4138736724854,\"street_address\":\"\",\"name\":\"Civic Center BART\"}}}]}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "resourceTypes/feedsListing.raml"
                   }
-                ]
+                ],
+                "path": "resourceTypes/feedsListing.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "resourceTypes/feedsListing.raml"
           }
         ],
         "type": "base",
-        "name": "feedsListing"
+        "name": "feedsListing",
+        "path": "resourceTypes/feedsListing.raml"
       }
     ],
     "securitySchemes": [
@@ -6118,9 +6367,11 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "securitySchemes/oauth_2_0.raml"
             }
-          ]
+          ],
+          "path": "securitySchemes/oauth_2_0.raml"
         },
         "settings": {
           "accessTokenUri": "https://api.instagram.com/oauth/access_token",
@@ -6133,8 +6384,10 @@
             "comments",
             "relationships",
             "likes"
-          ]
-        }
+          ],
+          "path": "securitySchemes/oauth_2_0.raml"
+        },
+        "path": "securitySchemes/oauth_2_0.raml"
       },
       {
         "name": "clientId",
@@ -6174,12 +6427,16 @@
                 "9e0dbc0a3b8d436ca65ae2df9825c893"
               ],
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "securitySchemes/clientId.raml"
             }
-          ]
-        }
+          ],
+          "path": "securitySchemes/clientId.raml"
+        },
+        "path": "securitySchemes/clientId.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

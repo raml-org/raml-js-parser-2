@@ -34,7 +34,8 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "inline-type-declaration.raml"
                       },
                       {
                         "name": "lastname",
@@ -54,7 +55,8 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "inline-type-declaration.raml"
                       },
                       {
                         "name": "age",
@@ -74,7 +76,8 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "inline-type-declaration.raml"
                       }
                     ],
                     "__METADATA__": {
@@ -85,14 +88,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "inline-type-declaration.raml"
                   }
-                ]
+                ],
+                "path": "inline-type-declaration.raml"
               }
             ],
             "method": "get",
             "parentUri": "/users/{id}",
             "absoluteParentUri": "/users/{id}",
+            "path": "inline-type-declaration.raml",
             "uriParameters": [
               {
                 "name": "id",
@@ -116,7 +122,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "inline-type-declaration.raml"
               }
             ]
           }
@@ -144,7 +151,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "inline-type-declaration.raml"
           }
         ],
         "relativeUri": "/users/{id}",
@@ -163,9 +171,11 @@
         "absoluteUri": "/users/{id}",
         "completeRelativeUri": "/users/{id}",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "inline-type-declaration.raml"
       }
-    ]
+    ],
+    "path": "inline-type-declaration.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

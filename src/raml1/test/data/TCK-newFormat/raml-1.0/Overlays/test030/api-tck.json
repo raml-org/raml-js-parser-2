@@ -24,13 +24,15 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "name": "tr1",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "title": "test API",
@@ -60,7 +62,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "is": [
@@ -68,7 +71,8 @@
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -86,10 +90,12 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
     ],
-    "extends": "o1.raml"
+    "extends": "o1.raml",
+    "path": "o2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

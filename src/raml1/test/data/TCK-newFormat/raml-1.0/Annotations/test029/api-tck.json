@@ -20,10 +20,12 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "api.raml"
           }
         ],
-        "name": "rt1"
+        "name": "rt1",
+        "path": "api.raml"
       }
     ],
     "annotationTypes": [
@@ -47,7 +49,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "objectAnnotation",
@@ -85,7 +88,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "field2",
@@ -105,7 +109,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "__METADATA__": {
@@ -122,7 +127,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "property2",
@@ -145,7 +151,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -159,7 +166,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "title": "TCK Sample. RAML 1.0 Annotations 001.",
@@ -194,7 +202,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "protocols": [
@@ -233,6 +242,7 @@
             },
             "parentUri": "/resource",
             "absoluteParentUri": "http://api.samplehost.com/{version}/resource",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -262,7 +272,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ]
           }
@@ -296,6 +307,7 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "path": "api.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -325,7 +337,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ]
       }
@@ -336,7 +349,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

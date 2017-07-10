@@ -12,8 +12,10 @@
             "authorization_code",
             "refresh_token",
             "urn:ietf:params:oauth:grant-type:saml2-bearer"
-          ]
-        }
+          ],
+          "path": "apiInvalid.raml"
+        },
+        "path": "apiInvalid.raml"
       }
     ],
     "title": "Dropbox API",
@@ -48,7 +50,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
     ],
     "protocols": [
@@ -60,7 +63,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "files",
-        "value": "libraries/files.raml"
+        "value": "libraries/files.raml",
+        "path": "index.raml"
       }
     ],
     "traits": [
@@ -11,7 +12,8 @@
         "name": "files.hello",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "libraries/files.raml"
       }
     ],
     "resourceTypes": [
@@ -21,10 +23,12 @@
             "is": [
               "files.hello"
             ],
-            "method": "get"
+            "method": "get",
+            "path": "files-resource.raml"
           }
         ],
-        "name": "file"
+        "name": "file",
+        "path": "files-resource.raml"
       }
     ],
     "title": "Files API",
@@ -37,7 +41,8 @@
             ],
             "method": "get",
             "parentUri": "/files",
-            "absoluteParentUri": "/files"
+            "absoluteParentUri": "/files",
+            "path": "files-resource.raml"
           }
         ],
         "type": "file",
@@ -56,9 +61,11 @@
         "absoluteUri": "/files",
         "completeRelativeUri": "/files",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "index.raml"
       }
-    ]
+    ],
+    "path": "index.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

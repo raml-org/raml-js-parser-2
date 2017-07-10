@@ -7,7 +7,8 @@
           {
             "responses": [
               {
-                "code": "201"
+                "code": "201",
+                "path": "meth07.raml"
               }
             ],
             "body": [
@@ -28,7 +29,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth07.raml"
               }
             ],
             "protocols": [
@@ -37,7 +39,8 @@
             ],
             "method": "post",
             "parentUri": "/test",
-            "absoluteParentUri": "/test"
+            "absoluteParentUri": "/test",
+            "path": "meth07.raml"
           }
         ],
         "relativeUri": "/test",
@@ -55,9 +58,11 @@
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "meth07.raml"
       }
-    ]
+    ],
+    "path": "meth07.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

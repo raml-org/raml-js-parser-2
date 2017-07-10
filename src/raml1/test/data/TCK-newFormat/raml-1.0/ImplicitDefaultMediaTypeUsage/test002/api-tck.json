@@ -18,7 +18,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "t2",
@@ -37,7 +38,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "resourceTypes": [
@@ -62,15 +64,19 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "api.raml"
           }
         ],
-        "name": "collection"
+        "name": "collection",
+        "path": "api.raml"
       }
     ],
     "title": "test API",
@@ -102,14 +108,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/schemes",
-            "absoluteParentUri": "/schemes"
+            "absoluteParentUri": "/schemes",
+            "path": "api.raml"
           }
         ],
         "type": "collection",
@@ -128,9 +137,11 @@
         "absoluteUri": "/schemes",
         "completeRelativeUri": "/schemes",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

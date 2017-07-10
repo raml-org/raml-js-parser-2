@@ -23,7 +23,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "fragment.raml"
       },
       {
         "name": "prop2",
@@ -43,13 +44,15 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "fragment.raml"
       }
     ],
     "uses": [
       {
         "key": "lib",
-        "value": "lib/lib.raml"
+        "value": "lib/lib.raml",
+        "path": "fragment.raml"
       }
     ],
     "__METADATA__": {
@@ -63,7 +66,8 @@
       }
     },
     "mediaType": "application/raml+yaml",
-    "typePropertyKind": "TYPE_EXPRESSION"
+    "typePropertyKind": "TYPE_EXPRESSION",
+    "path": "fragment.raml"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

@@ -31,9 +31,11 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "apiValid.raml"
                   }
-                ]
+                ],
+                "path": "apiValid.raml"
               }
             ],
             "protocols": [
@@ -49,6 +51,7 @@
             },
             "parentUri": "/someChildUri/{blah}",
             "absoluteParentUri": "/some/base/uri/someChildUri/{blah}",
+            "path": "apiValid.raml",
             "uriParameters": [
               {
                 "name": "blah",
@@ -69,7 +72,8 @@
                   "calculated": true
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "apiValid.raml"
               }
             ]
           }
@@ -93,7 +97,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
         ],
         "relativeUri": "/someChildUri/{blah}",
@@ -112,7 +117,8 @@
         "absoluteUri": "/some/base/uri/someChildUri/{blah}",
         "completeRelativeUri": "/someChildUri/{blah}",
         "parentUri": "",
-        "absoluteParentUri": "/some/base/uri"
+        "absoluteParentUri": "/some/base/uri",
+        "path": "apiValid.raml"
       }
     ],
     "__METADATA__": {
@@ -121,7 +127,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

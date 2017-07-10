@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "api.raml"
       }
     ],
     "title": "Test API",
@@ -38,7 +39,8 @@
           }
         ]
       ]
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

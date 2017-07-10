@@ -19,7 +19,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "type": [
@@ -33,10 +34,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "title": "Test"
+    "title": "Test",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

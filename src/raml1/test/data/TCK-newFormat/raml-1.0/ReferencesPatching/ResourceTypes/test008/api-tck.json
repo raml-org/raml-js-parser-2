@@ -3,23 +3,28 @@
     "uses": [
       {
         "key": "rt",
-        "value": "lib/resource-types.raml"
+        "value": "lib/resource-types.raml",
+        "path": "api.raml"
       },
       {
         "key": "rt.ty",
-        "value": "lib/types.raml"
+        "value": "lib/types.raml",
+        "path": "api.raml"
       },
       {
         "key": "rt.tr",
-        "value": "lib/traits.raml"
+        "value": "lib/traits.raml",
+        "path": "api.raml"
       },
       {
         "key": "rt.lib",
-        "value": "lib/libA.raml"
+        "value": "lib/libA.raml",
+        "path": "api.raml"
       },
       {
         "key": "rt.lib.lib",
-        "value": "lib/libB.raml"
+        "value": "lib/libB.raml",
+        "path": "api.raml"
       }
     ],
     "types": [
@@ -37,7 +42,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "traits": [
@@ -73,9 +79,11 @@
                   "{\"code\":\"abc123\",\"message\":\"Bad request\"}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/traits.raml"
               }
-            ]
+            ],
+            "path": "lib/traits.raml"
           },
           {
             "code": "500",
@@ -107,15 +115,18 @@
                   "{\"code\":\"xyz123\",\"message\":\"Server error\"}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/traits.raml"
               }
-            ]
+            ],
+            "path": "lib/traits.raml"
           }
         ],
         "name": "rt.tr.ResponseCommonErrors",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib/traits.raml"
       }
     ],
     "resourceTypes": [
@@ -150,12 +161,15 @@
                       8
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/libB.raml"
                   }
-                ]
+                ],
+                "path": "lib/libB.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "lib/libB.raml"
           },
           {
             "responses": [
@@ -188,12 +202,15 @@
                       "{\"p1\":\"stringValue\"}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/libB.raml"
                   }
-                ]
+                ],
+                "path": "lib/libB.raml"
               }
             ],
-            "method": "post"
+            "method": "post",
+            "path": "lib/libB.raml"
           },
           {
             "responses": [
@@ -214,18 +231,22 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/libB.raml"
                   }
-                ]
+                ],
+                "path": "lib/libB.raml"
               }
             ],
-            "method": "put"
+            "method": "put",
+            "path": "lib/libB.raml"
           }
         ],
         "name": "rt.lib.lib.rt",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib/libB.raml"
       },
       {
         "type": {
@@ -244,7 +265,8 @@
         "name": "rt.lib.rt",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib/libA.raml"
       },
       {
         "methods": [
@@ -260,7 +282,8 @@
                 ]
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "lib/resource-types.raml"
           },
           {
             "responses": [
@@ -281,12 +304,15 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/resource-types.raml"
                   }
-                ]
+                ],
+                "path": "lib/resource-types.raml"
               }
             ],
-            "method": "delete"
+            "method": "delete",
+            "path": "lib/resource-types.raml"
           }
         ],
         "type": {
@@ -302,7 +328,8 @@
         "name": "rt.Collection",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib/resource-types.raml"
       }
     ],
     "title": "Test API",
@@ -339,9 +366,11 @@
                       8
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/libB.raml"
                   }
-                ]
+                ],
+                "path": "lib/libB.raml"
               },
               {
                 "code": "400",
@@ -373,9 +402,11 @@
                       "{\"code\":\"abc123\",\"message\":\"Bad request\"}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/traits.raml"
                   }
-                ]
+                ],
+                "path": "lib/traits.raml"
               },
               {
                 "code": "500",
@@ -407,9 +438,11 @@
                       "{\"code\":\"xyz123\",\"message\":\"Server error\"}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/traits.raml"
                   }
-                ]
+                ],
+                "path": "lib/traits.raml"
               }
             ],
             "is": [
@@ -425,7 +458,8 @@
             ],
             "method": "get",
             "parentUri": "/products",
-            "absoluteParentUri": "/products"
+            "absoluteParentUri": "/products",
+            "path": "lib/resource-types.raml"
           },
           {
             "responses": [
@@ -446,14 +480,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/resource-types.raml"
                   }
-                ]
+                ],
+                "path": "lib/resource-types.raml"
               }
             ],
             "method": "delete",
             "parentUri": "/products",
-            "absoluteParentUri": "/products"
+            "absoluteParentUri": "/products",
+            "path": "lib/resource-types.raml"
           },
           {
             "responses": [
@@ -486,14 +523,17 @@
                       "{\"p1\":\"stringValue\"}"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/libB.raml"
                   }
-                ]
+                ],
+                "path": "lib/libB.raml"
               }
             ],
             "method": "post",
             "parentUri": "/products",
-            "absoluteParentUri": "/products"
+            "absoluteParentUri": "/products",
+            "path": "lib/libB.raml"
           },
           {
             "responses": [
@@ -514,14 +554,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib/libB.raml"
                   }
-                ]
+                ],
+                "path": "lib/libB.raml"
               }
             ],
             "method": "put",
             "parentUri": "/products",
-            "absoluteParentUri": "/products"
+            "absoluteParentUri": "/products",
+            "path": "lib/libB.raml"
           }
         ],
         "type": {
@@ -553,9 +596,11 @@
         "absoluteUri": "/products",
         "completeRelativeUri": "/products",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

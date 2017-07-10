@@ -11,19 +11,23 @@
                 "code": "<<param4>>",
                 "body": [
                   {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               },
               {
                 "code": "200",
-                "<<param5>>": "<<param5value>>"
+                "<<param5>>": "<<param5value>>",
+                "path": "api.raml"
               }
             ],
             "body": [
               {
                 "name": "application/json",
-                "<<param3>>": "<<param3value>>"
+                "<<param3>>": "<<param3value>>",
+                "path": "api.raml"
               }
             ],
             "queryParameters": [
@@ -48,7 +52,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "api.raml"
               },
               {
                 "name": "param1",
@@ -72,16 +77,20 @@
                     }
                   }
                 },
-                "<<prop1>>": "<<prop1Value>>"
+                "<<prop1>>": "<<prop1Value>>",
+                "path": "api.raml"
               }
             ],
             "method": "post",
-            "<<param2>>": "<<param2value>>"
+            "<<param2>>": "<<param2value>>",
+            "path": "api.raml"
           }
         ],
-        "<<param1>>": "<<param1value>>"
+        "<<param1>>": "<<param1value>>",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

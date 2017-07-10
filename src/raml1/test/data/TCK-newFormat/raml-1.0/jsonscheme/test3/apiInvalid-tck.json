@@ -15,7 +15,8 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "apiInvalid.raml"
       }
     ],
     "title": "Api",
@@ -51,12 +52,14 @@
                 "simplifiedExamples": [
                   "{\"child\":{\"name1\":\"somename\"}}"
                 ],
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "path": "apiInvalid.raml"
               }
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "apiInvalid.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -74,9 +77,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

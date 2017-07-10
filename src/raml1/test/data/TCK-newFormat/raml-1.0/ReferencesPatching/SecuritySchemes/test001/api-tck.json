@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "api.raml"
       }
     ],
     "traits": [
@@ -11,7 +12,8 @@
         "name": "lib.boolean",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib.raml"
       }
     ],
     "resourceTypes": [
@@ -26,7 +28,8 @@
         "name": "lib.number",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib.raml"
       }
     ],
     "title": "test API",
@@ -58,9 +61,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

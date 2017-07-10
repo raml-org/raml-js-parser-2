@@ -22,7 +22,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiInvalid.raml"
           }
         ],
         "headers": [
@@ -44,10 +45,12 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiInvalid.raml"
           }
         ],
-        "name": "SomeTrait"
+        "name": "SomeTrait",
+        "path": "apiInvalid.raml"
       }
     ],
     "resourceTypes": [
@@ -77,12 +80,15 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "path": "apiInvalid.raml"
                   }
-                ]
+                ],
+                "path": "apiInvalid.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "apiInvalid.raml"
           }
         ],
         "is": [
@@ -99,7 +105,8 @@
               }
             ]
           }
-        ]
+        ],
+        "path": "apiInvalid.raml"
       }
     ],
     "resources": [
@@ -128,9 +135,11 @@
                 "code": "200",
                 "body": [
                   {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "path": "apiInvalid.raml"
                   }
-                ]
+                ],
+                "path": "apiInvalid.raml"
               }
             ],
             "body": [
@@ -156,9 +165,11 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "path": "apiInvalid.raml"
                   }
-                ]
+                ],
+                "path": "apiInvalid.raml"
               }
             ],
             "queryParameters": [
@@ -181,7 +192,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiInvalid.raml"
               }
             ],
             "headers": [
@@ -204,12 +216,14 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiInvalid.raml"
               }
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "apiInvalid.raml"
           }
         ],
         "displayName": "/resource",
@@ -226,9 +240,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

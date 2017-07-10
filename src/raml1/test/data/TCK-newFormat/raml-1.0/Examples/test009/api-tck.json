@@ -30,7 +30,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "number"
-            ]
+            ],
+            "path": "api.raml"
           },
           {
             "name": "items2",
@@ -54,7 +55,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "number"
-            ]
+            ],
+            "path": "api.raml"
           },
           {
             "name": "items3",
@@ -78,7 +80,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "number"
-            ]
+            ],
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -118,10 +121,12 @@
           "{\"items\":[1,2,3],\"items2\":[3,1,4],\"items3\":[1,2,3]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

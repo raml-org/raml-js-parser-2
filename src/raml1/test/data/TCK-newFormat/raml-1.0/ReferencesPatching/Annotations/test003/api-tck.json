@@ -3,11 +3,13 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libA.raml"
+        "value": "libA.raml",
+        "path": "api.raml"
       },
       {
         "key": "lib.lib",
-        "value": "libB.raml"
+        "value": "libB.raml",
+        "path": "api.raml"
       }
     ],
     "resourceTypes": [
@@ -34,7 +36,8 @@
                 "value": "stringValue2"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "libB.raml"
           },
           {
             "annotations": [
@@ -43,7 +46,8 @@
                 "value": 8
               }
             ],
-            "method": "post"
+            "method": "post",
+            "path": "libB.raml"
           },
           {
             "annotations": [
@@ -52,7 +56,8 @@
                 "structuredValue": false
               }
             ],
-            "method": "put"
+            "method": "put",
+            "path": "libB.raml"
           },
           {
             "annotations": [
@@ -69,13 +74,15 @@
                 "value": true
               }
             ],
-            "method": "delete"
+            "method": "delete",
+            "path": "libB.raml"
           }
         ],
         "name": "lib.lib.rt",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "libB.raml"
       },
       {
         "type": {
@@ -94,7 +101,8 @@
         "name": "lib.rt",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "libA.raml"
       }
     ],
     "annotationTypes": [
@@ -112,7 +120,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "title": "Test API",
@@ -142,7 +151,8 @@
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           },
           {
             "annotations": [
@@ -153,7 +163,8 @@
             ],
             "method": "post",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           },
           {
             "annotations": [
@@ -164,7 +175,8 @@
             ],
             "method": "put",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           },
           {
             "annotations": [
@@ -183,7 +195,8 @@
             ],
             "method": "delete",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           }
         ],
         "type": {
@@ -210,9 +223,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

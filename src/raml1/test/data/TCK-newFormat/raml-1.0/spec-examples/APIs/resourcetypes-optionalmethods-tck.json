@@ -23,17 +23,20 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-optionalmethods.raml"
               }
             ],
             "description": "Some info about <<TextAboutPost>>.",
             "method": "post",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourcetypes-optionalmethods.raml"
           }
         ],
-        "name": "corpResource"
+        "name": "corpResource",
+        "path": "resourcetypes-optionalmethods.raml"
       }
     ],
     "title": "Example of Optional Properties",
@@ -43,7 +46,8 @@
           {
             "method": "get",
             "parentUri": "/servers",
-            "absoluteParentUri": "/servers"
+            "absoluteParentUri": "/servers",
+            "path": "resourcetypes-optionalmethods.raml"
           },
           {
             "headers": [
@@ -65,13 +69,15 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-optionalmethods.raml"
               }
             ],
             "description": "Some info about post method.",
             "method": "post",
             "parentUri": "/servers",
-            "absoluteParentUri": "/servers"
+            "absoluteParentUri": "/servers",
+            "path": "resourcetypes-optionalmethods.raml"
           }
         ],
         "type": {
@@ -98,14 +104,16 @@
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "resourcetypes-optionalmethods.raml"
       },
       {
         "methods": [
           {
             "method": "get",
             "parentUri": "/queues",
-            "absoluteParentUri": "/queues"
+            "absoluteParentUri": "/queues",
+            "path": "resourcetypes-optionalmethods.raml"
           }
         ],
         "type": "corpResource",
@@ -124,9 +132,11 @@
         "absoluteUri": "/queues",
         "completeRelativeUri": "/queues",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "resourcetypes-optionalmethods.raml"
       }
-    ]
+    ],
+    "path": "resourcetypes-optionalmethods.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,6 +1,7 @@
 /// <reference path="../../typings/main.d.ts" />
 import core = require("../raml1/wrapped-ast/parserCore");
 import proxy = require("../raml1/ast.core/LowLevelASTProxy");
+import yaml = require("yaml-ast-parser");
 import def = require("raml-definition-system")
 import hl = require("../raml1/highLevelAST");
 import ll = require("../raml1/lowLevelAST");
@@ -23,6 +24,7 @@ import helpersHL = require("../raml1/wrapped-ast/helpersHL");
 import stubs = require('../raml1/stubs');
 
 import _ = require("underscore");
+import path = require("path");
 
 var pathUtils = require("path");
 const RAML_MEDIATYPE = "application/raml+yaml";
@@ -187,29 +189,29 @@ export class TCKDumper {
         }
 
         if((<hlImpl.BasicASTNode>_node).isReused()) {
-            var reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
+            let reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
             if(reusedJSON!=null){
                 //console.log(_node.id());
                 return reusedJSON;
             }
         }
 
-        var result:any = {};
+        let result:any = {};
         if (_node.isElement()) {
 
-            var map:{[key:string]:PropertyValue} = {};
-            var eNode = _node.asElement();
-            var definition = eNode.definition();
+            let map:{[key:string]:PropertyValue} = {};
+            let eNode = _node.asElement();
+            let definition = eNode.definition();
 
             if(universeHelpers.isExampleSpecType(definition)){
                 if(eNode.parent()!=null){
                     result = "";//to be fulfilled by the transformer
                 }
                 else {
-                    var at = hlImpl.auxiliaryTypeForExample(eNode);
-                    var eObj:any = helpersHL.dumpExpandableExample(
+                    let at = hlImpl.auxiliaryTypeForExample(eNode);
+                    let eObj:any = helpersHL.dumpExpandableExample(
                         at.examples()[0], this.options.dumpXMLRepresentationOfExamples);
-                    var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
+                    let uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
                     if (uses.length > 0) {
                         eObj["uses"] = uses;
                     }
@@ -217,14 +219,14 @@ export class TCKDumper {
                 }
             }
             else {
-                var obj:any = {};
-                var children = (<hl.IParseResult[]>eNode.attrs())
+                let obj:any = {};
+                let children = (<hl.IParseResult[]>eNode.attrs())
                     .concat(eNode.children().filter(x=>!x.isAttr()));
-                for (var ch of children) {
-                    var prop = ch.property();
+                for (let ch of children) {
+                    let prop = ch.property();
                     if (prop != null) {
-                        var pName = prop.nameId();
-                        var pVal = map[pName];
+                        let pName = prop.nameId();
+                        let pVal = map[pName];
                         if (pVal == null) {
                             pVal = new PropertyValue(prop);
                             map[pName] = pVal;
@@ -232,32 +234,33 @@ export class TCKDumper {
                         pVal.registerValue(ch);
                     }
                     else {
-                        var llNode = ch.lowLevel();
-                        var key = llNode.key();
+                        let llNode = ch.lowLevel();
+                        let key = llNode.key();
                         if (key) {
                             //obj[key] = llNode.dumpToObject(); 
                         }
                     }
                 }
-                var scalarsAnnotations = {};
-                for (var p of definition.allProperties()
+                let scalarsAnnotations:any = {};
+                let scalarsPaths:any = {};
+                for (let p of definition.allProperties()
                     .concat((<def.NodeClass>definition).allCustomProperties())) {
 
                     if (def.UserDefinedProp.isInstance(p)) {
                         continue;
                     }
 
-                    var pName = p.nameId();
+                    let pName = p.nameId();
                     //TODO implement as transformer or ignore case
                     if (!isRoot && pName == "uses") {
                         if (universeHelpers.isApiSibling(eNode.root().definition())) {
                             continue;
                         }
                     }
-                    var pVal = map[pName];
+                    let pVal = map[pName];
                     if(universeHelpers.isTypeProperty(p)){
                         if (map["schema"]) {
-                            var isNull = (pVal == null);
+                            let isNull = (pVal == null);
                             if(!isNull && pVal.arr.length==1 && pVal.arr[0].isAttr()){
                                 isNull = (pVal.arr[0].asAttr().value()==null);
                             }
@@ -290,25 +293,30 @@ export class TCKDumper {
                         }
                     }
                     pVal = this.applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
-                    var udVal = obj[pName];
+                    let udVal = obj[pName];
                     let aVal:any;
                     if (pVal !== undefined) {
                         if (pVal.isMultiValue) {
                             aVal = pVal.arr.map((x,i)=>{
-                                var pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
+                                let pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
                                 return this.dumpInternal(x, pVal.prop,rp,pMeta);
                             });
                             if (p.isValueProperty()) {
-                                var sAnnotations = [];
-                                var gotScalarAnnotations = false;
+                                let sAnnotations = [];
+                                let sPaths:string[] = [];
+                                let gotScalarAnnotations = false;
                                 pVal.arr.filter(x=>x.isAttr()).map(x=>x.asAttr())
                                     .filter(x=>x.isAnnotatedScalar()).forEach(x=> {
-                                    var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    let sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length > 0;
                                     sAnnotations.push(sAnnotations1);
+                                    sPaths.push(actualPath(x,true));
                                 });
                                 if (gotScalarAnnotations) {
                                     scalarsAnnotations[pName] = sAnnotations;
+                                }
+                                if(sPaths.filter(x=>x!=null).length>0){
+                                    scalarsPaths[pName] = sPaths;
                                 }
                             }
                             if (universeHelpers.isTypeDeclarationDescendant(definition)
@@ -323,11 +331,17 @@ export class TCKDumper {
                         else {
                             aVal = this.dumpInternal(pVal.val, pVal.prop,rp);
                             if (p.isValueProperty()) {
-                                var attr = pVal.val.asAttr();
+                                let attr = pVal.val.asAttr();
                                 if (attr.isAnnotatedScalar()) {
-                                    var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    let sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     if (sAnnotations.length > 0) {
                                         scalarsAnnotations[pName] = [ sAnnotations ];
+                                    }
+                                }
+                                if(!(<hlImpl.ASTPropImpl>attr).isFromKey()) {
+                                    let sPath = actualPath(attr, true);
+                                    if (sPath) {
+                                        scalarsPaths[pName] = [sPath];
                                     }
                                 }
                             }
@@ -369,15 +383,15 @@ export class TCKDumper {
                     if (aVal != null) {
                         //TODO implement as transformer
                         if ((pName === "type" || pName == "schema") && aVal && aVal.forEach && typeof aVal[0] === "string") {
-                            var schemaString = aVal[0].trim();
+                            let schemaString = aVal[0].trim();
 
-                            var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
-                            var canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                            let canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                            let canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
 
                             if (canBeJson || canBeXml) {
-                                var include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
+                                let include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
                                 if(!include){
-                                    var typeAttr = eNode.attr("type");
+                                    let typeAttr = eNode.attr("type");
                                     if(!typeAttr){
                                         typeAttr = eNode.attr("schema");
                                     }
@@ -388,16 +402,16 @@ export class TCKDumper {
 
                                 if(include) {
 
-                                    var ind = include.indexOf("#");
-                                    var postfix = "";
+                                    let ind = include.indexOf("#");
+                                    let postfix = "";
                                     if(ind>=0){
                                         postfix = include.substring(ind);
                                         include = include.substring(0,ind);
                                     }
 
-                                    var aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
+                                    let aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
 
-                                    var relativePath;
+                                    let relativePath;
 
                                     if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
                                         relativePath = aPath;
@@ -434,27 +448,33 @@ export class TCKDumper {
                 if (Object.keys(scalarsAnnotations).length > 0) {
                     result["scalarsAnnotations"] = scalarsAnnotations;
                 }
+                if (Object.keys(scalarsPaths).length > 0) {
+                    result["scalarsPaths"] = scalarsPaths;
+                }
                 var pProps = helpersHL.getTemplateParametrizedProperties(eNode);
                 if (pProps) {
                     result["parametrizedProperties"] = pProps;
                 }
                 if (universeHelpers.isTypeDeclarationDescendant(definition)) {
-                    var fixedFacets = helpersHL.typeFixedFacets(eNode);
+                    let fixedFacets = helpersHL.typeFixedFacets(eNode);
                     if (fixedFacets) {
                         result["fixedFacets"] = fixedFacets;
                     }
                 }
                 result = applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.nodeTransformersMap);
             }
+            if(typeof result == "object") {
+                let unitPath = actualPath(eNode);
+                result.path = unitPath;
+            }
         }
         else if (_node.isAttr()) {
 
-            var aNode = _node.asAttr();
-            var val = aNode.value();
-            var prop = aNode.property();
-            var rangeType = prop.range();
-            var isValueType = rangeType.isValueType();
-            var val:any;
+            let aNode = _node.asAttr();
+            let val = aNode.value();
+            let prop = aNode.property();
+            let rangeType = prop.range();
+            let isValueType = rangeType.isValueType();
             if (isValueType && aNode['value']) {
                 val = aNode['value']();
                 if(val==null && universeHelpers.isAnyTypeType(rangeType)){
@@ -472,15 +492,15 @@ export class TCKDumper {
             }
             else {
                 if (hlImpl.isStructuredValue(val)) {
-                    var sVal = (<hlImpl.StructuredValue>val);
-                    var llNode = sVal.lowLevel();
+                    let sVal = (<hlImpl.StructuredValue>val);
+                    let llNode = sVal.lowLevel();
                     val = llNode ? llNode.dumpToObject() : null;
-                    var propName = prop.nameId();
+                    let propName = prop.nameId();
                     if (rangeType.isAssignableFrom("Reference")) {
                         //TODO implement as transformer
-                        var key = Object.keys(val)[0];
-                        var name = sVal.valueName();
-                        var refVal = val[key];
+                        let key = Object.keys(val)[0];
+                        let name = sVal.valueName();
+                        let refVal = val[key];
                         if (refVal === undefined) {
                             refVal = null;
                         }
@@ -490,29 +510,29 @@ export class TCKDumper {
                         }
                     }
                     else if (propName == "type") {
-                        var llNode = aNode.lowLevel();
-                        var tdl = null;
-                        var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                        var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                        var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
+                        let llNode = aNode.lowLevel();
+                        let tdl = null;
+                        let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                        let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                        let tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
                         val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
                     }
                     else if (propName == "items" && typeof val === "object") {
-                        var isArr = Array.isArray(val);
-                        var isObj = !isArr;
+                        let isArr = Array.isArray(val);
+                        let isObj = !isArr;
                         if (isArr) {
                             isObj = _.find(val, x=>typeof(x) == "object") != null;
                         }
                         if (isObj) {
                             val = null;
-                            var a = _node.parent().lowLevel();
-                            var tdl = null;
+                            let a = _node.parent().lowLevel();
+                            let tdl = null;
                             a.children().forEach(x=> {
                                 if (x.key() == "items") {
-                                    var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                                    var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                                    var tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
+                                    let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                                    let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                                    let tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
                                     tNode.patchType(builder.doDescrimination(tNode));
                                     val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
                                     propName = x.key();
@@ -526,7 +546,7 @@ export class TCKDumper {
             }
         }
         else {
-            var llNode = _node.lowLevel();
+            let llNode = _node.lowLevel();
             result = llNode ? llNode.dumpToObject() : null;
         }
         _node.setJSON(result);
@@ -1658,6 +1678,7 @@ class SchemasTransformer extends BasicTransformation{
             return value;
         }
         else {
+            delete value["scalarsPaths"];
             value.name = value.key;
             delete value.key;
             return value;
@@ -2215,4 +2236,41 @@ function mergeObjects(o1:Object,o2:Object):Object{
         }
     }
     return o1;
+}
+
+function actualPath(node: hl.IParseResult,checkIfDifferent=false) {
+    let llNode = node.lowLevel();
+    let nodeUnit = llNode.unit();
+    let unit = nodeUnit;
+    let projectPath = unit.project().getRootPath();
+    let unitPath:string;
+    while (llNode.kind() == yaml.Kind.INCLUDE_REF || llNode.valueKind() == yaml.Kind.INCLUDE_REF) {
+        let iPath = llNode.includePath();
+        let iUnit = unit.resolve(iPath);
+        if (iUnit) {
+            unit = iUnit;
+            if (unit.isRAMLUnit()) {
+                llNode = unit.ast();
+            }
+            else {
+                break;
+            }
+        }
+        else{
+            unitPath = iPath;
+            break;
+        }
+    }
+    if(!unitPath) {
+        unitPath = unit.absolutePath();
+    }
+    if(checkIfDifferent){
+        if(nodeUnit.absolutePath()==unitPath){
+            return null;
+        }
+    }
+    if (!ll.isWebPath(unitPath)) {
+        unitPath = path.relative(projectPath, unitPath).replace(/\\/g, '/');
+    }
+    return unitPath;
 }

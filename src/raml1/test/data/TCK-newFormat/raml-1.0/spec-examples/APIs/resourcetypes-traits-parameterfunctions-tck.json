@@ -18,7 +18,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "types/users.raml"
       },
       {
         "name": "User",
@@ -37,7 +38,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "types/user.raml"
       }
     ],
     "traits": [
@@ -75,11 +77,13 @@
               "<<methodName>>=h8duh3uhhu38"
             ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "resourcetypes-traits-parameterfunctions.raml"
           }
         ],
         "description": "Some requests require authentication",
-        "name": "secured"
+        "name": "secured",
+        "path": "resourcetypes-traits-parameterfunctions.raml"
       }
     ],
     "resourceTypes": [
@@ -104,12 +108,15 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "resourcetypes-traits-parameterfunctions.raml"
                   }
-                ]
+                ],
+                "path": "resourcetypes-traits-parameterfunctions.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "resourcetypes-traits-parameterfunctions.raml"
           },
           {
             "responses": [
@@ -130,15 +137,19 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "resourcetypes-traits-parameterfunctions.raml"
                   }
-                ]
+                ],
+                "path": "resourcetypes-traits-parameterfunctions.raml"
               }
             ],
-            "method": "post"
+            "method": "post",
+            "path": "resourcetypes-traits-parameterfunctions.raml"
           }
         ],
-        "name": "collection"
+        "name": "collection",
+        "path": "resourcetypes-traits-parameterfunctions.raml"
       },
       {
         "methods": [
@@ -161,22 +172,27 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "resourcetypes-traits-parameterfunctions.raml"
                   }
-                ]
+                ],
+                "path": "resourcetypes-traits-parameterfunctions.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "resourcetypes-traits-parameterfunctions.raml"
           }
         ],
-        "name": "member"
+        "name": "member",
+        "path": "resourcetypes-traits-parameterfunctions.raml"
       }
     ],
     "title": "Example API",
     "version": "v1",
     "mediaType": [
       "application/json"
-    ]
+    ],
+    "path": "resourcetypes-traits-parameterfunctions.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

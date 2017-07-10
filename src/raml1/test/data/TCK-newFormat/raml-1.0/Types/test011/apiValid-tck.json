@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
         ],
         "__METADATA__": {
@@ -37,7 +38,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       },
       {
         "name": "ArrayType",
@@ -56,7 +58,8 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
           "string"
-        ]
+        ],
+        "path": "apiValid.raml"
       },
       {
         "name": "AnotherType",
@@ -83,7 +86,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
         ],
         "__METADATA__": {
@@ -109,10 +113,12 @@
           "{\"prop\":[\"val1\",\"val2\"]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
     ],
-    "title": "API"
+    "title": "API",
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

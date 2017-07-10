@@ -19,7 +19,8 @@
         "oneOf": [
           "SomeUnion",
           "object"
-        ]
+        ],
+        "path": "apiInvalid.raml"
       },
       {
         "name": "SomeUnion",
@@ -53,7 +54,8 @@
               "OneMoreType"
             ]
           }
-        ]
+        ],
+        "path": "apiInvalid.raml"
       },
       {
         "name": "AnotherType",
@@ -69,7 +71,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       },
       {
         "name": "OneMoreType",
@@ -85,10 +88,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
     ],
-    "title": "API"
+    "title": "API",
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

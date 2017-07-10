@@ -18,10 +18,12 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
           "SomeType"
-        ]
+        ],
+        "path": "apiInvalid.raml"
       }
     ],
-    "title": "API"
+    "title": "API",
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

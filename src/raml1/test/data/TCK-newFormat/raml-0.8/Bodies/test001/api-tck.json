@@ -32,7 +32,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "protocols": [
@@ -52,9 +53,11 @@
                     "name": "application/json",
                     "schema": "{}",
                     "example": "{}",
-                    "schemaContent": "{}"
+                    "schemaContent": "{}",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "body": [
@@ -62,7 +65,8 @@
                 "name": "application/json",
                 "schema": "{}",
                 "example": "{}",
-                "schemaContent": "{}"
+                "schemaContent": "{}",
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -78,6 +82,7 @@
             },
             "parentUri": "/resource",
             "absoluteParentUri": "http://api.samplehost.com/{version}/resource",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -107,7 +112,8 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "path": "api.raml"
               }
             ]
           }
@@ -127,6 +133,7 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "path": "api.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -156,7 +163,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "path": "api.raml"
           }
         ]
       }
@@ -167,7 +175,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

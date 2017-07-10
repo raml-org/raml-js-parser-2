@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libs/lib.raml"
+        "value": "libs/lib.raml",
+        "path": "api.raml"
       }
     ],
     "title": "Test API",
@@ -41,7 +42,8 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "fragments/type.raml"
                       },
                       {
                         "name": "stringProperty",
@@ -61,7 +63,8 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "fragments/type.raml"
                       }
                     ],
                     "additionalProperties": false,
@@ -76,7 +79,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "fragments/type.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -102,12 +106,14 @@
                   "{\"objectProperty\":{\"prop\":\"string\"},\"stringProperty\":\"abcdefghijklmnopqrstuvwxyz0123456789\"}"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "INPLACE"
+                "typePropertyKind": "INPLACE",
+                "path": "api.raml"
               }
             ],
             "method": "put",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -125,9 +131,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -5,7 +5,8 @@
     "protocols": [
       "HTTP",
       "https"
-    ]
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

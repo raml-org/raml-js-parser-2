@@ -16,7 +16,8 @@
           }
         },
         "mediaType": "application/xml",
-        "typePropertyKind": "XML"
+        "typePropertyKind": "XML",
+        "path": "api.raml"
       }
     ],
     "title": "test API",
@@ -40,12 +41,14 @@
                   }
                 },
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML"
+                "typePropertyKind": "XML",
+                "path": "api.raml"
               }
             ],
             "method": "post",
             "parentUri": "/res",
-            "absoluteParentUri": "/res"
+            "absoluteParentUri": "/res",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/res",
@@ -63,9 +66,11 @@
         "absoluteUri": "/res",
         "completeRelativeUri": "/res",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

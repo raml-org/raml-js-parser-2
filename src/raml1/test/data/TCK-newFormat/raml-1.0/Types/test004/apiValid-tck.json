@@ -31,10 +31,12 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
           "string"
-        ]
+        ],
+        "path": "apiValid.raml"
       }
     ],
-    "title": "API"
+    "title": "API",
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

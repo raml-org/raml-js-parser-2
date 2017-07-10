@@ -29,7 +29,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "priceMoreThen",
@@ -49,10 +50,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
-        "name": "FilterableByPrice"
+        "name": "FilterableByPrice",
+        "path": "NewOverlay.raml"
       }
     ],
     "annotationTypes": [
@@ -81,7 +84,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "NewOverlay.raml"
           }
         ],
         "__METADATA__": {
@@ -95,11 +99,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "NewOverlay.raml"
       }
     ],
     "title": "Pet Shop Overlay",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "path": "NewOverlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

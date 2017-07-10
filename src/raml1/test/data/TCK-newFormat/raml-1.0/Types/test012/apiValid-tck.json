@@ -29,7 +29,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "SomeType"
-            ]
+            ],
+            "path": "apiValid.raml"
           },
           {
             "name": "someProperty",
@@ -49,7 +50,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
         ],
         "additionalProperties": false,
@@ -84,10 +86,12 @@
           "{\"selfReference\":[{\"selfReference\":[{\"selfReference\":[],\"someProperty\":\"stringValue\"}],\"someProperty\":\"stringValue\"}],\"someProperty\":\"stringValue\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
     ],
-    "title": "API"
+    "title": "API",
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

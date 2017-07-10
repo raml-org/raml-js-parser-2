@@ -15,7 +15,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "mystring",
@@ -31,7 +32,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "base.raml"
       }
     ],
     "traits": [
@@ -55,13 +57,15 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "trait.raml"
           }
         ],
         "name": "foo",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "trait.raml"
       }
     ],
     "title": "foo",
@@ -88,7 +92,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "trait.raml"
               }
             ],
             "is": [
@@ -96,7 +101,8 @@
             ],
             "method": "get",
             "parentUri": "/foobar",
-            "absoluteParentUri": "/foobar"
+            "absoluteParentUri": "/foobar",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/foobar",
@@ -114,10 +120,12 @@
         "absoluteUri": "/foobar",
         "completeRelativeUri": "/foobar",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
     ],
-    "extends": "./base.raml"
+    "extends": "./base.raml",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

@@ -15,7 +15,8 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "api.raml"
       },
       {
         "name": "z2",
@@ -41,7 +42,8 @@
                 }
               }
             },
-            "mediaType": "application/json"
+            "mediaType": "application/json",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -69,10 +71,12 @@
           "{\"c\":{\"i\":2}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "title": "A"
+    "title": "A",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

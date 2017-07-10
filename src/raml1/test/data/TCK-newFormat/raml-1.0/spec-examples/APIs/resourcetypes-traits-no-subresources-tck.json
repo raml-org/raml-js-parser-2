@@ -4,19 +4,24 @@
       {
         "methods": [
           {
-            "method": "get"
+            "method": "get",
+            "path": "resourcetypes-traits-no-subresources.raml"
           },
           {
-            "method": "patch"
+            "method": "patch",
+            "path": "resourcetypes-traits-no-subresources.raml"
           },
           {
-            "method": "delete"
+            "method": "delete",
+            "path": "resourcetypes-traits-no-subresources.raml"
           }
         ],
-        "name": "hasGroups"
+        "name": "hasGroups",
+        "path": "resourcetypes-traits-no-subresources.raml"
       }
     ],
-    "title": "Invalid sub resource usage"
+    "title": "Invalid sub resource usage",
+    "path": "resourcetypes-traits-no-subresources.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

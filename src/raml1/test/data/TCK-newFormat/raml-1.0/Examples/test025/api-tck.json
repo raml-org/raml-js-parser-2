@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "value",
@@ -46,7 +47,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -57,7 +59,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Message",
@@ -84,7 +87,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "payload",
@@ -112,7 +116,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "filename",
@@ -132,7 +137,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "headers",
@@ -155,7 +161,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "Header"
-                ]
+                ],
+                "path": "api.raml"
               },
               {
                 "name": "body",
@@ -183,7 +190,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "data",
@@ -203,7 +211,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -217,7 +226,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "parts",
@@ -240,7 +250,8 @@
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "items": [
                   "Message"
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "__METADATA__": {
@@ -254,7 +265,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "sizeEstimate",
@@ -274,7 +286,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -285,7 +298,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Thread",
@@ -312,7 +326,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "historyId",
@@ -332,7 +347,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "messages",
@@ -355,7 +371,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "Message"
-            ]
+            ],
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -411,10 +428,12 @@
           "{\"id\":\"146df5d64e5cb7dc\",\"historyId\":\"535370\",\"messages\":[{\"id\":\"146df5d64e5cb7dc\",\"payload\":{\"mimeType\":\"text/plain\",\"filename\":\"\",\"headers\":[{\"name\":\"Received\",\"value\":\"from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700\"},{\"name\":\"Date\",\"value\":\"Fri, 27 Jun 2014 15:06:18 -0700\"},{\"name\":\"Message-Id\",\"value\":\"<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>\"},{\"name\":\"From\",\"value\":\"someaccount@gmail.com\"}],\"body\":{\"size\":1,\"data\":\"\"}},\"sizeEstimate\":331}]}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "usage": "Gmail types"
+    "usage": "Gmail types",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

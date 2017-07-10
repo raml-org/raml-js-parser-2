@@ -25,7 +25,8 @@
           630128
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Address",
@@ -61,7 +62,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "city",
@@ -84,7 +86,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "street",
@@ -107,7 +110,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "house",
@@ -130,7 +134,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "zip",
@@ -150,7 +155,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -180,7 +186,8 @@
           "{\"country\":\"US\",\"city\":\"SF\",\"street\":\"Geary Street\",\"house\":\"77, Suite 400\",\"zip\":94108}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Email",
@@ -212,7 +219,8 @@
           "press@mulesoft.com"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "User",
@@ -242,7 +250,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "type": [
@@ -299,7 +308,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "name",
@@ -322,7 +332,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "email",
@@ -342,7 +353,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "phone",
@@ -368,7 +380,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "address",
@@ -388,7 +401,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -406,7 +420,8 @@
           "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Manager",
@@ -467,7 +482,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -485,7 +501,8 @@
           "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456},\"managerId\":88}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Admin",
@@ -512,7 +529,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -526,7 +544,8 @@
           "role": "admin"
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "SuperAdmin",
@@ -542,7 +561,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "Team",
@@ -569,7 +589,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "title",
@@ -593,7 +614,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "manager",
@@ -613,7 +635,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "admin",
@@ -637,7 +660,8 @@
             "oneOf": [
               "Admin",
               "SuperAdmin"
-            ]
+            ],
+            "path": "api.raml"
           },
           {
             "name": "members",
@@ -668,7 +692,8 @@
                   "User"
                 ]
               }
-            ]
+            ],
+            "path": "api.raml"
           },
           {
             "name": "info",
@@ -696,7 +721,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "email",
@@ -716,7 +742,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "size",
@@ -736,7 +763,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "__METADATA__": {
@@ -753,7 +781,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -767,7 +796,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "title": "TCK Sample. RAML 1.0 Types 001.",
@@ -802,7 +832,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "protocols": [
@@ -833,9 +864,11 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "Team"
-                    ]
+                    ],
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -851,6 +884,7 @@
             },
             "parentUri": "/teams",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -880,7 +914,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ]
           },
@@ -906,9 +941,11 @@
                       "role": "admin"
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "body": [
@@ -941,7 +978,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -955,7 +993,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -972,6 +1011,7 @@
             },
             "parentUri": "/teams",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -1001,7 +1041,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ]
           }
@@ -1030,9 +1071,11 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "api.raml"
                       }
-                    ]
+                    ],
+                    "path": "api.raml"
                   },
                   {
                     "code": "404",
@@ -1054,9 +1097,11 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "api.raml"
                       }
-                    ]
+                    ],
+                    "path": "api.raml"
                   }
                 ],
                 "protocols": [
@@ -1072,6 +1117,7 @@
                 },
                 "parentUri": "/teams/{id}",
                 "absoluteParentUri": "http://api.samplehost.com/{version}/teams/{id}",
+                "path": "api.raml",
                 "uriParameters": [
                   {
                     "name": "version",
@@ -1101,7 +1147,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "id",
@@ -1125,7 +1172,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
                 ]
               }
@@ -1159,7 +1207,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "id",
@@ -1183,7 +1232,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "relativeUri": "/{id}",
@@ -1201,7 +1251,8 @@
             "absoluteUri": "http://api.samplehost.com/{version}/teams/{id}",
             "completeRelativeUri": "/teams/{id}",
             "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams"
+            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -1218,6 +1269,7 @@
         "completeRelativeUri": "/teams",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "path": "api.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -1247,7 +1299,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ]
       },
@@ -1275,9 +1328,11 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "User"
-                    ]
+                    ],
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -1293,6 +1348,7 @@
             },
             "parentUri": "/users",
             "absoluteParentUri": "http://api.samplehost.com/{version}/users",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -1322,7 +1378,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ]
           }
@@ -1343,6 +1400,7 @@
         "completeRelativeUri": "/users",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "path": "api.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -1372,7 +1430,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ]
       },
@@ -1400,9 +1459,11 @@
                       "role": "admin"
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -1418,6 +1479,7 @@
             },
             "parentUri": "/users/{id}",
             "absoluteParentUri": "http://api.samplehost.com/{version}/users/{id}",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -1447,7 +1509,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "id",
@@ -1471,7 +1534,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ]
           }
@@ -1505,7 +1569,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
           {
             "name": "id",
@@ -1529,7 +1594,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/users/{id}",
@@ -1548,7 +1614,8 @@
         "absoluteUri": "http://api.samplehost.com/{version}/users/{id}",
         "completeRelativeUri": "/users/{id}",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}"
+        "absoluteParentUri": "http://api.samplehost.com/{version}",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -1557,7 +1624,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

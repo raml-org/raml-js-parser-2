@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "./lib/lib.raml"
+        "value": "./lib/lib.raml",
+        "path": "api.raml"
       }
     ],
     "types": [
@@ -35,7 +36,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib.raml"
           },
           {
             "name": "p2",
@@ -58,7 +60,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib.raml"
           }
         ],
         "__METADATA__": {
@@ -72,7 +75,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/lib.raml"
       }
     ],
     "resourceTypes": [
@@ -94,18 +98,22 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "method": "post",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "api.raml"
           }
         ],
-        "name": "rt"
+        "name": "rt",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

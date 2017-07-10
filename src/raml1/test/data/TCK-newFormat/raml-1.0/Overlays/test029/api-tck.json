@@ -31,11 +31,13 @@
     "uses": [
       {
         "key": "library",
-        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
+        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml",
+        "path": "overlay.raml"
       }
     ],
     "title": "Api",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "path": "overlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

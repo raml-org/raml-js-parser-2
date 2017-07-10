@@ -16,10 +16,12 @@
           }
         },
         "mediaType": "application/xml",
-        "typePropertyKind": "XML"
+        "typePropertyKind": "XML",
+        "path": "api.raml"
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

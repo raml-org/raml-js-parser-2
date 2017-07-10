@@ -17,7 +17,8 @@
             "required": true,
             "xml": {
               "attribute": true,
-              "name": "fullname"
+              "name": "fullname",
+              "path": "xml-facet.raml"
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -30,7 +31,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "xml-facet.raml"
           },
           {
             "name": "addresses",
@@ -40,7 +42,8 @@
             ],
             "required": true,
             "xml": {
-              "wrapped": true
+              "wrapped": true,
+              "path": "xml-facet.raml"
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -56,7 +59,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "Address"
-            ]
+            ],
+            "path": "xml-facet.raml"
           }
         ],
         "__METADATA__": {
@@ -70,7 +74,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "xml-facet.raml"
       },
       {
         "name": "Address",
@@ -97,7 +102,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "xml-facet.raml"
           },
           {
             "name": "city",
@@ -117,7 +123,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "xml-facet.raml"
           }
         ],
         "__METADATA__": {
@@ -131,10 +138,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "xml-facet.raml"
       }
     ],
-    "title": "XML facet"
+    "title": "XML facet",
+    "path": "xml-facet.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

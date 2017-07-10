@@ -3,11 +3,13 @@
     "uses": [
       {
         "key": "defaultResponses",
-        "value": "libraries/responseBase.raml"
+        "value": "libraries/responseBase.raml",
+        "path": "api.raml"
       },
       {
         "key": "error-types",
-        "value": "types/error-types.raml"
+        "value": "types/error-types.raml",
+        "path": "api.raml"
       }
     ],
     "traits": [
@@ -30,9 +32,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "traits/generic-responses.raml"
               }
-            ]
+            ],
+            "path": "traits/generic-responses.raml"
           },
           {
             "code": "423",
@@ -55,15 +59,18 @@
                 "oneOf": [
                   "<<parentType>><<resourcePathName>>-errors",
                   "string"
-                ]
+                ],
+                "path": "traits/generic-responses.raml"
               }
-            ]
+            ],
+            "path": "traits/generic-responses.raml"
           }
         ],
         "name": "defaultResponses.general",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "traits/generic-responses.raml"
       }
     ],
     "resourceTypes": [
@@ -81,10 +88,12 @@
                 ]
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "resourceTypes/collection.raml"
           }
         ],
-        "name": "collection"
+        "name": "collection",
+        "path": "resourceTypes/collection.raml"
       }
     ],
     "title": "test API",
@@ -121,9 +130,11 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "traits/generic-responses.raml"
                       }
-                    ]
+                    ],
+                    "path": "traits/generic-responses.raml"
                   },
                   {
                     "code": "423",
@@ -146,9 +157,11 @@
                         "oneOf": [
                           "error-types.alpha-letters-errors",
                           "string"
-                        ]
+                        ],
+                        "path": "traits/generic-responses.raml"
                       }
-                    ]
+                    ],
+                    "path": "traits/generic-responses.raml"
                   }
                 ],
                 "protocols": [
@@ -174,7 +187,8 @@
                   }
                 },
                 "parentUri": "/alpha/letters",
-                "absoluteParentUri": "https://example.com/alpha/letters"
+                "absoluteParentUri": "https://example.com/alpha/letters",
+                "path": "resourceTypes/collection.raml"
               }
             ],
             "type": {
@@ -201,7 +215,8 @@
             "absoluteUri": "https://example.com/alpha/letters",
             "completeRelativeUri": "/alpha/letters",
             "parentUri": "/alpha",
-            "absoluteParentUri": "https://example.com/alpha"
+            "absoluteParentUri": "https://example.com/alpha",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -217,7 +232,8 @@
         "absoluteUri": "https://example.com/alpha",
         "completeRelativeUri": "/alpha",
         "parentUri": "",
-        "absoluteParentUri": "https://example.com"
+        "absoluteParentUri": "https://example.com",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -226,7 +242,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

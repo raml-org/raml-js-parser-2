@@ -18,7 +18,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
     ],
     "title": "Annotation with arbitrary properties",
@@ -52,7 +53,8 @@
         "absoluteUri": "/assets",
         "completeRelativeUri": "/assets",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       },
       {
         "annotations": [
@@ -83,9 +85,11 @@
         "absoluteUri": "/foods",
         "completeRelativeUri": "/foods",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -31,7 +31,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "uri-parameters-ext.raml"
           }
         ],
         "relativeUri": "/users{ext}",
@@ -49,9 +50,11 @@
         "absoluteUri": "/users{ext}",
         "completeRelativeUri": "/users{ext}",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "uri-parameters-ext.raml"
       }
-    ]
+    ],
+    "path": "uri-parameters-ext.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

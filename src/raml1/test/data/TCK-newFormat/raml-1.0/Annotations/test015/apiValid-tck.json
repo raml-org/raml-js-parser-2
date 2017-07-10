@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
         ],
         "__METADATA__": {
@@ -40,7 +41,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
     ],
     "annotationTypes": [
@@ -59,7 +61,8 @@
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
     ],
     "title": "Annotations 14",
@@ -86,9 +89,11 @@
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiValid.raml"
       }
-    ]
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

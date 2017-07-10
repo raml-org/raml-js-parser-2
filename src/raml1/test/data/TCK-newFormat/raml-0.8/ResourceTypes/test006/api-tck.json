@@ -32,7 +32,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "protocols": [
@@ -41,7 +42,8 @@
     "schemas": [
       {
         "value": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
-        "name": "member"
+        "name": "member",
+        "path": "api.raml"
       }
     ],
     "resourceTypes": [
@@ -56,14 +58,18 @@
                   {
                     "name": "application/json",
                     "schema": "<<schema>>",
-                    "schemaContent": "<<schema>>"
+                    "schemaContent": "<<schema>>",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
-            "method": "get"
+            "method": "get",
+            "path": "api.raml"
           }
-        ]
+        ],
+        "path": "api.raml"
       }
     ],
     "resources": [
@@ -87,9 +93,11 @@
                   {
                     "name": "application/json",
                     "schema": "member",
-                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -105,6 +113,7 @@
             },
             "parentUri": "/members",
             "absoluteParentUri": "http://server/api/{version}/members",
+            "path": "api.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -134,7 +143,8 @@
                       "calculated": true
                     }
                   }
-                }
+                },
+                "path": "api.raml"
               }
             ]
           }
@@ -154,6 +164,7 @@
         "completeRelativeUri": "/members",
         "parentUri": "",
         "absoluteParentUri": "http://server/api/{version}",
+        "path": "api.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -183,7 +194,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "path": "api.raml"
           }
         ]
       }
@@ -194,7 +206,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

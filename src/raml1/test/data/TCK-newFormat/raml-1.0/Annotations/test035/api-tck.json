@@ -15,7 +15,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
     "title": "Illustrating annotations",
@@ -31,7 +32,8 @@
             ],
             "method": "get",
             "parentUri": "/users",
-            "absoluteParentUri": "/users"
+            "absoluteParentUri": "/users",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/users",
@@ -49,9 +51,11 @@
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

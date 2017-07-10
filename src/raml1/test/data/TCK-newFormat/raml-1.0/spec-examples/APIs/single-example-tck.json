@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "single-example.raml"
           },
           {
             "name": "body",
@@ -46,7 +47,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "single-example.raml"
           },
           {
             "name": "name",
@@ -66,7 +68,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "single-example.raml"
           },
           {
             "name": "comment",
@@ -86,7 +89,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "single-example.raml"
           }
         ],
         "__METADATA__": {
@@ -113,10 +117,12 @@
           "{\"title\":\"Attention needed\",\"body\":\"You have been added to group 274\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "single-example.raml"
       }
     ],
-    "title": "Single example"
+    "title": "Single example",
+    "path": "single-example.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

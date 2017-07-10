@@ -31,7 +31,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib.raml"
               }
             ],
             "__METADATA__": {
@@ -42,12 +43,15 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib.raml"
           }
         ],
-        "name": "tr"
+        "name": "tr",
+        "path": "lib.raml"
       }
-    ]
+    ],
+    "path": "lib.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType03.raml"
           },
           {
             "name": "initial_comments",
@@ -46,7 +47,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType03.raml"
           },
           {
             "name": "user",
@@ -66,7 +68,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType03.raml"
           },
           {
             "name": "time_stamp",
@@ -86,7 +89,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType03.raml"
           },
           {
             "name": "created",
@@ -106,7 +110,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType03.raml"
           }
         ],
         "minProperties": 2,
@@ -135,10 +140,12 @@
           "{\"comment_id\":2,\"initial_comments\":\"oo\",\"user\":\"Raml\",\"time_stamp\":1422378528,\"created\":1422378528}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "oType03.raml"
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "path": "oType03.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

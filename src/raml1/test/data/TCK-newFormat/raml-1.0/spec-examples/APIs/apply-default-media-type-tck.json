@@ -18,7 +18,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apply-default-media-type.raml"
       },
       {
         "name": "Another",
@@ -37,7 +38,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apply-default-media-type.raml"
       }
     ],
     "title": "New API",
@@ -71,7 +73,8 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "Person"
-                    ]
+                    ],
+                    "path": "apply-default-media-type.raml"
                   },
                   {
                     "name": "application/xml",
@@ -90,14 +93,17 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "Person"
-                    ]
+                    ],
+                    "path": "apply-default-media-type.raml"
                   }
-                ]
+                ],
+                "path": "apply-default-media-type.raml"
               }
             ],
             "method": "get",
             "parentUri": "/list",
-            "absoluteParentUri": "/list"
+            "absoluteParentUri": "/list",
+            "path": "apply-default-media-type.raml"
           }
         ],
         "relativeUri": "/list",
@@ -115,7 +121,8 @@
         "absoluteUri": "/list",
         "completeRelativeUri": "/list",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apply-default-media-type.raml"
       },
       {
         "methods": [
@@ -135,12 +142,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "apply-default-media-type.raml"
               }
             ],
             "method": "post",
             "parentUri": "/send",
-            "absoluteParentUri": "/send"
+            "absoluteParentUri": "/send",
+            "path": "apply-default-media-type.raml"
           }
         ],
         "relativeUri": "/send",
@@ -158,9 +167,11 @@
         "absoluteUri": "/send",
         "completeRelativeUri": "/send",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apply-default-media-type.raml"
       }
-    ]
+    ],
+    "path": "apply-default-media-type.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

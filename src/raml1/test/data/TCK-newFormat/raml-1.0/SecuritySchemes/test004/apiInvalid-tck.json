@@ -5,7 +5,10 @@
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-        "settings": {}
+        "settings": {
+          "path": "apiInvalid.raml"
+        },
+        "path": "apiInvalid.raml"
       }
     ],
     "title": "Dropbox API",
@@ -40,7 +43,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
     ],
     "protocols": [
@@ -52,7 +56,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -25,7 +25,8 @@
           100
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "GeoPoints",
@@ -57,7 +58,8 @@
         "typePropertyKind": "TYPE_EXPRESSION",
         "items": [
           "number"
-        ]
+        ],
+        "path": "api.raml"
       },
       {
         "name": "Bool",
@@ -83,9 +85,11 @@
           true
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

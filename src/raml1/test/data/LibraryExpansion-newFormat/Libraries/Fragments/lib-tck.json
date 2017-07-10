@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "lib.raml"
       }
     ],
     "types": [
@@ -32,7 +33,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "workItem.raml"
           },
           {
             "name": "reference",
@@ -52,7 +54,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "workItem.raml"
           },
           {
             "name": "weight",
@@ -72,7 +75,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "workItem.raml"
           },
           {
             "name": "workItmes",
@@ -95,7 +99,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "workItem"
-            ]
+            ],
+            "path": "workItem.raml"
           }
         ],
         "__METADATA__": {
@@ -106,9 +111,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "workItem.raml"
       }
-    ]
+    ],
+    "path": "lib.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

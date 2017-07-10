@@ -44,7 +44,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "multiple-examples.raml"
           },
           {
             "name": "body",
@@ -64,7 +65,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "multiple-examples.raml"
           },
           {
             "name": "name",
@@ -84,7 +86,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "multiple-examples.raml"
           },
           {
             "name": "comment",
@@ -104,7 +107,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "multiple-examples.raml"
           }
         ],
         "__METADATA__": {
@@ -122,10 +126,12 @@
           "{\"name\":\"log item\",\"comment\":\"permission check\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-examples.raml"
       }
     ],
-    "title": "Multiple examples"
+    "title": "Multiple examples",
+    "path": "multiple-examples.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

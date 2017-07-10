@@ -29,14 +29,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "default-type-any-2.raml"
                   }
-                ]
+                ],
+                "path": "default-type-any-2.raml"
               }
             ],
             "method": "get",
             "parentUri": "/customers",
-            "absoluteParentUri": "/customers"
+            "absoluteParentUri": "/customers",
+            "path": "default-type-any-2.raml"
           }
         ],
         "relativeUri": "/customers",
@@ -54,9 +57,11 @@
         "absoluteUri": "/customers",
         "completeRelativeUri": "/customers",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "default-type-any-2.raml"
       }
-    ]
+    ],
+    "path": "default-type-any-2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

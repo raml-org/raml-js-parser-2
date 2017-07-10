@@ -21,10 +21,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
-        "name": "box"
+        "name": "box",
+        "path": "api.raml"
       },
       {
         "headers": [
@@ -46,7 +48,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "queryString": {
@@ -66,7 +69,8 @@
             }
           },
           "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "path": "api.raml"
         },
         "body": [
           {
@@ -86,16 +90,19 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "is": [
           "box"
         ],
-        "name": "container"
+        "name": "container",
+        "path": "api.raml"
       }
     ],
-    "title": "Traits"
+    "title": "Traits",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

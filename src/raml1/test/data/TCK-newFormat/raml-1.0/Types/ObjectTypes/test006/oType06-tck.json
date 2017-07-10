@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType06.raml"
           },
           {
             "name": "initial_comments",
@@ -47,7 +48,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType06.raml"
           }
         ],
         "minProperties": 2,
@@ -60,10 +62,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "oType06.raml"
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "path": "oType06.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

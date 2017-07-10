@@ -3,12 +3,14 @@
     "uses": [
       {
         "key": "lib",
-        "value": "./lib/lib.raml"
+        "value": "./lib/lib.raml",
+        "path": "api.raml"
       }
     ],
     "traits": [
       {
-        "name": "lib.boolean"
+        "name": "lib.boolean",
+        "path": "lib/lib.raml"
       }
     ],
     "resourceTypes": [
@@ -20,19 +22,23 @@
           "lib.oauth",
           "lib.number"
         ],
-        "name": "lib.number"
+        "name": "lib.number",
+        "path": "lib/lib.raml"
       }
     ],
     "securitySchemes": [
       {
         "name": "lib.oauth",
-        "type": "OAuth 2.0"
+        "type": "OAuth 2.0",
+        "path": "lib/lib.raml"
       },
       {
         "name": "lib.number",
-        "type": "Basic Authentication"
+        "type": "Basic Authentication",
+        "path": "lib/lib.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

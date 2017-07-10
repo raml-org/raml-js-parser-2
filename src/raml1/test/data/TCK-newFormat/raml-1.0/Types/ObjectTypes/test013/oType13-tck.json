@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType13.raml"
           }
         ],
         "__METADATA__": {
@@ -37,7 +38,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "oType13.raml"
       },
       {
         "name": "Resource",
@@ -64,7 +66,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "oType13.raml"
           }
         ],
         "__METADATA__": {
@@ -92,10 +95,12 @@
           "{\"put\":{\"name\":\"update method\"},\"post\":{\"name\":\"create method\"}}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "oType13.raml"
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "path": "oType13.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

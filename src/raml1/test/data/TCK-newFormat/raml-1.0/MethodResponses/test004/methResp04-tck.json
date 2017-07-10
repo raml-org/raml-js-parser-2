@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "methResp04.raml"
           }
         ],
         "__METADATA__": {
@@ -49,7 +50,8 @@
           "{\"field\":\"value\"}"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "methResp04.raml"
       }
     ],
     "title": "test",
@@ -75,14 +77,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "methResp04.raml"
                   }
-                ]
+                ],
+                "path": "methResp04.raml"
               }
             ],
             "method": "get",
             "parentUri": "/test",
-            "absoluteParentUri": "/test"
+            "absoluteParentUri": "/test",
+            "path": "methResp04.raml"
           }
         ],
         "relativeUri": "/test",
@@ -100,9 +105,11 @@
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "methResp04.raml"
       }
-    ]
+    ],
+    "path": "methResp04.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "NewOverlay2.raml"
       }
     ],
     "annotationTypes": [
@@ -21,7 +22,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib.raml"
       },
       {
         "name": "lib.AnotherAnnotationType",
@@ -48,7 +50,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib.raml"
           },
           {
             "name": "secondProp",
@@ -68,7 +71,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib.raml"
           }
         ],
         "__METADATA__": {
@@ -79,7 +83,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib.raml"
       }
     ],
     "title": "Overlay 2",
@@ -113,10 +118,12 @@
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "NewOverlay2.raml"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "path": "NewOverlay2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

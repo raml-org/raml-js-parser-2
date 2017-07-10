@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "decls",
-        "value": "lib/decls.raml"
+        "value": "lib/decls.raml",
+        "path": "slave.raml"
       }
     ],
     "title": "Slave RAML",
@@ -19,13 +20,15 @@
             ],
             "responses": [
               {
-                "code": "200"
+                "code": "200",
+                "path": "master.raml"
               }
             ],
             "description": "describing your method here\n",
             "method": "get",
             "parentUri": "/elements",
-            "absoluteParentUri": "/elements"
+            "absoluteParentUri": "/elements",
+            "path": "slave.raml"
           }
         ],
         "relativeUri": "/elements",
@@ -43,10 +46,12 @@
         "absoluteUri": "/elements",
         "completeRelativeUri": "/elements",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "slave.raml"
       }
     ],
-    "extends": "master.raml"
+    "extends": "master.raml",
+    "path": "slave.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

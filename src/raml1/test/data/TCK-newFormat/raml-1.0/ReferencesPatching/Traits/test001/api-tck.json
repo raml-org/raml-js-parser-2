@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "api.raml"
       }
     ],
     "traits": [
@@ -26,15 +27,18 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib.raml"
               }
-            ]
+            ],
+            "path": "lib.raml"
           }
         ],
         "name": "lib.libTrait1",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "lib.raml"
       }
     ],
     "title": "test API",
@@ -65,9 +69,11 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "lib.raml"
                   }
-                ]
+                ],
+                "path": "lib.raml"
               }
             ],
             "protocols": [
@@ -85,7 +91,8 @@
               }
             },
             "parentUri": "/resource",
-            "absoluteParentUri": "https://example.com/raml/resource"
+            "absoluteParentUri": "https://example.com/raml/resource",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -103,7 +110,8 @@
         "absoluteUri": "https://example.com/raml/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": "https://example.com/raml"
+        "absoluteParentUri": "https://example.com/raml",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -112,7 +120,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

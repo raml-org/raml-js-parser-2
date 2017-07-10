@@ -21,7 +21,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "myTrait.raml"
           }
         ],
         "body": [
@@ -42,10 +43,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "myTrait.raml"
           }
         ],
-        "name": "myTrait"
+        "name": "myTrait",
+        "path": "myTrait.raml"
       },
       {
         "queryParameters": [
@@ -67,10 +70,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
-        "name": "simpleTrait"
+        "name": "simpleTrait",
+        "path": "api.raml"
       }
     ],
     "resourceTypes": [
@@ -84,12 +89,14 @@
             }
           ]
         },
-        "name": "rt1"
+        "name": "rt1",
+        "path": "rt1.raml"
       },
       {
         "methods": [
           {
-            "method": "post"
+            "method": "post",
+            "path": "rt2.raml"
           }
         ],
         "is": [
@@ -104,7 +111,8 @@
           },
           "simpleTrait"
         ],
-        "name": "rt2"
+        "name": "rt2",
+        "path": "rt2.raml"
       }
     ],
     "title": "test API",
@@ -131,7 +139,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "myTrait.raml"
               },
               {
                 "name": "stringParam",
@@ -151,7 +160,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "body": [
@@ -172,12 +182,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "myTrait.raml"
               }
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "myTrait.raml"
           },
           {
             "queryParameters": [
@@ -199,7 +211,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "myTrait.raml"
               },
               {
                 "name": "stringParam",
@@ -219,7 +232,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "body": [
@@ -240,12 +254,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "myTrait.raml"
               }
             ],
             "method": "post",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "myTrait.raml"
           }
         ],
         "is": [
@@ -284,9 +300,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

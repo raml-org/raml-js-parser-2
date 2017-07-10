@@ -5,50 +5,62 @@
         "responses": [
           {
             "code": "401",
-            "description": "<<param | !singularize>> cannot be found"
+            "description": "<<param | !singularize>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "402",
-            "description": "<<param | !pluralize>> cannot be found"
+            "description": "<<param | !pluralize>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "403",
-            "description": "<<param | !uppercase>> cannot be found"
+            "description": "<<param | !uppercase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "404",
-            "description": "<<param | !lowercase>> cannot be found"
+            "description": "<<param | !lowercase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "405",
-            "description": "<<param | !lowercamelcase>> cannot be found"
+            "description": "<<param | !lowercamelcase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "406",
-            "description": "<<param | !uppercamelcase>> cannot be found"
+            "description": "<<param | !uppercamelcase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "407",
-            "description": "<<param | !lowerunderscorecase>> cannot be found"
+            "description": "<<param | !lowerunderscorecase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "408",
-            "description": "<<param | !upperunderscorecase>> cannot be found"
+            "description": "<<param | !upperunderscorecase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "409",
-            "description": "<<param | !lowerhyphencase>> cannot be found"
+            "description": "<<param | !lowerhyphencase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "410",
-            "description": "<<param | !upperhyphencase>> cannot be found"
+            "description": "<<param | !upperhyphencase>> cannot be found",
+            "path": "t1.raml"
           },
           {
             "code": "411",
-            "description": "<<param | !unknown>> cannot be found"
+            "description": "<<param | !unknown>> cannot be found",
+            "path": "t1.raml"
           }
         ],
-        "name": "notAlwaysPresent"
+        "name": "notAlwaysPresent",
+        "path": "t1.raml"
       }
     ],
     "title": "Test",
@@ -83,7 +95,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "t1.raml"
       }
     ],
     "protocols": [
@@ -96,47 +109,58 @@
             "responses": [
               {
                 "code": "401",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "402",
-                "description": "users cannot be found"
+                "description": "users cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "403",
-                "description": "USER cannot be found"
+                "description": "USER cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "404",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "405",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "406",
-                "description": "User cannot be found"
+                "description": "User cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "407",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "408",
-                "description": "USER cannot be found"
+                "description": "USER cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "409",
-                "description": "user cannot be found"
+                "description": "user cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "410",
-                "description": "USER cannot be found"
+                "description": "USER cannot be found",
+                "path": "t1.raml"
               },
               {
                 "code": "411",
-                "description": "<<param | !unknown>> cannot be found"
+                "description": "<<param | !unknown>> cannot be found",
+                "path": "t1.raml"
               }
             ],
             "protocols": [
@@ -163,6 +187,7 @@
             },
             "parentUri": "/users",
             "absoluteParentUri": "/api/{version}/users",
+            "path": "t1.raml",
             "uriParameters": [
               {
                 "name": "version",
@@ -192,7 +217,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "t1.raml"
               }
             ]
           }
@@ -213,6 +239,7 @@
         "completeRelativeUri": "/users",
         "parentUri": "",
         "absoluteParentUri": "/api/{version}",
+        "path": "t1.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -242,7 +269,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "t1.raml"
           }
         ]
       }
@@ -253,7 +281,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "t1.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

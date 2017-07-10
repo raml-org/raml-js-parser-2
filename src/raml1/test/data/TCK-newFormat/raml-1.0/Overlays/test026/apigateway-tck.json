@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "AWS",
-        "value": "aws-lib.raml"
+        "value": "aws-lib.raml",
+        "path": "apigateway-aws-overlay.raml"
       }
     ],
     "securitySchemes": [
@@ -33,10 +34,13 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "apigateway.raml"
             }
-          ]
-        }
+          ],
+          "path": "apigateway.raml"
+        },
+        "path": "apigateway.raml"
       }
     ],
     "title": "API Gateway Test API",
@@ -117,7 +121,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "apigateway.raml"
               },
               {
                 "name": "longitude",
@@ -136,7 +141,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "apigateway.raml"
               }
             ],
             "protocols": [
@@ -151,7 +157,8 @@
               }
             },
             "parentUri": "/products",
-            "absoluteParentUri": "https://api.uber.com/products"
+            "absoluteParentUri": "https://api.uber.com/products",
+            "path": "apigateway-aws-overlay.raml"
           }
         ],
         "description": "The Products endpoint returns information about the *Uber* products\noffered at a given location. The response includes the display name\nand other details about each product, and lists the products in the\nproper display order.\n",
@@ -163,7 +170,8 @@
         "absoluteUri": "https://api.uber.com/products",
         "completeRelativeUri": "/products",
         "parentUri": "",
-        "absoluteParentUri": "https://api.uber.com"
+        "absoluteParentUri": "https://api.uber.com",
+        "path": "apigateway-aws-overlay.raml"
       }
     ],
     "extends": "apigateway.raml",
@@ -173,7 +181,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "apigateway-aws-overlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

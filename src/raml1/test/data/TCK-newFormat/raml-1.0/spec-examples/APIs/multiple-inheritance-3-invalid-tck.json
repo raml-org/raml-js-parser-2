@@ -16,7 +16,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-inheritance-3-invalid.raml"
       },
       {
         "name": "Number2",
@@ -33,7 +34,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-inheritance-3-invalid.raml"
       },
       {
         "name": "Number3",
@@ -50,10 +52,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-inheritance-3-invalid.raml"
       }
     ],
-    "title": "Mulitple Inheritance using facets"
+    "title": "Mulitple Inheritance using facets",
+    "path": "multiple-inheritance-3-invalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

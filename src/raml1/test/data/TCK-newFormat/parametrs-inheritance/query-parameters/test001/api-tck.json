@@ -23,7 +23,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "securedBy": [
@@ -50,10 +51,13 @@
                         }
                       },
                       "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION"
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "path": "api.raml"
                     }
-                  ]
-                }
+                  ],
+                  "path": "api.raml"
+                },
+                "path": "api.raml"
               }
             ],
             "method": "get",
@@ -63,7 +67,8 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "path": "api.raml"
           }
         ],
         "securedBy": [
@@ -90,10 +95,13 @@
                     }
                   },
                   "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION"
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "path": "api.raml"
                 }
-              ]
-            }
+              ],
+              "path": "api.raml"
+            },
+            "path": "api.raml"
           }
         ],
         "name": "rt",
@@ -103,7 +111,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "securitySchemes": [
@@ -130,10 +139,13 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "api.raml"
             }
-          ]
-        }
+          ],
+          "path": "api.raml"
+        },
+        "path": "api.raml"
       }
     ],
     "title": "test API",
@@ -161,10 +173,13 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "api.raml"
             }
-          ]
-        }
+          ],
+          "path": "api.raml"
+        },
+        "path": "api.raml"
       }
     ],
     "resources": [
@@ -190,7 +205,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "rtParam",
@@ -210,7 +226,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
               {
                 "name": "securityParam",
@@ -231,7 +248,8 @@
                   "calculated": true
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "securedBy": [
@@ -258,10 +276,13 @@
                         }
                       },
                       "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION"
+                      "typePropertyKind": "TYPE_EXPRESSION",
+                      "path": "api.raml"
                     }
-                  ]
-                }
+                  ],
+                  "path": "api.raml"
+                },
+                "path": "api.raml"
               }
             ],
             "method": "get",
@@ -273,7 +294,8 @@
               }
             },
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
         ],
         "type": "rt",
@@ -301,10 +323,13 @@
                     }
                   },
                   "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION"
+                  "typePropertyKind": "TYPE_EXPRESSION",
+                  "path": "api.raml"
                 }
-              ]
-            }
+              ],
+              "path": "api.raml"
+            },
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -326,6 +351,7 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
+        "path": "api.raml",
         "queryParameters": [
           {
             "name": "securityParam",
@@ -346,11 +372,13 @@
               "calculated": true
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ]
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

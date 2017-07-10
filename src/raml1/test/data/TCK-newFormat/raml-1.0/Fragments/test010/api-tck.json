@@ -31,12 +31,14 @@
                   "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<tree xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"tree_v1_0_0.xsd\">\n  <length>303</length>\n  <color>brown</color>\n</tree>\n"
                 ],
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML"
+                "typePropertyKind": "XML",
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/example",
-            "absoluteParentUri": "/example"
+            "absoluteParentUri": "/example",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/example",
@@ -54,9 +56,11 @@
         "absoluteUri": "/example",
         "completeRelativeUri": "/example",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

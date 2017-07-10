@@ -1,5 +1,7 @@
 {
-  "specification": {},
+  "specification": {
+    "path": "emptyApiNewLine.raml"
+  },
   "ramlVersion": "RAML10",
   "type": "Api",
   "errors": [

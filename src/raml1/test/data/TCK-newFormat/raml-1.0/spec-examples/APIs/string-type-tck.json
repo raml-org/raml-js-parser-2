@@ -18,10 +18,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "string-type.raml"
       }
     ],
-    "title": "String Type"
+    "title": "String Type",
+    "path": "string-type.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

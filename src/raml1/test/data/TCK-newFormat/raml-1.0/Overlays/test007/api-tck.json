@@ -17,9 +17,11 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "NewOverlay.raml"
       }
-    ]
+    ],
+    "path": "NewOverlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

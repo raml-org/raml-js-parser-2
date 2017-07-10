@@ -3,11 +3,13 @@
     "securitySchemes": [
       {
         "name": "auth",
-        "type": "x-sls"
+        "type": "x-sls",
+        "path": "apiValid.raml"
       }
     ],
     "title": "New API",
-    "version": "v1"
+    "version": "v1",
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

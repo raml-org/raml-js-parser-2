@@ -5,7 +5,8 @@
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Digest Authentication"
+            "type": "Digest Authentication",
+            "path": "api.raml"
           }
         ],
         "displayName": "overlayDisplayName2",
@@ -16,7 +17,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "NewOverlay2.raml"
       }
     ],
     "resourceTypes": [
@@ -24,7 +26,8 @@
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Digest Authentication"
+            "type": "Digest Authentication",
+            "path": "api.raml"
           }
         ],
         "name": "servers-collection",
@@ -35,13 +38,15 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "securitySchemes": [
       {
         "name": "x-ttt",
-        "type": "Digest Authentication"
+        "type": "Digest Authentication",
+        "path": "api.raml"
       }
     ],
     "title": "Extension2",
@@ -56,7 +61,8 @@
     "securedBy": [
       {
         "name": "x-ttt",
-        "type": "Digest Authentication"
+        "type": "Digest Authentication",
+        "path": "api.raml"
       }
     ],
     "resources": [
@@ -67,7 +73,8 @@
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Digest Authentication"
+            "type": "Digest Authentication",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/servers",
@@ -85,10 +92,12 @@
         "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers",
         "completeRelativeUri": "/servers",
         "parentUri": "",
-        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1"
+        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
+        "path": "api.raml"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "path": "NewOverlay2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

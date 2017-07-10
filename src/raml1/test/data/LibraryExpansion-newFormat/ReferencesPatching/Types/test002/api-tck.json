@@ -3,11 +3,13 @@
     "uses": [
       {
         "key": "lib1",
-        "value": "lib1.raml"
+        "value": "lib1.raml",
+        "path": "api.raml"
       },
       {
         "key": "lib1.lib2",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "path": "api.raml"
       }
     ],
     "types": [
@@ -36,7 +38,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib1.raml"
           },
           {
             "name": "prop2",
@@ -56,7 +59,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib1.raml"
           }
         ],
         "__METADATA__": {
@@ -70,7 +74,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib1.raml"
       },
       {
         "name": "lib1.CollectionType",
@@ -100,7 +105,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "lib1.ComponentType"
-            ]
+            ],
+            "path": "lib1.raml"
           }
         ],
         "__METADATA__": {
@@ -111,7 +117,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib1.raml"
       },
       {
         "name": "lib1.lib2.SuperType",
@@ -127,7 +134,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib2.raml"
       }
     ],
     "title": "Test API",
@@ -153,14 +161,17 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -178,9 +189,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

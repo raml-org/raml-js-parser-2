@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "Types",
-        "value": "types.raml"
+        "value": "types.raml",
+        "path": "api.raml"
       }
     ],
     "title": "Mulesoft Info",
@@ -81,9 +82,11 @@
                     "typePropertyKind": "TYPE_EXPRESSION",
                     "items": [
                       "Types.Feature"
-                    ]
+                    ],
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -98,7 +101,8 @@
               }
             },
             "parentUri": "/features",
-            "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features"
+            "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/features",
@@ -116,7 +120,8 @@
         "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
         "completeRelativeUri": "/features",
         "parentUri": "",
-        "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf"
+        "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -125,7 +130,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

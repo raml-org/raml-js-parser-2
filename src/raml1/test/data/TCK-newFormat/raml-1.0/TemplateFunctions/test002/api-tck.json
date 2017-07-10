@@ -5,10 +5,12 @@
         "methods": [
           {
             "description": "Create a <<resourcePathName|!singularize|!uppercamelcase>>",
-            "method": "post"
+            "method": "post",
+            "path": "api.raml"
           }
         ],
-        "name": "collection"
+        "name": "collection",
+        "path": "api.raml"
       }
     ],
     "title": "testAPI",
@@ -19,7 +21,8 @@
             "description": "Create a User",
             "method": "post",
             "parentUri": "/users",
-            "absoluteParentUri": "/users"
+            "absoluteParentUri": "/users",
+            "path": "api.raml"
           }
         ],
         "type": "collection",
@@ -38,9 +41,11 @@
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

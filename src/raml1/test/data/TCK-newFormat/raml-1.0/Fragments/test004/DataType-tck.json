@@ -23,7 +23,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "DataType.raml"
       },
       {
         "name": "second",
@@ -43,7 +44,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "DataType.raml"
       }
     ],
     "__METADATA__": {
@@ -57,7 +59,8 @@
       }
     },
     "mediaType": "application/raml+yaml",
-    "typePropertyKind": "TYPE_EXPRESSION"
+    "typePropertyKind": "TYPE_EXPRESSION",
+    "path": "DataType.raml"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

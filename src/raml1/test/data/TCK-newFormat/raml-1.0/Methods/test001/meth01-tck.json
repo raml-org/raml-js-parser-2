@@ -25,14 +25,17 @@
                     "type": [
                       "TestSchema"
                     ],
-                    "mediaType": "application/json"
+                    "mediaType": "application/json",
+                    "path": "meth01.raml"
                   }
-                ]
+                ],
+                "path": "meth01.raml"
               }
             ],
             "method": "post",
             "parentUri": "/test",
-            "absoluteParentUri": "/test"
+            "absoluteParentUri": "/test",
+            "path": "meth01.raml"
           }
         ],
         "relativeUri": "/test",
@@ -50,7 +53,8 @@
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "meth01.raml"
       }
     ],
     "types": [
@@ -68,9 +72,11 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "meth01.raml"
       }
-    ]
+    ],
+    "path": "meth01.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

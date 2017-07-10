@@ -12,11 +12,14 @@
           "signatures": [
             "HMAC-SHA1",
             "PLAINTEXT"
-          ]
-        }
+          ],
+          "path": "security-schemes-oauth1.raml"
+        },
+        "path": "security-schemes-oauth1.raml"
       }
     ],
-    "title": "My Sample API"
+    "title": "My Sample API",
+    "path": "security-schemes-oauth1.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

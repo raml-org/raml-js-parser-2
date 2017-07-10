@@ -16,7 +16,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "test7.raml"
       },
       {
         "name": "PropertyType2",
@@ -33,7 +34,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "test7.raml"
       },
       {
         "name": "Type1",
@@ -60,7 +62,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "test7.raml"
           }
         ],
         "__METADATA__": {
@@ -74,7 +77,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "test7.raml"
       },
       {
         "name": "Type2",
@@ -101,7 +105,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "test7.raml"
           }
         ],
         "__METADATA__": {
@@ -112,10 +117,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "test7.raml"
       }
     ],
-    "title": "test"
+    "title": "test",
+    "path": "test7.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

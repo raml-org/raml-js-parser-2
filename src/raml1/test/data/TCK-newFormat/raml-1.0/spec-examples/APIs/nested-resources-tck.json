@@ -20,7 +20,8 @@
             "absoluteUri": "https://api.github.com/gists/public",
             "completeRelativeUri": "/gists/public",
             "parentUri": "/gists",
-            "absoluteParentUri": "https://api.github.com/gists"
+            "absoluteParentUri": "https://api.github.com/gists",
+            "path": "nested-resources.raml"
           }
         ],
         "relativeUriPathSegments": [
@@ -29,7 +30,8 @@
         "absoluteUri": "https://api.github.com/gists",
         "completeRelativeUri": "/gists",
         "parentUri": "",
-        "absoluteParentUri": "https://api.github.com"
+        "absoluteParentUri": "https://api.github.com",
+        "path": "nested-resources.raml"
       }
     ],
     "__METADATA__": {
@@ -38,7 +40,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "nested-resources.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

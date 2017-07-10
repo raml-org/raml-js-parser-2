@@ -11,7 +11,8 @@
           "responses": [
             {
               "code": "401",
-              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
+              "path": "apiValid.raml"
             }
           ],
           "protocols": [
@@ -37,7 +38,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "path": "apiValid.raml"
             }
           ],
           "headers": [
@@ -60,12 +62,16 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "path": "apiValid.raml"
             }
-          ]
-        }
+          ],
+          "path": "apiValid.raml"
+        },
+        "path": "apiValid.raml"
       }
-    ]
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

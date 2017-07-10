@@ -29,7 +29,8 @@
           "d"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "MyType2",
@@ -59,10 +60,12 @@
           "d1111"
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

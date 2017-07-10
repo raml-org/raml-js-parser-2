@@ -34,7 +34,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "overlay-monitoring.raml"
               },
               {
                 "name": "unitOfMeasure",
@@ -62,7 +63,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "overlay-monitoring.raml"
               }
             ],
             "__METADATA__": {
@@ -79,7 +81,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "overlay-monitoring.raml"
           },
           {
             "name": "script",
@@ -102,7 +105,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "overlay-monitoring.raml"
           }
         ],
         "__METADATA__": {
@@ -116,7 +120,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "overlay-monitoring.raml"
       }
     ],
     "title": "Book Library API",
@@ -138,7 +143,8 @@
             ],
             "method": "get",
             "parentUri": "/books",
-            "absoluteParentUri": "/books"
+            "absoluteParentUri": "/books",
+            "path": "overlay-monitoring.raml"
           }
         ],
         "description": "The collection of library books",
@@ -157,21 +163,25 @@
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "overlay-monitoring.raml"
       }
     ],
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books"
+        "content": "Automated access to books",
+        "path": "librarybooks.raml"
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books."
+        "content": "Please respect copyrights on our books.",
+        "path": "librarybooks.raml"
       }
     ],
     "usage": "Hints for monitoring the library books API",
-    "extends": "librarybooks.raml"
+    "extends": "librarybooks.raml",
+    "path": "overlay-monitoring.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

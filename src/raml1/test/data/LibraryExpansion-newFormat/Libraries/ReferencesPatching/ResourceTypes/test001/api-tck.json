@@ -3,11 +3,13 @@
     "uses": [
       {
         "key": "lib",
-        "value": "./lib/libA.raml"
+        "value": "./lib/libA.raml",
+        "path": "api.raml"
       },
       {
         "key": "lib.lib",
-        "value": "lib/libB.raml"
+        "value": "lib/libB.raml",
+        "path": "api.raml"
       }
     ],
     "types": [
@@ -25,7 +27,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
       {
         "name": "lib.Monkey",
@@ -41,7 +44,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/libA.raml"
       },
       {
         "name": "lib.lib.Monkey",
@@ -57,7 +61,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/libB.raml"
       }
     ],
     "resourceTypes": [
@@ -75,7 +80,8 @@
             }
           ]
         },
-        "name": "lib.rt"
+        "name": "lib.rt",
+        "path": "lib/libA.raml"
       },
       {
         "methods": [
@@ -95,7 +101,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/libB.raml"
               },
               {
                 "name": "application/xml",
@@ -111,7 +118,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/libB.raml"
               },
               {
                 "name": "text/plain",
@@ -127,7 +135,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/libB.raml"
               },
               {
                 "name": "atom/xml",
@@ -148,15 +157,19 @@
                   "<<param1>>",
                   "<<param2>>",
                   "lib.lib.Monkey"
-                ]
+                ],
+                "path": "lib/libB.raml"
               }
             ],
-            "method": "post"
+            "method": "post",
+            "path": "lib/libB.raml"
           }
         ],
-        "name": "lib.lib.rt"
+        "name": "lib.lib.rt",
+        "path": "lib/libB.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

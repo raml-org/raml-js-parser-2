@@ -26,7 +26,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type-multiple-inheritance.raml"
           }
         ],
         "__METADATA__": {
@@ -37,7 +38,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "union-type-multiple-inheritance.raml"
       },
       {
         "name": "Cat",
@@ -64,7 +66,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type-multiple-inheritance.raml"
           },
           {
             "name": "color",
@@ -84,7 +87,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type-multiple-inheritance.raml"
           }
         ],
         "__METADATA__": {
@@ -95,7 +99,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "union-type-multiple-inheritance.raml"
       },
       {
         "name": "Dog",
@@ -122,7 +127,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type-multiple-inheritance.raml"
           },
           {
             "name": "fangs",
@@ -142,7 +148,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type-multiple-inheritance.raml"
           }
         ],
         "__METADATA__": {
@@ -153,7 +160,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "union-type-multiple-inheritance.raml"
       },
       {
         "name": "HomeAnimal",
@@ -178,10 +186,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "union-type-multiple-inheritance.raml"
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "path": "union-type-multiple-inheritance.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

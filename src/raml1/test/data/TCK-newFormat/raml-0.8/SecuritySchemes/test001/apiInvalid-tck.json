@@ -5,9 +5,11 @@
     "securitySchemes": [
       {
         "name": "auth",
-        "type": "n-sls"
+        "type": "n-sls",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -7,7 +7,8 @@
             "responses": [
               {
                 "code": "200",
-                "<<param5>>": "<<param5value>>"
+                "<<param5>>": "<<param5value>>",
+                "path": "api.raml"
               },
               {
                 "code": "<<param4>>",
@@ -29,9 +30,11 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "body": [
@@ -53,18 +56,22 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "<<param3>>": "<<param3value>>"
+                "<<param3>>": "<<param3value>>",
+                "path": "api.raml"
               }
             ],
             "method": "post",
-            "<<param2>>": "<<param2value>>"
+            "<<param2>>": "<<param2value>>",
+            "path": "api.raml"
           }
         ],
         "name": "myResourceType",
-        "<<param1>>": "<<param1value>>"
+        "<<param1>>": "<<param1value>>",
+        "path": "api.raml"
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

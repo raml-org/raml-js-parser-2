@@ -32,12 +32,14 @@
               "5757gh76"
             ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "resourcetypes-traits.raml"
           }
         ],
         "description": "Some requests require authentication.",
         "name": "secured",
-        "usage": "Apply this to any method that needs to be secured"
+        "usage": "Apply this to any method that needs to be secured",
+        "path": "resourcetypes-traits.raml"
       }
     ],
     "resourceTypes": [
@@ -45,20 +47,24 @@
         "methods": [
           {
             "description": "Get all <<resourcePathName>>, optionally filtered",
-            "method": "get"
+            "method": "get",
+            "path": "resourcetypes-traits.raml"
           },
           {
             "description": "Create a new <<resourcePathName | !singularize>>",
-            "method": "post"
+            "method": "post",
+            "path": "resourcetypes-traits.raml"
           }
         ],
         "description": "The collection of <<resourcePathName>>",
         "name": "collection",
-        "usage": "This resourceType should be used for any collection of items"
+        "usage": "This resourceType should be used for any collection of items",
+        "path": "resourcetypes-traits.raml"
       }
     ],
     "title": "Example API",
-    "version": "v1"
+    "version": "v1",
+    "path": "resourcetypes-traits.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

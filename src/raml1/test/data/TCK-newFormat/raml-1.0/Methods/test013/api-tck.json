@@ -29,7 +29,8 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
                   {
                     "name": "description",
@@ -45,9 +46,11 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "body": [
@@ -68,13 +71,15 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
             ],
             "description": "Parse the given RAML files",
             "method": "post",
             "parentUri": "/parseFiles",
-            "absoluteParentUri": "/parseFiles"
+            "absoluteParentUri": "/parseFiles",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/parseFiles",
@@ -92,9 +97,11 @@
         "absoluteUri": "/parseFiles",
         "completeRelativeUri": "/parseFiles",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

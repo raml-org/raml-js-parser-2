@@ -18,7 +18,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "master.raml"
       }
     ],
     "resourceTypes": [
@@ -40,17 +41,20 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "collection.raml"
               }
             ],
             "description": "Add a new <<resourcePathName | !singularize>>",
-            "method": "post"
+            "method": "post",
+            "path": "collection.raml"
           }
         ],
         "name": "collection",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "collection.raml"
       }
     ],
     "title": "ACME Banking API",
@@ -65,7 +69,8 @@
             "description": "Recuperar una lista de clientes",
             "method": "get",
             "parentUri": "/customers",
-            "absoluteParentUri": "/customers"
+            "absoluteParentUri": "/customers",
+            "path": "overlay.raml"
           },
           {
             "body": [
@@ -83,13 +88,15 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "collection.raml"
               }
             ],
             "description": "Agregue un nuevo cliente",
             "method": "post",
             "parentUri": "/customers",
-            "absoluteParentUri": "/customers"
+            "absoluteParentUri": "/customers",
+            "path": "overlay.raml"
           }
         ],
         "type": "collection",
@@ -108,11 +115,13 @@
         "absoluteUri": "/customers",
         "completeRelativeUri": "/customers",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "overlay.raml"
       }
     ],
     "usage": "Spanish localization",
-    "extends": "master.raml"
+    "extends": "master.raml",
+    "path": "overlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

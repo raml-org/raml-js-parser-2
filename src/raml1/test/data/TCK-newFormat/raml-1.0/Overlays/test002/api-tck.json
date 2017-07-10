@@ -5,7 +5,8 @@
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "api.raml"
           }
         ],
         "name": "env-org-pair2",
@@ -15,13 +16,15 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "NewOverlay.raml"
       },
       {
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "api.raml"
           }
         ],
         "name": "env-org-pair",
@@ -32,7 +35,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "resourceTypes": [
@@ -40,7 +44,8 @@
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "api.raml"
           }
         ],
         "name": "servers-collection",
@@ -51,13 +56,15 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "api.raml"
       }
     ],
     "securitySchemes": [
       {
         "name": "x-ttt",
-        "type": "Basic Authentication"
+        "type": "Basic Authentication",
+        "path": "api.raml"
       }
     ],
     "title": "Extension",
@@ -72,7 +79,8 @@
     "securedBy": [
       {
         "name": "x-ttt",
-        "type": "Basic Authentication"
+        "type": "Basic Authentication",
+        "path": "api.raml"
       }
     ],
     "resources": [
@@ -83,7 +91,8 @@
         "securedBy": [
           {
             "name": "x-ttt",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/servers",
@@ -101,10 +110,12 @@
         "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers",
         "completeRelativeUri": "/servers",
         "parentUri": "",
-        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1"
+        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
+        "path": "api.raml"
       }
     ],
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "path": "NewOverlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

@@ -9,8 +9,10 @@
           "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
           "authorizationGrants": [
             "client_credentials"
-          ]
-        }
+          ],
+          "path": "api.raml"
+        },
+        "path": "api.raml"
       }
     ],
     "title": "Demo",
@@ -60,9 +62,11 @@
                       "<doc><property2>value2</property2></doc>\n"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "protocols": [
@@ -78,8 +82,10 @@
                   "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
                   "authorizationGrants": [
                     "client_credentials"
-                  ]
-                }
+                  ],
+                  "path": "api.raml"
+                },
+                "path": "api.raml"
               }
             ],
             "method": "get",
@@ -91,7 +97,8 @@
               }
             },
             "parentUri": "/resource",
-            "absoluteParentUri": "http://api.samplehost.com/resource"
+            "absoluteParentUri": "http://api.samplehost.com/resource",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -109,7 +116,8 @@
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com"
+        "absoluteParentUri": "http://api.samplehost.com",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -118,7 +126,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

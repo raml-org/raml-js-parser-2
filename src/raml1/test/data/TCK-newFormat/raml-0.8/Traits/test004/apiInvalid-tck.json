@@ -22,7 +22,8 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiInvalid.raml"
           }
         ],
         "headers": [
@@ -44,18 +45,22 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiInvalid.raml"
           }
         ],
-        "name": "SomeTrait"
+        "name": "SomeTrait",
+        "path": "apiInvalid.raml"
       },
       {
         "responses": [
           {
-            "code": "200"
+            "code": "200",
+            "path": "apiInvalid.raml"
           }
         ],
-        "name": "Trait1"
+        "name": "Trait1",
+        "path": "apiInvalid.raml"
       }
     ],
     "resources": [
@@ -68,9 +73,11 @@
                 "code": "200",
                 "body": [
                   {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "path": "apiInvalid.raml"
                   }
-                ]
+                ],
+                "path": "apiInvalid.raml"
               }
             ],
             "queryParameters": [
@@ -93,7 +100,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiInvalid.raml"
               }
             ],
             "headers": [
@@ -116,7 +124,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiInvalid.raml"
               }
             ],
             "method": "get",
@@ -136,7 +145,8 @@
               }
             ],
             "parentUri": "/resource",
-            "absoluteParentUri": "/resource"
+            "absoluteParentUri": "/resource",
+            "path": "apiInvalid.raml"
           }
         ],
         "displayName": "/resource",
@@ -153,9 +163,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -26,14 +26,17 @@
                       "{\"name\": \"someName\"}\n"
                     ],
                     "mediaType": "application/json",
-                    "typePropertyKind": "JSON"
+                    "typePropertyKind": "JSON",
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "post",
             "parentUri": "/test",
-            "absoluteParentUri": "/test"
+            "absoluteParentUri": "/test",
+            "path": "api.raml"
           }
         ],
         "relativeUri": "/test",
@@ -51,9 +54,11 @@
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

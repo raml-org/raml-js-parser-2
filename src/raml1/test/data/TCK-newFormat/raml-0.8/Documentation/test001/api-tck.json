@@ -4,13 +4,16 @@
     "documentation": [
       {
         "title": "Section 1",
-        "content": "Some string value\n"
+        "content": "Some string value\n",
+        "path": "docs.raml"
       },
       {
         "title": "Section 2",
-        "content": "Some string value\n"
+        "content": "Some string value\n",
+        "path": "docs.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -32,7 +32,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "template-uri-1.raml"
       }
     ],
     "protocols": [
@@ -75,7 +76,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "template-uri-1.raml"
               },
               {
                 "name": "jobId",
@@ -99,7 +101,8 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "template-uri-1.raml"
               }
             ],
             "relativeUri": "/{jobId}",
@@ -117,7 +120,8 @@
             "absoluteUri": "https://app.zencoder.com/api/{version}/jobs/{jobId}",
             "completeRelativeUri": "/jobs/{jobId}",
             "parentUri": "/jobs",
-            "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs"
+            "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs",
+            "path": "template-uri-1.raml"
           }
         ],
         "__METADATA__": {
@@ -134,6 +138,7 @@
         "completeRelativeUri": "/jobs",
         "parentUri": "",
         "absoluteParentUri": "https://app.zencoder.com/api/{version}",
+        "path": "template-uri-1.raml",
         "uriParameters": [
           {
             "name": "version",
@@ -163,7 +168,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "template-uri-1.raml"
           }
         ]
       }
@@ -174,7 +180,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "template-uri-1.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

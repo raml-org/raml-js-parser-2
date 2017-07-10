@@ -26,19 +26,24 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "security-schemes-xother.raml"
             }
           ],
           "responses": [
             {
               "code": "401",
-              "description": "Bad token.\n"
+              "description": "Bad token.\n",
+              "path": "security-schemes-xother.raml"
             },
             {
-              "code": "403"
+              "code": "403",
+              "path": "security-schemes-xother.raml"
             }
-          ]
-        }
+          ],
+          "path": "security-schemes-xother.raml"
+        },
+        "path": "security-schemes-xother.raml"
       }
     ],
     "title": "Custom API",
@@ -73,7 +78,8 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "security-schemes-xother.raml"
       }
     ],
     "protocols": [
@@ -85,7 +91,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "security-schemes-xother.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

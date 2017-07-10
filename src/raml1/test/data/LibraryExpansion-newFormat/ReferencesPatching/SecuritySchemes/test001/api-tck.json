@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "api.raml"
       }
     ],
     "traits": [
@@ -11,7 +12,8 @@
         "securedBy": [
           {
             "name": "lib.number",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "lib.raml"
           }
         ],
         "name": "lib.boolean",
@@ -21,7 +23,8 @@
               "calculated": true
             }
           }
-        }
+        },
+        "path": "lib.raml"
       }
     ],
     "resourceTypes": [
@@ -32,31 +35,37 @@
         "securedBy": [
           {
             "name": "lib.oauth",
-            "type": "OAuth 2.0"
+            "type": "OAuth 2.0",
+            "path": "lib.raml"
           },
           {
             "name": "lib.number",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "lib.raml"
           }
         ],
-        "name": "lib.number"
+        "name": "lib.number",
+        "path": "lib.raml"
       }
     ],
     "securitySchemes": [
       {
         "name": "lib.oauth",
-        "type": "OAuth 2.0"
+        "type": "OAuth 2.0",
+        "path": "lib.raml"
       },
       {
         "name": "lib.number",
-        "type": "Basic Authentication"
+        "type": "Basic Authentication",
+        "path": "lib.raml"
       }
     ],
     "title": "test API",
     "securedBy": [
       {
         "name": "lib.number",
-        "type": "Basic Authentication"
+        "type": "Basic Authentication",
+        "path": "lib.raml"
       }
     ],
     "resources": [
@@ -68,11 +77,13 @@
         "securedBy": [
           {
             "name": "lib.oauth",
-            "type": "OAuth 2.0"
+            "type": "OAuth 2.0",
+            "path": "lib.raml"
           },
           {
             "name": "lib.number",
-            "type": "Basic Authentication"
+            "type": "Basic Authentication",
+            "path": "lib.raml"
           }
         ],
         "relativeUri": "/resource",
@@ -90,9 +101,11 @@
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

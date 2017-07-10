@@ -14,14 +14,17 @@
                     "name": "application/json",
                     "example": {
                       "value": 10
-                    }
+                    },
+                    "path": "api.raml"
                   }
-                ]
+                ],
+                "path": "api.raml"
               }
             ],
             "method": "get",
             "parentUri": "/",
-            "absoluteParentUri": "/"
+            "absoluteParentUri": "/",
+            "path": "api.raml"
           }
         ],
         "displayName": "/",
@@ -36,9 +39,11 @@
         "absoluteUri": "/",
         "completeRelativeUri": "/",
         "parentUri": "",
-        "absoluteParentUri": ""
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

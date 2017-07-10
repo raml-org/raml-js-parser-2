@@ -40,7 +40,8 @@
             "typePropertyKind": "TYPE_EXPRESSION",
             "items": [
               "boolean"
-            ]
+            ],
+            "path": "apiValid.raml"
           }
         ],
         "__METADATA__": {
@@ -54,13 +55,15 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
     ],
     "title": "WebOfMe",
     "mediaType": [
       "application/json"
-    ]
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",
