@@ -74,7 +74,12 @@
               "type": "number",
               "description": "Maximum amount of items in array"
             },
-            "items": {"$ref": "#/definitions/TypeReference10"}
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TypeReference10"
+              }
+            }
           }
         }
       ]
@@ -205,6 +210,13 @@
               "description": "An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.",
               "items": {"$ref": "#/definitions/ExampleSpec10"}
             },
+            "simplifiedExamples": {
+              "type": "array",
+              "description": "An array containing plain example values.String, boolean and number values remain as is, while object and array values are serialized to string.",
+              "items": {
+                "type": [ "string", "number", "boolean" ]
+              }
+            },
             "name": {
               "type": "string",
               "description": "name of the parameter"
@@ -252,22 +264,40 @@
             },
             "required": {
               "type": "boolean",
-              "description": "Sets if property is optional or not"
+              "description": "For property or parameter states if it is required"
             },
             "displayName": {
               "type": "string",
               "description": "The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
             },
             "facets": {
-              "type": "object",
+              "type": "items",
               "description": "When extending from a type you can define new facets (which can then be set to concrete values by subtypes).",
               "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
+                "$ref": "#/definitions/TypeDeclaration"
               }
             },
             "fixedFacets": {
-              "type": "object",
-              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet."
+              "type": "array",
+              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "oneOf": {
+              "type": "array",
+              "description": "Lists available options for union types.",
+              "items": {
+                "$ref": "#/definitions/TypeReference10"
+              }
             }
           }
         }
@@ -287,10 +317,10 @@
               "description": "The value of discriminator for the type"
             },
             "properties": {
-              "type": "object",
+              "type": "array",
               "description": "The properties that instances of this type may or must have.",
               "patternProperties": {
-                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+                "$ref": "#/definitions/Type"
               }
             },
             "minProperties": {

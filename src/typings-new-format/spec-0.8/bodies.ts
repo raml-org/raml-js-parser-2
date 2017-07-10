@@ -35,7 +35,7 @@ export interface Response08 {
      * Processing applications MUST match the most descriptive
      * media type first if `* /*` is used.
      */
-    body?: BodyLike08
+    body?: BodyLike08[]
 
     /**
      * The description attribute describes the intended use or meaning

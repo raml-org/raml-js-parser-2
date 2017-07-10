@@ -2,25 +2,26 @@ import bodies = require("./bodies");
 import common = require("./common");
 import methods = require("./methods");
 import parameters = require("./parameters");
+import security = require("./security");
 
 export interface Resource08 extends common.HasMeta{
 
-/**
- * Relative URL of this resource from the parent resource
- */
-relativeUri:string
+    /**
+     * Relative URL of this resource from the parent resource
+     */
+    relativeUri:string
 
     /**
      * Instantiation of applyed resource type
      */
     relativeUriPathSegments: string[]
 
-    type: methods.Reference08
+    type?: methods.TemplateReference
 
     /**
      * Instantiation of applyed traits
      */
-    is: methods.Reference08
+    is?: methods.TemplateReference[]
 
     /**
      * securityScheme may also be applied to a resource by using the
@@ -30,29 +31,27 @@ relativeUri:string
      * To indicate that the method may be called without applying any
      * securityScheme, the method may be annotated with the null securityScheme.
      */
-    securedBy: methods.Reference08[]
+    securedBy?: security.AbstractSecurityScheme08[]
 
     /**
      * Uri parameters of this resource
      */
-    uriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
-
-    allUriParameters: parameters.Parameter08[]
+    uriParameters?: parameters.Parameter08[]
 
     /**
      * Methods that can be called on this resource
      */
-    methods: {[key:string]:methods.Method08}
+    methods?: methods.Method08[]
 
     /**
      * Children resources
      */
-    resources: Resource08[]
+    resources?: Resource08[]
 
     /**
      * An alternate, human-friendly name for the resource
      */
-    displayName: string
+    displayName?: string
 
     /**
      * A resource or a method can override a base URI template's values.
@@ -62,19 +61,21 @@ relativeUri:string
      * baseUriParameters property, as well as base URI parameters
      * not specified at the root level.
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters?: parameters.Parameter08[]
 
     /**
      * The description attribute describes the intended use or meaning of the $self.
      * This value MAY be formatted using Markdown.
      */
-    description: string
+    description?: string
 
     absoluteUri: string
 
     completeRelativeUri: string
 
-    parentUri: string
+    parentUri?: string
+
+    absoluteParentUri?: string
 }
 
 /**
@@ -90,14 +91,14 @@ export interface ResourceType08 extends common.HasMeta{
     /**
      * Instructions on how and when the resource type should be used.
      */
-    usage: string
+    usage?: string
 
     /**
      * Instantiation of applyed traits
      */
-    is: methods.Reference08[]
+    is?: methods.TemplateReference[]
 
-    type: methods.Reference08
+    type?: methods.TemplateReference
 
     /**
      * securityScheme may also be applied to a resource by using the
@@ -107,17 +108,17 @@ export interface ResourceType08 extends common.HasMeta{
      * To indicate that the method may be called without applying any
      * securityScheme, the method may be annotated with the null securityScheme.
      */
-    securedBy: methods.Reference08[]
+    securedBy?: security.AbstractSecurityScheme08[]
 
     /**
      * Uri parameters of this resource
      */
-    uriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    uriParameters?: parameters.Parameter08[]
 
     /**
      * An alternate, human-friendly name for the resource type
      */
-    displayName: string
+    displayName?: string
 
     /**
      * A resource or a method can override a base URI template's values.
@@ -126,16 +127,16 @@ export interface ResourceType08 extends common.HasMeta{
      * any or all parameters defined at the root level baseUriParameters
      * property, as well as base URI parameters not specified at the root level.
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters?: parameters.Parameter08[]
 
     /**
      * The description attribute describes the intended use or meaning of the $self.
      * This value MAY be formatted using Markdown.
      */
-    description: string
+    description?: string
 
     /**
      * Methods that can be called on this resource
      */
-    methods: {[key:string]:methods.Method08}
+    methods?: methods.Method08[]
 }

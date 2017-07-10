@@ -2,50 +2,70 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "definitions": {
-    "Annotable": {
+    "SourceInfo": {
       "type": "object",
       "properties": {
-        "annotations": {
-          "description": "Most of RAML model elements may have attached annotations decribing additional meta data about this element",
-          "oneOf": [
-            {
-              "type": "object",
-              "patternProperties": {
-                "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/AnnotationInstance"}
-              }
-            },
-            {
-              "type": "object",
-              "patternProperties": {
-                "^[a-zA-Z0-9<>]+": {
-                  "type": "array",
-                  "items": {"$ref": "#/definitions/AnnotationInstance"}
-                }
-              }
-            }
-          ]
+        "path": {
+          "type": "string",
+          "description": "Path to file which contains definition"
         },
-        "scalarsAnnotations": {
-          "type": "object",
-          "patternProperties": {
-            "^[a-zA-Z0-9]+": {
-              "type": "array",
-              "items": {
-                "oneOf": [
-                  {"$ref": "#/definitions/AnnotationInstance"},
-                  {
-                    "type": "array",
-                    "items": {"$ref": "#/definitions/AnnotationInstance"}
-                  }
-                ]
-              }
-            }
-          }
+        "namespace": {
+          "type": "array",
+          "description": "Namespace of defining library if any"
         },
         "__METADATA__": {
           "type": "object"
         }
       }
+    },
+    "HasSource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SourceInfo"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "scalarsSources": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SourceInfo"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Annotable": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/HasSource"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "annotations": {
+              "type": "array",
+              "description": "Most of RAML model elements may have attached annotations decribing additional meta data about this element",
+              "items": {
+                "$ref": "#/definitions/AnnotationInstance"
+              }
+            },
+            "scalarsAnnotations": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/AnnotationInstance"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "AnnotationInstance": {
       "type": "object",
@@ -57,7 +77,7 @@
             "name": {
               "type": "string"
             },
-            "structuredValue": {
+            "value": {
               "type": [ "object", "string", "boolean", "number", "array", "null" ]
             }
           }
@@ -78,16 +98,23 @@
       ]
     },
     "UsesDeclaration": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            },
+            "usage": {
+              "type": "string"
+            }
+          }
         }
-      },
-      "additionalProperties": false
+      ]
     },
     "ParametrizedProperties": {
       "description": "Template property.",

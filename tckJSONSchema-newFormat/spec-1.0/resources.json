@@ -2,31 +2,6 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "definitions": {
-        "ResourceTypeRef10": {
-            "oneOf": [
-                {
-                    "type": "string"
-                }, {
-                    "type": "object",
-                    "patternProperties": {
-                        "^[a-zA-Z0-9]+": {
-                            "type": "object",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {
-                                    "type": [
-                                        "number",
-                                        "string",
-                                        "boolean",
-                                        "object",
-                                        "array"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            ]
-        },
         "Resource10": {
             "allOf":[
                 {"$ref": "#/definitions/ResourceBase10"},
@@ -52,10 +27,18 @@
                                 "type": "string"
                             }
                         },
-                        "absoluteUri": {"type": "string"},
-                        "completeRelativeUri": {"type": "string"},
-                        "parentUri": {"type": "string"},
-                        "__METADATA__": {"type": "object"}
+                        "absoluteUri": {
+                            "type": "string"
+                        },
+                        "completeRelativeUri": {
+                            "type": "string"
+                        },
+                        "parentUri": {
+                            "type": "string"
+                        },
+                        "absoluteParentUri": {
+                            "type": "string"
+                        }
                     }
                 }
             ],
@@ -107,30 +90,32 @@
                         "is": {
                             "type": "array",
                             "description": "A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration",
-                            "items":{"$ref": "methods.json#/definitions/TraitRef10"}
+                            "items":{
+                                "$ref": "methods.json#/definitions/TemplateReference"
+                            }
                         },
-                        "type": {"$ref": "#/definitions/ResourceTypeRef10"},
+                        "type": {
+                            "$ref": "#/definitions/TemplateReference"
+                        },
                         "securedBy": {
                             "type": "array",
                             "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
-                            "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
+                            "items": {
+                                "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                            }
                         },
                         "methods": {
-                            "type": "object",
+                            "type": "array",
                             "description": "Methods that are part of this resource definition",
-                            "patternProperties": {
-                                "^(get|post|delete|put|patch|options|head)$": {
-                                    "$ref": "methods.json#/definitions/Method10"
-                                }
-                            },
-                            "additionalProperties": false,
-                            "items": {"$ref": "methods.json#/definitions/Method10"}
+                            "items": {
+                                "$ref": "methods.json#/definitions/Method10"
+                            }
                         },
                         "uriParameters": {
-                            "type": "object",
+                            "type": "array",
                             "description": "Detailed information about any URI parameters of this resource",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+                            "items": {
+                                "$ref": "datamodel.json#/definitions/TypeReference10"
                             }
                         }
                     }
