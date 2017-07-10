@@ -40,7 +40,7 @@ export interface TemplateReference{
 /**
  * Method object allows description of http methods
  */
-export interface MethodBase08 extends common.HasMeta{
+export interface MethodBase08 extends common.HasSource{
 
     /**
      * Resource methods MAY have one or more responses.

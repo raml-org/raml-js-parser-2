@@ -13,32 +13,135 @@
                 {"$ref": "#/definitions/CustomSecurityScheme08"}
             ]
         },
-        "AbstractSecurityScheme08":{
+        "AbstractSecurityScheme08": {
+            "allOf": [
+                {
+                    "$ref": "common.json#/definitions/HasSource"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the security scheme"
+                        },
+                        "type": {
+                            "type": "string",
+                            "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
+                        },
+                        "description": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "The description attribute MAY be used to describe a security schemes property."
+                        },
+                        "describedBy": {
+                            "$ref": "#/definitions/SecuritySchemePart08"
+                        },
+                        "settings": {
+                            "type": "object",
+                            "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
+                        }
+                    }
+                }
+            ]
+        },
+        "TemplateReference": {
             "type": "object",
             "properties": {
-                "name":{
+                "name": {
                     "type": "string",
-                    "description": "Name of the security scheme"
+                    "description": "Template name"
                 },
-                "type":{
-                    "type": "string",
-                    "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
-                },
-                "description":{
-                    "type": ["string", "null"],
-                    "description": "The description attribute MAY be used to describe a security schemes property."
-                },
-                "describedBy":{"$ref": "#/definitions/SecuritySchemePart08"},
-                "settings":{
-                    "type": "object",
-                    "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
+                "parameters": {
+                    "type": "array",
+                    "description": "Template parameters if any",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Parameter name"
+                            },
+                            "value": {
+                                "type": [ "string", "boolean", "number", "null" ],
+                                "description": "Parameter value"
+                            }
+                        }
+                    }
                 }
-            }
+            },
+            "required": [
+                "name"
+            ],
+            "additionalProperties": false
+        },
+        "MethodBase08": {
+            "allOf": [
+                {
+                    "$ref": "common.json#/definitions/HasSource"
+                },
+                {
+                    "type": "object",
+                    "description": "Method object allows description of http methods",
+                    "properties": {
+                        "responses": {
+                            "type": "array",
+                            "description": "Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.",
+                            "items": {
+                                "$ref": "bodies.json#/definitions/Response08"
+                            }
+                        },
+                        "body": {
+                            "type": "array",
+                            "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
+                            "items": {
+                                "$ref": "bodies.json#/definitions/BodyLike08"
+                            }
+                        },
+                        "protocols": {
+                            "type": "array",
+                            "description": "A method can override an API's protocols value for that single method by setting a different value for the fields.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "baseUriParameters": {
+                            "type": "array",
+                            "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
+                            "items": {
+                                "$ref": "parameters.json#/definitions/Parameter08"
+                            }
+                        },
+                        "queryParameters": {
+                            "type": "array",
+                            "description": "An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property",
+                            "items": {
+                                "$ref": "parameters.json#/definitions/Parameter08"
+                            }
+                        },
+                        "headers": {
+                            "type": "array",
+                            "description": "Headers that allowed at this position",
+                            "items": {
+                                "$ref": "parameters.json#/definitions/Parameter08"
+                            }
+                        },
+                        "description": {
+                            "type": [
+                                "string",
+                                "null"
+                            ]
+                        }
+                    }
+                }
+            ]
         },
         "SecuritySchemePart08": {
             "description": "A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.",
             "allOf":[
-                {"$ref": "methods.json#/definitions/MethodBase08"},
+                {"$ref": "#/definitions/MethodBase08"},
                 {
                     "properties":{
                         "method":{
@@ -48,10 +151,9 @@
                             "type": "array",
                             "description": "Instantiation of applyed traits",
                             "items":{
-                                "$ref": "methods.json#/definitions/TemplateReference"
+                                "$ref": "#/definitions/TemplateReference"
                             }
-                        },
-                        "__METADATA__": {"type": "object"}
+                        }
                     }
                 }
             ]
@@ -71,36 +173,43 @@
                         },
                         "settings": {
                             "type": "object",
-                            "properties": {
-                                "accessTokenUri": {
-                                    "type": "string",
-                                    "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+                            "allOf": [
+                                {
+                                    "$ref": "common.json#/definitions/HasSource"
                                 },
-                                "authorizationUri": {
-                                    "type": "string",
-                                    "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
-                                },
-                                "authorizationGrants": {
-                                    "type": "array",
-                                    "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "scopes": {
-                                    "type": "array",
-                                    "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
-                                    "items": {
-                                        "type": "string"
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "accessTokenUri": {
+                                            "type": "string",
+                                            "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+                                        },
+                                        "authorizationUri": {
+                                            "type": "string",
+                                            "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
+                                        },
+                                        "authorizationGrants": {
+                                            "type": "array",
+                                            "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "scopes": {
+                                            "type": "array",
+                                            "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
                                     }
                                 }
-                            },
-                            "additionalProperties": false
+                            ]
                         }
                     }
                 }
             ]
-        },
+       },
         "OAuth1SecurityScheme08":{
             "type": "object",
             "description": "Declares globally referable security schema definition",
@@ -116,21 +225,28 @@
                         },
                         "settings": {
                             "type": "object",
-                            "properties": {
-                                "requestTokenUri": {
-                                    "type": "string",
-                                    "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+                            "allOf": [
+                                {
+                                    "$ref": "common.json#/definitions/HasSource"
                                 },
-                                "authorizationUri": {
-                                    "type": "string",
-                                    "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
-                                },
-                                "tokenCredentialsUri": {
-                                    "type": "string",
-                                    "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "requestTokenUri": {
+                                            "type": "string",
+                                            "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+                                        },
+                                        "authorizationUri": {
+                                            "type": "string",
+                                            "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
+                                        },
+                                        "tokenCredentialsUri": {
+                                            "type": "string",
+                                            "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+                                        }
+                                    }
                                 }
-                            },
-                            "additionalProperties": false
+                            ]
                         }
                     }
                 }
@@ -151,8 +267,7 @@
                         }
                     }
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "DigestSecurityScheme08":{
             "type": "object",

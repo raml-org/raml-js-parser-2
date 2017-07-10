@@ -10,6 +10,43 @@
           "type": ["string","number","boolean","object","array","null"]
         }
       }
+    },
+    "SourceInfo": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to file which contains definition"
+        },
+        "namespace": {
+          "type": "array",
+          "description": "Namespace of defining library if any"
+        }
+      }
+    },
+    "HasSource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SourceInfo"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "scalarsSources": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SourceInfo"
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "type": "object"
+          }
+        }
+      ]
     }
   }
 }

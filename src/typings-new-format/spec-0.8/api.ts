@@ -8,7 +8,7 @@ import security = require("./security");
 /**
  * RAML 0.8 API definition.
  */
-export interface Api08 extends common.HasMeta {
+export interface Api08 extends common.HasSource {
 
     /**
      * The title property is a short plain text description of the RESTful API. The value SHOULD be suitable for use as a title for the contained user documentation.

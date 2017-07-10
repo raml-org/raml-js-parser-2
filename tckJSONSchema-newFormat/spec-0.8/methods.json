@@ -5,7 +5,7 @@
       "Trait": {
           "description": "A partial method definition that, like a method, can provide method-level properties such as description, headers, query string parameters, and responses. Methods that use one or more traits inherit those traits' properties.",
           "allOf": [
-              {"$ref": "#/definitions/MethodBase08"},
+              {"$ref": "security.json#/definitions/MethodBase08"},
               {"$ref": "common.json#/definitions/ParametrizedProperties"},
               {
                   "type": "object",
@@ -22,104 +22,27 @@
                           "type": "string",
                           "description": "An alternate, human-friendly name for the trait"
                       },
-                      "__METADATA__": {
-                          "type": "object"
+                      "securedBy":{
+                          "type": "array",
+                          "description": "A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.",
+                          "items": {
+                              "oneOf": [
+                                  {
+                                      "type": "null"
+                                  },
+                                  {
+                                      "$ref": "security.json#/definitions/AbstractSecurityScheme08"
+                                  }
+                              ]
+                          }
                       }
                   }
               }
           ]
       },
-      "TemplateReference": {
-          "type": "object",
-          "properties": {
-              "name": {
-                  "type": "string",
-                  "description": "Template name"
-              },
-              "parameters": {
-                  "type": "array",
-                  "description": "Template parameters if any",
-                  "items": {
-                      "type": "object",
-                      "properties": {
-                          "name": {
-                              "type": "string",
-                              "description": "Parameter name"
-                          },
-                          "value": {
-                              "type": "string",
-                              "description": "Parameter value"
-                          }
-                      }
-                  }
-              }
-          },
-          "required": [
-              "name"
-          ],
-          "additionalProperties": false
-      },
-      "MethodBase08":{
-          "type": "object",
-          "description": "Method object allows description of http methods",
-          "properties":{
-              "responses":{
-                  "type": "array",
-                  "description": "Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.",
-                  "items": {
-                      "$ref": "bodies.json#/definitions/Response08"
-                  }
-              },
-              "body":{
-                  "type": "array",
-                  "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
-                  "items": {
-                      "$ref": "bodies.json#/definitions/BodyLike08"
-                  }
-              },
-              "protocols":{
-                  "type": "array",
-                  "description": "A method can override an API's protocols value for that single method by setting a different value for the fields.",
-                  "items": {
-                      "type": "string"
-                  }
-              },
-              "securedBy":{
-                  "type": "array",
-                  "description": "A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.",
-                  "items":{
-                      "$ref": "security.json#/definitions/AbstractSecurityScheme08"
-                  }
-              },
-              "baseUriParameters":{
-                  "type": "array",
-                  "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
-                  "items": {
-                      "$ref": "parameters.json#/definitions/Parameter08"
-                  }
-              },
-              "queryParameters":{
-                  "type": "array",
-                  "description": "An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property",
-                  "items": {
-                      "$ref": "parameters.json#/definitions/Parameter08"
-                  }
-              },
-              "headers":{
-                  "type": "array",
-                  "description": "Headers that allowed at this position",
-                  "items": {
-                      "$ref": "parameters.json#/definitions/Parameter08"
-                  }
-              },
-              "description":{
-                  "type": [ "string", "null" ]
-              }
-          }
-      },
       "Method08": {
           "allOf": [
-              {"$ref": "#/definitions/MethodBase08"},
+              {"$ref": "security.json#/definitions/MethodBase08"},
               {"$ref": "common.json#/definitions/ParametrizedProperties"},
               {
                   "type": "object",
@@ -132,7 +55,7 @@
                           "type": "array",
                           "description": "Instantiation of applyed traits",
                           "items": {
-                              "$ref": "#/definitions/TemplateReference"
+                              "$ref": "security.json#/definitions/TemplateReference"
                           }
                       },
                       "uriParameters":{
@@ -150,8 +73,19 @@
                           "type": "string",
                           "description": "Absolute URI of the owner resource"
                       },
-                      "__METADATA__": {
-                        "type": "object"
+                      "securedBy":{
+                          "type": "array",
+                          "description": "A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.",
+                          "items": {
+                              "oneOf": [
+                                  {
+                                      "type": "null"
+                                  },
+                                  {
+                                      "$ref": "security.json#/definitions/AbstractSecurityScheme08"
+                                  }
+                              ]
+                          }
                       }
                   }
               }

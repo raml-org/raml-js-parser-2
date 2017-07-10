@@ -278,7 +278,7 @@
         {
           "type": "object",
           "patternProperties": {
-            "^[a-zA-Z0-9]+": {
+            "^([a-zA-Z0-9]*<<[a-zA-Z0-9]+>>[a-zA-Z0-9]*)+": {
               "anyOf": [
                 {"$ref": "security.json#/definitions/OAuth10SecuritySettings10"},
                 {"$ref": "security.json#/definitions/OAuth20SecuritySettings10"},

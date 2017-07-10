@@ -49,10 +49,7 @@
             "allOf":[
                 {"$ref": "common.json#/definitions/FragmentDeclaration"},
                 {"$ref": "#/definitions/ResourceType10"}
-            ],
-            "patternProperties": {
-                "^(get|post|delete|put|patch|options)?$": {"$ref": "methods.json#/definitions/Method10"}
-            }
+            ]
         },
         "ResourceType10": {
             "allOf":[
@@ -95,13 +92,20 @@
                             }
                         },
                         "type": {
-                            "$ref": "#/definitions/TemplateReference"
+                            "$ref": "methods.json#/definitions/TemplateReference"
                         },
                         "securedBy": {
                             "type": "array",
                             "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
                             "items": {
-                                "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                                "oneOf": [
+                                    {
+                                        "type": "null"
+                                    },
+                                    {
+                                        "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                                    }
+                                ]
                             }
                         },
                         "methods": {

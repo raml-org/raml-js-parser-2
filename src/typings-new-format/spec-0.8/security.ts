@@ -3,7 +3,7 @@ import common = require("./common");
 import methods = require("./methods");
 import parameters = require("./parameters");
 
-export interface AbstractSecurityScheme08 extends common.HasMeta{
+export interface AbstractSecurityScheme08 extends common.HasSource{
 
     /**
      * Name of the security scheme

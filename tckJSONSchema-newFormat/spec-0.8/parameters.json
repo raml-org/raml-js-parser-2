@@ -6,52 +6,75 @@
       "type": "object",
       "oneOf":[
         {"$ref": "#/definitions/StringTypeDeclaration08"},
-        {"$ref": "#/definitions/ParameterTypeDeclaration08"},
-        {"$ref": "#/definitions/NumberTypeDeclaration08"}
+        {"$ref": "#/definitions/NumberTypeDeclaration08"},
+        {"$ref": "#/definitions/BooleanTypeDeclaration08"}
       ]
     },
-    "ParameterBase08":{
-      "type": "object",
-      "properties":{
-        "name":{
-          "type": "string",
-          "description": "name of the parameter"
+    "ParameterBase08": {
+      "allOf": [
+        {
+          "$ref": "common.json#/definitions/HasSource"
         },
-        "displayName":{
-          "type": "string",
-          "description": "An alternate, human-friendly name for the parameter"
-        },
-        "type":{
-          "type": "string",
-          "description": "The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string."
-        },
-        "location":{
-          "type": "string",
-          "description": "Location of the parameter (can not be edited by user)",
-          "enum":["QUERY","HEADERS","URI","FORM","BURI"]
-        },
-        "required":{
-          "type": "boolean",
-          "description": "Set to true if parameter is required"
-        },
-        "default":{
-          "type": ["array", "boolean", "integer", "number", "null", "object", "string"],
-          "description": "The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value."
-        },
-        "example":{
-          "type": "string",
-          "description": "(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property."
-        },
-        "repeat":{
-          "type": "boolean",
-          "description": "The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated."
-        },
-        "description":{
-          "type": ["string", "null"],
-          "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
-        },
-        "__METADATA__": {"type": "object"}
-      }
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "name of the parameter"
+            },
+            "displayName": {
+              "type": "string",
+              "description": "An alternate, human-friendly name for the parameter"
+            },
+            "type": {
+              "type": "string",
+              "description": "The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string."
+            },
+            "location": {
+              "type": "string",
+              "description": "Location of the parameter (can not be edited by user)",
+              "enum": [
+                "QUERY",
+                "HEADERS",
+                "URI",
+                "FORM",
+                "BURI"
+              ]
+            },
+            "required": {
+              "type": "boolean",
+              "description": "Set to true if parameter is required"
+            },
+            "default": {
+              "type": [
+                "array",
+                "boolean",
+                "integer",
+                "number",
+                "null",
+                "object",
+                "string"
+              ],
+              "description": "The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value."
+            },
+            "example": {
+              "type": "string",
+              "description": "(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property."
+            },
+            "repeat": {
+              "type": "boolean",
+              "description": "The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated."
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
+            }
+          }
+        }
+      ]
     },
     "StringTypeDeclaration08":{
       "allOf":[
@@ -105,6 +128,20 @@
             "maximum": {
               "type": "number",
               "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+            }
+          }
+        }
+      ]
+    },
+    "BooleanTypeDeclaration08":{
+      "allOf":[
+        {"$ref": "#/definitions/ParameterBase08"},
+        {
+          "properties":{
+            "type": {
+              "type": "string",
+              "description": "Value MUST be 'true' or 'false'.",
+              "enum":[ "boolean" ]
             }
           }
         }

@@ -20,7 +20,7 @@
                                 "description": "Parameter name"
                             },
                             "value": {
-                                "type": "string",
+                                "type": [ "string", "boolean", "number", "array", "object", "null" ],
                                 "description": "Parameter value"
                             }
                         }
@@ -111,7 +111,14 @@
                             "type": "array",
                             "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
                             "items": {
-                                "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                                "oneOf": [
+                                    {
+                                        "type": "null"
+                                    },
+                                    {
+                                        "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                                    }
+                                ]
                             }
                         },
                         "is": {

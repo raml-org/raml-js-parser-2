@@ -1,5 +1,6 @@
+import common = require("./common");
 
-export interface Parameter08{
+export interface Parameter08 extends common.HasSource{
 
     /**
      * name of the parameter

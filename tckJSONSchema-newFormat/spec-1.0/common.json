@@ -12,9 +12,6 @@
         "namespace": {
           "type": "array",
           "description": "Namespace of defining library if any"
-        },
-        "__METADATA__": {
-          "type": "object"
         }
       }
     },
@@ -35,6 +32,9 @@
                 }
               }
             }
+          },
+          "__METADATA__": {
+            "type": "object"
           }
         }
       ]
@@ -55,11 +55,16 @@
               }
             },
             "scalarsAnnotations": {
-              "type": "array",
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/AnnotationInstance"
+              "type": "object",
+              "patternProperties": {
+                "^([a-zA-Z0-9]*<<[a-zA-Z0-9]+>>[a-zA-Z0-9]*)+": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/AnnotationInstance"
+                    }
+                  }
                 }
               }
             }

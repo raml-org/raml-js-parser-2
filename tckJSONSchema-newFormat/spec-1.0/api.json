@@ -71,7 +71,16 @@
             "securedBy": {
               "type": "array",
               "description": "The security schemes that apply to every resource and method in the API",
-              "items": {"$ref": "security.json#/definitions/SecuritySchemeBase10"}
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                  }
+                ]
+              }
             }
           }
         }
@@ -177,19 +186,25 @@
       ]
     },
     "DocumentationItem": {
-      "type" : "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "description": "Title of documentation section"
+      "allOf": [
+        {
+          "$ref": "common.json#/definitions/HasSource"
         },
-        "content": {
-          "type": "string",
-          "description": "Content of documentation section"
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Title of documentation section"
+            },
+            "content": {
+              "type": "string",
+              "description": "Content of documentation section"
+            }
+          }
         }
-      },
-      "description": "API documentation",
-      "additionalProperties": false
+      ],
+      "description": "API documentation"
     },
 
 
