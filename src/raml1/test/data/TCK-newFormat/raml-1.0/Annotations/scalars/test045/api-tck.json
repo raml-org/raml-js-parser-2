@@ -49,10 +49,12 @@
             "name": null,
             "scalarsAnnotations": {
               "strict": [
-                {
-                  "structuredValue": "asdfghjkl",
-                  "name": "a"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "asdfghjkl"
+                  }
+                ]
               ]
             }
           }

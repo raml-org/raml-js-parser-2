@@ -6,19 +6,19 @@
     },
     "strict": true,
     "name": null,
-    "annotations": {
-      "lib.StringAnnotation": {
-        "structuredValue": "stringAnnotationValue",
-        "name": "lib.StringAnnotation"
+    "annotations": [
+      {
+        "name": "lib.StringAnnotation",
+        "value": "stringAnnotationValue"
       },
-      "lib.ObjectAnnotation": {
-        "structuredValue": {
+      {
+        "name": "lib.ObjectAnnotation",
+        "value": {
           "p1": "stringValue",
           "p2": 10
-        },
-        "name": "lib.ObjectAnnotation"
+        }
       }
-    },
+    ],
     "displayName": "MyExample",
     "uses": [
       {

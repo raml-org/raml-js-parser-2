@@ -16,10 +16,12 @@
             "name": "e1",
             "scalarsAnnotations": {
               "description": [
-                {
-                  "structuredValue": "asdfghjkl",
-                  "name": "a"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "asdfghjkl"
+                  }
+                ]
               ]
             },
             "description": "my example"

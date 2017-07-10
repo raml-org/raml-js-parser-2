@@ -49,10 +49,12 @@
             "name": null,
             "scalarsAnnotations": {
               "description": [
-                {
-                  "structuredValue": "asdfg",
-                  "name": "a"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "asdfg"
+                  }
+                ]
               ]
             },
             "description": "my example"

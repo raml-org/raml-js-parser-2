@@ -14,18 +14,18 @@
             },
             "strict": false,
             "name": "example1",
-            "annotations": {
-              "NumberAnnotation": {
-                "structuredValue": 5,
-                "name": "NumberAnnotation"
+            "annotations": [
+              {
+                "name": "NumberAnnotation",
+                "value": 5
               },
-              "ObjectAnnotation": {
-                "structuredValue": {
+              {
+                "name": "ObjectAnnotation",
+                "value": {
                   "prop1": "value1"
-                },
-                "name": "ObjectAnnotation"
+                }
               }
-            },
+            ],
             "displayName": "myExample1",
             "description": "example 1 of ObjectType3"
           },
@@ -35,18 +35,18 @@
             },
             "strict": false,
             "name": "example2",
-            "annotations": {
-              "NumberAnnotation": {
-                "structuredValue": 15,
-                "name": "NumberAnnotation"
+            "annotations": [
+              {
+                "name": "NumberAnnotation",
+                "value": 15
               },
-              "ObjectAnnotation": {
-                "structuredValue": {
+              {
+                "name": "ObjectAnnotation",
+                "value": {
                   "prop1": "value2"
-                },
-                "name": "ObjectAnnotation"
+                }
               }
-            },
+            ],
             "displayName": "myExample2",
             "description": "example 2 of ObjectType3"
           }

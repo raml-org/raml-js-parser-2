@@ -50,18 +50,18 @@
             },
             "strict": false,
             "name": null,
-            "annotations": {
-              "NumberAnnotation": {
-                "structuredValue": 5,
-                "name": "NumberAnnotation"
+            "annotations": [
+              {
+                "name": "NumberAnnotation",
+                "value": 5
               },
-              "ObjectAnnotation": {
-                "structuredValue": {
+              {
+                "name": "ObjectAnnotation",
+                "value": {
                   "prop1": "value1"
-                },
-                "name": "ObjectAnnotation"
+                }
               }
-            },
+            ],
             "displayName": "myExample",
             "description": "example of ObjectType3"
           }

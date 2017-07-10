@@ -16,10 +16,12 @@
             "name": "e1",
             "scalarsAnnotations": {
               "strict": [
-                {
-                  "structuredValue": "asdfg",
-                  "name": "a"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "asdfg"
+                  }
+                ]
               ]
             }
           }

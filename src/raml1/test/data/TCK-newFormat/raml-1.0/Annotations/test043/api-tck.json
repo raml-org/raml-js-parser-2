@@ -78,16 +78,16 @@
                     },
                     "strict": true,
                     "name": null,
-                    "annotations": {
-                      "a1": {
-                        "structuredValue": "stringValue",
-                        "name": "a1"
+                    "annotations": [
+                      {
+                        "name": "a1",
+                        "value": "stringValue"
                       },
-                      "a2": {
-                        "structuredValue": "stringValue",
-                        "name": "a2"
+                      {
+                        "name": "a2",
+                        "value": "stringValue"
                       }
-                    }
+                    ]
                   }
                 ],
                 "simplifiedExamples": [

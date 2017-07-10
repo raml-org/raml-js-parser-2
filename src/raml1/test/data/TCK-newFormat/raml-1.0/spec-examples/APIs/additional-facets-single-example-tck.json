@@ -111,12 +111,12 @@
             },
             "strict": false,
             "name": null,
-            "annotations": {
-              "pii": {
-                "structuredValue": true,
-                "name": "pii"
+            "annotations": [
+              {
+                "name": "pii",
+                "value": true
               }
-            }
+            ]
           }
         ],
         "simplifiedExamples": [
