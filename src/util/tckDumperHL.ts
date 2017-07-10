@@ -488,6 +488,9 @@ export class TCKDumper {
                 }
             }
             if (val!=null&&(typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean')) {
+                if(universeHelpers.isStringTypeDescendant(prop.range())){
+                    val = '' + val;
+                }
             }
             else {
                 if (hlImpl.isStructuredValue(val)) {

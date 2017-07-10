@@ -21,7 +21,7 @@
           {
             "responses": [
               {
-                "code": 201,
+                "code": "201",
                 "description": "Post created, returns the created post.",
                 "path": "parameter-as-key-traits.raml"
               }

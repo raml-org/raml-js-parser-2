@@ -614,6 +614,11 @@ export function isStringTypeDeclarationDescendant(type: hl.INodeDefinition | hl.
     return type.isAssignableFrom(universe.Universe10.StringTypeDeclaration.name);
 }
 
+export function isStringTypeDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.isAssignableFrom(universe.Universe10.StringType.name);
+}
+
+
 /**
  * @deprecated use 'isTypeDeclarationDescendant'
  */
