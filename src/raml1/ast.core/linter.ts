@@ -3764,6 +3764,9 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                 }
             }
         }
+        if(pObj != null && typeof pObj != "object"){
+            return vl;
+        }
         return pObj;
     }
 

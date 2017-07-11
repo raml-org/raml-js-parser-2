@@ -1,0 +1,57 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"null\"\n}\n",
+                "example": "\"null\"",
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"null\"\n}\n"
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type null but found type string",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 18,
+          "position": 136
+        },
+        "end": {
+          "line": 9,
+          "column": 24,
+          "position": 142
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}\n",
+                "example": "15",
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}\n"
+              }
+            },
+            "method": "get"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}\n",
+                "example": 15,
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"number\"\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}

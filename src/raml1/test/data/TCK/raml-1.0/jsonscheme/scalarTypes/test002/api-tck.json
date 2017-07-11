@@ -1,0 +1,124 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "JSON",
+                "schemaPath": "schema.json",
+                "schema": [
+                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n"
+                ],
+                "example": "\"stringValue\"",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "\"stringValue\"",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "\"stringValue\""
+                }
+              }
+            },
+            "method": "get"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "JSON",
+                "schemaPath": "schema.json",
+                "schema": [
+                  "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n"
+                ],
+                "example": "15",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "15",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "15"
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: No enum match for: stringValue",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 18,
+          "position": 136
+        },
+        "end": {
+          "line": 9,
+          "column": 31,
+          "position": 149
+        }
+      }
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type string but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 18,
+          "position": 248
+        },
+        "end": {
+          "line": 14,
+          "column": 20,
+          "position": 250
+        }
+      }
+    }
+  ]
+}
