@@ -1,50 +1,28 @@
-export interface SourceInfo{
-
-    /**
-     * Path to file which contains definition
-     */
-    path?: string
-
-    /**
-     * Namespace of defining library if any
-     */
-    namespace?: string
-
-}
-
-export interface HasSource extends SourceInfo{
-
-    scalarsSources?: { [key:string]:SourceInfo[] }
-
-    __METADATA__?: any
-}
-
-
-export interface Annotable extends HasSource{
+export interface Annotable {
 
     /**
      * Most of RAML model elements may have attached annotations decribing
      * additional meta data about this element
      */
-    annotations?: AnnotationInstance[];
+    annotations: { [key: string]: AnnotationInstance | AnnotationInstance[] };
 
-    scalarsAnnotations?: { [key: string]: AnnotationInstance[][] };
+    scalarsAnnotations: { [key: string]: (AnnotationInstance | AnnotationInstance[])[] };
+
+    __METADATA__: any
 }
 
 export interface AnnotationInstance {
 
     name: string
 
-    value: any
+    structuredValue: any
 }
 
-export interface UsesDeclaration extends Annotable{
+export interface UsesDeclaration {
 
     key: string
 
     value: string
-
-    usage?: string
 }
 
 export interface FragmentDeclaration extends Annotable {

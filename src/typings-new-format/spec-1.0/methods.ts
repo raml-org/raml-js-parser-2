@@ -2,15 +2,7 @@ import common = require("./common");
 import datamodel = require("./datamodel");
 import security = require("./security");
 
-export interface TemplateReference{
-
-    name: string
-
-    parameters?: {
-        name: string
-        value: any
-    }[]
-}
+export type TraitRef10 = string | { [key: string]: any };
 
 export interface Trait10 extends MethodBase10 {
 
@@ -40,7 +32,7 @@ export interface Operation10 extends common.Annotable {
     /**
      * Headers that allowed at this position
      */
-    headers?: datamodel.TypeReference10[]
+    headers?: { [key: string]: datamodel.TypeReference10 }
 
     /**
      * An APIs resources MAY be filtered (to return a subset of results)
@@ -48,14 +40,9 @@ export interface Operation10 extends common.Annotable {
      * by the use of query strings. If the resource or its method supports
      * a query string, the query string MUST be defined by the queryParameters property
      */
-    queryParameters?: datamodel.TypeReference10[]
+    queryParameters?: { [key: string]: datamodel.TypeReference10 }
 
     queryString?: datamodel.ObjectTypeDeclaration
-
-    /**
-     * Information about the expected responses to a request
-     */
-    responses?: Response10[]
 }
 /**
  * RESTful API methods are operations that are performed on a resource
@@ -63,21 +50,10 @@ export interface Operation10 extends common.Annotable {
 export interface Method10 extends MethodBase10 {
 
     /**
-     * Method name
+     * Method that can be called
      */
+    //TODO fix description
     method: string
-
-    uriParameters: datamodel.TypeReference10[]
-
-    /**
-     * Complete relative URI of the owner resource
-     */
-    parentUri: string
-
-    /**
-     * Absolute URI of the owner resource
-     */
-    absoluteParentUri: string
 }
 
 export interface MethodBase10 extends Operation10 {
@@ -98,12 +74,12 @@ export interface MethodBase10 extends Operation10 {
      * To indicate that the method may be called without applying any securityScheme,
      * the method may be annotated with the null securityScheme.
      */
-    securedBy?: security.SecuritySchemeBase10[]
+    securedBy?: security.SecuritySchemeRef10[]
 
     /**
      * Instantiation of applyed traits
      */
-    is?: TemplateReference[]
+    is?: TraitRef10[]
 
     /**
      * Some method verbs expect the resource to be sent as a request body.
@@ -113,10 +89,14 @@ export interface MethodBase10 extends Operation10 {
      * A method's body is defined in the body property as a hashmap, in which
      * the key MUST be a valid media type.
      */
-    body?:  datamodel.TypeReference10[]
+    body?: { [key: string]: datamodel.TypeReference10 }
 
     description?: string
 
+    /**
+     * Information about the expected responses to a request
+     */
+    responses: { [key: string]: Response10 }
 }
 
 /**
@@ -143,5 +123,5 @@ export interface Response10 extends common.Annotable {
     /**
      * The body of the response: a body declaration
      */
-    body?: datamodel.TypeReference10[]
+    body?: { [key: string]: datamodel.TypeReference10 }
 }

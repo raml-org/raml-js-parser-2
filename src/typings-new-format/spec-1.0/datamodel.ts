@@ -40,7 +40,7 @@ export interface ExampleSpec10 extends common.Annotable {
      */
     displayName?: string
 }
-export type TypeReference10 = string | TypeDeclaration;
+export type TypeReference10 = string[] | TypeDeclaration;
 
 export interface TypeDeclaration extends common.Annotable {
 
@@ -55,15 +55,9 @@ export interface TypeDeclaration extends common.Annotable {
     examples?: ExampleSpec10[]
 
     /**
-     * An array containing plain example values.String, boolean and number
-     * values remain as is, while object and array values are serialized to string.
+     * name of the parameter
      */
-    simplifiedExamples?: (string|number|boolean)[]
-
-    /**
-     * Type name for top level types. For properties and parameters -- property o parameter name, respectively.
-     * For bodies -- media type.
-     */
+    //TODO fix comment
     name: string
 
     /**
@@ -117,8 +111,9 @@ export interface TypeDeclaration extends common.Annotable {
     }
 
     /**
-     * For property or parameter states if it is required.
+     * Sets if property is optional or not
      */
+    //TODO fix comment
     required?: boolean
 
     /**
@@ -127,26 +122,20 @@ export interface TypeDeclaration extends common.Annotable {
      * If displayName is not specified, it defaults to the element's key
      * (the name of the property itself
      */
-    displayName: string
+    displayName?: string
 
     /**
      * When extending from a type you can define new facets
      * (which can then be set to concrete values by subtypes).
      */
-    facets?: TypeDeclaration[]
-
+    facets?: { [key: string]: TypeReference10 }
 
     /**
      * Returns facets fixed by the type. Value is an object with
      * properties named after facets fixed. Value of each property is
      * a value of the corresponding facet.
      */
-    fixedFacets?: { name:string, value:any }[]
-
-    /**
-     * Lists available options for union types.
-     */
-    oneOf?: TypeReference10[]
+    fixedFacets?: {[key:string]:any}
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration {
@@ -169,7 +158,7 @@ export interface ArrayTypeDeclaration extends TypeDeclaration {
     /**
      * Component type
      */
-    items: TypeReference10[]
+    items: TypeReference10
 }
 
 /**
@@ -270,7 +259,7 @@ export interface ObjectTypeDeclaration extends TypeDeclaration {
     /**
      * The properties that instances of this type may or must have.
      */
-    properties?: TypeDeclaration[]
+    properties?: { [key: string]: TypeDeclaration }
 
     /**
      * The minimum number of properties allowed for instances of this type.

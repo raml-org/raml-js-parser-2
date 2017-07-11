@@ -7,7 +7,8 @@ import security = require("./security");
 /**
  * RAML 1.0 API definition
  */
-export interface Api10 extends LibraryBase10{
+//TODO NOT READY
+export interface Api10 {
 
     /**
      * Additional overall documentation for the API
@@ -40,7 +41,7 @@ export interface Api10 extends LibraryBase10{
     /**
      * Named parameters used in the baseUri (template)
      */
-    baseUriParameters?: datamodel.TypeReference10[]
+    baseUriParameters?: { [key: string]: datamodel.TypeReference10 }
 
     /**
      * The resources of the API, identified as relative URIs that
@@ -53,18 +54,18 @@ export interface Api10 extends LibraryBase10{
     /**
      * The protocols supported by the API
      */
-    protocols: string[]
+    protocols?: string[]
 
     /**
      * The default media type to use for request and response bodies (payloads),
      * e.g. \"application/json\"
      */
-    mediaType?: string[]
+    mediaType?: string | string[]
 
     /**
      * The security schemes that apply to every resource and method in the API
      */
-    securedBy?: security.SecuritySchemeBase10[]
+    securedBy?: security.SecuritySchemeRef10[]
 }
 
 /**
@@ -117,31 +118,31 @@ export interface Overlay extends Api10 {
     usage?: string
 }
 
-export interface LibraryBase10 extends common.FragmentDeclaration {
+export interface LibraryBase10 {
 
     /**
      * Declarations of (data) types for use within this API
      */
-    types?: datamodel.TypeDeclaration[]
+    types?: { [key: string]: datamodel.TypeDeclaration }
 
     /**
      * Declarations of resource types for use within this API
      */
-    resourceTypes?: resources.ResourceType10[]
+    resourceTypes?: { [key: string]: resources.ResourceType10 }
 
     /**
      * Declarations of traits for use within this API
      */
-    traits?: methods.Trait10[]
+    traits?: { [key: string]: methods.Trait10 }
     /**
      * Declarations of security schemes for use within this API.
      */
-    securitySchemes?: security.SecuritySchemeBase10[]
+    securitySchemes?: { [key: string]: security.SecuritySchemeBase10 }
 
     /**
      * Declarations of annotation types for use by annotations
      */
-    annotationTypes?: datamodel.TypeDeclaration[]
+    annotationTypes?: { [key: string]: datamodel.TypeDeclaration }
 
 }
 
