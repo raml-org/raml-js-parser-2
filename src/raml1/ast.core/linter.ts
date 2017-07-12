@@ -288,7 +288,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                 issue = createIssue1(messageRegistry.INVALID_PARAMETER_NAME, { paramName : paramName}, node);
             }
             else {
-                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node);
+                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node, true);
             }
         }
 
