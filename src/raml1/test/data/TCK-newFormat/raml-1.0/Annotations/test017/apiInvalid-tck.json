@@ -1,22 +1,22 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotation": {
+    "annotations": [
+      {
         "name": "MyAnnotation",
-        "structuredValue": {
+        "value": {
           "numberProp": 11
         }
       }
-    },
-    "types": {
-      "MyType": {
+    ],
+    "types": [
+      {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": {
-          "numberProp": {
+        "properties": [
+          {
             "name": "numberProp",
             "displayName": "numberProp",
             "type": [
@@ -34,9 +34,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -48,16 +49,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       },
-      "TargetType": {
+      {
         "name": "TargetType",
         "displayName": "TargetType",
         "type": [
           "object"
         ],
-        "properties": {
-          "stringParam": {
+        "properties": [
+          {
             "name": "stringParam",
             "displayName": "stringParam",
             "type": [
@@ -75,9 +77,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -89,13 +92,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
-    "traits": {
-      "trait1": {
-        "headers": {
-          "header1": {
+    ],
+    "traits": [
+      {
+        "headers": [
+          {
             "name": "header1",
             "displayName": "header1",
             "type": [
@@ -116,14 +120,16 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
-        "name": "trait1"
+        ],
+        "name": "trait1",
+        "path": "apiInvalid.raml"
       }
-    },
-    "annotationTypes": {
-      "MyAnnotation": {
+    ],
+    "annotationTypes": [
+      {
         "name": "MyAnnotation",
         "displayName": "MyAnnotation",
         "type": [
@@ -140,10 +146,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
-    "title": "MyApi"
+    ],
+    "title": "MyApi",
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

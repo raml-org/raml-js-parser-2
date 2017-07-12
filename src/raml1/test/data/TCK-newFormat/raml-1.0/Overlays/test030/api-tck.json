@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "tr1": {
-        "queryParameters": {
-          "q1": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "q1",
             "displayName": "q1",
             "type": [
@@ -24,22 +24,24 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "name": "tr1",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "q1": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "q1",
                 "displayName": "q1",
                 "type": [
@@ -60,15 +62,21 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
-            "is": [
-              "tr1"
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "tr1"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -83,10 +91,13 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
     ],
-    "extends": "o1.raml"
+    "extends": "o1.raml",
+    "path": "o2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

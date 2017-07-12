@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "lat-long": {
+    "types": [
+      {
         "name": "lat-long",
         "displayName": "lat-long",
         "type": [
           "object"
         ],
-        "properties": {
-          "lat": {
+        "properties": [
+          {
             "name": "lat",
             "displayName": "lat",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "query-string.raml"
           },
-          "long": {
+          {
             "name": "long",
             "displayName": "long",
             "type": [
@@ -46,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "query-string.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -60,16 +62,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "query-string.raml"
       },
-      "loc": {
+      {
         "name": "loc",
         "displayName": "loc",
         "type": [
           "object"
         ],
-        "properties": {
-          "location": {
+        "properties": [
+          {
             "name": "location",
             "displayName": "location",
             "type": [
@@ -90,9 +93,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "query-string.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -104,16 +108,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "query-string.raml"
       },
-      "paging": {
+      {
         "name": "paging",
         "displayName": "paging",
         "type": [
           "object"
         ],
-        "properties": {
-          "start": {
+        "properties": [
+          {
             "name": "start",
             "displayName": "start",
             "type": [
@@ -131,9 +136,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "query-string.raml"
           },
-          "page-size": {
+          {
             "name": "page-size",
             "displayName": "page-size",
             "type": [
@@ -151,9 +157,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "query-string.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -165,20 +172,29 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "query-string.raml"
       }
-    },
+    ],
     "title": "Illustrate query parameter variations",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
               "type": [
                 "paging",
-                "lat-long | loc"
+                {
+                  "type": [
+                    "union"
+                  ],
+                  "oneOf": [
+                    "lat-long",
+                    "loc"
+                  ]
+                }
               ],
               "examples": [
                 {
@@ -215,12 +231,21 @@
                   }
                 }
               },
+              "simplifiedExamples": [
+                "{\"start\":2,\"lat\":12,\"long\":13}",
+                "{\"start\":2,\"page-size\":20,\"location\":\"1,2\"}",
+                "{\"lat\":12,\"location\":2}"
+              ],
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "query-string.raml"
             },
-            "method": "get"
+            "method": "get",
+            "parentUri": "/locations",
+            "absoluteParentUri": "/locations",
+            "path": "query-string.raml"
           }
-        },
+        ],
         "relativeUri": "/locations",
         "displayName": "/locations",
         "__METADATA__": {
@@ -235,9 +260,12 @@
         ],
         "absoluteUri": "/locations",
         "completeRelativeUri": "/locations",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "query-string.raml"
       }
-    ]
+    ],
+    "path": "query-string.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

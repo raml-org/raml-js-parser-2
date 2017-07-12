@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "t0": {
+    "types": [
+      {
         "name": "t0",
         "displayName": "t0",
         "type": [
@@ -18,9 +18,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "t1": {
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
@@ -37,9 +38,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "t2": {
+      {
         "name": "t2",
         "displayName": "t2",
         "type": [
@@ -58,23 +60,24 @@
             [
               {
                 "name": "a",
-                "structuredValue": "qwertyuiop"
+                "value": "qwertyuiop"
               }
             ],
             [
               {
                 "name": "a",
-                "structuredValue": "asdfg"
+                "value": "asdfg"
               }
             ]
           ]
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "a": {
+    ],
+    "annotationTypes": [
+      {
         "name": "a",
         "displayName": "a",
         "type": [
@@ -93,11 +96,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "testAPI",
-    "version": "v1"
+    "version": "v1",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

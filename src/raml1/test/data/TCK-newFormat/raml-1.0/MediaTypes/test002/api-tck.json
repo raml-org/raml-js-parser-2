@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -18,9 +18,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "New API",
     "mediaType": [
       "application/json",
@@ -28,13 +29,13 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -49,9 +50,12 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Person"
+                    "items": [
+                      "Person"
+                    ],
+                    "path": "api.raml"
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -66,14 +70,21 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Person"
+                    "items": [
+                      "Person"
+                    ],
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/list",
+            "absoluteParentUri": "/list",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/list",
         "displayName": "/list",
         "__METADATA__": {
@@ -88,13 +99,15 @@
         ],
         "absoluteUri": "/list",
         "completeRelativeUri": "/list",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       },
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -108,9 +121,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "application/xml": {
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -124,12 +138,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/send",
+            "absoluteParentUri": "/send",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/send",
         "displayName": "/send",
         "__METADATA__": {
@@ -144,9 +162,12 @@
         ],
         "absoluteUri": "/send",
         "completeRelativeUri": "/send",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

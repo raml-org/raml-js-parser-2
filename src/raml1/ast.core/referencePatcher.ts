@@ -795,7 +795,7 @@ export class ReferencePatcher{
                 }
             }
         }
-        this.removeUses(api);//this.patchUses(api,resolver);
+        this.patchUses(api,resolver);
         api.lowLevel().actual().libExpanded = true;
         this.resetTypes(api);
     }

@@ -1,32 +1,32 @@
 {
   "specification": {
-    "annotations": {
-      "Type": {
+    "annotations": [
+      {
         "name": "Type",
-        "structuredValue": {
+        "value": {
           "prop1": {
             "prop1": 1
           }
         }
       }
-    },
-    "annotationTypes": {
-      "Type": {
+    ],
+    "annotationTypes": [
+      {
         "name": "Type",
         "displayName": "Type",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop1": {
+        "properties": [
+          {
             "name": "prop1",
             "displayName": "prop1",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "/.*/": {
+            "properties": [
+              {
                 "name": "/.*/",
                 "displayName": "/.*/",
                 "type": [
@@ -44,9 +44,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "apiValid.raml"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -61,9 +62,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -75,10 +77,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
-    },
-    "title": "a"
+    ],
+    "title": "a",
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

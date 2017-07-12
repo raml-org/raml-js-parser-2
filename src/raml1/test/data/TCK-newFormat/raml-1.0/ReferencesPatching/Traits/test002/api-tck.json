@@ -3,23 +3,25 @@
     "uses": [
       {
         "key": "typesLib",
-        "value": "libraries/types.raml"
+        "value": "libraries/types.raml",
+        "path": "api.raml"
       },
       {
         "key": "lib2",
-        "value": "libraries/annotations.raml"
+        "value": "libraries/annotations.raml",
+        "path": "api.raml"
       }
     ],
-    "traits": {
-      "tr": {
-        "annotations": {
-          "lib2.MyAnnotation": {
+    "traits": [
+      {
+        "annotations": [
+          {
             "name": "lib2.MyAnnotation",
-            "structuredValue": "stringValue"
+            "value": "stringValue"
           }
-        },
-        "body": {
-          "application/json": {
+        ],
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -33,12 +35,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/trait.raml"
           }
-        },
-        "name": "tr"
+        ],
+        "name": "tr",
+        "path": "traits/trait.raml"
       }
-    },
+    ],
     "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -47,16 +51,16 @@
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
-            "annotations": {
-              "lib2.MyAnnotation": {
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "lib2.MyAnnotation",
-                "structuredValue": "stringValue"
+                "value": "stringValue"
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -79,10 +83,14 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"p1\":\"stringValue\",\"p2\":10}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],
@@ -93,11 +101,16 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/resource",
+            "absoluteParentUri": "https://example.com/raml/resource",
+            "path": "api.raml"
           }
-        },
+        ],
         "is": [
-          "tr"
+          {
+            "name": "tr"
+          }
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -113,7 +126,9 @@
         ],
         "absoluteUri": "https://example.com/raml/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://example.com/raml",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -122,7 +137,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

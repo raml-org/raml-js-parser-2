@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "CatOrDog": {
+    "types": [
+      {
         "name": "CatOrDog",
         "displayName": "CatOrDog",
         "type": [
-          "Cat | Dog"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,16 +15,21 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "Cat",
+          "Dog"
+        ],
+        "path": "api.raml"
       },
-      "Cat": {
+      {
         "name": "Cat",
         "displayName": "Cat",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -42,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "color": {
+          {
             "name": "color",
             "displayName": "color",
             "type": [
@@ -62,9 +68,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -73,16 +80,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "Dog": {
+      {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -100,9 +108,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "fangs": {
+          {
             "name": "fangs",
             "displayName": "fangs",
             "type": [
@@ -120,9 +129,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -131,22 +141,23 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "Animals test",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -169,17 +180,52 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"name\":\"Rex\",\"fangs\":\"big ones\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/animals/{animalId}",
+            "absoluteParentUri": "/animals/{animalId}",
+            "path": "api.raml",
+            "uriParameters": [
+              {
+                "name": "animalId",
+                "displayName": "animalId",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "calculated": true,
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
+              }
+            ]
           }
-        },
-        "uriParameters": {
-          "animalId": {
+        ],
+        "uriParameters": [
+          {
             "name": "animalId",
             "displayName": "animalId",
             "type": [
@@ -201,9 +247,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/animals/{animalId}",
         "displayName": "/animals/{animalId}",
         "__METADATA__": {
@@ -219,9 +266,12 @@
         ],
         "absoluteUri": "/animals/{animalId}",
         "completeRelativeUri": "/animals/{animalId}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

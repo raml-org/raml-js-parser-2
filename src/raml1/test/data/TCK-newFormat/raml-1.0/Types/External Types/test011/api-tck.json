@@ -3,10 +3,10 @@
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "__METADATA__": {
@@ -22,12 +22,16 @@
                 "type": [
                   "invalidSchema"
                 ],
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "path": "api.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -42,11 +46,13 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
     ],
-    "types": {
-      "invalidSchema": {
+    "types": [
+      {
         "name": "invalidSchema",
         "displayName": "invalidSchema",
         "type": [
@@ -60,9 +66,11 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "api.raml"
       }
-    }
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

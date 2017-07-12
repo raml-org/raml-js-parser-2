@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "SimpleType1": {
+    "types": [
+      {
         "name": "SimpleType1",
         "displayName": "SimpleType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "property1": {
+        "properties": [
+          {
             "name": "property1",
             "displayName": "property1",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           },
-          "property2": {
+          {
             "name": "property2",
             "displayName": "property2",
             "type": [
@@ -46,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -60,16 +62,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       },
-      "SimpleType2": {
+      {
         "name": "SimpleType2",
         "displayName": "SimpleType2",
         "type": [
           "object"
         ],
-        "properties": {
-          "property3": {
+        "properties": [
+          {
             "name": "property3",
             "displayName": "property3",
             "type": [
@@ -87,9 +90,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           },
-          "property4": {
+          {
             "name": "property4",
             "displayName": "property4",
             "type": [
@@ -107,9 +111,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -121,13 +126,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       },
-      "SimpleUnion": {
+      {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
         "type": [
-          "SimpleType1 | SimpleType2"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -137,16 +143,21 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "SimpleType1",
+          "SimpleType2"
+        ],
+        "path": "apiValid.raml"
       },
-      "TypeWithUnionProps": {
+      {
         "name": "TypeWithUnionProps",
         "displayName": "TypeWithUnionProps",
         "type": [
           "object"
         ],
-        "properties": {
-          "union1": {
+        "properties": [
+          {
             "name": "union1",
             "displayName": "union1",
             "type": [
@@ -164,9 +175,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           },
-          "union2": {
+          {
             "name": "union2",
             "displayName": "union2",
             "type": [
@@ -184,9 +196,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -210,11 +223,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"union1\":{\"property1\":\"blahblah\",\"property2\":\"blahblah\"},\"union2\":{\"property3\":\"blahblah\",\"property4\":\"blahblah\"}}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
-    },
-    "title": "API"
+    ],
+    "title": "API",
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

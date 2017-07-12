@@ -3,18 +3,19 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "path": "lib1.raml"
       }
     ],
-    "types": {
-      "t1": {
+    "types": [
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -32,9 +33,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib1.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -66,10 +68,15 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p1\":{\"p2\":{\"p1\":{\"p2\":{\"p1\":{\"p2\":{\"p1\":null}}}}}}}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib1.raml"
       }
-    }
+    ],
+    "path": "lib1.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

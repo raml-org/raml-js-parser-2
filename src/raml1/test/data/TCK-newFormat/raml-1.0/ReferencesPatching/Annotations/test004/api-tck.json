@@ -3,95 +3,110 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libA.raml"
+        "value": "libA.raml",
+        "path": "api.raml"
       },
       {
         "key": "lib.lib",
-        "value": "libB.raml"
+        "value": "libB.raml",
+        "path": "api.raml"
       }
     ],
-    "resourceTypes": {
-      "lib.lib.rt": {
-        "annotations": {
-          "<<param1>>": {
+    "resourceTypes": [
+      {
+        "annotations": [
+          {
             "name": "<<param1>>",
-            "structuredValue": 17
+            "value": 17
           },
-          "<<param2>>": {
+          {
             "name": "<<param2>>",
-            "structuredValue": 5
+            "value": 5
           },
-          "lib.lib.Monkey": {
+          {
             "name": "lib.lib.Monkey",
-            "structuredValue": true
+            "value": true
           }
-        },
-        "methods": {
-          "get": {
-            "annotations": {
-              "<<param1>>": {
+        ],
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "<<param1>>",
-                "structuredValue": "stringValue2"
+                "value": "stringValue2"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "libB.raml"
           },
-          "post": {
-            "annotations": {
-              "<<param2>>": {
+          {
+            "annotations": [
+              {
                 "name": "<<param2>>",
-                "structuredValue": 8
+                "value": 8
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "path": "libB.raml"
           },
-          "put": {
-            "annotations": {
-              "lib.lib.Monkey": {
+          {
+            "annotations": [
+              {
                 "name": "lib.lib.Monkey",
                 "structuredValue": false
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "path": "libB.raml"
           },
-          "delete": {
-            "annotations": {
-              "<<param1>>": {
+          {
+            "annotations": [
+              {
                 "name": "<<param1>>",
-                "structuredValue": "stringValue3"
+                "value": "stringValue3"
               },
-              "<<param2>>": {
+              {
                 "name": "<<param2>>",
-                "structuredValue": 16
+                "value": 16
               },
-              "lib.lib.Monkey": {
+              {
                 "name": "lib.lib.Monkey",
-                "structuredValue": true
+                "value": true
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "path": "libB.raml"
           }
-        },
+        ],
         "name": "lib.lib.rt",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "libB.raml"
       },
-      "lib.rt": {
+      {
         "type": {
-          "lib.lib.rt": {
-            "param1": "<<param1>>",
-            "param2": "Monkey"
-          }
+          "name": "lib.lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "<<param1>>"
+            },
+            {
+              "name": "param2",
+              "value": "Monkey"
+            }
+          ]
         },
         "name": "lib.rt",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "libA.raml"
       }
-    },
-    "annotationTypes": {
-      "Monkey": {
+    ],
+    "annotationTypes": [
+      {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -105,76 +120,93 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "Test API",
     "resources": [
       {
-        "annotations": {
-          "Monkey": {
+        "annotations": [
+          {
             "name": "Monkey",
-            "structuredValue": 17
+            "value": 17
           },
-          "lib.Monkey": {
+          {
             "name": "lib.Monkey",
-            "structuredValue": 5
+            "value": 5
           },
-          "lib.lib.Monkey": {
+          {
             "name": "lib.lib.Monkey",
-            "structuredValue": true
+            "value": true
           }
-        },
-        "methods": {
-          "get": {
-            "annotations": {
-              "Monkey": {
+        ],
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "Monkey",
-                "structuredValue": "stringValue2"
+                "value": "stringValue2"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           },
-          "post": {
-            "annotations": {
-              "lib.Monkey": {
+          {
+            "annotations": [
+              {
                 "name": "lib.Monkey",
-                "structuredValue": 8
+                "value": 8
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           },
-          "put": {
-            "annotations": {
-              "lib.lib.Monkey": {
+          {
+            "annotations": [
+              {
                 "name": "lib.lib.Monkey",
                 "structuredValue": false
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           },
-          "delete": {
-            "annotations": {
-              "Monkey": {
+          {
+            "annotations": [
+              {
                 "name": "Monkey",
-                "structuredValue": "stringValue3"
+                "value": "stringValue3"
               },
-              "lib.Monkey": {
+              {
                 "name": "lib.Monkey",
-                "structuredValue": 16
+                "value": 16
               },
-              "lib.lib.Monkey": {
+              {
                 "name": "lib.lib.Monkey",
-                "structuredValue": true
+                "value": true
               }
-            },
-            "method": "delete"
+            ],
+            "method": "delete",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "libB.raml"
           }
-        },
+        ],
         "type": {
-          "lib.rt": {
-            "param1": "Monkey"
-          }
+          "name": "lib.rt",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "Monkey"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -190,9 +222,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

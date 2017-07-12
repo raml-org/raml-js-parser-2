@@ -1,25 +1,25 @@
 {
   "specification": {
-    "annotations": {
-      "library.highLevelApiDescription": {
+    "annotations": [
+      {
         "name": "library.highLevelApiDescription",
         "structuredValue": null
       },
-      "library.apiLogo": {
+      {
         "name": "library.apiLogo",
         "structuredValue": null
       },
-      "library.specAuthor": {
+      {
         "name": "library.specAuthor",
-        "structuredValue": "mulesoft.com"
+        "value": "mulesoft.com"
       },
-      "library.devPortal": {
+      {
         "name": "library.devPortal",
         "structuredValue": null
       },
-      "library.extraResources": {
+      {
         "name": "library.extraResources",
-        "structuredValue": [
+        "value": [
           {
             "title": "API Notebook",
             "type": "notebook",
@@ -27,16 +27,23 @@
           }
         ]
       }
-    },
-    "types": {
-      "library.apiResource": {
-        "name": "apiResource",
+    ],
+    "uses": [
+      {
+        "key": "library",
+        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml",
+        "path": "overlay.raml"
+      }
+    ],
+    "types": [
+      {
+        "name": "library.apiResource",
         "displayName": "apiResource",
         "type": [
           "object"
         ],
-        "properties": {
-          "title": {
+        "properties": [
+          {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -54,9 +61,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
           },
-          "type": {
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -74,9 +82,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
           },
-          "uri": {
+          {
             "name": "uri",
             "displayName": "uri",
             "type": [
@@ -94,9 +103,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -108,12 +118,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       }
-    },
-    "annotationTypes": {
-      "library.highLevelApiDescription": {
-        "name": "highLevelApiDescription",
+    ],
+    "annotationTypes": [
+      {
+        "name": "library.highLevelApiDescription",
         "displayName": "Api Description",
         "type": [
           "string"
@@ -127,10 +138,11 @@
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       },
-      "library.apiLogo": {
-        "name": "apiLogo",
+      {
+        "name": "library.apiLogo",
         "displayName": "Logo",
         "type": [
           "string"
@@ -144,10 +156,11 @@
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       },
-      "library.specAuthor": {
-        "name": "specAuthor",
+      {
+        "name": "library.specAuthor",
         "displayName": "Spec Author",
         "type": [
           "string"
@@ -161,10 +174,11 @@
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       },
-      "library.devPortal": {
-        "name": "devPortal",
+      {
+        "name": "library.devPortal",
         "displayName": "Developer Portal",
         "type": [
           "string"
@@ -178,10 +192,11 @@
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       },
-      "library.extraResources": {
-        "name": "extraResources",
+      {
+        "name": "library.extraResources",
         "displayName": "extraResources",
         "type": [
           "array"
@@ -199,11 +214,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "library.apiResource"
+        "items": [
+          "library.apiResource"
+        ],
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       }
-    },
+    ],
     "title": "Api",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "path": "overlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

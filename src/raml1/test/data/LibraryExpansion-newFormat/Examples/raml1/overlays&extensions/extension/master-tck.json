@@ -1,8 +1,15 @@
 {
   "specification": {
-    "annotationTypes": {
-      "decls.important": {
-        "name": "important",
+    "uses": [
+      {
+        "key": "decls",
+        "value": "lib/decls.raml",
+        "path": "extension.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "decls.important",
         "displayName": "important",
         "type": [
           "nil"
@@ -15,9 +22,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/decls.raml"
       }
-    },
+    ],
     "title": "ApiExtension",
     "baseUri": "http://myItems.com",
     "protocols": [
@@ -25,14 +33,14 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "annotations": {
-              "decls.important": {
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "decls.important",
                 "structuredValue": null
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -44,9 +52,12 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/items",
+            "absoluteParentUri": "http://myItems.com/items",
+            "path": "extension.raml"
           }
-        },
+        ],
         "relativeUri": "/items",
         "displayName": "/items",
         "__METADATA__": {
@@ -61,19 +72,25 @@
         ],
         "absoluteUri": "http://myItems.com/items",
         "completeRelativeUri": "/items",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "http://myItems.com",
+        "path": "extension.raml"
       },
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
-                "code": "200"
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "200",
+                "path": "master.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/elements",
+            "absoluteParentUri": "/elements",
+            "path": "master.raml"
           }
-        },
+        ],
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {
@@ -88,7 +105,9 @@
         ],
         "absoluteUri": "/elements",
         "completeRelativeUri": "/elements",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "master.raml"
       }
     ],
     "extends": "master.raml",
@@ -98,7 +117,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "extension.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

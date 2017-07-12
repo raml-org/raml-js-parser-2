@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "externalType": {
+    "types": [
+      {
         "name": "externalType",
         "displayName": "externalType",
         "schemaPath": "schemas/A.xml",
@@ -16,16 +16,17 @@
           }
         },
         "mediaType": "application/xml",
-        "typePropertyKind": "XML"
+        "typePropertyKind": "XML",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schemas/A.xml",
@@ -40,12 +41,16 @@
                   }
                 },
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML"
+                "typePropertyKind": "XML",
+                "path": "api.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/res",
+            "absoluteParentUri": "/res",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/res",
         "displayName": "/res",
         "__METADATA__": {
@@ -60,9 +65,12 @@
         ],
         "absoluteUri": "/res",
         "completeRelativeUri": "/res",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

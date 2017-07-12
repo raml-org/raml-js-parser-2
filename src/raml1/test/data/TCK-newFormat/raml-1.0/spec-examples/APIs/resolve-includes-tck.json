@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "chargeable": {
-        "headers": {
-          "dept_code": {
+    "traits": [
+      {
+        "headers": [
+          {
             "name": "dept_code",
             "displayName": "dept_code",
             "type": [
@@ -24,17 +24,19 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "patterns/traits.raml"
           }
-        },
+        ],
         "name": "chargeable",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "patterns/traits.raml"
       },
-      "paged": {
-        "queryParameters": {
-          "start": {
+      {
+        "queryParameters": [
+          {
             "name": "start",
             "displayName": "start",
             "type": [
@@ -52,53 +54,65 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "patterns/traits.raml"
           }
-        },
+        ],
         "name": "paged",
         "__METADATA__": {
           "calculated": true
-        }
-      }
-    },
-    "resourceTypes": {
-      "collection": {
-        "methods": {
-          "get": {
-            "is": [
-              "paged"
-            ],
-            "method": "get"
-          },
-          "post": {
-            "method": "post"
-          }
         },
+        "path": "patterns/traits.raml"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "is": [
+              {
+                "name": "paged"
+              }
+            ],
+            "method": "get",
+            "path": "patterns/resourceTypes.raml"
+          },
+          {
+            "method": "post",
+            "path": "patterns/resourceTypes.raml"
+          }
+        ],
         "name": "collection",
         "__METADATA__": {
           "calculated": true
-        }
-      },
-      "member": {
-        "methods": {
-          "get": {
-            "method": "get"
-          },
-          "patch": {
-            "method": "patch"
-          },
-          "delete": {
-            "method": "delete"
-          }
         },
+        "path": "patterns/resourceTypes.raml"
+      },
+      {
+        "methods": [
+          {
+            "method": "get",
+            "path": "patterns/resourceTypes.raml"
+          },
+          {
+            "method": "patch",
+            "path": "patterns/resourceTypes.raml"
+          },
+          {
+            "method": "delete",
+            "path": "patterns/resourceTypes.raml"
+          }
+        ],
         "name": "member",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "patterns/resourceTypes.raml"
       }
-    },
+    ],
     "title": "Example API",
-    "version": "v1"
+    "version": "v1",
+    "path": "resolve-includes.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

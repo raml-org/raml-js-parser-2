@@ -3,29 +3,50 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "method": "post"
+        "methods": [
+          {
+            "method": "post",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
-          "get": {
-            "method": "get"
+          {
+            "method": "get",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
-          "put": {
-            "method": "put"
+          {
+            "method": "put",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
-          "options": {
-            "method": "options"
+          {
+            "method": "options",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
-          "head": {
-            "method": "head"
+          {
+            "method": "head",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
-          "patch": {
-            "method": "patch"
+          {
+            "method": "patch",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           },
-          "delete": {
-            "method": "delete"
+          {
+            "method": "delete",
+            "parentUri": "/methods",
+            "absoluteParentUri": "/methods",
+            "path": "meth03.raml"
           }
-        },
+        ],
         "relativeUri": "/methods",
         "displayName": "/methods",
         "__METADATA__": {
@@ -40,9 +61,12 @@
         ],
         "absoluteUri": "/methods",
         "completeRelativeUri": "/methods",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "meth03.raml"
       }
-    ]
+    ],
+    "path": "meth03.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

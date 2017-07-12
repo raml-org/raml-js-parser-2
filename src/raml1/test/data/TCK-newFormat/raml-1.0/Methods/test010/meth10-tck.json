@@ -3,10 +3,10 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -23,9 +23,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "application/vnd.xara": {
+              {
                 "name": "application/vnd.xara",
                 "displayName": "application/vnd.xara",
                 "type": [
@@ -42,9 +43,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "audio/EVRCB": {
+              {
                 "name": "audio/EVRCB",
                 "displayName": "audio/EVRCB",
                 "type": [
@@ -61,9 +63,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "audio/vnd.dts": {
+              {
                 "name": "audio/vnd.dts",
                 "displayName": "audio/vnd.dts",
                 "type": [
@@ -80,9 +83,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "image/tiff": {
+              {
                 "name": "image/tiff",
                 "displayName": "image/tiff",
                 "type": [
@@ -99,9 +103,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "message/global": {
+              {
                 "name": "message/global",
                 "displayName": "message/global",
                 "type": [
@@ -118,9 +123,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "model/vnd.moml+xml": {
+              {
                 "name": "model/vnd.moml+xml",
                 "displayName": "model/vnd.moml+xml",
                 "type": [
@@ -137,9 +143,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "multipart/voice-message": {
+              {
                 "name": "multipart/voice-message",
                 "displayName": "multipart/voice-message",
                 "type": [
@@ -156,9 +163,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "text/turtle": {
+              {
                 "name": "text/turtle",
                 "displayName": "text/turtle",
                 "type": [
@@ -175,9 +183,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "video/JPEG": {
+              {
                 "name": "video/JPEG",
                 "displayName": "video/JPEG",
                 "type": [
@@ -194,9 +203,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               },
-              "mime/type": {
+              {
                 "name": "mime/type",
                 "displayName": "mime/type",
                 "type": [
@@ -213,12 +223,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth10.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test",
+            "path": "meth10.raml"
           }
-        },
+        ],
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -233,9 +247,12 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "meth10.raml"
       }
-    ]
+    ],
+    "path": "meth10.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

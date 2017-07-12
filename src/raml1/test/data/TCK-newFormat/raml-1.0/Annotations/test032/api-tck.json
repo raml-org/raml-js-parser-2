@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "bindingDefinition": {
+    "annotationTypes": [
+      {
         "name": "bindingDefinition",
         "displayName": "BindingDefinition",
         "type": [
@@ -14,8 +14,8 @@
             "type": [
               "object"
             ],
-            "properties": {
-              "method": {
+            "properties": [
+              {
                 "name": "method",
                 "displayName": "method",
                 "type": [
@@ -38,9 +38,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "input": {
+              {
                 "name": "input",
                 "displayName": "input",
                 "type": [
@@ -61,9 +62,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "output": {
+              {
                 "name": "output",
                 "displayName": "output",
                 "type": [
@@ -84,9 +86,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -98,16 +101,18 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "Test API",
     "baseUri": "https://example.com",
     "protocols": [
@@ -122,23 +127,26 @@
     },
     "scalarsAnnotations": {
       "baseUri": [
-        {
-          "name": "bindingDefinition",
-          "structuredValue": [
-            {
-              "method": "GET",
-              "input": "NONE",
-              "output": "REQUIRED"
-            },
-            {
-              "method": "POST",
-              "input": "NONE",
-              "output": "REQUIRED"
-            }
-          ]
-        }
+        [
+          {
+            "name": "bindingDefinition",
+            "value": [
+              {
+                "method": "GET",
+                "input": "NONE",
+                "output": "REQUIRED"
+              },
+              {
+                "method": "POST",
+                "input": "NONE",
+                "output": "REQUIRED"
+              }
+            ]
+          }
+        ]
       ]
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

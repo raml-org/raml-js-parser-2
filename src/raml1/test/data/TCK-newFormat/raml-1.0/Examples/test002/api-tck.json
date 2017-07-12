@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "URL": {
+    "types": [
+      {
         "name": "URL",
         "displayName": "URL",
         "type": [
@@ -18,16 +18,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "User": {
+      {
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": {
-          "firstName": {
+        "properties": [
+          {
             "name": "firstName",
             "displayName": "firstName",
             "type": [
@@ -45,9 +46,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "lastName": {
+          {
             "name": "lastName",
             "displayName": "lastName",
             "type": [
@@ -65,9 +67,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -79,16 +82,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "Brand": {
+      {
         "name": "Brand",
         "displayName": "Brand",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -106,9 +110,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "logo": {
+          {
             "name": "logo",
             "displayName": "logo",
             "type": [
@@ -126,9 +131,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "followers": {
+          {
             "name": "followers",
             "displayName": "followers",
             "type": [
@@ -147,9 +153,12 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "User"
+            "items": [
+              "User"
+            ],
+            "path": "api.raml"
           },
-          "/^X\\-/": {
+          {
             "name": "/^X\\-/",
             "displayName": "/^X\\-/",
             "type": [
@@ -167,9 +176,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -200,14 +210,19 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":\"Brandicted\",\"logo\":\"http://www.domain.com/logo.gif\",\"followers\":[{\"firstName\":\"Fred\",\"lastName\":\"Armand\"},{\"firstName\":\"Joan\",\"lastName\":\"Rivers\"}]}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "Testing with Jonathan",
     "mediaType": [
       "application/json"
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

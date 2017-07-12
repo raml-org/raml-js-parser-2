@@ -3,15 +3,21 @@
     "title": "Book Library API",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "description": "Add a new book to the collection",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/books",
+            "absoluteParentUri": "/books",
+            "path": "extension-post.raml"
           },
-          "get": {
-            "method": "get"
+          {
+            "method": "get",
+            "parentUri": "/books",
+            "absoluteParentUri": "/books",
+            "path": "librarybooks.raml"
           }
-        },
+        ],
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -27,21 +33,26 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "extension-post.raml"
       }
     ],
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books"
+        "content": "Automated access to books",
+        "path": "librarybooks.raml"
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books."
+        "content": "Please respect copyrights on our books.",
+        "path": "librarybooks.raml"
       }
     ],
     "usage": "Add administrative functionality",
-    "extends": "librarybooks.raml"
+    "extends": "librarybooks.raml",
+    "path": "extension-post.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

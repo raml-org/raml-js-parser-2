@@ -3,7 +3,8 @@
     "title": "Test Api",
     "mediaType": [
       "someStringvalue"
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

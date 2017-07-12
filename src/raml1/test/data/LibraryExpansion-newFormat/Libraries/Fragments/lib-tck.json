@@ -1,14 +1,21 @@
 {
   "specification": {
-    "types": {
-      "workItem": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml",
+        "path": "lib.raml"
+      }
+    ],
+    "types": [
+      {
         "name": "workItem",
         "displayName": "workItem",
         "type": [
           "object"
         ],
-        "properties": {
-          "Description": {
+        "properties": [
+          {
             "name": "Description",
             "displayName": "Description",
             "type": [
@@ -26,9 +33,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "workItem.raml"
           },
-          "reference": {
+          {
             "name": "reference",
             "displayName": "reference",
             "type": [
@@ -46,9 +54,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "workItem.raml"
           },
-          "weight": {
+          {
             "name": "weight",
             "displayName": "weight",
             "type": [
@@ -66,9 +75,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "workItem.raml"
           },
-          "workItmes": {
+          {
             "name": "workItmes",
             "displayName": "workItmes",
             "type": [
@@ -87,9 +97,12 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "workItem"
+            "items": [
+              "workItem"
+            ],
+            "path": "workItem.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -98,9 +111,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "workItem.raml"
       }
-    }
+    ],
+    "path": "lib.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

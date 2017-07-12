@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "schemaPath": "schemas/person.json",
@@ -17,10 +17,12 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "external-types.raml"
       }
-    },
-    "title": "External Types"
+    ],
+    "title": "External Types",
+    "path": "external-types.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

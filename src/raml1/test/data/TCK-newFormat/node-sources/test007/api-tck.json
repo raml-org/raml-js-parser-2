@@ -3,13 +3,14 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libraries/lib.raml"
+        "value": "libraries/lib.raml",
+        "path": "api.raml"
       }
     ],
-    "traits": {
-      "lib.trait1": {
-        "queryParameters": {
-          "param1": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "param1",
             "displayName": "param1",
             "type": [
@@ -27,11 +28,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/tr.raml"
           }
-        },
-        "body": {
-          "application/json": {
+        ],
+        "body": [
+          {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -45,21 +47,23 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits/tr.raml"
           }
-        },
+        ],
         "name": "lib.trait1",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "path": "traits/tr.raml"
       }
-    },
-    "resourceTypes": {
-      "lib.resourceType1": {
-        "methods": {
-          "get": {
-            "body": {
-              "application/json": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -76,26 +80,34 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourceTypes/rt3.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "resourceTypes/rt3.raml"
           }
-        },
+        ],
         "description": "string value 1\n",
         "name": "lib.resourceType1",
         "__METADATA__": {
           "calculated": true
-        }
+        },
+        "scalarsPaths": {
+          "description": [
+            "resourceTypes/description.txt"
+          ]
+        },
+        "path": "resourceTypes/rt3.raml"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "body": {
-              "application/xml": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -112,9 +124,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "application/json": {
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -131,14 +144,18 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourceTypes/rt3.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           },
-          "post": {
-            "queryParameters": {
-              "param2": {
+          {
+            "queryParameters": [
+              {
                 "name": "param2",
                 "displayName": "param2",
                 "type": [
@@ -156,9 +173,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "param1": {
+              {
                 "name": "param1",
                 "displayName": "param1",
                 "type": [
@@ -176,11 +194,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "traits/tr.raml"
               }
-            },
-            "body": {
-              "application/xml": {
+            ],
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
@@ -197,9 +216,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "application/json": {
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -213,16 +233,24 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "traits/tr.raml"
               }
-            },
-            "is": [
-              "lib.trait1"
             ],
-            "method": "post"
+            "is": [
+              {
+                "name": "lib.trait1"
+              }
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
+        ],
+        "type": {
+          "name": "lib.resourceType1"
         },
-        "type": "lib.resourceType1",
         "description": "string value 1\n",
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -233,14 +261,22 @@
             }
           }
         },
+        "scalarsPaths": {
+          "description": [
+            "resourceTypes/description.txt"
+          ]
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

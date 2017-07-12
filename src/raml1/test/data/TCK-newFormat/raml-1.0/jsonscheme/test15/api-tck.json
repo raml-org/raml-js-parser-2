@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "externalType": {
+    "types": [
+      {
         "name": "externalType",
         "displayName": "externalType",
         "type": [
@@ -24,7 +24,8 @@
                   }
                 },
                 "mediaType": "application/json",
-                "typePropertyKind": "JSON"
+                "typePropertyKind": "JSON",
+                "path": "api.raml"
               }
             ],
             "__METADATA__": {
@@ -35,7 +36,8 @@
               }
             },
             "mediaType": "application/json",
-            "typePropertyKind": "INPLACE"
+            "typePropertyKind": "INPLACE",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -55,17 +57,21 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p1\":false,\"p2\":15}"
+        ],
         "mediaType": "application/json",
-        "typePropertyKind": "INPLACE"
+        "typePropertyKind": "INPLACE",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -88,7 +94,8 @@
                           }
                         },
                         "mediaType": "application/json",
-                        "typePropertyKind": "JSON"
+                        "typePropertyKind": "JSON",
+                        "path": "api.raml"
                       }
                     ],
                     "__METADATA__": {
@@ -108,8 +115,12 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"p1\":false,\"p2\":15}"
+                    ],
                     "mediaType": "application/json",
-                    "typePropertyKind": "INPLACE"
+                    "typePropertyKind": "INPLACE",
+                    "path": "api.raml"
                   }
                 ],
                 "__METADATA__": {
@@ -120,12 +131,16 @@
                   }
                 },
                 "mediaType": "application/json",
-                "typePropertyKind": "INPLACE"
+                "typePropertyKind": "INPLACE",
+                "path": "api.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/res",
+            "absoluteParentUri": "/res",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/res",
         "displayName": "/res",
         "__METADATA__": {
@@ -140,9 +155,12 @@
         ],
         "absoluteUri": "/res",
         "completeRelativeUri": "/res",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

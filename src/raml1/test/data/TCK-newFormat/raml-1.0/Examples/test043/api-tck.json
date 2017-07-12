@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MM": {
+    "types": [
+      {
         "name": "MM",
         "displayName": "MM",
         "type": [
@@ -25,8 +25,8 @@
             "name": "f1"
           }
         ],
-        "properties": {
-          "a": {
+        "properties": [
+          {
             "name": "a",
             "displayName": "a",
             "type": [
@@ -44,9 +44,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "items": {
+          {
             "name": "items",
             "displayName": "items",
             "type": [
@@ -65,9 +66,12 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "VV"
+            "items": [
+              "VV"
+            ],
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -75,17 +79,21 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"a\":3,\"items\":[{\"c\":4,\"r1\":3},{\"r2\":3}]}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "VV": {
+      {
         "name": "VV",
         "displayName": "VV",
         "type": [
           "object"
         ],
-        "properties": {
-          "r2": {
+        "properties": [
+          {
             "name": "r2",
             "displayName": "r2",
             "type": [
@@ -106,9 +114,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "c": {
+          {
             "name": "c",
             "displayName": "c",
             "type": [
@@ -126,9 +135,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "r1": {
+          {
             "name": "r1",
             "displayName": "r1",
             "type": [
@@ -149,9 +159,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -160,18 +171,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "qq": {
+    ],
+    "annotationTypes": [
+      {
         "name": "qq",
         "displayName": "qq",
         "type": [
           "object"
         ],
-        "properties": {
-          "z": {
+        "properties": [
+          {
             "name": "z",
             "displayName": "z",
             "type": [
@@ -189,9 +201,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -203,13 +216,15 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "WebOfMe",
     "mediaType": [
       "application/json"
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

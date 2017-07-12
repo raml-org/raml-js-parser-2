@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "MyArrayType": {
+    "types": [
+      {
         "name": "MyArrayType",
         "displayName": "MyArrayType",
         "type": [
@@ -25,18 +25,24 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "[0,1,2]"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "number"
+        "items": [
+          "number"
+        ],
+        "path": "api.raml"
       },
-      "MyType": {
+      {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": {
-          "p": {
+        "properties": [
+          {
             "name": "p",
             "displayName": "p",
             "type": [
@@ -54,9 +60,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -80,19 +87,23 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"p\":[1,0,0]}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "resourceTypes": {
-      "rt1": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -106,27 +117,31 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "api.raml"
           }
-        },
-        "name": "rt1"
+        ],
+        "name": "rt1",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "Zero as array element 1",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -140,15 +155,22 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
+        ],
+        "type": {
+          "name": "rt1"
         },
-        "type": "rt1",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -163,9 +185,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,13 +1,13 @@
 {
   "specification": {
-    "securitySchemes": {
-      "passthrough": {
+    "securitySchemes": [
+      {
         "name": "passthrough",
         "type": "Pass Through",
         "description": "This API supports Pass Through Authentication.\n",
         "describedBy": {
-          "queryParameters": {
-            "query": {
+          "queryParameters": [
+            {
               "name": "query",
               "displayName": "query",
               "type": [
@@ -25,11 +25,12 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "security-schemes-pass.raml"
             }
-          },
-          "headers": {
-            "api_key": {
+          ],
+          "headers": [
+            {
               "name": "api_key",
               "displayName": "api_key",
               "type": [
@@ -47,17 +48,20 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "path": "security-schemes-pass.raml"
             }
-          }
-        }
+          ],
+          "path": "security-schemes-pass.raml"
+        },
+        "path": "security-schemes-pass.raml"
       }
-    },
+    ],
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
-    "baseUriParameters": {
-      "version": {
+    "baseUriParameters": [
+      {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -85,9 +89,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "security-schemes-pass.raml"
       }
-    },
+    ],
     "protocols": [
       "HTTPS"
     ],
@@ -97,7 +102,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "security-schemes-pass.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

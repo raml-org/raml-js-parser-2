@@ -3,12 +3,17 @@
     "title": "test API",
     "schemas": [
       {
-        "sch1": "{\n  \"type\": \"object\"\n\n\n}\n"
+        "value": "{\n  \"type\": \"object\"\n\n\n}\n",
+        "name": "sch1",
+        "path": "schema1.json"
       },
       {
-        "sch2": "{\n  \"type\": \"object\"\n\n\n}\n"
+        "value": "{\n  \"type\": \"object\"\n\n\n}\n",
+        "name": "sch2",
+        "path": "schema2.json"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

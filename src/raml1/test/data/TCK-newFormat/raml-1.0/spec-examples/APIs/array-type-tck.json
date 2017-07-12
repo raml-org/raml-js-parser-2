@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Email": {
+    "types": [
+      {
         "name": "Email",
         "displayName": "Email",
         "type": [
           "object"
         ],
-        "properties": {
-          "subject": {
+        "properties": [
+          {
             "name": "subject",
             "displayName": "subject",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "array-type.raml"
           },
-          "body": {
+          {
             "name": "body",
             "displayName": "body",
             "type": [
@@ -46,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "array-type.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -57,9 +59,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "array-type.raml"
       },
-      "Emails": {
+      {
         "name": "Emails",
         "displayName": "Emails",
         "type": [
@@ -90,12 +93,19 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "[{\"subject\":\"My Email 1\",\"body\":\"This is the text for email 1.\"},{\"subject\":\"My Email 2\",\"body\":\"This is the text for email 2.\"}]"
+        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "Email"
+        "items": [
+          "Email"
+        ],
+        "path": "array-type.raml"
       }
-    },
-    "title": "Simple Array Type with Example"
+    ],
+    "title": "Simple Array Type with Example",
+    "path": "array-type.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

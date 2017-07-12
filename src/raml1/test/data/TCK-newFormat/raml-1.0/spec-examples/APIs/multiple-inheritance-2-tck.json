@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Number1": {
+    "types": [
+      {
         "name": "Number1",
         "displayName": "Number1",
         "type": [
@@ -16,9 +16,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-inheritance-2.raml"
       },
-      "Number2": {
+      {
         "name": "Number2",
         "displayName": "Number2",
         "type": [
@@ -33,9 +34,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-inheritance-2.raml"
       },
-      "Number3": {
+      {
         "name": "Number3",
         "displayName": "Number3",
         "type": [
@@ -50,10 +52,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "multiple-inheritance-2.raml"
       }
-    },
-    "title": "Mulitple Inheritance using the types"
+    ],
+    "title": "Mulitple Inheritance using the types",
+    "path": "multiple-inheritance-2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

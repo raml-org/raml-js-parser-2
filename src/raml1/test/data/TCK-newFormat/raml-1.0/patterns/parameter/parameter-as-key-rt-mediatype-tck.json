@@ -1,14 +1,14 @@
 {
   "specification": {
-    "resourceTypes": {
-      "thingy": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "<<mediaType>>": {
+                "body": [
+                  {
                     "name": "<<mediaType>>",
                     "displayName": "<<mediaType>>",
                     "type": [
@@ -22,27 +22,31 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "parameter-as-key-rt-mediatype.raml"
                   }
-                }
+                ],
+                "path": "parameter-as-key-rt-mediatype.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "parameter-as-key-rt-mediatype.raml"
           }
-        },
-        "name": "thingy"
+        ],
+        "name": "thingy",
+        "path": "parameter-as-key-rt-mediatype.raml"
       }
-    },
+    ],
     "title": "Parameterizing media type must be valid",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -56,18 +60,27 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "parameter-as-key-rt-mediatype.raml"
                   }
-                }
+                ],
+                "path": "parameter-as-key-rt-mediatype.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/books",
+            "absoluteParentUri": "/books",
+            "path": "parameter-as-key-rt-mediatype.raml"
           }
-        },
+        ],
         "type": {
-          "thingy": {
-            "mediaType": "application/json"
-          }
+          "name": "thingy",
+          "parameters": [
+            {
+              "name": "mediaType",
+              "value": "application/json"
+            }
+          ]
         },
         "relativeUri": "/books",
         "displayName": "/books",
@@ -83,9 +96,12 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "parameter-as-key-rt-mediatype.raml"
       }
-    ]
+    ],
+    "path": "parameter-as-key-rt-mediatype.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

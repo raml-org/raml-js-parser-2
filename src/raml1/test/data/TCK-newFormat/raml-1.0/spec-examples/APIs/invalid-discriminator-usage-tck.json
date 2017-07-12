@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -18,9 +18,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "invalid-discriminator-usage.raml"
       },
-      "Dog": {
+      {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
@@ -37,13 +38,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "invalid-discriminator-usage.raml"
       },
-      "PersonOrDog": {
+      {
         "name": "PersonOrDog",
         "displayName": "PersonOrDog",
         "type": [
-          "Person | Dog"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -53,27 +55,32 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "Dog",
+          "Person"
+        ],
+        "path": "invalid-discriminator-usage.raml"
       }
-    },
+    ],
     "title": "Invalid Discriminator Usage",
     "description": "This RAML illustrates two examples that discriminator is not allowed in any inline\ntype declaration and for union types.\n",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
                       "object"
                     ],
-                    "properties": {
-                      "kind": {
+                    "properties": [
+                      {
                         "name": "kind",
                         "displayName": "kind",
                         "type": [
@@ -91,9 +98,10 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION"
+                        "typePropertyKind": "TYPE_EXPRESSION",
+                        "path": "invalid-discriminator-usage.raml"
                       }
-                    },
+                    ],
                     "discriminator": "kind",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -106,14 +114,19 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "invalid-discriminator-usage.raml"
                   }
-                }
+                ],
+                "path": "invalid-discriminator-usage.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/inline",
+            "absoluteParentUri": "/inline",
+            "path": "invalid-discriminator-usage.raml"
           }
-        },
+        ],
         "relativeUri": "/inline",
         "displayName": "/inline",
         "__METADATA__": {
@@ -128,9 +141,12 @@
         ],
         "absoluteUri": "/inline",
         "completeRelativeUri": "/inline",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "invalid-discriminator-usage.raml"
       }
-    ]
+    ],
+    "path": "invalid-discriminator-usage.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Foo": {
+    "types": [
+      {
         "name": "Foo",
         "displayName": "Foo",
         "type": [
           "object"
         ],
-        "properties": {
-          "id": {
+        "properties": [
+          {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -46,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "age": {
+          {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -66,9 +68,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "enum": [
           {
             "id": "12345fr",
@@ -94,10 +97,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "title": "myApi"
+    ],
+    "title": "myApi",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

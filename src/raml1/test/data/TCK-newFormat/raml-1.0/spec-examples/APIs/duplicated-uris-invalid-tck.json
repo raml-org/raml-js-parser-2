@@ -21,7 +21,9 @@
             ],
             "absoluteUri": "/users/foo",
             "completeRelativeUri": "/users/foo",
-            "parentUri": "/users"
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "path": "duplicated-uris-invalid.raml"
           }
         ],
         "__METADATA__": {
@@ -36,7 +38,9 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "duplicated-uris-invalid.raml"
       },
       {
         "relativeUri": "/users/foo",
@@ -54,9 +58,12 @@
         ],
         "absoluteUri": "/users/foo",
         "completeRelativeUri": "/users/foo",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "duplicated-uris-invalid.raml"
       }
-    ]
+    ],
+    "path": "duplicated-uris-invalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

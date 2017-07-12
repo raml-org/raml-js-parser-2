@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "using-discriminatorvalue.raml"
           },
-          "kind": {
+          {
             "name": "kind",
             "displayName": "kind",
             "type": [
@@ -46,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "using-discriminatorvalue.raml"
           }
-        },
+        ],
         "discriminator": "kind",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -58,16 +60,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "using-discriminatorvalue.raml"
       },
-      "Employee": {
+      {
         "name": "Employee",
         "displayName": "Employee",
         "type": [
           "Person"
         ],
-        "properties": {
-          "employeeId": {
+        "properties": [
+          {
             "name": "employeeId",
             "displayName": "employeeId",
             "type": [
@@ -85,9 +88,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "using-discriminatorvalue.raml"
           }
-        },
+        ],
         "discriminatorValue": "employee",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -97,16 +101,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "using-discriminatorvalue.raml"
       },
-      "User": {
+      {
         "name": "User",
         "displayName": "User",
         "type": [
           "Person"
         ],
-        "properties": {
-          "userId": {
+        "properties": [
+          {
             "name": "userId",
             "displayName": "userId",
             "type": [
@@ -124,9 +129,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "using-discriminatorvalue.raml"
           }
-        },
+        ],
         "discriminatorValue": "user",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -136,10 +142,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "using-discriminatorvalue.raml"
       }
-    },
-    "title": "My API With Types"
+    ],
+    "title": "My API With Types",
+    "path": "using-discriminatorvalue.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

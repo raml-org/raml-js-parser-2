@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": {
-      "oauth_1_0": {
+    "securitySchemes": [
+      {
         "name": "oauth_1_0",
         "type": "OAuth 1.0",
         "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
@@ -12,11 +12,14 @@
           "signatures": [
             "HMAC-SHA1",
             "PLAINTEXT"
-          ]
-        }
+          ],
+          "path": "security-schemes-oauth1.raml"
+        },
+        "path": "security-schemes-oauth1.raml"
       }
-    },
-    "title": "My Sample API"
+    ],
+    "title": "My Sample API",
+    "path": "security-schemes-oauth1.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

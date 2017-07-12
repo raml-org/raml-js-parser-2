@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "ArrayOfInt": {
+    "types": [
+      {
         "name": "ArrayOfInt",
         "displayName": "ArrayOfInt",
         "type": [
@@ -22,7 +22,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -33,16 +34,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "TestApi",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "__METADATA__": {
@@ -59,12 +61,16 @@
                   "ArrayOfInt"
                 ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/persons",
+            "absoluteParentUri": "/persons",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/persons",
         "displayName": "/persons",
         "__METADATA__": {
@@ -79,9 +85,12 @@
         ],
         "absoluteUri": "/persons",
         "completeRelativeUri": "/persons",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "SomeType": {
+    "types": [
+      {
         "name": "SomeType",
         "displayName": "SomeType",
         "schemaPath": "schema.xsd#",
@@ -22,11 +22,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
+        ],
         "mediaType": "application/xml",
-        "typePropertyKind": "XML"
+        "typePropertyKind": "XML",
+        "path": "apiInvalid.raml"
       }
-    },
-    "title": "Blah"
+    ],
+    "title": "Blah",
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

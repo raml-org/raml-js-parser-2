@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
@@ -15,9 +15,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "Persons": {
+      {
         "name": "Persons",
         "displayName": "Persons",
         "type": [
@@ -32,10 +33,22 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "Person | string"
+        "items": [
+          {
+            "type": [
+              "union"
+            ],
+            "oneOf": [
+              "Person",
+              "string"
+            ]
+          }
+        ],
+        "path": "api.raml"
       }
-    },
-    "title": "Dropbox API"
+    ],
+    "title": "Dropbox API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

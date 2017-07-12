@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "TestType": {
+    "types": [
+      {
         "name": "TestType",
         "displayName": "TestType",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop": {
+        "properties": [
+          {
             "name": "prop",
             "displayName": "prop",
             "type": [
@@ -23,9 +23,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -37,10 +38,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "title": "test"
+    ],
+    "title": "test",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

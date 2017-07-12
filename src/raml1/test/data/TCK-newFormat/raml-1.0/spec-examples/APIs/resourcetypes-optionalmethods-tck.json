@@ -1,11 +1,11 @@
 {
   "specification": {
-    "resourceTypes": {
-      "corpResource": {
-        "methods": {
-          "post": {
-            "headers": {
-              "X-Chargeback": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "headers": [
+              {
                 "name": "X-Chargeback",
                 "displayName": "X-Chargeback",
                 "type": [
@@ -23,29 +23,35 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-optionalmethods.raml"
               }
-            },
+            ],
             "description": "Some info about <<TextAboutPost>>.",
             "method": "post",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "resourcetypes-optionalmethods.raml"
           }
-        },
-        "name": "corpResource"
+        ],
+        "name": "corpResource",
+        "path": "resourcetypes-optionalmethods.raml"
       }
-    },
+    ],
     "title": "Example of Optional Properties",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "method": "get"
+        "methods": [
+          {
+            "method": "get",
+            "parentUri": "/servers",
+            "absoluteParentUri": "/servers",
+            "path": "resourcetypes-optionalmethods.raml"
           },
-          "post": {
-            "headers": {
-              "X-Chargeback": {
+          {
+            "headers": [
+              {
                 "name": "X-Chargeback",
                 "displayName": "X-Chargeback",
                 "type": [
@@ -63,17 +69,25 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-optionalmethods.raml"
               }
-            },
+            ],
             "description": "Some info about post method.",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/servers",
+            "absoluteParentUri": "/servers",
+            "path": "resourcetypes-optionalmethods.raml"
           }
-        },
+        ],
         "type": {
-          "corpResource": {
-            "TextAboutPost": "post method"
-          }
+          "name": "corpResource",
+          "parameters": [
+            {
+              "name": "TextAboutPost",
+              "value": "post method"
+            }
+          ]
         },
         "relativeUri": "/servers",
         "displayName": "/servers",
@@ -89,15 +103,22 @@
         ],
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "resourcetypes-optionalmethods.raml"
       },
       {
-        "methods": {
-          "get": {
-            "method": "get"
+        "methods": [
+          {
+            "method": "get",
+            "parentUri": "/queues",
+            "absoluteParentUri": "/queues",
+            "path": "resourcetypes-optionalmethods.raml"
           }
+        ],
+        "type": {
+          "name": "corpResource"
         },
-        "type": "corpResource",
         "relativeUri": "/queues",
         "displayName": "/queues",
         "__METADATA__": {
@@ -112,9 +133,12 @@
         ],
         "absoluteUri": "/queues",
         "completeRelativeUri": "/queues",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "resourcetypes-optionalmethods.raml"
       }
-    ]
+    ],
+    "path": "resourcetypes-optionalmethods.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

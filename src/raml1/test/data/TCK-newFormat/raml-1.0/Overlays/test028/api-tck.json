@@ -1,17 +1,17 @@
 {
   "specification": {
-    "traits": {
-      "FilterableByPrice": {
-        "annotations": {
-          "Test3": {
+    "traits": [
+      {
+        "annotations": [
+          {
             "name": "Test3",
-            "structuredValue": {
+            "value": {
               "name": "Blah"
             }
           }
-        },
-        "queryParameters": {
-          "priceLessThen": {
+        ],
+        "queryParameters": [
+          {
             "name": "priceLessThen",
             "displayName": "priceLessThen",
             "type": [
@@ -29,9 +29,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "priceMoreThen": {
+          {
             "name": "priceMoreThen",
             "displayName": "priceMoreThen",
             "type": [
@@ -49,21 +50,23 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
-        "name": "FilterableByPrice"
+        ],
+        "name": "FilterableByPrice",
+        "path": "overlay.raml"
       }
-    },
-    "annotationTypes": {
-      "Test3": {
+    ],
+    "annotationTypes": [
+      {
         "name": "Test3",
         "displayName": "Test3",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -81,9 +84,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "overlay.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -95,11 +99,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "overlay.raml"
       }
-    },
+    ],
     "title": "blah",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "path": "overlay.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

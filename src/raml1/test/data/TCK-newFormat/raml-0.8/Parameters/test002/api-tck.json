@@ -8,8 +8,8 @@
         "displayName": "/policies",
         "resources": [
           {
-            "uriParameters": {
-              "id": {
+            "uriParameters": [
+              {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -32,10 +32,14 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "123456789-11"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
+            ],
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -50,7 +54,9 @@
             ],
             "absoluteUri": "/policies/{id}",
             "completeRelativeUri": "/policies/{id}",
-            "parentUri": "/policies"
+            "parentUri": "/policies",
+            "absoluteParentUri": "/policies",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -65,9 +71,12 @@
         ],
         "absoluteUri": "/policies",
         "completeRelativeUri": "/policies",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

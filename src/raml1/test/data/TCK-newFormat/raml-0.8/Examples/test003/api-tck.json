@@ -4,19 +4,20 @@
     "resources": [
       {
         "relativeUri": "/single-query-record/{code}",
-        "uriParameters": {
-          "code": {
+        "uriParameters": [
+          {
             "name": "code",
             "displayName": "code",
             "type": "string",
             "required": false,
-            "repeat": false
+            "repeat": false,
+            "path": "api.raml"
           }
-        },
-        "methods": {
-          "post": {
-            "queryParameters": {
-              "query...": {
+        ],
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "query...",
                 "displayName": "query...",
                 "type": "string",
@@ -30,12 +31,29 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "path": "api.raml"
+              }
+            ],
+            "method": "post",
+            "parentUri": "/single-query-record/{code}",
+            "absoluteParentUri": "/single-query-record/{code}",
+            "path": "api.raml",
+            "uriParameters": [
+              {
+                "name": "code",
+                "displayName": "code",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "path": "api.raml",
+                "__METADATA__": {
+                  "calculated": true
                 }
               }
-            },
-            "method": "post"
+            ]
           }
-        },
+        ],
         "displayName": "/single-query-record/{code}",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -50,9 +68,12 @@
         ],
         "absoluteUri": "/single-query-record/{code}",
         "completeRelativeUri": "/single-query-record/{code}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

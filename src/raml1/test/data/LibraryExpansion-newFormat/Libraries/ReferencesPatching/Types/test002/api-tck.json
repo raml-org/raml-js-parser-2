@@ -1,14 +1,26 @@
 {
   "specification": {
-    "types": {
-      "lib1.ComponentType": {
-        "name": "ComponentType",
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib/lib1.raml",
+        "path": "api.raml"
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib/lib2.raml",
+        "path": "api.raml"
+      }
+    ],
+    "types": [
+      {
+        "name": "lib1.ComponentType",
         "displayName": "ComponentType",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop1": {
+        "properties": [
+          {
             "name": "prop1",
             "displayName": "prop1",
             "type": [
@@ -26,9 +38,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib1.raml"
           },
-          "prop2": {
+          {
             "name": "prop2",
             "displayName": "prop2",
             "type": [
@@ -46,9 +59,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib1.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -60,16 +74,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/lib1.raml"
       },
-      "lib1.CollectionType": {
-        "name": "CollectionType",
+      {
+        "name": "lib1.CollectionType",
         "displayName": "CollectionType",
         "type": [
           "lib1.lib2.SuperType"
         ],
-        "properties": {
-          "array": {
+        "properties": [
+          {
             "name": "array",
             "displayName": "array",
             "type": [
@@ -88,9 +103,12 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "lib1.ComponentType"
+            "items": [
+              "lib1.ComponentType"
+            ],
+            "path": "lib/lib1.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -99,10 +117,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/lib1.raml"
       },
-      "lib1.lib2.SuperType": {
-        "name": "SuperType",
+      {
+        "name": "lib1.lib2.SuperType",
         "displayName": "SuperType",
         "type": [
           "object"
@@ -115,9 +134,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/lib2.raml"
       }
-    }
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "secured": {
-        "queryParameters": {
-          "<<tokenName>>": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "<<tokenName>>",
             "displayName": "<<tokenName>>",
             "type": [
@@ -25,14 +25,16 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "resourcetypes-traits-parameter.raml"
           }
-        },
-        "name": "secured"
+        ],
+        "name": "secured",
+        "path": "resourcetypes-traits-parameter.raml"
       },
-      "paged": {
-        "queryParameters": {
-          "numPages": {
+      {
+        "queryParameters": [
+          {
             "name": "numPages",
             "displayName": "numPages",
             "type": [
@@ -54,18 +56,20 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "resourcetypes-traits-parameter.raml"
           }
-        },
-        "name": "paged"
+        ],
+        "name": "paged",
+        "path": "resourcetypes-traits-parameter.raml"
       }
-    },
-    "resourceTypes": {
-      "searchableCollection": {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "<<queryParamName>>": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "<<queryParamName>>",
                 "displayName": "<<queryParamName>>",
                 "type": [
@@ -87,9 +91,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-traits-parameter.raml"
               },
-              "<<fallbackParamName>>": {
+              {
                 "name": "<<fallbackParamName>>",
                 "displayName": "<<fallbackParamName>>",
                 "type": [
@@ -111,23 +116,26 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-traits-parameter.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "resourcetypes-traits-parameter.raml"
           }
-        },
-        "name": "searchableCollection"
+        ],
+        "name": "searchableCollection",
+        "path": "resourcetypes-traits-parameter.raml"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "title": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "title",
                 "displayName": "title",
                 "type": [
@@ -149,9 +157,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-traits-parameter.raml"
               },
-              "digest_all_fields": {
+              {
                 "name": "digest_all_fields",
                 "displayName": "digest_all_fields",
                 "type": [
@@ -173,9 +182,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-traits-parameter.raml"
               },
-              "access_token": {
+              {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -197,9 +207,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-traits-parameter.raml"
               },
-              "numPages": {
+              {
                 "name": "numPages",
                 "displayName": "numPages",
                 "type": [
@@ -221,29 +232,48 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
-              }
-            },
-            "is": [
-              {
-                "secured": {
-                  "tokenName": "access_token"
-                }
-              },
-              {
-                "paged": {
-                  "maxPages": 10
-                }
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "resourcetypes-traits-parameter.raml"
               }
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "secured",
+                "parameters": [
+                  {
+                    "name": "tokenName",
+                    "value": "access_token"
+                  }
+                ]
+              },
+              {
+                "name": "paged",
+                "parameters": [
+                  {
+                    "name": "maxPages",
+                    "value": 10
+                  }
+                ]
+              }
+            ],
+            "method": "get",
+            "parentUri": "/books",
+            "absoluteParentUri": "/books",
+            "path": "resourcetypes-traits-parameter.raml"
           }
-        },
+        ],
         "type": {
-          "searchableCollection": {
-            "queryParamName": "title",
-            "fallbackParamName": "digest_all_fields"
-          }
+          "name": "searchableCollection",
+          "parameters": [
+            {
+              "name": "queryParamName",
+              "value": "title"
+            },
+            {
+              "name": "fallbackParamName",
+              "value": "digest_all_fields"
+            }
+          ]
         },
         "relativeUri": "/books",
         "displayName": "/books",
@@ -259,9 +289,12 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "resourcetypes-traits-parameter.raml"
       }
-    ]
+    ],
+    "path": "resourcetypes-traits-parameter.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

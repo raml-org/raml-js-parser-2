@@ -1,9 +1,11 @@
 /// <reference path="../../typings/main.d.ts" />
 import core = require("../raml1/wrapped-ast/parserCore");
 import proxy = require("../raml1/ast.core/LowLevelASTProxy");
+import yaml = require("yaml-ast-parser");
 import def = require("raml-definition-system")
 import hl = require("../raml1/highLevelAST");
 import ll = require("../raml1/lowLevelAST");
+import llImpl = require("../raml1/jsyaml/jsyaml2lowLevel");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
 import expander=require("../raml1/ast.core/expanderHL");
@@ -22,6 +24,7 @@ import helpersHL = require("../raml1/wrapped-ast/helpersHL");
 import stubs = require('../raml1/stubs');
 
 import _ = require("underscore");
+import path = require("path");
 
 var pathUtils = require("path");
 const RAML_MEDIATYPE = "application/raml+yaml";
@@ -48,34 +51,36 @@ export class TCKDumper {
 
     constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
+        if (this.options.allParameters == null) {
+            this.options.allParameters = true;
+        }
+        if (this.options.expandSecurity == null) {
+            this.options.expandSecurity = true;
+        }
         if (this.options.serializeMetadata == null) {
-            this.options.serializeMetadata = true;
+            this.options.serializeMetadata = false;
         }
         if (this.options.attributeDefaults == null) {
             this.options.attributeDefaults = true;
         }
+        if(this.options.unfoldTypes == null){
+            this.options.unfoldTypes = true;
+        }
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
+            new MethodsTransformer(),
             new ResourcesTransformer(),
-            //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
+            new AnnotationTransformer(),
             new TypeTransformer(this.options),
-            //new ParametersTransformer(),
-            //new ArrayExpressionTransformer(),
-            //new UsesTransformer(),
-            //new PropertiesTransformer(),
-            //new ResponsesTransformer(),
-            //new BodiesTransformer(),
-            //new AnnotationsTransformer(),
+            new UsesDeclarationTransformer(this),
             new SimpleNamesTransformer(),
             new TemplateParametrizedPropertiesTransformer(),
-
-            //new FacetsTransformer(),
             new SchemasTransformer(),
             new ProtocolsToUpperCaseTransformer(),
             new ReferencesTransformer(),
             new Api10SchemasTransformer(),
-            new AllUriParametersTransformer(this.options.allUriParameters)
-            //new OneElementArrayTransformer()
+            new SecurityExpandingTransformer(this.options.expandSecurity),
+            new AllParametersTransformer(this.options.allParameters)
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
         fillTransformersMap(this.nodePropertyTransformers,this.nodePropertyTransformersMap);
@@ -84,28 +89,28 @@ export class TCKDumper {
     nodeTransformers:Transformation[];
 
     nodePropertyTransformers:Transformation[] = [
-        new MethodsToMapTransformer(),
-        new TypesTransformer(),
-        new TraitsTransformer(),
-        new SecuritySchemesTransformer(),
-        new ResourceTypesTransformer(),
+        //new MethodsToMapTransformer(),
+        //new TypesTransformer(),
+        //new TraitsTransformer(),
+        //new SecuritySchemesTransformer(),
+        //new ResourceTypesTransformer(),
         //new ResourcesTransformer(),
         //new TypeExampleTransformer(),
-        new ParametersTransformer(),
+        //new ParametersTransformer(),
         //new TypesTransformer(),
         //new UsesTransformer(),
-        new PropertiesTransformer(),
-//        new TypeValueTransformer(),
-        // //new ExamplesTransformer(),
-        new ResponsesTransformer(),
-        new BodiesTransformer(),
-        new AnnotationsTransformer(),
+        //new PropertiesTransformer(),
+        //new TypeValueTransformer(),
+        //new ExamplesTransformer(),
+        //new ResponsesTransformer(),
+        //new BodiesTransformer(),
+        //new AnnotationsTransformer(),
         //new SecuritySchemesTransformer(),
         //new AnnotationTypesTransformer(),
         //new TemplateParametrizedPropertiesTransformer(),
         //new TraitsTransformer(),
         //new ResourceTypesTransformer(),
-        new FacetsTransformer(),
+        //new FacetsTransformer(),
         //new SchemasTransformer(),
         //new ProtocolsToUpperCaseTransformer(),
         //new ResourceTypeMethodsToMapTransformer(),
@@ -184,29 +189,29 @@ export class TCKDumper {
         }
 
         if((<hlImpl.BasicASTNode>_node).isReused()) {
-            var reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
+            let reusedJSON = (<hlImpl.BasicASTNode>_node).getJSON();
             if(reusedJSON!=null){
                 //console.log(_node.id());
                 return reusedJSON;
             }
         }
 
-        var result:any = {};
+        let result:any = {};
         if (_node.isElement()) {
 
-            var map:{[key:string]:PropertyValue} = {};
-            var eNode = _node.asElement();
-            var definition = eNode.definition();
+            let map:{[key:string]:PropertyValue} = {};
+            let eNode = _node.asElement();
+            let definition = eNode.definition();
 
             if(universeHelpers.isExampleSpecType(definition)){
                 if(eNode.parent()!=null){
                     result = "";//to be fulfilled by the transformer
                 }
                 else {
-                    var at = hlImpl.auxiliaryTypeForExample(eNode);
-                    var eObj:any = helpersHL.dumpExpandableExample(
+                    let at = hlImpl.auxiliaryTypeForExample(eNode);
+                    let eObj:any = helpersHL.dumpExpandableExample(
                         at.examples()[0], this.options.dumpXMLRepresentationOfExamples);
-                    var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
+                    let uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
                     if (uses.length > 0) {
                         eObj["uses"] = uses;
                     }
@@ -214,14 +219,14 @@ export class TCKDumper {
                 }
             }
             else {
-                var obj:any = {};
-                var children = (<hl.IParseResult[]>eNode.attrs())
+                let obj:any = {};
+                let children = (<hl.IParseResult[]>eNode.attrs())
                     .concat(eNode.children().filter(x=>!x.isAttr()));
-                for (var ch of children) {
-                    var prop = ch.property();
+                for (let ch of children) {
+                    let prop = ch.property();
                     if (prop != null) {
-                        var pName = prop.nameId();
-                        var pVal = map[pName];
+                        let pName = prop.nameId();
+                        let pVal = map[pName];
                         if (pVal == null) {
                             pVal = new PropertyValue(prop);
                             map[pName] = pVal;
@@ -229,32 +234,33 @@ export class TCKDumper {
                         pVal.registerValue(ch);
                     }
                     else {
-                        var llNode = ch.lowLevel();
-                        var key = llNode.key();
+                        let llNode = ch.lowLevel();
+                        let key = llNode.key();
                         if (key) {
                             //obj[key] = llNode.dumpToObject(); 
                         }
                     }
                 }
-                var scalarsAnnotations = {};
-                for (var p of definition.allProperties()
+                let scalarsAnnotations:any = {};
+                let scalarsPaths:any = {};
+                for (let p of definition.allProperties()
                     .concat((<def.NodeClass>definition).allCustomProperties())) {
 
                     if (def.UserDefinedProp.isInstance(p)) {
                         continue;
                     }
 
-                    var pName = p.nameId();
+                    let pName = p.nameId();
                     //TODO implement as transformer or ignore case
                     if (!isRoot && pName == "uses") {
                         if (universeHelpers.isApiSibling(eNode.root().definition())) {
                             continue;
                         }
                     }
-                    var pVal = map[pName];
+                    let pVal = map[pName];
                     if(universeHelpers.isTypeProperty(p)){
                         if (map["schema"]) {
-                            var isNull = (pVal == null);
+                            let isNull = (pVal == null);
                             if(!isNull && pVal.arr.length==1 && pVal.arr[0].isAttr()){
                                 isNull = (pVal.arr[0].asAttr().value()==null);
                             }
@@ -287,25 +293,30 @@ export class TCKDumper {
                         }
                     }
                     pVal = this.applyHelpers(pVal, eNode, p, this.options.serializeMetadata);
-                    var udVal = obj[pName];
+                    let udVal = obj[pName];
                     let aVal:any;
                     if (pVal !== undefined) {
                         if (pVal.isMultiValue) {
                             aVal = pVal.arr.map((x,i)=>{
-                                var pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
+                                let pMeta:core.NodeMetadata = pVal.hasMeta ? pVal.mArr[i] : null;
                                 return this.dumpInternal(x, pVal.prop,rp,pMeta);
                             });
                             if (p.isValueProperty()) {
-                                var sAnnotations = [];
-                                var gotScalarAnnotations = false;
+                                let sAnnotations = [];
+                                let sPaths:string[] = [];
+                                let gotScalarAnnotations = false;
                                 pVal.arr.filter(x=>x.isAttr()).map(x=>x.asAttr())
                                     .filter(x=>x.isAnnotatedScalar()).forEach(x=> {
-                                    var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    let sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length > 0;
                                     sAnnotations.push(sAnnotations1);
+                                    sPaths.push(actualPath(x,true));
                                 });
                                 if (gotScalarAnnotations) {
                                     scalarsAnnotations[pName] = sAnnotations;
+                                }
+                                if(sPaths.filter(x=>x!=null).length>0){
+                                    scalarsPaths[pName] = sPaths;
                                 }
                             }
                             if (universeHelpers.isTypeDeclarationDescendant(definition)
@@ -320,11 +331,17 @@ export class TCKDumper {
                         else {
                             aVal = this.dumpInternal(pVal.val, pVal.prop,rp);
                             if (p.isValueProperty()) {
-                                var attr = pVal.val.asAttr();
+                                let attr = pVal.val.asAttr();
                                 if (attr.isAnnotatedScalar()) {
-                                    var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
+                                    let sAnnotations = attr.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     if (sAnnotations.length > 0) {
-                                        scalarsAnnotations[pName] = sAnnotations;
+                                        scalarsAnnotations[pName] = [ sAnnotations ];
+                                    }
+                                }
+                                if(!(<hlImpl.ASTPropImpl>attr).isFromKey()) {
+                                    let sPath = actualPath(attr, true);
+                                    if (sPath) {
+                                        scalarsPaths[pName] = [sPath];
                                     }
                                 }
                             }
@@ -366,15 +383,15 @@ export class TCKDumper {
                     if (aVal != null) {
                         //TODO implement as transformer
                         if ((pName === "type" || pName == "schema") && aVal && aVal.forEach && typeof aVal[0] === "string") {
-                            var schemaString = aVal[0].trim();
+                            let schemaString = aVal[0].trim();
 
-                            var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
-                            var canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                            let canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                            let canBeXml = (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
 
                             if (canBeJson || canBeXml) {
-                                var include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
+                                let include = eNode.lowLevel().includePath && eNode.lowLevel().includePath();
                                 if(!include){
-                                    var typeAttr = eNode.attr("type");
+                                    let typeAttr = eNode.attr("type");
                                     if(!typeAttr){
                                         typeAttr = eNode.attr("schema");
                                     }
@@ -385,16 +402,16 @@ export class TCKDumper {
 
                                 if(include) {
 
-                                    var ind = include.indexOf("#");
-                                    var postfix = "";
+                                    let ind = include.indexOf("#");
+                                    let postfix = "";
                                     if(ind>=0){
                                         postfix = include.substring(ind);
                                         include = include.substring(0,ind);
                                     }
 
-                                    var aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
+                                    let aPath = eNode.lowLevel().unit().resolve(include).absolutePath();
 
-                                    var relativePath;
+                                    let relativePath;
 
                                     if (util.stringStartsWith(aPath,"http://") || util.stringStartsWith(aPath,"https://")) {
                                         relativePath = aPath;
@@ -431,27 +448,33 @@ export class TCKDumper {
                 if (Object.keys(scalarsAnnotations).length > 0) {
                     result["scalarsAnnotations"] = scalarsAnnotations;
                 }
+                if (Object.keys(scalarsPaths).length > 0) {
+                    result["scalarsPaths"] = scalarsPaths;
+                }
                 var pProps = helpersHL.getTemplateParametrizedProperties(eNode);
                 if (pProps) {
                     result["parametrizedProperties"] = pProps;
                 }
                 if (universeHelpers.isTypeDeclarationDescendant(definition)) {
-                    var fixedFacets = helpersHL.typeFixedFacets(eNode);
+                    let fixedFacets = helpersHL.typeFixedFacets(eNode);
                     if (fixedFacets) {
                         result["fixedFacets"] = fixedFacets;
                     }
                 }
                 result = applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.nodeTransformersMap);
             }
+            if(typeof result == "object") {
+                let unitPath = actualPath(eNode);
+                result.path = unitPath;
+            }
         }
         else if (_node.isAttr()) {
 
-            var aNode = _node.asAttr();
-            var val = aNode.value();
-            var prop = aNode.property();
-            var rangeType = prop.range();
-            var isValueType = rangeType.isValueType();
-            var val:any;
+            let aNode = _node.asAttr();
+            let val = aNode.value();
+            let prop = aNode.property();
+            let rangeType = prop.range();
+            let isValueType = rangeType.isValueType();
             if (isValueType && aNode['value']) {
                 val = aNode['value']();
                 if(val==null && universeHelpers.isAnyTypeType(rangeType)){
@@ -465,19 +488,21 @@ export class TCKDumper {
                 }
             }
             if (val!=null&&(typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean')) {
-                result = val;
+                if(universeHelpers.isStringTypeDescendant(prop.range())){
+                    val = '' + val;
+                }
             }
             else {
                 if (hlImpl.isStructuredValue(val)) {
-                    var sVal = (<hlImpl.StructuredValue>val);
-                    var llNode = sVal.lowLevel();
+                    let sVal = (<hlImpl.StructuredValue>val);
+                    let llNode = sVal.lowLevel();
                     val = llNode ? llNode.dumpToObject() : null;
-                    var propName = prop.nameId();
+                    let propName = prop.nameId();
                     if (rangeType.isAssignableFrom("Reference")) {
                         //TODO implement as transformer
-                        var key = Object.keys(val)[0];
-                        var name = sVal.valueName();
-                        var refVal = val[key];
+                        let key = Object.keys(val)[0];
+                        let name = sVal.valueName();
+                        let refVal = val[key];
                         if (refVal === undefined) {
                             refVal = null;
                         }
@@ -487,29 +512,29 @@ export class TCKDumper {
                         }
                     }
                     else if (propName == "type") {
-                        var llNode = aNode.lowLevel();
-                        var tdl = null;
-                        var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                        var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                        var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
+                        let llNode = aNode.lowLevel();
+                        let tdl = null;
+                        let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                        let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                        let tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
                         val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
                     }
                     else if (propName == "items" && typeof val === "object") {
-                        var isArr = Array.isArray(val);
-                        var isObj = !isArr;
+                        let isArr = Array.isArray(val);
+                        let isObj = !isArr;
                         if (isArr) {
                             isObj = _.find(val, x=>typeof(x) == "object") != null;
                         }
                         if (isObj) {
                             val = null;
-                            var a = _node.parent().lowLevel();
-                            var tdl = null;
+                            let a = _node.parent().lowLevel();
+                            let tdl = null;
                             a.children().forEach(x=> {
                                 if (x.key() == "items") {
-                                    var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                                    var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                                    var tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
+                                    let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                                    let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                                    let tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
                                     tNode.patchType(builder.doDescrimination(tNode));
                                     val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
                                     propName = x.key();
@@ -518,12 +543,12 @@ export class TCKDumper {
                         }
                     }
                 }
-                val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
-                result = val;
             }
+            val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);
+            result = val;
         }
         else {
-            var llNode = _node.lowLevel();
+            let llNode = _node.lowLevel();
             result = llNode ? llNode.dumpToObject() : null;
         }
         _node.setJSON(result);
@@ -630,7 +655,7 @@ export interface SerializeOptions{
 
     /**
      * Whether to serialize metadata
-     * @default true
+     * @default false
      */
     serializeMetadata?:boolean
 
@@ -640,7 +665,9 @@ export interface SerializeOptions{
 
     attributeDefaults?:boolean
 
-    allUriParameters?:boolean
+    allParameters?:boolean
+
+    expandSecurity?:boolean
 
     unfoldTypes?:boolean
 }
@@ -720,7 +747,7 @@ function uriParameters(resource:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IPrope
     return extractParams(pVal, uri, resource,p,serializeMetadata);
 }
 
-function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=true):PropertyValue{
+function baseUriParameters(api:hl.IHighLevelNode,pVal:PropertyValue,p:hl.IProperty,serializeMetadata=false):PropertyValue{
 
     var buriAttr = api.attr(universes.Universe10.Api.properties.baseUri.name);
     var uri = buriAttr ? buriAttr.value() : '';
@@ -1142,47 +1169,47 @@ class CompositeObjectPropertyMatcher extends AbstractObjectPropertyMatcher{
     }
 }
 
-class ArrayToMapTransformer implements Transformation{
-
-    constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
-
-    match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
-        return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
-    }
-
-    transform(value:any,node:hl.IParseResult){
-        if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
-            var obj = {};
-            value.forEach(x=>{
-                var key = x["$$"+this.propName];
-                if(key!=null){
-                    delete x["$$"+this.propName];
-                }
-                else{
-                    key = x[this.propName];
-                }
-                var previous = obj[key];
-                if(previous){
-                    if(Array.isArray(previous)){
-                        previous.push(x);
-                    }
-                    else{
-                        obj[key] = [ previous, x ];
-                    }
-                }
-                else {
-                    obj[key] = x;
-                }
-            });
-            return obj;
-        }
-        return value;
-    }
-
-    registrationInfo():Object{
-        return this.matcher.registrationInfo();
-    }
-}
+// class ArrayToMapTransformer implements Transformation{
+//
+//     constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
+//
+//     match(node:hl.IParseResult,prop:nominals.IProperty):boolean{
+//         return node.isElement()&&this.matcher.match(node.asElement().definition(),prop);
+//     }
+//
+//     transform(value:any,node:hl.IParseResult){
+//         if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
+//             var obj = {};
+//             value.forEach(x=>{
+//                 var key = x["$$"+this.propName];
+//                 if(key!=null){
+//                     delete x["$$"+this.propName];
+//                 }
+//                 else{
+//                     key = x[this.propName];
+//                 }
+//                 var previous = obj[key];
+//                 if(previous){
+//                     if(Array.isArray(previous)){
+//                         previous.push(x);
+//                     }
+//                     else{
+//                         obj[key] = [ previous, x ];
+//                     }
+//                 }
+//                 else {
+//                     obj[key] = x;
+//                 }
+//             });
+//             return obj;
+//         }
+//         return value;
+//     }
+//
+//     registrationInfo():Object{
+//         return this.matcher.registrationInfo();
+//     }
+// }
 
 class ResourcesTransformer extends BasicTransformation{
 
@@ -1205,14 +1232,59 @@ class ResourcesTransformer extends BasicTransformation{
             value.completeRelativeUri = helpersHL.completeRelativeUri(node.asElement());
             if(universeHelpers.isResourceType(node.parent().definition())){
                 value.parentUri = helpersHL.completeRelativeUri(node.parent());
+                value.absoluteParentUri = helpersHL.absoluteUri(node.parent());
             }
             else{
                 value.parentUri = "";
+                let baseUriAttr = node.parent().attr(universes.Universe10.Api.properties.baseUri.name);
+                let baseUri = (baseUriAttr && baseUriAttr.value())||"";
+                value.absoluteParentUri = baseUri;
             }
         }
         return value;
     }
 }
+
+class MethodsTransformer extends BasicTransformation{
+
+    constructor(){
+        super(universes.Universe10.Method.name,null,true);
+    }
+
+    transform(value:any,node:hl.IParseResult){
+        if(Array.isArray(value)){
+            return value;
+        }
+        let parent = node.parent();
+        if(!universeHelpers.isResourceType(parent.definition())){
+            return value;
+        }
+        value.parentUri = helpersHL.completeRelativeUri(parent);
+        value.absoluteParentUri = helpersHL.absoluteUri(parent);
+        return value;
+    }
+}
+
+class AnnotationTransformer extends BasicTransformation{
+
+    constructor(){
+        super(universes.Universe10.AnnotationRef.name,null,true);
+    }
+
+    transform(value:any,node:hl.IParseResult){
+        if(Array.isArray(value)){
+            return value;
+        }
+        var pName = universes.Universe10.Reference.properties.structuredValue.name;
+        let structuredValue = value[pName];
+        if(structuredValue){
+            delete value[pName];
+            value.value = structuredValue;
+        }
+        return value;
+    }
+}
+
 
 class TypeTransformer extends BasicTransformation{
 
@@ -1240,6 +1312,21 @@ class TypeTransformer extends BasicTransformation{
             }
         }
         delete value["example"];
+        if(value["examples"]!=null){
+            value["simplifiedExamples"] = value["examples"].map(x=>{
+                if(x==null){
+                    return x;
+                }
+                let val = x["value"];
+                if(val==null){
+                    return val;
+                }
+                else if(typeof val === "object"){
+                    return JSON.stringify(val);
+                }
+                return val;
+            });
+        }
         if(value.hasOwnProperty("schema")){
             if(!value.hasOwnProperty("type")){
                 value["type"] = value["schema"];
@@ -1324,43 +1411,29 @@ class TypeTransformer extends BasicTransformation{
             value["typePropertyKind"] = "INPLACE";
         }
         if(this.options.unfoldTypes) {
-            value.unfolded = this.processExpressions(value);
-        }
-        if(value.type.length==1){
-            var typeVal = value.type[0];
-            if(typeof(typeVal) == "string"){
-                typeVal = typeVal.trim();
-                var isArr = util.stringEndsWith(typeVal,"[]");
-                if(isArr){
-                    var itemsStr = typeVal.substring(0,typeVal.length-"[]".length).trim();
-                    while(itemsStr.length>0
-                    &&itemsStr.charAt(0)=="("
-                    &&itemsStr.charAt(itemsStr.length-1)==")"){
-                        itemsStr = itemsStr.substring(1,itemsStr.length-1);
-                    }
-                    value.type[0] = "array";
-                    value.items = itemsStr;
-                }
-            }
+            this.processExpressions(value);
         }
         return _value;
     }
 
     private processExpressions(value:any):any{
-        let copy = util.deepCopy(value);
-        this.parseExpressions(copy);
-        return copy;
+        this.parseExpressions(value);
     }
 
     private parseExpressions(obj){
-        this.parseExpressionsForProperty(obj,"type");
+        let typeValue = obj.type;
+        let isSingleString = Array.isArray(typeValue)
+            && typeof typeValue[0] == "string";
+
         this.parseExpressionsForProperty(obj,"items");
-        if(obj.properties){
-            for(var pName of Object.keys(obj.properties)){
-                let p = obj.properties[pName];
-                if(p.unfolded){
-                    obj.properties[pName] = p.unfolded;
-                }
+        this.parseExpressionsForProperty(obj,"type");
+
+        if(isSingleString){
+            let newTypeValue = obj.type[0];
+            if(newTypeValue && typeof newTypeValue == "object"){
+                Object.keys(newTypeValue).forEach(x=>{
+                   obj[x] = newTypeValue[x];
+                });
             }
         }
     }
@@ -1373,7 +1446,7 @@ class TypeTransformer extends BasicTransformation{
         }
         let isSingleString = false;
         if(!Array.isArray(value)){
-            if(typeof value == "object"){
+            if(value && typeof value == "object"){
                 if(value.unfolded){
                     obj.prop = value.unfolded;
                 }
@@ -1390,7 +1463,7 @@ class TypeTransformer extends BasicTransformation{
         let resultingArray:any[] = [];
         for(var i = 0 ; i < value.length ; i++) {
             let expr = value[i];
-            if(typeof expr=="object"){
+            if(expr && typeof expr=="object"){
                 if(expr.unfolded){
                     expr = expr.unfolded;
                 }
@@ -1463,7 +1536,7 @@ class TypeTransformer extends BasicTransformation{
             let union = <typeExpressions.Union>expr;
             result = {
                 type: ["union"],
-                options: []
+                oneOf: []
             };
             let components = this.toOptionsArray(union);
             for(var c of components){
@@ -1472,9 +1545,9 @@ class TypeTransformer extends BasicTransformation{
                     break;
                 }
                 let c1 = this.expressionToObject(c,escapeData);
-                result.options.push(c1);
+                result.oneOf.push(c1);
             }
-            result.options = _.unique(result.options).sort()
+            result.oneOf = _.unique(result.oneOf).sort()
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
@@ -1485,7 +1558,7 @@ class TypeTransformer extends BasicTransformation{
             while (arr-- > 0) {
                 result = {
                     type: ["array"],
-                    items: result
+                    items: [ result ]
                 };
             }
         }
@@ -1539,14 +1612,14 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
 
         var llNode = node.lowLevel();
         var key = llNode.key();
-        value["$$name"] = key;
+        //value["$$name"] = key;
         var original:ll.ILowLevelASTNode = llNode;
         while(proxy.LowLevelProxyNode.isInstance(original)){
             original = (<proxy.LowLevelProxyNode>original).originalNode();
         }
         var oKey = original.key();
         var aVal =  value;
-        aVal.name = oKey;
+        //aVal.name = oKey;
         if(aVal.displayName==key){
             aVal.displayName = oKey;
         }
@@ -1584,16 +1657,16 @@ class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformati
     }
 
 }
-
-class PropertiesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
-        ]),"name");
-    }
-
-}
+//
+// class PropertiesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.ObjectTypeDeclaration.name,universes.Universe10.ObjectTypeDeclaration.properties.properties.name,true)
+//         ]),"name");
+//     }
+//
+// }
 
 
 class SchemasTransformer extends BasicTransformation{
@@ -1607,9 +1680,10 @@ class SchemasTransformer extends BasicTransformation{
             return value;
         }
         else {
-            var obj = {};
-            obj[value.key] = value.value;
-            return obj;
+            delete value["scalarsPaths"];
+            value.name = value.key;
+            delete value.key;
+            return value;
         }
     }
 }
@@ -1645,7 +1719,7 @@ class ReferencesTransformer extends MatcherBasedTransformation{
     }
 
     transform(value:any){
-        if(!value){
+        if(value==null){
             return null;
         }
         if(Array.isArray(value)){
@@ -1655,24 +1729,223 @@ class ReferencesTransformer extends MatcherBasedTransformation{
     }
 
     private toSimpleValue(x):any {
-        if(typeof(x)=="string"){
-            return x;
+        if(typeof(x) !== "object"){
+            return {
+                name: x
+            };
         }
-        var name = x['name'];
+        let result:any = {
+            name: x['name']
+        }
         var params = x['structuredValue'];
         if (params) {
-            var obj = {};
-            obj[name] = params;
-            return obj;
+            Object.keys(params).forEach(y=>{
+                result.parameters = result.parameters||[];
+                result.parameters.push({
+                    name: y,
+                    value: params[y]
+                });
+            });
         }
-        else {
-            return name;
-        }
+        return result;
     }
 
 }
 
-class AllUriParametersTransformer extends MatcherBasedTransformation{
+class UsesDeclarationTransformer extends BasicTransformation {
+
+    constructor(private dumper:TCKDumper) {
+        super(universes.Universe10.LibraryBase.name, null, true, ["RAML10"]);
+    }
+
+    private referencePatcher:referencePatcher.ReferencePatcher;
+
+    private getReferencePatcher(){
+        this.referencePatcher = this.referencePatcher || new referencePatcher.ReferencePatcher();
+        return this.referencePatcher;
+    }
+
+    transform(_value:any,node?:hl.IParseResult){
+        let llNode = node.lowLevel();
+        let actual = llNode && llNode.actual();
+        let libExpanded = actual && actual.libExpanded;
+        if(!libExpanded){
+            return _value;
+        }
+        let usesArray = _value[def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name];
+        if(!usesArray||!Array.isArray(usesArray)||usesArray.length==0){
+            return _value;
+        }
+        let unit = llNode.unit();
+        let resolver = (<llImpl.Project>unit.project()).namespaceResolver();
+        if(!resolver){
+            return _value;
+        }
+        let nsMap = resolver.expandedNSMap(unit);
+        if(!nsMap){
+            return _value;
+        }
+        let usagePropName = def.universesInfo.Universe10.Library.properties.usage.name;
+        let annotationsPropName = def.universesInfo.Universe10.Annotable.properties.annotations.name;
+        for(let u of usesArray){
+            let namespace = u.key;
+            let usesEntry = nsMap[namespace];
+            if(!usesEntry){
+                continue;
+            }
+            let libUnit = usesEntry.unit;
+            let lib = libUnit.highLevel();
+            if(!lib.isElement()){
+                continue;
+            }
+            let libAnnotations = lib.asElement().attributes(annotationsPropName);
+            let libUsage = lib.asElement().attr(usagePropName);
+
+            if(libUsage){
+                u[usagePropName] = libUsage.value();
+            }
+            if(libAnnotations.length>0){
+                let usesEntryAnnotations:any[] = [];
+                for(let a of libAnnotations){
+                    let aObj = this.dumper.dump(a);
+                    if(!aObj || !aObj.name){
+                        continue;
+                    }
+                    let aName = aObj.name;
+                    let range = a.property().range();
+                    let patchedReference = this.getReferencePatcher().resolveReferenceValueBasic(
+                        aName, unit, resolver, [unit, libUnit],range);
+
+                    if(!patchedReference){
+                        continue;
+                    }
+                    aObj.name = patchedReference.value();
+                    usesEntryAnnotations.push(aObj);
+                }
+                if(usesEntryAnnotations.length>0){
+                    u[annotationsPropName] = usesEntryAnnotations;
+                }
+            }
+
+        }
+        return _value;
+    }
+}
+
+class SecurityExpandingTransformer extends MatcherBasedTransformation {
+
+    constructor(private enabled: boolean = false) {
+        super(new CompositeObjectPropertyMatcher([
+            new BasicObjectPropertyMatcher(universes.Universe10.Api.name, null, true)
+        ]));
+    }
+
+    match(node: hl.IParseResult, prop: nominals.IProperty): boolean {
+        return this.enabled ? super.match(node, prop) : false;
+    }
+
+    registrationInfo(): Object {
+        return this.enabled ? super.registrationInfo() : null;
+    }
+
+    transform(value:any,_node?:hl.IParseResult){
+        this.processApi(value);
+        return value;
+    }
+
+    private processApi(value:any){
+        let securitySchemesArr = value[def.universesInfo.Universe10.Api.properties.securitySchemes.name];
+        if(!securitySchemesArr || securitySchemesArr.length==0){
+            return;
+        }
+        let securitySchemes:any = {};
+        for(let ss of securitySchemesArr){
+            securitySchemes[ss.name] = ss;
+        }
+        this.expandSecuredBy(value, securitySchemes);
+        let resources = value[def.universesInfo.Universe10.Api.properties.resources.name];
+        if(resources) {
+            for (let r of resources) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+        let resourceTypes = value[def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name];
+        if(resourceTypes) {
+            for (let r of resourceTypes) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+        let traits = value[def.universesInfo.Universe10.LibraryBase.properties.traits.name];
+        if(traits) {
+            for (let t of traits) {
+                this.expandSecuredBy(t, securitySchemes);
+            }
+        }
+        return value;
+    }
+
+    private processResource(res:any,securitySchemes:any){
+
+        this.expandSecuredBy(res,securitySchemes);
+
+        let methods = res[def.universesInfo.Universe10.Resource.properties.methods.name];
+        if(methods) {
+            for (let m of methods) {
+                this.expandSecuredBy(m, securitySchemes);
+            }
+        }
+
+        let resources = res[def.universesInfo.Universe10.Resource.properties.resources.name];
+        if(resources) {
+            for (let r of resources) {
+                this.processResource(r, securitySchemes);
+            }
+        }
+    }
+
+    private expandSecuredBy(obj:any,securitySchemes:any){
+
+        let securedBy = obj[def.universesInfo.Universe10.ResourceBase.properties.securedBy.name];
+        if(!securedBy){
+            return;
+        }
+        for(let i = 0 ; i < securedBy.length ; i++){
+            let ref = securedBy[i];
+            if(ref==null){
+                continue;
+            }
+            let sch:any;
+            if(typeof ref == "string"){
+                sch = securitySchemes[ref];
+            }
+            else if (typeof ref == "object"){
+                let refObj = ref;
+                ref = ref.name;//Object.keys(refObj)[0];
+                sch = JSON.parse(JSON.stringify(securitySchemes[ref]));
+                let params = refObj.parameters;
+                if(params && params.length>0) {
+                    // let paramNames = Object.keys(params);
+                    // if (paramNames.length > 0) {
+                        let settings: any = sch.settings;
+                        if (!settings) {
+                            settings = {};
+                            sch.settings = settings;
+                        }
+                        for (let pn of params) {
+                            settings[pn.name] = pn.value;
+                        }
+                    //}
+                }
+            }
+            if(!sch){
+                continue;
+            }
+            securedBy[i] = sch;
+        }
+    }
+}
+
+class AllParametersTransformer extends MatcherBasedTransformation{
 
     constructor(private enabled:boolean=false){
         super(new CompositeObjectPropertyMatcher([
@@ -1697,149 +1970,217 @@ class AllUriParametersTransformer extends MatcherBasedTransformation{
     private static resourcesPropName
         = universes.Universe10.Api.properties.resources.name;
 
+    private static queryParametersPropName
+        = universes.Universe10.Method.properties.queryParameters.name;
+
+    private static headersPropName
+        = universes.Universe10.Method.properties.headers.name;
+
+    private static securedByPropName = universes.Universe10.Method.properties.securedBy.name;
+
+    private static responsesPropName = universes.Universe10.Method.properties.responses.name;
+
     transform(value:any,node?:hl.IParseResult,uriParams?:any){
 
-        var params:any[] = uriParams;
-        var ownParams = value[AllUriParametersTransformer.uriParamsPropName];
-        if(ownParams){
-            params = [].concat(uriParams||[]);
-            Object.keys(ownParams).forEach(x=>{
-                var obj = ownParams[x];
-                if(Array.isArray(obj)){
-                    obj.forEach(y=>params.push(y));
-                }
-                else{
-                    params.push(obj);
-                }
-            });
-        }
-        if(params){
-            value["allUriParameters"] = params;
-            var methods = value[AllUriParametersTransformer.methodsPropName];
-            if(methods){
-                Object.keys(methods).forEach(x=>
-                    methods[x]["allUriParameters"] = params
-                );
-            }
-        }
-        var resources = value[AllUriParametersTransformer.resourcesPropName];
-        if(resources){
-            resources.forEach(x=>this.transform(x,null,params));
-        }
+        this.processApi(value);
         return value;
     }
-}
 
-class MethodsToMapTransformer extends ArrayToMapTransformer{
+    private processApi(api:any){
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
-        ]),"method");
-    }
-}
-
-class TypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
-        ]),"name");
-    }
-}
-
-class TraitsTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
-                universes.Universe10.LibraryBase.properties.traits.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
-                universes.Universe08.Api.properties.traits.name,true)
-        ]),"name");
-    }
-}
-
-class ResourceTypesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class SecuritySchemesTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
-        ]),"name");
-    }
-}
-
-class ParametersTransformer extends ArrayToMapTransformer{
-
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
-            new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
-        ]),"name");
+        let params = this.extract(api,def.universesInfo.Universe10.Api.properties.baseUriParameters.name);
+        let resources = api[def.universesInfo.Universe10.Resource.properties.resources.name]||[];
+        for(let r of resources){
+            this.processResource(r,params);
+        }
     }
 
-}
+    private processResource(resource:any,uriParams:any[]){
 
-class ResponsesTransformer extends ArrayToMapTransformer{
+        this.appendSecurityData(resource);
+        let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
+        let params1 = this.extract(resource,pName);
+        let newParams = uriParams.concat(resource[pName]||[]);
+        if(newParams.length>0) {
+            resource[pName] = newParams;
+        }
+        let params2 = uriParams.concat(params1);
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
-        ]),"code");
+        let methods = resource[def.universesInfo.Universe10.ResourceBase.properties.methods.name]||[];
+        for(let m of methods){
+            this.processMethod(m,params2);
+        }
+
+        let resources = resource[def.universesInfo.Universe10.Resource.properties.resources.name]||[];
+        for(let r of resources){
+            this.processResource(r,params2);
+        }
     }
-}
 
-class AnnotationsTransformer extends ArrayToMapTransformer{
+    private processMethod(method:any,uriParams:any[]){
+        this.appendSecurityData(method);
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
-        ]),"name");
+        let pName = def.universesInfo.Universe10.Resource.properties.uriParameters.name;
+        let newParams = uriParams.concat(method[pName]||[]);
+        if(newParams.length>0) {
+            method[pName] = newParams;
+        }
     }
-}
 
-class BodiesTransformer extends ArrayToMapTransformer{
+    private appendSecurityData(obj:any){
+        let headerPName = def.universesInfo.Universe10.Operation.properties.headers.name;
+        let responsesPName = def.universesInfo.Universe10.Operation.properties.responses.name;
+        let queryPName = def.universesInfo.Universe10.Operation.properties.queryParameters.name;
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
-            new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
-        ]),"name");
+        let securedBy = obj[def.universesInfo.Universe10.Method.properties.securedBy.name]||[];
+        for(let sSch of securedBy){
+            if(!sSch){
+                continue;
+            }
+            let describedBy = sSch[def.universesInfo.Universe10.AbstractSecurityScheme.properties.describedBy.name]||{};
+            let sHeaders = this.extract(describedBy,headerPName);
+            let sResponses = this.extract(describedBy,responsesPName);
+            let sQParams = this.extract(describedBy,queryPName);
+            if(sHeaders.length>0){
+                obj[headerPName] = (obj[headerPName]||[]).concat(sHeaders);
+            }
+            if(sResponses.length>0){
+                obj[responsesPName] = (obj[responsesPName]||[]).concat(sResponses);
+            }
+            if(sQParams.length>0){
+                obj[queryPName] = (obj[queryPName]||[]).concat(sQParams);
+            }
+        }
+    }
+
+    private extract(api: any,pName:string) {
+        let arr = api[pName] || [];
+        arr = JSON.parse(JSON.stringify(arr));
+        for(let x of arr){
+            let mtd = x["__METADATA__"];
+            if(!mtd){
+                mtd = {};
+                x["__METADATA__"] = mtd;
+            }
+            mtd["calculated"] = true;
+        }
+        return arr;
     }
 
 }
 
-class FacetsTransformer extends ArrayToMapTransformer{
 
-    constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
-        ]),"name");
-    }
-}
+//
+// class MethodsToMapTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.methods.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.methods.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.ResourceType.name,universes.Universe08.ResourceType.properties.methods.name,true)
+//         ]),"method");
+//     }
+// }
+//
+// class TypesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.types.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.schemas.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.annotationTypes.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class TraitsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,
+//                 universes.Universe10.LibraryBase.properties.traits.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,
+//                 universes.Universe08.Api.properties.traits.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class ResourceTypesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.resourceTypes.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe10.Api.properties.resourceTypes.name,true,["RAML08"])
+//         ]),"name");
+//     }
+// }
+//
+// class SecuritySchemesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.LibraryBase.name,universes.Universe10.LibraryBase.properties.securitySchemes.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Api.name,universes.Universe08.Api.properties.securitySchemes.name,true,["RAML08"])
+//         ]),"name");
+//     }
+// }
+//
+// class ParametersTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Api.name,universes.Universe10.Api.properties.baseUriParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.ResourceBase.properties.uriParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.Resource.name,universes.Universe08.Resource.properties.uriParameters.name,true,["RAML08"]),
+//             new BasicObjectPropertyMatcher(universes.Universe10.ResourceBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.queryParameters.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.MethodBase.properties.headers.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.headers.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe08.BodyLike.name,universes.Universe08.BodyLike.properties.formParameters.name)
+//         ]),"name");
+//     }
+//
+// }
+//
+// class ResponsesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             //new BasicObjectPropertyMatcher(universes.Universe10.Operation.name,universes.Universe10.Operation.properties.responses.name,true),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.responses.name,true)
+//         ]),"code");
+//     }
+// }
+//
+// class AnnotationsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Annotable.name,universes.Universe10.Annotable.properties.annotations.name,true)
+//         ]),"name");
+//     }
+// }
+//
+// class BodiesTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.Response.name,universes.Universe10.Response.properties.body.name),
+//             new BasicObjectPropertyMatcher(universes.Universe10.MethodBase.name,universes.Universe10.MethodBase.properties.body.name,true)
+//         ]),"name");
+//     }
+//
+// }
+//
+// class FacetsTransformer extends ArrayToMapTransformer{
+//
+//     constructor(){
+//         super(new CompositeObjectPropertyMatcher([
+//             new BasicObjectPropertyMatcher(universes.Universe10.TypeDeclaration.name,universes.Universe10.TypeDeclaration.properties.facets.name,true)
+//         ]),"name");
+//     }
+// }
 
 class Api10SchemasTransformer extends MatcherBasedTransformation{
 
@@ -1863,11 +2204,7 @@ class Api10SchemasTransformer extends MatcherBasedTransformation{
         }
         else{
             var typesValue = value["types"];
-            Object.keys(schemasValue).forEach(x=>{
-                if(!typesValue.hasOwnProperty(x)){
-                    typesValue[x] = schemasValue[x];
-                }
-            });
+            value["types"] = typesValue.concat(schemasValue);
         }
         delete value["schemas"];
         return value;
@@ -1901,4 +2238,41 @@ function mergeObjects(o1:Object,o2:Object):Object{
         }
     }
     return o1;
+}
+
+function actualPath(node: hl.IParseResult,checkIfDifferent=false) {
+    let llNode = node.lowLevel();
+    let nodeUnit = llNode.unit();
+    let unit = nodeUnit;
+    let projectPath = unit.project().getRootPath();
+    let unitPath:string;
+    while (llNode.kind() == yaml.Kind.INCLUDE_REF || llNode.valueKind() == yaml.Kind.INCLUDE_REF) {
+        let iPath = llNode.includePath();
+        let iUnit = unit.resolve(iPath);
+        if (iUnit) {
+            unit = iUnit;
+            if (unit.isRAMLUnit()) {
+                llNode = unit.ast();
+            }
+            else {
+                break;
+            }
+        }
+        else{
+            unitPath = iPath;
+            break;
+        }
+    }
+    if(!unitPath) {
+        unitPath = unit.absolutePath();
+    }
+    if(checkIfDifferent){
+        if(nodeUnit.absolutePath()==unitPath){
+            return null;
+        }
+    }
+    if (!ll.isWebPath(unitPath)) {
+        unitPath = path.relative(projectPath, unitPath).replace(/\\/g, '/');
+    }
+    return unitPath;
 }

@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "pagination": {
-        "queryParameters": {
-          "<<queryParamName>>": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "<<queryParamName>>",
             "displayName": "<<queryParamName>>",
             "type": [
@@ -25,19 +25,21 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "pagination.raml"
           }
-        },
-        "name": "pagination"
+        ],
+        "name": "pagination",
+        "path": "pagination.raml"
       }
-    },
+    ],
     "title": "API Animals & People!",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "<<queryParamName>>": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "<<queryParamName>>",
                 "displayName": "<<queryParamName>>",
                 "type": [
@@ -59,15 +61,21 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "pagination.raml"
               }
-            },
-            "is": [
-              "pagination"
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "pagination"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/some",
+            "absoluteParentUri": "/some",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/some",
         "displayName": "/some",
         "__METADATA__": {
@@ -82,9 +90,12 @@
         ],
         "absoluteUri": "/some",
         "completeRelativeUri": "/some",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

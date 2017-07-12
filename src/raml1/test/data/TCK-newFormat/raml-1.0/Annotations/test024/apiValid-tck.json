@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "z": {
+    "annotationTypes": [
+      {
         "name": "z",
         "displayName": "z",
         "type": [
@@ -16,18 +16,22 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiValid.raml"
       }
-    },
+    ],
     "title": "Hello",
     "scalarsAnnotations": {
       "title": [
-        {
-          "name": "z",
-          "structuredValue": 2
-        }
+        [
+          {
+            "name": "z",
+            "value": 2
+          }
+        ]
       ]
-    }
+    },
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

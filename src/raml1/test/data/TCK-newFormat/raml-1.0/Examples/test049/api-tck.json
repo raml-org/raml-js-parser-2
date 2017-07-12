@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "ObjectType1": {
+    "types": [
+      {
         "name": "ObjectType1",
         "displayName": "ObjectType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop1": {
+        "properties": [
+          {
             "name": "prop1",
             "displayName": "prop1",
             "type": [
@@ -29,9 +29,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -49,28 +50,32 @@
             },
             "strict": false,
             "name": null,
-            "annotations": {
-              "NumberAnnotation": {
-                "structuredValue": 5,
-                "name": "NumberAnnotation"
+            "annotations": [
+              {
+                "name": "NumberAnnotation",
+                "value": 5
               },
-              "ObjectAnnotation": {
-                "structuredValue": {
+              {
+                "name": "ObjectAnnotation",
+                "value": {
                   "prop1": "value1"
-                },
-                "name": "ObjectAnnotation"
+                }
               }
-            },
+            ],
             "displayName": "myExample",
             "description": "example of ObjectType3"
           }
         ],
+        "simplifiedExamples": [
+          "{\"prop1\":\"value1\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "NumberAnnotation": {
+    ],
+    "annotationTypes": [
+      {
         "name": "NumberAnnotation",
         "displayName": "NumberAnnotation",
         "type": [
@@ -84,9 +89,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "ObjectAnnotation": {
+      {
         "name": "ObjectAnnotation",
         "displayName": "ObjectAnnotation",
         "type": [
@@ -100,10 +106,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "title": "Example API test 04"
+    ],
+    "title": "Example API test 04",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

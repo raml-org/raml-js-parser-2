@@ -3,15 +3,16 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "responses": {
-              "201": {
-                "code": "201"
+        "methods": [
+          {
+            "responses": [
+              {
+                "code": "201",
+                "path": "meth06.raml"
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -28,15 +29,19 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "meth06.raml"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
-            "method": "post"
+            "method": "post",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test",
+            "path": "meth06.raml"
           }
-        },
+        ],
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -51,9 +56,12 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "meth06.raml"
       }
-    ]
+    ],
+    "path": "meth06.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

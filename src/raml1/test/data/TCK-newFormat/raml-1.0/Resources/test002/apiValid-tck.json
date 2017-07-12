@@ -7,13 +7,13 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/xml": {
+                "body": [
+                  {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -31,11 +31,13 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "apiValid.raml"
                   }
-                }
+                ],
+                "path": "apiValid.raml"
               }
-            },
+            ],
             "protocols": [
               "HTTP"
             ],
@@ -46,11 +48,38 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/someChildUri/{blah}",
+            "absoluteParentUri": "/some/base/uri/someChildUri/{blah}",
+            "path": "apiValid.raml",
+            "uriParameters": [
+              {
+                "name": "blah",
+                "displayName": "blah",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  },
+                  "calculated": true
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "apiValid.raml"
+              }
+            ]
           }
-        },
-        "uriParameters": {
-          "blah": {
+        ],
+        "uriParameters": [
+          {
             "name": "blah",
             "displayName": "blah",
             "type": [
@@ -68,9 +97,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiValid.raml"
           }
-        },
+        ],
         "relativeUri": "/someChildUri/{blah}",
         "displayName": "/someChildUri/{blah}",
         "__METADATA__": {
@@ -86,7 +116,9 @@
         ],
         "absoluteUri": "/some/base/uri/someChildUri/{blah}",
         "completeRelativeUri": "/someChildUri/{blah}",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "/some/base/uri",
+        "path": "apiValid.raml"
       }
     ],
     "__METADATA__": {
@@ -95,7 +127,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

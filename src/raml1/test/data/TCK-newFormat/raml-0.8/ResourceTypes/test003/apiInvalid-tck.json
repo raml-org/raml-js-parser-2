@@ -1,10 +1,10 @@
 {
   "specification": {
     "title": "A",
-    "traits": {
-      "SomeTrait": {
-        "queryParameters": {
-          "<<queryParamName>>": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "<<queryParamName>>",
             "displayName": "<<queryParamName>>",
             "type": "number",
@@ -22,11 +22,12 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiInvalid.raml"
           }
-        },
-        "headers": {
-          "<<headerName>>": {
+        ],
+        "headers": [
+          {
             "name": "<<headerName>>",
             "displayName": "<<headerName>>",
             "type": "string",
@@ -44,22 +45,24 @@
                   "insertedAsDefault": true
                 }
               }
-            }
+            },
+            "path": "apiInvalid.raml"
           }
-        },
-        "name": "SomeTrait"
+        ],
+        "name": "SomeTrait",
+        "path": "apiInvalid.raml"
       }
-    },
-    "resourceTypes": {
-      "Resource": {
+    ],
+    "resourceTypes": [
+      {
         "name": "Resource",
-        "methods": {
-          "get": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
-                "formParameters": {
-                  "param": {
+                "formParameters": [
+                  {
                     "name": "param",
                     "displayName": "param",
                     "type": "number",
@@ -77,53 +80,75 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "path": "apiInvalid.raml"
                   }
-                }
+                ],
+                "path": "apiInvalid.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "is": [
           {
-            "SomeTrait": {
-              "queryParamName": "a",
-              "headerName": "c"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "queryParamName",
+                "value": "a"
+              },
+              {
+                "name": "headerName",
+                "value": "c"
+              }
+            ]
           }
-        ]
+        ],
+        "path": "apiInvalid.raml"
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/resource",
-        "type": "Resource",
+        "type": {
+          "name": "Resource"
+        },
         "is": [
           {
-            "SomeTrait": {
-              "queryParamName": "a",
-              "headerName": "c"
-            }
+            "name": "SomeTrait",
+            "parameters": [
+              {
+                "name": "queryParamName",
+                "value": "a"
+              },
+              {
+                "name": "headerName",
+                "value": "c"
+              }
+            ]
           }
         ],
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
-                    "name": "application/json"
+                "body": [
+                  {
+                    "name": "application/json",
+                    "path": "apiInvalid.raml"
                   }
-                }
+                ],
+                "path": "apiInvalid.raml"
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
-                "formParameters": {
-                  "param": {
+                "formParameters": [
+                  {
                     "name": "param",
                     "displayName": "param",
                     "type": "number",
@@ -142,13 +167,15 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "path": "apiInvalid.raml"
                   }
-                }
+                ],
+                "path": "apiInvalid.raml"
               }
-            },
-            "queryParameters": {
-              "a": {
+            ],
+            "queryParameters": [
+              {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -167,11 +194,12 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiInvalid.raml"
               }
-            },
-            "headers": {
-              "c": {
+            ],
+            "headers": [
+              {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -190,12 +218,16 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "path": "apiInvalid.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -209,9 +241,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

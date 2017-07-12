@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Error": {
+    "types": [
+      {
         "name": "Error",
         "displayName": "Error",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "discriminator": "type",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -49,10 +50,14 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"type\":\"internal_server_error\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "ServerError": {
+      {
         "name": "ServerError",
         "displayName": "ServerError",
         "type": [
@@ -67,10 +72,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "title": "test API"
+    ],
+    "title": "test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

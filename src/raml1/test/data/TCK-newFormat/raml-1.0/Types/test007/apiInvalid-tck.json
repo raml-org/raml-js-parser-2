@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "SimpleUnion": {
+    "types": [
+      {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
         "type": [
-          "array"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -16,16 +16,34 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "string[] | number"
+        "oneOf": [
+          {
+            "type": [
+              "array"
+            ],
+            "items": [
+              "string"
+            ]
+          },
+          {
+            "type": [
+              "array"
+            ],
+            "items": [
+              "number"
+            ]
+          }
+        ],
+        "path": "apiInvalid.raml"
       },
-      "TypeWithUnionProps": {
+      {
         "name": "TypeWithUnionProps",
         "displayName": "TypeWithUnionProps",
         "type": [
           "object"
         ],
-        "properties": {
-          "unionArray1": {
+        "properties": [
+          {
             "name": "unionArray1",
             "displayName": "unionArray1",
             "type": [
@@ -43,9 +61,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           },
-          "unionArray2": {
+          {
             "name": "unionArray2",
             "displayName": "unionArray2",
             "type": [
@@ -63,9 +82,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -91,11 +111,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"unionArray1\":[\"blah\",2,3],\"unionArray2\":[\"blah\",\"blah\",\"blah\"]}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
-    "title": "API"
+    ],
+    "title": "API",
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

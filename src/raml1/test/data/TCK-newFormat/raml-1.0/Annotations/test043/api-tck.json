@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "a1": {
+    "annotationTypes": [
+      {
         "name": "a1",
         "displayName": "a1",
         "type": [
@@ -22,9 +22,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "a2": {
+      {
         "name": "a2",
         "displayName": "a2",
         "type": [
@@ -44,16 +45,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -76,25 +78,32 @@
                     },
                     "strict": true,
                     "name": null,
-                    "annotations": {
-                      "a1": {
-                        "structuredValue": "stringValue",
-                        "name": "a1"
+                    "annotations": [
+                      {
+                        "name": "a1",
+                        "value": "stringValue"
                       },
-                      "a2": {
-                        "structuredValue": "stringValue",
-                        "name": "a2"
+                      {
+                        "name": "a2",
+                        "value": "stringValue"
                       }
-                    }
+                    ]
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"prop\":\"stringValue\"}"
+                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/g",
+            "absoluteParentUri": "/g",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {
@@ -109,9 +118,12 @@
         ],
         "absoluteUri": "/g",
         "completeRelativeUri": "/g",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

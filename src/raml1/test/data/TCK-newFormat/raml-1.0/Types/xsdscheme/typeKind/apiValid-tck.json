@@ -3,13 +3,12 @@
     "title": "Blah",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "body": {
-              "application/xml": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "typePropertyKind": "XML",
                 "schemaPath": "schema.xsd#country",
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n<xs:element name=\"c2NoZW1hLnhzZC9jb3VudHJ5\" originalname=\"country\" requestedname=\"country\" extraelement=\"true\"/></xs:schema>"
@@ -28,13 +27,20 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "<country><country_name>France</country_name>\n<population>59.7</population></country>\n"
+                ],
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML"
+                "typePropertyKind": "XML",
+                "path": "apiValid.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "apiValid.raml"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -49,9 +55,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "apiValid.raml"
       }
-    ]
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

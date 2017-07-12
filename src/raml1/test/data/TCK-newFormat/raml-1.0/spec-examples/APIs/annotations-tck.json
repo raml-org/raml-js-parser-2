@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "deprecated": {
+    "annotationTypes": [
+      {
         "name": "deprecated",
         "displayName": "deprecated",
         "type": [
@@ -15,13 +15,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "annotations.raml"
       },
-      "experimental": {
+      {
         "name": "experimental",
         "displayName": "experimental",
         "type": [
-          "nil | string"
+          "union"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -31,9 +32,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "nil",
+          "string"
+        ],
+        "path": "annotations.raml"
       },
-      "feedbackRequested": {
+      {
         "name": "feedbackRequested",
         "displayName": "feedbackRequested",
         "type": [
@@ -47,9 +53,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "annotations.raml"
       },
-      "testHarness": {
+      {
         "name": "testHarness",
         "displayName": "testHarness",
         "type": [
@@ -63,9 +70,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "annotations.raml"
       },
-      "badge": {
+      {
         "name": "badge",
         "displayName": "badge",
         "type": [
@@ -82,16 +90,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "annotations.raml"
       },
-      "clearanceLevel": {
+      {
         "name": "clearanceLevel",
         "displayName": "clearanceLevel",
         "type": [
           "object"
         ],
-        "properties": {
-          "level": {
+        "properties": [
+          {
             "name": "level",
             "displayName": "level",
             "type": [
@@ -114,9 +123,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "annotations.raml"
           },
-          "signature": {
+          {
             "name": "signature",
             "displayName": "signature",
             "type": [
@@ -135,9 +145,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "annotations.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -149,25 +160,26 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "annotations.raml"
       }
-    },
+    ],
     "title": "Illustrating annotations",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "annotations": {
-          "experimental": {
+        "annotations": [
+          {
             "name": "experimental",
             "structuredValue": null
           },
-          "feedbackRequested": {
+          {
             "name": "feedbackRequested",
             "structuredValue": null
           }
-        },
+        ],
         "relativeUri": "/groups",
         "displayName": "/groups",
         "__METADATA__": {
@@ -182,50 +194,56 @@
         ],
         "absoluteUri": "/groups",
         "completeRelativeUri": "/groups",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "annotations.raml"
       },
       {
-        "annotations": {
-          "testHarness": {
+        "annotations": [
+          {
             "name": "testHarness",
-            "structuredValue": "usersTest"
+            "value": "usersTest"
           },
-          "badge": {
+          {
             "name": "badge",
-            "structuredValue": "tested.gif"
+            "value": "tested.gif"
           },
-          "clearanceLevel": {
+          {
             "name": "clearanceLevel",
-            "structuredValue": {
+            "value": {
               "level": "high",
               "signature": "230-ghtwvfrs1itr"
             }
           }
-        },
-        "methods": {
-          "get": {
-            "annotations": {
-              "deprecated": {
+        ],
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "deprecated",
                 "structuredValue": null
               },
-              "experimental": {
+              {
                 "name": "experimental",
                 "structuredValue": null
               },
-              "feedbackRequested": {
+              {
                 "name": "feedbackRequested",
-                "structuredValue": "Feedback committed!"
+                "value": "Feedback committed!"
               }
-            },
-            "responses": {
-              "200": {
-                "code": "200"
+            ],
+            "responses": [
+              {
+                "code": "200",
+                "path": "annotations.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "path": "annotations.raml"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -240,9 +258,12 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "annotations.raml"
       }
-    ]
+    ],
+    "path": "annotations.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

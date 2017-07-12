@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "T1": {
+    "types": [
+      {
         "name": "T1",
         "displayName": "T1",
         "type": [
@@ -16,24 +16,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T1",
-          "displayName": "T1",
-          "type": [
-            "object"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "path": "api.raml"
       },
-      "T2": {
+      {
         "name": "T2",
         "displayName": "T2",
         "type": [
@@ -48,35 +33,20 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T2",
-          "displayName": "T2",
-          "type": [
-            "object"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "path": "api.raml"
       },
-      "T3": {
+      {
         "name": "T3",
         "displayName": "T3",
         "type": [
           "T1"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
-              "T4|boolean"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -91,40 +61,17 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "unfolded": {
-              "name": "p1",
-              "displayName": "p1",
-              "type": [
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "options": [
-                    "T4",
-                    "boolean"
-                  ]
-                }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
+            "oneOf": [
+              "T4",
+              "boolean"
+            ],
+            "path": "api.raml"
           },
-          "p2": {
+          {
             "name": "p2",
             "displayName": "p2",
             "type": [
-              "number|T2"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -139,36 +86,13 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "unfolded": {
-              "name": "p2",
-              "displayName": "p2",
-              "type": [
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "options": [
-                    "T2",
-                    "number"
-                  ]
-                }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
+            "oneOf": [
+              "T2",
+              "number"
+            ],
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -178,82 +102,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T3",
-          "displayName": "T3",
-          "type": [
-            "T1"
-          ],
-          "properties": {
-            "p1": {
-              "name": "p1",
-              "displayName": "p1",
-              "type": [
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "options": [
-                    "T4",
-                    "boolean"
-                  ]
-                }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            },
-            "p2": {
-              "name": "p2",
-              "displayName": "p2",
-              "type": [
-                {
-                  "type": [
-                    "union"
-                  ],
-                  "options": [
-                    "T2",
-                    "number"
-                  ]
-                }
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION"
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "path": "api.raml"
       },
-      "T4": {
+      {
         "name": "T4",
         "displayName": "T4",
         "type": [
@@ -271,28 +122,11 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "unfolded": {
-          "name": "T4",
-          "displayName": "T4",
-          "type": [
-            "string"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION"
-        }
+        "path": "api.raml"
       }
-    },
-    "title": "Test API"
+    ],
+    "title": "Test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

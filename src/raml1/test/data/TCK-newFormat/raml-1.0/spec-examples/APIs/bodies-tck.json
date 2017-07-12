@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "User": {
+    "types": [
+      {
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": {
-          "firstName": {
+        "properties": [
+          {
             "name": "firstName",
             "displayName": "firstName",
             "type": [
@@ -29,9 +29,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "bodies.raml"
           },
-          "lastName": {
+          {
             "name": "lastName",
             "displayName": "lastName",
             "type": [
@@ -52,9 +53,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "bodies.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -66,19 +68,20 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "bodies.raml"
       }
-    },
+    ],
     "title": "Example of request bodies",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -92,12 +95,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "bodies.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "path": "bodies.raml"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -112,20 +119,22 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "bodies.raml"
       },
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": {
-                  "groupName": {
+                "properties": [
+                  {
                     "name": "groupName",
                     "displayName": "groupName",
                     "type": [
@@ -146,9 +155,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "bodies.raml"
                   },
-                  "deptCode": {
+                  {
                     "name": "deptCode",
                     "displayName": "deptCode",
                     "type": [
@@ -166,9 +176,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "bodies.raml"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -180,9 +191,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "bodies.raml"
               },
-              "text/xml": {
+              {
                 "name": "text/xml",
                 "displayName": "text/xml",
                 "schemaPath": "schemas/group.xsd",
@@ -197,12 +209,16 @@
                   }
                 },
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML"
+                "typePropertyKind": "XML",
+                "path": "bodies.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/groups",
+            "absoluteParentUri": "/groups",
+            "path": "bodies.raml"
           }
-        },
+        ],
         "relativeUri": "/groups",
         "displayName": "/groups",
         "__METADATA__": {
@@ -217,9 +233,12 @@
         ],
         "absoluteUri": "/groups",
         "completeRelativeUri": "/groups",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "bodies.raml"
       }
-    ]
+    ],
+    "path": "bodies.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

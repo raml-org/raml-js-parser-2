@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Phone": {
+    "types": [
+      {
         "name": "Phone",
         "displayName": "Phone",
         "type": [
           "object"
         ],
-        "properties": {
-          "manufacturer": {
+        "properties": [
+          {
             "name": "manufacturer",
             "displayName": "manufacturer",
             "type": [
@@ -26,9 +26,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type.raml"
           },
-          "numberOfSIMCards": {
+          {
             "name": "numberOfSIMCards",
             "displayName": "numberOfSIMCards",
             "type": [
@@ -46,9 +47,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type.raml"
           },
-          "kind": {
+          {
             "name": "kind",
             "displayName": "kind",
             "type": [
@@ -66,9 +68,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -77,16 +80,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "union-type.raml"
       },
-      "Notebook": {
+      {
         "name": "Notebook",
         "displayName": "Notebook",
         "type": [
           "object"
         ],
-        "properties": {
-          "manufacturer": {
+        "properties": [
+          {
             "name": "manufacturer",
             "displayName": "manufacturer",
             "type": [
@@ -104,9 +108,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type.raml"
           },
-          "numberOfUSBPorts": {
+          {
             "name": "numberOfUSBPorts",
             "displayName": "numberOfUSBPorts",
             "type": [
@@ -124,9 +129,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type.raml"
           },
-          "kind": {
+          {
             "name": "kind",
             "displayName": "kind",
             "type": [
@@ -144,24 +150,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "union-type.raml"
           }
-        },
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
-      },
-      "Device": {
-        "name": "Device",
-        "displayName": "Device",
-        "type": [
-          "Phone | Notebook"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -171,10 +162,33 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "union-type.raml"
+      },
+      {
+        "name": "Device",
+        "displayName": "Device",
+        "type": [
+          "union"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "oneOf": [
+          "Notebook",
+          "Phone"
+        ],
+        "path": "union-type.raml"
       }
-    },
-    "title": "My API With Types"
+    ],
+    "title": "My API With Types",
+    "path": "union-type.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

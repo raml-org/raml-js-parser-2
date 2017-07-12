@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "schemaPath": "schemas/person.json",
@@ -17,16 +17,17 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "external-type-extend-invalid.raml"
       },
-      "Board": {
+      {
         "name": "Board",
         "displayName": "Board",
         "type": [
           "object"
         ],
-        "properties": {
-          "members": {
+        "properties": [
+          {
             "name": "members",
             "displayName": "members",
             "type": [
@@ -45,9 +46,12 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "Person"
+            "items": [
+              "Person"
+            ],
+            "path": "external-type-extend-invalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -59,10 +63,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "external-type-extend-invalid.raml"
       }
-    },
-    "title": "External Types Invalid"
+    ],
+    "title": "External Types Invalid",
+    "path": "external-type-extend-invalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

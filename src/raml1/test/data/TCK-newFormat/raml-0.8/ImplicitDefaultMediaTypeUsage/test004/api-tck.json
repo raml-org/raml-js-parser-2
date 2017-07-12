@@ -4,53 +4,66 @@
     "mediaType": "application/json",
     "schemas": [
       {
-        "t1": "{}"
+        "value": "{}",
+        "name": "t1",
+        "path": "api.raml"
       },
       {
-        "t2": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+        "value": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+        "name": "t2",
+        "path": "api.raml"
       },
       {
-        "t3": "{}"
+        "value": "{}",
+        "name": "t3",
+        "path": "api.raml"
       }
     ],
-    "resourceTypes": {
-      "collection": {
+    "resourceTypes": [
+      {
         "name": "collection",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "t1",
-                    "schemaContent": "{}"
+                    "schemaContent": "{}",
+                    "path": "api.raml"
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "schema": "t2",
-                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "api.raml"
           }
-        }
+        ],
+        "path": "api.raml"
       }
-    },
+    ],
     "resources": [
       {
         "relativeUri": "/schemes",
-        "type": "collection",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "type": {
+          "name": "collection"
+        },
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "schema": "t3",
                     "schemaContent": "{}",
@@ -60,19 +73,25 @@
                           "calculated": true
                         }
                       }
-                    }
+                    },
+                    "path": "api.raml"
                   },
-                  "application/xml": {
+                  {
                     "name": "application/xml",
                     "schema": "t2",
-                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>"
+                    "schemaContent": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/schemes",
+            "absoluteParentUri": "/schemes",
+            "path": "api.raml"
           }
-        },
+        ],
         "displayName": "/schemes",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -86,9 +105,12 @@
         ],
         "absoluteUri": "/schemes",
         "completeRelativeUri": "/schemes",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

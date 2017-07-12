@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": {
-      "withQueryParameters": {
-        "queryParameters": {
-          "platform": {
+    "traits": [
+      {
+        "queryParameters": [
+          {
             "name": "platform",
             "displayName": "platform",
             "type": [
@@ -28,20 +28,22 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "traits-merge-enumlist.raml"
           }
-        },
-        "name": "withQueryParameters"
+        ],
+        "name": "withQueryParameters",
+        "path": "traits-merge-enumlist.raml"
       }
-    },
+    ],
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "queryParameters": {
-              "platform": {
+        "methods": [
+          {
+            "queryParameters": [
+              {
                 "name": "platform",
                 "displayName": "platform",
                 "type": [
@@ -67,15 +69,21 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "traits-merge-enumlist.raml"
               }
-            },
-            "is": [
-              "withQueryParameters"
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "withQueryParameters"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/installer",
+            "absoluteParentUri": "/installer",
+            "path": "traits-merge-enumlist.raml"
           }
-        },
+        ],
         "relativeUri": "/installer",
         "displayName": "/installer",
         "__METADATA__": {
@@ -90,9 +98,12 @@
         ],
         "absoluteUri": "/installer",
         "completeRelativeUri": "/installer",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "traits-merge-enumlist.raml"
       }
-    ]
+    ],
+    "path": "traits-merge-enumlist.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

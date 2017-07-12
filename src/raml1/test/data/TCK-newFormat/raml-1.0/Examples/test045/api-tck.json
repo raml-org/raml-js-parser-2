@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "dept_code": {
+    "types": [
+      {
         "name": "dept_code",
         "displayName": "dept_code",
         "type": [
@@ -19,13 +19,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "traits": {
-      "chargeable": {
-        "headers": {
-          "X-Dept": {
+    ],
+    "traits": [
+      {
+        "headers": [
+          {
             "name": "X-Dept",
             "displayName": "X-Dept",
             "type": [
@@ -52,21 +53,28 @@
                 }
               }
             },
+            "simplifiedExamples": [
+              "[\"230-OCTO\",\"InvalidHere\"]"
+            ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "dept_code"
+            "items": [
+              "dept_code"
+            ],
+            "path": "api.raml"
           }
-        },
-        "name": "chargeable"
+        ],
+        "name": "chargeable",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "Test named parameters",
     "resources": [
       {
-        "methods": {
-          "get": {
-            "headers": {
-              "X-Dept": {
+        "methods": [
+          {
+            "headers": [
+              {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
                 "type": [
@@ -93,17 +101,28 @@
                     }
                   }
                 },
+                "simplifiedExamples": [
+                  "[\"230-OCTO\",\"InvalidHere\"]"
+                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": "dept_code"
+                "items": [
+                  "dept_code"
+                ],
+                "path": "api.raml"
               }
-            },
-            "is": [
-              "chargeable"
             ],
-            "method": "get"
+            "is": [
+              {
+                "name": "chargeable"
+              }
+            ],
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -118,9 +137,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "t1": {
+    "types": [
+      {
         "name": "t1",
         "displayName": "t1",
         "type": [
@@ -16,17 +16,19 @@
             "name": "e1",
             "scalarsAnnotations": {
               "displayName": [
-                {
-                  "structuredValue": "asdfghjkl",
-                  "name": "a"
-                }
+                [
+                  {
+                    "name": "a",
+                    "value": "asdfghjkl"
+                  }
+                ]
               ]
             },
             "displayName": "myExample"
           }
         ],
-        "properties": {
-          "prop": {
+        "properties": [
+          {
             "name": "prop",
             "displayName": "prop",
             "type": [
@@ -44,9 +46,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -57,12 +60,16 @@
             }
           }
         },
+        "simplifiedExamples": [
+          "{\"prop\":\"stringValue\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "a": {
+    ],
+    "annotationTypes": [
+      {
         "name": "a",
         "displayName": "a",
         "type": [
@@ -81,11 +88,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "testAPI",
-    "version": "v1"
+    "version": "v1",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

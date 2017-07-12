@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "Types",
-        "value": "types.raml"
+        "value": "types.raml",
+        "path": "api.raml"
       }
     ],
     "title": "Mulesoft Info",
@@ -17,13 +18,13 @@
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -74,13 +75,20 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "[{\"id\":1,\"title\":\"feature1\",\"description\":\"description of feature 1\",\"pic\":\"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"},{\"id\":2,\"title\":\"feature2\",\"description\":\"description of feature 2\",\"pic\":\"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"},{\"id\":3,\"title\":\"feature3\",\"description\":\"description of feature 3\",\"pic\":\"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"},{\"id\":4,\"title\":\"feature4\",\"description\":\"description of feature 4\",\"pic\":\"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"},{\"id\":5,\"title\":\"feature5\",\"description\":\"description of feature 4\",\"pic\":\"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"}]"
+                    ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "Types.Feature"
+                    "items": [
+                      "Types.Feature"
+                    ],
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
+            ],
             "protocols": [
               "HTTPS"
             ],
@@ -91,9 +99,12 @@
                   "calculated": true
                 }
               }
-            }
+            },
+            "parentUri": "/features",
+            "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/features",
         "displayName": "/features",
         "__METADATA__": {
@@ -108,7 +119,9 @@
         ],
         "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
         "completeRelativeUri": "/features",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf",
+        "path": "api.raml"
       }
     ],
     "__METADATA__": {
@@ -117,7 +130,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

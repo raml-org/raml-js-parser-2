@@ -4,24 +4,29 @@
     "resources": [
       {
         "relativeUri": "/",
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "example": {
                       "value": 10
-                    }
+                    },
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/",
+            "absoluteParentUri": "/",
+            "path": "api.raml"
           }
-        },
+        ],
         "displayName": "/",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -33,9 +38,12 @@
         "relativeUriPathSegments": [],
         "absoluteUri": "/",
         "completeRelativeUri": "/",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

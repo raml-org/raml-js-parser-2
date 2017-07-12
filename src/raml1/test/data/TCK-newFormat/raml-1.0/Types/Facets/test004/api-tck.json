@@ -1,21 +1,21 @@
 {
   "specification": {
-    "types": {
-      "myDate": {
-        "annotations": {
-          "reader": {
+    "types": [
+      {
+        "annotations": [
+          {
             "name": "reader",
-            "structuredValue": "myReaader.ts"
+            "value": "myReaader.ts"
           },
-          "writer": {
+          {
             "name": "writer",
-            "structuredValue": "myWiter.ts"
+            "value": "myWiter.ts"
           }
-        },
+        ],
         "name": "myDate",
         "displayName": "myDate",
-        "facets": {
-          "format": {
+        "facets": [
+          {
             "name": "format",
             "displayName": "format",
             "type": [
@@ -29,9 +29,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "type": [
           "string"
         ],
@@ -43,11 +44,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "reader": {
+    ],
+    "annotationTypes": [
+      {
         "name": "reader",
         "displayName": "reader",
         "type": [
@@ -61,9 +63,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "writer": {
+      {
         "name": "writer",
         "displayName": "writer",
         "type": [
@@ -77,16 +80,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "A",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "type": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "type",
                 "displayName": "type",
                 "type": [
@@ -100,9 +104,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               },
-              "format": {
+              {
                 "name": "format",
                 "displayName": "format",
                 "type": [
@@ -116,12 +121,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/q",
+            "absoluteParentUri": "/q",
+            "path": "api.raml"
           }
-        },
+        ],
         "relativeUri": "/q",
         "displayName": "/q",
         "__METADATA__": {
@@ -136,9 +145,12 @@
         ],
         "absoluteUri": "/q",
         "completeRelativeUri": "/q",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

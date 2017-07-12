@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "Person": {
+    "types": [
+      {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -17,30 +17,8 @@
             "required": true,
             "xml": {
               "attribute": true,
-              "name": "fullname"
-            },
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
-          },
-          "addresses": {
-            "name": "addresses",
-            "displayName": "addresses",
-            "type": [
-              "array"
-            ],
-            "required": true,
-            "xml": {
-              "wrapped": true
+              "name": "fullname",
+              "path": "xml-facet.raml"
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -54,9 +32,37 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "Address"
+            "path": "xml-facet.raml"
+          },
+          {
+            "name": "addresses",
+            "displayName": "addresses",
+            "type": [
+              "array"
+            ],
+            "required": true,
+            "xml": {
+              "wrapped": true,
+              "path": "xml-facet.raml"
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": [
+              "Address"
+            ],
+            "path": "xml-facet.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -68,16 +74,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "xml-facet.raml"
       },
-      "Address": {
+      {
         "name": "Address",
         "displayName": "Address",
         "type": [
           "object"
         ],
-        "properties": {
-          "street": {
+        "properties": [
+          {
             "name": "street",
             "displayName": "street",
             "type": [
@@ -95,9 +102,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "xml-facet.raml"
           },
-          "city": {
+          {
             "name": "city",
             "displayName": "city",
             "type": [
@@ -115,9 +123,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "xml-facet.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -129,10 +138,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "xml-facet.raml"
       }
-    },
-    "title": "XML facet"
+    ],
+    "title": "XML facet",
+    "path": "xml-facet.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

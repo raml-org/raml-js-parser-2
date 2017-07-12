@@ -3,10 +3,10 @@
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "responses": {
-              "203": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "203",
                 "headers": [
                   {
@@ -31,14 +31,19 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      10
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "meth04.raml"
                   }
-                ]
+                ],
+                "path": "meth04.raml"
               }
-            },
-            "body": {
-              "application/json": {
+            ],
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "__METADATA__": {
@@ -54,12 +59,16 @@
                 "type": [
                   "TestSchema"
                 ],
-                "mediaType": "application/json"
+                "mediaType": "application/json",
+                "path": "meth04.raml"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/test",
+            "absoluteParentUri": "/test",
+            "path": "meth04.raml"
           }
-        },
+        ],
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -74,11 +83,13 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "meth04.raml"
       }
     ],
-    "types": {
-      "TestSchema": {
+    "types": [
+      {
         "name": "TestSchema",
         "displayName": "TestSchema",
         "type": [
@@ -92,9 +103,11 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON"
+        "typePropertyKind": "JSON",
+        "path": "meth04.raml"
       }
-    }
+    ],
+    "path": "meth04.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

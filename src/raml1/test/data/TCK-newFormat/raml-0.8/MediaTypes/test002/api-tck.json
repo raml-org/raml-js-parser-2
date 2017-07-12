@@ -4,26 +4,32 @@
     "resources": [
       {
         "relativeUri": "/rere",
-        "methods": {
-          "put": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/x-www-form-urlencoded": {
-                    "name": "application/x-www-form-urlencoded"
+                "body": [
+                  {
+                    "name": "application/x-www-form-urlencoded",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "body": {
-              "application/x-www-form-urlencoded": {
-                "name": "application/x-www-form-urlencoded"
+            ],
+            "body": [
+              {
+                "name": "application/x-www-form-urlencoded",
+                "path": "api.raml"
               }
-            },
-            "method": "put"
+            ],
+            "method": "put",
+            "parentUri": "/rere",
+            "absoluteParentUri": "/rere",
+            "path": "api.raml"
           }
-        },
+        ],
         "displayName": "/rere",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -37,9 +43,12 @@
         ],
         "absoluteUri": "/rere",
         "completeRelativeUri": "/rere",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

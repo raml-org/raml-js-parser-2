@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "ObjectType1": {
+    "types": [
+      {
         "name": "ObjectType1",
         "displayName": "ObjectType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "prop1": {
+        "properties": [
+          {
             "name": "prop1",
             "displayName": "prop1",
             "type": [
@@ -29,9 +29,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -51,11 +52,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"prop1\":\"value1\"}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "title": "Example API test 02"
+    ],
+    "title": "Example API test 02",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

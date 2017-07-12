@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": {
-      "SuperType": {
+    "types": [
+      {
         "name": "SuperType",
         "displayName": "SuperType",
-        "facets": {
-          "test": {
+        "facets": [
+          {
             "name": "test",
             "displayName": "test",
             "type": [
@@ -19,9 +19,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "test9.raml"
           }
-        },
+        ],
         "type": [
           "string"
         ],
@@ -36,13 +37,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "test9.raml"
       },
-      "SubType": {
+      {
         "name": "SubType",
         "displayName": "SubType",
-        "facets": {
-          "test": {
+        "facets": [
+          {
             "name": "test",
             "displayName": "test",
             "type": [
@@ -56,9 +58,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "test9.raml"
           }
-        },
+        ],
         "type": [
           "SuperType"
         ],
@@ -70,10 +73,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "test9.raml"
       }
-    },
-    "title": "test"
+    ],
+    "title": "test",
+    "path": "test9.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

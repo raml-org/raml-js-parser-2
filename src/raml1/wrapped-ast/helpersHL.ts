@@ -192,43 +192,43 @@ export function typeExamples(node:hl.IHighLevelNode,dumpXMLRepresentationOfExamp
 }
 
 export function dumpExpandableExample(ex,dumpXMLRepresentationOfExamples=false):any {
-    var obj;
+    let obj;
     if (ex.isJSONString() || ex.isYAML()) {
         obj = ex.asJSON();
     }
     else {
         obj = ex.original();
     }
-    var sObj:any = {
+    let sObj:any = {
         value: obj,
         strict: ex.strict(),
         name: ex.name()
     };
     if(ex.hasAnnotations()) {
-        var annotations = ex.annotations();
-        var aObj = toAnnotations(annotations);
-        if (Object.keys(aObj).length > 0) {
-            sObj["annotations"] = aObj;
+        let annotations = ex.annotations();
+        let annotationsArray = toAnnotations(annotations);
+        if (annotationsArray.length > 0) {
+            sObj["annotations"] = annotationsArray;
         }
     }
     if(ex.hasScalarAnnotations()) {
-        var sAnnotations = ex.scalarsAnnotations();
-        var saObj = {};
+        let sAnnotations = ex.scalarsAnnotations();
+        let saObj = {};
         Object.keys(sAnnotations).forEach(pName=> {
-            var aObj1 = toAnnotations(sAnnotations[pName]);
-            if (Object.keys(aObj1).length > 0) {
-                saObj[pName] = Object.keys(aObj1).map(x=>aObj1[x]);
+            let annotationsArray = toAnnotations(sAnnotations[pName]);
+            if (annotationsArray.length > 0) {
+                saObj[pName] = [ annotationsArray ];
             }
         });
         if (Object.keys(saObj).length > 0) {
             sObj["scalarsAnnotations"] = saObj;
         }
     }
-    var displayName = ex.displayName();
+    let displayName = ex.displayName();
     if (displayName) {
         sObj["displayName"] = displayName;
     }
-    var description = ex.description();
+    let description = ex.description();
     if (description != null) {
         sObj["description"] = description;
     }
@@ -250,16 +250,16 @@ function exampleObjects(node:hl.IHighLevelNode,
 }
 
 function toAnnotations(annotations:any) {
-    var aObj = {};
+    var arr = [];
     if(annotations) {
         Object.keys(annotations).forEach(aName=> {
-            aObj[aName] = {
-                structuredValue: annotations[aName].value(),
-                name: aName
-            };
+            arr.push({
+                name: aName,
+                value: annotations[aName].value()
+            });
         });
     }
-    return aObj;
+    return arr;
 }
 
 
@@ -431,19 +431,31 @@ export function getTemplateParametrizedProperties(node:hl.IHighLevelNode):any{
  * __$helperMethod__
  * __$meta__={"name":"fixedFacets","primary":true}
  */
-export function typeFixedFacets(td:hl.IHighLevelNode):any{
+export function typeFixedFacets(td:hl.IHighLevelNode):any[]{
     var rDef = td.localType();
     var obj = rDef.fixedFacets();
     var keys = Object.keys(obj);
+    let arr:any[] = [];
     if(!rDef.hasUnionInHierarchy()) {
         for (var key of keys) {
-            if (rDef.facet(key) == null) {
-                delete obj[key];
+            if (rDef.facet(key) != null) {
+                arr.push({
+                    name: key,
+                    value: obj[key]
+                });
             }
         }
     }
-    if(Object.keys(obj).length==0){
+    else{
+        arr = keys.map(key=>{
+            return {
+                name: key,
+                value: obj[key]
+            };
+        })
+    }
+    if(arr.length==0){
         return null;
     }
-    return obj;
+    return arr;
 }

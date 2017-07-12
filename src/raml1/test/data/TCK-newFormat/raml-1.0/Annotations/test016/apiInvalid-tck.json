@@ -1,26 +1,26 @@
 {
   "specification": {
-    "types": {
-      "User": {
-        "annotations": {
-          "meta-data": {
+    "types": [
+      {
+        "annotations": [
+          {
             "name": "meta-data",
-            "structuredValue": "on an object; on a data type declaration"
+            "value": "on an object; on a data type declaration"
           }
-        },
+        ],
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
-            "annotations": {
-              "meta-data": {
+        "properties": [
+          {
+            "annotations": [
+              {
                 "name": "meta-data",
-                "structuredValue": "on a string property"
+                "value": "on a string property"
               }
-            },
+            ],
             "name": "name",
             "displayName": "name",
             "type": [
@@ -38,9 +38,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -49,11 +50,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
-    "annotationTypes": {
-      "meta-resource-method": {
+    ],
+    "annotationTypes": [
+      {
         "name": "meta-resource-method",
         "displayName": "meta-resource-method",
         "type": [
@@ -74,9 +76,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       },
-      "meta-data": {
+      {
         "name": "meta-data",
         "displayName": "meta-data",
         "type": [
@@ -93,44 +96,45 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
+    ],
     "title": "Testing TypeDeclaration targets",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "annotations": {
-          "meta-resource-method": {
+        "annotations": [
+          {
             "name": "meta-resource-method",
-            "structuredValue": "on a resource"
+            "value": "on a resource"
           }
-        },
-        "methods": {
-          "get": {
-            "annotations": {
-              "meta-resource-method": {
+        ],
+        "methods": [
+          {
+            "annotations": [
+              {
                 "name": "meta-resource-method",
-                "structuredValue": "on a method"
+                "value": "on a method"
               },
-              "meta-data": {
+              {
                 "name": "meta-data",
-                "structuredValue": "stringValue1"
+                "value": "stringValue1"
               }
-            },
-            "responses": {
-              "200": {
+            ],
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
-                    "annotations": {
-                      "meta-data": {
+                "body": [
+                  {
+                    "annotations": [
+                      {
                         "name": "meta-data",
-                        "structuredValue": "on a body"
+                        "value": "on a body"
                       }
-                    },
+                    ],
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -145,14 +149,21 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": "User"
+                    "items": [
+                      "User"
+                    ],
+                    "path": "apiInvalid.raml"
                   }
-                }
+                ],
+                "path": "apiInvalid.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -167,9 +178,12 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

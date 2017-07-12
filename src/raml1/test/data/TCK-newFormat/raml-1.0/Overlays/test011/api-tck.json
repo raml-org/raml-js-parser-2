@@ -10,7 +10,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "NewExtension3.raml"
       },
       {
         "relativeUri": "/anotherResource",
@@ -27,7 +29,9 @@
         ],
         "absoluteUri": "/anotherResource",
         "completeRelativeUri": "/anotherResource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "NewExtension3.raml"
       },
       {
         "relativeUri": "/anotherResource2",
@@ -44,10 +48,13 @@
         ],
         "absoluteUri": "/anotherResource2",
         "completeRelativeUri": "/anotherResource2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "NewExtension3.raml"
       }
     ],
-    "extends": "NewExtension2.raml"
+    "extends": "NewExtension2.raml",
+    "path": "NewExtension3.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

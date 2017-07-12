@@ -1,14 +1,14 @@
 {
   "specification": {
-    "resourceTypes": {
-      "member": {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -31,39 +31,51 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "<<param1>>"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "path": "api.raml"
           }
-        },
-        "name": "member"
+        ],
+        "name": "member",
+        "path": "api.raml"
       },
-      "rt": {
+      {
         "type": {
-          "member": {
-            "param1": "<<param2>>"
-          }
+          "name": "member",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "<<param2>>"
+            }
+          ]
         },
-        "name": "rt"
+        "name": "rt",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "test API",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -93,19 +105,31 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"id\":\"987\",\"at\":\"Sun, 20 Jul 2014 21:20:00 GMT\",\"toAddressId\":\"273hh79\",\"orderItemId\":\"9877292\",\"status\":\"scheduled\",\"droneId\":\"f\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource1",
+            "absoluteParentUri": "/resource1",
+            "path": "api.raml"
           }
-        },
+        ],
         "type": {
-          "member": {
-            "param1": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
-          }
+          "name": "member",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
+            }
+          ]
         },
         "relativeUri": "/resource1",
         "displayName": "/resource1",
@@ -121,16 +145,18 @@
         ],
         "absoluteUri": "/resource1",
         "completeRelativeUri": "/resource1",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       },
       {
-        "methods": {
-          "get": {
-            "responses": {
-              "200": {
+        "methods": [
+          {
+            "responses": [
+              {
                 "code": "200",
-                "body": {
-                  "application/json": {
+                "body": [
+                  {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -160,19 +186,31 @@
                         "name": null
                       }
                     ],
+                    "simplifiedExamples": [
+                      "{\"id\":\"987\",\"at\":\"Sun, 20 Jul 2014 21:20:00 GMT\",\"toAddressId\":\"273hh79\",\"orderItemId\":\"9877292\",\"status\":\"scheduled\",\"droneId\":\"f\"}"
+                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                }
+                ],
+                "path": "api.raml"
               }
-            },
-            "method": "get"
+            ],
+            "method": "get",
+            "parentUri": "/resource2",
+            "absoluteParentUri": "/resource2",
+            "path": "api.raml"
           }
-        },
+        ],
         "type": {
-          "rt": {
-            "param2": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
-          }
+          "name": "rt",
+          "parameters": [
+            {
+              "name": "param2",
+              "value": "{\n  \"id\": \"987\",\n  \"at\": \"Sun, 20 Jul 2014 21:20:00 GMT\",\n  \"toAddressId\": \"273hh79\",\n  \"orderItemId\": \"9877292\",\n  \"status\": \"scheduled\",\n  \"droneId\": \"f\"\n}\n"
+            }
+          ]
         },
         "relativeUri": "/resource2",
         "displayName": "/resource2",
@@ -188,9 +226,12 @@
         ],
         "absoluteUri": "/resource2",
         "completeRelativeUri": "/resource2",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

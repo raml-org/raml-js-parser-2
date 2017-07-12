@@ -2,12 +2,14 @@
   "specification": {
     "title": "New API",
     "version": "v1",
-    "securitySchemes": {
-      "auth": {
+    "securitySchemes": [
+      {
         "name": "auth",
-        "type": "x-sls"
+        "type": "x-sls",
+        "path": "apiValid.raml"
       }
-    }
+    ],
+    "path": "apiValid.raml"
   },
   "ramlVersion": "RAML08",
   "type": "Api",

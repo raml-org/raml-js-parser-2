@@ -3,7 +3,8 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "path": "api.raml"
       }
     ],
     "title": "Test API",
@@ -20,23 +21,26 @@
     },
     "scalarsAnnotations": {
       "baseUri": [
-        {
-          "name": "lib.bindingDefinition",
-          "structuredValue": [
-            {
-              "method": "GET",
-              "input": "NONE",
-              "output": "REQUIRED"
-            },
-            {
-              "method": "POST",
-              "input": "NONE",
-              "output": "REQUIRED"
-            }
-          ]
-        }
+        [
+          {
+            "name": "lib.bindingDefinition",
+            "value": [
+              {
+                "method": "GET",
+                "input": "NONE",
+                "output": "REQUIRED"
+              },
+              {
+                "method": "POST",
+                "input": "NONE",
+                "output": "REQUIRED"
+              }
+            ]
+          }
+        ]
       ]
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,26 +1,33 @@
 {
   "specification": {
-    "resourceTypes": {
-      "collection": {
-        "methods": {
-          "post": {
+    "resourceTypes": [
+      {
+        "methods": [
+          {
             "description": "Create a <<resourcePathName|!singularize|!uppercamelcase>>",
-            "method": "post"
+            "method": "post",
+            "path": "api.raml"
           }
-        },
-        "name": "collection"
+        ],
+        "name": "collection",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "testAPI",
     "resources": [
       {
-        "methods": {
-          "post": {
+        "methods": [
+          {
             "description": "Create a User",
-            "method": "post"
+            "method": "post",
+            "parentUri": "/users",
+            "absoluteParentUri": "/users",
+            "path": "api.raml"
           }
+        ],
+        "type": {
+          "name": "collection"
         },
-        "type": "collection",
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -35,9 +42,12 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

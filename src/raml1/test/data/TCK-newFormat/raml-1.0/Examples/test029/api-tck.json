@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": {
-      "amazon-apigateway-method": {
+    "types": [
+      {
         "name": "amazon-apigateway-method",
         "displayName": "amazon-apigateway-method",
         "type": [
@@ -29,10 +29,14 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "POST"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-status": {
+      {
         "name": "amazon-apigateway-status",
         "displayName": "amazon-apigateway-status",
         "type": [
@@ -50,16 +54,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-templates": {
+      {
         "name": "amazon-apigateway-templates",
         "displayName": "amazon-apigateway-templates",
         "type": [
           "object"
         ],
-        "properties": {
-          "/\\w+/\\w+/": {
+        "properties": [
+          {
             "name": "/\\w+/\\w+/",
             "displayName": "/\\w+/\\w+/",
             "type": [
@@ -80,9 +85,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -94,9 +100,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-auth-type": {
+      {
         "name": "amazon-apigateway-auth-type",
         "displayName": "amazon-apigateway-auth-type",
         "type": [
@@ -116,16 +123,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-integration-lambda": {
+      {
         "name": "amazon-apigateway-integration-lambda",
         "displayName": "amazon-apigateway-integration-lambda",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -149,9 +157,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -163,16 +172,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-integration-HTTP": {
+      {
         "name": "amazon-apigateway-integration-HTTP",
         "displayName": "amazon-apigateway-integration-HTTP",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -196,9 +206,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -210,16 +221,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-integration-mock": {
+      {
         "name": "amazon-apigateway-integration-mock",
         "displayName": "amazon-apigateway-integration-mock",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -243,9 +255,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -257,16 +270,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "amazon-apigateway-integration-aws": {
+      {
         "name": "amazon-apigateway-integration-aws",
         "displayName": "amazon-apigateway-integration-aws",
         "type": [
           "object"
         ],
-        "properties": {
-          "type": {
+        "properties": [
+          {
             "name": "type",
             "displayName": "type",
             "type": [
@@ -290,9 +304,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "uri": {
+          {
             "name": "uri",
             "displayName": "uri",
             "type": [
@@ -313,9 +328,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "httpMethod": {
+          {
             "name": "httpMethod",
             "displayName": "httpMethod",
             "type": [
@@ -333,9 +349,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "credentials": {
+          {
             "name": "credentials",
             "displayName": "credentials",
             "type": [
@@ -356,9 +373,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "requestTemplates": {
+          {
             "name": "requestTemplates",
             "displayName": "requestTemplates",
             "type": [
@@ -376,9 +394,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "requestParameters": {
+          {
             "name": "requestParameters",
             "displayName": "requestParameters",
             "type": [
@@ -396,9 +415,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "cacheNamespace": {
+          {
             "name": "cacheNamespace",
             "displayName": "cacheNamespace",
             "type": [
@@ -419,9 +439,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           },
-          "cacheKeyParameters": {
+          {
             "name": "cacheKeyParameters",
             "displayName": "cacheKeyParameters",
             "type": [
@@ -440,25 +461,28 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": "string"
+            "items": [
+              "string"
+            ],
+            "path": "api.raml"
           },
-          "responses": {
+          {
             "name": "responses",
             "displayName": "responses",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": {
-              "/.*/": {
+            "properties": [
+              {
                 "name": "/.*/",
                 "displayName": "/.*/",
                 "type": [
                   "object"
                 ],
                 "required": true,
-                "properties": {
-                  "statusCode": {
+                "properties": [
+                  {
                     "name": "statusCode",
                     "displayName": "statusCode",
                     "type": [
@@ -476,9 +500,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
-                  "responseParameters": {
+                  {
                     "name": "responseParameters",
                     "displayName": "responseParameters",
                     "type": [
@@ -496,9 +521,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   },
-                  "responseTemplates": {
+                  {
                     "name": "responseTemplates",
                     "displayName": "responseTemplates",
                     "type": [
@@ -516,9 +542,10 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "path": "api.raml"
                   }
-                },
+                ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -533,9 +560,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -550,9 +578,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -607,10 +636,14 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"type\":\"aws\",\"uri\":\"arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations\",\"httpMethod\":\"POST\",\"credentials\":\"arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role\",\"requestTemplates\":{\"application/json\":\"json request template 2\",\"application/xml\":\"xml request template 2\"},\"requestParameters\":{\"integration.request.path.integrationPathParam\":\"method.request.querystring.latitude\",\"integration.request.querystring.integrationQueryParam\":\"method.request.querystring.longitude\"},\"cacheNamespace\":\"cache namespace\",\"cacheKeyParameters\":[],\"responses\":{\"2\\\\d{2}\":{\"statusCode\":\"200\",\"responseParameters\":{\"method.response.header.test-method-response-header\":\"integration.response.header.integrationResponseHeaderParam1\"},\"responseTemplates\":{\"application/json\":\"json 200 response template\",\"application/xml\":\"xml 200 response template\"}},\"default\":{\"statusCode\":\"400\",\"responseParameters\":{\"method.response.header.test-method-response-header\":\"'static value'\"},\"responseTemplates\":{\"application/json\":\"json 400 response template\",\"application/xml\":\"xml 400 response template\"}}}}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "API Gateway Test API",
     "version": "1.0.0",
     "baseUri": "https://api.uber.com",
@@ -626,7 +659,8 @@
           "calculated": true
         }
       }
-    }
+    },
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

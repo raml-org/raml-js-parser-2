@@ -493,7 +493,7 @@ function doTestAPI(
         }
         json = index.loadSync(apiPath,{
             expandLibraries: expandLib,
-            unfoldTypes: unfoldTypes
+            serializeMetadata: true
         });
     }
     else {

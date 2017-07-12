@@ -10,7 +10,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "NewOverlay2.raml"
       },
       {
         "relativeUri": "/anotherResource",
@@ -27,10 +29,13 @@
         ],
         "absoluteUri": "/anotherResource",
         "completeRelativeUri": "/anotherResource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "NewOverlay2.raml"
       }
     ],
-    "extends": "NewOverlay.raml"
+    "extends": "NewOverlay.raml",
+    "path": "NewOverlay2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

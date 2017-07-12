@@ -1,9 +1,9 @@
 {
   "specification": {
-    "annotations": {
-      "MyAnnotationType1": {
+    "annotations": [
+      {
         "name": "MyAnnotationType1",
-        "structuredValue": {
+        "value": {
           "cc": [
             1,
             2,
@@ -12,13 +12,13 @@
           ]
         }
       },
-      "MyAnnotationType2": {
+      {
         "name": "MyAnnotationType2",
-        "structuredValue": "a"
+        "value": "a"
       }
-    },
-    "types": {
-      "SmallArray": {
+    ],
+    "types": [
+      {
         "name": "SmallArray",
         "displayName": "SmallArray",
         "type": [
@@ -34,18 +34,21 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": "number"
+        "items": [
+          "number"
+        ],
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "MyAnnotationType1": {
+    ],
+    "annotationTypes": [
+      {
         "name": "MyAnnotationType1",
         "displayName": "MyAnnotationType1",
         "type": [
           "object"
         ],
-        "properties": {
-          "cc": {
+        "properties": [
+          {
             "name": "cc",
             "displayName": "cc",
             "type": [
@@ -63,9 +66,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -77,9 +81,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       },
-      "MyAnnotationType2": {
+      {
         "name": "MyAnnotationType2",
         "displayName": "MyAnnotationType2",
         "type": [
@@ -96,10 +101,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "title": "Test API"
+    ],
+    "title": "Test API",
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

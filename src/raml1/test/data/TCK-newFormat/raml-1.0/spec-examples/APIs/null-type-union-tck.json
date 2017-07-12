@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": {
-      "NullValue": {
+    "types": [
+      {
         "name": "NullValue",
         "displayName": "NullValue",
         "type": [
           "object"
         ],
-        "properties": {
-          "name": {
+        "properties": [
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -29,13 +29,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "null-type-union.raml"
           },
-          "comment": {
+          {
             "name": "comment",
             "displayName": "comment",
             "type": [
-              "nil | string"
+              "union"
             ],
             "required": true,
             "__METADATA__": {
@@ -49,9 +50,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "oneOf": [
+              "nil",
+              "string"
+            ],
+            "path": "null-type-union.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -69,11 +75,16 @@
             "name": null
           }
         ],
+        "simplifiedExamples": [
+          "{\"name\":\"Fred\",\"comment\":null}"
+        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "null-type-union.raml"
       }
-    },
-    "title": "Using null type and union"
+    ],
+    "title": "Using null type and union",
+    "path": "null-type-union.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

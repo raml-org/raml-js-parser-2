@@ -1,22 +1,39 @@
 {
   "specification": {
-    "annotations": {
-      "lib2.a2": {
+    "annotations": [
+      {
         "name": "lib2.a2",
         "structuredValue": null
       },
-      "lib1.a1": {
+      {
         "name": "lib1.a1",
         "structuredValue": null
       },
-      "lib0.a0": {
+      {
         "name": "lib0.a0",
         "structuredValue": null
       }
-    },
-    "annotationTypes": {
-      "lib0.a0": {
-        "name": "a0",
+    ],
+    "uses": [
+      {
+        "key": "lib2",
+        "value": "lib2.raml",
+        "path": "e2.raml"
+      },
+      {
+        "key": "lib1",
+        "value": "lib1.raml",
+        "path": "e2.raml"
+      },
+      {
+        "key": "lib0",
+        "value": "lib0.raml",
+        "path": "e2.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib0.a0",
         "displayName": "a0",
         "type": [
           "nil"
@@ -29,10 +46,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib0.raml"
       },
-      "lib1.a1": {
-        "name": "a1",
+      {
+        "name": "lib1.a1",
         "displayName": "a1",
         "type": [
           "nil"
@@ -45,10 +63,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib1.raml"
       },
-      "lib2.a2": {
-        "name": "a2",
+      {
+        "name": "lib2.a2",
         "displayName": "a2",
         "type": [
           "nil"
@@ -61,11 +80,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib2.raml"
       }
-    },
+    ],
     "title": "test API",
-    "extends": "e1.raml"
+    "extends": "e1.raml",
+    "path": "e2.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

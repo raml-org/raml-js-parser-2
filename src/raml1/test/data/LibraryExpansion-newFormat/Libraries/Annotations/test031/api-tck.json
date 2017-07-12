@@ -1,7 +1,14 @@
 {
   "specification": {
-    "types": {
-      "cards": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib/lib.raml",
+        "path": "api.raml"
+      }
+    ],
+    "types": [
+      {
         "name": "cards",
         "displayName": "cards",
         "type": [
@@ -14,12 +21,12 @@
             "type": [
               "object"
             ],
-            "properties": {
-              "cardId": {
-                "annotations": {
-                  "lib.bindingDefinition": {
+            "properties": [
+              {
+                "annotations": [
+                  {
                     "name": "lib.bindingDefinition",
-                    "structuredValue": [
+                    "value": [
                       {
                         "method": "GET",
                         "input": "NONE",
@@ -32,7 +39,7 @@
                       }
                     ]
                   }
-                },
+                ],
                 "name": "cardId",
                 "displayName": "cardId",
                 "type": [
@@ -48,9 +55,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -62,7 +70,8 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "api.raml"
           }
         ],
         "__METADATA__": {
@@ -73,12 +82,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "api.raml"
       }
-    },
-    "annotationTypes": {
-      "lib.bindingDefinition": {
-        "name": "bindingDefinition",
+    ],
+    "annotationTypes": [
+      {
+        "name": "lib.bindingDefinition",
         "displayName": "BindingDefinition",
         "type": [
           "array"
@@ -90,8 +100,8 @@
             "type": [
               "object"
             ],
-            "properties": {
-              "method": {
+            "properties": [
+              {
                 "name": "method",
                 "displayName": "method",
                 "type": [
@@ -114,9 +124,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/lib.raml"
               },
-              "input": {
+              {
                 "name": "input",
                 "displayName": "input",
                 "type": [
@@ -137,9 +148,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/lib.raml"
               },
-              "output": {
+              {
                 "name": "output",
                 "displayName": "output",
                 "type": [
@@ -160,9 +172,10 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "lib/lib.raml"
               }
-            },
+            ],
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -174,16 +187,19 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib.raml"
           }
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {}
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/lib.raml"
       }
-    }
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

@@ -1,23 +1,23 @@
 {
   "specification": {
-    "annotations": {
-      "test": {
+    "annotations": [
+      {
         "name": "test",
-        "structuredValue": {
+        "value": {
           "q": "true2",
           "items": "W"
         }
       }
-    },
-    "annotationTypes": {
-      "test": {
+    ],
+    "annotationTypes": [
+      {
         "name": "test",
         "displayName": "test",
         "type": [
           "object"
         ],
-        "properties": {
-          "q": {
+        "properties": [
+          {
             "name": "q",
             "displayName": "q",
             "type": [
@@ -35,9 +35,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           },
-          "items": {
+          {
             "name": "items",
             "displayName": "items",
             "type": [
@@ -59,9 +60,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -73,10 +75,12 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
-    "title": "H"
+    ],
+    "title": "H",
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

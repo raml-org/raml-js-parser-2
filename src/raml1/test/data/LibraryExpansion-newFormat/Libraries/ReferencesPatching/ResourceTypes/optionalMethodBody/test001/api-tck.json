@@ -1,14 +1,21 @@
 {
   "specification": {
-    "types": {
-      "lib.MyType": {
-        "name": "MyType",
+    "uses": [
+      {
+        "key": "lib",
+        "value": "./lib/lib.raml",
+        "path": "api.raml"
+      }
+    ],
+    "types": [
+      {
+        "name": "lib.MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": {
-          "p1": {
+        "properties": [
+          {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -29,9 +36,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib.raml"
           },
-          "p2": {
+          {
             "name": "p2",
             "displayName": "p2",
             "type": [
@@ -52,9 +60,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "lib/lib.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -66,15 +75,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "lib/lib.raml"
       }
-    },
-    "resourceTypes": {
-      "rt": {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+    ],
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -88,18 +98,22 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "path": "api.raml"
               }
-            },
+            ],
             "method": "post",
             "__METADATA__": {
               "optional": true
-            }
+            },
+            "path": "api.raml"
           }
-        },
-        "name": "rt"
+        ],
+        "name": "rt",
+        "path": "api.raml"
       }
-    }
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

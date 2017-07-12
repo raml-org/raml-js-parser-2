@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": {
-      "logo": {
+    "annotationTypes": [
+      {
         "name": "logo",
         "displayName": "logo",
         "type": [
@@ -18,16 +18,17 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       },
-      "test-harness": {
+      {
         "name": "test-harness",
         "displayName": "test-harness",
         "type": [
           "object"
         ],
-        "properties": {
-          "level": {
+        "properties": [
+          {
             "name": "level",
             "displayName": "level",
             "type": [
@@ -53,9 +54,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           },
-          "name": {
+          {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -73,9 +75,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "path": "apiInvalid.raml"
           }
-        },
+        ],
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -87,25 +90,26 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "path": "apiInvalid.raml"
       }
-    },
+    ],
     "title": "Playing with annotations",
     "resources": [
       {
-        "annotations": {
-          "test-harness": {
+        "annotations": [
+          {
             "name": "test-harness",
-            "structuredValue": {
+            "value": {
               "name": "user-harness",
               "level": "medium1"
             }
           },
-          "logo": {
+          {
             "name": "logo",
-            "structuredValue": "google.com"
+            "value": "google.com"
           }
-        },
+        ],
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -120,9 +124,12 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "apiInvalid.raml"
       }
-    ]
+    ],
+    "path": "apiInvalid.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",
