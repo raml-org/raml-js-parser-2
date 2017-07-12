@@ -2,31 +2,35 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "definitions": {
-        "TraitRef10": {
-            "oneOf": [
-                {
-                    "type": "string"
+        "TemplateReference": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Template name"
                 },
-                {
-                    "type": "object",
-                    "patternProperties": {
-                        "^[a-zA-Z0-9]+": {
-                            "type": "object",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {
-                                    "type": [
-                                        "number",
-                                        "string",
-                                        "boolean",
-                                        "object",
-                                        "array"
-                                    ]
-                                }
+                "parameters": {
+                    "type": "array",
+                    "description": "Template parameters if any",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Parameter name"
+                            },
+                            "value": {
+                                "type": [ "string", "boolean", "number", "array", "object", "null" ],
+                                "description": "Parameter value"
                             }
                         }
                     }
                 }
-            ]
+            },
+            "required": [
+                "name"
+            ],
+            "additionalProperties": false
         },
         "Trait10": {
             "description": "Declarations of traits for use within this API",
@@ -64,11 +68,21 @@
                     "properties": {
                         "method": {
                             "type": "string",
-                            "description": "Method that can be called"
+                            "description": "Method name"
                         },
-                        "allUriParameters": {
+                        "uriParameters": {
                             "type": "array",
-                            "items": {"$ref": "datamodel.json#/definitions/TypeReference10"}
+                            "items": {
+                                "$ref": "datamodel.json#/definitions/TypeReference10"
+                            }
+                        },
+                        "parentUri": {
+                            "type": "string",
+                            "description": "Complete relative URI of the owner resource"
+                        },
+                        "absoluteParentUri": {
+                            "type": "string",
+                            "description": "Absolute URI of the owner resource"
                         }
                     }
                 }
@@ -97,36 +111,32 @@
                             "type": "array",
                             "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
                             "items": {
-                                "$ref": "security.json#/definitions/SecuritySchemeRef10"
+                                "oneOf": [
+                                    {
+                                        "type": "null"
+                                    },
+                                    {
+                                        "$ref": "security.json#/definitions/SecuritySchemeBase10"
+                                    }
+                                ]
                             }
                         },
                         "is": {
                             "type": "array",
                             "description": "Instantiation of applyed traits",
                             "items": {
-                                "$ref": "#/definitions/TraitRef10"
+                                "$ref": "#/definitions/TemplateReference"
                             }
                         },
                         "body": {
-                            "type": "object",
+                            "type": "array",
                             "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {
-                                    "$ref": "datamodel.json#/definitions/TypeReference10"
-                                }
+                            "items": {
+                                "$ref": "datamodel.json#/definitions/TypeReference10"
                             }
                         },
                         "description": {
                             "type": [ "string", "null" ]
-                        },
-                        "responses": {
-                            "description": "Information about the expected responses to a request",
-                            "type": "object",
-                            "patternProperties": {
-                                "^[a-zA-Z0-9]+": {
-                                    "$ref": "bodies.json#/definitions/Response10"
-                                }
-                            }
                         }
                     }
                 }

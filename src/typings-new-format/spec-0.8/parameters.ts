@@ -1,8 +1,6 @@
+import common = require("./common");
 
-
-export type Parameter08 = StringTypeDeclaration08|ParameterTypeDeclaration08|NumberTypeDeclaration08;
-
-export interface ParameterBase08{
+export interface Parameter08 extends common.HasSource{
 
     /**
      * name of the parameter
@@ -65,7 +63,7 @@ export interface ParameterBase08{
 
 }
 
-export interface StringTypeDeclaration08 extends ParameterBase08{
+export interface StringTypeDeclaration08 extends Parameter08{
 
     /**
      * (Optional, applicable only for parameters of type string) The pattern
@@ -99,15 +97,7 @@ export interface StringTypeDeclaration08 extends ParameterBase08{
     maxLength?: number
 }
 
-export interface ParameterTypeDeclaration08 extends ParameterBase08{
-
-    /**
-     * Value must be a boolean or date or file
-     */
-    type: string
-}
-
-export interface NumberTypeDeclaration08 extends ParameterBase08{
+export interface NumberTypeDeclaration08 extends Parameter08{
 
 
     /**

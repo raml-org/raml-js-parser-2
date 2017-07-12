@@ -2,50 +2,75 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "definitions": {
-    "Annotable": {
+    "SourceInfo": {
       "type": "object",
       "properties": {
-        "annotations": {
-          "description": "Most of RAML model elements may have attached annotations decribing additional meta data about this element",
-          "oneOf": [
-            {
-              "type": "object",
-              "patternProperties": {
-                "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/AnnotationInstance"}
-              }
-            },
-            {
-              "type": "object",
-              "patternProperties": {
-                "^[a-zA-Z0-9<>]+": {
-                  "type": "array",
-                  "items": {"$ref": "#/definitions/AnnotationInstance"}
+        "path": {
+          "type": "string",
+          "description": "Path to file which contains definition"
+        },
+        "namespace": {
+          "type": "array",
+          "description": "Namespace of defining library if any"
+        }
+      }
+    },
+    "HasSource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SourceInfo"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "scalarsSources": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SourceInfo"
                 }
               }
             }
-          ]
+          },
+          "__METADATA__": {
+            "type": "object"
+          }
+        }
+      ]
+    },
+    "Annotable": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/HasSource"
         },
-        "scalarsAnnotations": {
+        {
           "type": "object",
-          "patternProperties": {
-            "^[a-zA-Z0-9]+": {
+          "properties": {
+            "annotations": {
               "type": "array",
+              "description": "Most of RAML model elements may have attached annotations decribing additional meta data about this element",
               "items": {
-                "oneOf": [
-                  {"$ref": "#/definitions/AnnotationInstance"},
-                  {
+                "$ref": "#/definitions/AnnotationInstance"
+              }
+            },
+            "scalarsAnnotations": {
+              "type": "object",
+              "patternProperties": {
+                "^([a-zA-Z0-9]*<<[a-zA-Z0-9]+>>[a-zA-Z0-9]*)+": {
+                  "type": "array",
+                  "items": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/AnnotationInstance"}
+                    "items": {
+                      "$ref": "#/definitions/AnnotationInstance"
+                    }
                   }
-                ]
+                }
               }
             }
           }
-        },
-        "__METADATA__": {
-          "type": "object"
         }
-      }
+      ]
     },
     "AnnotationInstance": {
       "type": "object",
@@ -57,7 +82,7 @@
             "name": {
               "type": "string"
             },
-            "structuredValue": {
+            "value": {
               "type": [ "object", "string", "boolean", "number", "array", "null" ]
             }
           }
@@ -78,16 +103,23 @@
       ]
     },
     "UsesDeclaration": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            },
+            "usage": {
+              "type": "string"
+            }
+          }
         }
-      },
-      "additionalProperties": false
+      ]
     },
     "ParametrizedProperties": {
       "description": "Template property.",

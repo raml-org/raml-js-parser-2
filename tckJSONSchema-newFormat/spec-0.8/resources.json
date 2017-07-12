@@ -2,195 +2,137 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "definitions": {
+        "ResourceBase08": {
+            "allOf": [
+                {
+                    "$ref": "common.json#/definitions/HasSource"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "is": {
+                            "type": "array",
+                            "description": "Instantiation of applyed traits",
+                            "items": {
+                                "$ref": "security.json#/definitions/TemplateReference"
+                            }
+                        },
+                        "type": {
+                            "$ref": "security.json#/definitions/TemplateReference"
+                        },
+                        "securedBy": {
+                            "type": "array",
+                            "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "null"
+                                    },
+                                    {
+                                        "$ref": "security.json#/definitions/AbstractSecurityScheme08"
+                                    }
+                                ]
+                            }
+                        },
+                        "uriParameters": {
+                            "type": "array",
+                            "description": "Uri parameters of this resource",
+                            "items": {
+                                "$ref": "parameters.json#/definitions/Parameter08"
+                            }
+                        },
+                        "displayName": {
+                            "type": "string",
+                            "description": "An alternate, human-friendly name for the resource type"
+                        },
+                        "baseUriParameters": {
+                            "type": "array",
+                            "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
+                            "items": {
+                                "$ref": "parameters.json#/definitions/Parameter08"
+                            }
+                        },
+                        "description": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
+                        },
+                        "methods": {
+                            "type": "array",
+                            "description": "Methods that can be called on this resource",
+                            "items": {
+                                "$ref": "methods.json#/definitions/Method08"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "Resource08": {
-            "type": "object",
-            "description":"Web resource",
-            "properties":{
-                "relativeUri":{
-                    "type": "string",
-                    "description": "Relative URL of this resource from the parent resource"
+            "description": "Web resource",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ResourceBase08"
                 },
-                "relativeUriPathSegments":{
-                    "type": "array",
-                    "description": "Instantiation of applyed resource type",
-                    "items":{
-                        "type": "string"
-                    }
-                },
-                "type":{"$ref": "methods.json#/definitions/Reference08"},
-                "is":{
-                    "type": "array",
-                    "description": "Instantiation of applyed traits",
-                    "items":{
-                        "$ref": "methods.json#/definitions/Reference08"
-                    }
-                },
-                "securedBy":{
-                    "type": "array",
-                    "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
-                    "items":{
-                        "$ref": "methods.json#/definitions/Reference08"
-                    }
-                },
-                "uriParameters":{
+                {
                     "type": "object",
-                    "description": "Uri parameters of this resource",
-                    "patternProperties": {
-                        "^[a-zA-Z0-9<>]+": {
-                            "oneOf":[
-                                {"$ref": "parameters.json#/definitions/Parameter08"},
-                                {
-                                    "type": "array",
-                                    "items": {"$ref": "parameters.json#/definitions/Parameter08"}
-                                }
-                            ]
+                    "properties": {
+                        "relativeUri": {
+                            "type": "string",
+                            "description": "Relative URL of this resource from the parent resource"
+                        },
+                        "relativeUriPathSegments": {
+                            "type": "array",
+                            "description": "Instantiation of applyed resource type",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "resources": {
+                            "type": "array",
+                            "description": "Children resources",
+                            "items": {
+                                "$ref": "#/definitions/Resource08"
+                            }
+                        },
+                        "absoluteUri": {
+                            "type": "string"
+                        },
+                        "completeRelativeUri": {
+                            "type": "string"
+                        },
+                        "parentUri": {
+                            "type": "string"
+                        },
+                        "absoluteParentUri": {
+                            "type": "string"
                         }
-                    },
-                    "additionalProperties": false
-                },
-                "allUriParameters":{
-                    "type": "array",
-                    "items": {"$ref": "parameters.json#/definitions/Parameter08"}
-                },
-                "methods": {
-                    "description": "Methods that can be called on this resource",
-                    "patternProperties": {
-                        "^(get|post|delete|put|patch|options|head)?$": {
-                            "$ref": "methods.json#/definitions/Method08"
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "resources":{
-                    "type": "array",
-                    "description": "Children resources",
-                    "items":{
-                        "$ref": "#/definitions/Resource08"
                     }
-                },
-                "displayName":{
-                    "type": "string",
-                    "description": "An alternate, human-friendly name for the resource"
-                },
-                "baseUriParameters":{
-                    "type": "object",
-                    "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
-                    "patternProperties": {
-                        "^[a-zA-Z0-9<>]+": {
-                            "oneOf":[
-                                {"$ref": "parameters.json#/definitions/Parameter08"},
-                                {
-                                    "type": "array",
-                                    "items": {"$ref": "parameters.json#/definitions/Parameter08"}
-                                }
-                            ]
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "description":{
-                    "type": [ "string", "null" ],
-                    "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
-                },
-                "absoluteUri": {
-                    "type": "string"
-                },
-                "completeRelativeUri": {"type": "string"},
-                "parentUri": {"type": "string"},
-                "__METADATA__": {"type": "object"}
-            },
-            "additionalProperties": false
+                }
+            ]
         },
         "ResourceType08": {
-            "type": "object",
             "description": "Resource pattern which can be defined and then applied to multiple resources",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "Name of the resource type"
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ResourceBase08"
                 },
-                "usage": {
-                    "type": "string",
-                    "description": "Instructions on how and when the resource type should be used."
-                },
-                "is": {
-                    "type": "array",
-                    "description": "Instantiation of applyed traits",
-                    "items": {
-                        "$ref": "methods.json#/definitions/Reference08"
-                    }
-                },
-                "type": {
-                    "$ref": "methods.json#/definitions/Reference08"
-                },
-                "securedBy": {
-                    "type": "array",
-                    "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
-                    "items": {
-                        "$ref": "methods.json#/definitions/Reference08"
-                    }
-                },
-                "uriParameters": {
+                {
                     "type": "object",
-                    "description": "Uri parameters of this resource",
-                    "patternProperties": {
-                        "^[a-zA-Z0-9<>]+": {
-                            "oneOf": [
-                                {
-                                    "$ref": "parameters.json#/definitions/Parameter08"
-                                },
-                                {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "parameters.json#/definitions/Parameter08"
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "displayName": {
-                    "type": "string",
-                    "description": "An alternate, human-friendly name for the resource type"
-                },
-                "baseUriParameters": {
-                    "type": "object",
-                    "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
-                    "patternProperties": {
-                        "^[a-zA-Z0-9<>]+": {
-                            "oneOf": [
-                                {
-                                    "$ref": "parameters.json#/definitions/Parameter08"
-                                },
-                                {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "parameters.json#/definitions/Parameter08"
-                                    }
-                                }
-                            ]
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the resource type"
+                        },
+                        "usage": {
+                            "type": "string",
+                            "description": "Instructions on how and when the resource type should be used."
                         }
                     }
-                },
-                "description": {
-                    "type": ["string", "null"],
-                    "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
-                },
-                "methods": {
-                    "description": "Methods that can be called on this resource",
-                    "patternProperties": {
-                        "^(get|post|delete|put|patch|options|head)?$": {
-                            "$ref": "methods.json#/definitions/Method08"
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "__METADATA__": {
-                    "type": "object"
                 }
-            },
-            "additionalProperties": false
+            ]
         }
     }
 }

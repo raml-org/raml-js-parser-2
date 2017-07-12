@@ -229,17 +229,7 @@
     },
     "SecuritySchemePart10": {
       "allOf": [
-        {"$ref": "#/definitions/Operation10"},
-        {
-          "type": "object",
-          "properties": {
-            "responses": {
-              "description": "Information about the expected responses to a request",
-              "type": "array",
-              "items": {"$ref": "bodies.json#/definitions/Response10"}
-            }
-          }
-        }
+        {"$ref": "#/definitions/Operation10"}
       ]
     },
 
@@ -288,7 +278,7 @@
         {
           "type": "object",
           "patternProperties": {
-            "^[a-zA-Z0-9]+": {
+            "^([a-zA-Z0-9]*<<[a-zA-Z0-9]+>>[a-zA-Z0-9]*)+": {
               "anyOf": [
                 {"$ref": "security.json#/definitions/OAuth10SecuritySettings10"},
                 {"$ref": "security.json#/definitions/OAuth20SecuritySettings10"},
@@ -308,24 +298,29 @@
         {
           "properties": {
             "headers": {
-              "type": "object",
+              "type": "array",
               "description": "Headers that allowed at this position",
-              "patternProperties": {
-                "^[a-zA-Z0-9]+": {
-                  "$ref": "datamodel.json#/definitions/TypeReference10"
-                }
+              "items": {
+                "$ref": "datamodel.json#/definitions/TypeReference10"
               }
             },
             "queryParameters": {
-              "type": "object",
+              "type": "array",
               "description": "An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property",
-              "patternProperties": {
-                "^[a-zA-Z0-9]+": {
-                  "$ref": "datamodel.json#/definitions/TypeReference10"
-                }
+              "items": {
+                "$ref": "datamodel.json#/definitions/TypeReference10"
               }
             },
-            "queryString": {"$ref": "datamodel.json#/definitions/ObjectTypeDeclaration"}
+            "queryString": {
+              "$ref": "datamodel.json#/definitions/ObjectTypeDeclaration"
+            },
+            "responses": {
+              "description": "Information about the expected responses to a request",
+              "type": "array",
+              "items": {
+                "$ref": "bodies.json#/definitions/Response10"
+              }
+            }
           }
         }
       ]

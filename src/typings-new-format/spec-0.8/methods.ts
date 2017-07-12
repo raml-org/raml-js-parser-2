@@ -1,6 +1,7 @@
 import bodies = require("./bodies");
 import common = require("./common");
 import parameters = require("./parameters");
+import security = require("./security");
 
 /**
  * A partial method definition that, like a method, can provide method-level
@@ -17,32 +18,36 @@ export interface Trait extends MethodBase08{
     /**
      * Instructions on how and when the trait should be used.
      */
-    usage: string
+    usage?: string
 
     /**
      * An alternate, human-friendly name for the trait
      */
-    displayName: string
-
-    /**
-     * Whether the type is scalar
-     */
-    isScalar: boolean
+    displayName?: string
 }
 
-export type Reference08 = string|{[key:string]:any};
+export interface TemplateReference{
+
+    name: string
+
+    parameters?: {
+        name: string
+        value: any
+    }[]
+}
+
 
 /**
  * Method object allows description of http methods
  */
-export interface MethodBase08 extends common.HasMeta{
+export interface MethodBase08 extends common.HasSource{
 
     /**
      * Resource methods MAY have one or more responses.
      * Responses MAY be described using the description property,
      * and MAY include example attributes or schema properties.
      */
-        responses: {[key:string]:bodies.Response08}
+    responses?: bodies.Response08[]
 
     /**
      * Some method verbs expect the resource to be sent as a request body.
@@ -52,7 +57,7 @@ export interface MethodBase08 extends common.HasMeta{
      * representations. A method's body is defined in the body property as
      * a hashmap, in which the key MUST be a valid media type.
      */
-    body: {[key:string]: bodies.BodyLike08}
+    body?: bodies.BodyLike08[]
 
     /**
      * A method can override an API's protocols value for that single
@@ -70,7 +75,7 @@ export interface MethodBase08 extends common.HasMeta{
      * may be declared, explicitly or implicitly, by defining the
      * resourceTypes or traits property for that resource.
      */
-    securedBy: string[]
+    securedBy?: security.AbstractSecurityScheme08[]
 
     /**
      * A resource or a method can override a base URI template's values.
@@ -79,7 +84,7 @@ export interface MethodBase08 extends common.HasMeta{
      * any or all parameters defined at the root level baseUriParameters
      * property, as well as base URI parameters not specified at the root level.
      */
-    baseUriParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    baseUriParameters?: parameters.Parameter08[]
 
     /**
      * An APIs resources MAY be filtered (to return a subset of results)
@@ -87,14 +92,14 @@ export interface MethodBase08 extends common.HasMeta{
      * by the use of query strings. If the resource or its method supports a
      * query string, the query string MUST be defined by the queryParameters property
      */
-    queryParameters: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    queryParameters?: parameters.Parameter08[]
 
     /**
      * Headers that allowed at this position
      */
-    headers: {[key:string]:parameters.Parameter08|parameters.Parameter08[]}
+    headers?: parameters.Parameter08[]
 
-    description: string
+    description?: string
 }
 
 export interface Method08 extends MethodBase08{
@@ -107,7 +112,17 @@ export interface Method08 extends MethodBase08{
     /**
      * Instantiation of applyed traits
      */
-    is: Reference08[]
+    is?: TemplateReference[]
 
-    allUriParameters: parameters.Parameter08[]
+    uriParameters?: parameters.Parameter08[]
+
+    /**
+     * Complete relative URI of the owner resource
+     */
+    parentUri: string
+
+    /**
+     * AbsoluteComplete relative URI of the owner resource
+     */
+    absoluteParentUri: string
 }
