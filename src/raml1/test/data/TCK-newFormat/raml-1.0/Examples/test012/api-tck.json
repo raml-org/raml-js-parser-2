@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "MM": {
         "name": "MM",
         "displayName": "MM",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "a": {
             "name": "a",
             "displayName": "a",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -41,23 +40,22 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "WebOfMe",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -80,26 +78,18 @@
                         "name": null
                       }
                     ],
-                    "simplifiedExamples": [
-                      "{\"message\":\"s\",\"r\":2}"
-                    ],
                     "type": [
                       "{\n  \"required\": \"message\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [ \"message\" ],\n  \"additionalProperties\": false\n}\n"
                     ],
                     "mediaType": "application/json",
-                    "typePropertyKind": "JSON",
-                    "path": "api.raml"
+                    "typePropertyKind": "JSON"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/hello",
-            "absoluteParentUri": "/hello",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/hello",
         "displayName": "/hello",
         "__METADATA__": {
@@ -114,12 +104,9 @@
         ],
         "absoluteUri": "/hello",
         "completeRelativeUri": "/hello",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

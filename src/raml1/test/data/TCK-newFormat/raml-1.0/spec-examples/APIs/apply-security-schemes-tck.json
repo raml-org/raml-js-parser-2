@@ -1,13 +1,13 @@
 {
   "specification": {
-    "securitySchemes": [
-      {
+    "securitySchemes": {
+      "oauth_2_0": {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
         "describedBy": {
-          "queryParameters": [
-            {
+          "queryParameters": {
+            "access_token": {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -26,12 +26,11 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
-          ],
-          "headers": [
-            {
+          },
+          "headers": {
+            "Authorization": {
               "name": "Authorization",
               "displayName": "Authorization",
               "type": [
@@ -50,23 +49,19 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
-          ],
+          },
           "responses": [
             {
               "code": "401",
-              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
             },
             {
               "code": "403",
-              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
             }
-          ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          ]
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -79,12 +74,10 @@
           "scopes": [
             "USER",
             "ADMINISTRATOR"
-          ],
-          "path": "securitySchemes/oauth_2_0.raml"
-        },
-        "path": "securitySchemes/oauth_2_0.raml"
+          ]
+        }
       },
-      {
+      "oauth_1_0": {
         "name": "oauth_1_0",
         "type": "OAuth 1.0",
         "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
@@ -95,17 +88,15 @@
           "signatures": [
             "HMAC-SHA1",
             "PLAINTEXT"
-          ],
-          "path": "securitySchemes/oauth_1_0.raml"
-        },
-        "path": "securitySchemes/oauth_1_0.raml"
+          ]
+        }
       }
-    ],
+    },
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -133,205 +124,25 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apply-security-schemes.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTPS"
     ],
     "securedBy": [
-      {
-        "name": "oauth_2_0",
-        "type": "OAuth 2.0",
-        "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-        "describedBy": {
-          "queryParameters": [
-            {
-              "name": "access_token",
-              "displayName": "access_token",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          ],
-          "headers": [
-            {
-              "name": "Authorization",
-              "displayName": "Authorization",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          ],
-          "responses": [
-            {
-              "code": "401",
-              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
-            },
-            {
-              "code": "403",
-              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
-            }
-          ],
-          "path": "securitySchemes/oauth_2_0.raml"
-        },
-        "settings": {
-          "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-          "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-          "authorizationGrants": [
-            "authorization_code",
-            "implicit",
-            "urn:ietf:params:oauth:grant-type:saml2-bearer"
-          ],
-          "scopes": [
-            "USER",
-            "ADMINISTRATOR"
-          ],
-          "path": "securitySchemes/oauth_2_0.raml"
-        },
-        "path": "securitySchemes/oauth_2_0.raml"
-      }
+      "oauth_2_0"
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "protocols": [
               "HTTPS"
             ],
             "securedBy": [
-              {
-                "name": "oauth_2_0",
-                "type": "OAuth 2.0",
-                "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-                "describedBy": {
-                  "queryParameters": [
-                    {
-                      "name": "access_token",
-                      "displayName": "access_token",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  ],
-                  "headers": [
-                    {
-                      "name": "Authorization",
-                      "displayName": "Authorization",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    },
-                    {
-                      "code": "403",
-                      "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                      "path": "securitySchemes/oauth_2_0.raml"
-                    }
-                  ],
-                  "path": "securitySchemes/oauth_2_0.raml"
-                },
-                "settings": {
-                  "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-                  "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-                  "authorizationGrants": [
-                    "authorization_code",
-                    "implicit",
-                    "urn:ietf:params:oauth:grant-type:saml2-bearer"
-                  ],
-                  "scopes": [
-                    "USER",
-                    "ADMINISTRATOR"
-                  ],
-                  "path": "securitySchemes/oauth_2_0.raml"
-                },
-                "path": "securitySchemes/oauth_2_0.raml"
-              },
-              {
-                "name": "oauth_1_0",
-                "type": "OAuth 1.0",
-                "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
-                "settings": {
-                  "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
-                  "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
-                  "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
-                  "signatures": [
-                    "HMAC-SHA1",
-                    "PLAINTEXT"
-                  ],
-                  "path": "securitySchemes/oauth_1_0.raml"
-                },
-                "path": "securitySchemes/oauth_1_0.raml"
-              }
+              "oauth_2_0",
+              "oauth_1_0"
             ],
             "method": "get",
             "__METADATA__": {
@@ -340,197 +151,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/users",
-            "absoluteParentUri": "https://api.dropbox.com/{version}/users",
-            "path": "apply-security-schemes.raml",
-            "headers": [
-              {
-                "name": "Authorization",
-                "displayName": "Authorization",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "securitySchemes/oauth_2_0.raml"
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                "path": "securitySchemes/oauth_2_0.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                "path": "securitySchemes/oauth_2_0.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ],
-            "queryParameters": [
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "securitySchemes/oauth_2_0.raml"
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apply-security-schemes.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "securedBy": [
-          {
-            "name": "oauth_2_0",
-            "type": "OAuth 2.0",
-            "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-            "describedBy": {
-              "queryParameters": [
-                {
-                  "name": "access_token",
-                  "displayName": "access_token",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              ],
-              "headers": [
-                {
-                  "name": "Authorization",
-                  "displayName": "Authorization",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              ],
-              "responses": [
-                {
-                  "code": "401",
-                  "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                  "path": "securitySchemes/oauth_2_0.raml"
-                },
-                {
-                  "code": "403",
-                  "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                  "path": "securitySchemes/oauth_2_0.raml"
-                }
-              ],
-              "path": "securitySchemes/oauth_2_0.raml"
-            },
-            "settings": {
-              "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-              "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-              "authorizationGrants": [
-                "authorization_code",
-                "implicit",
-                "urn:ietf:params:oauth:grant-type:saml2-bearer"
-              ],
-              "scopes": [
-                "USER",
-                "ADMINISTRATOR"
-              ],
-              "path": "securitySchemes/oauth_2_0.raml"
-            },
-            "path": "securitySchemes/oauth_2_0.raml"
-          }
+          "oauth_2_0"
         ],
         "relativeUri": "/users",
         "displayName": "/users",
@@ -549,110 +174,7 @@
         ],
         "absoluteUri": "https://api.dropbox.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "https://api.dropbox.com/{version}",
-        "path": "apply-security-schemes.raml",
-        "headers": [
-          {
-            "name": "Authorization",
-            "displayName": "Authorization",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "securitySchemes/oauth_2_0.raml"
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-            "path": "securitySchemes/oauth_2_0.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-            "path": "securitySchemes/oauth_2_0.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
-        "queryParameters": [
-          {
-            "name": "access_token",
-            "displayName": "access_token",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "securitySchemes/oauth_2_0.raml"
-          }
-        ],
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apply-security-schemes.raml"
-          }
-        ]
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -661,8 +183,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "apply-security-schemes.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

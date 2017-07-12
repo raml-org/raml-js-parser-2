@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "NullValue": {
         "name": "NullValue",
         "displayName": "NullValue",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -29,10 +29,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "size": {
             "name": "size",
             "displayName": "size",
             "type": [
@@ -50,10 +49,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -71,15 +69,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"name\":\"Fred\",\"size\":0}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "path": "lib.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

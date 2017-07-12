@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Person": {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType12.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -38,10 +37,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "oType12.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Org": {
         "name": "Org",
         "displayName": "Org",
         "type": [
@@ -56,12 +54,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "oType12.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "My API With Types",
-    "path": "oType12.raml"
+    },
+    "title": "My API With Types"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

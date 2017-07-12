@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "mySchema": {
         "name": "mySchema",
         "displayName": "mySchema",
         "type": [
@@ -15,10 +15,9 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "typePropertyKind": "JSON"
       },
-      {
+      "z": {
         "name": "z",
         "displayName": "z",
         "type": [
@@ -40,13 +39,9 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"message\":2}"
-        ],
-        "mediaType": "application/json",
-        "path": "api.raml"
+        "mediaType": "application/json"
       },
-      {
+      "z2": {
         "name": "z2",
         "displayName": "z2",
         "type": [
@@ -68,15 +63,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"id\":\"4\"}"
-        ],
-        "mediaType": "application/json",
-        "path": "api.raml"
+        "mediaType": "application/json"
       }
-    ],
-    "title": "A",
-    "path": "api.raml"
+    },
+    "title": "A"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

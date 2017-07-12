@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "NilType_1": {
         "name": "NilType_1",
         "displayName": "NilType_1",
         "type": [
@@ -15,10 +15,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "NilType_2": {
         "name": "NilType_2",
         "displayName": "NilType_2",
         "type": [
@@ -32,10 +31,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "TypeWithNilProperties": {
         "name": "TypeWithNilProperties",
         "displayName": "TypeWithNilProperties",
         "type": [
@@ -75,8 +73,8 @@
             "name": "exampleWithNullTag"
           }
         ],
-        "properties": [
-          {
+        "properties": {
+          "nilProp_1": {
             "name": "nilProp_1",
             "displayName": "nilProp_1",
             "type": [
@@ -94,10 +92,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "nilProp_2": {
             "name": "nilProp_2",
             "displayName": "nilProp_2",
             "type": [
@@ -115,10 +112,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -129,19 +125,11 @@
             }
           }
         },
-        "simplifiedExamples": [
-          "{\"nilProp_1\":null,\"nilProp_2\":null}",
-          "{\"nilProp_1\":null,\"nilProp_2\":null}",
-          "{\"nilProp_1\":null,\"nilProp_2\":null}",
-          "{\"nilProp_1\":null,\"nilProp_2\":null}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "API",
-    "path": "apiValid.raml"
+    },
+    "title": "API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

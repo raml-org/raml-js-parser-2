@@ -1,7 +1,7 @@
 {
   "specification": {
-    "headers": [
-      {
+    "headers": {
+      "TestHeader": {
         "name": "TestHeader",
         "displayName": "TestHeader",
         "type": [
@@ -19,11 +19,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "Trait.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "path": "Trait.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Trait",

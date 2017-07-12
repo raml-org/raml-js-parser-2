@@ -1,14 +1,14 @@
 {
   "specification": {
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "responses": [
-              {
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -31,36 +31,29 @@
                         "name": null
                       }
                     ],
-                    "simplifiedExamples": [
-                      "<<exampleCollection>>"
-                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
-            "method": "get",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
-        "name": "collection",
-        "path": "api.raml"
+        },
+        "name": "collection"
       }
-    ],
+    },
     "title": "Flights-01",
     "version": "1.0",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -110,58 +103,46 @@
                         "name": null
                       }
                     ],
-                    "simplifiedExamples": [
-                      "[{\"ID\":1,\"code\":\"ER38sd\",\"price\":400,\"departureDate\":\"2016/03/20\",\"origin\":\"MUA\",\"destination\":\"SFO\",\"emptySeats\":0,\"plane\":{\"type\":\"Boeing 737\",\"totalSeats\":150}},{\"ID\":2,\"code\":\"ER45if\",\"price\":345.99,\"departureDate\":\"2016/02/11\",\"origin\":\"MUA\",\"destination\":\"LAX\",\"emptySeats\":52,\"plane\":{\"type\":\"Boeing 777\",\"totalSeats\":300}}]"
-                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ],
-                "path": "api.raml"
-              }
-            ],
-            "method": "get",
-            "parentUri": "/flights",
-            "absoluteParentUri": "/flights",
-            "path": "api.raml"
-          }
-        ],
-        "type": {
-          "name": "collection",
-          "parameters": [
-            {
-              "name": "exampleCollection",
-              "value": [
-                {
-                  "ID": 1,
-                  "code": "ER38sd",
-                  "price": 400,
-                  "departureDate": "2016/03/20",
-                  "origin": "MUA",
-                  "destination": "SFO",
-                  "emptySeats": 0,
-                  "plane": {
-                    "type": "Boeing 737",
-                    "totalSeats": 150
-                  }
-                },
-                {
-                  "ID": 2,
-                  "code": "ER45if",
-                  "price": 345.99,
-                  "departureDate": "2016/02/11",
-                  "origin": "MUA",
-                  "destination": "LAX",
-                  "emptySeats": 52,
-                  "plane": {
-                    "type": "Boeing 777",
-                    "totalSeats": 300
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 }
-              ]
-            }
-          ]
+              }
+            },
+            "method": "get"
+          }
+        },
+        "type": {
+          "collection": {
+            "exampleCollection": [
+              {
+                "ID": 1,
+                "code": "ER38sd",
+                "price": 400,
+                "departureDate": "2016/03/20",
+                "origin": "MUA",
+                "destination": "SFO",
+                "emptySeats": 0,
+                "plane": {
+                  "type": "Boeing 737",
+                  "totalSeats": 150
+                }
+              },
+              {
+                "ID": 2,
+                "code": "ER45if",
+                "price": 345.99,
+                "departureDate": "2016/02/11",
+                "origin": "MUA",
+                "destination": "LAX",
+                "emptySeats": 52,
+                "plane": {
+                  "type": "Boeing 777",
+                  "totalSeats": 300
+                }
+              }
+            ]
+          }
         },
         "relativeUri": "/flights",
         "displayName": "/flights",
@@ -177,12 +158,9 @@
         ],
         "absoluteUri": "/flights",
         "completeRelativeUri": "/flights",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

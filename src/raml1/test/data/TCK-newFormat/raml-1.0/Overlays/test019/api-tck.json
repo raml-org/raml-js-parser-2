@@ -17,22 +17,20 @@
         ],
         "absoluteUri": "/resource2",
         "completeRelativeUri": "/resource2",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "NewOverlay.raml"
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": [
-                  {
+                "properties": {
+                  "name": {
                     "name": "name",
                     "displayName": "name",
                     "type": [
@@ -51,10 +49,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -63,16 +60,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -87,13 +80,10 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
-    "extends": "api.raml",
-    "path": "NewOverlay.raml"
+    "extends": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

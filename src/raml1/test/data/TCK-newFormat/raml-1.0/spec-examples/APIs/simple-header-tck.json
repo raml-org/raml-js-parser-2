@@ -3,8 +3,8 @@
     "title": "ZEncoder API",
     "version": "v2",
     "baseUri": "https://app.zencoder.com/api/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -32,19 +32,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "simple-header.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTPS"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "headers": [
-              {
+        "methods": {
+          "post": {
+            "headers": {
+              "Zencoder-Api-Key": {
                 "name": "Zencoder-Api-Key",
                 "displayName": "Zencoder-Api-Key",
                 "type": [
@@ -66,10 +65,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "simple-header.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTPS"
             ],
@@ -81,45 +79,9 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/jobs",
-            "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs",
-            "path": "simple-header.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v2"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "simple-header.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "relativeUri": "/jobs",
         "displayName": "/jobs",
         "__METADATA__": {
@@ -134,42 +96,7 @@
         ],
         "absoluteUri": "https://app.zencoder.com/api/{version}/jobs",
         "completeRelativeUri": "/jobs",
-        "parentUri": "",
-        "absoluteParentUri": "https://app.zencoder.com/api/{version}",
-        "path": "simple-header.raml",
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v2"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "simple-header.raml"
-          }
-        ]
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -178,8 +105,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "simple-header.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

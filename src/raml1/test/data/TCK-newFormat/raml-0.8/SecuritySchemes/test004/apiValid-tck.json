@@ -3,8 +3,8 @@
     "title": "Dropbox API",
     "version": "1",
     "baseUri": "https://api.dropbox.com/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": "string",
@@ -32,15 +32,14 @@
               "calculated": true
             }
           }
-        },
-        "path": "apiValid.raml"
+        }
       }
-    ],
+    },
     "protocols": [
       "HTTPS"
     ],
-    "securitySchemes": [
-      {
+    "securitySchemes": {
+      "oauth_2_0": {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
@@ -49,20 +48,17 @@
           "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
           "authorizationGrants": [
             "client_credentials"
-          ],
-          "path": "apiValid.raml"
-        },
-        "path": "apiValid.raml"
+          ]
+        }
       }
-    ],
+    },
     "__METADATA__": {
       "primitiveValuesMeta": {
         "protocols": {
           "calculated": true
         }
       }
-    },
-    "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -3,14 +3,11 @@
     "title": "Book Library API",
     "resources": [
       {
-        "methods": [
-          {
-            "method": "get",
-            "parentUri": "/books",
-            "absoluteParentUri": "/books",
-            "path": "api.raml"
+        "methods": {
+          "get": {
+            "method": "get"
           }
-        ],
+        },
         "description": "La colección de libros de la biblioteca",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -26,26 +23,21 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "overlay.raml"
+        "parentUri": ""
       }
     ],
     "documentation": [
       {
         "title": "Introducción",
-        "content": "El acceso automatizado a los libros",
-        "path": "overlay.raml"
+        "content": "El acceso automatizado a los libros"
       },
       {
         "title": "Licencias",
-        "content": "Por favor respeta los derechos de autor de los libros",
-        "path": "overlay.raml"
+        "content": "Por favor respeta los derechos de autor de los libros"
       }
     ],
     "usage": "Spanish localization",
-    "extends": "api.raml",
-    "path": "overlay.raml"
+    "extends": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

@@ -4,34 +4,19 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "schema": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n",
                 "example": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName1\": \"anothername\"\n  }\n}\n",
-                "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n",
-                "scalarsPaths": {
-                  "schema": [
-                    "subdir/scheme.json"
-                  ],
-                  "example": [
-                    "invalid.json"
-                  ],
-                  "schemaContent": [
-                    "subdir/scheme.json"
-                  ]
-                },
-                "path": "apiInvalid0.raml"
+                "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiInvalid0.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -45,12 +30,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInvalid0.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiInvalid0.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -18,12 +18,9 @@
         ],
         "absoluteUri": "/root/{id",
         "completeRelativeUri": "/root/{id",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInValid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiInValid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "a1": {
         "name": "a1",
         "displayName": "a1",
         "type": [
@@ -22,10 +22,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "a2": {
         "name": "a2",
         "displayName": "a2",
         "type": [
@@ -45,17 +44,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -68,16 +66,16 @@
                     },
                     "strict": true,
                     "name": "ex1",
-                    "annotations": [
-                      {
-                        "name": "a1",
-                        "value": "stringValue"
+                    "annotations": {
+                      "a1": {
+                        "structuredValue": "stringValue",
+                        "name": "a1"
                       },
-                      {
-                        "name": "a2",
-                        "value": "stringValue"
+                      "a2": {
+                        "structuredValue": "stringValue",
+                        "name": "a2"
                       }
-                    ]
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -90,20 +88,13 @@
                     }
                   }
                 },
-                "simplifiedExamples": [
-                  "{\"prop\":\"stringValue\"}"
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "get",
-            "parentUri": "/g",
-            "absoluteParentUri": "/g",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {
@@ -118,12 +109,9 @@
         ],
         "absoluteUri": "/g",
         "completeRelativeUri": "/g",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

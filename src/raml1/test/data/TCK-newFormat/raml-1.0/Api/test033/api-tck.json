@@ -2,8 +2,8 @@
   "specification": {
     "title": "Api",
     "baseUri": "/segment1/{param1}/{param2}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "param1": {
         "name": "param1",
         "displayName": "param1",
         "type": [
@@ -21,10 +21,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "param2": {
         "name": "param2",
         "displayName": "param2",
         "type": [
@@ -46,10 +45,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "param3": {
         "name": "param3",
         "displayName": "param3",
         "type": [
@@ -67,10 +65,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTP"
     ],
@@ -80,8 +77,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

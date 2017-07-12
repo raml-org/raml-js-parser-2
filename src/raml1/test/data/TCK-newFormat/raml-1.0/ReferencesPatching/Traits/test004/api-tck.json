@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
-        "body": [
-          {
+    "traits": {
+      "bodyTrait": {
+        "body": {
+          "application/json": {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -20,51 +20,41 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "bodyTrait",
-        "path": "api.raml"
-      }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "is": [
-              {
-                "name": "<<trait | !singularize>>"
-              }
-            ],
-            "method": "get",
-            "path": "api.raml"
-          }
-        ],
-        "type": {
-          "name": "<<parentResourceType | !singularize>>"
         },
-        "name": "oneRT",
-        "path": "api.raml"
-      },
-      {
-        "methods": [
-          {
-            "method": "post",
-            "path": "api.raml"
-          }
-        ],
-        "name": "twoRT",
-        "path": "api.raml"
+        "name": "bodyTrait"
       }
-    ],
+    },
+    "resourceTypes": {
+      "oneRT": {
+        "methods": {
+          "get": {
+            "is": [
+              "<<trait | !singularize>>"
+            ],
+            "method": "get"
+          }
+        },
+        "type": "<<parentResourceType | !singularize>>",
+        "name": "oneRT"
+      },
+      "twoRT": {
+        "methods": {
+          "post": {
+            "method": "post"
+          }
+        },
+        "name": "twoRT"
+      }
+    },
     "title": "API",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -81,39 +71,23 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "is": [
-              {
-                "name": "bodyTrait"
-              }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
-          },
-          {
-            "method": "post",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
-          }
-        ],
-        "type": {
-          "name": "oneRT",
-          "parameters": [
-            {
-              "name": "parentResourceType",
-              "value": "twoRT"
             },
-            {
-              "name": "trait",
-              "value": "bodyTrait"
-            }
-          ]
+            "is": [
+              "bodyTrait"
+            ],
+            "method": "get"
+          },
+          "post": {
+            "method": "post"
+          }
+        },
+        "type": {
+          "oneRT": {
+            "parentResourceType": "twoRT",
+            "trait": "bodyTrait"
+          }
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -129,12 +103,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

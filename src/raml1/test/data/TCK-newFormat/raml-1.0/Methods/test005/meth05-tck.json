@@ -3,10 +3,10 @@
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "post": {
+            "queryParameters": {
+              "status": {
                 "name": "status",
                 "displayName": "status",
                 "type": [
@@ -30,18 +30,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "meth05.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "responses": [
-              {
-                "code": "201",
-                "path": "meth05.raml"
+            },
+            "responses": {
+              "201": {
+                "code": "201"
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -58,16 +56,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "meth05.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "parentUri": "/test",
-            "absoluteParentUri": "/test",
-            "path": "meth05.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -82,12 +76,9 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "meth05.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "meth05.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -8,8 +8,8 @@
     "allowedTargets": [
       "Method"
     ],
-    "properties": [
-      {
+    "properties": {
+      "p1": {
         "name": "p1",
         "displayName": "p1",
         "type": [
@@ -27,10 +27,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotation2.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "p2": {
         "name": "p2",
         "displayName": "p2",
         "type": [
@@ -48,10 +47,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotation2.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "__METADATA__": {
       "primitiveValuesMeta": {
         "type": {
@@ -63,8 +61,7 @@
       }
     },
     "mediaType": "application/raml+yaml",
-    "typePropertyKind": "TYPE_EXPRESSION",
-    "path": "annotation2.raml"
+    "typePropertyKind": "TYPE_EXPRESSION"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

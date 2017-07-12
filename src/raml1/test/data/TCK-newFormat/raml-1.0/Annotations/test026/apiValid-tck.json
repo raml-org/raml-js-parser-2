@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "a1": {
         "name": "a1",
         "displayName": "a1",
         "type": [
@@ -15,10 +15,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "a2": {
         "name": "a2",
         "displayName": "a2",
         "type": [
@@ -32,10 +31,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
@@ -44,20 +42,16 @@
         "displayName": "myResource",
         "scalarsAnnotations": {
           "description": [
-            [
-              {
-                "name": "a1",
-                "value": 5
-              }
-            ]
+            {
+              "name": "a1",
+              "structuredValue": 5
+            }
           ],
           "displayName": [
-            [
-              {
-                "name": "a2",
-                "value": "value1"
-              }
-            ]
+            {
+              "name": "a2",
+              "structuredValue": "value1"
+            }
           ]
         },
         "relativeUriPathSegments": [
@@ -65,12 +59,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiValid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiValid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Account": {
         "name": "Account",
         "displayName": "Account",
         "schemaPath": "files/account.json",
@@ -16,12 +16,10 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "typePropertyKind": "JSON"
       }
-    ],
-    "title": "My API With Types",
-    "path": "api.raml"
+    },
+    "title": "My API With Types"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

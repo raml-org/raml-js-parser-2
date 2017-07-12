@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "MyType": {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -29,10 +29,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "data": {
             "name": "data",
             "displayName": "data",
             "type": [
@@ -50,10 +49,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -74,21 +72,17 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"name\":null,\"data\":null}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Data": {
         "name": "Data",
         "displayName": "Data",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "p1": {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -109,10 +103,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "p2": {
             "name": "p2",
             "displayName": "p2",
             "type": [
@@ -133,10 +126,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -148,11 +140,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "path": "lib.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

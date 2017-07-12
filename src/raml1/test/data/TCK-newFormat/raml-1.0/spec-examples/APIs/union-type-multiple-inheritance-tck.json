@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "HasHome": {
         "name": "HasHome",
         "displayName": "HasHome",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "homeAddress": {
             "name": "homeAddress",
             "displayName": "homeAddress",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type-multiple-inheritance.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -38,17 +37,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "union-type-multiple-inheritance.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Cat": {
         "name": "Cat",
         "displayName": "Cat",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -66,10 +64,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type-multiple-inheritance.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "color": {
             "name": "color",
             "displayName": "color",
             "type": [
@@ -87,10 +84,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type-multiple-inheritance.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -99,17 +95,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "union-type-multiple-inheritance.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Dog": {
         "name": "Dog",
         "displayName": "Dog",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -127,10 +122,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type-multiple-inheritance.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "fangs": {
             "name": "fangs",
             "displayName": "fangs",
             "type": [
@@ -148,10 +142,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type-multiple-inheritance.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -160,23 +153,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "union-type-multiple-inheritance.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "HomeAnimal": {
         "name": "HomeAnimal",
         "displayName": "HomeAnimal",
         "type": [
           "HasHome",
-          {
-            "type": [
-              "union"
-            ],
-            "oneOf": [
-              "Cat",
-              "Dog"
-            ]
-          }
+          "Dog | Cat"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -186,12 +170,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "union-type-multiple-inheritance.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "My API With Types",
-    "path": "union-type-multiple-inheritance.raml"
+    },
+    "title": "My API With Types"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

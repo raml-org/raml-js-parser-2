@@ -3,50 +3,29 @@
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "method": "post",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+        "methods": {
+          "post": {
+            "method": "post"
           },
-          {
-            "method": "get",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+          "get": {
+            "method": "get"
           },
-          {
-            "method": "put",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+          "put": {
+            "method": "put"
           },
-          {
-            "method": "options",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+          "options": {
+            "method": "options"
           },
-          {
-            "method": "head",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+          "head": {
+            "method": "head"
           },
-          {
-            "method": "patch",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+          "patch": {
+            "method": "patch"
           },
-          {
-            "method": "delete",
-            "parentUri": "/methods",
-            "absoluteParentUri": "/methods",
-            "path": "meth03.raml"
+          "delete": {
+            "method": "delete"
           }
-        ],
+        },
         "relativeUri": "/methods",
         "displayName": "/methods",
         "__METADATA__": {
@@ -61,12 +40,9 @@
         ],
         "absoluteUri": "/methods",
         "completeRelativeUri": "/methods",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "meth03.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "meth03.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

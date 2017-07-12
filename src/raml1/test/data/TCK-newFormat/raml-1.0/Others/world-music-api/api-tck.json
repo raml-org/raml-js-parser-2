@@ -1,27 +1,25 @@
 {
   "specification": {
-    "annotations": [
-      {
+    "annotations": {
+      "info": {
         "name": "info",
-        "value": {
+        "structuredValue": {
           "license": "MIT"
         }
       }
-    ],
+    },
     "uses": [
       {
         "key": "SongsLib",
-        "value": "libraries/songs-library.raml",
-        "path": "api.raml"
+        "value": "libraries/songs-library.raml"
       },
       {
         "key": "ApiLib",
-        "value": "libraries/api-library.raml",
-        "path": "api.raml"
+        "value": "libraries/api-library.raml"
       }
     ],
-    "types": [
-      {
+    "types": {
+      "Entry": {
         "name": "Entry",
         "displayName": "Entry",
         "type": [
@@ -35,10 +33,9 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "typePropertyKind": "JSON"
       },
-      {
+      "AnotherEntry": {
         "name": "AnotherEntry",
         "displayName": "AnotherEntry",
         "type": [
@@ -52,17 +49,16 @@
             }
           }
         },
-        "mediaType": "application/json",
-        "path": "api.raml"
+        "mediaType": "application/json"
       },
-      {
+      "User": {
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "firstname": {
             "name": "firstname",
             "displayName": "firstname",
             "type": [
@@ -80,10 +76,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "lastname": {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -104,14 +99,10 @@
                 "name": null
               }
             ],
-            "simplifiedExamples": [
-              "Doe"
-            ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -131,18 +122,14 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"firstname\":\"John\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    },
+    "traits": {
+      "secured": {
+        "queryParameters": {
+          "access_token": {
             "name": "access_token",
             "displayName": "access_token",
             "type": [
@@ -160,55 +147,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "secured/accessToken.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "securedBy": [
-          {
-            "name": "custom_scheme",
-            "type": "x-custom",
-            "description": "A custom security scheme for authenticating requests.\n",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "SpecialToken",
-                  "displayName": "SpecialToken",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a custom token.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "responses": [
-                {
-                  "code": "401",
-                  "description": "Bad token.\n",
-                  "path": "api.raml"
-                },
-                {
-                  "code": "403",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "custom_scheme"
         ],
         "name": "secured",
         "usage": "This trait can be used to apply an access token query parameter\nto any resources or HTTP methods.\n",
@@ -218,19 +161,18 @@
               "calculated": true
             }
           }
-        },
-        "path": "secured/accessToken.raml"
+        }
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "responses": [
-              {
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -247,58 +189,13 @@
                       "<<resourcePathName|!singularize|!uppercamelcase>>"
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
+            },
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
             "description": "returns a list of <<resourcePathName|!singularize>>",
             "method": "get",
@@ -308,55 +205,11 @@
                   "calculated": true
                 }
               }
-            },
-            "path": "api.raml"
+            }
           }
-        ],
+        },
         "securedBy": [
-          {
-            "name": "custom_scheme",
-            "type": "x-custom",
-            "description": "A custom security scheme for authenticating requests.\n",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "SpecialToken",
-                  "displayName": "SpecialToken",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a custom token.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "responses": [
-                {
-                  "code": "401",
-                  "description": "Bad token.\n",
-                  "path": "api.raml"
-                },
-                {
-                  "code": "403",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "custom_scheme"
         ],
         "name": "collection",
         "__METADATA__": {
@@ -365,19 +218,18 @@
               "calculated": true
             }
           }
-        },
-        "path": "api.raml"
+        }
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "deprecated": {
         "name": "deprecated",
         "displayName": "deprecated",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "date": {
             "name": "date",
             "displayName": "date",
             "type": [
@@ -395,10 +247,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "deprecatedBy": {
             "name": "deprecatedBy",
             "displayName": "deprecatedBy",
             "type": [
@@ -416,14 +267,13 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "comment": {
             "name": "comment",
             "displayName": "comment",
             "type": [
-              "union"
+              "nil | string"
             ],
             "required": true,
             "__METADATA__": {
@@ -437,14 +287,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
-              "nil",
-              "string"
-            ],
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -456,10 +301,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "monitoringInterval": {
         "name": "monitoringInterval",
         "displayName": "monitoringInterval",
         "type": [
@@ -480,14 +324,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          2
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ready": {
         "name": "ready",
         "displayName": "ready",
         "type": [
@@ -505,10 +345,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "info": {
         "name": "info",
         "displayName": "info",
         "type": [
@@ -517,8 +356,8 @@
         "allowedTargets": [
           "API"
         ],
-        "properties": [
-          {
+        "properties": {
+          "license": {
             "name": "license",
             "displayName": "license",
             "type": [
@@ -540,10 +379,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -555,10 +393,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "rediractable": {
         "name": "rediractable",
         "displayName": "rediractable",
         "type": [
@@ -572,12 +409,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "securitySchemes": [
-      {
+    },
+    "securitySchemes": {
+      "oauth_1_0": {
         "name": "oauth_1_0",
         "type": "OAuth 1.0",
         "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
@@ -588,18 +424,16 @@
           "signatures": [
             "HMAC-SHA1",
             "PLAINTEXT"
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
+          ]
+        }
       },
-      {
+      "oauth_2_0": {
         "name": "oauth_2_0",
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
         "describedBy": {
-          "queryParameters": [
-            {
+          "queryParameters": {
+            "access_token": {
               "name": "access_token",
               "displayName": "access_token",
               "type": [
@@ -618,12 +452,11 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
-          ],
-          "headers": [
-            {
+          },
+          "headers": {
+            "Authorization": {
               "name": "Authorization",
               "displayName": "Authorization",
               "type": [
@@ -642,23 +475,19 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
-          ],
+          },
           "responses": [
             {
               "code": "401",
-              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "api.raml"
+              "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
             },
             {
               "code": "403",
-              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "api.raml"
+              "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
             }
-          ],
-          "path": "api.raml"
+          ]
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -667,18 +496,16 @@
             "authorization_code",
             "implicit",
             "urn:ietf:params:oauth:grant-type:saml2-bearer"
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
+          ]
+        }
       },
-      {
+      "custom_scheme": {
         "name": "custom_scheme",
         "type": "x-custom",
         "description": "A custom security scheme for authenticating requests.\n",
         "describedBy": {
-          "headers": [
-            {
+          "headers": {
+            "SpecialToken": {
               "name": "SpecialToken",
               "displayName": "SpecialToken",
               "type": [
@@ -697,32 +524,27 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
-          ],
+          },
           "responses": [
             {
               "code": "401",
-              "description": "Bad token.\n",
-              "path": "api.raml"
+              "description": "Bad token.\n"
             },
             {
-              "code": "403",
-              "path": "api.raml"
+              "code": "403"
             }
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
+          ]
+        }
       }
-    ],
+    },
     "title": "World Music API",
     "description": "This is an example of a music API.",
     "version": "v1",
     "baseUri": "http://{environment}.musicapi.com/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "environment": {
         "name": "environment",
         "displayName": "environment",
         "type": [
@@ -746,10 +568,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -777,10 +598,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTP",
       "HTTPS"
@@ -789,63 +609,20 @@
       "application/json"
     ],
     "securedBy": [
-      {
-        "name": "custom_scheme",
-        "type": "x-custom",
-        "description": "A custom security scheme for authenticating requests.\n",
-        "describedBy": {
-          "headers": [
-            {
-              "name": "SpecialToken",
-              "displayName": "SpecialToken",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "description": "Used to send a custom token.\n",
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
-            }
-          ],
-          "responses": [
-            {
-              "code": "401",
-              "description": "Bad token.\n",
-              "path": "api.raml"
-            },
-            {
-              "code": "403",
-              "path": "api.raml"
-            }
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
-      }
+      "custom_scheme"
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "queryString": {
               "name": "queryString",
               "displayName": "queryString",
               "type": [
                 "object"
               ],
-              "properties": [
-                {
+              "properties": {
+                "start": {
                   "name": "start",
                   "displayName": "start",
                   "type": [
@@ -863,10 +640,9 @@
                     }
                   },
                   "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "typePropertyKind": "TYPE_EXPRESSION"
                 },
-                {
+                "page-size": {
                   "name": "page-size",
                   "displayName": "page-size",
                   "type": [
@@ -884,10 +660,9 @@
                     }
                   },
                   "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "typePropertyKind": "TYPE_EXPRESSION"
                 }
-              ],
+              },
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -899,57 +674,13 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
             "method": "get",
             "__METADATA__": {
@@ -961,117 +692,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/api",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api",
-            "path": "api.raml",
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           },
-          {
-            "body": [
-              {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -1085,58 +710,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
             "method": "post",
             "__METADATA__": {
@@ -1148,160 +729,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/api",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api",
-            "path": "api.raml",
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "securedBy": [
-          {
-            "name": "custom_scheme",
-            "type": "x-custom",
-            "description": "A custom security scheme for authenticating requests.\n",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "SpecialToken",
-                  "displayName": "SpecialToken",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a custom token.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "responses": [
-                {
-                  "code": "401",
-                  "description": "Bad token.\n",
-                  "path": "api.raml"
-                },
-                {
-                  "code": "403",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "custom_scheme"
         ],
         "relativeUri": "/api",
         "displayName": "/api",
@@ -1320,121 +752,16 @@
         ],
         "absoluteUri": "http://{environment}.musicapi.com/{version}/api",
         "completeRelativeUri": "/api",
-        "parentUri": "",
-        "absoluteParentUri": "http://{environment}.musicapi.com/{version}",
-        "path": "api.raml",
-        "headers": [
-          {
-            "name": "SpecialToken",
-            "displayName": "SpecialToken",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a custom token.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad token.\n",
-            "path": "api.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "path": "api.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
-        "uriParameters": [
-          {
-            "name": "environment",
-            "displayName": "environment",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "stg",
-              "dev",
-              "test",
-              "prod"
-            ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          },
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "post": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -1447,76 +774,16 @@
                         }
                       }
                     },
-                    "mediaType": "application/json",
-                    "path": "api.raml"
+                    "mediaType": "application/json"
                   }
-                ],
-                "path": "api.raml"
-              },
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
                 }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
             "method": "post",
             "__METADATA__": {
@@ -1528,103 +795,14 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/entry",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry",
-            "path": "api.raml",
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           },
-          {
-            "responses": [
-              {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -1640,76 +818,16 @@
                     "type": [
                       "Entry"
                     ],
-                    "mediaType": "application/json",
-                    "path": "api.raml"
+                    "mediaType": "application/json"
                   }
-                ],
-                "path": "api.raml"
-              },
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
                 }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
             "description": "returns a list of entry",
             "method": "get",
@@ -1722,146 +840,12 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/entry",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry",
-            "path": "api.raml",
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           }
-        ],
-        "type": {
-          "name": "collection"
         },
+        "type": "collection",
         "securedBy": [
-          {
-            "name": "custom_scheme",
-            "type": "x-custom",
-            "description": "A custom security scheme for authenticating requests.\n",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "SpecialToken",
-                  "displayName": "SpecialToken",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a custom token.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "responses": [
-                {
-                  "code": "401",
-                  "description": "Bad token.\n",
-                  "path": "api.raml"
-                },
-                {
-                  "code": "403",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "custom_scheme"
         ],
         "relativeUri": "/entry",
         "displayName": "/entry",
@@ -1880,130 +864,25 @@
         ],
         "absoluteUri": "http://{environment}.musicapi.com/{version}/entry",
         "completeRelativeUri": "/entry",
-        "parentUri": "",
-        "absoluteParentUri": "http://{environment}.musicapi.com/{version}",
-        "path": "api.raml",
-        "headers": [
-          {
-            "name": "SpecialToken",
-            "displayName": "SpecialToken",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a custom token.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad token.\n",
-            "path": "api.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "path": "api.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
-        "uriParameters": [
-          {
-            "name": "environment",
-            "displayName": "environment",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "stg",
-              "dev",
-              "test",
-              "prod"
-            ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          },
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       },
       {
-        "annotations": [
-          {
+        "annotations": {
+          "ready": {
             "name": "ready",
             "structuredValue": null
           }
-        ],
-        "methods": [
-          {
-            "annotations": [
-              {
+        },
+        "methods": {
+          "get": {
+            "annotations": {
+              "monitoringInterval": {
                 "name": "monitoringInterval",
-                "value": 30
+                "structuredValue": 30
               }
-            ],
-            "queryParameters": [
-              {
+            },
+            "queryParameters": {
+              "genre": {
                 "name": "genre",
                 "displayName": "genre",
                 "type": [
@@ -2025,10 +904,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -2046,116 +924,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "secured/accessToken.raml"
-              },
-              {
-                "name": "access_token",
-                "displayName": "access_token",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
-              {
-                "name": "oauth_2_0",
-                "type": "OAuth 2.0",
-                "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-                "describedBy": {
-                  "queryParameters": [
-                    {
-                      "name": "access_token",
-                      "displayName": "access_token",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "headers": [
-                    {
-                      "name": "Authorization",
-                      "displayName": "Authorization",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "settings": {
-                  "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-                  "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-                  "authorizationGrants": [
-                    "authorization_code",
-                    "implicit",
-                    "urn:ietf:params:oauth:grant-type:saml2-bearer"
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              },
+              "oauth_2_0",
               null
             ],
             "method": "get",
@@ -2165,118 +941,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/songs",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
-            "path": "api.raml",
-            "headers": [
-              {
-                "name": "Authorization",
-                "displayName": "Authorization",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           },
-          {
-            "queryParameters": [
-              {
+          "post": {
+            "queryParameters": {
+              "access_token": {
                 "name": "access_token",
                 "displayName": "access_token",
                 "type": [
@@ -2294,58 +963,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "secured/accessToken.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
             "method": "post",
             "__METADATA__": {
@@ -2357,177 +982,26 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/songs",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
-            "path": "secured/accessToken.raml",
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "is": [
-          {
-            "name": "secured"
-          }
+          "secured"
         ],
         "description": "Access to all songs inside the music world library.",
         "securedBy": [
-          {
-            "name": "custom_scheme",
-            "type": "x-custom",
-            "description": "A custom security scheme for authenticating requests.\n",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "SpecialToken",
-                  "displayName": "SpecialToken",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "description": "Used to send a custom token.\n",
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "responses": [
-                {
-                  "code": "401",
-                  "description": "Bad token.\n",
-                  "path": "api.raml"
-                },
-                {
-                  "code": "403",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "custom_scheme"
         ],
         "relativeUri": "/songs",
         "displayName": "Songs",
         "resources": [
           {
-            "methods": [
-              {
-                "annotations": [
-                  {
+            "methods": {
+              "get": {
+                "annotations": {
+                  "deprecated": {
                     "name": "deprecated",
-                    "value": {
+                    "structuredValue": {
                       "date": "2016-02-28T16:41:41.090Z",
                       "deprecatedBy": {
                         "firstname": "Christian"
@@ -2535,12 +1009,12 @@
                       "comment": "no comment"
                     }
                   }
-                ],
-                "responses": [
-                  {
+                },
+                "responses": {
+                  "200": {
                     "code": "200",
-                    "body": [
-                      {
+                    "body": {
+                      "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
@@ -2554,10 +1028,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "application/xml": {
                         "name": "application/xml",
                         "displayName": "application/xml",
                         "schemaPath": "schemas/songs.xsd",
@@ -2578,80 +1051,17 @@
                             "name": null
                           }
                         ],
-                        "simplifiedExamples": [
-                          "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
-                        ],
                         "mediaType": "application/xml",
-                        "typePropertyKind": "XML",
-                        "path": "api.raml"
+                        "typePropertyKind": "XML"
                       }
-                    ],
-                    "path": "api.raml"
-                  },
-                  {
-                    "code": "401",
-                    "description": "Bad token.\n",
-                    "path": "api.raml",
-                    "__METADATA__": {
-                      "calculated": true
-                    }
-                  },
-                  {
-                    "code": "403",
-                    "path": "api.raml",
-                    "__METADATA__": {
-                      "calculated": true
                     }
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
                 "securedBy": [
-                  {
-                    "name": "custom_scheme",
-                    "type": "x-custom",
-                    "description": "A custom security scheme for authenticating requests.\n",
-                    "describedBy": {
-                      "headers": [
-                        {
-                          "name": "SpecialToken",
-                          "displayName": "SpecialToken",
-                          "type": [
-                            "string"
-                          ],
-                          "required": true,
-                          "description": "Used to send a custom token.\n",
-                          "__METADATA__": {
-                            "primitiveValuesMeta": {
-                              "displayName": {
-                                "calculated": true
-                              },
-                              "required": {
-                                "insertedAsDefault": true
-                              }
-                            }
-                          },
-                          "mediaType": "application/raml+yaml",
-                          "typePropertyKind": "TYPE_EXPRESSION",
-                          "path": "api.raml"
-                        }
-                      ],
-                      "responses": [
-                        {
-                          "code": "401",
-                          "description": "Bad token.\n",
-                          "path": "api.raml"
-                        },
-                        {
-                          "code": "403",
-                          "path": "api.raml"
-                        }
-                      ],
-                      "path": "api.raml"
-                    },
-                    "path": "api.raml"
-                  }
+                  "custom_scheme"
                 ],
                 "method": "get",
                 "__METADATA__": {
@@ -2663,230 +1073,14 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/songs/{songId}",
-                "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
-                "path": "api.raml",
-                "headers": [
-                  {
-                    "name": "SpecialToken",
-                    "displayName": "SpecialToken",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "description": "Used to send a custom token.\n",
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ],
-                "uriParameters": [
-                  {
-                    "name": "environment",
-                    "displayName": "environment",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "enum": [
-                      "stg",
-                      "dev",
-                      "test",
-                      "prod"
-                    ],
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  },
-                  {
-                    "name": "version",
-                    "displayName": "version",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "enum": [
-                      "v1"
-                    ],
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        },
-                        "enum": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  },
-                  {
-                    "name": "songId",
-                    "displayName": "songId",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
+                }
               }
-            ],
+            },
             "securedBy": [
-              {
-                "name": "custom_scheme",
-                "type": "x-custom",
-                "description": "A custom security scheme for authenticating requests.\n",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "SpecialToken",
-                      "displayName": "SpecialToken",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "description": "Used to send a custom token.\n",
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "responses": [
-                    {
-                      "code": "401",
-                      "description": "Bad token.\n",
-                      "path": "api.raml"
-                    },
-                    {
-                      "code": "403",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "custom_scheme"
             ],
-            "uriParameters": [
-              {
-                "name": "environment",
-                "displayName": "environment",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "stg",
-                  "dev",
-                  "test",
-                  "prod"
-                ],
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
+            "uriParameters": {
+              "songId": {
                 "name": "songId",
                 "displayName": "songId",
                 "type": [
@@ -2908,10 +1102,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{songId}",
             "displayName": "/{songId}",
             "__METADATA__": {
@@ -2929,51 +1122,7 @@
             ],
             "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
             "completeRelativeUri": "/songs/{songId}",
-            "parentUri": "/songs",
-            "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
-            "path": "api.raml",
-            "headers": [
-              {
-                "name": "SpecialToken",
-                "displayName": "SpecialToken",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "description": "Used to send a custom token.\n",
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ],
-            "responses": [
-              {
-                "code": "401",
-                "description": "Bad token.\n",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              },
-              {
-                "code": "403",
-                "path": "api.raml",
-                "__METADATA__": {
-                  "calculated": true
-                }
-              }
-            ]
+            "parentUri": "/songs"
           }
         ],
         "__METADATA__": {
@@ -2988,137 +1137,27 @@
         ],
         "absoluteUri": "http://{environment}.musicapi.com/{version}/songs",
         "completeRelativeUri": "/songs",
-        "parentUri": "",
-        "absoluteParentUri": "http://{environment}.musicapi.com/{version}",
-        "path": "api.raml",
-        "headers": [
-          {
-            "name": "SpecialToken",
-            "displayName": "SpecialToken",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "description": "Used to send a custom token.\n",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ],
-        "responses": [
-          {
-            "code": "401",
-            "description": "Bad token.\n",
-            "path": "api.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          },
-          {
-            "code": "403",
-            "path": "api.raml",
-            "__METADATA__": {
-              "calculated": true
-            }
-          }
-        ],
-        "uriParameters": [
-          {
-            "name": "environment",
-            "displayName": "environment",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "stg",
-              "dev",
-              "test",
-              "prod"
-            ],
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          },
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       }
     ],
     "documentation": [
       {
         "title": "Getting Started",
-        "content": "This is a getting started guide for the World Music API.\n",
-        "path": "api.raml"
+        "content": "This is a getting started guide for the World Music API.\n"
       },
       {
         "title": "Legal",
-        "content": "See http://legal.musicapi.com",
-        "path": "api.raml"
+        "content": "See http://legal.musicapi.com"
       }
     ],
     "scalarsAnnotations": {
       "baseUri": [
-        [
-          {
-            "name": "rediractable",
-            "value": true
-          }
-        ]
+        {
+          "name": "rediractable",
+          "structuredValue": true
+        }
       ]
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

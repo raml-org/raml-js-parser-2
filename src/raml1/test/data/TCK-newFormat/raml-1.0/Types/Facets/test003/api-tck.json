@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "datetime": {
         "name": "datetime",
         "displayName": "datetime",
-        "facets": [
-          {
+        "facets": {
+          "format": {
             "name": "format",
             "displayName": "format",
             "type": [
@@ -19,10 +19,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "type": [
           "string"
         ],
@@ -34,12 +33,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Test",
-    "path": "api.raml"
+    },
+    "title": "Test"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

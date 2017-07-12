@@ -5,72 +5,58 @@
     "mediaType": "application/atom+xml",
     "schemas": [
       {
-        "value": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
-        "name": "atom",
-        "path": "api.raml"
+        "atom": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
       }
     ],
-    "resourceTypes": [
-      {
+    "resourceTypes": {
+      "emailed": {
         "name": "emailed",
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/atom+xml": {
                     "name": "application/atom+xml",
                     "schema": "atom",
-                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
-                    "path": "api.raml"
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
+            },
             "method": "get",
             "__METADATA__": {
               "optional": true
-            },
-            "path": "api.raml"
+            }
           }
-        ],
-        "path": "api.raml"
+        }
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/photos",
-        "type": {
-          "name": "emailed"
-        },
-        "methods": [
-          {
-            "responses": [
-              {
+        "type": "emailed",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
-                    "name": "image/*",
-                    "path": "api.raml"
+                "body": {
+                  "image/*": {
+                    "name": "image/*"
                   },
-                  {
+                  "application/atom+xml": {
                     "name": "application/atom+xml",
                     "schema": "atom",
-                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n",
-                    "path": "api.raml"
+                    "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\"\n}\n"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/photos",
-            "absoluteParentUri": "/photos",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "displayName": "/photos",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -84,12 +70,9 @@
         ],
         "absoluteUri": "/photos",
         "completeRelativeUri": "/photos",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

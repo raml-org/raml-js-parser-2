@@ -1,30 +1,8 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "lib",
-        "value": "lib.raml",
-        "path": "api.raml",
-        "usage": "string value 1",
-        "annotations": [
-          {
-            "name": "lib.lib1.MyAnnotationType",
-            "value": {
-              "p1": "str"
-            }
-          }
-        ]
-      },
-      {
-        "key": "lib.lib1",
-        "value": "lib1.raml",
-        "path": "api.raml",
-        "usage": "string value 2"
-      }
-    ],
-    "types": [
-      {
-        "name": "lib.T1",
+    "types": {
+      "lib.T1": {
+        "name": "T1",
         "displayName": "T1",
         "type": [
           "string"
@@ -37,11 +15,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "name": "lib.lib1.StrType",
+      "lib.lib1.StrType": {
+        "name": "StrType",
         "displayName": "StrType",
         "type": [
           "string"
@@ -59,19 +36,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib1.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
-        "name": "lib.lib1.MyAnnotationType",
+    },
+    "annotationTypes": {
+      "lib.lib1.MyAnnotationType": {
+        "name": "MyAnnotationType",
         "displayName": "MyAnnotationType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "p1": {
             "name": "p1",
             "displayName": "p1",
             "type": [
@@ -89,10 +65,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib1.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -104,20 +79,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib1.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -131,19 +105,14 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -158,12 +127,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

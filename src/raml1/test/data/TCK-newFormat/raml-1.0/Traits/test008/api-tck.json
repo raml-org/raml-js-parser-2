@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    "traits": {
+      "box": {
+        "queryParameters": {
+          "param": {
             "name": "param",
             "displayName": "param",
             "type": [
@@ -21,16 +21,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "box",
-        "path": "api.raml"
+        },
+        "name": "box"
       },
-      {
-        "headers": [
-          {
+      "container": {
+        "headers": {
+          "auth": {
             "name": "auth",
             "displayName": "auth",
             "type": [
@@ -48,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "queryString": {
           "name": "queryString",
           "displayName": "queryString",
@@ -69,11 +66,10 @@
             }
           },
           "mediaType": "application/raml+yaml",
-          "typePropertyKind": "TYPE_EXPRESSION",
-          "path": "api.raml"
+          "typePropertyKind": "TYPE_EXPRESSION"
         },
-        "body": [
-          {
+        "body": {
+          "application/json": {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -90,21 +86,16 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "is": [
-          {
-            "name": "box"
-          }
+          "box"
         ],
-        "name": "container",
-        "path": "api.raml"
+        "name": "container"
       }
-    ],
-    "title": "Traits",
-    "path": "api.raml"
+    },
+    "title": "Traits"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

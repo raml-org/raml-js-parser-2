@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Message": {
         "name": "Message",
         "displayName": "Message",
         "type": [
@@ -25,8 +25,8 @@
             "name": "record"
           }
         ],
-        "properties": [
-          {
+        "properties": {
+          "title": {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -44,10 +44,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "body": {
             "name": "body",
             "displayName": "body",
             "type": [
@@ -65,10 +64,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -86,10 +84,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "comment": {
             "name": "comment",
             "displayName": "comment",
             "type": [
@@ -107,10 +104,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -121,17 +117,11 @@
             }
           }
         },
-        "simplifiedExamples": [
-          "{\"title\":\"Attention needed\",\"body\":\"You have been added to group 274\"}",
-          "{\"name\":\"log item\",\"comment\":\"permission check\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "multiple-examples.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Multiple examples",
-    "path": "multiple-examples.raml"
+    },
+    "title": "Multiple examples"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

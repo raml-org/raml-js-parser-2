@@ -3,22 +3,20 @@
     "uses": [
       {
         "key": "defaultResponses",
-        "value": "libraries/responseBase.raml",
-        "path": "api.raml"
+        "value": "libraries/responseBase.raml"
       },
       {
         "key": "error-types",
-        "value": "types/error-types.raml",
-        "path": "api.raml"
+        "value": "types/error-types.raml"
       }
     ],
-    "traits": [
-      {
-        "responses": [
-          {
+    "traits": {
+      "defaultResponses.general": {
+        "responses": {
+          "422": {
             "code": "422",
-            "body": [
-              {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -32,20 +30,18 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "traits/generic-responses.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "path": "traits/generic-responses.raml"
+            }
           },
-          {
+          "423": {
             "code": "423",
-            "body": [
-              {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "union"
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -55,47 +51,34 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "oneOf": [
-                  "<<parentType>><<resourcePathName>>-errors",
-                  "string"
-                ],
-                "path": "traits/generic-responses.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "path": "traits/generic-responses.raml"
+            }
           }
-        ],
+        },
         "name": "defaultResponses.general",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "traits/generic-responses.raml"
+        }
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
             "is": [
               {
-                "name": "defaultResponses.general",
-                "parameters": [
-                  {
-                    "name": "parentType",
-                    "value": "<<parentType>>"
-                  }
-                ]
+                "defaultResponses.general": {
+                  "parentType": "<<parentType>>"
+                }
               }
             ],
-            "method": "get",
-            "path": "resourceTypes/collection.raml"
+            "method": "get"
           }
-        ],
-        "name": "collection",
-        "path": "resourceTypes/collection.raml"
+        },
+        "name": "collection"
       }
-    ],
+    },
     "title": "test API",
     "baseUri": "https://example.com",
     "protocols": [
@@ -110,13 +93,13 @@
         "displayName": "/alpha",
         "resources": [
           {
-            "methods": [
-              {
-                "responses": [
-                  {
+            "methods": {
+              "get": {
+                "responses": {
+                  "422": {
                     "code": "422",
-                    "body": [
-                      {
+                    "body": {
+                      "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
@@ -130,20 +113,18 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "traits/generic-responses.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "path": "traits/generic-responses.raml"
+                    }
                   },
-                  {
+                  "423": {
                     "code": "423",
-                    "body": [
-                      {
+                    "body": {
+                      "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "union"
+                          "error-types.alpha-letters-errors | string"
                         ],
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -153,29 +134,19 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "oneOf": [
-                          "error-types.alpha-letters-errors",
-                          "string"
-                        ],
-                        "path": "traits/generic-responses.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "path": "traits/generic-responses.raml"
+                    }
                   }
-                ],
+                },
                 "protocols": [
                   "HTTPS"
                 ],
                 "is": [
                   {
-                    "name": "defaultResponses.general",
-                    "parameters": [
-                      {
-                        "name": "parentType",
-                        "value": "alpha"
-                      }
-                    ]
+                    "defaultResponses.general": {
+                      "parentType": "alpha"
+                    }
                   }
                 ],
                 "method": "get",
@@ -185,20 +156,13 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/alpha/letters",
-                "absoluteParentUri": "https://example.com/alpha/letters",
-                "path": "resourceTypes/collection.raml"
-              }
-            ],
-            "type": {
-              "name": "collection",
-              "parameters": [
-                {
-                  "name": "parentType",
-                  "value": "alpha"
                 }
-              ]
+              }
+            },
+            "type": {
+              "collection": {
+                "parentType": "alpha"
+              }
             },
             "relativeUri": "/letters",
             "displayName": "/letters",
@@ -214,9 +178,7 @@
             ],
             "absoluteUri": "https://example.com/alpha/letters",
             "completeRelativeUri": "/alpha/letters",
-            "parentUri": "/alpha",
-            "absoluteParentUri": "https://example.com/alpha",
-            "path": "api.raml"
+            "parentUri": "/alpha"
           }
         ],
         "__METADATA__": {
@@ -231,9 +193,7 @@
         ],
         "absoluteUri": "https://example.com/alpha",
         "completeRelativeUri": "/alpha",
-        "parentUri": "",
-        "absoluteParentUri": "https://example.com",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -242,8 +202,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

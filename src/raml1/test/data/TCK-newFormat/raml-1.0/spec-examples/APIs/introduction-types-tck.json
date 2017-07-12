@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "User": {
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "firstname": {
             "name": "firstname",
             "displayName": "firstname",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "lastname": {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "age": {
             "name": "age",
             "displayName": "age",
             "type": [
@@ -68,10 +66,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -80,20 +77,19 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "API with Types",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -107,48 +103,16 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "introduction-types.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "introduction-types.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/users/{id}",
-            "absoluteParentUri": "/users/{id}",
-            "path": "introduction-types.raml",
-            "uriParameters": [
-              {
-                "name": "id",
-                "displayName": "id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "introduction-types.raml"
-              }
-            ]
+            },
+            "method": "get"
           }
-        ],
-        "uriParameters": [
-          {
+        },
+        "uriParameters": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -170,10 +134,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "relativeUri": "/users/{id}",
         "displayName": "/users/{id}",
         "__METADATA__": {
@@ -189,12 +152,9 @@
         ],
         "absoluteUri": "/users/{id}",
         "completeRelativeUri": "/users/{id}",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "introduction-types.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "introduction-types.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

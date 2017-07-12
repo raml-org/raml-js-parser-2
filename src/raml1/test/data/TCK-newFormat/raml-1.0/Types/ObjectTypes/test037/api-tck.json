@@ -3,12 +3,11 @@
     "uses": [
       {
         "key": "NewLibrary",
-        "value": "NewLibrary.raml",
-        "path": "api.raml"
+        "value": "NewLibrary.raml"
       }
     ],
-    "types": [
-      {
+    "types": {
+      "Mammal": {
         "name": "Mammal",
         "displayName": "Mammal",
         "type": [
@@ -22,17 +21,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Bird": {
         "name": "Bird",
         "displayName": "Bird",
         "type": [
           "NewLibrary.Pet"
         ],
-        "properties": [
-          {
+        "properties": {
+          "wingLength": {
             "name": "wingLength",
             "displayName": "wingLength",
             "type": [
@@ -50,10 +48,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -62,14 +59,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    },
+    "traits": {
+      "NewLibrary.FilterableByPrice": {
+        "queryParameters": {
+          "priceLessThen": {
             "name": "priceLessThen",
             "displayName": "priceLessThen",
             "type": [
@@ -87,10 +83,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "NewLibrary.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "priceMoreThen": {
             "name": "priceMoreThen",
             "displayName": "priceMoreThen",
             "type": [
@@ -108,26 +103,24 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "NewLibrary.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "name": "NewLibrary.FilterableByPrice",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "NewLibrary.raml"
+        }
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "responses": [
-              {
+    },
+    "resourceTypes": {
+      "NewLibrary.Collection": {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -142,21 +135,16 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "<<item>>"
-                    ],
-                    "path": "NewLibrary.raml"
+                    "items": "<<item>>"
                   }
-                ],
-                "path": "NewLibrary.raml"
+                }
               }
-            ],
-            "method": "get",
-            "path": "NewLibrary.raml"
+            },
+            "method": "get"
           },
-          {
-            "body": [
-              {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -170,35 +158,30 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "path": "NewLibrary.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "name": "NewLibrary.Collection",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "NewLibrary.raml"
+        }
       },
-      {
-        "methods": [
-          {
-            "responses": [
-              {
-                "code": "204",
-                "path": "NewLibrary.raml"
+      "NewLibrary.Member": {
+        "methods": {
+          "delete": {
+            "responses": {
+              "204": {
+                "code": "204"
               }
-            ],
-            "method": "delete",
-            "path": "NewLibrary.raml"
+            },
+            "method": "delete"
           },
-          {
-            "body": [
-              {
+          "put": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -212,21 +195,18 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "put",
-            "path": "NewLibrary.raml"
+            },
+            "method": "put"
           }
-        ],
+        },
         "name": "NewLibrary.Member",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "NewLibrary.raml"
+        }
       }
-    ],
+    },
     "title": "Pet Shop",
     "version": "v1",
     "baseUri": "/shop",
@@ -235,10 +215,10 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "petKind": {
                 "name": "petKind",
                 "displayName": "petKind",
                 "type": [
@@ -263,10 +243,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "priceLessThen": {
                 "name": "priceLessThen",
                 "displayName": "priceLessThen",
                 "type": [
@@ -284,10 +263,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "priceMoreThen": {
                 "name": "priceMoreThen",
                 "displayName": "priceMoreThen",
                 "type": [
@@ -305,15 +283,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "responses": [
-              {
+            },
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -328,22 +305,16 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "NewLibrary.Pet"
-                    ],
-                    "path": "NewLibrary.raml"
+                    "items": "NewLibrary.Pet"
                   }
-                ],
-                "path": "NewLibrary.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "is": [
-              {
-                "name": "NewLibrary.FilterableByPrice"
-              }
+              "NewLibrary.FilterableByPrice"
             ],
             "method": "get",
             "__METADATA__": {
@@ -352,14 +323,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/pets",
-            "absoluteParentUri": "/shop/pets",
-            "path": "api.raml"
+            }
           },
-          {
-            "body": [
-              {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -373,10 +341,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -387,33 +354,25 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/pets",
-            "absoluteParentUri": "/shop/pets",
-            "path": "NewLibrary.raml"
-          }
-        ],
-        "type": {
-          "name": "NewLibrary.Collection",
-          "parameters": [
-            {
-              "name": "item",
-              "value": "NewLibrary.Pet"
             }
-          ]
+          }
+        },
+        "type": {
+          "NewLibrary.Collection": {
+            "item": "NewLibrary.Pet"
+          }
         },
         "relativeUri": "/pets",
         "displayName": "/pets",
         "resources": [
           {
-            "methods": [
-              {
-                "responses": [
-                  {
-                    "code": "204",
-                    "path": "NewLibrary.raml"
+            "methods": {
+              "delete": {
+                "responses": {
+                  "204": {
+                    "code": "204"
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -424,41 +383,11 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/pets/{id}",
-                "absoluteParentUri": "/shop/pets/{id}",
-                "path": "NewLibrary.raml",
-                "uriParameters": [
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
+                }
               },
-              {
-                "body": [
-                  {
+              "put": {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -472,10 +401,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "NewLibrary.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -486,50 +414,16 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/pets/{id}",
-                "absoluteParentUri": "/shop/pets/{id}",
-                "path": "NewLibrary.raml",
-                "uriParameters": [
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
-              }
-            ],
-            "type": {
-              "name": "NewLibrary.Member",
-              "parameters": [
-                {
-                  "name": "item",
-                  "value": "NewLibrary.Pet"
                 }
-              ]
+              }
             },
-            "uriParameters": [
-              {
+            "type": {
+              "NewLibrary.Member": {
+                "item": "NewLibrary.Pet"
+              }
+            },
+            "uriParameters": {
+              "id": {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -551,10 +445,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -569,9 +462,7 @@
             ],
             "absoluteUri": "/shop/pets/{id}",
             "completeRelativeUri": "/pets/{id}",
-            "parentUri": "/pets",
-            "absoluteParentUri": "/shop/pets",
-            "path": "api.raml"
+            "parentUri": "/pets"
           }
         ],
         "__METADATA__": {
@@ -586,15 +477,13 @@
         ],
         "absoluteUri": "/shop/pets",
         "completeRelativeUri": "/pets",
-        "parentUri": "",
-        "absoluteParentUri": "/shop",
-        "path": "api.raml"
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "priceLessThen": {
                 "name": "priceLessThen",
                 "displayName": "priceLessThen",
                 "type": [
@@ -612,10 +501,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "priceMoreThen": {
                 "name": "priceMoreThen",
                 "displayName": "priceMoreThen",
                 "type": [
@@ -633,15 +521,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "responses": [
-              {
+            },
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -656,22 +543,16 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "Bird"
-                    ],
-                    "path": "NewLibrary.raml"
+                    "items": "Bird"
                   }
-                ],
-                "path": "NewLibrary.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "is": [
-              {
-                "name": "NewLibrary.FilterableByPrice"
-              }
+              "NewLibrary.FilterableByPrice"
             ],
             "method": "get",
             "__METADATA__": {
@@ -680,14 +561,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/birds",
-            "absoluteParentUri": "/shop/birds",
-            "path": "api.raml"
+            }
           },
-          {
-            "body": [
-              {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -701,10 +579,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -715,33 +592,25 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/birds",
-            "absoluteParentUri": "/shop/birds",
-            "path": "NewLibrary.raml"
-          }
-        ],
-        "type": {
-          "name": "NewLibrary.Collection",
-          "parameters": [
-            {
-              "name": "item",
-              "value": "Bird"
             }
-          ]
+          }
+        },
+        "type": {
+          "NewLibrary.Collection": {
+            "item": "Bird"
+          }
         },
         "relativeUri": "/birds",
         "displayName": "/birds",
         "resources": [
           {
-            "methods": [
-              {
-                "responses": [
-                  {
-                    "code": "204",
-                    "path": "NewLibrary.raml"
+            "methods": {
+              "delete": {
+                "responses": {
+                  "204": {
+                    "code": "204"
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -752,41 +621,11 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/birds/{id}",
-                "absoluteParentUri": "/shop/birds/{id}",
-                "path": "NewLibrary.raml",
-                "uriParameters": [
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
+                }
               },
-              {
-                "body": [
-                  {
+              "put": {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -800,10 +639,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "NewLibrary.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -814,50 +652,16 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/birds/{id}",
-                "absoluteParentUri": "/shop/birds/{id}",
-                "path": "NewLibrary.raml",
-                "uriParameters": [
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
-              }
-            ],
-            "type": {
-              "name": "NewLibrary.Member",
-              "parameters": [
-                {
-                  "name": "item",
-                  "value": "Bird"
                 }
-              ]
+              }
             },
-            "uriParameters": [
-              {
+            "type": {
+              "NewLibrary.Member": {
+                "item": "Bird"
+              }
+            },
+            "uriParameters": {
+              "id": {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -879,10 +683,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -897,9 +700,7 @@
             ],
             "absoluteUri": "/shop/birds/{id}",
             "completeRelativeUri": "/birds/{id}",
-            "parentUri": "/birds",
-            "absoluteParentUri": "/shop/birds",
-            "path": "api.raml"
+            "parentUri": "/birds"
           }
         ],
         "__METADATA__": {
@@ -914,15 +715,13 @@
         ],
         "absoluteUri": "/shop/birds",
         "completeRelativeUri": "/birds",
-        "parentUri": "",
-        "absoluteParentUri": "/shop",
-        "path": "api.raml"
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "priceLessThen": {
                 "name": "priceLessThen",
                 "displayName": "priceLessThen",
                 "type": [
@@ -940,10 +739,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "priceMoreThen": {
                 "name": "priceMoreThen",
                 "displayName": "priceMoreThen",
                 "type": [
@@ -961,15 +759,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "responses": [
-              {
+            },
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -984,22 +781,16 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "Mammal"
-                    ],
-                    "path": "NewLibrary.raml"
+                    "items": "Mammal"
                   }
-                ],
-                "path": "NewLibrary.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "is": [
-              {
-                "name": "NewLibrary.FilterableByPrice"
-              }
+              "NewLibrary.FilterableByPrice"
             ],
             "method": "get",
             "__METADATA__": {
@@ -1008,14 +799,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/mammals",
-            "absoluteParentUri": "/shop/mammals",
-            "path": "api.raml"
+            }
           },
-          {
-            "body": [
-              {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -1029,10 +817,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "NewLibrary.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -1043,33 +830,25 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/mammals",
-            "absoluteParentUri": "/shop/mammals",
-            "path": "NewLibrary.raml"
-          }
-        ],
-        "type": {
-          "name": "NewLibrary.Collection",
-          "parameters": [
-            {
-              "name": "item",
-              "value": "Mammal"
             }
-          ]
+          }
+        },
+        "type": {
+          "NewLibrary.Collection": {
+            "item": "Mammal"
+          }
         },
         "relativeUri": "/mammals",
         "displayName": "/mammals",
         "resources": [
           {
-            "methods": [
-              {
-                "responses": [
-                  {
-                    "code": "204",
-                    "path": "NewLibrary.raml"
+            "methods": {
+              "delete": {
+                "responses": {
+                  "204": {
+                    "code": "204"
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -1080,41 +859,11 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/mammals/{id}",
-                "absoluteParentUri": "/shop/mammals/{id}",
-                "path": "NewLibrary.raml",
-                "uriParameters": [
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
+                }
               },
-              {
-                "body": [
-                  {
+              "put": {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -1128,10 +877,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "NewLibrary.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -1142,50 +890,16 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/mammals/{id}",
-                "absoluteParentUri": "/shop/mammals/{id}",
-                "path": "NewLibrary.raml",
-                "uriParameters": [
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
-              }
-            ],
-            "type": {
-              "name": "NewLibrary.Member",
-              "parameters": [
-                {
-                  "name": "item",
-                  "value": "Mammal"
                 }
-              ]
+              }
             },
-            "uriParameters": [
-              {
+            "type": {
+              "NewLibrary.Member": {
+                "item": "Mammal"
+              }
+            },
+            "uriParameters": {
+              "id": {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -1207,10 +921,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -1225,9 +938,7 @@
             ],
             "absoluteUri": "/shop/mammals/{id}",
             "completeRelativeUri": "/mammals/{id}",
-            "parentUri": "/mammals",
-            "absoluteParentUri": "/shop/mammals",
-            "path": "api.raml"
+            "parentUri": "/mammals"
           }
         ],
         "__METADATA__": {
@@ -1242,9 +953,7 @@
         ],
         "absoluteUri": "/shop/mammals",
         "completeRelativeUri": "/mammals",
-        "parentUri": "",
-        "absoluteParentUri": "/shop",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -1253,8 +962,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

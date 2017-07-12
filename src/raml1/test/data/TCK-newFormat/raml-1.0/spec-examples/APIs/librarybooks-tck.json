@@ -3,14 +3,11 @@
     "title": "Book Library API",
     "resources": [
       {
-        "methods": [
-          {
-            "method": "get",
-            "parentUri": "/books",
-            "absoluteParentUri": "/books",
-            "path": "librarybooks.raml"
+        "methods": {
+          "get": {
+            "method": "get"
           }
-        ],
+        },
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -26,24 +23,19 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "librarybooks.raml"
+        "parentUri": ""
       }
     ],
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books",
-        "path": "librarybooks.raml"
+        "content": "Automated access to books"
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books.",
-        "path": "librarybooks.raml"
+        "content": "Please respect copyrights on our books."
       }
-    ],
-    "path": "librarybooks.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

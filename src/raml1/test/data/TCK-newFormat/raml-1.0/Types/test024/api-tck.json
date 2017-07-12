@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Zip": {
         "name": "Zip",
         "displayName": "Zip",
         "type": [
@@ -21,21 +21,17 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          630128
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Address": {
         "name": "Address",
         "displayName": "Address",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "country": {
             "name": "country",
             "displayName": "country",
             "type": [
@@ -62,10 +58,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "city": {
             "name": "city",
             "displayName": "city",
             "type": [
@@ -86,10 +81,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "street": {
             "name": "street",
             "displayName": "street",
             "type": [
@@ -110,10 +104,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "house": {
             "name": "house",
             "displayName": "house",
             "type": [
@@ -134,10 +127,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "zip": {
             "name": "zip",
             "displayName": "zip",
             "type": [
@@ -155,10 +147,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -182,14 +173,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"country\":\"US\",\"city\":\"SF\",\"street\":\"Geary Street\",\"house\":\"77, Suite 400\",\"zip\":94108}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Email": {
         "name": "Email",
         "displayName": "Email",
         "type": [
@@ -215,18 +202,14 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "press@mulesoft.com"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "User": {
         "name": "User",
         "displayName": "User",
-        "facets": [
-          {
+        "facets": {
+          "role": {
             "name": "role",
             "displayName": "role",
             "type": [
@@ -250,10 +233,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "type": [
           "object"
         ],
@@ -289,8 +271,8 @@
             "name": "value2"
           }
         ],
-        "properties": [
-          {
+        "properties": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -308,10 +290,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -332,10 +313,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "email": {
             "name": "email",
             "displayName": "email",
             "type": [
@@ -353,10 +333,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "phone": {
             "name": "phone",
             "displayName": "phone",
             "type": [
@@ -380,10 +359,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "address": {
             "name": "address",
             "displayName": "address",
             "type": [
@@ -401,10 +379,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -415,15 +392,10 @@
             }
           }
         },
-        "simplifiedExamples": [
-          "{\"id\":11,\"name\":\"John Johnson\",\"email\":\"press@mulesoft.com\",\"phone\":\"+7-913-111-1111\",\"address\":{\"country\":\"RUS\",\"city\":\"Novosibirsk\",\"zip\":630090}}",
-          "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456}}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Manager": {
         "name": "Manager",
         "displayName": "Manager",
         "type": [
@@ -463,8 +435,8 @@
             "name": "manager2"
           }
         ],
-        "properties": [
-          {
+        "properties": {
+          "managerId": {
             "name": "managerId",
             "displayName": "managerId",
             "type": [
@@ -482,10 +454,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -493,28 +464,20 @@
             }
           }
         },
-        "fixedFacets": [
-          {
-            "name": "role",
-            "value": "manager"
-          }
-        ],
-        "simplifiedExamples": [
-          "{\"id\":11,\"name\":\"John Johnson\",\"email\":\"press@mulesoft.com\",\"phone\":\"+7-913-111-1111\",\"address\":{\"country\":\"RUS\",\"city\":\"Novosibirsk\",\"zip\":630090},\"managerId\":77}",
-          "{\"id\":12,\"name\":\"John Johnson\",\"email\":\"press1@mulesoft.com\",\"phone\":\"+1-222-222-2222\",\"address\":{\"country\":\"US\",\"city\":\"SF\",\"zip\":123456},\"managerId\":88}"
-        ],
+        "fixedFacets": {
+          "role": "manager"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Admin": {
         "name": "Admin",
         "displayName": "Admin",
         "type": [
           "User"
         ],
-        "properties": [
-          {
+        "properties": {
+          "adminId": {
             "name": "adminId",
             "displayName": "adminId",
             "type": [
@@ -532,10 +495,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -543,17 +505,13 @@
             }
           }
         },
-        "fixedFacets": [
-          {
-            "name": "role",
-            "value": "admin"
-          }
-        ],
+        "fixedFacets": {
+          "role": "admin"
+        },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "SuperAdmin": {
         "name": "SuperAdmin",
         "displayName": "SuperAdmin",
         "type": [
@@ -567,17 +525,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Team": {
         "name": "Team",
         "displayName": "Team",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -595,10 +552,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "title": {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -620,10 +576,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "manager": {
             "name": "manager",
             "displayName": "manager",
             "type": [
@@ -641,14 +596,13 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "admin": {
             "name": "admin",
             "displayName": "admin",
             "type": [
-              "union"
+              "Admin|SuperAdmin"
             ],
             "required": true,
             "__METADATA__": {
@@ -662,14 +616,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
-              "Admin",
-              "SuperAdmin"
-            ],
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "members": {
             "name": "members",
             "displayName": "members",
             "type": [
@@ -688,28 +637,17 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              {
-                "type": [
-                  "union"
-                ],
-                "oneOf": [
-                  "Team",
-                  "User"
-                ]
-              }
-            ],
-            "path": "api.raml"
+            "items": "User|Team"
           },
-          {
+          "info": {
             "name": "info",
             "displayName": "info",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": [
-              {
+            "properties": {
+              "address": {
                 "name": "address",
                 "displayName": "address",
                 "type": [
@@ -727,10 +665,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "email": {
                 "name": "email",
                 "displayName": "email",
                 "type": [
@@ -748,10 +685,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "size": {
                 "name": "size",
                 "displayName": "size",
                 "type": [
@@ -769,10 +705,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -787,10 +722,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -802,15 +736,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "TCK Sample. RAML 1.0 Types 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -838,22 +771,21 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTP"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -868,15 +800,11 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "Team"
-                    ],
-                    "path": "api.raml"
+                    "items": "Team"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -887,50 +815,14 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
-            "path": "api.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           },
-          {
-            "responses": [
-              {
+          "post": {
+            "responses": {
+              "204": {
                 "code": "204",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -943,29 +835,24 @@
                         }
                       }
                     },
-                    "fixedFacets": [
-                      {
-                        "name": "role",
-                        "value": "admin"
-                      }
-                    ],
+                    "fixedFacets": {
+                      "role": "admin"
+                    },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": [
-                  {
+                "properties": {
+                  "title": {
                     "name": "title",
                     "displayName": "title",
                     "type": [
@@ -987,10 +874,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -1002,10 +888,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -1017,56 +902,20 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
-            "path": "api.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "relativeUri": "/teams",
         "displayName": "/teams",
         "resources": [
           {
-            "methods": [
-              {
-                "responses": [
-                  {
+            "methods": {
+              "get": {
+                "responses": {
+                  "200": {
                     "code": "200",
-                    "body": [
-                      {
+                    "body": {
+                      "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
@@ -1080,16 +929,14 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "path": "api.raml"
+                    }
                   },
-                  {
+                  "404": {
                     "code": "404",
-                    "body": [
-                      {
+                    "body": {
+                      "text/plain": {
                         "name": "text/plain",
                         "displayName": "text/plain",
                         "type": [
@@ -1106,13 +953,11 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "path": "api.raml"
+                    }
                   }
-                ],
+                },
                 "protocols": [
                   "HTTP"
                 ],
@@ -1123,103 +968,11 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/teams/{id}",
-                "absoluteParentUri": "http://api.samplehost.com/{version}/teams/{id}",
-                "path": "api.raml",
-                "uriParameters": [
-                  {
-                    "name": "version",
-                    "displayName": "version",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "enum": [
-                      "v1"
-                    ],
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        },
-                        "enum": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  },
-                  {
-                    "name": "id",
-                    "displayName": "id",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
+                }
               }
-            ],
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
+            },
+            "uriParameters": {
+              "id": {
                 "name": "id",
                 "displayName": "id",
                 "type": [
@@ -1241,10 +994,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{id}",
             "displayName": "/{id}",
             "__METADATA__": {
@@ -1259,9 +1011,7 @@
             ],
             "absoluteUri": "http://api.samplehost.com/{version}/teams/{id}",
             "completeRelativeUri": "/teams/{id}",
-            "parentUri": "/teams",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
-            "path": "api.raml"
+            "parentUri": "/teams"
           }
         ],
         "__METADATA__": {
@@ -1276,51 +1026,16 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/teams",
         "completeRelativeUri": "/teams",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -1335,15 +1050,11 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "User"
-                    ],
-                    "path": "api.raml"
+                    "items": "User"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -1354,45 +1065,9 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/users",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/users",
-            "path": "api.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -1407,51 +1082,16 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       },
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -1464,20 +1104,15 @@
                         }
                       }
                     },
-                    "fixedFacets": [
-                      {
-                        "name": "role",
-                        "value": "admin"
-                      }
-                    ],
+                    "fixedFacets": {
+                      "role": "admin"
+                    },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -1488,103 +1123,11 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/users/{id}",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/users/{id}",
-            "path": "api.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "id",
-                "displayName": "id",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            }
           }
-        ],
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          },
-          {
+        },
+        "uriParameters": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -1606,10 +1149,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "relativeUri": "/users/{id}",
         "displayName": "/users/{id}",
         "__METADATA__": {
@@ -1625,9 +1167,7 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/users/{id}",
         "completeRelativeUri": "/users/{id}",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -1636,8 +1176,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

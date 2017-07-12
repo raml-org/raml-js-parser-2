@@ -1,25 +1,25 @@
 {
   "specification": {
-    "annotations": [
-      {
+    "annotations": {
+      "x": {
         "name": "x",
-        "value": {
+        "structuredValue": {
           "v": [
             true,
             false
           ]
         }
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "x": {
         "name": "x",
         "displayName": "x",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "v": {
             "name": "v",
             "displayName": "v",
             "type": [
@@ -38,12 +38,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "boolean"
-            ],
-            "path": "apiValid.raml"
+            "items": "boolean"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -55,15 +52,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "WebOfMe",
     "mediaType": [
       "application/json"
-    ],
-    "path": "apiValid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

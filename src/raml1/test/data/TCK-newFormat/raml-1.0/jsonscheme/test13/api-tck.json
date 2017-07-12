@@ -1,14 +1,14 @@
 {
   "specification": {
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "responses": [
-              {
+    "resourceTypes": {
+      "test": {
+        "methods": {
+          "get": {
+            "responses": {
+              "201": {
                 "code": "201",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "schemaPath": "list.json",
@@ -23,23 +23,18 @@
                       }
                     },
                     "mediaType": "application/json",
-                    "typePropertyKind": "JSON",
-                    "path": "resourceType.raml"
+                    "typePropertyKind": "JSON"
                   }
-                ],
-                "path": "resourceType.raml"
+                }
               }
-            ],
-            "method": "get",
-            "path": "resourceType.raml"
+            },
+            "method": "get"
           }
-        ],
-        "name": "test",
-        "path": "resourceType.raml"
+        },
+        "name": "test"
       }
-    ],
-    "title": "test API",
-    "path": "api.raml"
+    },
+    "title": "test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -6,13 +6,13 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -29,19 +29,14 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "default-type-any-2.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "default-type-any-2.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/customers",
-            "absoluteParentUri": "/customers",
-            "path": "default-type-any-2.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {
@@ -56,12 +51,9 @@
         ],
         "absoluteUri": "/customers",
         "completeRelativeUri": "/customers",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "default-type-any-2.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "default-type-any-2.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

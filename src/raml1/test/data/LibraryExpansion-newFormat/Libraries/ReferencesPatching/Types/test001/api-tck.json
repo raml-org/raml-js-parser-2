@@ -1,15 +1,8 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "primitives",
-        "value": "./lib/library.raml",
-        "path": "api.raml"
-      }
-    ],
-    "types": [
-      {
-        "name": "primitives.ExtLocale",
+    "types": {
+      "primitives.ExtLocale": {
+        "name": "ExtLocale",
         "displayName": "ExtLocale",
         "schemaPath": "schemas/locale.xsd",
         "type": [
@@ -23,11 +16,10 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "lib/library.raml"
+        "typePropertyKind": "JSON"
       },
-      {
-        "name": "primitives.Locale",
+      "primitives.Locale": {
+        "name": "Locale",
         "displayName": "Locale",
         "type": [
           "primitives.ExtLocale"
@@ -39,11 +31,9 @@
             }
           }
         },
-        "mediaType": "application/json",
-        "path": "lib/library.raml"
+        "mediaType": "application/json"
       }
-    ],
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

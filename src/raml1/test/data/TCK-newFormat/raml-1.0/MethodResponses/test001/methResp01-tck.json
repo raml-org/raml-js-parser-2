@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "TestType": {
         "name": "TestType",
         "displayName": "TestType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "field": {
             "name": "field",
             "displayName": "field",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "methResp01.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -46,31 +45,23 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"field\":\"value\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "methResp01.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
-                "code": "200",
-                "path": "methResp01.raml"
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200"
               }
-            ],
-            "method": "get",
-            "parentUri": "/test",
-            "absoluteParentUri": "/test",
-            "path": "methResp01.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -85,12 +76,9 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "methResp01.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "methResp01.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

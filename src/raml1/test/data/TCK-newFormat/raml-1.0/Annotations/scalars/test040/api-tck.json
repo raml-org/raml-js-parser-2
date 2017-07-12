@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "t0": {
         "name": "t0",
         "displayName": "t0",
         "type": [
@@ -18,10 +18,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "t1": {
         "name": "t1",
         "displayName": "t1",
         "type": [
@@ -39,18 +38,17 @@
             [
               {
                 "name": "a",
-                "value": "asdfg"
+                "structuredValue": "asdfg"
               }
             ]
           ]
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "a": {
         "name": "a",
         "displayName": "a",
         "type": [
@@ -69,13 +67,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "testAPI",
-    "version": "v1",
-    "path": "api.raml"
+    "version": "v1"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

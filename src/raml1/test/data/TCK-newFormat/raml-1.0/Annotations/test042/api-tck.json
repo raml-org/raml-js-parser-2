@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "xz": {
         "name": "xz",
         "displayName": "xz",
         "type": [
@@ -21,23 +21,22 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
-                "annotations": [
-                  {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "annotations": {
+                  "xz": {
                     "name": "xz",
-                    "value": "z"
+                    "structuredValue": "z"
                   }
-                ],
+                },
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -54,16 +53,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "get",
-            "parentUri": "/g",
-            "absoluteParentUri": "/g",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/g",
         "displayName": "/g",
         "__METADATA__": {
@@ -78,12 +73,9 @@
         ],
         "absoluteUri": "/g",
         "completeRelativeUri": "/g",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

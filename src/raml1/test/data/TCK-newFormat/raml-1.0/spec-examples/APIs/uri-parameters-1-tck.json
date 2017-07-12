@@ -22,17 +22,15 @@
         ],
         "absoluteUri": "https://api.github.com/user",
         "completeRelativeUri": "/user",
-        "parentUri": "",
-        "absoluteParentUri": "https://api.github.com",
-        "path": "uri-parameters-1.raml"
+        "parentUri": ""
       },
       {
         "relativeUri": "/users",
         "displayName": "/users",
         "resources": [
           {
-            "uriParameters": [
-              {
+            "uriParameters": {
+              "userId": {
                 "name": "userId",
                 "displayName": "userId",
                 "type": [
@@ -50,10 +48,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "uri-parameters-1.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{userId}",
             "displayName": "/{userId}",
             "resources": [
@@ -72,33 +69,7 @@
                 ],
                 "absoluteUri": "https://api.github.com/users/{userId}/followers",
                 "completeRelativeUri": "/users/{userId}/followers",
-                "parentUri": "/users/{userId}",
-                "absoluteParentUri": "https://api.github.com/users/{userId}",
-                "path": "uri-parameters-1.raml",
-                "uriParameters": [
-                  {
-                    "name": "userId",
-                    "displayName": "userId",
-                    "type": [
-                      "integer"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "uri-parameters-1.raml"
-                  }
-                ]
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/following",
@@ -115,63 +86,15 @@
                 ],
                 "absoluteUri": "https://api.github.com/users/{userId}/following",
                 "completeRelativeUri": "/users/{userId}/following",
-                "parentUri": "/users/{userId}",
-                "absoluteParentUri": "https://api.github.com/users/{userId}",
-                "path": "uri-parameters-1.raml",
-                "uriParameters": [
-                  {
-                    "name": "userId",
-                    "displayName": "userId",
-                    "type": [
-                      "integer"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "uri-parameters-1.raml"
-                  }
-                ]
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/keys",
                 "displayName": "/keys",
                 "resources": [
                   {
-                    "uriParameters": [
-                      {
-                        "name": "userId",
-                        "displayName": "userId",
-                        "type": [
-                          "integer"
-                        ],
-                        "required": true,
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            },
-                            "required": {
-                              "insertedAsDefault": true
-                            }
-                          },
-                          "calculated": true
-                        },
-                        "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "uri-parameters-1.raml"
-                      },
-                      {
+                    "uriParameters": {
+                      "keyId": {
                         "name": "keyId",
                         "displayName": "keyId",
                         "type": [
@@ -189,10 +112,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "uri-parameters-1.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
+                    },
                     "relativeUri": "/{keyId}",
                     "displayName": "/{keyId}",
                     "__METADATA__": {
@@ -207,9 +129,7 @@
                     ],
                     "absoluteUri": "https://api.github.com/users/{userId}/keys/{keyId}",
                     "completeRelativeUri": "/users/{userId}/keys/{keyId}",
-                    "parentUri": "/users/{userId}/keys",
-                    "absoluteParentUri": "https://api.github.com/users/{userId}/keys",
-                    "path": "uri-parameters-1.raml"
+                    "parentUri": "/users/{userId}/keys"
                   }
                 ],
                 "__METADATA__": {
@@ -224,33 +144,7 @@
                 ],
                 "absoluteUri": "https://api.github.com/users/{userId}/keys",
                 "completeRelativeUri": "/users/{userId}/keys",
-                "parentUri": "/users/{userId}",
-                "absoluteParentUri": "https://api.github.com/users/{userId}",
-                "path": "uri-parameters-1.raml",
-                "uriParameters": [
-                  {
-                    "name": "userId",
-                    "displayName": "userId",
-                    "type": [
-                      "integer"
-                    ],
-                    "required": true,
-                    "__METADATA__": {
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        }
-                      },
-                      "calculated": true
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "uri-parameters-1.raml"
-                  }
-                ]
+                "parentUri": "/users/{userId}"
               }
             ],
             "__METADATA__": {
@@ -265,9 +159,7 @@
             ],
             "absoluteUri": "https://api.github.com/users/{userId}",
             "completeRelativeUri": "/users/{userId}",
-            "parentUri": "/users",
-            "absoluteParentUri": "https://api.github.com/users",
-            "path": "uri-parameters-1.raml"
+            "parentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -282,9 +174,7 @@
         ],
         "absoluteUri": "https://api.github.com/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "https://api.github.com",
-        "path": "uri-parameters-1.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -293,8 +183,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "uri-parameters-1.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

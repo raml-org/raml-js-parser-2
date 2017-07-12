@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "T1": {
         "name": "T1",
         "displayName": "T1",
         "type": [
@@ -16,9 +16,24 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "unfolded": {
+          "name": "T1",
+          "displayName": "T1",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        }
       },
-      {
+      "T2": {
         "name": "T2",
         "displayName": "T2",
         "type": [
@@ -33,20 +48,35 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "unfolded": {
+          "name": "T2",
+          "displayName": "T2",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        }
       },
-      {
+      "T3": {
         "name": "T3",
         "displayName": "T3",
         "type": [
           "T1"
         ],
-        "properties": [
-          {
+        "properties": {
+          "p1": {
             "name": "p1",
             "displayName": "p1",
             "type": [
-              "union"
+              "T4|boolean"
             ],
             "required": true,
             "__METADATA__": {
@@ -61,17 +91,40 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
-              "T4",
-              "boolean"
-            ],
-            "path": "api.raml"
+            "unfolded": {
+              "name": "p1",
+              "displayName": "p1",
+              "type": [
+                {
+                  "type": [
+                    "union"
+                  ],
+                  "options": [
+                    "T4",
+                    "boolean"
+                  ]
+                }
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
           },
-          {
+          "p2": {
             "name": "p2",
             "displayName": "p2",
             "type": [
-              "union"
+              "number|T2"
             ],
             "required": true,
             "__METADATA__": {
@@ -86,13 +139,36 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
-              "T2",
-              "number"
-            ],
-            "path": "api.raml"
+            "unfolded": {
+              "name": "p2",
+              "displayName": "p2",
+              "type": [
+                {
+                  "type": [
+                    "union"
+                  ],
+                  "options": [
+                    "T2",
+                    "number"
+                  ]
+                }
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -102,9 +178,82 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "unfolded": {
+          "name": "T3",
+          "displayName": "T3",
+          "type": [
+            "T1"
+          ],
+          "properties": {
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
+              "type": [
+                {
+                  "type": [
+                    "union"
+                  ],
+                  "options": [
+                    "T4",
+                    "boolean"
+                  ]
+                }
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            },
+            "p2": {
+              "name": "p2",
+              "displayName": "p2",
+              "type": [
+                {
+                  "type": [
+                    "union"
+                  ],
+                  "options": [
+                    "T2",
+                    "number"
+                  ]
+                }
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        }
       },
-      {
+      "T4": {
         "name": "T4",
         "displayName": "T4",
         "type": [
@@ -122,11 +271,28 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "unfolded": {
+          "name": "T4",
+          "displayName": "T4",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        }
       }
-    ],
-    "title": "Test API",
-    "path": "api.raml"
+    },
+    "title": "Test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

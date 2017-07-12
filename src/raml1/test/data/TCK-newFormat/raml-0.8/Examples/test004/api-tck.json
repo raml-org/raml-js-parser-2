@@ -3,12 +3,9 @@
     "title": "test API",
     "schemas": [
       {
-        "value": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n",
-        "name": "example-schema",
-        "path": "api.raml"
+        "example-schema": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n"
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

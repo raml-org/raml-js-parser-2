@@ -1,11 +1,11 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
-          "union"
+          "object | SomeUnion"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -15,18 +15,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
-          "SomeUnion",
-          "object"
-        ],
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "SomeUnion": {
         "name": "SomeUnion",
         "displayName": "SomeUnion",
         "type": [
-          "union"
+          "array"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -37,27 +32,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
-          {
-            "type": [
-              "array"
-            ],
-            "items": [
-              "AnotherType"
-            ]
-          },
-          {
-            "type": [
-              "array"
-            ],
-            "items": [
-              "OneMoreType"
-            ]
-          }
-        ],
-        "path": "apiInvalid.raml"
+        "items": "AnotherType[] | OneMoreType"
       },
-      {
+      "AnotherType": {
         "name": "AnotherType",
         "displayName": "AnotherType",
         "type": [
@@ -71,10 +48,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "OneMoreType": {
         "name": "OneMoreType",
         "displayName": "OneMoreType",
         "type": [
@@ -88,12 +64,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "API",
-    "path": "apiInvalid.raml"
+    },
+    "title": "API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

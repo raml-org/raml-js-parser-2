@@ -4,8 +4,8 @@
       "object"
     ],
     "required": true,
-    "properties": [
-      {
+    "properties": {
+      "first": {
         "name": "first",
         "displayName": "first",
         "type": [
@@ -23,10 +23,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "DataType.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "second": {
         "name": "second",
         "displayName": "second",
         "type": [
@@ -44,10 +43,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "DataType.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "__METADATA__": {
       "primitiveValuesMeta": {
         "type": {
@@ -59,8 +57,7 @@
       }
     },
     "mediaType": "application/raml+yaml",
-    "typePropertyKind": "TYPE_EXPRESSION",
-    "path": "DataType.raml"
+    "typePropertyKind": "TYPE_EXPRESSION"
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

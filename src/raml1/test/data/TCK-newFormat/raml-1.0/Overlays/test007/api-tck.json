@@ -2,8 +2,8 @@
   "specification": {
     "title": "Pet Shop Overlay",
     "extends": "api.raml",
-    "types": [
-      {
+    "types": {
+      "testSchema": {
         "name": "testSchema",
         "displayName": "testSchema",
         "type": [
@@ -17,11 +17,9 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "NewOverlay.raml"
+        "typePropertyKind": "JSON"
       }
-    ],
-    "path": "NewOverlay.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

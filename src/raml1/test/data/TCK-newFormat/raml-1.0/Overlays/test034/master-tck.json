@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Customer": {
         "name": "Customer",
         "displayName": "Customer",
         "type": [
@@ -18,16 +18,15 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "master.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "body": [
-              {
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -41,22 +40,19 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "collection.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "description": "Add a new <<resourcePathName | !singularize>>",
-            "method": "post",
-            "path": "collection.raml"
+            "method": "post"
           }
-        ],
+        },
         "name": "collection",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "collection.raml"
+        }
       }
-    ],
+    },
     "title": "ACME Banking API",
     "version": "1.0",
     "mediaType": [
@@ -64,17 +60,14 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
+        "methods": {
+          "get": {
             "description": "Recuperar una lista de clientes",
-            "method": "get",
-            "parentUri": "/customers",
-            "absoluteParentUri": "/customers",
-            "path": "overlay.raml"
+            "method": "get"
           },
-          {
-            "body": [
-              {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -88,20 +81,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "collection.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "description": "Agregue un nuevo cliente",
-            "method": "post",
-            "parentUri": "/customers",
-            "absoluteParentUri": "/customers",
-            "path": "overlay.raml"
+            "method": "post"
           }
-        ],
-        "type": {
-          "name": "collection"
         },
+        "type": "collection",
         "relativeUri": "/customers",
         "displayName": "/customers",
         "__METADATA__": {
@@ -116,14 +103,11 @@
         ],
         "absoluteUri": "/customers",
         "completeRelativeUri": "/customers",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "overlay.raml"
+        "parentUri": ""
       }
     ],
     "usage": "Spanish localization",
-    "extends": "master.raml",
-    "path": "overlay.raml"
+    "extends": "master.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
-        "headers": [
-          {
+    "traits": {
+      "chargeable": {
+        "headers": {
+          "dept_code": {
             "name": "dept_code",
             "displayName": "dept_code",
             "type": [
@@ -24,19 +24,17 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "patterns/traits.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "name": "chargeable",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "patterns/traits.raml"
+        }
       },
-      {
-        "queryParameters": [
-          {
+      "paged": {
+        "queryParameters": {
+          "start": {
             "name": "start",
             "displayName": "start",
             "type": [
@@ -54,65 +52,53 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "patterns/traits.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "name": "paged",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "patterns/traits.raml"
+        }
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
+    },
+    "resourceTypes": {
+      "collection": {
+        "methods": {
+          "get": {
             "is": [
-              {
-                "name": "paged"
-              }
+              "paged"
             ],
-            "method": "get",
-            "path": "patterns/resourceTypes.raml"
+            "method": "get"
           },
-          {
-            "method": "post",
-            "path": "patterns/resourceTypes.raml"
+          "post": {
+            "method": "post"
           }
-        ],
+        },
         "name": "collection",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "patterns/resourceTypes.raml"
+        }
       },
-      {
-        "methods": [
-          {
-            "method": "get",
-            "path": "patterns/resourceTypes.raml"
+      "member": {
+        "methods": {
+          "get": {
+            "method": "get"
           },
-          {
-            "method": "patch",
-            "path": "patterns/resourceTypes.raml"
+          "patch": {
+            "method": "patch"
           },
-          {
-            "method": "delete",
-            "path": "patterns/resourceTypes.raml"
+          "delete": {
+            "method": "delete"
           }
-        ],
+        },
         "name": "member",
         "__METADATA__": {
           "calculated": true
-        },
-        "path": "patterns/resourceTypes.raml"
+        }
       }
-    ],
+    },
     "title": "Example API",
-    "version": "v1",
-    "path": "resolve-includes.raml"
+    "version": "v1"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

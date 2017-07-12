@@ -1,10 +1,10 @@
 {
   "specification": {
     "title": "A",
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<propertyName1>>": {
             "name": "<<propertyName1>>",
             "displayName": "<<propertyName1>>",
             "type": "number",
@@ -22,10 +22,9 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "path": "apiValid.raml"
+            }
           },
-          {
+          "<<propertyName2>>": {
             "name": "<<propertyName2>>",
             "displayName": "<<propertyName2>>",
             "type": "boolean",
@@ -43,10 +42,9 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "path": "apiValid.raml"
+            }
           },
-          {
+          "<<propertyName3>>": {
             "name": "<<propertyName3>>",
             "displayName": "<<propertyName3>>",
             "type": "string",
@@ -64,24 +62,22 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "path": "apiValid.raml"
+            }
           }
-        ],
-        "name": "SomeTrait",
-        "path": "apiValid.raml"
+        },
+        "name": "SomeTrait"
       }
-    ],
-    "resourceTypes": [
-      {
+    },
+    "resourceTypes": {
+      "Resource1": {
         "name": "Resource1",
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
-                "formParameters": [
-                  {
+                "formParameters": {
+                  "formParam": {
                     "name": "formParam",
                     "displayName": "formParam",
                     "type": "number",
@@ -99,47 +95,33 @@
                           "insertedAsDefault": true
                         }
                       }
-                    },
-                    "path": "apiValid.raml"
+                    }
                   }
-                ],
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "path": "apiValid.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "is": [
           {
-            "name": "SomeTrait",
-            "parameters": [
-              {
-                "name": "propertyName1",
-                "value": "a"
-              },
-              {
-                "name": "propertyName2",
-                "value": "b"
-              },
-              {
-                "name": "propertyName3",
-                "value": "c"
-              }
-            ]
+            "SomeTrait": {
+              "propertyName1": "a",
+              "propertyName2": "b",
+              "propertyName3": "c"
+            }
           }
-        ],
-        "path": "apiValid.raml"
+        ]
       },
-      {
+      "Resource2": {
         "name": "Resource2",
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
-                "formParameters": [
-                  {
+                "formParameters": {
+                  "formParam": {
                     "name": "formParam",
                     "displayName": "formParam",
                     "type": "boolean",
@@ -157,83 +139,55 @@
                           "insertedAsDefault": true
                         }
                       }
-                    },
-                    "path": "apiValid.raml"
+                    }
                   }
-                ],
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "path": "apiValid.raml"
+            },
+            "method": "get"
           }
-        ],
-        "is": [
-          {
-            "name": "SomeTrait",
-            "parameters": [
-              {
-                "name": "propertyName1",
-                "value": "c"
-              },
-              {
-                "name": "propertyName2",
-                "value": "a"
-              },
-              {
-                "name": "propertyName3",
-                "value": "b"
-              }
-            ]
-          }
-        ],
-        "path": "apiValid.raml"
-      }
-    ],
-    "resources": [
-      {
-        "relativeUri": "/resource",
-        "type": {
-          "name": "Resource1"
         },
         "is": [
           {
-            "name": "SomeTrait",
-            "parameters": [
-              {
-                "name": "propertyName1",
-                "value": "a"
-              },
-              {
-                "name": "propertyName2",
-                "value": "b"
-              },
-              {
-                "name": "propertyName3",
-                "value": "c"
-              }
-            ]
+            "SomeTrait": {
+              "propertyName1": "c",
+              "propertyName2": "a",
+              "propertyName3": "b"
+            }
+          }
+        ]
+      }
+    },
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "type": "Resource1",
+        "is": [
+          {
+            "SomeTrait": {
+              "propertyName1": "a",
+              "propertyName2": "b",
+              "propertyName3": "c"
+            }
           }
         ],
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
-                    "name": "application/json",
-                    "path": "apiValid.raml"
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
                   }
-                ],
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
-                "formParameters": [
-                  {
+                "formParameters": {
+                  "formParam": {
                     "name": "formParam",
                     "displayName": "formParam",
                     "type": "number",
@@ -252,15 +206,13 @@
                           "insertedAsDefault": true
                         }
                       }
-                    },
-                    "path": "apiValid.raml"
+                    }
                   }
-                ],
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "queryParameters": [
-              {
+            },
+            "queryParameters": {
+              "a": {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -279,10 +231,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiValid.raml"
+                }
               },
-              {
+              "b": {
                 "name": "b",
                 "displayName": "b",
                 "type": "boolean",
@@ -301,10 +252,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiValid.raml"
+                }
               },
-              {
+              "c": {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -323,16 +273,12 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiValid.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -346,12 +292,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiValid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiValid.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

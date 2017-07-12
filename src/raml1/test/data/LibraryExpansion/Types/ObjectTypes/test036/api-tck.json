@@ -2,12 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "uses": [
-      {
-        "key": "NewLibrary",
-        "value": "NewLibrary.raml"
-      }
-    ],
     "types": [
       {
         "Mammal": {
@@ -758,44 +752,5 @@
       }
     }
   },
-  "errors": [
-    {
-      "code": "INCORRECT_DISCRIMINATOR",
-      "message": "None of the 'Pet' type known subtypes declare 'Mammal' as value of discriminating property 'kind'.",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/LibraryExpansion/Types/ObjectTypes/test036/NewLibrary.raml",
-      "range": {
-        "start": {
-          "line": 16,
-          "column": 6,
-          "position": 253
-        },
-        "end": {
-          "line": 16,
-          "column": 10,
-          "position": 257
-        }
-      },
-      "isWarning": true,
-      "trace": [
-        {
-          "code": "ISSUES_IN_THE_LIBRARY",
-          "message": "Issues in the used library: 'NewLibrary.raml'",
-          "path": "api.raml",
-          "range": {
-            "start": {
-              "line": 3,
-              "column": 2,
-              "position": 35
-            },
-            "end": {
-              "line": 3,
-              "column": 12,
-              "position": 45
-            }
-          },
-          "isWarning": true
-        }
-      ]
-    }
-  ]
+  "errors": []
 }

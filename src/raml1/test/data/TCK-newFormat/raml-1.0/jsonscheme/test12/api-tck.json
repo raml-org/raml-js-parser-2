@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Foo": {
         "name": "Foo",
         "displayName": "Foo",
         "schemaPath": "schema.json#Foo",
@@ -16,17 +16,16 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -50,19 +49,12 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "{\"id\":1,\"name\":\"stringValue\",\"ownerName\":\"stringValue\"}"
-                ],
-                "mediaType": "application/json",
-                "path": "api.raml"
+                "mediaType": "application/json"
               }
-            ],
-            "method": "post",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -77,12 +69,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

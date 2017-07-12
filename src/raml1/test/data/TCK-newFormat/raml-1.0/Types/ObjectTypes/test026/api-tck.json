@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "ParentType": {
         "name": "ParentType",
         "displayName": "ParentType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "stringProperty": {
             "name": "stringProperty",
             "displayName": "stringProperty",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "kind": {
             "name": "kind",
             "displayName": "kind",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "discriminator": "kind",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -63,10 +61,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ChildType1": {
         "name": "ChildType1",
         "displayName": "ChildType1",
         "type": [
@@ -81,17 +78,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ChildType2": {
         "name": "ChildType2",
         "displayName": "ChildType2",
         "type": [
           "ParentType"
         ],
-        "properties": [
-          {
+        "properties": {
+          "stringProperty": {
             "name": "stringProperty",
             "displayName": "stringProperty",
             "type": [
@@ -110,10 +106,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "discriminatorValue": "k2",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -123,17 +118,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -168,24 +162,14 @@
                     }
                   }
                 },
-                "simplifiedExamples": [
-                  "[{\"stringProperty\":\"ab\",\"kind\":\"k1\"}]",
-                  "[{\"stringProperty\":\"ab\",\"kind\":\"k2\"}]"
-                ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": [
-                  "ParentType"
-                ],
-                "path": "api.raml"
+                "items": "ParentType"
               }
-            ],
-            "method": "post",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -200,12 +184,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

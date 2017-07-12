@@ -4,30 +4,18 @@
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "schema": "{\n  \"$schema\": \"http:\\/\\/json-schema.org\\/draft-04\\/schema#\",\n  \"type\": \"object\",\n  \"properties\": null\n}\n",
-                "schemaContent": "{\n  \"$schema\": \"http:\\/\\/json-schema.org\\/draft-04\\/schema#\",\n  \"type\": \"object\",\n  \"properties\": null\n}\n",
-                "scalarsPaths": {
-                  "schema": [
-                    "schema.json"
-                  ],
-                  "schemaContent": [
-                    "schema.json"
-                  ]
-                },
-                "path": "api.raml"
+                "schemaContent": "{\n  \"$schema\": \"http:\\/\\/json-schema.org\\/draft-04\\/schema#\",\n  \"type\": \"object\",\n  \"properties\": null\n}\n"
               }
-            ],
-            "method": "post",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -41,12 +29,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

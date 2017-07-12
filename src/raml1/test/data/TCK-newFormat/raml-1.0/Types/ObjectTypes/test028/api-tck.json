@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "ParentType": {
         "name": "ParentType",
         "displayName": "ParentType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "stringProperty": {
             "name": "stringProperty",
             "displayName": "stringProperty",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "kind": {
             "name": "kind",
             "displayName": "kind",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "discriminator": "kind",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -63,10 +61,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ChildType1": {
         "name": "ChildType1",
         "displayName": "ChildType1",
         "type": [
@@ -81,17 +78,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ChildType2": {
         "name": "ChildType2",
         "displayName": "ChildType2",
         "type": [
           "ParentType"
         ],
-        "properties": [
-          {
+        "properties": {
+          "stringProperty": {
             "name": "stringProperty",
             "displayName": "stringProperty",
             "type": [
@@ -110,10 +106,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "discriminatorValue": "k2",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -123,10 +118,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ArrayType1": {
         "name": "ArrayType1",
         "displayName": "ArrayType1",
         "type": [
@@ -141,12 +135,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": [
-          "ChildType1"
-        ],
-        "path": "api.raml"
+        "items": "ChildType1"
       },
-      {
+      "ArrayType2": {
         "name": "ArrayType2",
         "displayName": "ArrayType2",
         "type": [
@@ -161,16 +152,13 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "items": [
-          "ChildType2"
-        ],
-        "path": "api.raml"
+        "items": "ChildType2"
       },
-      {
+      "ArrayType": {
         "name": "ArrayType",
         "displayName": "ArrayType",
         "type": [
-          "union"
+          "ArrayType1|ArrayType2"
         ],
         "examples": [
           {
@@ -191,20 +179,11 @@
             }
           }
         },
-        "simplifiedExamples": [
-          "[{\"stringProperty\":\"ab\",\"kind\":\"k2\"}]"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
-          "ArrayType1",
-          "ArrayType2"
-        ],
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "test API",
-    "path": "api.raml"
+    },
+    "title": "test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

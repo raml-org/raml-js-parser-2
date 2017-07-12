@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "birthday": {
         "name": "birthday",
         "displayName": "birthday",
         "type": [
@@ -21,14 +21,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "2015-05-23"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "date-types.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "lunchtime": {
         "name": "lunchtime",
         "displayName": "lunchtime",
         "type": [
@@ -48,14 +44,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "12:30:00"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "date-types.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "fireworks": {
         "name": "fireworks",
         "displayName": "fireworks",
         "type": [
@@ -75,14 +67,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "2015-07-04T21:00:00"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "date-types.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "created": {
         "name": "created",
         "displayName": "created",
         "type": [
@@ -103,14 +91,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "2016-02-28T16:41:41.090Z"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "date-types.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "If-Modified-Since": {
         "name": "If-Modified-Since",
         "displayName": "If-Modified-Since",
         "type": [
@@ -131,16 +115,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "Sun, 28 Feb 2016 16:41:41 GMT"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "date-types.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Date Types",
-    "path": "date-types.raml"
+    },
+    "title": "Date Types"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

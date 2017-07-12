@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Person": {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "items": {
             "name": "items",
             "displayName": "items",
             "type": [
@@ -28,12 +28,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "number"
-            ],
-            "path": "api.raml"
+            "items": "number"
           },
-          {
+          "items2": {
             "name": "items2",
             "displayName": "items2",
             "type": [
@@ -53,12 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "number"
-            ],
-            "path": "api.raml"
+            "items": "number"
           },
-          {
+          "items3": {
             "name": "items3",
             "displayName": "items3",
             "type": [
@@ -78,12 +72,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "number"
-            ],
-            "path": "api.raml"
+            "items": "number"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -117,16 +108,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"items\":[1,2,3],\"items2\":[3,1,4],\"items3\":[1,2,3]}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Test API",
-    "path": "api.raml"
+    },
+    "title": "Test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

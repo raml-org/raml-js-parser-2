@@ -1,15 +1,13 @@
 {
   "specification": {
-    "securitySchemes": [
-      {
+    "securitySchemes": {
+      "auth": {
         "name": "auth",
-        "type": "n-sls",
-        "path": "apiInvalid.raml"
+        "type": "n-sls"
       }
-    ],
+    },
     "title": "New API",
-    "version": "v1",
-    "path": "apiInvalid.raml"
+    "version": "v1"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

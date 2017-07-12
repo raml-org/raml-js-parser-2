@@ -1,25 +1,25 @@
 {
   "specification": {
-    "annotations": [
-      {
+    "annotations": {
+      "MyAnnotationType1": {
         "name": "MyAnnotationType1",
-        "value": {
+        "structuredValue": {
           "pp": {
             "xx": "2",
             "xx2": "3"
           }
         }
       }
-    ],
-    "types": [
-      {
+    },
+    "types": {
+      "MyType1": {
         "name": "MyType1",
         "displayName": "MyType1",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "/.*/": {
             "name": "/.*/",
             "displayName": "/.*/",
             "type": [
@@ -37,10 +37,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "maxProperties": 2,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -53,19 +52,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "MyAnnotationType1": {
         "name": "MyAnnotationType1",
         "displayName": "MyAnnotationType1",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "pp": {
             "name": "pp",
             "displayName": "pp",
             "type": [
@@ -83,10 +81,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -98,12 +95,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Test API",
-    "path": "api.raml"
+    },
+    "title": "Test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

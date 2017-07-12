@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "TestType": {
         "name": "TestType",
         "displayName": "TestType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "field": {
             "name": "field",
             "displayName": "field",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "meth11.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -46,21 +45,17 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"field\":\"value\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "meth11.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -74,16 +69,12 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "meth11.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "parentUri": "/test",
-            "absoluteParentUri": "/test",
-            "path": "meth11.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -98,12 +89,9 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "meth11.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "meth11.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

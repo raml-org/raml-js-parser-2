@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "MyType": {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "boundaries": {
             "name": "boundaries",
             "displayName": "boundaries",
             "type": [
@@ -37,9 +36,7 @@
             ],
             "required": false,
             "description": "An array of boundaries",
-            "items": [
-              "object"
-            ],
+            "items": "object",
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -51,10 +48,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -66,12 +62,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "test API",
-    "path": "api.raml"
+    },
+    "title": "test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

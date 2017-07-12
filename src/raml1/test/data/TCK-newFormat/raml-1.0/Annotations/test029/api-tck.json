@@ -1,17 +1,17 @@
 {
   "specification": {
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "annotations": [
-              {
+    "resourceTypes": {
+      "rt1": {
+        "methods": {
+          "get": {
+            "annotations": {
+              "<<annotation>>": {
                 "name": "<<annotation>>",
-                "value": "simpleAnnotationValue"
+                "structuredValue": "simpleAnnotationValue"
               },
-              {
+              "objectAnnotation": {
                 "name": "objectAnnotation",
-                "value": {
+                "structuredValue": {
                   "property1": {
                     "field1": "<<annotationField>>",
                     "field2": 15
@@ -19,17 +19,15 @@
                   "property2": "baseProperty2_value"
                 }
               }
-            ],
-            "method": "get",
-            "path": "api.raml"
+            },
+            "method": "get"
           }
-        ],
-        "name": "rt1",
-        "path": "api.raml"
+        },
+        "name": "rt1"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "simpleAnnotation": {
         "name": "simpleAnnotation",
         "displayName": "simpleAnnotation",
         "type": [
@@ -49,25 +47,24 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "objectAnnotation": {
         "name": "objectAnnotation",
         "displayName": "objectAnnotation",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "property1": {
             "name": "property1",
             "displayName": "property1",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": [
-              {
+            "properties": {
+              "field1": {
                 "name": "field1",
                 "displayName": "field1",
                 "type": [
@@ -88,10 +85,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "field2": {
                 "name": "field2",
                 "displayName": "field2",
                 "type": [
@@ -109,10 +105,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -127,10 +122,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "property2": {
             "name": "property2",
             "displayName": "property2",
             "type": [
@@ -151,10 +145,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -166,15 +159,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "TCK Sample. RAML 1.0 Annotations 001.",
     "version": "v1",
     "baseUri": "http://api.samplehost.com/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -202,25 +194,24 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTP"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "annotations": [
-              {
+        "methods": {
+          "get": {
+            "annotations": {
+              "simpleAnnotation": {
                 "name": "simpleAnnotation",
-                "value": "simpleAnnotationValue"
+                "structuredValue": "simpleAnnotationValue"
               },
-              {
+              "objectAnnotation": {
                 "name": "objectAnnotation",
-                "value": {
+                "structuredValue": {
                   "property1": {
                     "field1": "someFieldValue",
                     "field2": 15
@@ -228,7 +219,7 @@
                   "property2": "baseProperty2_value"
                 }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
@@ -239,57 +230,14 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/resource",
-            "absoluteParentUri": "http://api.samplehost.com/{version}/resource",
-            "path": "api.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
-          }
-        ],
-        "type": {
-          "name": "rt1",
-          "parameters": [
-            {
-              "name": "annotation",
-              "value": "simpleAnnotation"
-            },
-            {
-              "name": "annotationField",
-              "value": "someFieldValue"
             }
-          ]
+          }
+        },
+        "type": {
+          "rt1": {
+            "annotation": "simpleAnnotation",
+            "annotationField": "someFieldValue"
+          }
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -305,42 +253,7 @@
         ],
         "absoluteUri": "http://api.samplehost.com/{version}/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -349,8 +262,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

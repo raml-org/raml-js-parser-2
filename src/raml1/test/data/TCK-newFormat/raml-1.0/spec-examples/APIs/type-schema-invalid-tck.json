@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Person": {
         "name": "Person",
         "displayName": "Person",
         "__METADATA__": {
@@ -18,21 +18,20 @@
           null
         ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "INPLACE",
-        "path": "type-schema-invalid.raml"
+        "typePropertyKind": "INPLACE"
       }
-    ],
+    },
     "title": "Types / Schema mutual exclusive",
     "description": "This RAML illustrates an invalid case where type and schema has been used on the same node.",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -49,19 +48,14 @@
                       null
                     ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "INPLACE",
-                    "path": "type-schema-invalid.raml"
+                    "typePropertyKind": "INPLACE"
                   }
-                ],
-                "path": "type-schema-invalid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "type-schema-invalid.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -76,12 +70,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "type-schema-invalid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "type-schema-invalid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

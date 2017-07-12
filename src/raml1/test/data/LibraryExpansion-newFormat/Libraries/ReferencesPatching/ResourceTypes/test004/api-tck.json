@@ -1,20 +1,8 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "lib1",
-        "value": "./lib/lib1.raml",
-        "path": "api.raml"
-      },
-      {
-        "key": "lib1.lib2",
-        "value": "lib/lib2.raml",
-        "path": "api.raml"
-      }
-    ],
-    "types": [
-      {
-        "name": "lib1.lib2.MyLibType",
+    "types": {
+      "lib1.lib2.MyLibType": {
+        "name": "MyLibType",
         "displayName": "MyLibType",
         "type": [
           "object"
@@ -27,14 +15,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib2.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    },
+    "traits": {
+      "lib1.lib2.myTrait": {
+        "queryParameters": {
+          "q": {
             "name": "q",
             "displayName": "<<paramName>>",
             "type": [
@@ -52,12 +39,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib/lib2.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "body": [
-          {
+        },
+        "body": {
+          "application/json": {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -71,32 +57,24 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib/lib2.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "lib1.lib2.myTrait",
-        "path": "lib/lib2.raml"
+        },
+        "name": "myTrait"
       }
-    ],
-    "resourceTypes": [
-      {
+    },
+    "resourceTypes": {
+      "lib1.rt": {
         "is": [
           {
-            "name": "lib1.lib2.myTrait",
-            "parameters": [
-              {
-                "name": "paramName",
-                "value": "QParam"
-              }
-            ]
+            "lib1.lib2.myTrait": {
+              "paramName": "QParam"
+            }
           }
         ],
-        "name": "lib1.rt",
-        "path": "lib/lib1.raml"
+        "name": "rt"
       }
-    ],
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

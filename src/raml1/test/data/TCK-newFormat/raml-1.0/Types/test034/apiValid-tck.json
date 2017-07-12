@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "StringType_10": {
         "name": "StringType_10",
         "displayName": "StringType_10",
         "type": [
@@ -18,10 +18,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_11": {
         "name": "StringType_11",
         "displayName": "StringType_11",
         "type": [
@@ -44,14 +43,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_12": {
         "name": "StringType_12",
         "displayName": "StringType_12",
         "type": [
@@ -74,14 +69,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_20": {
         "name": "StringType_20",
         "displayName": "StringType_20",
         "type": [
@@ -95,10 +86,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_21": {
         "name": "StringType_21",
         "displayName": "StringType_21",
         "type": [
@@ -118,14 +108,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_30": {
         "name": "StringType_30",
         "displayName": "StringType_30",
         "type": [
@@ -142,10 +128,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_31": {
         "name": "StringType_31",
         "displayName": "StringType_31",
         "type": [
@@ -168,14 +153,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_40": {
         "name": "StringType_40",
         "displayName": "StringType_40",
         "type": [
@@ -189,10 +170,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_41": {
         "name": "StringType_41",
         "displayName": "StringType_41",
         "type": [
@@ -212,14 +192,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_50": {
         "name": "StringType_50",
         "displayName": "StringType_50",
         "type": [
@@ -233,10 +209,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_51": {
         "name": "StringType_51",
         "displayName": "StringType_51",
         "type": [
@@ -256,14 +231,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_60": {
         "name": "StringType_60",
         "displayName": "StringType_60",
         "type": [
@@ -280,10 +251,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_61": {
         "name": "StringType_61",
         "displayName": "StringType_61",
         "type": [
@@ -306,14 +276,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_70": {
         "name": "StringType_70",
         "displayName": "StringType_70",
         "type": [
@@ -330,10 +296,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "StringType_71": {
         "name": "StringType_71",
         "displayName": "StringType_71",
         "type": [
@@ -356,14 +321,10 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "stringValue"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "TypeWithStringProperties": {
         "name": "TypeWithStringProperties",
         "displayName": "TypeWithStringProperties",
         "type": [
@@ -413,8 +374,8 @@
             "name": "exampleWithEmptyStrings"
           }
         ],
-        "properties": [
-          {
+        "properties": {
+          "strProp_10": {
             "name": "strProp_10",
             "displayName": "strProp_10",
             "type": [
@@ -432,10 +393,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_11": {
             "name": "strProp_11",
             "displayName": "strProp_11",
             "type": [
@@ -453,10 +413,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_12": {
             "name": "strProp_12",
             "displayName": "strProp_12",
             "type": [
@@ -474,10 +433,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_20": {
             "name": "strProp_20",
             "displayName": "strProp_20",
             "type": [
@@ -495,10 +453,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_21": {
             "name": "strProp_21",
             "displayName": "strProp_21",
             "type": [
@@ -516,10 +473,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_30": {
             "name": "strProp_30",
             "displayName": "strProp_30",
             "type": [
@@ -537,10 +493,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_31": {
             "name": "strProp_31",
             "displayName": "strProp_31",
             "type": [
@@ -558,10 +513,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_40": {
             "name": "strProp_40",
             "displayName": "strProp_40",
             "type": [
@@ -579,10 +533,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_41": {
             "name": "strProp_41",
             "displayName": "strProp_41",
             "type": [
@@ -600,10 +553,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_50": {
             "name": "strProp_50",
             "displayName": "strProp_50",
             "type": [
@@ -621,10 +573,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_51": {
             "name": "strProp_51",
             "displayName": "strProp_51",
             "type": [
@@ -642,10 +593,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_60": {
             "name": "strProp_60",
             "displayName": "strProp_60",
             "type": [
@@ -663,10 +613,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_61": {
             "name": "strProp_61",
             "displayName": "strProp_61",
             "type": [
@@ -684,10 +633,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_70": {
             "name": "strProp_70",
             "displayName": "strProp_70",
             "type": [
@@ -705,10 +653,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "strProp_71": {
             "name": "strProp_71",
             "displayName": "strProp_71",
             "type": [
@@ -726,10 +673,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -740,17 +686,11 @@
             }
           }
         },
-        "simplifiedExamples": [
-          "{\"strProp_10\":\"stringValue_StringType_10\",\"strProp_11\":\"stringValue_StringType_11\",\"strProp_12\":\"stringValue_StringType_12\",\"strProp_20\":\"stringValue_StringType_20\",\"strProp_21\":\"stringValue_StringType_21\",\"strProp_30\":\"stringValue_StringType_30\",\"strProp_31\":\"stringValue_StringType_31\",\"strProp_40\":\"stringValue_StringType_40\",\"strProp_41\":\"stringValue_StringType_41\",\"strProp_50\":\"stringValue_StringType_50\",\"strProp_51\":\"stringValue_StringType_51\",\"strProp_60\":\"stringValue_StringType_60\",\"strProp_61\":\"stringValue_StringType_61\",\"strProp_70\":\"stringValue_StringType_70\",\"strProp_71\":\"stringValue_StringType_71\"}",
-          "{\"strProp_10\":\"\",\"strProp_11\":\"\",\"strProp_12\":\"\",\"strProp_20\":\"\",\"strProp_21\":\"\",\"strProp_30\":\"\",\"strProp_31\":\"\",\"strProp_40\":\"\",\"strProp_41\":\"\",\"strProp_50\":\"\",\"strProp_51\":\"\",\"strProp_60\":\"\",\"strProp_61\":\"\",\"strProp_70\":\"\",\"strProp_71\":\"\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "API",
-    "path": "apiValid.raml"
+    },
+    "title": "API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

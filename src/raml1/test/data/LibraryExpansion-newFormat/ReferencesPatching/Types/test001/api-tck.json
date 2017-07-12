@@ -1,15 +1,8 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "primitives",
-        "value": "library.raml",
-        "path": "api.raml"
-      }
-    ],
-    "types": [
-      {
-        "name": "primitives.ExtLocale",
+    "types": {
+      "primitives.ExtLocale": {
+        "name": "ExtLocale",
         "displayName": "ExtLocale",
         "schemaPath": "schemas/locale.xsd",
         "type": [
@@ -23,11 +16,10 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "library.raml"
+        "typePropertyKind": "JSON"
       },
-      {
-        "name": "primitives.Locale",
+      "primitives.Locale": {
+        "name": "Locale",
         "displayName": "Locale",
         "type": [
           "primitives.ExtLocale"
@@ -39,17 +31,16 @@
             }
           }
         },
-        "mediaType": "application/json",
-        "path": "library.raml"
+        "mediaType": "application/json"
       }
-    ],
+    },
     "title": "Library test",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -62,16 +53,12 @@
                     }
                   }
                 },
-                "mediaType": "application/json",
-                "path": "api.raml"
+                "mediaType": "application/json"
               }
-            ],
-            "method": "post",
-            "parentUri": "/exampleRes",
-            "absoluteParentUri": "/exampleRes",
-            "path": "api.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/exampleRes",
         "displayName": "/exampleRes",
         "__METADATA__": {
@@ -86,12 +73,9 @@
         ],
         "absoluteUri": "/exampleRes",
         "completeRelativeUri": "/exampleRes",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

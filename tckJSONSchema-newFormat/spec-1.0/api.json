@@ -43,10 +43,10 @@
               "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
             },
             "baseUriParameters": {
-              "type": "array",
+              "type": "object",
               "description": "Named parameters used in the baseUri (template)",
-              "items": {
-                "$ref": "datamodel.json#/definitions/TypeReference10"
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/TypeReference10"}
               }
             },
             "resources": {
@@ -71,16 +71,7 @@
             "securedBy": {
               "type": "array",
               "description": "The security schemes that apply to every resource and method in the API",
-              "items": {
-                "oneOf": [
-                  {
-                    "type": "null"
-                  },
-                  {
-                    "$ref": "security.json#/definitions/SecuritySchemeBase10"
-                  }
-                ]
-              }
+              "items": {"$ref": "security.json#/definitions/SecuritySchemeRef10"}
             }
           }
         }
@@ -147,38 +138,38 @@
         {
           "properties": {
             "types": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of (data) types for use within this API",
-              "items": {
-                "$ref": "datamodel.json#/definitions/Type"
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
               }
             },
             "resourceTypes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of resource types for use within this API",
-              "items": {
-                "$ref": "resources.json#/definitions/ResourceType10"
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "resources.json#/definitions/ResourceType10"}
               }
             },
             "traits": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of traits for use within this API",
-              "items": {
-                "$ref": "methods.json#/definitions/Trait10"
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "methods.json#/definitions/Trait10"}
               }
             },
             "securitySchemes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of security schemes for use within this API.",
-              "items": {
-                "$ref": "security.json#/definitions/SecuritySchemeDeclaration"
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "security.json#/definitions/SecuritySchemeDeclaration"}
               }
             },
             "annotationTypes": {
-              "type": "array",
+              "type": "object",
               "description": "Declarations of annotation types for use by annotations",
-              "items": {
-                "$ref": "datamodel.json#/definitions/Type"
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "datamodel.json#/definitions/Type"}
               }
             }
           }
@@ -186,25 +177,19 @@
       ]
     },
     "DocumentationItem": {
-      "allOf": [
-        {
-          "$ref": "common.json#/definitions/HasSource"
+      "type" : "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of documentation section"
         },
-        {
-          "type": "object",
-          "properties": {
-            "title": {
-              "type": "string",
-              "description": "Title of documentation section"
-            },
-            "content": {
-              "type": "string",
-              "description": "Content of documentation section"
-            }
-          }
+        "content": {
+          "type": "string",
+          "description": "Content of documentation section"
         }
-      ],
-      "description": "API documentation"
+      },
+      "description": "API documentation",
+      "additionalProperties": false
     },
 
 

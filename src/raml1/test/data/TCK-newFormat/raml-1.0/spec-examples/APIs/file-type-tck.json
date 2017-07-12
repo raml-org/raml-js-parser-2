@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "userPicture": {
         "name": "userPicture",
         "displayName": "userPicture",
         "type": [
@@ -20,10 +20,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "file-type.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "customFile": {
         "name": "customFile",
         "displayName": "customFile",
         "type": [
@@ -41,12 +40,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "file-type.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "File Type",
-    "path": "file-type.raml"
+    },
+    "title": "File Type"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

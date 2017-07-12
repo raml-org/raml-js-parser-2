@@ -1,8 +1,7 @@
 {
   "specification": {
     "title": "Pet Shop Overlay",
-    "extends": "api.raml",
-    "path": "NewOverlay.raml"
+    "extends": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

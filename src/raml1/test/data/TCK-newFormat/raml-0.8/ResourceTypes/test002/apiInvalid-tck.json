@@ -1,13 +1,13 @@
 {
   "specification": {
     "title": "A",
-    "resourceTypes": [
-      {
+    "resourceTypes": {
+      "Resource": {
         "name": "Resource",
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "a": {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -25,10 +25,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               },
-              {
+              "b": {
                 "name": "b",
                 "displayName": "b",
                 "type": "boolean",
@@ -46,10 +45,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               },
-              {
+              "c": {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -67,39 +65,32 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "path": "apiInvalid.raml"
+            },
+            "method": "get"
           }
-        ],
-        "path": "apiInvalid.raml"
+        }
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
-        "type": {
-          "name": "Resource"
-        },
-        "methods": [
-          {
-            "responses": [
-              {
+        "type": "Resource",
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
-                    "name": "application/json",
-                    "path": "apiInvalid.raml"
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
                   }
-                ],
-                "path": "apiInvalid.raml"
+                }
               }
-            ],
-            "queryParameters": [
-              {
+            },
+            "queryParameters": {
+              "a": {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -118,10 +109,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               },
-              {
+              "b": {
                 "name": "b",
                 "displayName": "b",
                 "type": "boolean",
@@ -140,10 +130,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               },
-              {
+              "c": {
                 "name": "c",
                 "displayName": "c",
                 "type": "string",
@@ -162,16 +151,12 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiInvalid.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -185,12 +170,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiInvalid.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -1,27 +1,15 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "lib1",
-        "value": "./lib/lib1.raml",
-        "path": "api.raml"
-      },
-      {
-        "key": "lib1.lib2",
-        "value": "lib/lib2.raml",
-        "path": "api.raml"
-      }
-    ],
-    "traits": [
-      {
-        "body": [
-          {
-            "annotations": [
-              {
+    "traits": {
+      "lib1.lib2.myTrait": {
+        "body": {
+          "application/json": {
+            "annotations": {
+              "lib1.lib2.MyAnnotation": {
                 "name": "lib1.lib2.MyAnnotation",
-                "value": "stringValue"
+                "structuredValue": "stringValue"
               }
-            ],
+            },
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -38,28 +26,23 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib/lib2.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "lib1.lib2.myTrait",
-        "path": "lib/lib2.raml"
+        },
+        "name": "myTrait"
       }
-    ],
-    "resourceTypes": [
-      {
+    },
+    "resourceTypes": {
+      "lib1.rt": {
         "is": [
-          {
-            "name": "lib1.lib2.myTrait"
-          }
+          "lib1.lib2.myTrait"
         ],
-        "name": "lib1.rt",
-        "path": "lib/lib1.raml"
+        "name": "rt"
       }
-    ],
-    "annotationTypes": [
-      {
-        "name": "lib1.lib2.MyAnnotation",
+    },
+    "annotationTypes": {
+      "lib1.lib2.MyAnnotation": {
+        "name": "MyAnnotation",
         "displayName": "MyAnnotation",
         "type": [
           "string"
@@ -72,11 +55,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib2.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

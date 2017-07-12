@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Person": {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "firstname": {
             "name": "firstname",
             "displayName": "firstname",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "lastname": {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "title?": {
             "name": "title?",
             "displayName": "title?",
             "type": [
@@ -68,10 +66,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -89,16 +86,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"firstname\":\"eleo\",\"lastname\":\"ortega\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "properties with trailing question marks",
-    "path": "api.raml"
+    },
+    "title": "properties with trailing question marks"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

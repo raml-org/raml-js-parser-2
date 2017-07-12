@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "TestAnnotation": {
         "name": "TestAnnotation",
         "displayName": "TestAnnotation",
         "type": [
@@ -18,35 +18,32 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "securitySchemes": [
-      {
-        "annotations": [
-          {
+    },
+    "securitySchemes": {
+      "TestScheme": {
+        "annotations": {
+          "TestAnnotation": {
             "name": "TestAnnotation",
-            "value": "stringValue1"
+            "structuredValue": "stringValue1"
           }
-        ],
+        },
         "name": "TestScheme",
         "type": "OAuth 1.0",
         "settings": {
-          "annotations": [
-            {
+          "annotations": {
+            "TestAnnotation": {
               "name": "TestAnnotation",
-              "value": "stringValue2"
+              "structuredValue": "stringValue2"
             }
-          ],
+          },
           "requestTokenUri": "https://example.com/requesttoken",
           "authorizationUri": "https://example.com/authorize",
-          "tokenCredentialsUri": "https://example.com/credentials",
-          "path": "apiInvalid.raml"
-        },
-        "path": "apiInvalid.raml"
+          "tokenCredentialsUri": "https://example.com/credentials"
+        }
       }
-    ],
+    },
     "title": "Test",
     "baseUri": "http://myapi.org",
     "protocols": [
@@ -61,8 +58,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

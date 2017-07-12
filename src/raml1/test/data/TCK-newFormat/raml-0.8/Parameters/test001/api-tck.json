@@ -4,10 +4,10 @@
     "resources": [
       {
         "relativeUri": "/test",
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "post": {
+            "queryParameters": {
+              "limit": {
                 "name": "limit",
                 "displayName": "limit",
                 "type": "integer",
@@ -26,16 +26,12 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "api.raml"
+                }
               }
-            ],
-            "method": "post",
-            "parentUri": "/test",
-            "absoluteParentUri": "/test",
-            "path": "api.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "displayName": "/test",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -49,12 +45,9 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

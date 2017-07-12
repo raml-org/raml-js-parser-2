@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Org": {
         "name": "Org",
         "displayName": "Org",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "onCall": {
             "name": "onCall",
             "displayName": "onCall",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "Head": {
             "name": "Head",
             "displayName": "Head",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -59,17 +57,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Person": {
         "name": "Person",
         "displayName": "Person",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "firstname": {
             "name": "firstname",
             "displayName": "firstname",
             "type": [
@@ -87,10 +84,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "lastname": {
             "name": "lastname",
             "displayName": "lastname",
             "type": [
@@ -108,10 +104,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "title": {
             "name": "title",
             "displayName": "title",
             "type": [
@@ -129,10 +124,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -141,10 +135,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Phone": {
         "name": "Phone",
         "displayName": "Phone",
         "type": [
@@ -159,17 +152,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Manager": {
         "name": "Manager",
         "displayName": "Manager",
         "type": [
           "Person"
         ],
-        "properties": [
-          {
+        "properties": {
+          "reports": {
             "name": "reports",
             "displayName": "reports",
             "type": [
@@ -188,12 +180,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "Person"
-            ],
-            "path": "introduction-types-complex.raml"
+            "items": "Person"
           },
-          {
+          "phone": {
             "name": "phone",
             "displayName": "phone",
             "type": [
@@ -211,10 +200,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -223,17 +211,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Admin": {
         "name": "Admin",
         "displayName": "Admin",
         "type": [
           "Person"
         ],
-        "properties": [
-          {
+        "properties": {
+          "clearanceLevel": {
             "name": "clearanceLevel",
             "displayName": "clearanceLevel",
             "type": [
@@ -258,10 +245,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -270,17 +256,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "AlertableAdmin": {
         "name": "AlertableAdmin",
         "displayName": "AlertableAdmin",
         "type": [
           "Admin"
         ],
-        "properties": [
-          {
+        "properties": {
+          "phone": {
             "name": "phone",
             "displayName": "phone",
             "type": [
@@ -298,10 +283,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -310,14 +294,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Alertable": {
         "name": "Alertable",
         "displayName": "Alertable",
         "type": [
-          "union"
+          "Manager | AlertableAdmin"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -327,27 +310,22 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
-          "AlertableAdmin",
-          "Manager"
-        ],
-        "path": "introduction-types-complex.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "My API with Types",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -361,48 +339,16 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "introduction-types-complex.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "introduction-types-complex.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/orgs/{orgId}",
-            "absoluteParentUri": "/orgs/{orgId}",
-            "path": "introduction-types-complex.raml",
-            "uriParameters": [
-              {
-                "name": "orgId",
-                "displayName": "orgId",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "introduction-types-complex.raml"
-              }
-            ]
+            },
+            "method": "get"
           }
-        ],
-        "uriParameters": [
-          {
+        },
+        "uriParameters": {
+          "orgId": {
             "name": "orgId",
             "displayName": "orgId",
             "type": [
@@ -424,10 +370,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "introduction-types-complex.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "relativeUri": "/orgs/{orgId}",
         "displayName": "/orgs/{orgId}",
         "__METADATA__": {
@@ -443,12 +388,9 @@
         ],
         "absoluteUri": "/orgs/{orgId}",
         "completeRelativeUri": "/orgs/{orgId}",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "introduction-types-complex.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "introduction-types-complex.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

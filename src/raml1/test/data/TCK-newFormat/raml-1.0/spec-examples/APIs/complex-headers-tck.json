@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
-        "headers": [
-          {
+    "traits": {
+      "chargeable": {
+        "headers": {
+          "X-Dept": {
             "name": "X-Dept",
             "displayName": "X-Dept",
             "type": [
@@ -36,12 +36,8 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "230-OCTO"
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-headers.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
             ],
             "__METADATA__": {
@@ -55,16 +51,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-headers.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "chargeable",
-        "path": "complex-headers.raml"
+        },
+        "name": "chargeable"
       },
-      {
-        "headers": [
-          {
+      "traceable": {
+        "headers": {
+          "X-Tracker": {
             "name": "X-Tracker",
             "displayName": "X-Tracker",
             "type": [
@@ -93,25 +87,20 @@
                 "name": null
               }
             ],
-            "simplifiedExamples": [
-              "abcdefghijklmnop"
-            ],
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-headers.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "traceable",
-        "path": "complex-headers.raml"
+        },
+        "name": "traceable"
       }
-    ],
+    },
     "title": "Example with headers",
     "resources": [
       {
-        "methods": [
-          {
-            "headers": [
-              {
+        "methods": {
+          "get": {
+            "headers": {
+              "X-Dept": {
                 "name": "X-Dept",
                 "displayName": "X-Dept",
                 "type": [
@@ -144,12 +133,8 @@
                         "name": null
                       }
                     ],
-                    "simplifiedExamples": [
-                      "230-OCTO"
-                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "complex-headers.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {
@@ -172,14 +157,10 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "[\"18-FINANCE\",\"200-MISC\"]"
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-headers.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "X-Tracker": {
                 "name": "X-Tracker",
                 "displayName": "X-Tracker",
                 "type": [
@@ -208,29 +189,18 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "gfr456d03ygh38s2"
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-headers.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "is": [
-              {
-                "name": "chargeable"
-              },
-              {
-                "name": "traceable"
-              }
+              "chargeable",
+              "traceable"
             ],
             "description": "The HTTP interaction will look like\n\nGET /users HTTP/1.1\nX-Dept: 18-FINANCE\nX-Dept: 200-MISC\nX-Tracker: gfr456d03ygh38s2\n",
-            "method": "get",
-            "parentUri": "/users",
-            "absoluteParentUri": "/users",
-            "path": "complex-headers.raml"
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -245,12 +215,9 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "complex-headers.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "complex-headers.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

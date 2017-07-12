@@ -1,106 +1,81 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "lib",
-        "value": "./lib/libA.raml",
-        "path": "api.raml"
-      },
-      {
-        "key": "lib.lib",
-        "value": "lib/libB.raml",
-        "path": "api.raml"
-      }
-    ],
-    "resourceTypes": [
-      {
+    "resourceTypes": {
+      "lib.rt": {
         "type": {
-          "name": "lib.lib.rt",
-          "parameters": [
-            {
-              "name": "param1",
-              "value": "<<param1>>"
-            },
-            {
-              "name": "param2",
-              "value": "lib.Monkey"
-            }
-          ]
-        },
-        "name": "lib.rt",
-        "path": "lib/libA.raml"
-      },
-      {
-        "annotations": [
-          {
-            "name": "<<param1>>",
-            "value": "stringValue1"
-          },
-          {
-            "name": "<<param2>>",
-            "value": 5
-          },
-          {
-            "name": "lib.lib.Monkey",
-            "value": true
+          "lib.lib.rt": {
+            "param1": "<<param1>>",
+            "param2": "lib.Monkey"
           }
-        ],
-        "methods": [
-          {
-            "annotations": [
-              {
+        },
+        "name": "rt"
+      },
+      "lib.lib.rt": {
+        "annotations": {
+          "<<param1>>": {
+            "name": "<<param1>>",
+            "structuredValue": "stringValue1"
+          },
+          "<<param2>>": {
+            "name": "<<param2>>",
+            "structuredValue": 5
+          },
+          "lib.lib.Monkey": {
+            "name": "lib.lib.Monkey",
+            "structuredValue": true
+          }
+        },
+        "methods": {
+          "get": {
+            "annotations": {
+              "<<param1>>": {
                 "name": "<<param1>>",
-                "value": "stringValue2"
+                "structuredValue": "stringValue2"
               }
-            ],
-            "method": "get",
-            "path": "lib/libB.raml"
+            },
+            "method": "get"
           },
-          {
-            "annotations": [
-              {
+          "post": {
+            "annotations": {
+              "<<param2>>": {
                 "name": "<<param2>>",
-                "value": 8
+                "structuredValue": 8
               }
-            ],
-            "method": "post",
-            "path": "lib/libB.raml"
+            },
+            "method": "post"
           },
-          {
-            "annotations": [
-              {
+          "put": {
+            "annotations": {
+              "lib.lib.Monkey": {
                 "name": "lib.lib.Monkey",
                 "structuredValue": false
               }
-            ],
-            "method": "put",
-            "path": "lib/libB.raml"
+            },
+            "method": "put"
           },
-          {
-            "annotations": [
-              {
+          "delete": {
+            "annotations": {
+              "<<param1>>": {
                 "name": "<<param1>>",
-                "value": "stringValue3"
+                "structuredValue": "stringValue3"
               },
-              {
+              "<<param2>>": {
                 "name": "<<param2>>",
-                "value": 16
+                "structuredValue": 16
               },
-              {
+              "lib.lib.Monkey": {
                 "name": "lib.lib.Monkey",
-                "value": true
+                "structuredValue": true
               }
-            ],
-            "method": "delete",
-            "path": "lib/libB.raml"
+            },
+            "method": "delete"
           }
-        ],
-        "name": "lib.lib.rt",
-        "path": "lib/libB.raml"
+        },
+        "name": "rt"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "Monkey": {
         "name": "Monkey",
         "displayName": "Monkey",
         "type": [
@@ -114,11 +89,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "name": "lib.Monkey",
+      "lib.Monkey": {
+        "name": "Monkey",
         "displayName": "Monkey",
         "type": [
           "number"
@@ -131,11 +105,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/libA.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
-        "name": "lib.lib.Monkey",
+      "lib.lib.Monkey": {
+        "name": "Monkey",
         "displayName": "Monkey",
         "type": [
           "boolean"
@@ -148,11 +121,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/libB.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

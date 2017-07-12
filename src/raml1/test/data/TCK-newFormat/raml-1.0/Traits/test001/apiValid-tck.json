@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "RTType1": {
         "name": "RTType1",
         "displayName": "RTType1",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "rtTypeProperty1": {
             "name": "rtTypeProperty1",
             "displayName": "rtTypeProperty1",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -41,17 +40,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "RTType2": {
         "name": "RTType2",
         "displayName": "RTType2",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "rtTypeProperty2": {
             "name": "rtTypeProperty2",
             "displayName": "rtTypeProperty2",
             "type": [
@@ -69,10 +67,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -84,17 +81,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Type1": {
         "name": "Type1",
         "displayName": "Type1",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "typeProperty1": {
             "name": "typeProperty1",
             "displayName": "typeProperty1",
             "type": [
@@ -112,10 +108,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -127,17 +122,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Type2": {
         "name": "Type2",
         "displayName": "Type2",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "typeProperty2": {
             "name": "typeProperty2",
             "displayName": "typeProperty2",
             "type": [
@@ -155,10 +149,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -170,14 +163,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "traits": [
-      {
-        "body": [
-          {
+    },
+    "traits": {
+      "RTTrait": {
+        "body": {
+          "application/json": {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -191,26 +183,24 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "RTTrait",
-        "path": "apiValid.raml"
+        },
+        "name": "RTTrait"
       },
-      {
-        "responses": [
-          {
+      "Trait1": {
+        "responses": {
+          "200": {
             "code": "200",
-            "body": [
-              {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": [
-                  {
+                "properties": {
+                  "traitProperty1": {
                     "name": "traitProperty1",
                     "displayName": "traitProperty1",
                     "type": [
@@ -228,10 +218,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  {
+                  "traitProperty2": {
                     "name": "traitProperty2",
                     "displayName": "traitProperty2",
                     "type": [
@@ -249,10 +238,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  {
+                  "traitProperty1_3": {
                     "name": "traitProperty1_3",
                     "displayName": "traitProperty1_3",
                     "type": [
@@ -270,10 +258,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -285,29 +272,26 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiValid.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "path": "apiValid.raml"
+            }
           }
-        ],
-        "name": "Trait1",
-        "path": "apiValid.raml"
+        },
+        "name": "Trait1"
       },
-      {
-        "responses": [
-          {
+      "Trait2": {
+        "responses": {
+          "200": {
             "code": "200",
-            "body": [
-              {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": [
-                  {
+                "properties": {
+                  "traitProperty1": {
                     "name": "traitProperty1",
                     "displayName": "traitProperty1",
                     "type": [
@@ -325,10 +309,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  {
+                  "traitProperty2": {
                     "name": "traitProperty2",
                     "displayName": "traitProperty2",
                     "type": [
@@ -346,10 +329,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  {
+                  "traitProperty2_3": {
                     "name": "traitProperty2_3",
                     "displayName": "traitProperty2_3",
                     "type": [
@@ -367,10 +349,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -382,78 +363,63 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiValid.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "path": "apiValid.raml"
+            }
           }
-        ],
-        "name": "Trait2",
-        "path": "apiValid.raml"
+        },
+        "name": "Trait2"
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
+    },
+    "resourceTypes": {
+      "ResourceType1": {
+        "methods": {
+          "put": {
             "is": [
               {
-                "name": "RTTrait",
-                "parameters": [
-                  {
-                    "name": "RTType",
-                    "value": "RTType1"
-                  }
-                ]
+                "RTTrait": {
+                  "RTType": "RTType1"
+                }
               }
             ],
-            "method": "put",
-            "path": "apiValid.raml"
+            "method": "put"
           }
-        ],
-        "name": "ResourceType1",
-        "path": "apiValid.raml"
+        },
+        "name": "ResourceType1"
       },
-      {
-        "methods": [
-          {
+      "ResourceType2": {
+        "methods": {
+          "put": {
             "is": [
               {
-                "name": "RTTrait",
-                "parameters": [
-                  {
-                    "name": "RTType",
-                    "value": "RTType1"
-                  }
-                ]
+                "RTTrait": {
+                  "RTType": "RTType1"
+                }
               }
             ],
-            "method": "put",
-            "path": "apiValid.raml"
+            "method": "put"
           }
-        ],
-        "name": "ResourceType2",
-        "path": "apiValid.raml"
+        },
+        "name": "ResourceType2"
       }
-    ],
+    },
     "title": "API",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "put": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
                       "object"
                     ],
-                    "properties": [
-                      {
+                    "properties": {
+                      "traitProperty1": {
                         "name": "traitProperty1",
                         "displayName": "traitProperty1",
                         "type": [
@@ -471,10 +437,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "traitProperty2": {
                         "name": "traitProperty2",
                         "displayName": "traitProperty2",
                         "type": [
@@ -492,10 +457,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "traitProperty1_3": {
                         "name": "traitProperty1_3",
                         "displayName": "traitProperty1_3",
                         "type": [
@@ -513,10 +477,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "traitProperty2_3": {
                         "name": "traitProperty2_3",
                         "displayName": "traitProperty2_3",
                         "type": [
@@ -534,10 +497,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
+                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -549,15 +511,13 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -579,43 +539,32 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "{\"rtTypeProperty1\":\"stringValue\"}"
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiValid.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "is": [
               {
-                "name": "RTTrait",
-                "parameters": [
-                  {
-                    "name": "RTType",
-                    "value": "RTType1"
-                  }
-                ]
+                "RTTrait": {
+                  "RTType": "RTType1"
+                }
               }
             ],
-            "method": "put",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiValid.raml"
+            "method": "put"
           },
-          {
-            "responses": [
-              {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
                       "object"
                     ],
-                    "properties": [
-                      {
+                    "properties": {
+                      "traitProperty1": {
                         "name": "traitProperty1",
                         "displayName": "traitProperty1",
                         "type": [
@@ -633,10 +582,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "traitProperty2": {
                         "name": "traitProperty2",
                         "displayName": "traitProperty2",
                         "type": [
@@ -654,10 +602,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "traitProperty1_3": {
                         "name": "traitProperty1_3",
                         "displayName": "traitProperty1_3",
                         "type": [
@@ -675,10 +622,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       },
-                      {
+                      "traitProperty2_3": {
                         "name": "traitProperty2_3",
                         "displayName": "traitProperty2_3",
                         "type": [
@@ -696,10 +642,9 @@
                           }
                         },
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiValid.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
+                    },
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
@@ -722,34 +667,20 @@
                         "name": null
                       }
                     ],
-                    "simplifiedExamples": [
-                      "{\"traitProperty1\":true,\"traitProperty2\":1,\"traitProperty1_3\":\"stringValue1\",\"traitProperty2_3\":\"stringValue2\"}"
-                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "apiValid.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiValid.raml"
+            },
+            "method": "get"
           }
-        ],
-        "is": [
-          {
-            "name": "Trait1"
-          },
-          {
-            "name": "Trait2"
-          }
-        ],
-        "type": {
-          "name": "ResourceType1"
         },
+        "is": [
+          "Trait1",
+          "Trait2"
+        ],
+        "type": "ResourceType1",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -764,12 +695,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiValid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiValid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

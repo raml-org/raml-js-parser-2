@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "MyType": {
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "scheme.json",
@@ -16,17 +16,16 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "scheme.json"
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Api",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -48,19 +47,12 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "{\"name\":\"somename\"}"
-                ],
-                "mediaType": "application/json",
-                "path": "apiValid.raml"
+                "mediaType": "application/json"
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiValid.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -75,12 +67,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiValid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiValid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

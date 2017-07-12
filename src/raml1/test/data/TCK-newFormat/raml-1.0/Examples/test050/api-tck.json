@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "ObjectType1": {
         "name": "ObjectType1",
         "displayName": "ObjectType1",
         "type": [
@@ -14,18 +14,18 @@
             },
             "strict": false,
             "name": "example1",
-            "annotations": [
-              {
-                "name": "NumberAnnotation",
-                "value": 5
+            "annotations": {
+              "NumberAnnotation": {
+                "structuredValue": 5,
+                "name": "NumberAnnotation"
               },
-              {
-                "name": "ObjectAnnotation",
-                "value": {
+              "ObjectAnnotation": {
+                "structuredValue": {
                   "prop1": "value1"
-                }
+                },
+                "name": "ObjectAnnotation"
               }
-            ],
+            },
             "displayName": "myExample1",
             "description": "example 1 of ObjectType3"
           },
@@ -35,24 +35,24 @@
             },
             "strict": false,
             "name": "example2",
-            "annotations": [
-              {
-                "name": "NumberAnnotation",
-                "value": 15
+            "annotations": {
+              "NumberAnnotation": {
+                "structuredValue": 15,
+                "name": "NumberAnnotation"
               },
-              {
-                "name": "ObjectAnnotation",
-                "value": {
+              "ObjectAnnotation": {
+                "structuredValue": {
                   "prop1": "value2"
-                }
+                },
+                "name": "ObjectAnnotation"
               }
-            ],
+            },
             "displayName": "myExample2",
             "description": "example 2 of ObjectType3"
           }
         ],
-        "properties": [
-          {
+        "properties": {
+          "prop1": {
             "name": "prop1",
             "displayName": "prop1",
             "type": [
@@ -73,10 +73,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -87,17 +86,12 @@
             }
           }
         },
-        "simplifiedExamples": [
-          "{\"prop1\":\"value1\"}",
-          "{\"prop1\":\"value2\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "NumberAnnotation": {
         "name": "NumberAnnotation",
         "displayName": "NumberAnnotation",
         "type": [
@@ -111,10 +105,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "ObjectAnnotation": {
         "name": "ObjectAnnotation",
         "displayName": "ObjectAnnotation",
         "type": [
@@ -128,12 +121,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Example API test 05",
-    "path": "api.raml"
+    },
+    "title": "Example API test 05"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

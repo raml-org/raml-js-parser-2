@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Player1": {
         "name": "Player1",
         "displayName": "Player1",
         "type": [
@@ -15,10 +15,9 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "typePropertyKind": "JSON"
       },
-      {
+      "Player2": {
         "name": "Player2",
         "displayName": "Player2",
         "type": [
@@ -32,10 +31,9 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "typePropertyKind": "JSON"
       }
-    ],
+    },
     "title": "Types 002.",
     "version": "v1",
     "baseUri": "https://example.com/raml",
@@ -48,8 +46,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

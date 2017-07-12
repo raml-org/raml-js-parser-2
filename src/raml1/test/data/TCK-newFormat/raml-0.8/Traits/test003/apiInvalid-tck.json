@@ -1,10 +1,10 @@
 {
   "specification": {
     "title": "A",
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    "traits": {
+      "SomeTrait": {
+        "queryParameters": {
+          "<<propertyName1>>": {
             "name": "<<propertyName1>>",
             "displayName": "<<propertyName1>>",
             "type": "number",
@@ -22,10 +22,9 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "path": "apiInvalid.raml"
+            }
           },
-          {
+          "<<propertyName2>>": {
             "name": "<<propertyName2>>",
             "displayName": "<<propertyName2>>",
             "type": "boolean",
@@ -43,10 +42,9 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "path": "apiInvalid.raml"
+            }
           },
-          {
+          "<<propertyName3>>": {
             "name": "<<propertyName3>>",
             "displayName": "<<propertyName3>>",
             "type": "string",
@@ -64,33 +62,29 @@
                   "insertedAsDefault": true
                 }
               }
-            },
-            "path": "apiInvalid.raml"
+            }
           }
-        ],
-        "name": "SomeTrait",
-        "path": "apiInvalid.raml"
+        },
+        "name": "SomeTrait"
       }
-    ],
+    },
     "resources": [
       {
         "relativeUri": "/resource",
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
-                    "name": "application/json",
-                    "path": "apiInvalid.raml"
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
                   }
-                ],
-                "path": "apiInvalid.raml"
+                }
               }
-            ],
-            "queryParameters": [
-              {
+            },
+            "queryParameters": {
+              "a": {
                 "name": "a",
                 "displayName": "a",
                 "type": "number",
@@ -109,10 +103,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               },
-              {
+              "b": {
                 "name": "b",
                 "displayName": "b",
                 "type": "string",
@@ -131,10 +124,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               },
-              {
+              "c": {
                 "name": "c",
                 "displayName": "c",
                 "type": "boolean",
@@ -153,35 +145,21 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "apiInvalid.raml"
+                }
               }
-            ],
+            },
             "method": "get",
             "is": [
               {
-                "name": "SomeTrait",
-                "parameters": [
-                  {
-                    "name": "propertyName1",
-                    "value": "a"
-                  },
-                  {
-                    "name": "propertyName2",
-                    "value": "c"
-                  },
-                  {
-                    "name": "propertyName3",
-                    "value": "b"
-                  }
-                ]
+                "SomeTrait": {
+                  "propertyName1": "a",
+                  "propertyName2": "c",
+                  "propertyName3": "b"
+                }
               }
-            ],
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiInvalid.raml"
+            ]
           }
-        ],
+        },
         "displayName": "/resource",
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -195,12 +173,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiInvalid.raml"
+    ]
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -1,7 +1,6 @@
 {
   "specification": {
-    "title": "My API",
-    "path": "markup-language.raml"
+    "title": "My API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

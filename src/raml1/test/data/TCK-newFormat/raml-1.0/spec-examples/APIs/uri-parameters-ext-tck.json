@@ -4,8 +4,8 @@
     "version": "v1",
     "resources": [
       {
-        "uriParameters": [
-          {
+        "uriParameters": {
+          "ext": {
             "name": "ext",
             "displayName": "ext",
             "type": [
@@ -31,10 +31,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "uri-parameters-ext.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "relativeUri": "/users{ext}",
         "displayName": "/users{ext}",
         "__METADATA__": {
@@ -49,12 +48,9 @@
         ],
         "absoluteUri": "/users{ext}",
         "completeRelativeUri": "/users{ext}",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "uri-parameters-ext.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "uri-parameters-ext.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

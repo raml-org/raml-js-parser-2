@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "externalType": {
         "name": "externalType",
         "displayName": "externalType",
         "type": [
@@ -24,8 +24,7 @@
                   }
                 },
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML",
-                "path": "api.raml"
+                "typePropertyKind": "XML"
               }
             ],
             "__METADATA__": {
@@ -36,8 +35,7 @@
               }
             },
             "mediaType": "application/xml",
-            "typePropertyKind": "INPLACE",
-            "path": "api.raml"
+            "typePropertyKind": "INPLACE"
           }
         ],
         "__METADATA__": {
@@ -48,17 +46,16 @@
           }
         },
         "mediaType": "application/xml",
-        "typePropertyKind": "INPLACE",
-        "path": "api.raml"
+        "typePropertyKind": "INPLACE"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -81,8 +78,7 @@
                           }
                         },
                         "mediaType": "application/xml",
-                        "typePropertyKind": "XML",
-                        "path": "api.raml"
+                        "typePropertyKind": "XML"
                       }
                     ],
                     "__METADATA__": {
@@ -93,8 +89,7 @@
                       }
                     },
                     "mediaType": "application/xml",
-                    "typePropertyKind": "INPLACE",
-                    "path": "api.raml"
+                    "typePropertyKind": "INPLACE"
                   }
                 ],
                 "__METADATA__": {
@@ -105,16 +100,12 @@
                   }
                 },
                 "mediaType": "application/xml",
-                "typePropertyKind": "INPLACE",
-                "path": "api.raml"
+                "typePropertyKind": "INPLACE"
               }
-            ],
-            "method": "post",
-            "parentUri": "/res",
-            "absoluteParentUri": "/res",
-            "path": "api.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/res",
         "displayName": "/res",
         "__METADATA__": {
@@ -129,12 +120,9 @@
         ],
         "absoluteUri": "/res",
         "completeRelativeUri": "/res",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "File": {
         "name": "File",
         "displayName": "File",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -29,10 +29,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "length": {
             "name": "length",
             "displayName": "length",
             "type": [
@@ -50,10 +49,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -65,14 +63,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "traits": [
-      {
-        "headers": [
-          {
+    },
+    "traits": {
+      "drm": {
+        "headers": {
+          "drm-key": {
             "name": "drm-key",
             "displayName": "drm-key",
             "type": [
@@ -93,42 +90,32 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "drm",
-        "path": "libraries.raml"
+        },
+        "name": "drm"
       }
-    ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
+    },
+    "resourceTypes": {
+      "file": {
+        "methods": {
+          "get": {
             "is": [
-              {
-                "name": "drm"
-              }
+              "drm"
             ],
-            "method": "get",
-            "path": "libraries.raml"
+            "method": "get"
           },
-          {
+          "put": {
             "is": [
-              {
-                "name": "drm"
-              }
+              "drm"
             ],
-            "method": "put",
-            "path": "libraries.raml"
+            "method": "put"
           }
-        ],
-        "name": "file",
-        "path": "libraries.raml"
+        },
+        "name": "file"
       }
-    ],
-    "usage": "Use to define some basic file-related constructs.\n",
-    "path": "libraries.raml"
+    },
+    "usage": "Use to define some basic file-related constructs.\n"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

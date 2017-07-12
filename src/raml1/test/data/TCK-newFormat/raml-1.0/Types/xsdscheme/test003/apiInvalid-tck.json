@@ -3,10 +3,10 @@
     "title": "Blah",
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "get": {
+            "body": {
+              "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "schemaPath": "schema.xsd#city",
@@ -27,20 +27,13 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
-                ],
                 "mediaType": "application/xml",
-                "typePropertyKind": "XML",
-                "path": "apiInvalid.raml"
+                "typePropertyKind": "XML"
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "apiInvalid.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -55,12 +48,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiInvalid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

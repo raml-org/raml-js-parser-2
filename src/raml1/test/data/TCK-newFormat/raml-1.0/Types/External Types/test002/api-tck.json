@@ -1,7 +1,7 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Account": {
         "name": "Account",
         "displayName": "Account",
         "schemaPath": "files/account.xsd",
@@ -16,12 +16,10 @@
           }
         },
         "mediaType": "application/xml",
-        "typePropertyKind": "XML",
-        "path": "api.raml"
+        "typePropertyKind": "XML"
       }
-    ],
-    "title": "My API With Types",
-    "path": "api.raml"
+    },
+    "title": "My API With Types"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

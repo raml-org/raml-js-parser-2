@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "SimpleType1": {
         "name": "SimpleType1",
         "displayName": "SimpleType1",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "property1": {
             "name": "property1",
             "displayName": "property1",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "property2": {
             "name": "property2",
             "displayName": "property2",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -62,17 +60,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "SimpleType2": {
         "name": "SimpleType2",
         "displayName": "SimpleType2",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "property3": {
             "name": "property3",
             "displayName": "property3",
             "type": [
@@ -90,10 +87,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "property4": {
             "name": "property4",
             "displayName": "property4",
             "type": [
@@ -111,10 +107,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -126,14 +121,13 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "SimpleUnion": {
         "name": "SimpleUnion",
         "displayName": "SimpleUnion",
         "type": [
-          "union"
+          "SimpleType1 | SimpleType2"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -143,21 +137,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
-          "SimpleType1",
-          "SimpleType2"
-        ],
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "TypeWithUnionProps": {
         "name": "TypeWithUnionProps",
         "displayName": "TypeWithUnionProps",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "union1": {
             "name": "union1",
             "displayName": "union1",
             "type": [
@@ -175,10 +164,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "union2": {
             "name": "union2",
             "displayName": "union2",
             "type": [
@@ -196,10 +184,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -223,16 +210,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"union1\":{\"property3\":\"blahblah\",\"property2\":\"blahblah\"},\"union2\":{\"property3\":\"blahblah\",\"property4\":\"blahblah\"}}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "API",
-    "path": "apiInvalid.raml"
+    },
+    "title": "API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

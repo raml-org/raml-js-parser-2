@@ -3,13 +3,13 @@
     "title": "test",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
                 "code": "201",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "__METADATA__": {
@@ -25,19 +25,14 @@
                     "type": [
                       "TestSchema"
                     ],
-                    "mediaType": "application/json",
-                    "path": "meth01.raml"
+                    "mediaType": "application/json"
                   }
-                ],
-                "path": "meth01.raml"
+                }
               }
-            ],
-            "method": "post",
-            "parentUri": "/test",
-            "absoluteParentUri": "/test",
-            "path": "meth01.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "relativeUri": "/test",
         "displayName": "/test",
         "__METADATA__": {
@@ -52,13 +47,11 @@
         ],
         "absoluteUri": "/test",
         "completeRelativeUri": "/test",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "meth01.raml"
+        "parentUri": ""
       }
     ],
-    "types": [
-      {
+    "types": {
+      "TestSchema": {
         "name": "TestSchema",
         "displayName": "TestSchema",
         "type": [
@@ -72,11 +65,9 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "path": "meth01.raml"
+        "typePropertyKind": "JSON"
       }
-    ],
-    "path": "meth01.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

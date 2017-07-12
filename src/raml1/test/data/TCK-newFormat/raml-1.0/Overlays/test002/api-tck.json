@@ -1,13 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
+    "traits": {
+      "env-org-pair2": {
         "securedBy": [
-          {
-            "name": "x-ttt",
-            "type": "Basic Authentication",
-            "path": "api.raml"
-          }
+          "x-ttt"
         ],
         "name": "env-org-pair2",
         "__METADATA__": {
@@ -16,16 +12,11 @@
               "calculated": true
             }
           }
-        },
-        "path": "NewOverlay.raml"
+        }
       },
-      {
+      "env-org-pair": {
         "securedBy": [
-          {
-            "name": "x-ttt",
-            "type": "Basic Authentication",
-            "path": "api.raml"
-          }
+          "x-ttt"
         ],
         "name": "env-org-pair",
         "__METADATA__": {
@@ -35,18 +26,13 @@
               "calculated": true
             }
           }
-        },
-        "path": "api.raml"
+        }
       }
-    ],
-    "resourceTypes": [
-      {
+    },
+    "resourceTypes": {
+      "servers-collection": {
         "securedBy": [
-          {
-            "name": "x-ttt",
-            "type": "Basic Authentication",
-            "path": "api.raml"
-          }
+          "x-ttt"
         ],
         "name": "servers-collection",
         "__METADATA__": {
@@ -56,17 +42,15 @@
               "calculated": true
             }
           }
-        },
-        "path": "api.raml"
+        }
       }
-    ],
-    "securitySchemes": [
-      {
+    },
+    "securitySchemes": {
+      "x-ttt": {
         "name": "x-ttt",
-        "type": "Basic Authentication",
-        "path": "api.raml"
+        "type": "Basic Authentication"
       }
-    ],
+    },
     "title": "Extension",
     "version": "0.4",
     "baseUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
@@ -77,25 +61,15 @@
       "application/json"
     ],
     "securedBy": [
-      {
-        "name": "x-ttt",
-        "type": "Basic Authentication",
-        "path": "api.raml"
-      }
+      "x-ttt"
     ],
     "resources": [
       {
         "is": [
-          {
-            "name": "env-org-pair"
-          }
+          "env-org-pair"
         ],
         "securedBy": [
-          {
-            "name": "x-ttt",
-            "type": "Basic Authentication",
-            "path": "api.raml"
-          }
+          "x-ttt"
         ],
         "relativeUri": "/servers",
         "displayName": "/servers",
@@ -111,13 +85,10 @@
         ],
         "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": "",
-        "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
-    "extends": "api.raml",
-    "path": "NewOverlay.raml"
+    "extends": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

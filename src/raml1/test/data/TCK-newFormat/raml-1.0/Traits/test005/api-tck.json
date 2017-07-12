@@ -1,7 +1,7 @@
 {
   "specification": {
-    "securitySchemes": [
-      {
+    "securitySchemes": {
+      "oauth2": {
         "name": "oauth2",
         "type": "OAuth 2.0",
         "settings": {
@@ -9,12 +9,10 @@
           "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
           "authorizationGrants": [
             "client_credentials"
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
+          ]
+        }
       }
-    ],
+    },
     "title": "Demo",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -23,13 +21,13 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "get": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
+                "body": {
+                  "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
@@ -57,36 +55,18 @@
                         }
                       }
                     },
-                    "simplifiedExamples": [
-                      "<doc><property1>value1</property1></doc>\n",
-                      "<doc><property2>value2</property2></doc>\n"
-                    ],
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "api.raml"
+                }
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "securedBy": [
               null,
-              {
-                "name": "oauth2",
-                "type": "OAuth 2.0",
-                "settings": {
-                  "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
-                  "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
-                  "authorizationGrants": [
-                    "client_credentials"
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "oauth2"
             ],
             "method": "get",
             "__METADATA__": {
@@ -95,12 +75,9 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/resource",
-            "absoluteParentUri": "http://api.samplehost.com/resource",
-            "path": "api.raml"
+            }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -115,9 +92,7 @@
         ],
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -126,8 +101,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

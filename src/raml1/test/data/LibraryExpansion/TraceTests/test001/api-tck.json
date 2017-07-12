@@ -2,16 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "uses": [
-      {
-        "key": "lib1",
-        "value": "libraries/lib1.raml"
-      },
-      {
-        "key": "lib1.lib2",
-        "value": "libraries/lib2.raml"
-      }
-    ],
     "types": [
       {
         "lib1.LibType1": {
@@ -151,63 +141,6 @@
     ]
   },
   "errors": [
-    {
-      "code": "INVALID_DATEONLY",
-      "message": "'date-only' instance should match 'yyyy-mm-dd' pattern",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/LibraryExpansion/TraceTests/test001/libraries/lib2.raml",
-      "range": {
-        "start": {
-          "line": 7,
-          "column": 6,
-          "position": 94
-        },
-        "end": {
-          "line": 7,
-          "column": 8,
-          "position": 96
-        }
-      },
-      "trace": [
-        {
-          "code": "ISSUES_IN_THE_LIBRARY",
-          "message": "Issues in the used library: 'lib2.raml'",
-          "path": "libraries/lib1.raml",
-          "range": {
-            "start": {
-              "line": 3,
-              "column": 2,
-              "position": 28
-            },
-            "end": {
-              "line": 3,
-              "column": 6,
-              "position": 32
-            }
-          },
-          "isWarning": true,
-          "trace": [
-            {
-              "code": "ISSUES_IN_THE_LIBRARY",
-              "message": "Issues in the used library: 'libraries/lib1.raml'",
-              "path": "api.raml",
-              "range": {
-                "start": {
-                  "line": 5,
-                  "column": 2,
-                  "position": 74
-                },
-                "end": {
-                  "line": 5,
-                  "column": 6,
-                  "position": 78
-                }
-              },
-              "isWarning": true
-            }
-          ]
-        }
-      ]
-    },
     {
       "code": "INVALID_DATEONLY",
       "message": "'date-only' instance should match 'yyyy-mm-dd' pattern",

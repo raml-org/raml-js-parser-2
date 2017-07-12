@@ -3,19 +3,18 @@
     "uses": [
       {
         "key": "types",
-        "value": "types.raml",
-        "path": "api.raml"
+        "value": "types.raml"
       }
     ],
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "responses": [
-              {
+    "resourceTypes": {
+      "standardResponse": {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
                 "code": "201",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -29,15 +28,13 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "resourceTypes/collection.raml"
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -51,34 +48,27 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourceTypes/collection.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "path": "resourceTypes/collection.raml"
+            },
+            "method": "post"
           }
-        ],
-        "type": {
-          "name": "standardResponse",
-          "parameters": [
-            {
-              "name": "objectName",
-              "value": "types.Folder"
-            }
-          ]
         },
-        "name": "standardResponse",
-        "path": "resourceTypes/collection.raml"
+        "type": {
+          "standardResponse": {
+            "objectName": "types.Folder"
+          }
+        },
+        "name": "standardResponse"
       },
-      {
-        "methods": [
-          {
-            "responses": [
-              {
+      "collection": {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
                 "code": "201",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -92,15 +82,13 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "resourceTypes/collection.raml"
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -114,37 +102,30 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourceTypes/collection.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "path": "resourceTypes/collection.raml"
+            },
+            "method": "post"
           }
-        ],
-        "type": {
-          "name": "standardResponse",
-          "parameters": [
-            {
-              "name": "objectName",
-              "value": "types.Folder"
-            }
-          ]
         },
-        "name": "collection",
-        "path": "resourceTypes/collection.raml"
+        "type": {
+          "standardResponse": {
+            "objectName": "types.Folder"
+          }
+        },
+        "name": "collection"
       }
-    ],
+    },
     "title": "Box",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
+        "methods": {
+          "post": {
+            "responses": {
+              "201": {
                 "code": "201",
-                "body": [
-                  {
+                "body": {
+                  "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -158,15 +139,13 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "path": "resourceTypes/collection.raml"
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -180,24 +159,16 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourceTypes/collection.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "parentUri": "/folders",
-            "absoluteParentUri": "/folders",
-            "path": "resourceTypes/collection.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "type": {
-          "name": "collection",
-          "parameters": [
-            {
-              "name": "objectName",
-              "value": "types.Folder"
-            }
-          ]
+          "collection": {
+            "objectName": "types.Folder"
+          }
         },
         "relativeUri": "/folders",
         "displayName": "/folders",
@@ -213,12 +184,9 @@
         ],
         "absoluteUri": "/folders",
         "completeRelativeUri": "/folders",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

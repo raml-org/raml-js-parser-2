@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "TestType": {
         "name": "TestType",
         "displayName": "TestType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "name2": {
             "name": "name2",
             "displayName": "name2",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "name3": {
             "name": "name3",
             "displayName": "name3",
             "type": [
@@ -68,10 +66,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -83,17 +80,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "TestType2": {
         "name": "TestType2",
         "displayName": "TestType2",
         "type": [
           "TestType"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name4": {
             "name": "name4",
             "displayName": "name4",
             "type": [
@@ -111,10 +107,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -123,17 +118,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "TestType3": {
         "name": "TestType3",
         "displayName": "TestType3",
         "type": [
           "TestType2"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name5": {
             "name": "name5",
             "displayName": "name5",
             "type": [
@@ -151,10 +145,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -163,17 +156,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "TestType4": {
         "name": "TestType4",
         "displayName": "TestType4",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "proppp": {
             "name": "proppp",
             "displayName": "proppp",
             "type": [
@@ -191,10 +183,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -203,15 +194,14 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Blah",
     "version": "v1",
     "baseUri": "https://api.instagram.com/{version}/",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -239,10 +229,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTPS"
     ],
@@ -252,10 +241,10 @@
         "displayName": "/test",
         "resources": [
           {
-            "methods": [
-              {
-                "queryParameters": [
-                  {
+            "methods": {
+              "get": {
+                "queryParameters": {
+                  "bbb": {
                     "name": "bbb",
                     "displayName": "bbb",
                     "type": [
@@ -273,12 +262,11 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "headers": [
-                  {
+                },
+                "headers": {
+                  "blah": {
                     "name": "blah",
                     "displayName": "blah",
                     "type": [
@@ -296,41 +284,14 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
-                "responses": [
-                  {
-                    "code": "201",
-                    "body": [
-                      {
-                        "name": "application/json",
-                        "displayName": "application/json",
-                        "__METADATA__": {
-                          "primitiveValuesMeta": {
-                            "displayName": {
-                              "calculated": true
-                            },
-                            "type": {
-                              "insertedAsDefault": true
-                            }
-                          }
-                        },
-                        "type": [
-                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
-                        ],
-                        "mediaType": "application/json",
-                        "typePropertyKind": "JSON",
-                        "path": "api.raml"
-                      }
-                    ],
-                    "path": "api.raml"
-                  },
-                  {
+                },
+                "responses": {
+                  "200": {
                     "code": "200",
-                    "body": [
-                      {
+                    "body": {
+                      "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
                         "__METADATA__": {
@@ -347,16 +308,38 @@
                           "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
                         ],
                         "mediaType": "application/json",
-                        "typePropertyKind": "JSON",
-                        "path": "api.raml"
+                        "typePropertyKind": "JSON"
                       }
-                    ],
-                    "path": "api.raml"
+                    }
                   },
-                  {
+                  "201": {
+                    "code": "201",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "type": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        },
+                        "type": [
+                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
+                        ],
+                        "mediaType": "application/json",
+                        "typePropertyKind": "JSON"
+                      }
+                    }
+                  },
+                  "202": {
                     "code": "202",
-                    "body": [
-                      {
+                    "body": {
+                      "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
@@ -376,17 +359,12 @@
                             "name": null
                           }
                         ],
-                        "simplifiedExamples": [
-                          null
-                        ],
                         "mediaType": "application/raml+yaml",
-                        "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "typePropertyKind": "TYPE_EXPRESSION"
                       }
-                    ],
-                    "path": "api.raml"
+                    }
                   }
-                ],
+                },
                 "protocols": [
                   "HTTPS"
                 ],
@@ -397,45 +375,9 @@
                       "calculated": true
                     }
                   }
-                },
-                "parentUri": "/test/helloWorldddd1234ddd2",
-                "absoluteParentUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
-                "path": "api.raml",
-                "uriParameters": [
-                  {
-                    "name": "version",
-                    "displayName": "version",
-                    "type": [
-                      "string"
-                    ],
-                    "required": true,
-                    "enum": [
-                      "v1"
-                    ],
-                    "__METADATA__": {
-                      "calculated": true,
-                      "primitiveValuesMeta": {
-                        "displayName": {
-                          "calculated": true
-                        },
-                        "type": {
-                          "insertedAsDefault": true
-                        },
-                        "required": {
-                          "insertedAsDefault": true
-                        },
-                        "enum": {
-                          "calculated": true
-                        }
-                      }
-                    },
-                    "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
-                  }
-                ]
+                }
               }
-            ],
+            },
             "relativeUri": "/helloWorldddd1234ddd2",
             "displayName": "/helloWorldddd1234ddd2",
             "__METADATA__": {
@@ -450,42 +392,7 @@
             ],
             "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
             "completeRelativeUri": "/test/helloWorldddd1234ddd2",
-            "parentUri": "/test",
-            "absoluteParentUri": "https://api.instagram.com/{version}/test",
-            "path": "api.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v1"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              }
-            ]
+            "parentUri": "/test"
           }
         ],
         "__METADATA__": {
@@ -500,42 +407,7 @@
         ],
         "absoluteUri": "https://api.instagram.com/{version}/test",
         "completeRelativeUri": "/test",
-        "parentUri": "",
-        "absoluteParentUri": "https://api.instagram.com/{version}/",
-        "path": "api.raml",
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v1"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -544,8 +416,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

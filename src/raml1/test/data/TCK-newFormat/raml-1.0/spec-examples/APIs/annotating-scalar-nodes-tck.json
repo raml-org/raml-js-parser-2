@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "redirectable": {
         "name": "redirectable",
         "displayName": "redirectable",
         "type": [
@@ -15,10 +15,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotating-scalar-nodes.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Annotating scalar nodes",
     "baseUri": "http://www.example.com/api",
     "protocols": [
@@ -33,15 +32,12 @@
     },
     "scalarsAnnotations": {
       "baseUri": [
-        [
-          {
-            "name": "redirectable",
-            "value": true
-          }
-        ]
+        {
+          "name": "redirectable",
+          "structuredValue": true
+        }
       ]
-    },
-    "path": "annotating-scalar-nodes.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

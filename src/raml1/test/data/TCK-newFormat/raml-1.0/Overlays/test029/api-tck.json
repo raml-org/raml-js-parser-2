@@ -1,25 +1,25 @@
 {
   "specification": {
-    "annotations": [
-      {
+    "annotations": {
+      "library.highLevelApiDescription": {
         "name": "library.highLevelApiDescription",
         "structuredValue": null
       },
-      {
+      "library.apiLogo": {
         "name": "library.apiLogo",
         "structuredValue": null
       },
-      {
+      "library.specAuthor": {
         "name": "library.specAuthor",
-        "value": "mulesoft.com"
+        "structuredValue": "mulesoft.com"
       },
-      {
+      "library.devPortal": {
         "name": "library.devPortal",
         "structuredValue": null
       },
-      {
+      "library.extraResources": {
         "name": "library.extraResources",
-        "value": [
+        "structuredValue": [
           {
             "title": "API Notebook",
             "type": "notebook",
@@ -27,17 +27,15 @@
           }
         ]
       }
-    ],
+    },
     "uses": [
       {
         "key": "library",
-        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml",
-        "path": "overlay.raml"
+        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       }
     ],
     "title": "Api",
-    "extends": "api.raml",
-    "path": "overlay.raml"
+    "extends": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

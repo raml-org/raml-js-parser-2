@@ -42,7 +42,7 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
         return tckDumperHL.dump(expanded,{
             rootNodeDetails: true,
             attributeDefaults: true,
-            serializeMetadata: options.serializeMetadata||false,
+            serializeMetadata: true,
             unfoldTypes: options.unfoldTypes
         });
     });
@@ -66,7 +66,7 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
     return tckDumperHL.dump(expanded,{
         rootNodeDetails: true,
         attributeDefaults: true,
-        serializeMetadata: options.serializeMetadata||false,
+        serializeMetadata: true,
         unfoldTypes: options.unfoldTypes
     });
 }

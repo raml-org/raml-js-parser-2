@@ -3,8 +3,8 @@
     "title": "GitHub API",
     "version": "v3",
     "baseUri": "https://api.github.com/{version}",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "version": {
         "name": "version",
         "displayName": "version",
         "type": [
@@ -32,19 +32,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "query-parameter.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTPS"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "page": {
                 "name": "page",
                 "displayName": "page",
                 "type": [
@@ -66,14 +65,10 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  1
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "query-parameter.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "per_page": {
                 "name": "per_page",
                 "displayName": "per_page",
                 "type": [
@@ -101,14 +96,10 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  50
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "query-parameter.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTPS"
             ],
@@ -120,45 +111,9 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/users",
-            "absoluteParentUri": "https://api.github.com/{version}/users",
-            "path": "query-parameter.raml",
-            "uriParameters": [
-              {
-                "name": "version",
-                "displayName": "version",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "enum": [
-                  "v3"
-                ],
-                "__METADATA__": {
-                  "calculated": true,
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "type": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    },
-                    "enum": {
-                      "calculated": true
-                    }
-                  }
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "query-parameter.raml"
-              }
-            ]
+            }
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -173,42 +128,7 @@
         ],
         "absoluteUri": "https://api.github.com/{version}/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "https://api.github.com/{version}",
-        "path": "query-parameter.raml",
-        "uriParameters": [
-          {
-            "name": "version",
-            "displayName": "version",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "enum": [
-              "v3"
-            ],
-            "__METADATA__": {
-              "calculated": true,
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "type": {
-                  "insertedAsDefault": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                },
-                "enum": {
-                  "calculated": true
-                }
-              }
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "query-parameter.raml"
-          }
-        ]
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -217,8 +137,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "query-parameter.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,24 +1,19 @@
 {
   "specification": {
-    "methods": [
-      {
+    "methods": {
+      "get": {
         "is": [
-          {
-            "name": "files.drm"
-          }
+          "files.drm"
         ],
-        "method": "get",
-        "path": "libraries-resourcetype.raml"
+        "method": "get"
       }
-    ],
+    },
     "uses": [
       {
         "key": "files",
-        "value": "libraries/files.raml",
-        "path": "libraries-resourcetype.raml"
+        "value": "libraries/files.raml"
       }
-    ],
-    "path": "libraries-resourcetype.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "ResourceType",

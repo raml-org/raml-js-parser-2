@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    "traits": {
+      "myTrait": {
+        "queryParameters": {
+          "<<param>>": {
             "name": "<<param>>",
             "displayName": "<<param>>",
             "type": [
@@ -21,12 +21,11 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "myTrait.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "body": [
-          {
+        },
+        "body": {
+          "application/json": {
             "name": "application/json",
             "displayName": "application/json",
             "type": [
@@ -43,16 +42,14 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "myTrait.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "myTrait",
-        "path": "myTrait.raml"
+        },
+        "name": "myTrait"
       },
-      {
-        "queryParameters": [
-          {
+      "simpleTrait": {
+        "queryParameters": {
+          "stringParam": {
             "name": "stringParam",
             "displayName": "stringParam",
             "type": [
@@ -70,60 +67,45 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "simpleTrait",
-        "path": "api.raml"
-      }
-    ],
-    "resourceTypes": [
-      {
-        "type": {
-          "name": "rt2",
-          "parameters": [
-            {
-              "name": "param",
-              "value": "<<param>>"
-            }
-          ]
         },
-        "name": "rt1",
-        "path": "rt1.raml"
-      },
-      {
-        "methods": [
-          {
-            "method": "post",
-            "path": "rt2.raml"
+        "name": "simpleTrait"
+      }
+    },
+    "resourceTypes": {
+      "rt1": {
+        "type": {
+          "rt2": {
+            "param": "<<param>>"
           }
-        ],
+        },
+        "name": "rt1"
+      },
+      "rt2": {
+        "methods": {
+          "post": {
+            "method": "post"
+          }
+        },
         "is": [
           {
-            "name": "myTrait",
-            "parameters": [
-              {
-                "name": "param",
-                "value": "<<param>>"
-              }
-            ]
+            "myTrait": {
+              "param": "<<param>>"
+            }
           },
-          {
-            "name": "simpleTrait"
-          }
+          "simpleTrait"
         ],
-        "name": "rt2",
-        "path": "rt2.raml"
+        "name": "rt2"
       }
-    ],
+    },
     "title": "test API",
     "resources": [
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "qParam": {
                 "name": "qParam",
                 "displayName": "qParam",
                 "type": [
@@ -141,10 +123,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "myTrait.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "stringParam": {
                 "name": "stringParam",
                 "displayName": "stringParam",
                 "type": [
@@ -162,12 +143,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -184,18 +164,14 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "myTrait.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "get",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "myTrait.raml"
+            },
+            "method": "get"
           },
-          {
-            "queryParameters": [
-              {
+          "post": {
+            "queryParameters": {
+              "qParam": {
                 "name": "qParam",
                 "displayName": "qParam",
                 "type": [
@@ -213,10 +189,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "myTrait.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "stringParam": {
                 "name": "stringParam",
                 "displayName": "stringParam",
                 "type": [
@@ -234,12 +209,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -256,38 +230,24 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "myTrait.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "method": "post",
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "myTrait.raml"
+            },
+            "method": "post"
           }
-        ],
+        },
         "is": [
           {
-            "name": "myTrait",
-            "parameters": [
-              {
-                "name": "param",
-                "value": "qParam"
-              }
-            ]
+            "myTrait": {
+              "param": "qParam"
+            }
           },
-          {
-            "name": "simpleTrait"
-          }
+          "simpleTrait"
         ],
         "type": {
-          "name": "rt1",
-          "parameters": [
-            {
-              "name": "param",
-              "value": "qParam"
-            }
-          ]
+          "rt1": {
+            "param": "qParam"
+          }
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -303,12 +263,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

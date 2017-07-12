@@ -4,26 +4,13 @@
     "documentation": [
       {
         "title": "section1",
-        "content": "string value 1\n",
-        "scalarsPaths": {
-          "content": [
-            "doc1.txt"
-          ]
-        },
-        "path": "api.raml"
+        "content": "string value 1\n"
       },
       {
         "title": "section2",
-        "content": "string value 2\n",
-        "scalarsPaths": {
-          "content": [
-            "doc2.txt"
-          ]
-        },
-        "path": "api.raml"
+        "content": "string value 2\n"
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

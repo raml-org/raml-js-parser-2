@@ -5,8 +5,7 @@
       "property2": 1
     },
     "strict": true,
-    "name": null,
-    "path": "Example1.raml"
+    "name": null
   },
   "ramlVersion": "RAML10",
   "type": "ExampleSpec",

@@ -3,19 +3,18 @@
     "uses": [
       {
         "key": "ll",
-        "value": "ll.raml",
-        "path": "api.raml"
+        "value": "ll.raml"
       }
     ],
-    "types": [
-      {
+    "types": {
+      "MyType": {
         "name": "MyType",
         "displayName": "MyType",
         "type": [
           "ll.Person"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name2": {
             "name": "name2",
             "displayName": "name2",
             "type": [
@@ -33,10 +32,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -45,12 +43,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Test API",
-    "path": "api.raml"
+    },
+    "title": "Test API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

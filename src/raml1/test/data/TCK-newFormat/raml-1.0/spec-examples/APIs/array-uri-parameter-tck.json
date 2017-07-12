@@ -9,8 +9,8 @@
         "resources": [
           {
             "description": "A specific user",
-            "uriParameters": [
-              {
+            "uriParameters": {
+              "userIds": {
                 "name": "userIds",
                 "displayName": "userIds",
                 "type": [
@@ -35,8 +35,7 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "array-uri-parameter.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
                 ],
                 "__METADATA__": {
@@ -50,10 +49,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "array-uri-parameter.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "relativeUri": "/{userIds}",
             "displayName": "/{userIds}",
             "__METADATA__": {
@@ -68,9 +66,7 @@
             ],
             "absoluteUri": "/users/{userIds}",
             "completeRelativeUri": "/users/{userIds}",
-            "parentUri": "/users",
-            "absoluteParentUri": "/users",
-            "path": "array-uri-parameter.raml"
+            "parentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -85,12 +81,9 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "array-uri-parameter.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "array-uri-parameter.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

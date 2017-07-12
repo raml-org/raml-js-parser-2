@@ -2,8 +2,8 @@
   "specification": {
     "title": "Test",
     "baseUri": "http://{a}.myapi.org",
-    "baseUriParameters": [
-      {
+    "baseUriParameters": {
+      "a": {
         "name": "a",
         "displayName": "a",
         "type": [
@@ -25,10 +25,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "b": {
         "name": "b",
         "displayName": "second",
         "type": [
@@ -44,10 +43,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "protocols": [
       "HTTP"
     ],
@@ -57,8 +55,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -32,9 +32,7 @@
                 ],
                 "absoluteUri": "//api.test.com//common//users/groups/",
                 "completeRelativeUri": "//users//groups//",
-                "parentUri": "//users/",
-                "absoluteParentUri": "//api.test.com//common//users/",
-                "path": "trailing-slashes.raml"
+                "parentUri": "//users/"
               }
             ],
             "__METADATA__": {
@@ -50,9 +48,7 @@
             ],
             "absoluteUri": "//api.test.com//common//users/",
             "completeRelativeUri": "//users/",
-            "parentUri": "/",
-            "absoluteParentUri": "//api.test.com//common//",
-            "path": "trailing-slashes.raml"
+            "parentUri": "/"
           }
         ],
         "__METADATA__": {
@@ -65,9 +61,7 @@
         "relativeUriPathSegments": [],
         "absoluteUri": "//api.test.com//common//",
         "completeRelativeUri": "/",
-        "parentUri": "",
-        "absoluteParentUri": "//api.test.com//common//",
-        "path": "trailing-slashes.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -76,8 +70,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "trailing-slashes.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

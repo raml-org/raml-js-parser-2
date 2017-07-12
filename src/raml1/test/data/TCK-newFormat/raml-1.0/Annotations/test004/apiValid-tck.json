@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Point": {
         "name": "Point",
         "displayName": "Point",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "x": {
             "name": "x",
             "displayName": "x",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "y": {
             "name": "y",
             "displayName": "y",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -59,19 +57,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "Label": {
         "name": "Label",
         "displayName": "Label",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "point": {
             "name": "point",
             "displayName": "point",
             "type": [
@@ -89,10 +86,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -104,10 +100,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "New API",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -116,17 +111,17 @@
     ],
     "resources": [
       {
-        "annotations": [
-          {
+        "annotations": {
+          "Label": {
             "name": "Label",
-            "value": {
+            "structuredValue": {
               "point": {
                 "x": 3,
                 "y": 4
               }
             }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -141,9 +136,7 @@
         ],
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com",
-        "path": "apiValid.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -152,8 +145,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

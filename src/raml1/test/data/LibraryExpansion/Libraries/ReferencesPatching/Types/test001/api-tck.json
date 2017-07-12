@@ -2,12 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Library",
   "specification": {
-    "uses": [
-      {
-        "key": "primitives",
-        "value": "./lib/library.raml"
-      }
-    ],
     "types": [
       {
         "primitives.ExtLocale": {

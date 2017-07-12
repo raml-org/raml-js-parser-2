@@ -3,34 +3,29 @@
     "uses": [
       {
         "key": "decls",
-        "value": "lib/decls.raml",
-        "path": "slave.raml"
+        "value": "lib/decls.raml"
       }
     ],
     "title": "Slave RAML",
     "resources": [
       {
-        "methods": [
-          {
-            "annotations": [
-              {
+        "methods": {
+          "get": {
+            "annotations": {
+              "decls.important": {
                 "name": "decls.important",
                 "structuredValue": null
               }
-            ],
-            "responses": [
-              {
-                "code": "200",
-                "path": "master.raml"
+            },
+            "responses": {
+              "200": {
+                "code": "200"
               }
-            ],
+            },
             "description": "describing your method here\n",
-            "method": "get",
-            "parentUri": "/elements",
-            "absoluteParentUri": "/elements",
-            "path": "slave.raml"
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/elements",
         "displayName": "/elements",
         "__METADATA__": {
@@ -45,13 +40,10 @@
         ],
         "absoluteUri": "/elements",
         "completeRelativeUri": "/elements",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "slave.raml"
+        "parentUri": ""
       }
     ],
-    "extends": "master.raml",
-    "path": "slave.raml"
+    "extends": "master.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

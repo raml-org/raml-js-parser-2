@@ -2,46 +2,46 @@
   "specification": {
     "title": "Test",
     "baseUri": "http://{a}.myapi.org",
-    "baseUriParameters": [
-      {
-        "name": "a",
-        "displayName": "second",
-        "type": [
-          "string"
-        ],
-        "required": true,
-        "description": "This is A",
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "required": {
-              "insertedAsDefault": true
+    "baseUriParameters": {
+      "a": [
+        {
+          "name": "a",
+          "displayName": "second",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "description": "This is A",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
             }
-          }
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
         },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
-      },
-      {
-        "name": "a",
-        "displayName": "2",
-        "type": [
-          "integer"
-        ],
-        "required": true,
-        "description": "This is A",
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "required": {
-              "insertedAsDefault": true
+        {
+          "name": "a",
+          "displayName": "2",
+          "type": [
+            "integer"
+          ],
+          "required": true,
+          "description": "This is A",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
             }
-          }
-        },
-        "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
-      }
-    ],
+          },
+          "mediaType": "application/raml+yaml",
+          "typePropertyKind": "TYPE_EXPRESSION"
+        }
+      ]
+    },
     "protocols": [
       "HTTP"
     ],
@@ -51,8 +51,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

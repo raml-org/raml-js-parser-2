@@ -2,12 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Overlay",
   "specification": {
-    "uses": [
-      {
-        "key": "lib",
-        "value": "lib.raml"
-      }
-    ],
     "annotationTypes": [
       {
         "lib.TestAnnotationType": {

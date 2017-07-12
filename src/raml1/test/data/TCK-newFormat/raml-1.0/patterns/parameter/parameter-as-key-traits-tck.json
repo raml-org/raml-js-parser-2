@@ -1,53 +1,40 @@
 {
   "specification": {
-    "traits": [
-      {
-        "responses": [
-          {
+    "traits": {
+      "respCode": {
+        "responses": {
+          "<<status>>": {
             "code": "<<status>>",
-            "description": "<<description>>",
-            "path": "parameter-as-key-traits.raml"
+            "description": "<<description>>"
           }
-        ],
-        "name": "respCode",
-        "path": "parameter-as-key-traits.raml"
+        },
+        "name": "respCode"
       }
-    ],
+    },
     "title": "Example API",
     "version": "v1",
     "resources": [
       {
-        "methods": [
-          {
-            "responses": [
-              {
-                "code": "201",
-                "description": "Post created, returns the created post.",
-                "path": "parameter-as-key-traits.raml"
+        "methods": {
+          "get": {
+            "responses": {
+              "201": {
+                "code": 201,
+                "description": "Post created, returns the created post."
               }
-            ],
+            },
             "is": [
               {
-                "name": "respCode",
-                "parameters": [
-                  {
-                    "name": "status",
-                    "value": 201
-                  },
-                  {
-                    "name": "description",
-                    "value": "Post created, returns the created post."
-                  }
-                ]
+                "respCode": {
+                  "status": 201,
+                  "description": "Post created, returns the created post."
+                }
               }
             ],
             "description": "test",
-            "method": "get",
-            "parentUri": "/servers",
-            "absoluteParentUri": "/servers",
-            "path": "parameter-as-key-traits.raml"
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/servers",
         "displayName": "/servers",
         "__METADATA__": {
@@ -62,12 +49,9 @@
         ],
         "absoluteUri": "/servers",
         "completeRelativeUri": "/servers",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "parameter-as-key-traits.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "parameter-as-key-traits.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

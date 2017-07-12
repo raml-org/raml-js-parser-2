@@ -1,23 +1,23 @@
 {
   "specification": {
-    "annotations": [
-      {
+    "annotations": {
+      "test": {
         "name": "test",
-        "value": {
+        "structuredValue": {
           "q": true,
           "items": "E"
         }
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "test": {
         "name": "test",
         "displayName": "test",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "q": {
             "name": "q",
             "displayName": "q",
             "type": [
@@ -35,10 +35,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "items": {
             "name": "items",
             "displayName": "items",
             "type": [
@@ -60,10 +59,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -75,12 +73,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "H",
-    "path": "apiInvalid.raml"
+    },
+    "title": "H"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,7 +1,7 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "suborg": {
         "name": "suborg",
         "displayName": "suborg",
         "type": [
@@ -18,17 +18,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Annotation with arbitrary properties",
     "resources": [
       {
-        "annotations": [
-          {
+        "annotations": {
+          "suborg": {
             "name": "suborg",
-            "value": {
+            "structuredValue": {
               "manager": {
                 "name": "Tom"
               },
@@ -37,7 +36,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/assets",
         "displayName": "/assets",
         "__METADATA__": {
@@ -52,15 +51,13 @@
         ],
         "absoluteUri": "/assets",
         "completeRelativeUri": "/assets",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "parentUri": ""
       },
       {
-        "annotations": [
-          {
+        "annotations": {
+          "suborg1": {
             "name": "suborg1",
-            "value": {
+            "structuredValue": {
               "manager": {
                 "name": "Tom"
               },
@@ -69,7 +66,7 @@
               }
             }
           }
-        ],
+        },
         "relativeUri": "/foods",
         "displayName": "/foods",
         "__METADATA__": {
@@ -84,12 +81,9 @@
         ],
         "absoluteUri": "/foods",
         "completeRelativeUri": "/foods",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "apiInvalid.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Header": {
         "name": "Header",
         "displayName": "Header",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "name": {
             "name": "name",
             "displayName": "name",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "value": {
             "name": "value",
             "displayName": "value",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -59,17 +57,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Message": {
         "name": "Message",
         "displayName": "Message",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -87,18 +84,17 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "payload": {
             "name": "payload",
             "displayName": "payload",
             "type": [
               "object"
             ],
             "required": false,
-            "properties": [
-              {
+            "properties": {
+              "mimeType": {
                 "name": "mimeType",
                 "displayName": "mimeType",
                 "type": [
@@ -116,10 +112,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "filename": {
                 "name": "filename",
                 "displayName": "filename",
                 "type": [
@@ -137,10 +132,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "headers": {
                 "name": "headers",
                 "displayName": "headers",
                 "type": [
@@ -159,20 +153,17 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": [
-                  "Header"
-                ],
-                "path": "api.raml"
+                "items": "Header"
               },
-              {
+              "body": {
                 "name": "body",
                 "displayName": "body",
                 "type": [
                   "object"
                 ],
                 "required": false,
-                "properties": [
-                  {
+                "properties": {
+                  "size": {
                     "name": "size",
                     "displayName": "size",
                     "type": [
@@ -190,10 +181,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   },
-                  {
+                  "data": {
                     "name": "data",
                     "displayName": "data",
                     "type": [
@@ -211,10 +201,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -226,10 +215,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "parts": {
                 "name": "parts",
                 "displayName": "parts",
                 "type": [
@@ -248,12 +236,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "items": [
-                  "Message"
-                ],
-                "path": "api.raml"
+                "items": "Message"
               }
-            ],
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -265,10 +250,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "sizeEstimate": {
             "name": "sizeEstimate",
             "displayName": "sizeEstimate",
             "type": [
@@ -286,10 +270,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -298,17 +281,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "Thread": {
         "name": "Thread",
         "displayName": "Thread",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "id": {
             "name": "id",
             "displayName": "id",
             "type": [
@@ -326,10 +308,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "historyId": {
             "name": "historyId",
             "displayName": "historyId",
             "type": [
@@ -347,10 +328,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "messages": {
             "name": "messages",
             "displayName": "messages",
             "type": [
@@ -369,12 +349,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "Message"
-            ],
-            "path": "api.raml"
+            "items": "Message"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -424,16 +401,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"id\":\"146df5d64e5cb7dc\",\"historyId\":\"535370\",\"messages\":[{\"id\":\"146df5d64e5cb7dc\",\"payload\":{\"mimeType\":\"text/plain\",\"filename\":\"\",\"headers\":[{\"name\":\"Received\",\"value\":\"from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700\"},{\"name\":\"Date\",\"value\":\"Fri, 27 Jun 2014 15:06:18 -0700\"},{\"name\":\"Message-Id\",\"value\":\"<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>\"},{\"name\":\"From\",\"value\":\"someaccount@gmail.com\"}],\"body\":{\"size\":1,\"data\":\"\"}},\"sizeEstimate\":331}]}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "usage": "Gmail types",
-    "path": "api.raml"
+    },
+    "usage": "Gmail types"
   },
   "ramlVersion": "RAML10",
   "type": "Library",

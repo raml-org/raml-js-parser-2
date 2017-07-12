@@ -1,96 +1,55 @@
 {
   "specification": {
-    "uses": [
-      {
-        "key": "lib",
-        "value": "lib.raml",
-        "path": "api.raml"
-      }
-    ],
-    "traits": [
-      {
+    "traits": {
+      "lib.boolean": {
         "securedBy": [
-          {
-            "name": "lib.number",
-            "type": "Basic Authentication",
-            "path": "lib.raml"
-          }
+          "lib.number"
         ],
-        "name": "lib.boolean",
+        "name": "boolean",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "securedBy": {
               "calculated": true
             }
           }
-        },
-        "path": "lib.raml"
+        }
       }
-    ],
-    "resourceTypes": [
-      {
+    },
+    "resourceTypes": {
+      "lib.number": {
         "is": [
-          {
-            "name": "lib.boolean"
-          }
+          "lib.boolean"
         ],
         "securedBy": [
-          {
-            "name": "lib.oauth",
-            "type": "OAuth 2.0",
-            "path": "lib.raml"
-          },
-          {
-            "name": "lib.number",
-            "type": "Basic Authentication",
-            "path": "lib.raml"
-          }
+          "lib.oauth",
+          "lib.number"
         ],
-        "name": "lib.number",
-        "path": "lib.raml"
+        "name": "number"
       }
-    ],
-    "securitySchemes": [
-      {
-        "name": "lib.oauth",
-        "type": "OAuth 2.0",
-        "path": "lib.raml"
+    },
+    "securitySchemes": {
+      "lib.oauth": {
+        "name": "oauth",
+        "type": "OAuth 2.0"
       },
-      {
-        "name": "lib.number",
-        "type": "Basic Authentication",
-        "path": "lib.raml"
+      "lib.number": {
+        "name": "number",
+        "type": "Basic Authentication"
       }
-    ],
+    },
     "title": "test API",
     "securedBy": [
-      {
-        "name": "lib.number",
-        "type": "Basic Authentication",
-        "path": "lib.raml"
-      }
+      "lib.number"
     ],
     "resources": [
       {
         "is": [
-          {
-            "name": "lib.boolean"
-          }
+          "lib.boolean"
         ],
-        "type": {
-          "name": "lib.number"
-        },
+        "type": "lib.number",
         "securedBy": [
-          {
-            "name": "lib.oauth",
-            "type": "OAuth 2.0",
-            "path": "lib.raml"
-          },
-          {
-            "name": "lib.number",
-            "type": "Basic Authentication",
-            "path": "lib.raml"
-          }
+          "lib.oauth",
+          "lib.number"
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -106,12 +65,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

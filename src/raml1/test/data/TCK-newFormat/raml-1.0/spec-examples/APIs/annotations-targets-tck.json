@@ -1,26 +1,26 @@
 {
   "specification": {
-    "types": [
-      {
-        "annotations": [
-          {
+    "types": {
+      "User": {
+        "annotations": {
+          "meta-data": {
             "name": "meta-data",
-            "value": "on an object; on a data type declaration"
+            "structuredValue": "on an object; on a data type declaration"
           }
-        ],
+        },
         "name": "User",
         "displayName": "User",
         "type": [
           "object"
         ],
-        "properties": [
-          {
-            "annotations": [
-              {
+        "properties": {
+          "name": {
+            "annotations": {
+              "meta-data": {
                 "name": "meta-data",
-                "value": "on a string property"
+                "structuredValue": "on a string property"
               }
-            ],
+            },
             "name": "name",
             "displayName": "name",
             "type": [
@@ -38,10 +38,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "annotations-targets.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -50,12 +49,11 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations-targets.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "annotationTypes": [
-      {
+    },
+    "annotationTypes": {
+      "meta-resource-method": {
         "name": "meta-resource-method",
         "displayName": "meta-resource-method",
         "type": [
@@ -76,10 +74,9 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations-targets.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
-      {
+      "meta-data": {
         "name": "meta-data",
         "displayName": "meta-data",
         "type": [
@@ -99,41 +96,40 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations-targets.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Illustrating allowed targets",
     "mediaType": [
       "application/json"
     ],
     "resources": [
       {
-        "annotations": [
-          {
+        "annotations": {
+          "meta-resource-method": {
             "name": "meta-resource-method",
-            "value": "on a resource"
+            "structuredValue": "on a resource"
           }
-        ],
-        "methods": [
-          {
-            "annotations": [
-              {
+        },
+        "methods": {
+          "get": {
+            "annotations": {
+              "meta-resource-method": {
                 "name": "meta-resource-method",
-                "value": "on a method"
+                "structuredValue": "on a method"
               }
-            ],
-            "responses": [
-              {
+            },
+            "responses": {
+              "200": {
                 "code": "200",
-                "body": [
-                  {
-                    "annotations": [
-                      {
+                "body": {
+                  "application/json": {
+                    "annotations": {
+                      "meta-data": {
                         "name": "meta-data",
-                        "value": "on a body"
+                        "structuredValue": "on a body"
                       }
-                    ],
+                    },
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
@@ -148,21 +144,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "items": [
-                      "User"
-                    ],
-                    "path": "annotations-targets.raml"
+                    "items": "User"
                   }
-                ],
-                "path": "annotations-targets.raml"
+                }
               }
-            ],
-            "method": "get",
-            "parentUri": "/users",
-            "absoluteParentUri": "/users",
-            "path": "annotations-targets.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "relativeUri": "/users",
         "displayName": "/users",
         "__METADATA__": {
@@ -177,12 +166,9 @@
         ],
         "absoluteUri": "/users",
         "completeRelativeUri": "/users",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "annotations-targets.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "annotations-targets.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

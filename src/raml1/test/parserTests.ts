@@ -1477,7 +1477,7 @@ describe('New API',function(){
         var p = util.data("parser/libraries/nestedUses/index.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['traits'][0]['name']=='files.hello');
+        assert(spec['traits']['files.hello']['name']=='hello');
     });
 });
 
@@ -1487,14 +1487,14 @@ describe('JSON Extension default attributes',function(){
         var p = util.data("extensions/test58Extension.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['resources'][0]['methods'][0]['securedBy'][0]["name"]=="oauth2_0");
+        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
     });
 
     it("securedBy2", function () {
         var p = util.data("extensions/test59Extension.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(spec['resources'][0]['methods'][0]['securedBy'][0]["name"]=="oauth2_0");
+        assert(spec['resources'][0]['methods']['post']['securedBy'][0]=="oauth2_0");
     });
 });
 

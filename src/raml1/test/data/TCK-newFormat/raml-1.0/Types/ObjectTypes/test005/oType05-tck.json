@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "Initial_comments": {
         "name": "Initial_comments",
         "displayName": "Initial_comments",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "comment_id": {
             "name": "comment_id",
             "displayName": "comment_id",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType05.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "initial_comments": {
             "name": "initial_comments",
             "displayName": "initial_comments",
             "type": [
@@ -47,10 +46,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType05.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "minProperties": 2,
         "maxProperties": 4,
         "__METADATA__": {
@@ -61,12 +59,10 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "oType05.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "My API With Types",
-    "path": "oType05.raml"
+    },
+    "title": "My API With Types"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

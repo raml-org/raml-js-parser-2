@@ -1,9 +1,9 @@
 {
   "specification": {
-    "traits": [
-      {
-        "queryParameters": [
-          {
+    "traits": {
+      "trait1": {
+        "queryParameters": {
+          "param1": {
             "name": "param1",
             "displayName": "param1",
             "type": [
@@ -21,14 +21,12 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
-        "name": "trait1",
-        "path": "api.raml"
+        },
+        "name": "trait1"
       }
-    ],
+    },
     "title": "TCK test. Trait 002",
     "version": "v1",
     "baseUri": "http://api.samplehost.com",
@@ -37,10 +35,10 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "queryParameters": [
-              {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "param1": {
                 "name": "param1",
                 "displayName": "param1",
                 "type": [
@@ -58,12 +56,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
@@ -88,34 +85,23 @@
                     "name": null
                   }
                 ],
-                "simplifiedExamples": [
-                  "{\"prop\":\"value\"}"
-                ],
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTP"
             ],
             "is": [
               {
-                "name": "trait1",
-                "parameters": [
-                  {
-                    "name": "type1",
-                    "value": "number"
-                  },
-                  {
-                    "name": "body1",
-                    "value": {
-                      "application/json": {
-                        "example": "{\n  \"prop\": \"value\"\n}\n"
-                      }
+                "trait1": {
+                  "type1": "number",
+                  "body1": {
+                    "application/json": {
+                      "example": "{\n  \"prop\": \"value\"\n}\n"
                     }
                   }
-                ]
+                }
               }
             ],
             "method": "get",
@@ -125,12 +111,9 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/resource",
-            "absoluteParentUri": "http://api.samplehost.com/resource",
-            "path": "api.raml"
+            }
           }
-        ],
+        },
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -145,9 +128,7 @@
         ],
         "absoluteUri": "http://api.samplehost.com/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "http://api.samplehost.com",
-        "path": "api.raml"
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
@@ -156,8 +137,7 @@
           "calculated": true
         }
       }
-    },
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -1,37 +1,33 @@
 {
   "specification": {
     "title": "test API",
-    "resourceTypes": [
-      {
+    "resourceTypes": {
+      "myResourceType": {
         "name": "myResourceType",
-        "methods": [
-          {
-            "responses": [
-              {
-                "code": "<<param4>>",
-                "body": [
-                  {
-                    "name": "application/json",
-                    "path": "api.raml"
-                  }
-                ],
-                "path": "api.raml"
-              },
-              {
+        "methods": {
+          "post": {
+            "responses": {
+              "200": {
                 "code": "200",
-                "<<param5>>": "<<param5value>>",
-                "path": "api.raml"
+                "<<param5>>": "<<param5value>>"
+              },
+              "<<param4>>": {
+                "code": "<<param4>>",
+                "body": {
+                  "application/json": {
+                    "name": "application/json"
+                  }
+                }
               }
-            ],
-            "body": [
-              {
+            },
+            "body": {
+              "application/json": {
                 "name": "application/json",
-                "<<param3>>": "<<param3value>>",
-                "path": "api.raml"
+                "<<param3>>": "<<param3value>>"
               }
-            ],
-            "queryParameters": [
-              {
+            },
+            "queryParameters": {
+              "<<qParam>>": {
                 "name": "<<qParam>>",
                 "displayName": "<<qParam>>",
                 "type": "string",
@@ -52,10 +48,9 @@
                       "insertedAsDefault": true
                     }
                   }
-                },
-                "path": "api.raml"
+                }
               },
-              {
+              "param1": {
                 "name": "param1",
                 "displayName": "param1",
                 "type": "string",
@@ -77,20 +72,16 @@
                     }
                   }
                 },
-                "<<prop1>>": "<<prop1Value>>",
-                "path": "api.raml"
+                "<<prop1>>": "<<prop1Value>>"
               }
-            ],
+            },
             "method": "post",
-            "<<param2>>": "<<param2value>>",
-            "path": "api.raml"
+            "<<param2>>": "<<param2value>>"
           }
-        ],
-        "<<param1>>": "<<param1value>>",
-        "path": "api.raml"
+        },
+        "<<param1>>": "<<param1value>>"
       }
-    ],
-    "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

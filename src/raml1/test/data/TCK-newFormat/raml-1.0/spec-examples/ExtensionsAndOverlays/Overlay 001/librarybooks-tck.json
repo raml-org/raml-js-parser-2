@@ -1,22 +1,22 @@
 {
   "specification": {
-    "annotationTypes": [
-      {
+    "annotationTypes": {
+      "monitor": {
         "name": "monitor",
         "displayName": "monitor",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "frequency": {
             "name": "frequency",
             "displayName": "frequency",
             "type": [
               "object"
             ],
             "required": true,
-            "properties": [
-              {
+            "properties": {
+              "interval": {
                 "name": "interval",
                 "displayName": "interval",
                 "type": [
@@ -34,10 +34,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "overlay-monitoring.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "unitOfMeasure": {
                 "name": "unitOfMeasure",
                 "displayName": "unitOfMeasure",
                 "type": [
@@ -63,10 +62,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "overlay-monitoring.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "displayName": {
@@ -81,10 +79,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "overlay-monitoring.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           },
-          {
+          "script": {
             "name": "script",
             "displayName": "script",
             "type": [
@@ -105,10 +102,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "overlay-monitoring.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -120,19 +116,18 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "overlay-monitoring.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
+    },
     "title": "Book Library API",
     "resources": [
       {
-        "methods": [
-          {
-            "annotations": [
-              {
+        "methods": {
+          "get": {
+            "annotations": {
+              "monitor": {
                 "name": "monitor",
-                "value": {
+                "structuredValue": {
                   "frequency": {
                     "interval": 5,
                     "unitOfMeasure": "minutes"
@@ -140,13 +135,10 @@
                   "script": "randomBooksFetch"
                 }
               }
-            ],
-            "method": "get",
-            "parentUri": "/books",
-            "absoluteParentUri": "/books",
-            "path": "overlay-monitoring.raml"
+            },
+            "method": "get"
           }
-        ],
+        },
         "description": "The collection of library books",
         "relativeUri": "/books",
         "displayName": "/books",
@@ -162,26 +154,21 @@
         ],
         "absoluteUri": "/books",
         "completeRelativeUri": "/books",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "overlay-monitoring.raml"
+        "parentUri": ""
       }
     ],
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books",
-        "path": "librarybooks.raml"
+        "content": "Automated access to books"
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books.",
-        "path": "librarybooks.raml"
+        "content": "Please respect copyrights on our books."
       }
     ],
     "usage": "Hints for monitoring the library books API",
-    "extends": "librarybooks.raml",
-    "path": "overlay-monitoring.raml"
+    "extends": "librarybooks.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

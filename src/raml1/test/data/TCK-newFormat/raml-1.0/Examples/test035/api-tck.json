@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "ItsComplicated": {
         "name": "ItsComplicated",
         "displayName": "ItsComplicated",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "/.*/": {
             "name": "/.*/",
             "displayName": "/.*/",
             "type": [
@@ -26,10 +26,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -52,16 +51,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"prop1\":\"stringValue1\",\"prop2\":{\"someProperty\":\"stringValue2\"}}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "Api",
-    "path": "api.raml"
+    },
+    "title": "Api"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

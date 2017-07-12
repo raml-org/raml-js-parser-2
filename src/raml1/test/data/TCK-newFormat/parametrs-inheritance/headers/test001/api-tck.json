@@ -1,11 +1,11 @@
 {
   "specification": {
-    "resourceTypes": [
-      {
-        "methods": [
-          {
-            "headers": [
-              {
+    "resourceTypes": {
+      "rt": {
+        "methods": {
+          "get": {
+            "headers": {
+              "rtHeader": {
                 "name": "rtHeader",
                 "displayName": "rtHeader",
                 "type": [
@@ -23,42 +23,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "securedBy": [
-              {
-                "name": "s1",
-                "type": "x-custom",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "securityHeader",
-                      "displayName": "securityHeader",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "s1"
             ],
             "method": "get",
             "__METADATA__": {
@@ -67,42 +36,11 @@
                   "calculated": true
                 }
               }
-            },
-            "path": "api.raml"
+            }
           }
-        ],
+        },
         "securedBy": [
-          {
-            "name": "s1",
-            "type": "x-custom",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "securityHeader",
-                  "displayName": "securityHeader",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "s1"
         ],
         "name": "rt",
         "__METADATA__": {
@@ -111,17 +49,16 @@
               "calculated": true
             }
           }
-        },
-        "path": "api.raml"
+        }
       }
-    ],
-    "securitySchemes": [
-      {
+    },
+    "securitySchemes": {
+      "s1": {
         "name": "s1",
         "type": "x-custom",
         "describedBy": {
-          "headers": [
-            {
+          "headers": {
+            "securityHeader": {
               "name": "securityHeader",
               "displayName": "securityHeader",
               "type": [
@@ -139,55 +76,22 @@
                 }
               },
               "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "typePropertyKind": "TYPE_EXPRESSION"
             }
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
+          }
+        }
       }
-    ],
+    },
     "title": "test API",
     "securedBy": [
-      {
-        "name": "s1",
-        "type": "x-custom",
-        "describedBy": {
-          "headers": [
-            {
-              "name": "securityHeader",
-              "displayName": "securityHeader",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              },
-              "mediaType": "application/raml+yaml",
-              "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
-            }
-          ],
-          "path": "api.raml"
-        },
-        "path": "api.raml"
-      }
+      "s1"
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "headers": [
-              {
+        "methods": {
+          "get": {
+            "headers": {
+              "methodHeader": {
                 "name": "methodHeader",
                 "displayName": "methodHeader",
                 "type": [
@@ -205,10 +109,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               },
-              {
+              "rtHeader": {
                 "name": "rtHeader",
                 "displayName": "rtHeader",
                 "type": [
@@ -226,64 +129,11 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
-              },
-              {
-                "name": "securityHeader",
-                "displayName": "securityHeader",
-                "type": [
-                  "string"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  },
-                  "calculated": true
-                },
-                "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "securedBy": [
-              {
-                "name": "s1",
-                "type": "x-custom",
-                "describedBy": {
-                  "headers": [
-                    {
-                      "name": "securityHeader",
-                      "displayName": "securityHeader",
-                      "type": [
-                        "string"
-                      ],
-                      "required": true,
-                      "__METADATA__": {
-                        "primitiveValuesMeta": {
-                          "displayName": {
-                            "calculated": true
-                          },
-                          "required": {
-                            "insertedAsDefault": true
-                          }
-                        }
-                      },
-                      "mediaType": "application/raml+yaml",
-                      "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
-                    }
-                  ],
-                  "path": "api.raml"
-                },
-                "path": "api.raml"
-              }
+              "s1"
             ],
             "method": "get",
             "__METADATA__": {
@@ -292,47 +142,12 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/resource",
-            "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            }
           }
-        ],
-        "type": {
-          "name": "rt"
         },
+        "type": "rt",
         "securedBy": [
-          {
-            "name": "s1",
-            "type": "x-custom",
-            "describedBy": {
-              "headers": [
-                {
-                  "name": "securityHeader",
-                  "displayName": "securityHeader",
-                  "type": [
-                    "string"
-                  ],
-                  "required": true,
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      },
-                      "required": {
-                        "insertedAsDefault": true
-                      }
-                    }
-                  },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
-                }
-              ],
-              "path": "api.raml"
-            },
-            "path": "api.raml"
-          }
+          "s1"
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -351,36 +166,9 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": "",
-        "absoluteParentUri": "",
-        "path": "api.raml",
-        "headers": [
-          {
-            "name": "securityHeader",
-            "displayName": "securityHeader",
-            "type": [
-              "string"
-            ],
-            "required": true,
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "displayName": {
-                  "calculated": true
-                },
-                "required": {
-                  "insertedAsDefault": true
-                }
-              },
-              "calculated": true
-            },
-            "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
-          }
-        ]
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",

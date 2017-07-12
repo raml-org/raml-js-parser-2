@@ -1,14 +1,14 @@
 {
   "specification": {
-    "types": [
-      {
+    "types": {
+      "SomeType": {
         "name": "SomeType",
         "displayName": "SomeType",
         "type": [
           "object"
         ],
-        "properties": [
-          {
+        "properties": {
+          "selfReference": {
             "name": "selfReference",
             "displayName": "selfReference",
             "type": [
@@ -27,12 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "items": [
-              "SomeType"
-            ],
-            "path": "apiValid.raml"
+            "items": "SomeType"
           },
-          {
+          "someProperty": {
             "name": "someProperty",
             "displayName": "someProperty",
             "type": [
@@ -50,10 +47,9 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "typePropertyKind": "TYPE_EXPRESSION"
           }
-        ],
+        },
         "additionalProperties": false,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -82,16 +78,11 @@
             "name": null
           }
         ],
-        "simplifiedExamples": [
-          "{\"selfReference\":[{\"selfReference\":[{\"selfReference\":[],\"someProperty\":\"stringValue\"}],\"someProperty\":\"stringValue\"}],\"someProperty\":\"stringValue\"}"
-        ],
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
-    ],
-    "title": "API",
-    "path": "apiValid.raml"
+    },
+    "title": "API"
   },
   "ramlVersion": "RAML10",
   "type": "Api",

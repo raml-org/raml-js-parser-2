@@ -1,12 +1,11 @@
 {
   "specification": {
-    "traits": [
-      {
+    "traits": {
+      "bar": {
         "name": "bar",
-        "usage": "bar usage",
-        "path": "api.raml"
+        "usage": "bar usage"
       }
-    ],
+    },
     "title": "Foo API",
     "version": "0.1.0",
     "baseUri": "https://example.com",
@@ -18,17 +17,17 @@
     ],
     "resources": [
       {
-        "methods": [
-          {
-            "body": [
-              {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
                   "object"
                 ],
-                "properties": [
-                  {
+                "properties": {
+                  "quz": {
                     "name": "quz",
                     "displayName": "quz",
                     "type": [
@@ -49,10 +48,9 @@
                       }
                     },
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "typePropertyKind": "TYPE_EXPRESSION"
                   }
-                ],
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -61,10 +59,9 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "typePropertyKind": "TYPE_EXPRESSION"
               }
-            ],
+            },
             "protocols": [
               "HTTPS"
             ],
@@ -75,12 +72,9 @@
                   "calculated": true
                 }
               }
-            },
-            "parentUri": "/baz",
-            "absoluteParentUri": "https://example.com/baz",
-            "path": "api.raml"
+            }
           }
-        ],
+        },
         "relativeUri": "/baz",
         "displayName": "/baz",
         "__METADATA__": {
@@ -95,12 +89,9 @@
         ],
         "absoluteUri": "https://example.com/baz",
         "completeRelativeUri": "/baz",
-        "parentUri": "",
-        "absoluteParentUri": "https://example.com",
-        "path": "api.raml"
+        "parentUri": ""
       }
-    ],
-    "path": "api.raml"
+    ]
   },
   "ramlVersion": "RAML10",
   "type": "Api",
