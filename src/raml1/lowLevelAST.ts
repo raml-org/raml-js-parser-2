@@ -9,6 +9,8 @@ import resolversApi=require("./jsyaml/resolversApi")
 import path=require("path")
 import URL=require("url")
 import util=require("../util/index")
+import linter=require("./ast.core/linter")
+let messageRegistry = require("../../resources/errorMessages");
 
 export interface ICompilationUnit{
 
@@ -372,8 +374,7 @@ export class LineMapperImpl implements LineMapper{
         }
 
 
-        throw new Error(`Character position exceeds text length: ${_pos} > + ${this.content.length}.
-Unit path: ${this.absPath}`);
+        throw new Error(linter.applyTemplate(messageRegistry.POSITION_EXCEEDS_TEXT_LENGTH, {pos:_pos, length:this.content.length, absPath:this.absPath}));
     }
 
     initMapping(){
@@ -383,8 +384,7 @@ Unit path: ${this.absPath}`);
         }
 
         if(this.content==null){
-            throw new Error(`Line Mapper has been given null content${this.absPath!=null
-                ?('. Path: ' + this.absPath): ' and null path.'}`);
+            throw new Error(linter.applyTemplate(messageRegistry.LINE_MAPPER_HAS_NULL_CONTENT,{path:this.absPath!=null ?('. Path: ' + this.absPath): ' and null path.'}));
         }
         this.mapping = [];
 

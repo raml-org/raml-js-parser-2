@@ -1889,10 +1889,10 @@ export class UrlParameterNameValidator implements PropertyValidator{
             }
         }
         if (count>0){
-            throw new Error("Invalid resource name: unmatched '{'")
+            throw new Error(applyTemplate(messageRegistry.INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL, {symbol: "{"}))
         }
         if (count<0){
-            throw new Error("Invalid resource name: unmatched '}'")
+            throw new Error(applyTemplate(messageRegistry.INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL, {symbol: "}"}))
         }
         return result;
     }
@@ -4423,7 +4423,7 @@ export function createLLIssue(
     if (original) {
         original.extras.push(error);
         if(node.valueKind()==yaml.Kind.INCLUDE_REF) {
-            error.message = "Error in the included file: " + error.message;
+            error.message = applyTemplate(messageRegistry.ERROR_IN_INCLUDED_FILE, {msg: error.message});
         }
         error = original;
     }
@@ -4444,13 +4444,13 @@ export function validateResponseString(v:string):any{
 }
 
 
-interface Message{
+export interface Message{
     code: number
     message: string
     func?: (x:any)=>string
 }
 
-function applyTemplate(messageEntry:Message, params:any):string {
+export function applyTemplate(messageEntry:Message, params:any):string {
     var result = "";
     var msg = messageEntry.message;
     var prev = 0;
@@ -4466,7 +4466,7 @@ function applyTemplate(messageEntry:Message, params:any):string {
         prev += "}}".length;
         var paramValue = params[paramName];
         if (paramValue === undefined) {
-            throw new Error(`Message parameter '${paramName}' has no value specified.`);
+            throw new Error(applyTemplate(messageRegistry.MESSAGE_PARAMETER_NO_VALUE, {paramName: paramName}));
         }
         result += paramValue;
     }

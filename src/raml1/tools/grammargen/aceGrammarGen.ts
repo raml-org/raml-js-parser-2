@@ -5,6 +5,8 @@ import services=def
 import _=require("underscore")
 import fs=require("fs");
 import path=require("path")
+
+let messageRegistry = require("../../../../resources/errorMessages");
 //TODO implement pragrammatic grammar at some point
 /**
  *Generates grammar for Atom from definition system at this moment we will use context free grammar
@@ -29,7 +31,7 @@ function iteratePropeties(u:def.Universe){
         var props:hl.IProperty[] = pNames[x];
         var kinds = _.uniq(props.map(x=>x.getAdapter(services.RAMLPropertyService).getPropertyGrammarType()));
         if (kinds.length > 1) {
-            throw new Error("Different properties with same name should have same grammar kind at this moment");
+            throw new Error(messageRegistry.PROPERTIES_SHOULD_HAVE_SAME_GRAMMAR_KIND.message);
         }
         result+=generateNodePropertyDefinition(props[0]);
     });

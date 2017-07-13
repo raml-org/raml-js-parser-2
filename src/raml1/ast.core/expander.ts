@@ -20,6 +20,8 @@ import referencePatcher = require("./referencePatcher");
 import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
+import linter=require("../ast.core/linter")
+let messageRegistry = require("../../../resources/errorMessages");
 var mediaTypeParser = require("media-typer");
 var changeCase = require('change-case');
 
@@ -46,7 +48,7 @@ export function expandLibrary(lib:RamlWrapper.Library):RamlWrapper.Library{
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
     mergeMode: hlimpl.OverlayMergeMode) : hl.IHighLevelNode {
     var masterApi = hlimpl.fromUnit(masterUnit);
-    if(!masterApi) throw new Error("couldn't load api from " + masterUnit.absolutePath());
+    if(!masterApi) throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_LOAD_API_FROM, {path:masterUnit.absolutePath()}));
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
         return <hl.IHighLevelNode>masterApi;
@@ -58,7 +60,7 @@ export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:
         var unit = extensionsAndOverlays[i];
         var hlNode = hlimpl.fromUnit(unit);
         if(!hlNode){
-            throw new Error("couldn't load api from " + unit.absolutePath());
+            throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_LOAD_API_FROM, {path:unit.absolutePath()}));
         }
         highLevelNodes.push(<hlimpl.ASTNodeImpl>hlNode);
     }

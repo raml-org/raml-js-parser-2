@@ -30,6 +30,8 @@ import universeProvider = defs
 import rTypes = defs.rt;
 import builder = require("../ast.core/builder");
 
+let messageRegistry = require("../../../resources/errorMessages");
+
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
     return p.highLevel().localType();
 }
@@ -320,8 +322,7 @@ export function methodId(method:RamlWrapper.Method):string{
     else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
-    throw new Error(`Method is supposed to be owned by Resource or ResourceType.
-Here the method is owned by ${method.definition().key().name}`);
+    throw new Error(linter.applyTemplate(messageRegistry.METHOD_OWNED_BY, {owner:method.definition().key().name}));
 }
 
 //__$helperMethod__ true for codes < 400 and false otherwise
