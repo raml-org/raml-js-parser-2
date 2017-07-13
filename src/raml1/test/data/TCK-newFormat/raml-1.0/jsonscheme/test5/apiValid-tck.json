@@ -4,7 +4,6 @@
       "MyType": {
         "name": "MyType",
         "displayName": "MyType",
-        "typePropertyKind": "JSON",
         "schemaPath": "scheme.json#/definitions/InnerType",
         "type": [
           "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"

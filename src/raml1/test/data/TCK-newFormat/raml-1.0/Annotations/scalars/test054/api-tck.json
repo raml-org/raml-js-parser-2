@@ -7,6 +7,24 @@
         "type": [
           "object"
         ],
+        "examples": [
+          {
+            "value": {
+              "prop": "stringValue"
+            },
+            "strict": true,
+            "name": "e1",
+            "scalarsAnnotations": {
+              "displayName": [
+                {
+                  "structuredValue": "asdfg",
+                  "name": "a"
+                }
+              ]
+            },
+            "displayName": "myExample"
+          }
+        ],
         "properties": {
           "prop": {
             "name": "prop",
@@ -39,24 +57,6 @@
             }
           }
         },
-        "examples": [
-          {
-            "value": {
-              "prop": "stringValue"
-            },
-            "strict": true,
-            "name": "e1",
-            "scalarsAnnotations": {
-              "displayName": [
-                {
-                  "structuredValue": "asdfg",
-                  "name": "a"
-                }
-              ]
-            },
-            "displayName": "myExample"
-          }
-        ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION"
       }

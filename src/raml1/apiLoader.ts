@@ -23,6 +23,8 @@ import ramlServices = require("../raml1/definition-system/ramlServices")
 import tckDumperHL = require("../util/tckDumperHL")
 import universeHelpers = require("./tools/universeHelpers");
 import search = require("./../search/search-interface");
+import linter=require("./ast.core/linter")
+let messageRegistry = require("../../resources/errorMessages");
 
 export type IHighLevelNode=hl.IHighLevelNode;
 export type IParseResult=hl.IParseResult;
@@ -147,7 +149,7 @@ function loadRAMLInternalHL(apiPath:string,arg1?:string[]|parserCoreApi.Options,
 
             extensionsAndOverlays.forEach(currentPath =>{
                 if (!currentPath || currentPath.trim().length == 0) {
-                    throw new Error("Extensions and overlays list should contain legal file paths");
+                    throw new Error(messageRegistry.EXTENSIONS_AND_OVERLAYS_LEGAL_FILE_PATHS.message);
                 }
             })
 
@@ -168,7 +170,7 @@ function loadRAMLInternalHL(apiPath:string,arg1?:string[]|parserCoreApi.Options,
     }
 
     if (!unit){
-        throw new Error("Can not resolve :"+apiPath);
+        throw new Error(linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE,{path:apiPath}));
     }
 
     if(options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length){
@@ -245,7 +247,7 @@ export function loadRAMLAsyncHL(ramlPath:string,arg1?:string[]|parserCoreApi.Opt
 
         extensionsAndOverlays.forEach(currentPath =>{
             if (!currentPath || currentPath.trim().length == 0) {
-                throw new Error("Extensions and overlays list should contain legal file paths");
+                throw new Error(messageRegistry.EXTENSIONS_AND_OVERLAYS_LEGAL_FILE_PATHS.message);
             }
         })
 
@@ -350,7 +352,7 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
 
     var ramlFirstLine = hlimpl.ramlFirstLine(contents);
     if(!ramlFirstLine){
-        throw new Error("Invalid first line. A RAML document is expected to start with '#%RAML <version> <?fragment type>'.");
+        throw new Error(messageRegistry.INVALID_FIRST_LINE.message);
     }
 
     var verStr = ramlFirstLine[1];
@@ -367,10 +369,10 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
     }
 
     if (!ramlVersion) {
-        throw new Error("Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'");
+        throw new Error(messageRegistry.UNKNOWN_RAML_VERSION.message);
     }
     if(ramlVersion=='RAML08'&&checkApisOverlays){
-        throw new Error('Extensions and overlays are not supported in RAML 0.8.');
+        throw new Error(messageRegistry.EXTENSIONS_AND_OVERLAYS_NOT_SUPPORTED_0_8.message);
     }
 
     //if (!ramlFileType || ramlFileType.trim() === "") {
@@ -410,7 +412,7 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
 };
 
 export function toError(api:hl.IHighLevelNode):hl.ApiLoadingError{
-    var error:any = new Error('Api contains errors.');
+    var error:any = new Error(messageRegistry.API_CONTAINS_ERROR.message);
     error.parserErrors = hlimpl.toParserErrors(api.errors(),api);
     return error;
 }

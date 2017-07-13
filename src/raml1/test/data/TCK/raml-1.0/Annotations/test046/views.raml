@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+annotationTypes:
+  id: string
+  views:
+     type: ResourceView | ResourceView[]
+
+types:
+  ResourceView:
+     properties:
+       id: string
+       displayName?: string
+       description?: string
+       fixedParameters:
+         properties:
+           //: any

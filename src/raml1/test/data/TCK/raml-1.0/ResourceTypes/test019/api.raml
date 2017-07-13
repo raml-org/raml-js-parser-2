@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+title: test API
+
+traits:
+  tr1:
+
+resourceTypes:
+  rt1:
+
+
+/resource:
+  type:
+    rt1:
+      param: stringValue
+  get:
+    is:
+      - tr1:
+          param: stringValue

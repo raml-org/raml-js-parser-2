@@ -89,14 +89,14 @@
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 9,
-          "column": 2,
-          "position": 129
+          "line": 10,
+          "column": 4,
+          "position": 140
         },
         "end": {
-          "line": 9,
-          "column": 7,
-          "position": 134
+          "line": 10,
+          "column": 9,
+          "position": 145
         }
       }
     }

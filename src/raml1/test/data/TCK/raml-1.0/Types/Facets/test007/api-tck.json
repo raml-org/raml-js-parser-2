@@ -1,0 +1,164 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "Object": {
+          "name": "Object",
+          "displayName": "Object",
+          "facets": {
+            "methods": {
+              "name": "methods",
+              "displayName": "methods",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "Object"
+          ],
+          "properties": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "lastName": {
+              "name": "lastName",
+              "displayName": "lastName",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "fixedFacets": {
+            "methods": {
+              "list": {
+                "p1": "asd"
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "UNKNOWN_FACET",
+      "message": "Specifying unknown facet: '//'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 8,
+          "position": 88
+        },
+        "end": {
+          "line": 6,
+          "column": 10,
+          "position": 90
+        }
+      }
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "string is expected",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 4,
+          "position": 205
+        },
+        "end": {
+          "line": 13,
+          "column": 11,
+          "position": 212
+        }
+      }
+    }
+  ]
+}

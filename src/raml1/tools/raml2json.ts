@@ -11,6 +11,7 @@ import fs = require('fs');
 import path = require('path');
 import ramlToJsonFile = require('../../util/ramlToJsonFile');
 
+let messageRegistry = require("../../../resources/errorMessages");
 var outputFolder:string;
 var apiPath:string;
 var extensionsAndOverlays:string[] = [];
@@ -48,7 +49,7 @@ for(var i = 0 ; i < args.length ; i++){
 }
 
 if(!apiPath){
-    throw new Error('-apiPath parameter is required.');
+    throw new Error(messageRegistry.SPECIFY_APIPATH.message);
 }
 
 var options:ramlToJsonFile.Options = {

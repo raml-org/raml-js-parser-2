@@ -1536,7 +1536,7 @@ constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLeve
 
 
         /**
-         * name of the parameter
+         * Type name for top level types. For properties and parameters -- property o parameter name, respectively. For bodies -- media type.
          **/
 name(  ):string{
              return <string>super.attribute('name', this.toString);
@@ -1670,7 +1670,7 @@ examples_original(  ):ExampleSpec[]{
 
 
         /**
-         * Sets if property is optional or not
+         * For property or parameter states if it is required.
          **/
 required(  ):boolean{
              return <boolean>super.attribute('required', this.toBoolean);
@@ -3869,7 +3869,7 @@ constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLeve
 
 
         /**
-         * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
+         * A list of valid content-type strings for the file. The file type * /* should be a valid value.
          **/
 fileTypes(  ):ContentType[]{
              return <ContentType[]>super.attributes('fileTypes', (attr:hl.IAttribute)=>new ContentTypeImpl(attr));
@@ -4108,6 +4108,10 @@ RAMLVersion(  ):string{return "RAML10";}
          **/
 isOkRange(  ):boolean{
             return helper.isOkRange(this);
+        }
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
         }
 
 

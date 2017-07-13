@@ -635,9 +635,9 @@
                 }
               }
             },
-            "items": "User|Team",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "User|Team"
           },
           "info": {
             "name": "info",
@@ -798,9 +798,9 @@
                         }
                       }
                     },
-                    "items": "Team",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "Team"
                   }
                 }
               }
@@ -1048,9 +1048,9 @@
                         }
                       }
                     },
-                    "items": "User",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "User"
                   }
                 }
               }

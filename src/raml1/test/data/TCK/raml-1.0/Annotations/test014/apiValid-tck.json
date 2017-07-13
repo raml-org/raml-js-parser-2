@@ -49,7 +49,7 @@
       {
         "meta": {
           "name": "meta",
-          "displayName": "Resource metadata",
+          "displayName": "Resource metadata. Used to add any general metadata to a resource without strong typing",
           "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"

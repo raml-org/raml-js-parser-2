@@ -1,0 +1,27 @@
+#%RAML 1.0
+
+title: test API
+
+securitySchemes:
+  s1:
+    type: x-custom
+    describedBy:
+      responses:
+        401:
+          description: security response
+
+resourceTypes:
+  rt:
+    get:
+      responses:
+        200:
+          description: resource type response
+
+securedBy: [ s1 ]
+
+/resource:
+  type: rt
+  get:
+    responses:
+      202:
+        description: method response

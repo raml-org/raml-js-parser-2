@@ -1,0 +1,10 @@
+#%RAML 1.0
+
+title: test API
+
+/resource:
+  get:
+    body:
+      application/json:
+        schema: !include schema.json
+        example: 'null'

@@ -1,0 +1,23 @@
+#%RAML 0.8
+
+title: test API
+
+resourceTypes:
+  - myResourceType:
+      <<param1>>: <<param1value>> #it may be 'description', 'type' or any method or whatever allowed in resource type
+      post:
+        queryParameters:
+          <<qParam>>: <<qParamDef>>
+          param1:
+            <<prop1>>: <<prop1Value>>
+        <<param2>>: <<param2value>>  #it may be 'headers', 'queryParameters' or 'body' or something else
+        body:
+          application/json:
+            <<param3>>: <<param3value>>
+
+        responses:
+          <<param4>>:
+            body:
+              application/json:
+          200:
+            <<param5>>: <<param5value>>

@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Example API
+version: v1
+traits:
+  respCode:
+    responses:
+      <<status>>:
+        description: <<description>>
+/servers:
+  get:
+    description: test
+    is:
+      - respCode:
+          status: 201
+          description: Post created, returns the created post.

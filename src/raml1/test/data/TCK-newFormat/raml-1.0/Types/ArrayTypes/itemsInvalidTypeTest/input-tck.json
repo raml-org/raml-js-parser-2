@@ -1,16 +1,12 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "types": {
       "Foo": {
         "name": "Foo",
         "displayName": "Foo",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
-        "mediaType": "application/raml+yaml",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -20,16 +16,16 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "Bar": {
         "name": "Bar",
         "displayName": "Bar",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "string"
         ],
-        "mediaType": "application/raml+yaml",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
@@ -39,12 +35,13 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       },
       "FooBarArray": {
         "name": "FooBarArray",
         "displayName": "FooBarArray",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "array"
         ],
@@ -52,18 +49,21 @@
           "Foo",
           "Bar"
         ],
-        "mediaType": "application/raml+yaml",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "displayName": {
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "TestRAML"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "ITEMS_SHOULD_BE_REFERENCE_OR_INLINE_TYPE",

@@ -1,0 +1,29 @@
+{
+  "specification": {
+    "title": "test API",
+    "traits": {
+      "trait1": {
+        "body": {
+          "application/json": {
+            "name": "application/json"
+          }
+        },
+        "name": "trait1",
+        "__METADATA__": {
+          "calculated": true
+        }
+      },
+      "trait2": {
+        "body": {
+          "application/xml": {
+            "name": "application/xml"
+          }
+        },
+        "name": "trait2"
+      }
+    }
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

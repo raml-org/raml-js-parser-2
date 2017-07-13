@@ -71,6 +71,12 @@ describe('Virtual File System Tests', function() {
         testAPI("./vfsTests/invalidIncludeTest002/api.raml").should.be.rejectedWith(
             /Can not resolve example.json/).and.notify(done);
     });
+
+    it("Invalid includes 3", function (done) {
+        testAPI("./vfsTests/invalidIncludeTest003/api.raml").should.be.rejectedWith(
+            /Scalar is expected here\nUnknown node: 'some'/).and.notify(done);
+    });
+
 });
 
 

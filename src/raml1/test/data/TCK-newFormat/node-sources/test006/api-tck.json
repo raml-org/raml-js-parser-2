@@ -1,0 +1,14 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "rt1": {
+        "description": "string value\n",
+        "name": "rt1"
+      }
+    },
+    "title": "test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
@@ -18,7 +18,8 @@
     "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
     "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
     "buildBrowserPublishBower": "node generateBrowserVersion.js --type 'bower'",
-    "validateTCKSchema": "node dist/raml1/test/scripts/schema/schemaTCKValidator.js"
+    "validateTCKSchema": "node dist/raml1/test/scripts/schema/schemaTCKValidator.js",
+    "platformTests": "node dist/raml1/test/scripts/platformTests.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",
@@ -36,17 +37,17 @@
     "mkdirp": "^0.5.0",
     "pluralize": "^1.2.0",
     "q": "^1.0.0",
-    "raml-definition-system": "0.0.64",
+    "raml-definition-system": "0.0.65",
     "then-request": "^2.2.0",
     "ts-structure-parser": "0.0.12",
-    "ts-model": "0.0.13",
+    "ts-model": "0.0.14",
     "typescript-compiler": "1.4.1-2",
     "underscore": "^1.8.3",
     "wrench": "^1.5.8",
     "xhr2": "^0.1.3",
     "xmldom": "^0.1.22",
     "xmlhttprequest": "^1.8.0",
-    "yaml-ast-parser": "0.0.33",
+    "yaml-ast-parser": "0.0.34",
     "z-schema": "^3.16.1"
   },
   "typings": "./dist/index.d.ts",
@@ -79,6 +80,7 @@
     "dev-env-installer": "0.0.5",
     "atom-text-typer" : "0.0.1",
     "rimraf": "*",
+    "raml-1-parser-test-utils": "^1.0.7",
     "gulp-istanbul" : "*"
   },
   "browser": {

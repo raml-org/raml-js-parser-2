@@ -396,11 +396,27 @@ export class NamespaceResolver{
     }
 
     unitModel(unit:ll.ICompilationUnit):UnitModel{
-        var aPath = unit.absolutePath();
-        var result = this._unitModels[aPath];
+        let aPath = unit.absolutePath();
+        let result = this._unitModels[aPath];
         if(!result){
             result = new UnitModel(unit);
             this._unitModels[aPath] = result;
+        }
+        if(result.isOverlayOrExtension()) {
+            let rootNode = unit.ast();
+            let extendsAttrs = rootNode.children().filter(x =>
+            x.key() == def.universesInfo.Universe10.Overlay.properties.extends.name);
+            if (extendsAttrs.length > 0) {
+                let eAttr = extendsAttrs[0];
+                let eVal = eAttr.value();
+                if (eVal) {
+                    let masterUnit = unit.resolve(eVal);
+                    if (masterUnit) {
+                        let masterUnitModel = this.unitModel(masterUnit);
+                        result.master = masterUnitModel;
+                    }
+                }
+            }
         }
         return result;
     }
@@ -477,6 +493,8 @@ export class UnitModel{
         this.initCollections();
     }
 
+    master:UnitModel;
+
     resourceTypes:ElementsCollection;
 
     traits:ElementsCollection;
@@ -487,6 +505,9 @@ export class UnitModel{
 
     types:ElementsCollection;
 
+    private _extensionChain:UnitModel[];
+
+    private _extensionSet:{[key:string]:UnitModel};
 
     private initCollections(){
 
@@ -544,7 +565,7 @@ export class UnitModel{
 
     private libTypeDescendants:{[key:string]:boolean};
 
-    private isLibraryBaseDescendant(unit:ll.ICompilationUnit) {
+    isLibraryBaseDescendant(unit:ll.ICompilationUnit) {
 
         var fLine = hlImpl.ramlFirstLine(unit.contents());
         if (!fLine) {
@@ -561,6 +582,44 @@ export class UnitModel{
             [libType].concat(libType.allSubTypes()).forEach(x=>this.libTypeDescendants[x.nameId()] = true);
         }
         return this.libTypeDescendants[typeName];
+    }
+
+    isOverlayOrExtension() {
+
+        var fLine = hlImpl.ramlFirstLine(this.unit.contents());
+        if (!fLine) {
+            return false;
+        }
+        if (fLine.length < 3 || !fLine[2]) {
+            return true;
+        }
+        let typeName = fLine[2];
+        return typeName == def.universesInfo.Universe10.Overlay.name
+            || typeName == def.universesInfo.Universe10.Extension.name;
+    }
+
+    extensionSet():{[key:string]:UnitModel}{
+        if(!this._extensionSet){
+            this._extensionSet = {};
+            this._extensionChain = [];
+            let um:UnitModel = this;
+            while(um){
+                let aPath = um.unit.absolutePath();
+                if(this._extensionSet[aPath]){
+                    break;
+                }
+                this._extensionSet[aPath] = um;
+                this._extensionChain.push(um);
+                um = um.master;
+            }
+        }
+        return this._extensionSet;
+    }
+    extensionChain():UnitModel[]{
+        if(!this._extensionChain){
+            this.extensionSet();
+        }
+        return this._extensionChain;
     }
 }
 

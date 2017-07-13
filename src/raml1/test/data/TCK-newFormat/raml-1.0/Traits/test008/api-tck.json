@@ -101,8 +101,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "PROPERTY_ALREADY_SPECIFIED",
-      "message": "'queryString' is already specified.`",
+      "code": "QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE",
+      "message": "'queryString' and 'queryParameters' properties are mutually exclusive. 'queryString' is already specified.",
       "path": "api.raml",
       "range": {
         "start": {
@@ -118,8 +118,8 @@
       }
     },
     {
-      "code": "PROPERTY_ALREADY_SPECIFIED",
-      "message": "'queryParameters' is already specified.`",
+      "code": "QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE",
+      "message": "'queryString' and 'queryParameters' properties are mutually exclusive. 'queryParameters' is already specified.",
       "path": "api.raml",
       "range": {
         "start": {

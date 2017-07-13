@@ -1,0 +1,22 @@
+#%RAML 1.0
+title: test API
+
+types:
+  MyType:  !include ./MyType.raml
+
+annotationTypes:
+  MyAnnotationType:  !include ./MyAnnotationType.raml
+
+resourceTypes:
+  resourceType: !include ./resourceType.raml
+
+traits:
+  trait: !include ./trait.raml
+
+securitySchemes:
+  securityScheme: !include ./securityScheme.raml
+
+/resource:
+  post:
+    body:
+      application/json: !include ./MyType.raml

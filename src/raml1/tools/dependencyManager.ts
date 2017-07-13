@@ -4,6 +4,7 @@ import path=require("path")
 var wrench=require("wrench")
 import util=require("../../util/index")
 import mkdirp=require("mkdirp")
+let messageRegistry = require("../../../resources/errorMessages");
 interface Module{
     name():string;
     dependencies():Module[];
@@ -189,7 +190,7 @@ class DepModule extends ExistingModule{
 
 class ExternalModule implements Module{
     actualFolder():string{
-        throw new Error("Unsupported operation exception")
+        throw new Error(messageRegistry.UNSUPPORTED_OPERATION_EXCEPTION.message)
     }
     name():string {
         return this._name;
@@ -203,7 +204,7 @@ class ExternalModule implements Module{
     }
 
     content():string[] {
-        throw new Error("Unsupported operation exception")
+        throw new Error(messageRegistry.UNSUPPORTED_OPERATION_EXCEPTION.message)
     }
 
     dependencies():Module[] {

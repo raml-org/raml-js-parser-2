@@ -1,0 +1,18 @@
+{
+  "specification": {
+    "title": "test API",
+    "documentation": [
+      {
+        "title": "section1",
+        "content": "string value 1\n"
+      },
+      {
+        "title": "section2",
+        "content": "string value 2\n"
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

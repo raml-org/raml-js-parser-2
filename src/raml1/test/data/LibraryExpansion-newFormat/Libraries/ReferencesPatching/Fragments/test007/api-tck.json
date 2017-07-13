@@ -132,16 +132,6 @@
                     "type": [
                       "object"
                     ],
-                    "uses": [
-                      {
-                        "key": "lib",
-                        "value": "../libs/lib.raml"
-                      },
-                      {
-                        "key": "types2",
-                        "value": "../libs/types2.raml"
-                      }
-                    ],
                     "properties": {
                       "ownLibProperty": {
                         "name": "ownLibProperty",

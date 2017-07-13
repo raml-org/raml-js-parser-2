@@ -1,0 +1,16 @@
+{
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "sch1": "{\n  \"type\": \"object\"\n\n\n}\n"
+      },
+      {
+        "sch2": "{\n  \"type\": \"object\"\n\n\n}\n"
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

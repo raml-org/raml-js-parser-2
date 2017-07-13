@@ -1,0 +1,49 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "types": {
+      "T1": {
+        "name": "T1",
+        "displayName": "T1",
+        "type": [
+          "lib.T1"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": [
+    {
+      "code": "RECURRENT_DEFINITION",
+      "message": "Recurrent type definition",
+      "path": "lib.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 5,
+          "position": 63
+        },
+        "end": {
+          "line": 7,
+          "column": 9,
+          "position": 67
+        }
+      }
+    }
+  ]
+}

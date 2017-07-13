@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Parameterizing media type must be valid
+resourceTypes:
+  thingy:
+    get:
+      responses:
+        200:
+          body:
+            <<mediaType>>:
+              type: file
+/books:
+  type:
+    thingy:
+      mediaType: application/json

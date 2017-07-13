@@ -1,0 +1,91 @@
+{
+  "specification": {
+    "traits": {
+      "tr1": {
+        "name": "tr1"
+      }
+    },
+    "resourceTypes": {
+      "rt1": {
+        "name": "rt1"
+      }
+    },
+    "title": "test API",
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "is": [
+              {
+                "tr1": {
+                  "param": "stringValue"
+                }
+              }
+            ],
+            "method": "get"
+          }
+        },
+        "type": {
+          "rt1": {
+            "param": "stringValue"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "UNUSED_PARAMETER",
+      "message": "Unused parameter: 'param'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 6,
+          "position": 103
+        },
+        "end": {
+          "line": 14,
+          "column": 11,
+          "position": 108
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "UNUSED_PARAMETER",
+      "message": "Unused parameter: 'param'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 18,
+          "column": 10,
+          "position": 160
+        },
+        "end": {
+          "line": 18,
+          "column": 15,
+          "position": 165
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

@@ -1162,6 +1162,11 @@ describe("Include tests + typesystem",function (){
         this.timeout(15000);
         testErrors(util.data("parser/include/emptyInclude.raml"),["JS-YAML: !include without value", "Can not resolve null"]);
     })
+
+    it("Including empty fragments" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/include/includeEmptyFiles/api.raml"),["Missing required property 'type'"]);
+    })
 })
 
 
@@ -1472,8 +1477,7 @@ describe('New API',function(){
         var p = util.data("parser/libraries/nestedUses/index.raml");
         var json = index.loadSync(p);
         var spec = json['specification'];
-        assert(!spec.hasOwnProperty("uses"));
-        assert(spec['traits']['files.hello']['name']=="hello");
+        assert(spec['traits']['files.hello']['name']=='hello');
     });
 });
 

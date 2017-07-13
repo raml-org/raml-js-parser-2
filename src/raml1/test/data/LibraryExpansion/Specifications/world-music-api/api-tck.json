@@ -529,46 +529,26 @@
                 }
               }
             },
-            "CatAndDog": [
-              {
-                "name": "CatAndDog",
-                "displayName": "CatAndDog",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "type": [
-                  "ApiLib.Cat"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              },
-              {
-                "name": "CatAndDog",
-                "displayName": "CatAndDog",
-                "typePropertyKind": "TYPE_EXPRESSION",
-                "type": [
-                  "ApiLib.Dog"
-                ],
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
+            "CatAndDog": {
+              "name": "CatAndDog",
+              "displayName": "CatAndDog",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "ApiLib.Cat",
+                "ApiLib.Dog"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
                   }
                 }
               }
-            ],
+            },
             "PossibleMeetingDate": {
               "name": "PossibleMeetingDate",
               "displayName": "PossibleMeetingDate",

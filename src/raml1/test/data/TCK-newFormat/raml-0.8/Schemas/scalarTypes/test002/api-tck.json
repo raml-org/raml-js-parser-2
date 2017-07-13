@@ -1,0 +1,88 @@
+{
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "relativeUri": "/resource",
+        "methods": {
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n",
+                "example": "\"stringValue\"",
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n"
+              }
+            },
+            "method": "get"
+          },
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n",
+                "example": "15",
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"string\",\n  \"enum\": [\n    \"ALL\",\n    \"ERROR\",\n    \"WARN\",\n    \"INFO\",\n    \"DEBUG\",\n    \"NONE\"\n  ]\n}\n"
+              }
+            },
+            "method": "post"
+          }
+        },
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: No enum match for: stringValue",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 18,
+          "position": 136
+        },
+        "end": {
+          "line": 9,
+          "column": 31,
+          "position": 149
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type string but found type integer",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 14,
+          "column": 18,
+          "position": 248
+        },
+        "end": {
+          "line": 14,
+          "column": 20,
+          "position": 250
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

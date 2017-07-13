@@ -254,9 +254,12 @@ function isSecuredBy(d:hl.IProperty){
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
  */
-function typeOfContainingTemplate(h:hl.IHighLevelNode):string{
-    var declRoot=h;
-    while (true){
+function typeOfContainingTemplate(h:hl.IParseResult):string{
+    if(!h.isElement()){
+        h = h.parent();
+    }
+    let declRoot = h && h.asElement();
+    while (declRoot){
         if (declRoot.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
             return declRoot.definition().nameId();
         }
@@ -267,7 +270,6 @@ function typeOfContainingTemplate(h:hl.IHighLevelNode):string{
         else{
             declRoot=np;
         }
-
     }
     return null;
 }
@@ -286,7 +288,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                 issue = createIssue1(messageRegistry.INVALID_PARAMETER_NAME, { paramName : paramName}, node);
             }
             else {
-                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node);
+                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node, true);
             }
         }
 
@@ -450,7 +452,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
                     node: null,
                     start: ps,
                     end: pe,
-                    isWarning: false,
+                    isWarning: (<any>x).isWarning,
                     path: node.lowLevel().unit() == node.root().lowLevel().unit() ? null : node.lowLevel().unit().path(),
                     unit: node.lowLevel().unit()
                 }
@@ -548,11 +550,11 @@ function createIssueForQueryDeclarations(node: ll.ILowLevelASTNode | hl.IParseRe
     var propertyName = isQueryParamsDeclaration ? universes.Universe10.Operation.properties.queryString.name : universes.Universe10.Operation.properties.queryParameters.name;
 
     if(asLowLevel.unit) {
-        return createLLIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED, {
+        return createLLIssue1(messageRegistry.QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE, {
             propName: propertyName
         }, asLowLevel, parentNode);
     } else {
-        return createIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED, {
+        return createIssue1(messageRegistry.QUERY_STRING_AND_QUERY_PARAMETERS_ARE_MUTUALLY_EXCLUSIVE, {
             propName: propertyName
         }, asHighLevel);
     }
@@ -815,17 +817,18 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
             var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
-            if (vn&&vn.value()){
-                var rs=highLevelNode.lowLevel().unit().resolve(vn.value());
+            var libPath = vn && vn.value();
+            if (libPath!=null && typeof libPath == "string"){
+                var rs=highLevelNode.lowLevel().unit().resolve(libPath);
                 if (!rs || rs.contents() === null){
                     v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
-                        {path:vn.value()},highLevelNode,false));
-                } else if(!resourceRegistry.isWaitingFor(vn.value())){
+                        {path:libPath},highLevelNode,false));
+                } else if(!resourceRegistry.isWaitingFor(libPath)){
                     var issues:hl.ValidationIssue[]=[];
 
                     if(rs.contents().trim().length === 0) {
                         v.accept(createIssue1(messageRegistry.EMPTY_FILE,
-                            {path:vn.value()},highLevelNode,false));
+                            {path:libPath},highLevelNode,false));
                         return;
                     }
 
@@ -1538,7 +1541,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             return tm;
         }
         if (t.key() == universes.Universe08.StatusCodeString||t.key() == universes.Universe10.StatusCodeString){
-            var err:Error = validateResponseString(v);
+            var err:Error = validateResponseString(''+v);
             if(err!=null){
                 return err;
             }
@@ -1800,7 +1803,7 @@ class MediaTypeValidator implements PropertyValidator{
                     }
                 }
             }
-            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
+            if(typeOfContainingTemplate(node)!=null){
                 if(v.indexOf("<<")>=0){
                     return;
                 }
@@ -1886,10 +1889,10 @@ export class UrlParameterNameValidator implements PropertyValidator{
             }
         }
         if (count>0){
-            throw new Error("Invalid resource name: unmatched '{'")
+            throw new Error(applyTemplate(messageRegistry.INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL, {symbol: "{"}))
         }
         if (count<0){
-            throw new Error("Invalid resource name: unmatched '}'")
+            throw new Error(applyTemplate(messageRegistry.INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL, {symbol: "}"}))
         }
         return result;
     }
@@ -2909,7 +2912,18 @@ class CompositeNodeValidator implements NodeValidator {
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
                 if (nodeValue!='~') {
-                    if(!checkIfIncludeTagIsMissing(node, acceptor, messageRegistry.SCALAR_PROHIBITED_2.code)) {
+                    let isParameter = typeOfContainingTemplate(node) != null
+                        && (typeof nodeValue == "string")
+                        && util.startsWith(nodeValue,"<<")
+                        && util.endsWith(nodeValue,">>")
+                    let report = true;
+                    if(nodeValue == ""){
+                        var actualValue:any = node.lowLevel().actual()&&node.lowLevel().actual().value;
+                        if(!actualValue || !(actualValue.doubleQuoted || actualValue.singleQuoted)){
+                            report = false;
+                        }
+                    }
+                    if(report && !isParameter && !checkIfIncludeTagIsMissing(node, acceptor, messageRegistry.SCALAR_PROHIBITED_2.code)) {
                         var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: nodeName}, node)
                         acceptor.accept(i);
                     }
@@ -3750,6 +3764,9 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                 }
             }
         }
+        if(pObj != null && typeof pObj != "object"){
+            return vl;
+        }
         return pObj;
     }
 
@@ -4409,7 +4426,7 @@ export function createLLIssue(
     if (original) {
         original.extras.push(error);
         if(node.valueKind()==yaml.Kind.INCLUDE_REF) {
-            error.message = "Error in the included file: " + error.message;
+            error.message = applyTemplate(messageRegistry.ERROR_IN_INCLUDED_FILE, {msg: error.message});
         }
         error = original;
     }
@@ -4430,13 +4447,13 @@ export function validateResponseString(v:string):any{
 }
 
 
-interface Message{
+export interface Message{
     code: number
     message: string
     func?: (x:any)=>string
 }
 
-function applyTemplate(messageEntry:Message, params:any):string {
+export function applyTemplate(messageEntry:Message, params:any):string {
     var result = "";
     var msg = messageEntry.message;
     var prev = 0;
@@ -4452,7 +4469,7 @@ function applyTemplate(messageEntry:Message, params:any):string {
         prev += "}}".length;
         var paramValue = params[paramName];
         if (paramValue === undefined) {
-            throw new Error(`Message parameter '${paramName}' has no value specified.`);
+            throw new Error(applyTemplate(messageRegistry.MESSAGE_PARAMETER_NO_VALUE, {paramName: paramName}));
         }
         result += paramValue;
     }

@@ -13,6 +13,7 @@ import refResolvers=require("../jsyaml/includeRefResolvers")
 import universeHelpers = require("../tools/universeHelpers");
 import referencePatcher = require("./referencePatcher");
 var _ = require("underscore");
+let messageRegistry = require("../../../resources/errorMessages");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
@@ -49,7 +50,7 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
         return this._originalNode.hasInnerIncludeError();
     }
 
-    keyKind(){
+    keyKind():yaml.Kind{
         return this._originalNode.keyKind();
     }
     primaryNode():ll.ILowLevelASTNode{
@@ -81,7 +82,7 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     end():number { return this._originalNode.end(); }
 
     value(toString?:boolean):any {
-        throw new Error('The method must be overridden');
+        throw new Error(messageRegistry.METHOD_MUST_BE_OVERRIDDEN.message);
     }
 
     includeErrors():string[] { return this._originalNode.includeErrors(); }
@@ -111,7 +112,7 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     children():ll.ILowLevelASTNode[] {
 
-        throw new Error('The method must be overridden');
+        throw new Error(messageRegistry.METHOD_MUST_BE_OVERRIDDEN.message);
     }
 
     parent():ll.ILowLevelASTNode { return this._parent;}
@@ -171,9 +172,9 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     valueKind(): yaml.Kind { return this._originalNode.valueKind(); }
 
-    anchorValueKind(){ return this._originalNode.anchorValueKind(); }
+    anchorValueKind(): yaml.Kind{ return this._originalNode.anchorValueKind(); }
 
-    resolvedValueKind(){ return this._originalNode.resolvedValueKind() };
+    resolvedValueKind(): yaml.Kind{ return this._originalNode.resolvedValueKind() };
 
     show(msg: string) { this._originalNode.show(msg); }
 
@@ -197,15 +198,15 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     }
 
     text(unitText:string):string{
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     copy():LowLevelCompositeNode{
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     markup(json?: boolean): string {
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     nodeDefinition(): hl.INodeDefinition{
@@ -336,6 +337,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     adopt(node:ll.ILowLevelASTNode,transformer:ValueTransformer){
 
+        while(LowLevelProxyNode.isInstance(node)){
+            node = (<LowLevelProxyNode>node).originalNode();
+        }
         if(!transformer){
             transformer = this._transformer;
         }

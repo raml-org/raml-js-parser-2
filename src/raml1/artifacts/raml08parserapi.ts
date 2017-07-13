@@ -396,6 +396,12 @@ description(  ):MarkdownString
 
 
         /**
+         * For responses defined inside traits and resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
+
+
+        /**
          * true for codes < 400 and false otherwise
          **/
 isOkRange(  ):boolean
@@ -465,6 +471,12 @@ repeat(  ):boolean
          * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
          **/
 description(  ):MarkdownString
+
+
+        /**
+         * For parameters defined inside traits and resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
 }
 
 export interface ParameterLocation extends core.AbstractWrapperNode{}
@@ -583,6 +595,12 @@ description(  ):MarkdownString
          * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
          **/
 schemaContent(  ):string
+
+
+        /**
+         * For bodies defined inside traits and resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
 }
 
 
@@ -855,6 +873,12 @@ method(  ):string
          * Instantiation of applyed traits
          **/
 is(  ):TraitRef[]
+
+
+        /**
+         * For methods defined inside resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
 
 
         /**

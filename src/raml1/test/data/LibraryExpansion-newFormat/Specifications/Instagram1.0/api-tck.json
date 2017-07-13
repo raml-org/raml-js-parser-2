@@ -203,9 +203,9 @@
                 }
               }
             },
-            "items": "types.Location",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.Location"
           }
         },
         "__METADATA__": {
@@ -1117,9 +1117,9 @@
                 }
               }
             },
-            "items": "types.SubscriptionData",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.SubscriptionData"
           }
         },
         "__METADATA__": {
@@ -1388,9 +1388,9 @@
                 }
               }
             },
-            "items": "types.SerachTagItem",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.SerachTagItem"
           }
         },
         "__METADATA__": {
@@ -1554,9 +1554,9 @@
                 }
               }
             },
-            "items": "types.MediaLike",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.MediaLike"
           }
         },
         "__METADATA__": {
@@ -1745,9 +1745,9 @@
                 }
               }
             },
-            "items": "types.Comment",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.Comment"
           }
         },
         "__METADATA__": {
@@ -2033,9 +2033,9 @@
                 }
               }
             },
-            "items": "types.UsersItem",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.UsersItem"
           }
         },
         "__METADATA__": {
@@ -2178,9 +2178,9 @@
                 }
               }
             },
-            "items": "types.User",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.User"
           }
         },
         "__METADATA__": {
@@ -2430,9 +2430,9 @@
                 }
               }
             },
-            "items": "types.TagsRecentMediaItem",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.TagsRecentMediaItem"
           }
         },
         "__METADATA__": {
@@ -2543,9 +2543,9 @@
                 }
               }
             },
-            "items": "types.UsersInPhoto",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.UsersInPhoto"
           },
           "filter": {
             "name": "filter",
@@ -2584,9 +2584,9 @@
                 }
               }
             },
-            "items": "string",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "string"
           },
           "comments": {
             "name": "comments",
@@ -2613,9 +2613,9 @@
                     }
                   }
                 },
-                "items": "types.Comment",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.Comment"
               },
               "count": {
                 "name": "count",
@@ -3021,9 +3021,9 @@
                     }
                   }
                 },
-                "items": "types.UsersInPhoto",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.UsersInPhoto"
               },
               "filter": {
                 "name": "filter",
@@ -3062,9 +3062,9 @@
                     }
                   }
                 },
-                "items": "string",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "string"
               },
               "comments": {
                 "name": "comments",
@@ -3091,9 +3091,9 @@
                         }
                       }
                     },
-                    "items": "types.Comment",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "types.Comment"
                   },
                   "count": {
                     "name": "count",
@@ -3451,9 +3451,9 @@
                 }
               }
             },
-            "items": "types.UsersInPhoto",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.UsersInPhoto"
           },
           "filter": {
             "name": "filter",
@@ -3492,9 +3492,9 @@
                 }
               }
             },
-            "items": "string",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "string"
           },
           "comments": {
             "name": "comments",
@@ -3521,9 +3521,9 @@
                     }
                   }
                 },
-                "items": "types.Comment",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.Comment"
               },
               "count": {
                 "name": "count",
@@ -4033,9 +4033,9 @@
                     }
                   }
                 },
-                "items": "types.UsersInPhoto",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "types.UsersInPhoto"
               },
               "type": {
                 "name": "type",
@@ -4094,9 +4094,9 @@
                     }
                   }
                 },
-                "items": "string",
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "items": "string"
               },
               "comments": {
                 "name": "comments",
@@ -4123,9 +4123,9 @@
                         }
                       }
                     },
-                    "items": "types.Comment",
                     "mediaType": "application/raml+yaml",
-                    "typePropertyKind": "TYPE_EXPRESSION"
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "items": "types.Comment"
                   },
                   "count": {
                     "name": "count",
@@ -4518,9 +4518,9 @@
                 }
               }
             },
-            "items": "types.MediaSearchFirstType | types.MediaSearchSecondType",
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "items": "types.MediaSearchFirstType | types.MediaSearchSecondType"
           }
         },
         "__METADATA__": {

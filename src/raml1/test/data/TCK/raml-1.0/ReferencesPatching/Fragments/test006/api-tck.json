@@ -72,12 +72,6 @@
                     }
                   },
                   "additionalProperties": false,
-                  "uses": [
-                    {
-                      "key": "lib",
-                      "value": "../libs/lib.raml"
-                    }
-                  ],
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {

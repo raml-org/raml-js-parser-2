@@ -54,7 +54,7 @@
           "type": [
             "string"
           ],
-          "description": "Metadata for this resource",
+          "description": "Metadata for this resource. Used to add any general metadata to a resource without strong typing",
           "allowedTargets": [
             "Resource"
           ],
@@ -97,14 +97,14 @@
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 16,
+          "line": 15,
           "column": 2,
-          "position": 345
+          "position": 335
         },
         "end": {
-          "line": 16,
+          "line": 15,
           "column": 8,
-          "position": 351
+          "position": 341
         }
       }
     }

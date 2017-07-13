@@ -1,0 +1,176 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "rt": {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "rtParam": {
+                "name": "rtParam",
+                "displayName": "rtParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "securedBy": [
+              "s1"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "securedBy": [
+          "s1"
+        ],
+        "name": "rt",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "s1": {
+        "name": "s1",
+        "type": "x-custom",
+        "describedBy": {
+          "queryParameters": {
+            "securityParam": {
+              "name": "securityParam",
+              "displayName": "securityParam",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "mediaType": "application/raml+yaml",
+              "typePropertyKind": "TYPE_EXPRESSION"
+            }
+          }
+        }
+      }
+    },
+    "title": "test API",
+    "securedBy": [
+      "s1"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "get": {
+            "queryParameters": {
+              "methodParam": {
+                "name": "methodParam",
+                "displayName": "methodParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "rtParam": {
+                "name": "rtParam",
+                "displayName": "rtParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "securedBy": [
+              "s1"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "securedBy": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        },
+        "type": "rt",
+        "securedBy": [
+          "s1"
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "securedBy": {
+              "calculated": true
+            },
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

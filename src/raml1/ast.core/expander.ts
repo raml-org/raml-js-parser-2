@@ -20,6 +20,8 @@ import referencePatcher = require("./referencePatcher");
 import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
+import linter=require("../ast.core/linter")
+let messageRegistry = require("../../../resources/errorMessages");
 var mediaTypeParser = require("media-typer");
 var changeCase = require('change-case');
 
@@ -46,7 +48,7 @@ export function expandLibrary(lib:RamlWrapper.Library):RamlWrapper.Library{
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
     mergeMode: hlimpl.OverlayMergeMode) : hl.IHighLevelNode {
     var masterApi = hlimpl.fromUnit(masterUnit);
-    if(!masterApi) throw new Error("couldn't load api from " + masterUnit.absolutePath());
+    if(!masterApi) throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_LOAD_API_FROM, {path:masterUnit.absolutePath()}));
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
         return <hl.IHighLevelNode>masterApi;
@@ -58,7 +60,7 @@ export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:
         var unit = extensionsAndOverlays[i];
         var hlNode = hlimpl.fromUnit(unit);
         if(!hlNode){
-            throw new Error("couldn't load api from " + unit.absolutePath());
+            throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_LOAD_API_FROM, {path:unit.absolutePath()}));
         }
         highLevelNodes.push(<hlimpl.ASTNodeImpl>hlNode);
     }
@@ -115,8 +117,10 @@ export class TraitsAndResourceTypesExpander {
         }
 
         var unit = llNode.unit();
-        var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
-        var hasTemplates = (<jsyaml.Project>unit.project()).namespaceResolver().hasTemplates(llNode.unit());
+        let project = (<jsyaml.Project>unit.project());
+        project.setMainUnitPath(unit.absolutePath());
+        var hasFragments = project.namespaceResolver().hasFragments(unit);
+        var hasTemplates = project.namespaceResolver().hasTemplates(llNode.unit());
         if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
@@ -125,7 +129,7 @@ export class TraitsAndResourceTypesExpander {
         if (api.definition().key()==universeDef.Universe10.Overlay){
             return <RamlWrapper.Api>hlNode.wrapperNode();
         }
-        var result = this.expandHighLevelNode(hlNode, rp, <core.BasicNodeImpl><any>api);
+        var result = this.expandHighLevelNode(hlNode, rp, <core.BasicNodeImpl><any>api,true);
         return result;
     }
 
@@ -137,7 +141,8 @@ export class TraitsAndResourceTypesExpander {
     expandHighLevelNode(
         hlNode:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher,
-        api:core.BasicNodeImpl) {
+        api:core.BasicNodeImpl,
+        initTypes=false) {
 
         this.init(<any>api);
         var result:RamlWrapper.Api|RamlWrapper08.Api = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
@@ -154,6 +159,9 @@ export class TraitsAndResourceTypesExpander {
             rp = rp || new referencePatcher.ReferencePatcher();
             rp.process(hlNode);
             hlNode.lowLevel().actual().referencePatcher = rp;
+            if(initTypes) {
+                (<hlimpl.ASTNodeImpl>hlNode).types();
+            }
         }
         return result;
     }

@@ -49,18 +49,22 @@
       {
         "meta": {
           "name": "meta",
-          "displayName": "Resource metadata",
+          "displayName": "meta",
           "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "description": "Metadata for this resource",
+          "description": "Resource metadata. Used to add any general metadata to a resource without strong typing.",
           "allowedTargets": [
             "Resource"
           ],
           "minLength": 10,
           "__METADATA__": {
-            "primitiveValuesMeta": {}
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
           }
         }
       }

@@ -10,6 +10,7 @@ import hlimpl=require("../highLevelImpl")
 
 import util=require("../../util/index")
 import llImpl=require("./jsyaml2lowLevel")
+let messageRegistry = require("../../../resources/errorMessages");
 var Error=yaml.YAMLException
 export class CompilationUnit implements lowlevel.ICompilationUnit{
 
@@ -83,7 +84,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
 
     ramlVersion():string{
 
-        throw new Error('not implemented');
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     lineMapper():lowlevel.LineMapper{ return new lowlevel.LineMapperImpl(this.contents(),this.absolutePath()); }
@@ -262,7 +263,7 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
 
     isValueLocal(){ return true; }
 
-    kind(){
+    kind():yaml.Kind{
         if(Array.isArray(this._object)){
             return yaml.Kind.SEQ;
         }
@@ -274,7 +275,7 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         }
     }
 
-    valueKind(){
+    valueKind():yaml.Kind{
         if(!this._object){
             return null;
         }
@@ -292,11 +293,11 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         return null;
     }
     
-    anchorValueKind(){
+    anchorValueKind():yaml.Kind{
         return null;
     }
 
-    resolvedValueKind(){
+    resolvedValueKind():yaml.Kind{
         return this.valueKind();
     }
 
@@ -319,15 +320,15 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
     }
 
     text(unitText:string):string {
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     copy():AstNode{
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     markup(json?: boolean): string {
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     nodeDefinition(): highlevel.INodeDefinition{
@@ -368,11 +369,24 @@ export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
             if (resolved == null) {
                 return null;
             }
-            else if (resolved.isRAMLUnit() && this.canInclude(resolved)) {
+            else if (resolved.isRAMLUnit()) {
+                if(llImpl.ASTNode.isInstance(n)){
+                    if(!(<llImpl.ASTNode>n).canInclude(resolved)){
+                        return null;
+                    }
+                }
                 var ast = resolved.ast();
                 if (ast) {
                     return serialize2(ast,full);
                 }
+            }
+            else {
+                if(llImpl.ASTNode.isInstance(n)){
+                    if(!(<llImpl.ASTNode>n).canInclude(resolved)){
+                        return null;
+                    }
+                }
+                return resolved.contents();
             }
         }
         return null;

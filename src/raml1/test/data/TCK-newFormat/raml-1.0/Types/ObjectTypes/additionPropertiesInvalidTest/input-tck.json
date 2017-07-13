@@ -1,16 +1,12 @@
 {
-  "ramlVersion": "RAML10",
-  "type": "Api",
   "specification": {
     "types": {
       "Employee": {
         "name": "Employee",
         "displayName": "Employee",
-        "typePropertyKind": "TYPE_EXPRESSION",
         "type": [
           "object"
         ],
-        "mediaType": "application/raml+yaml",
         "additionalProperties": {
           "type": "string"
         },
@@ -20,11 +16,15 @@
               "calculated": true
             }
           }
-        }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
       }
     },
     "title": "TestRAML"
   },
+  "ramlVersion": "RAML10",
+  "type": "Api",
   "errors": [
     {
       "code": "REQUIRED_BOOLEAN",

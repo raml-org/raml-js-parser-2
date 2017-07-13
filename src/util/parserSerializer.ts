@@ -9,6 +9,7 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var diff = require('deep-diff').diff;
 var converter = require('./ramlToJson08');
+let messageRegistry = require("../../resources/errorMessages");
 
 export function compareParsers(workspacePath:string){
     var files_ = files || [];
@@ -130,5 +131,5 @@ if(apiPath){
     compareParsers(apiPath);
 }
 else{
-    throw new Error("Please, specify -apiPath parameter");
+    throw new Error(messageRegistry.SPECIFY_APIPATH.message);
 }

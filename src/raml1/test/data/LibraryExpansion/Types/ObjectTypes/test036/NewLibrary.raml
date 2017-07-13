@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+
+types:
+  Pet:
+    discriminator: kind
+    properties:
+      name: string
+      kind: string
+      price: number
+      color:
+        enum:
+          - White
+          - Black
+          - Colored
+    example:
+      name: Snoopy
+      kind: Mammal
+      price: 100
+      color: White

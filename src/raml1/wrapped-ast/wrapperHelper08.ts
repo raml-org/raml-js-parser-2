@@ -29,6 +29,8 @@ import _ = require("underscore");
 //    return tpe.toRuntime();
 //}
 
+let messageRegistry = require("../../../resources/errorMessages");
+
 export function load(pth: string):core.BasicNode{
     var m=new ll.Project(path.dirname(pth));
     var unit=m.unit(path.basename(pth));
@@ -259,8 +261,7 @@ export function methodId(method:RamlWrapper.Method):string{
     else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
-    throw new Error(`Method is supposed to be owned by Resource or ResourceType.
-Here the method is owned by ${method.definition().key().name}`);
+    throw new Error(linter.applyTemplate(messageRegistry.METHOD_OWNED_BY, {owner:method.definition().key().name}));
 }
 
 //__$helperMethod__ true for codes < 400 and false otherwise
@@ -707,7 +708,7 @@ export function schemaContent(bodyDeclaration : RamlWrapper.BodyLike) : string {
  * __$meta__={"name":"parametrizedProperties","primary":true}
  **/
 export function getTemplateParametrizedProperties(
-    node:RamlWrapper.Trait|RamlWrapper.ResourceType):RamlWrapper.TypeInstance{
+    node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Response|RamlWrapper.Method|RamlWrapper.Parameter|RamlWrapper.BodyLike):RamlWrapper.TypeInstance{
 
     var highLevelNode = node.highLevel();
     if(highLevelNode==null){

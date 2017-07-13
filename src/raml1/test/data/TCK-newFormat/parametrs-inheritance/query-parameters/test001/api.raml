@@ -1,0 +1,24 @@
+#%RAML 1.0
+
+title: test API
+
+securitySchemes:
+  s1:
+    type: x-custom
+    describedBy:
+      queryParameters:
+        securityParam: string
+
+resourceTypes:
+  rt:
+    get:
+      queryParameters:
+        rtParam: string
+
+securedBy: [ s1 ]
+
+/resource:
+  type: rt
+  get:
+    queryParameters:
+      methodParam: string

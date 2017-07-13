@@ -1,0 +1,46 @@
+#%RAML 1.0 Library
+traits:
+  FilterableByPrice:
+    queryParameters:
+      priceLessThen?:
+        type: number
+      priceMoreThen?:
+        type: number
+
+resourceTypes:
+  Collection:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>[]
+    post:
+      body:
+        application/json:
+          type: <<item>>
+  Member:
+    delete:
+      responses:
+        204:
+    put:
+      body:
+        application/json:
+          type: <<item>>
+types:
+  Pet:
+    discriminator: kind
+    properties:
+      name: string
+      kind: string
+      price: number
+      color:
+        enum:
+          - White
+          - Black
+          - Colored
+    example:
+      name: Snoopy
+      kind: Mammal
+      price: 100
+      color: White
