@@ -17,6 +17,8 @@ import resolversApi = require("./resolversApi")
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
 import namespaceResolver=require("../ast.core/namespaceResolver");
+import linter=require("../ast.core/linter")
+let messageRegistry = require("../../../resources/errorMessages");
 var Error=yaml.YAMLException
 
 export var Kind:{
@@ -528,7 +530,7 @@ export class SimpleExecutor {
                 resolve(response);
             };
             xhr.onerror = function() {
-                reject(new Error("Network Error"));
+                reject(new Error(messageRegistry.NETWORK_ERROR.message));
             };
 
             outer.doRequest(req, xhr);
@@ -609,7 +611,7 @@ export class HTTPResolverImpl implements resolversApi.HTTPResolver {
             url: url
         });
         if(!response){
-            throw new Error("Unable to execute GET " + url);
+            throw new Error(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url}));
         }
         var result = this.toResponse(response, url);
         return result;
@@ -622,12 +624,12 @@ export class HTTPResolverImpl implements resolversApi.HTTPResolver {
             url: url
         }).then(x=>{
             if(!x){
-                return Promise.reject(new Error("Unable to execute GET " + url));
+                return Promise.reject(new Error(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url})));
             }
             var result = this.toResponse(x, url);
             return result;
         },x=>{
-            return Promise.reject(new Error("Unable to execute GET " + url));
+            return Promise.reject(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url}));
         });
     }
 
@@ -914,7 +916,7 @@ export class Project implements lowlevel.IProject{
     }
     resolveAsync(unitPath:string, pathInUnit:string): Promise<lowlevel.ICompilationUnit>{
         if(!pathInUnit){
-            return Promise.reject(new Error("Unit path is null"));
+            return Promise.reject(new Error(messageRegistry.UNIT_PATH_IS_NULL.message));
         }
 
         var includeReference = refResolvers.getIncludeReference(pathInUnit);
@@ -995,7 +997,7 @@ export class Project implements lowlevel.IProject{
     units():lowlevel.ICompilationUnit[] {
 
         if(!(<ExtendedFSResolver>this.resolver).list){
-            throw new Error("Provided FSResolver is unable to list files. Please, use ExtendedFSResolver.");
+            throw new Error(messageRegistry.FSRESOLVER_IS_UNABLE_USE_EXTENDEDFSRESOLVER.message);
         }
         var names=(<ExtendedFSResolver>this.resolver).list(this.rootPath).filter(x=>path.extname(x)=='.raml');
         return names.map(x=>this.unit(x)).filter(y=>y.isTopLevel())
@@ -1003,7 +1005,7 @@ export class Project implements lowlevel.IProject{
     unitsAsync():Promise<lowlevel.ICompilationUnit[]>{
 
         if(!(<ExtendedFSResolver>this.resolver).listAsync){
-            return Promise.reject(new Error("Provided FSResolver is unable to list files. Please, use ExtendedFSResolver."));
+            return Promise.reject(new Error(messageRegistry.FSRESOLVER_IS_UNABLE_USE_EXTENDEDFSRESOLVER.message));
         }
 
         return (<ExtendedFSResolver>this.resolver).listAsync(this.rootPath).then(x=> {
@@ -1197,7 +1199,7 @@ export class Project implements lowlevel.IProject{
         var relPath = (lowlevel.isWebPath(this.rootPath)==lowlevel.isWebPath(apath))?path.relative(this.rootPath,apath):apath;
         return cnt.then(x=>{
             if(x == null){
-                return Promise.reject(new Error("Can note resolve " + apath));
+                return Promise.reject(new Error(linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE,{path: apath})));
             }
             var tl=util.stringStartsWith(x,"#%RAML");
             var unit=new CompilationUnit(relPath,x,tl,this,apath);
@@ -1310,7 +1312,7 @@ export class Project implements lowlevel.IProject{
             //console.log('insert to include ref');
             var childs = target.children();
             if(childs.length == 0) {
-                throw new Error("not implemented: insert into empty include ref");
+                throw new Error(messageRegistry.NOT_IMPLEMENTED_INSERT_INTO_EMPTY_REF.message);
             }
             var parent = childs[0].parent();
             //console.log('parent: ' + parent);
@@ -1709,7 +1711,7 @@ export class Project implements lowlevel.IProject{
                 //console.log('Range0: ' + range.startpos() + '..' + range.endpos());
                 newNodeText = newval;
             } else {
-                throw new Error("not implemented");
+                throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
             }
         } else if (attr.kind() == yaml.Kind.MAPPING) {
             //attr.show('ATTR:');
@@ -1722,7 +1724,7 @@ export class Project implements lowlevel.IProject{
                 //console.log("attr.setValue: path: " + includePath);
                 var resolved=attr.unit().resolve(includePath)
                 if (resolved==null){
-                    console.log("attr.setValue: couldn't resolve: " + includePath);
+                    console.log(linter.applyTemplate(messageRegistry.ATTR_SETVALUE_NOT_RESOLVE, {path:includePath}));
                     return; // "can not resolve "+includePath
                 }
                 //console.log("attr.setValue: resolved: " + includePath);
@@ -1808,7 +1810,7 @@ export class Project implements lowlevel.IProject{
                 } else if(n.isMap()) {
                     // nothing
                 } else {
-                    throw new Error("only MAP/MAPPING nodes allowed as values");
+                    throw new Error(messageRegistry.ONLY_MAP_NODES_ALLOWED.message);
                 }
                 //n.show('NODE1');
                 var buf = new MarkupIndentingBuffer('');
@@ -1826,7 +1828,7 @@ export class Project implements lowlevel.IProject{
                 //console.log('new node text: ' + this.visualizeNewlines(newNodeText) + '; len: ' + newNodeText.length);
             }
         } else {
-            console.log('Unsupported change value case: ' + attr.kindName());
+            console.log(linter.applyTemplate(messageRegistry.UNSUPPORTED_CHANGE_VALUE_CASE, {name:attr.kindName()}));
         }
 
         //console.log('RangeX: ' + range.startpos() + '..' + range.endpos() + ': [' + this.visualizeNewlines(range.text()) + ']');
@@ -1913,7 +1915,7 @@ export class Project implements lowlevel.IProject{
                               this.changeKey(attr.unit(), curval, newstr);
                           }
                         } else {
-                            throw new Error('unsupported case: attribute value conversion: ' + (typeof curval) + ' ==> ' + (typeof newval) + ' not supported');
+                            throw new Error(linter.applyTemplate(messageRegistry.UNSUPPORTED_CASE_ATTRIBUTE_VALUE_CONVERSION,{curval:curval, newval:newval}));
                         }
                     } else if(typeof curval != 'string' && typeof newval != 'string') {
                         var newvalnode = <ASTNode>newval;
@@ -1939,7 +1941,7 @@ export class Project implements lowlevel.IProject{
                         });
                         this.changeValue(attr.unit(), attr, <ASTNode>newval);
                     } else {
-                        throw new Error("shouldn't be this case: attribute value conversion " + (typeof curval) + ' ==> ' + (typeof newval) + ' not supported');
+                        throw new Error(linter.applyTemplate(messageRegistry.UNSUPPORTED_CASE_ATTRIBUTE_VALUE_CONVERSION,{curval:curval, newval:newval}));
                     }
                     return;
                 case lowlevel.CommandKind.CHANGE_KEY:
@@ -1963,7 +1965,7 @@ export class Project implements lowlevel.IProject{
                     return;
 
                 default:
-                    console.log('UNSUPPORTED COMMAND: ' + lowlevel.CommandKind[x.kind]);
+                    console.log(linter.applyTemplate(messageRegistry.UNSUPPORTED_COMMAND, {name:lowlevel.CommandKind[x.kind]}));
                     return;
 
             }
@@ -2122,8 +2124,8 @@ export class Project implements lowlevel.IProject{
                         }
                     }
                     catch (e) {
-                        console.log('New node contents (causes error below): \n' + newNodeContent);
-                        console.log('Reparse error: ' + e.stack);
+                        console.log(linter.applyTemplate(messageRegistry.NEW_NODE_CONTENTS_ERROR_BELOW, {content:newNodeContent}));
+                        console.log(linter.applyTemplate(messageRegistry.REPARSE_ERROR, {content:e.stack}));
                     }
                 }
             }
@@ -2809,18 +2811,18 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             } catch (Error) {
                 //not sure why we're returning this as a value, but that's what we do with failed units due to unknown cause below,
                 //so doing the same @Denis
-                return "can not resolve "+includePath + " due to: " + Error.message;
+                return linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE_REASON, {path: includePath, reason:Error.message});
             }
 
             if (resolved==null){
-                return "can not resolve "+includePath;
+                return linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE, {path: includePath});
             }
 
             if(resolved.isRAMLUnit()){
                 var ast: any = resolved.ast();
 
                 if(!ast) {
-                    return "can not resolve "+includePath + " due to: file is empty";
+                    return linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE_REASON, {path: includePath, reason:"file is empty"})
                 }
 
                 return ast.value();
@@ -3008,7 +3010,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     seq.items.push(node._actualNode());
                 }
             } else {
-                throw new Error("Insert into mapping with " + yaml.Kind[mapping.value.kind] + " value not supported");
+                throw new Error(linter.applyTemplate(messageRegistry.INSERT_INTO_MAPPING_VALUE_NOT_SUPPORTED,{value: yaml.Kind[mapping.value.kind]}));
             }
         } else if(this.isSeq()) {
             var seq = this.asSeq();
@@ -3018,7 +3020,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 seq.items.push(node._actualNode());
             }
         } else {
-            throw new Error("Insert into " + this.kindName() + " not supported");
+            throw new Error(linter.applyTemplate(messageRegistry.INSERT_INTO_NOT_SUPPORTED,{name: this.kindName()}));
         }
 
     }
@@ -3067,7 +3069,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 }
             }
         } else {
-            throw new Error("Delete from " + yaml.Kind[this.kind()] + " unsupported");
+            throw new Error(linter.applyTemplate(messageRegistry.DELETE_FROM_NOT_SUPPORTED,{name: yaml.Kind[this.kind()]}));
         }
 
     }
@@ -3109,7 +3111,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                  resolved = this._unit.resolve(includePath)
             } catch (Error) {
                 this.innerIncludeErrors=Error.inner;
-                var s="Can not resolve "+includePath + " due to: " + Error.message;
+                var s= linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE_REASON,{path:includePath, reason:Error.message});
                 //known cause of failure
                 rs.push(s);
                 return rs;
@@ -3132,7 +3134,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
             if (resolved==null){
                 //unknown cause of failure
-                rs.push("Can not resolve "+includePath);
+                rs.push(linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE,{path:includePath}));
                 return rs;
             }
             if (resolved.isRAMLUnit()) {
@@ -3141,7 +3143,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     return []
                 }
                 else{
-                    rs.push(""+includePath+" can not be parsed")
+                    rs.push(linter.applyTemplate(messageRegistry.CAN_NOT_BE_PARSED,{path:includePath}))
                 }
             } else {
 
@@ -3280,7 +3282,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                             }
                         } else {
                             if ((<any>this).addIncludeError) {
-                                 (<any>this).addIncludeError(new Error("Recursive definition"))
+                                 (<any>this).addIncludeError(new Error(messageRegistry.RECURSIVE_DEFINITION_EMPTY.message))
                             }
                         }
                     }
@@ -3295,7 +3297,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 result = new ASTNode(ref.value,this._unit,this,null,null,this.cacheChildren).children();
             }
             else{
-                throw new Error("Should never happen; kind : " + yaml.Kind[this._node.kind]);
+                throw new Error(linter.applyTemplate(messageRegistry.SHOULD_NEVER_HAPPEN_KIND,{kind:yaml.Kind[this._node.kind]}));
             }
 
 
@@ -3357,7 +3359,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     return [];
                 }
             }
-            throw new Error("Should never happen; kind : " + yaml.Kind[this._node.kind]);
+            throw new Error(linter.applyTemplate(messageRegistry.SHOULD_NEVER_HAPPEN_KIND,{kind:yaml.Kind[this._node.kind]}));
         }
         return []
     }
@@ -3682,7 +3684,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                         //var mp = <yaml.YamlMap>val;
                         this.markupNode(xbuf, mapping.value, lev+1, json);
                     } else {
-                        throw new Error("markup not implemented: " + yaml.Kind[val.kind]);
+                        throw new Error(linter.applyTemplate(messageRegistry.NOT_IMPLEMENTED_KIND, {kind:yaml.Kind[val.kind]}));
                     }
                     break;
                 }
@@ -3723,7 +3725,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 xbuf.append('!include ' + ref.value + '\n');
                 break;
             default:
-                throw new Error('Unknown node kind: ' + yaml.Kind[node.kind]);
+                throw new Error(linter.applyTemplate(messageRegistry.UNKNOWN_NODE_KIND, {kind: yaml.Kind[node.kind]}));
         }
         while(start < xbuf.text.length && xbuf.text[start] == ' ') start++;
         node.startPosition = start;
@@ -3803,22 +3805,22 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     }
 
     asMap(): yaml.YamlMap {
-        if(!this.isMap()) throw new Error("map expected instead of " + this.kindName());
+        if(!this.isMap()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"map", received:this.kindName()}));
         return <yaml.YamlMap>(this._actualNode());
     }
 
     asMapping(): yaml.YAMLMapping {
-        if(!this.isMapping()) throw new Error("maping expected instead of " + this.kindName());
+        if(!this.isMapping()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping", received:this.kindName()}));
         return <yaml.YAMLMapping>(this._actualNode());
     }
 
     asSeq(): yaml.YAMLSequence {
-        if(!this.isSeq()) throw new Error("seq expected instead of " + this.kindName());
+        if(!this.isSeq()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"seq", received:this.kindName()}));
         return <yaml.YAMLSequence>(this._actualNode());
     }
 
     asScalar(): yaml.YAMLScalar {
-        if(!this.isScalar()) throw new Error("scalar expected instead of " + this.kindName());
+        if(!this.isScalar()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"scalar", received:this.kindName()}));
         return <yaml.YAMLScalar>(this._actualNode());
     }
 
@@ -3839,26 +3841,27 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     }
 
     valueAsSeq(): yaml.YAMLSequence {
-        if(!this.isMapping()) throw new Error("mapping expected instead of " + this.kindName());
-        if(this.valueKind() != yaml.Kind.SEQ) throw new Error("mappng/seq expected instead of mapping/" + this.kindName());
+        if(!this.isMapping()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping", received:this.kindName()}));
+        if(this.valueKind() != yaml.Kind.SEQ) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping/seq", received:"mapping/"+this.kindName()}));
+
         return <yaml.YAMLSequence>(this.asMapping().value);
     }
 
     valueAsMap(): yaml.YamlMap {
-        if(!this.isMapping()) throw new Error("mapping expected instead of " + this.kindName());
-        if(this.valueKind() != yaml.Kind.MAP) throw new Error("mappng/map expected instead of mapping/" + this.kindName());
+        if(!this.isMapping()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping", received:this.kindName()}));
+        if(this.valueKind() != yaml.Kind.MAP) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping/map", received:"mapping/"+this.kindName()}));
         return <yaml.YamlMap>(this.asMapping().value);
     }
 
     valueAsScalar(): yaml.YAMLScalar {
-        if(!this.isMapping()) throw new Error("mapping expected instead of " + this.kindName());
-        if(this.valueKind() != yaml.Kind.SCALAR) throw new Error("mappng/scalar expected instead of mapping/" + this.kindName());
+        if(!this.isMapping()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping", received:this.kindName()}));
+        if(this.valueKind() != yaml.Kind.SCALAR) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping/scalar", received:"mapping/"+this.kindName()}));
         return <yaml.YAMLScalar>(this.asMapping().value);
     }
 
     valueAsInclude(): yaml.YAMLScalar {
-        if(!this.isMapping()) throw new Error("mapping expected instead of " + this.kindName());
-        if(this.valueKind() != yaml.Kind.INCLUDE_REF) throw new Error("mappng/include expected instead of mapping/" + this.kindName());
+        if(!this.isMapping()) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping", received:this.kindName()}));
+        if(this.valueKind() != yaml.Kind.INCLUDE_REF) throw new Error(linter.applyTemplate(messageRegistry.EXPECTED_INSTEAD_OF, {expected:"mapping/include", received:"mapping/"+this.kindName()}));
         return <yaml.YAMLScalar>(this.asMapping().value);
     }
 
@@ -3930,9 +3933,9 @@ export class InsertionPoint {
     show(msg: string) {
         if(msg) {
             console.log(msg);
-            console.log('  insertion point type: ' + InsertionPointType[this.type]);
+            console.log(linter.applyTemplate(messageRegistry.INSERTION_POINT_TYPE, {type: InsertionPointType[this.type]}));
         } else {
-            console.log('insertion point type: ' + InsertionPointType[this.type]);
+            console.log(linter.applyTemplate(messageRegistry.INSERTION_POINT_TYPE, {type: InsertionPointType[this.type]}) );
         }
         if(this.type == InsertionPointType.POINT && this.point) {
             this.point.show();

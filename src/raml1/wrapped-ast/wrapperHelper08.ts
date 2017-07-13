@@ -29,6 +29,8 @@ import _ = require("underscore");
 //    return tpe.toRuntime();
 //}
 
+let messageRegistry = require("../../../resources/errorMessages");
+
 export function load(pth: string):core.BasicNode{
     var m=new ll.Project(path.dirname(pth));
     var unit=m.unit(path.basename(pth));
@@ -259,8 +261,7 @@ export function methodId(method:RamlWrapper.Method):string{
     else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
-    throw new Error(`Method is supposed to be owned by Resource or ResourceType.
-Here the method is owned by ${method.definition().key().name}`);
+    throw new Error(linter.applyTemplate(messageRegistry.METHOD_OWNED_BY, {owner:method.definition().key().name}));
 }
 
 //__$helperMethod__ true for codes < 400 and false otherwise
