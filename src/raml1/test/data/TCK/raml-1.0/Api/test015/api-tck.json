@@ -2,7 +2,7 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "title": "can not resolve relative.md"
+    "title": "Can not resolve relative.md"
   },
   "errors": [
     {

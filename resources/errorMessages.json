@@ -478,11 +478,11 @@
   },
   "CAN_NOT_RESOLVE" : {
     "code" : "CAN_NOT_RESOLVE",
-    "message" : "can not resolve {{path}}"
+    "message" : "Can not resolve {{path}}"
   },
   "CAN_NOT_RESOLVE_REASON" : {
     "code" : "CAN_NOT_RESOLVE_REASON",
-    "message" : "can not resolve {{path}} due to: {{reason}}"
+    "message" : "Can not resolve {{path}} due to: {{reason}}"
   },
   "INVALID_FIRST_LINE" : {
     "code" : "INVALID_FIRST_LINE",
