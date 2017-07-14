@@ -124,7 +124,7 @@ export interface TypeDeclaration extends common.Annotable {
     /**
      * The displayName attribute specifies the type display name.
      * It is a friendly name used only for  display or documentation purposes.
-     * If displayName is not specified, it defaults to the element's key
+     * If displayName is not specified, it defaults to the element's name
      * (the name of the property itself
      */
     displayName: string
