@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "1.1.27",
+  "version": "1.1.28",
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
@@ -32,7 +32,7 @@
     "loophole": "^1.1.0",
     "lrucache": "^0.2.0",
     "promise-polyfill": "^5.1.0",
-    "marked": "^0.3.3",
+    "marked": "^0.3.6",
     "media-typer": "^0.3.0",
     "mkdirp": "^0.5.0",
     "pluralize": "^1.2.0",
