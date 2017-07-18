@@ -184,9 +184,25 @@ export class TCKDumper {
             var result:any = {};
             if (rootNodeDetails) {
                 if (definition) {
-                    var ramlVersion = definition.universe().version();
+
+                    let universe = definition.universe();
+                    var ramlVersion = universe.version();
                     result.ramlVersion = ramlVersion;
-                    result.type = definition.nameId();
+                    let typeName = definition.nameId();
+                    if(!typeName){
+                        if(definition.isAssignableFrom(def.universesInfo.Universe10.TypeDeclaration.name)){
+                            let typeDecl = universe.type(def.universesInfo.Universe10.TypeDeclaration.name);
+                            let map:any = {};
+                            typeDecl.allSubTypes().forEach(x=>map[x.nameId()]=true);
+                            for(let st of definition.allSuperTypes()){
+                                if(map[st.nameId()]){
+                                    typeName = st.nameId();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    result.type = typeName;
                 }
                 result.specification = obj;
                 result.errors = this.dumpErrors(basicNode.errors());

@@ -1,0 +1,241 @@
+{
+  "specification": {
+    "displayName": "Test Type",
+    "type": [
+      {
+        "name": "type",
+        "displayName": "Test Supertype",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "p2": {
+            "name": "p2",
+            "displayName": "p2",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    ],
+    "required": true,
+    "properties": {
+      "ownProp1": {
+        "name": "ownProp1",
+        "displayName": "Test Property Type",
+        "type": [
+          "object"
+        ],
+        "required": true,
+        "properties": {
+          "p3": {
+            "name": "p3",
+            "displayName": "p3",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "p4": {
+            "name": "p4",
+            "displayName": "p4",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "ownProp2": {
+        "name": "ownProp2",
+        "displayName": "ownProp2",
+        "type": [
+          {
+            "name": "type",
+            "displayName": "Test Property Type",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "p3": {
+                "name": "p3",
+                "displayName": "p3",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              },
+              "p4": {
+                "name": "p4",
+                "displayName": "p4",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "type": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        ],
+        "required": true,
+        "properties": {
+          "p5": {
+            "name": "p5",
+            "displayName": "p5",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "INPLACE"
+      }
+    },
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "required": {
+          "insertedAsDefault": true
+        }
+      }
+    },
+    "mediaType": "application/raml+yaml",
+    "typePropertyKind": "INPLACE"
+  },
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
+  "errors": []
+}
