@@ -6,6 +6,7 @@ import universes = require("../tools/universe");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel")
 import yaml = require("yaml-ast-parser")
 import universeHelpers = require("../tools/universeHelpers");
+import referencepatcherLL = require("./referencePatcherLL");
 
 import resourceRegistry = require('../jsyaml/resourceRegistry');
 import hlImpl = require("../highLevelImpl");
@@ -395,30 +396,47 @@ export class NamespaceResolver{
         return this._hasFragments[unit.absolutePath()] ? true : false;
     }
 
-    unitModel(unit:ll.ICompilationUnit):UnitModel{
+    unitModel(unit:ll.ICompilationUnit,passed?:{[key:string]:boolean}):UnitModel{
         let aPath = unit.absolutePath();
         let result = this._unitModels[aPath];
-        if(!result){
-            result = new UnitModel(unit);
-            this._unitModels[aPath] = result;
+        if(result){
+            return result;
         }
-        if(result.isOverlayOrExtension()) {
-            let rootNode = unit.ast();
-            let extendsAttrs = rootNode.children().filter(x =>
-            x.key() == def.universesInfo.Universe10.Overlay.properties.extends.name);
-            if (extendsAttrs.length > 0) {
-                let eAttr = extendsAttrs[0];
-                let eVal = eAttr.value();
-                if (eVal) {
-                    let masterUnit = unit.resolve(eVal);
-                    if (masterUnit) {
-                        let masterUnitModel = this.unitModel(masterUnit);
-                        result.master = masterUnitModel;
+        result = new UnitModel(unit);
+        this._unitModels[aPath] = result;
+        initUnitModel(result,this,passed);
+        return result;
+    }
+
+    deleteUnitModel(aPath:string){
+        delete this._unitModels[aPath];
+    }
+
+    getComponent(
+        rootUnit:ll.ICompilationUnit,
+        type:string,
+        namespace:string,
+        name:string,
+        passed?:{[key:string]:boolean}){
+        let nsMap = this.expandedNSMap(rootUnit);
+        if (nsMap) {
+            let referencedUnit = rootUnit;
+            if(namespace){
+                let uInfo = nsMap[namespace];
+                referencedUnit = uInfo ? uInfo.unit : null;
+            }
+            if (referencedUnit) {
+                let uModel = this.unitModel(referencedUnit,passed);
+                let templateCollection = <ElementsCollection>(<any>uModel)[type];
+                if (templateCollection && ElementsCollection.isInstance(templateCollection)) {
+                    let tModel = templateCollection.getTemplateModel(name);
+                    if(!tModel.isInitialized()){
+                        initTemplateModel(tModel,this,passed);
                     }
+                    return tModel
                 }
             }
         }
-        return result;
     }
 }
 
@@ -431,7 +449,7 @@ export class UsesInfo{
     ){
         this.namespaceSegments = this.usesNodes.map(x=>x.key());
     }
-    
+
     namespaceSegments:string[];
 
     steps():number{
@@ -469,10 +487,7 @@ export class ElementsCollection{
 
     map:{[key:string]:ll.ILowLevelASTNode} = {};
 
-    addElement(node:ll.ILowLevelASTNode){
-        this.array.push(node);
-        this.map[node.key()] = node;
-    }
+    templateModels:{[key:string]:TemplateModel};
 
     hasElement(name:string):boolean{
         return ( this.map[name] != null );
@@ -480,6 +495,13 @@ export class ElementsCollection{
 
     getElement(name:string):ll.ILowLevelASTNode{
         return this.map[name];
+    }
+
+    getTemplateModel(name:string){
+        if(!this.templateModels){
+            return null;
+        }
+        return this.templateModels[name];
     }
 
     isEmpty(){
@@ -490,7 +512,7 @@ export class ElementsCollection{
 export class UnitModel{
 
     constructor(public unit:ll.ICompilationUnit){
-        this.initCollections();
+        this.init();
     }
 
     master:UnitModel;
@@ -509,7 +531,13 @@ export class UnitModel{
 
     private _extensionSet:{[key:string]:UnitModel};
 
-    private initCollections(){
+    private _type:string;
+
+    type():string{
+        return this._type;
+    }
+
+    private init(){
 
         this.types = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.types.name);
         this.annotationTypes = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name);
@@ -517,85 +545,20 @@ export class UnitModel{
         this.traits = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.traits.name);
         this.resourceTypes = new ElementsCollection(def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name);
 
-        var rootNode = this.unit.ast();
-        if(!rootNode){
-            return;
-        }
-        if(!this.isLibraryBaseDescendant(this.unit)){
-            return;
-        }
-        var isRAML08 = (hlImpl.ramlFirstLine(this.unit.contents())[1] == "0.8");
-        for(var ch of rootNode.children()){
-            var key = ch.key();
-
-            if(key==def.universesInfo.Universe10.LibraryBase.properties.types.name){
-                this.contributeCollection(this.types,ch.children());
+        var fLine = hlImpl.ramlFirstLine(this.unit.contents());
+        if (fLine) {
+            if (fLine.length < 3 || !fLine[2]) {
+                this._type = def.universesInfo.Universe10.Api.name;
             }
-            else if(key==def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name){
-                this.contributeCollection(this.annotationTypes,ch.children());            }
-            else if(key==def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name){
-                this.contributeCollection(this.securitySchemes,ch.children(),isRAML08);
-            }
-            else if(key==def.universesInfo.Universe10.LibraryBase.properties.traits.name){
-                this.contributeCollection(this.traits,ch.children(),isRAML08);
-            }
-            else if(key==def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
-                this.contributeCollection(this.resourceTypes,ch.children(),isRAML08);
+            else {
+                this._type = fLine[2];
             }
         }
-
-    }
-
-    private contributeCollection(c:ElementsCollection,nodes:ll.ILowLevelASTNode[],isRAML08=false){
-        var _nodes:ll.ILowLevelASTNode[];
-        if(isRAML08){
-            _nodes = [];
-            nodes.forEach(x=>{
-                var children = x.children();
-                if(children.length > 0) {
-                    _nodes.push(children[0]);
-                }
-            });
-        }
-        else{
-            _nodes = nodes;
-        }
-        _nodes.forEach(x=>c.addElement(x));
-    }
-
-    private libTypeDescendants:{[key:string]:boolean};
-
-    isLibraryBaseDescendant(unit:ll.ICompilationUnit) {
-
-        var fLine = hlImpl.ramlFirstLine(unit.contents());
-        if (!fLine) {
-            return false;
-        }
-        if (fLine.length < 3 || !fLine[2]) {
-            return true;
-        }
-        let typeName = fLine[2];
-        if (!this.libTypeDescendants) {
-            this.libTypeDescendants = {};
-            let u = def.getUniverse("RAML10");
-            let libType = u.type(def.universesInfo.Universe10.LibraryBase.name);
-            [libType].concat(libType.allSubTypes()).forEach(x=>this.libTypeDescendants[x.nameId()] = true);
-        }
-        return this.libTypeDescendants[typeName];
     }
 
     isOverlayOrExtension() {
-
-        var fLine = hlImpl.ramlFirstLine(this.unit.contents());
-        if (!fLine) {
-            return false;
-        }
-        if (fLine.length < 3 || !fLine[2]) {
-            return true;
-        }
-        let typeName = fLine[2];
-        return typeName == def.universesInfo.Universe10.Overlay.name
-            || typeName == def.universesInfo.Universe10.Extension.name;
+        return this._type == def.universesInfo.Universe10.Overlay.name
+            || this._type == def.universesInfo.Universe10.Extension.name;
     }
 
     extensionSet():{[key:string]:UnitModel}{
@@ -630,4 +593,371 @@ function extendsValue(u:ll.ICompilationUnit){
     var node = u.ast();
     var eNode = _.find(node.children(), x=>x.key()==universes.Universe10.Extension.properties.extends.name);
     return eNode && eNode.value();
+}
+
+var transitionsMap: referencepatcherLL.TransitionMap;
+
+function initTransitions(){
+
+    if(transitionsMap){
+        return;
+    }
+    transitionsMap = {};
+    for(var key of Object.keys(referencepatcherLL.transitions)){
+        var trSchema = referencepatcherLL.transitions[key];
+        var tr = new referencepatcherLL.Transition(key,trSchema,transitionsMap);
+        transitionsMap[key] = tr;
+    }
+    var factory = new NamespaceResolverActionsAndConditionsFactory();
+    for(var key of Object.keys(transitionsMap)){
+        transitionsMap[key].init(factory);
+    }
+}
+
+function templateKey(path:string, kind: string, name:string) {
+    return `${path}|${kind}|${name}`;
+};
+
+export class TemplateModel{
+
+    constructor(public name:string, public kind:string, public node:ll.ILowLevelASTNode, public typeValuedParameters:any){}
+
+    isInitialized():boolean{
+        return this.typeValuedParameters != null;
+    }
+
+    id():string{
+        return `${this.node.unit().absolutePath()}|${this.kind}|${this.node.key()}`;
+    }
+}
+
+export class NamespaceResolverActionsAndConditionsFactory implements referencepatcherLL.ActionsAndCondtionsFactory{
+
+    parent = new referencepatcherLL.ReferencePatcherActionsAndConditionsFactory()
+
+    action(actionName:string):referencepatcherLL.Action{
+        var action:referencepatcherLL.Action = dummyAction;
+        if (actionName == "##patch") {
+            action = checkTypeValue;
+        }
+        else if(actionName == "##patchAnnotationName"){
+            action = checkAnnotationNameValue;
+        }
+        else if(actionName=="##patchResourceTypeReference"){
+            action = checkResourceTypeReferenceAction;
+        }
+        else if(actionName=="##patchTraitReference"){
+            action = checkTraitReferenceAction;
+        }
+        return action;
+    }
+
+    condition(name:string):referencepatcherLL.Condition{
+        return this.parent.condition(name);
+    }
+
+}
+
+function checkTraitReferenceAction(node:ll.ILowLevelASTNode, state:referencepatcherLL.State){
+    let kind = def.universesInfo.Universe10.LibraryBase.properties.traits.name;
+    if(node.kind()!=yaml.Kind.SCALAR){
+        if(node.key()==null){
+            node = node.children()[0];
+        }
+    }
+    if(node.kind()==yaml.Kind.SCALAR){
+        return false;
+    }
+    checkReferenceAction(node, state, kind);
+    return false;
+}
+
+function checkResourceTypeReferenceAction(node:ll.ILowLevelASTNode, state:referencepatcherLL.State){
+    if(node.valueKind()==yaml.Kind.SCALAR){
+        return;
+    }
+    if(node.children().length==0){
+        return;
+    }
+    node = node.children()[0];
+    let kind = def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name;
+    checkReferenceAction(node, state, kind);
+    return false;
+}
+
+function checkTypeValue(node:ll.ILowLevelASTNode,state:referencepatcherLL.State){
+    var value = node.value();
+    if(typeof value != "string"){
+        return false;
+    }
+    checkStringValue(value, state);
+    return false;
+}
+
+function checkAnnotationNameValue(node:ll.ILowLevelASTNode,state:referencepatcherLL.State){
+    let key = node.key();
+    if(!key){
+        return false;
+    }
+    let annotationName = key.substring(1,key.length-1);
+    checkStringValue(annotationName, state);
+}
+
+function checkStringValue(value: string, state: referencepatcherLL.State) {
+    if (util.stringStartsWith(value, "<<") && util.stringEndsWith(value, ">>")) {
+        value = value.substring("<<".length, value.length - ">>".length);
+        if (value.indexOf("<<") < 0) {
+            state.meta.params[value] = true;
+        }
+    }
+};
+
+
+function checkReferenceAction(node: ll.ILowLevelASTNode, state: referencepatcherLL.State, kind: string) {
+
+    let reusingParams: {
+        setParam: string
+        readParam: string
+    }[] = [];
+    for (let ch of node.children()) {
+        if (ch.valueKind() != yaml.Kind.SCALAR) {
+            continue;
+        }
+        let val = ch.value();
+        if (typeof val != 'string') {
+            continue;
+        }
+        if (!(util.stringStartsWith(val, "<<") && util.stringEndsWith(val, ">>"))) {
+            continue;
+        }
+        val = val.substring(2, val.length - 2);
+        if (val.indexOf("<<") >= 0) {
+            continue;
+        }
+        reusingParams.push({
+            setParam: ch.key(),
+            readParam: val
+        });
+    }
+    if (reusingParams.length == 0) {
+        return;
+    }
+    let templateName = node.key();
+    let arr: number[] = [];
+    let l = templateName.length;
+    for (let i = 0; i < l; i++) {
+        if (templateName.charAt(i) == ".") {
+            arr.push(i);
+        }
+    }
+    let tm: TemplateModel;
+    if (arr.length > 0) {
+        for (let i = arr.length - 1; i >= 0; i--) {
+            let ind = arr[i];
+            let ns = templateName.substring(0, ind);
+            let name = templateName.substring(ind + 1, l);
+            tm = state.resolver.getComponent(state.rootUnit, kind, ns, name, state.meta.passed);
+        }
+    }
+    else {
+        tm = state.resolver.getComponent(state.rootUnit, kind, null, templateName, state.meta.passed);
+    }
+    if (tm && tm.isInitialized()) {
+        for (let e of reusingParams) {
+            if (tm.typeValuedParameters[e.setParam]) {
+                state.meta.params[e.readParam] = true;
+            }
+        }
+    }
+};
+
+function dummyAction(node:ll.ILowLevelASTNode,state:referencepatcherLL.State){
+    return false;
+}
+
+export function extendedUnit(u:ll.ICompilationUnit):ll.ICompilationUnit{
+
+    var node = u.ast();
+    var eNode = _.find(node.children(), x=>x.key()==universes.Universe10.Extension.properties.extends.name);
+    var eValue = eNode && eNode.value();
+    if(!eValue){
+        return null;
+    }
+    return u.resolve(eValue);
+}
+
+export function initUnitModel(result:UnitModel,resolver:NamespaceResolver,passed?:{[key:string]:boolean}){
+
+    var rootNode = result.unit.ast();
+    if(!rootNode){
+        return;
+    }
+    if(!isLibraryBaseDescendant(result.unit)){
+        return;
+    }
+    var isRAML08 = (hlImpl.ramlFirstLine(result.unit.contents())[1] == "0.8");
+    for(let ch of rootNode.children()){
+        let key = ch.key();
+
+        if(key==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+            contributeCollection(result.types,ch.children());
+        }
+        else if(key==def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name){
+            contributeCollection(result.annotationTypes,ch.children());            }
+        else if(key==def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name){
+            contributeCollection(result.securitySchemes,ch.children(),isRAML08);
+        }
+        else if(key==def.universesInfo.Universe10.LibraryBase.properties.traits.name){
+            contributeCollection(result.traits,ch.children(),isRAML08);
+        }
+        else if(key==def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
+            contributeCollection(result.resourceTypes,ch.children(),isRAML08);
+        }
+    }
+
+    if(!isRAML08){
+        let resourceTypeModels = result.resourceTypes.templateModels;
+        let resourceTypes = resourceTypeModels
+            && Object.keys(resourceTypeModels).map(x=>resourceTypeModels[x]) || [];
+
+        let traitModels = result.traits.templateModels;
+        let traits = traitModels
+            && Object.keys(traitModels).map(x=>traitModels[x]) || [];
+
+        for(let tr of traits){
+            initTemplateModel(tr,resolver,passed);
+        }
+        for(let rt of resourceTypes){
+            initTemplateModel(rt,resolver,passed);
+        }
+    }
+
+    if(result.isOverlayOrExtension()) {
+        let rootNode = result.unit.ast();
+        let extendsAttrs = rootNode.children().filter(x =>
+        x.key() == def.universesInfo.Universe10.Overlay.properties.extends.name);
+        if (extendsAttrs.length > 0) {
+            let eAttr = extendsAttrs[0];
+            let eVal = eAttr.value();
+            if (eVal) {
+                let masterUnit = result.unit.resolve(eVal);
+                if (masterUnit) {
+                    let masterUnitModel = resolver.unitModel(masterUnit);
+                    result.master = masterUnitModel;
+                }
+            }
+        }
+    }
+}
+
+function initTemplateModel(
+    tm:TemplateModel,
+    resolver:NamespaceResolver,
+    passed:{[key:string]:boolean}={}){
+
+    let tr = transitionsMap[tm.kind];
+    if(!tr){
+        return;
+    }
+
+    let id = tm.id();
+    if(passed[id]){
+        return;
+    }
+    passed[id] = true;
+    try {
+        let scope = new referencepatcherLL.Scope();
+        let rootUnit = tm.node.unit().project().getMainUnit();
+        if (rootUnit) {
+            let rootUnitAST = rootUnit.ast();
+            let fLine = hlImpl.ramlFirstLine(rootUnit.contents());
+            if (rootUnitAST && fLine.length == 3) {
+                let universe = fLine[1] == "1.0" ? def.getUniverse("RAML10") : def.getUniverse("RAML08");
+                if (universe) {
+                    let tName = fLine[2];
+                    let type = universe.type(tName);
+                    if (type && universeHelpers.isApiSibling(type)) {
+                        scope.hasRootMediaType = (_.find(rootUnitAST.children(), x => x.key() == "mediaType") != null);
+                    }
+                }
+            }
+        }
+        let state = new referencepatcherLL.State(null, tm.node.unit(), scope, resolver);
+        state.meta.params = {};
+        state.meta.passed = passed;
+        tr.processNode(tm.node, state);
+        tm.typeValuedParameters = state.meta.params;
+    }
+    finally {
+        delete passed[id];
+    }
+}
+
+export function isLibraryBaseDescendant(unit:ll.ICompilationUnit) {
+
+    var fLine = hlImpl.ramlFirstLine(unit.contents());
+    if (!fLine) {
+        return false;
+    }
+    if (fLine.length < 3 || !fLine[2]) {
+        return true;
+    }
+    let typeName = fLine[2];
+    let u = def.getUniverse("RAML10");
+    if(!u){
+        return false;
+    }
+    let t = u.type(typeName);
+    if(!t){
+        return false;
+    }
+    return universeHelpers.isLibraryBaseSibling(t);
+}
+
+function contributeCollection(c:ElementsCollection,nodes:ll.ILowLevelASTNode[],isRAML08=false){
+    let _nodes:ll.ILowLevelASTNode[];
+    if(isRAML08){
+        _nodes = [];
+        nodes.forEach(x=>{
+            let children = x.children();
+            if(children.length > 0) {
+                _nodes.push(children[0]);
+            }
+        });
+    }
+    else{
+        _nodes = nodes;
+    }
+    _nodes.forEach(x=>{
+        c.array.push(x);
+        let name = x.key();
+        c.map[name] = x;
+        let tm = createTemplateModel(x,c.name);
+        if(tm){
+            if(!c.templateModels){
+                c.templateModels = {};
+            }
+            c.templateModels[name] = tm;
+        }
+    });
+}
+
+function createTemplateModel(node:ll.ILowLevelASTNode,collectionName:string):TemplateModel{
+    let kind:string;
+    if(collectionName == def.universesInfo.Universe10.LibraryBase.properties.traits.name){
+        kind = def.universesInfo.Universe10.Trait.name;
+    }
+    else if(collectionName == def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
+        kind = def.universesInfo.Universe10.ResourceType.name;
+    }
+    if(!kind){
+        return;
+    }
+    initTransitions();
+    let tr = transitionsMap[kind];
+    if(!tr){
+        return null;
+    }
+    let name = node.key();
+    return new TemplateModel(name,kind,node,null);
 }

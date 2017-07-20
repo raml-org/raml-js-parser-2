@@ -243,6 +243,8 @@ export class TraitsAndResourceTypesExpander {
         rp:referencePatcher.ReferencePatcher = null,
         forceProxy=false):hl.IHighLevelNode {
 
+        this.init(_api);
+
         var api = <hlimpl.ASTNodeImpl>_api;
         var highLevelNodes:hlimpl.ASTNodeImpl[] = [];
 
@@ -847,7 +849,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
         var errors:hl.ValidationIssue[] = [];
         if(typeof(obj)==='string'){
             if(this.structuredParams&&util.stringStartsWith(obj,"<<")&&util.stringEndsWith(obj,">>")){
-                var paramName = obj.substring(2,obj.length-2);
+                let paramName = obj.substring(2,obj.length-2);
                 var structuredValue = this.structuredParams[paramName];
                 if(structuredValue!=null){
                    return { value:structuredValue, errors: errors };
@@ -870,7 +872,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 var originalString = str.substring(i0,prev);
 
                 var val;
-                var paramName;
+                let paramName:string;
 
                 var transformers = getTransformersForOccurence(paramOccurence);
 
@@ -1112,7 +1114,7 @@ export class DefaultTransformer extends ValueTransformer{
         }
         if (!resourcePathName){
             if (last){
-            resourcePathName="";
+                resourcePathName="";
             }
         }
         this.params = {

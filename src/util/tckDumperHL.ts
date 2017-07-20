@@ -6,7 +6,6 @@ import hl = require("../raml1/highLevelAST");
 import ll = require("../raml1/lowLevelAST");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
-import expander=require("../raml1/ast.core/expanderHL");
 import referencePatcher=require("../raml1/ast.core/referencePatcher");
 
 import typeSystem = def.rt;
@@ -18,7 +17,7 @@ import universes = require("../raml1/tools/universe")
 import util = require("../util/index")
 
 import defaultCalculator = require("../raml1/wrapped-ast/defaultCalculator");
-import helpersHL = require("../raml1/wrapped-ast/helpersHL");
+import helpersLL = require("../raml1/wrapped-ast/helpersLL");
 import stubs = require('../raml1/stubs');
 
 import _ = require("underscore");
@@ -129,6 +128,7 @@ export class TCKDumper {
         };
         var isElement = node.isElement();
         if(isElement){
+            (<hlImpl.ASTNodeImpl>node).types();
             var eNode = node.asElement();
             var definition = eNode.definition();
             if(definition.universe().version()=="RAML08"){
@@ -141,8 +141,8 @@ export class TCKDumper {
                 }
             }
             if(universeHelpers.isApiSibling(definition)) {
-                this.helpersMap["traits"] = new TemplatesHandler(helpersHL.allTraits(eNode, false));
-                this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersHL.allResourceTypes(eNode, false));
+                this.helpersMap["traits"] = new TemplatesHandler(helpersLL.allTraits(eNode, false));
+                this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersLL.allResourceTypes(eNode, false));
             }
         }
     }
@@ -219,7 +219,7 @@ export class TCKDumper {
                 }
                 else {
                     var at = hlImpl.auxiliaryTypeForExample(eNode);
-                    var eObj:any = helpersHL.dumpExpandableExample(
+                    var eObj:any = helpersLL.dumpExpandableExample(
                         at.examples()[0], this.options.dumpXMLRepresentationOfExamples);
                     var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
                     if (uses.length > 0) {
@@ -247,7 +247,7 @@ export class TCKDumper {
                         var llNode = ch.lowLevel();
                         var key = llNode.key();
                         if (key) {
-                            //obj[key] = llNode.dumpToObject(); 
+                            //obj[key] = llNode.dumpToObject();
                         }
                     }
                 }
@@ -446,12 +446,12 @@ export class TCKDumper {
                 if (Object.keys(scalarsAnnotations).length > 0) {
                     result["scalarsAnnotations"] = scalarsAnnotations;
                 }
-                var pProps = helpersHL.getTemplateParametrizedProperties(eNode);
+                var pProps = helpersLL.getTemplateParametrizedProperties(eNode);
                 if (pProps) {
                     result["parametrizedProperties"] = pProps;
                 }
                 if (universeHelpers.isTypeDeclarationDescendant(definition)) {
-                    var fixedFacets = helpersHL.typeFixedFacets(eNode);
+                    var fixedFacets = helpersLL.typeFixedFacets(eNode);
                     if (fixedFacets) {
                         result["fixedFacets"] = fixedFacets;
                     }
@@ -705,15 +705,15 @@ function applyHelpers(
         newVal = uriParameters(node,pVal,p,serializeMetadata);
     }
     else if(universeHelpers.isTraitsProperty(p)){
-        var arr = helpersHL.allTraits(node,false);
+        var arr = helpersLL.allTraits(node,false);
         newVal = contributeExternalNodes(node,arr,p,serializeMetadata);
     }
     else if(universeHelpers.isResourceTypesProperty(p)){
-        var arr = helpersHL.allResourceTypes(node,false);
+        var arr = helpersLL.allResourceTypes(node,false);
         newVal = contributeExternalNodes(node,arr,p,serializeMetadata);
     }
     else if(p.nameId()=="schemaContent"){
-        var attr = helpersHL.schemaContent08Internal(node,schemasCache08);
+        var attr = helpersLL.schemaContent08Internal(node,schemasCache08);
         if(attr){
             newVal = new PropertyValue(p);
             newVal.registerValue(attr);
@@ -895,7 +895,7 @@ class SchemaContentHandler implements HelperMethod{
           p:hl.IProperty,
           serializeMetadata:boolean){
         var newVal:PropertyValue = null;
-        var attr = helpersHL.schemaContent08Internal(node, this.schemasCache08);
+        var attr = helpersLL.schemaContent08Internal(node, this.schemasCache08);
         if (attr) {
             newVal = new PropertyValue(p);
             newVal.registerValue(attr);
@@ -1216,10 +1216,10 @@ class ResourcesTransformer extends BasicTransformation{
                 segments.shift();
             }
             value["relativeUriPathSegments"] = segments;
-            value.absoluteUri = helpersHL.absoluteUri(node.asElement());
-            value.completeRelativeUri = helpersHL.completeRelativeUri(node.asElement());
+            value.absoluteUri = helpersLL.absoluteUri(node.asElement());
+            value.completeRelativeUri = helpersLL.completeRelativeUri(node.asElement());
             if(universeHelpers.isResourceType(node.parent().definition())){
-                value.parentUri = helpersHL.completeRelativeUri(node.parent());
+                value.parentUri = helpersLL.completeRelativeUri(node.parent());
             }
             else{
                 value.parentUri = "";
@@ -1242,13 +1242,13 @@ class TypeTransformer extends BasicTransformation{
             return _value;
         }
         var value = isArray ? _value[0] : _value;
-        var exampleObj = helpersHL.typeExample(
+        var exampleObj = helpersLL.typeExample(
             node.asElement(),this.options.dumpXMLRepresentationOfExamples);
         if(exampleObj){
             value["examples"] = [ exampleObj ];
         }
         else {
-            var examples = helpersHL.typeExamples(
+            var examples = helpersLL.typeExamples(
                 node.asElement(), this.options.dumpXMLRepresentationOfExamples);
             if (examples.length > 0) {
                 value["examples"] = examples;

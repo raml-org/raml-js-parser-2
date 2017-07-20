@@ -16,7 +16,7 @@ import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
 import expander=require("../ast.core/expander")
-import expanderHL=require("../ast.core/expanderHL")
+import expanderLL=require("../ast.core/expanderLL")
 import proxy = require("../ast.core/LowLevelASTProxy")
 import referencePatcher = require("../ast.core/referencePatcher")
 import search=require("../../search/search-interface")
@@ -72,7 +72,7 @@ export function completeRelativeUri(res:RamlWrapper.Resource):string{
  */
 export function expandLibrarySpec(lib:RamlWrapper.Library):RamlWrapper.Library{
 
-    var exp = lib.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = lib.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandLibrary(lib);
 }
 /**
@@ -97,7 +97,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     if(proxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandTraitsAndResourceTypes(api);
 }
 
@@ -106,7 +106,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
  * __$meta__={"name":"expandLibraries"}
  */
 export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
-    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandLibraries(api);
 }
 

@@ -93,7 +93,7 @@
             "is": [
               {
                 "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "ty.ErrorResponseType"
+                  "errorResponseType": "rt.ty.ErrorResponseType"
                 }
               }
             ],

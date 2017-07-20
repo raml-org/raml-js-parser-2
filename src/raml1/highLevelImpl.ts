@@ -12,7 +12,6 @@ import search=require("../search/search-interface")
 import mutators=require("./ast.core/mutators")
 import linter=require("./ast.core/linter")
 import expander=require("./ast.core/expander")
-import referencePatcher=require("./ast.core/referencePatcher");
 import typeBuilder=require("./ast.core/typeBuilder")
 import universes=require("./tools/universe")
 import jsyaml=require("./jsyaml/jsyaml2lowLevel")
@@ -1034,7 +1033,18 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         if (this._children){
             return this._children;
         }
-        if (this.key()=="uses"&&!this._node.parent().parent()){
+
+        let isUses = this.key()=="uses";
+        if(isUses){
+            let parent = this._node.parent();
+            let grandParent = parent.parent();
+            if(grandParent!=null){
+                if(this._node.unit().absolutePath()==grandParent.unit().absolutePath()){
+                    isUses = false;
+                }
+            }
+        }
+        if (isUses){
             this._children= this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x,this._highLevelRoot))
         }
         else{

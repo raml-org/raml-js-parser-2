@@ -505,7 +505,6 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
         }
 
-        var ramlVersion = this.unit().highLevel().root().definition().universe().version();
         var isResource = this.key()&&this.key()[0]=="/";
         var methodType = def.getUniverse("RAML10").type(universes.Universe10.Method.name);
         var options = methodType.property(universes.Universe10.Method.properties.method.name).enumOptions()
@@ -517,7 +516,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             var isMethod = options.indexOf(key)>=0;
             arr.forEach(x=>{
                 var isOpt = x.node.optional() &&
-                    (ramlVersion != "RAML10" ||
+                    (this.ramlVersion != "RAML10" ||
                     (isResource && isMethod));
                 allOptional = allOptional && isOpt;
                 hasPrimaryChildren = hasPrimaryChildren || x.isPrimary;

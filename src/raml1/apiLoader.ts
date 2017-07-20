@@ -14,7 +14,7 @@ import hlimpl=require("../raml1/highLevelImpl")
 import ll=require("../raml1/lowLevelAST")
 import llimpl=require("../raml1/jsyaml/jsyaml2lowLevel")
 import expander=require("../raml1/ast.core/expander")
-import expanderHL=require("../raml1/ast.core/expanderHL")
+import expanderLL=require("../raml1/ast.core/expanderLL")
 import util=require("../util/index")
 import universeDef=require("../raml1/tools/universe")
 import parserCore=require('../raml1/wrapped-ast/parserCore')
@@ -36,10 +36,10 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
     return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
         if(!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
-            expanded = expanderHL.expandLibrariesHL(hlNode);
+            expanded = expanderLL.expandLibrariesHL(hlNode);
         }
         else{
-            expanded = expanderHL.expandTraitsAndResourceTypesHL(hlNode);
+            expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode);
         }
         return tckDumperHL.dump(expanded,{
             rootNodeDetails: true,
@@ -56,14 +56,14 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
     var expanded:hl.IHighLevelNode;
     if (!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
         if(universeHelpers.isLibraryType(hlNode.definition())){
-            expanded = expanderHL.expandLibraryHL(hlNode) || hlNode;
+            expanded = expanderLL.expandLibraryHL(hlNode) || hlNode;
         }
         else {
-            expanded = expanderHL.expandLibrariesHL(hlNode) || hlNode;
+            expanded = expanderLL.expandLibrariesHL(hlNode) || hlNode;
         }
     }
     else {
-        expanded = expanderHL.expandTraitsAndResourceTypesHL(hlNode)||hlNode;
+        expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode)||hlNode;
     }
     return tckDumperHL.dump(expanded,{
         rootNodeDetails: true,
@@ -316,7 +316,9 @@ function getProject(apiPath:string,options?:parserCoreApi.Options):jsyaml.Projec
     var reusedNode = options.reusedNode;
     var project:jsyaml.Project;
     if(reusedNode){
-        project = <jsyaml.Project>reusedNode.lowLevel().unit().project();
+        let reusedUnit = reusedNode.lowLevel().unit();
+        project = <jsyaml.Project>reusedUnit.project();
+        project.namespaceResolver().deleteUnitModel(reusedUnit.absolutePath());
         project.deleteUnit(path.basename(apiPath));
         if(includeResolver) {
             project.setFSResolver(includeResolver);

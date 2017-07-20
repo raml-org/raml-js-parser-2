@@ -219,7 +219,7 @@
         "type": {
           "rt.lib.lib.rt": {
             "param1": "<<param1>>",
-            "param2": "MyType"
+            "param2": "rt.lib.MyType"
           }
         },
         "name": "rt.lib.rt",
@@ -233,7 +233,7 @@
             "is": [
               {
                 "rt.tr.ResponseCommonErrors": {
-                  "errorResponseType": "ty.ErrorResponseType"
+                  "errorResponseType": "rt.ty.ErrorResponseType"
                 }
               }
             ],
@@ -268,7 +268,7 @@
         },
         "type": {
           "rt.lib.rt": {
-            "param1": "MyType"
+            "param1": "rt.MyType"
           }
         },
         "description": "<<desc>>",
