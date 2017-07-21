@@ -4,9 +4,9 @@
       "MyType": {
         "name": "MyType",
         "displayName": "MyType",
-        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType",
+        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType",
         "type": [
-          "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
+          "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
