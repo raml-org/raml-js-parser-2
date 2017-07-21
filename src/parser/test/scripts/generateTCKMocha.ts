@@ -29,19 +29,19 @@ for(var i = 0 ; i < args.length ; i++){
     }
 }
 if(tckDir==null){
-    tckDir = path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/TCK");
+    tckDir = path.resolve(tckUtil.projectFolder(),"src/parser/test/data/TCK");
 }
 if(libExpandDir==null){
-    libExpandDir = path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/LibraryExpansion");
+    libExpandDir = path.resolve(tckUtil.projectFolder(),"src/parser/test/data/LibraryExpansion");
 }
 if(mochaFile==null){
-    mochaFile = path.resolve(tckUtil.projectFolder(),"src/raml1/test/TCK2.ts");
+    mochaFile = path.resolve(tckUtil.projectFolder(),"src/parser/test/TCK2.ts");
 }
 if(mochaFileLibExpand==null){
-    mochaFileLibExpand = path.resolve(tckUtil.projectFolder(),"src/raml1/test/libraryExpansion.ts");
+    mochaFileLibExpand = path.resolve(tckUtil.projectFolder(),"src/parser/test/libraryExpansion.ts");
 }
 if(dataRoot==null){
-    dataRoot = path.resolve(tckUtil.projectFolder(),"src/raml1/test/data")
+    dataRoot = path.resolve(tckUtil.projectFolder(),"src/parser/test/data")
 }
 tckUtil.generateMochaSuite(
     tckDir,
@@ -59,8 +59,8 @@ tckUtil.generateMochaSuite(
 );
 
 tckUtil.generateMochaSuite(
-    path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/TCK-newFormat"),
-    path.resolve(tckUtil.projectFolder(),"src/raml1/test/TCK2-newFormat.ts"),
+    path.resolve(tckUtil.projectFolder(),"src/parser/test/data/TCK-newFormat"),
+    path.resolve(tckUtil.projectFolder(),"src/parser/test/TCK2-newFormat.ts"),
     dataRoot,
     'Complete TCK Test Set For New JSON Format',
     false,
@@ -68,8 +68,8 @@ tckUtil.generateMochaSuite(
 );
 
 tckUtil.generateMochaSuite(
-    path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/LibraryExpansion-newFormat"),
-    path.resolve(tckUtil.projectFolder(),"src/raml1/test/libraryExpansion-newFormat.ts"),
+    path.resolve(tckUtil.projectFolder(),"src/parser/test/data/LibraryExpansion-newFormat"),
+    path.resolve(tckUtil.projectFolder(),"src/parser/test/libraryExpansion-newFormat.ts"),
     dataRoot,
     'Library Expansion Tests For NEW JSON Format',
     true,
@@ -77,8 +77,8 @@ tckUtil.generateMochaSuite(
 );
 
 tckUtil.generateMochaSuite(
-    path.resolve(tckUtil.projectFolder(),"src/raml1/test/data/parser/UnfoldTypes"),
-    path.resolve(tckUtil.projectFolder(),"src/raml1/test/unfoldTypes.ts"),
+    path.resolve(tckUtil.projectFolder(),"src/parser/test/data/parser/UnfoldTypes"),
+    path.resolve(tckUtil.projectFolder(),"src/parser/test/unfoldTypes.ts"),
     dataRoot,
     'Types Unfolding Tests',
     false,

@@ -1,12 +1,12 @@
-import parser10api = require("./raml1/artifacts/raml10parserapi")
-import parser10impl = require("./raml1/artifacts/raml10parser")
-import coreApi=require("./raml1/wrapped-ast/parserCoreApi");
-import coreImpl=require("./raml1/wrapped-ast/parserCore");
-import highLevel = require("./raml1/highLevelAST");
-import stubs = require("./raml1/stubs");
+import parser10api = require("./parser/artifacts/raml10parserapi")
+import parser10impl = require("./parser/artifacts/raml10parser")
+import coreApi=require("./parser/wrapped-ast/parserCoreApi");
+import coreImpl=require("./parser/wrapped-ast/parserCore");
+import highLevel = require("./parser/highLevelAST");
+import stubs = require("./parser/stubs");
 import defSys = require("raml-definition-system")
-import jsyaml=require("./raml1/jsyaml/jsyaml2lowLevel")
-import ll=require("./raml1/lowLevelAST")
+import jsyaml=require("./parser/jsyaml/jsyaml2lowLevel")
+import ll=require("./parser/lowLevelAST")
 
 
 export function createTypeDeclaration(typeName : string) : parser10api.TypeDeclaration {

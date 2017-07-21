@@ -9,7 +9,7 @@ import path=require("path")
 import util = require("./test-utils")
 import tools = require("./testTools")
 import core = require("../wrapped-ast/parserCore")
-var dir=path.resolve(__dirname,"../../../src/raml1/test/")
+var dir=path.resolve(__dirname,"../../../src/parser/test/")
 
 describe('To Runtime Tests',function(){
     this.timeout(15000);

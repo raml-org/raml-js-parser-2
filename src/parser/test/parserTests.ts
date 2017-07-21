@@ -691,7 +691,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("commonLibrary/api2.raml"),["object is expected"]);
     })
     //it ("custom facets validator3" ,function(){
-    //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/raml1/test/data/commonLibrary/common.raml"]);
+    //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/parser/test/data/commonLibrary/common.raml"]);
     //})
     it ("overloading1" ,function(){
         testErrors(util.data("parser/overloading/o1.raml"),["Method 'get' already exists","Method 'get' already exists"]);

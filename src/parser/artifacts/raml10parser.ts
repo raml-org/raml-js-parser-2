@@ -27,18 +27,18 @@
  **/
 
  
-import hl=require("../../raml1/highLevelAST");
-import stubs=require("../../raml1/stubs");
-import hlImpl=require("../../raml1/highLevelImpl");
-import jsyaml=require("../../raml1/jsyaml/jsyaml2lowLevel");
-import json2lowlevel = require('../../raml1/jsyaml/json2lowLevel');
+import hl=require("../../parser/highLevelAST");
+import stubs=require("../../parser/stubs");
+import hlImpl=require("../../parser/highLevelImpl");
+import jsyaml=require("../../parser/jsyaml/jsyaml2lowLevel");
+import json2lowlevel = require('../../parser/jsyaml/json2lowLevel');
 import def=require("raml-definition-system");
-import services=require("../../raml1/definition-system/ramlServices");
-import core=require("../../raml1/wrapped-ast/parserCore");
-import apiLoader=require("../../raml1/apiLoader");
-import coreApi=require("../../raml1/wrapped-ast/parserCoreApi");
+import services=require("../../parser/definition-system/ramlServices");
+import core=require("../../parser/wrapped-ast/parserCore");
+import apiLoader=require("../../parser/apiLoader");
+import coreApi=require("../../parser/wrapped-ast/parserCoreApi");
 import pApi = require("./raml10parserapi");
-import helper=require("../../raml1/wrapped-ast/wrapperHelper")
+import helper=require("../../parser/wrapped-ast/wrapperHelper")
 
 import Api = pApi.Api;
 import ApiScalarsAnnotations = pApi.ApiScalarsAnnotations;

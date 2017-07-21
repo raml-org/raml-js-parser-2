@@ -6,9 +6,9 @@
     "compile": "rimraf dist && tsc",
     "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite && npm run removeMainDTSLinks",
     "generateTopLevel": "node dist/topLevelGenerator/buildParsers.js",
-    "generateTckSuite": "node dist/raml1/test/scripts/generateTCKMocha.js && tsc src/raml1/test/TCK2.ts --outDir dist -m commonjs --sourceMap && tsc src/raml1/test/libraryExpansion.ts --outDir dist -m commonjs --sourceMap",
-    "tck": "node dist/raml1/test/scripts/launchTCKRepo.js",
-    "generateDocumentation": "node dist/raml1/tools/packageTSParser.js -skipSources",
+    "generateTckSuite": "node dist/parser/test/scripts/generateTCKMocha.js && tsc src/parser/test/TCK2.ts --outDir dist -m commonjs --sourceMap && tsc src/parser/test/libraryExpansion.ts --outDir dist -m commonjs --sourceMap",
+    "tck": "node dist/parser/test/scripts/launchTCKRepo.js",
+    "generateDocumentation": "node dist/parser/tools/packageTSParser.js -skipSources",
     "generateBrowserVersion": "node dist/browserVersionGenerator/browserVersionGenerator.js",
     "generateBrowserVersionDev": "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
     "pullall": "dev-env-installer pullall",
@@ -18,8 +18,8 @@
     "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
     "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
     "buildBrowserPublishBower": "node generateBrowserVersion.js --type 'bower'",
-    "validateTCKSchema": "node dist/raml1/test/scripts/schema/schemaTCKValidator.js",
-    "platformTests": "node dist/raml1/test/scripts/platformTests.js"
+    "validateTCKSchema": "node dist/parser/test/scripts/schema/schemaTCKValidator.js",
+    "platformTests": "node dist/parser/test/scripts/platformTests.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",

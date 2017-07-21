@@ -1,9 +1,9 @@
 import def = require('raml-definition-system');
 
-import ll=require("./raml1/lowLevelAST")
-import refResolvers=require("./raml1/jsyaml/includeRefResolvers")
-import schemaGenApi = require("./raml1/tools/schemaModelGenApi")
-import schemaGenImpl = require("./raml1/tools/schemaModelGen")
+import ll=require("./parser/lowLevelAST")
+import refResolvers=require("./parser/jsyaml/includeRefResolvers")
+import schemaGenApi = require("./parser/tools/schemaModelGenApi")
+import schemaGenImpl = require("./parser/tools/schemaModelGen")
 
 import path = require("path");
 

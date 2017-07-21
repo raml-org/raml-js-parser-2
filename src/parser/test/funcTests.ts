@@ -449,7 +449,7 @@ describe('Parser schema functions tests',function() {
     });
 });
 
-describe('Parser raml1/artifacts factories functions tests',function() {
+describe('Parser parser/artifacts factories functions tests',function() {
     this.timeout(15000);
     funcUtil.loadWrappersData();
     

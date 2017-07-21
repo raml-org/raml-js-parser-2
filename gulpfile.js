@@ -30,59 +30,59 @@ var WEBPACK_OUTPUT_OPTIONS = {
 var tsWatch = false;
 
 var testFilesLibExpand = [
-  'dist/raml1/test/schema-model-tests.js',
+  'dist/parser/test/schema-model-tests.js',
   // ////
-  'dist/raml1/test/parserTests.js',
-  'dist/raml1/test/parserTests2.js',
-  'dist/raml1/test/parserASTTests.js',
-  'dist/raml1/test/traits-and-resource-types-expanding-tests.js',
-  'dist/raml1/test/helpersTest.js',
+  'dist/parser/test/parserTests.js',
+  'dist/parser/test/parserTests2.js',
+  'dist/parser/test/parserASTTests.js',
+  'dist/parser/test/traits-and-resource-types-expanding-tests.js',
+  'dist/parser/test/helpersTest.js',
   'dist/search/test/gotoDeclarationTests.js',
   'dist/search/test/findUsagesTests.js',
-  'dist/raml1/test/exampleGenTests.js',
-  'dist/raml1/test/typeSystemTests.js',
-  'dist/raml1/test/runtimeExampleTests.js',
-  'dist/raml1/test/examplesApiTests.js',
-  'dist/raml1/test/virtualFSTests.js',
-  'dist/raml1/test/TCK.js',
-  'dist/raml1/test/TCK2.js',
-  'dist/raml1/test/libraryExpansion.js',
-  'dist/raml1/test/TCK2-newFormat.js',
-  'dist/raml1/test/libraryExpansion-newFormat.js',
-  'dist/raml1/test/astReuseTests.js',
-  'dist/raml1/test/astReuseTestsBasicTyping.js',
-  'dist/raml1/test/astReuseTestsComplexTyping.js',
-  'dist/raml1/test/longivityTestsBasicTyping.js',
-  'dist/raml1/test/longivityTestsComplexTyping.js',
-  'dist/raml1/test/longivityTestsUserTyping.js',
-  'dist/raml1/test/unfoldTypes.js',
+  'dist/parser/test/exampleGenTests.js',
+  'dist/parser/test/typeSystemTests.js',
+  'dist/parser/test/runtimeExampleTests.js',
+  'dist/parser/test/examplesApiTests.js',
+  'dist/parser/test/virtualFSTests.js',
+  'dist/parser/test/TCK.js',
+  'dist/parser/test/TCK2.js',
+  'dist/parser/test/libraryExpansion.js',
+  'dist/parser/test/TCK2-newFormat.js',
+  'dist/parser/test/libraryExpansion-newFormat.js',
+  'dist/parser/test/astReuseTests.js',
+  'dist/parser/test/astReuseTestsBasicTyping.js',
+  'dist/parser/test/astReuseTestsComplexTyping.js',
+  'dist/parser/test/longivityTestsBasicTyping.js',
+  'dist/parser/test/longivityTestsComplexTyping.js',
+  'dist/parser/test/longivityTestsUserTyping.js',
+  'dist/parser/test/unfoldTypes.js',
   // // //
-  'src/raml1/test/data/parser/test/specs/optionals.js',
-  'src/raml1/test/data/parser/test/specs/parser.js',
-  'src/raml1/test/data/parser/test/specs/protocols.js',
-  'src/raml1/test/data/parser/test/specs/regressions.js',
-  'src/raml1/test/data/parser/test/specs/resourceTypes.js',
-  'src/raml1/test/data/parser/test/specs/resourceTypesValidations.js',
-  'src/raml1/test/data/parser/test/specs/traits.js',
-  'src/raml1/test/data/parser/test/specs/transformations.js',
-  'src/raml1/test/data/parser/test/specs/validator.js',
-  'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js',
-  'dist/raml1/test/parserTestsRC2.js'
+  'src/parser/test/data/parser/test/specs/optionals.js',
+  'src/parser/test/data/parser/test/specs/parser.js',
+  'src/parser/test/data/parser/test/specs/protocols.js',
+  'src/parser/test/data/parser/test/specs/regressions.js',
+  'src/parser/test/data/parser/test/specs/resourceTypes.js',
+  'src/parser/test/data/parser/test/specs/resourceTypesValidations.js',
+  'src/parser/test/data/parser/test/specs/traits.js',
+  'src/parser/test/data/parser/test/specs/transformations.js',
+  'src/parser/test/data/parser/test/specs/validator.js',
+  'src/parser/test/data/parser/test/specs/duplicateKeysValidations.js',
+  'dist/parser/test/parserTestsRC2.js'
 ]
 
 var testFilesExpand = [
-  'dist/raml1/test/schema-model-tests.js',
-  'dist/raml1/test/funcTests.js',
+  'dist/parser/test/schema-model-tests.js',
+  'dist/parser/test/funcTests.js',
 ].concat(testFilesLibExpand)
 
 var testFilesAll = [
   'src/**/*.test.js',
   'test/**/*.js',
-  //'dist/raml1/test/model-editing-tests-attrs.js',
-  'dist/raml1/test/model-editing-tests-add.js',
-  'dist/raml1/test/model-editing-tests-refactoring.js',
-  'dist/raml1/test/model-editing-tests-remove.js',
-  'dist/raml1/test/model-editing-tests-sig.js',
+  //'dist/parser/test/model-editing-tests-attrs.js',
+  'dist/parser/test/model-editing-tests-add.js',
+  'dist/parser/test/model-editing-tests-refactoring.js',
+  'dist/parser/test/model-editing-tests-remove.js',
+  'dist/parser/test/model-editing-tests-sig.js',
 ].concat(testFilesExpand);
 
 gulp.task('test:ts', ['pre-test'], function () {
@@ -120,7 +120,7 @@ gulp.task('testLibExpand:ts', function () {
 gulp.task('pre-test', function () {
     return gulp.src([
             'dist/*.js',
-            'dist/raml1/**/*.js',
+            'dist/parser/**/*.js',
             'dist/util/**/*.js'
     ])
         // Covering files
@@ -131,19 +131,19 @@ gulp.task('pre-test', function () {
 
 
 gulp.task('testCompat', function () {
-  //return gulp.src(['src/**/*.test.js', 'test/**/*.js', 'src/raml1/test/model-editing-tests-attrs.js', 'src/raml1/test/model-editing-tests-add.js', 'src/raml1/test/*.js'], { read: false })
+  //return gulp.src(['src/**/*.test.js', 'test/**/*.js', 'src/parser/test/model-editing-tests-attrs.js', 'src/parser/test/model-editing-tests-add.js', 'src/parser/test/*.js'], { read: false })
   return gulp.src([
 
-    'src/raml1/test/data/parser/test/specs/optionals.js',
-    'src/raml1/test/data/parser/test/specs/parser.js',
-    'src/raml1/test/data/parser/test/specs/protocols.js',
-    'src/raml1/test/data/parser/test/specs/regressions.js',
-    'src/raml1/test/data/parser/test/specs/resourceTypes.js',
-    'src/raml1/test/data/parser/test/specs/resourceTypesValidations.js',
-    'src/raml1/test/data/parser/test/specs/traits.js',
-    'src/raml1/test/data/parser/test/specs/transformations.js',
-    'src/raml1/test/data/parser/test/specs/validator.js',
-    'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js'
+    'src/parser/test/data/parser/test/specs/optionals.js',
+    'src/parser/test/data/parser/test/specs/parser.js',
+    'src/parser/test/data/parser/test/specs/protocols.js',
+    'src/parser/test/data/parser/test/specs/regressions.js',
+    'src/parser/test/data/parser/test/specs/resourceTypes.js',
+    'src/parser/test/data/parser/test/specs/resourceTypesValidations.js',
+    'src/parser/test/data/parser/test/specs/traits.js',
+    'src/parser/test/data/parser/test/specs/transformations.js',
+    'src/parser/test/data/parser/test/specs/validator.js',
+    'src/parser/test/data/parser/test/specs/duplicateKeysValidations.js'
   ], { read: false })
       .pipe(mocha({
         bail: true,
@@ -161,7 +161,7 @@ gulp.task('watch:test', function () {
 
 gulp.task('typescript:prepare-compile', [], function () {
   var hasError = false;
-  var tsResult = gulp.src(['src/raml1/tools/prepare.ts'])
+  var tsResult = gulp.src(['src/parser/tools/prepare.ts'])
       .pipe(sourcemaps.init())
       .pipe(ts(tsProject))
       .on('error', function () {
@@ -175,7 +175,7 @@ gulp.task('typescript:prepare-compile', [], function () {
 
   return tsResult.js
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest('src/raml1/tools/'));
+      .pipe(gulp.dest('src/parser/tools/'));
 });
 
 gulp.task('typescript:compile', [
@@ -200,14 +200,14 @@ gulp.task('typescript:compile', [
 });
 
 gulp.task('typescript:prepare', ['typescript:prepare-compile'], function (done) {
-  return spawn('node', [join(__dirname, 'src/raml1/tools/prepare.js')], done);
+  return spawn('node', [join(__dirname, 'src/parser/tools/prepare.js')], done);
 });
 
 gulp.task('typescript:generate-parser', [
   'typescript:gen-artifacts',
   'typescript:compile'
 ], function (done) {
-  return spawn('node', [join(__dirname, 'src/raml1/tools/buildParsers.js')], done);
+  return spawn('node', [join(__dirname, 'src/parser/tools/buildParsers.js')], done);
 });
 
 

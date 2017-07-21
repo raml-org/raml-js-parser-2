@@ -23,10 +23,10 @@ import RamlWrapper08 = require("../artifacts/raml08parserapi");
 import RamlWrapper08Impl = require("../artifacts/raml08parser");
 
 import hlimpl=require("../highLevelImpl")
-import apiLoader = require("../../raml1/apiLoader")
+import apiLoader = require("../../parser/apiLoader")
 
 
-var pdir = path.resolve(__dirname, "../../../src/raml1/test");
+var pdir = path.resolve(__dirname, "../../../src/parser/test");
 
 export var universe = require("../definition-system/universeProvider")("RAML10");
 export var apiType = <def.NodeClass>universe.type("Api");
@@ -255,7 +255,7 @@ export function projectRoot(): string {
 }
 
 export function data(filepath: string): string {
-  var datadir =  path.resolve(projectRoot(), 'src/raml1/test/data');
+  var datadir =  path.resolve(projectRoot(), 'src/parser/test/data');
   return path.resolve(datadir, filepath);
 }
 

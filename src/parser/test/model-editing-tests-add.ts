@@ -14,7 +14,7 @@ import stubs = require("../stubs")
 import hl=require("../highLevelAST")
 import t3 = require("../artifacts/raml10parser")
 import util = require("./test-utils")
-import services=require("../../raml1/definition-system/ramlServices")
+import services=require("../../parser/definition-system/ramlServices")
 import wrapper=require("../artifacts/raml10parser")
 type ASTNodeImpl =high.ASTNodeImpl;
 

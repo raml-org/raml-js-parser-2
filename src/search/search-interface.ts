@@ -1,7 +1,7 @@
 import searchImpl=require("./search-implementation")
-import hl=require("../raml1/highLevelAST")
-import ll=require("../raml1/lowLevelAST")
-import hlimpl=require("../raml1/highLevelImpl")
+import hl=require("../parser/highLevelAST")
+import ll=require("../parser/lowLevelAST")
+import hlimpl=require("../parser/highLevelImpl")
 import def=require("raml-definition-system")
 import sourceFinder = require("./sourceFinder")
 

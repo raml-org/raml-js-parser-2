@@ -1,5 +1,5 @@
 import RamlWrapper = require("./raml10parser");
-import hl = require("../../raml1/highLevelAST")
+import hl = require("../../parser/highLevelAST")
 
 function getWrapperConstructor(definition : hl.INodeDefinition) {
     if (!definition.isBuiltIn()) return null;

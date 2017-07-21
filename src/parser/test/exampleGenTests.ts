@@ -21,7 +21,7 @@ import services=require("../definition-system/ramlServices")
 //import t3 = require("../artifacts/raml10parser")
 //
 import util = require("./test-utils")
-var dir=path.resolve(__dirname,"../../../src/raml1/test/")
+var dir=path.resolve(__dirname,"../../../src/parser/test/")
 
 function createExampleObject(w:wrapperApi.TypeDeclaration, generateFakeExamples = false){
 

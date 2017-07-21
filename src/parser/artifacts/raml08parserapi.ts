@@ -1,6 +1,6 @@
 
-import hl=require("../../raml1/highLevelAST");
-import core=require("../../raml1/wrapped-ast/parserCoreApi");
+import hl=require("../../parser/highLevelAST");
+import core=require("../../parser/wrapped-ast/parserCoreApi");
 
 export interface Api extends core.BasicNode{
 

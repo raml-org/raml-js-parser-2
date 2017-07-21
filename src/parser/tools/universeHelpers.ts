@@ -1,4 +1,4 @@
-import hl=require("../../raml1/highLevelAST")
+import hl=require("../../parser/highLevelAST")
 import universe = require("./universe")
 
 /////////////////////// properties

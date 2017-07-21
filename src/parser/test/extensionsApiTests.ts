@@ -4,7 +4,7 @@ import assert = require("assert")
 import RamlWrapper = require("../artifacts/raml10parserapi")
 import RamlWrapperImpl = require("../artifacts/raml10parser")
 import apiLoader = require("../apiLoader")
-import hl = require("../../raml1/highLevelAST")
+import hl = require("../../parser/highLevelAST")
 import path = require("path")
 
 

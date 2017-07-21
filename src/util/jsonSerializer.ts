@@ -1,33 +1,33 @@
 /// <reference path="../../typings/main.d.ts" />
-var universe = require("../raml1/tools/universe");
-import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
-import core = require("../raml1/wrapped-ast/parserCore");
-import proxy = require("../raml1/ast.core/LowLevelASTProxy");
+var universe = require("../parser/tools/universe");
+import coreApi = require("../parser/wrapped-ast/parserCoreApi");
+import core = require("../parser/wrapped-ast/parserCore");
+import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
-import hl = require("../raml1/highLevelAST");
-import ll = require("../raml1/lowLevelAST");
-import hlImpl = require("../raml1/highLevelImpl");
-import builder = require("../raml1/ast.core/builder");
+import hl = require("../parser/highLevelAST");
+import ll = require("../parser/lowLevelAST");
+import hlImpl = require("../parser/highLevelImpl");
+import builder = require("../parser/ast.core/builder");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
-import universeHelpers = require("../raml1/tools/universeHelpers")
-import universes = require("../raml1/tools/universe")
+import universeHelpers = require("../parser/tools/universeHelpers")
+import universes = require("../parser/tools/universe")
 import util = require("../util/index")
 import _ = require("underscore");
 
-import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
+import RamlWrapper10 = require("../parser/artifacts/raml10parserapi");
 
 var pathUtils = require("path");
 
 export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMeta:boolean = true):any{
-    return new TCKDumper({
+    return new JsonSerializer({
         rootNodeDetails : true,
         serializeMetadata : serializeMeta
     }).dump(node);
 }
 
-export class TCKDumper {
+export class JsonSerializer {
 
     constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
