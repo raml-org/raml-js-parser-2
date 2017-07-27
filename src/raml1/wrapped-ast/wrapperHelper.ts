@@ -120,6 +120,7 @@ export function absoluteUri(res:RamlWrapper.Resource):string{
         parent = res.parent();
     }
     while (parent.definition().key().name==universes.Universe10.Resource.name);
+    parent = getParent(res);
     uri = uri.replace(/\/\//g,'/');
     var buri=(<RamlWrapper.Api>parent).baseUri();
     var base =buri?buri.value():"";
@@ -490,7 +491,7 @@ export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.Type
     do{
         res = <RamlWrapper.Resource>parent;
         params = uriParameters(res).concat(params);
-        parent = res.parent();
+        parent = getParent(res);
 
     }
     while (parent.definition().key().name==universes.Universe10.Resource.name);
@@ -499,6 +500,18 @@ export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.Type
     var baseUriParams = api.baseUriParameters();
     params = baseUriParameters(api).concat(params);
     return params;
+}
+
+function getParent(wNode:core.BasicNode){
+    let parent =  wNode.parent();
+    if(!parent){
+        return null;
+    }
+    let slaveHL = parent.highLevel().getSlaveCounterPart();
+    if(slaveHL){
+        parent = slaveHL.wrapperNode();
+    }
+    return parent;
 }
 
 /**

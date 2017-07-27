@@ -1509,6 +1509,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if (this.isAuxilary()) {
             if (!this._slaveIds) {
                 this._slaveIds={};
+                this._slaveIds[this.id()] = this;
                 var all=search.allChildren(<hl.IHighLevelNode>this);
                 all.forEach(x=>this._slaveIds[x.id()]=x);
             }

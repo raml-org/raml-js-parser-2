@@ -162,6 +162,7 @@ export function absoluteUri(res:hl.IHighLevelNode):string{
     while (universeHelpers.isResourceType(parent.definition()));
     uri = uri.replace(/\/\//g,'/');
     var base:string = "";
+    parent = parent.getSlaveCounterPart()||parent;
     var buriAttr = parent.attr(universeDef.Universe10.Api.properties.baseUri.name);
     if(buriAttr) {
         base = buriAttr ? buriAttr.value() :  "";
