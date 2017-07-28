@@ -480,15 +480,15 @@ export class TraitsAndResourceTypesExpander {
                      transformer:ValueTransformer,
                      unitsChain:ll.ICompilationUnit[]=[]):GenericData {
 
-        var value = <any>obj.value();
-        var propName = pluralize.plural(changeCase.camelCase(template));
+        let value = <any>obj.value();
+        let propName = pluralize.plural(changeCase.camelCase(template));
         if (typeof(value) == 'string') {
             if (transformer) {
                 value = transformer.transform(value).value;
             }
-            var _node = referencePatcher.getDeclaration(value,propName,unitsChain);
+            let _node = referencePatcher.getDeclaration(value,propName,unitsChain);
             if (_node) {
-                var node = <any>_node.wrapperNode();
+                let node = <any>_node.wrapperNode();
                 return {
                     name: value,
                     transformer: null,
@@ -500,44 +500,47 @@ export class TraitsAndResourceTypesExpander {
             }
         }
         else if (hlimpl.StructuredValue.isInstance(value)) {
-            var sv = <hlimpl.StructuredValue>value;
-            var name = sv.valueName();
+            let sv = <hlimpl.StructuredValue>value;
+            let name = sv.valueName();
             if (transformer) {
                 name = transformer.transform(name).value;
             }
-            var scalarParams:{[key:string]:string} = {};
-            var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
+            let scalarParamValues:{[key:string]:string} = {};
+            let scalarParams:{[key:string]:ll.ILowLevelASTNode} = {};
+            let structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
 
-            var _node = referencePatcher.getDeclaration(name,propName,unitsChain);
+            let _node = referencePatcher.getDeclaration(name,propName,unitsChain);
             if (_node) {
-                var node = <any>_node.wrapperNode();
+                let node = <any>_node.wrapperNode();
                 if (this.ramlVersion == 'RAML08') {
-                    sv.children().forEach(x=>scalarParams[x.valueName()] = x.lowLevel().value());
+                    sv.children().forEach(x=>scalarParamValues[x.valueName()] = x.lowLevel().value());
                 }
                 else {
                     sv.children().forEach(x=>{
-                        var llNode = x.lowLevel();
+                        let llNode = referencePatcher.toOriginal(x.lowLevel());
                         if(llNode.resolvedValueKind()==yaml.Kind.SCALAR) {
-                            scalarParams[x.valueName()] = llNode.value();
+                            scalarParamValues[x.valueName()] = llNode.value();
+                            scalarParams[x.valueName()] = llNode;
                         }
                         else{
                             structuredParams[x.valueName()] = llNode;
                         }
                     });
-                } 
-                var ds=new DefaultTransformer(<any>r,null,unitsChain);
-                Object.keys(scalarParams).forEach(x=>{
-                    var q=ds.transform(scalarParams[x]);
+                }
+                let ds=new DefaultTransformer(<any>r,null,unitsChain);
+                Object.keys(scalarParamValues).forEach(x=>{
+                    let q=ds.transform(scalarParamValues[x]);
                     //if (q.value){
                         if (q) {
                             if (typeof q!=="object") {
-                                scalarParams[x] = q;
+                                scalarParamValues[x] = q;
                             }
                         }
                     //}
                 });
-                var valTransformer = new ValueTransformer(template, name, unitsChain, scalarParams, structuredParams,transformer);
-                var resourceTypeTransformer = new DefaultTransformer(null,valTransformer,unitsChain);
+                let valTransformer = new ValueTransformer(
+                    template, name, unitsChain, scalarParamValues, scalarParams, structuredParams,transformer);
+                let resourceTypeTransformer = new DefaultTransformer(null,valTransformer,unitsChain);
                 return {
                     name: name,
                     transformer: resourceTypeTransformer,
@@ -770,7 +773,8 @@ export class ValueTransformer implements proxy.ValueTransformer{
         public templateKind:string,
         public templateName:string,
         public unitsChain: ll.ICompilationUnit[],
-        public params?:{[key:string]:string},
+        public scalarParamValues?:{[key:string]:string},
+        public scalarParams?:{[key:string]:ll.ILowLevelASTNode},
         public structuredParams?:{[key:string]:ll.ILowLevelASTNode},
         public vDelegate?:ValueTransformer){
     }
@@ -816,7 +820,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 if(transformers.length>0) {
                     var ind = paramOccurence.indexOf('|');
                     paramName = paramOccurence.substring(0,ind).trim();
-                    val = this.params[paramName];
+                    val = this.scalarParamValues[paramName];
                     if(val && typeof(val) == "string" && val.indexOf("<<")>=0&&this.vDelegate){
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
@@ -830,7 +834,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                     }
                 } else {
                     paramName = paramOccurence.trim();
-                    val = this.params[paramName];
+                    val = this.scalarParamValues[paramName];
                     if(val && typeof(val) == "string" && val.indexOf("<<")>=0&&this.vDelegate){
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
@@ -921,9 +925,23 @@ export class ValueTransformer implements proxy.ValueTransformer{
         return null;
     }
 
-    private substitutionNode(node:ll.ILowLevelASTNode) {
+    substitutionNode(node:ll.ILowLevelASTNode,chain:ll.ILowLevelASTNode[]=[]) {
         var paramName = this.paramName(node);
-        return paramName && this.structuredParams[paramName];
+        let result = paramName && (this.scalarParams[paramName]||this.structuredParams[paramName]);
+        if(!result){
+            return null;
+        }
+        chain.push(result);
+        if(this.vDelegate){
+            return this.vDelegate.substitutionNode(result,chain) || result;
+        }
+        return result;
+    }
+
+    paramNodesChain(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]{
+        let chain:ll.ILowLevelASTNode[]=[];
+        this.substitutionNode(referencePatcher.toOriginal(node),chain);
+        return chain.length > 0 ? chain : null;
     }
     
     private paramName(node:ll.ILowLevelASTNode):string {
@@ -962,7 +980,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
 
     _definingUnitSequence(str:string):ll.ICompilationUnit[]{
 
-        if(this.params && this.params[str]){
+        if(this.scalarParamValues && this.scalarParamValues[str]){
             return this.unitsChain;
         }
         if(this.vDelegate){
@@ -1059,12 +1077,12 @@ export class DefaultTransformer extends ValueTransformer{
             resourcePathName="";
             }
         }
-        this.params = {
+        this.scalarParamValues = {
             resourcePath: resourcePath,
             resourcePathName: resourcePathName
         };
         if(methodName){
-            this.params['methodName'] = methodName;
+            this.scalarParamValues['methodName'] = methodName;
         }
     }
 
@@ -1088,9 +1106,13 @@ export class DefaultTransformer extends ValueTransformer{
         return this.delegate != null ? this.delegate.resolvedValueKind(node) : null;
     }
 
+    substitutionNode(node:ll.ILowLevelASTNode,chain:ll.ILowLevelASTNode[]=[]) {
+        return this.delegate ? this.delegate.substitutionNode(node,chain) : null;
+    }
+
     _definingUnitSequence(str:string):ll.ICompilationUnit[]{
 
-        if(this.params && this.params[str]){
+        if(this.scalarParamValues && this.scalarParamValues[str]){
             return this.unitsChain;
         }
         if(this.delegate){

@@ -4221,7 +4221,8 @@ var localLowLevelError = function (
     issueCode,
     isWarning,
     message,path:boolean,
-    range?:def.rt.tsInterfaces.RangeObject) : hl.ValidationIssue {
+    range?:def.rt.tsInterfaces.RangeObject,
+    positionsFromValue=false) : hl.ValidationIssue {
 
     var contents = node.unit() && node.unit().contents();
     var contentLength = contents && contents.length;
@@ -4241,6 +4242,11 @@ var localLowLevelError = function (
         if (ke > 0) {
             et = ke;
         }
+    }
+    let val = node.value(true);
+    if(positionsFromValue && val && val.length>0){
+        st = node.valueStart();
+        et = node.valueEnd();
     }
 
 
@@ -4321,6 +4327,20 @@ export function createIssue(
                 original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange,forceScalar);
                 internalRange = null;
                 //message +="(template expansion affected)"
+
+                let paramsChain = proxyNode.transformer() && proxyNode.transformer().paramNodesChain(proxyNode);
+                if(paramsChain && paramsChain.length>0){
+                    let o = original;
+                    while(o.extras && o.extras.length>0){
+                        o = o.extras[0];
+                    }
+                    for(let pNode of paramsChain){
+                        let e = localLowLevelError(pNode,null,issueCode,isWarning,message,false,null,true);
+                        o.extras.push(e);
+                        o = e;
+                    }
+                    return original;
+                }
             }
             node=node.parent();
             proxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
@@ -4365,7 +4385,11 @@ export function createIssue(
     }
     var error=localError(node, issueCode, isWarning, message,false,pr,null,internalRange,forceScalar);
     if (original) {
-        original.extras.push(error);
+        let o = original;
+        while(o.extras && o.extras.length>0){
+            o = o.extras[0];
+        }
+        o.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
             var messageEntry = messageRegistry.ERROR_IN_INCLUDED_FILE;
             error.code = messageEntry.code;

@@ -325,6 +325,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     protected nonMergableChildren:{[key:string]:boolean} = {};
 
+    originalNode():LowLevelValueTransformingNode{
+        return <LowLevelValueTransformingNode>this._originalNode;
+    }
+
     adoptedNodes():ll.ILowLevelASTNode[]{
         return this._adoptedNodes;
     }
@@ -862,6 +866,8 @@ export interface ValueTransformer{
     resolvedValueKind(node:ll.ILowLevelASTNode):yaml.Kind
 
     includePath(node:ll.ILowLevelASTNode):string
+
+    paramNodesChain(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
 
     definingUnitSequence(str:string):ll.ICompilationUnit[]
 }
