@@ -1,25 +1,25 @@
 /// <reference path="../../typings/main.d.ts" />
 
-import RamlWrapper1= require("../raml1/artifacts/raml10parserapi")
-import RamlWrapper1Impl= require("../raml1/artifacts/raml10parser")
+import RamlWrapper1= require("../parser/artifacts/raml10parserapi")
+import RamlWrapper1Impl= require("../parser/artifacts/raml10parser")
 
-import RamlWrapper08= require("../raml1/artifacts/raml08parserapi")
+import RamlWrapper08= require("../parser/artifacts/raml08parserapi")
 
 import path=require("path")
 import fs=require("fs")
 import Opt = require('../Opt')
-import jsyaml=require("../raml1/jsyaml/jsyaml2lowLevel")
-import hl=require("../raml1/highLevelAST")
-import hlimpl=require("../raml1/highLevelImpl")
-import ll=require("../raml1/lowLevelAST")
-import llimpl=require("../raml1/jsyaml/jsyaml2lowLevel")
-import expander=require("../raml1/ast.core/expander")
-import expanderHL=require("../raml1/ast.core/expanderHL")
+import jsyaml=require("../parser/jsyaml/jsyaml2lowLevel")
+import hl=require("../parser/highLevelAST")
+import hlimpl=require("../parser/highLevelImpl")
+import ll=require("../parser/lowLevelAST")
+import llimpl=require("../parser/jsyaml/jsyaml2lowLevel")
+import expander=require("../parser/ast.core/expander")
+import expanderHL=require("../parser/ast.core/expanderHL")
 import util=require("../util/index")
-import universeDef=require("../raml1/tools/universe")
-import parserCore=require('../raml1/wrapped-ast/parserCore')
-import parserCoreApi=require('../raml1/wrapped-ast/parserCoreApi')
-import ramlServices = require("../raml1/definition-system/ramlServices")
+import universeDef=require("../parser/tools/universe")
+import parserCore=require('../parser/wrapped-ast/parserCore')
+import parserCoreApi=require('../parser/wrapped-ast/parserCoreApi')
+import ramlServices = require("../parser/definition-system/ramlServices")
 import tckDumperHL = require("../util/tckDumperHL")
 import universeHelpers = require("./tools/universeHelpers");
 import search = require("./../search/search-interface");
@@ -27,7 +27,7 @@ import search = require("./../search/search-interface");
 export type IHighLevelNode=hl.IHighLevelNode;
 export type IParseResult=hl.IParseResult;
 
-import universeProvider=require("../raml1/definition-system/universeProvider")
+import universeProvider=require("../parser/definition-system/universeProvider")
 
 export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Object>{
     options = options || {};

@@ -1,6 +1,6 @@
-import apiLoader = require("../raml1/apiLoader");
-import RamlWrapper = require("../raml1/artifacts/raml08parserapi")
-import RamlWrapper1= require("../raml1/artifacts/raml10parserapi")
+import apiLoader = require("../parser/apiLoader");
+import RamlWrapper = require("../parser/artifacts/raml08parserapi")
+import RamlWrapper1= require("../parser/artifacts/raml10parserapi")
 import Opt= require("../Opt")
 import raml = require('raml-parser');
 import fs = require("fs");

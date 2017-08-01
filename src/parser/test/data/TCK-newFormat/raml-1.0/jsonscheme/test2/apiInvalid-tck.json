@@ -4,7 +4,7 @@
       {
         "name": "MyType",
         "displayName": "MyType",
-        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test2/remoteScheme.json",
+        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test2/remoteScheme.json",
         "type": [
           "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"id\":\"asd\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        }\n    },\n    \"required\": [ \"name\" ]\n}"
         ],
@@ -17,7 +17,7 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test2/remoteScheme.json"
+        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test2/remoteScheme.json"
       }
     ],
     "title": "Api",

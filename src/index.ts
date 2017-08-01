@@ -1,5 +1,5 @@
-import parserCore = require("./raml1/wrapped-ast/parserCoreApi")
-import apiLoader = require("./raml1/apiLoader")
+import parserCore = require("./parser/wrapped-ast/parserCoreApi")
+import apiLoader = require("./parser/apiLoader")
 import path = require("path")
 
 var PromiseConstructor = require('promise-polyfill');
@@ -7,12 +7,12 @@ var PromiseConstructor = require('promise-polyfill');
 /**
  * RAML 1.0 top-level AST interfaces.
  */
-export import api10 = require("./raml1/artifacts/raml10parserapi")
+export import api10 = require("./parser/artifacts/raml10parserapi")
 
 /**
  * RAML 0.8 top-level AST interfaces.
  */
-export import api08 = require("./raml1/artifacts/raml08parserapi")
+export import api08 = require("./parser/artifacts/raml08parserapi")
 
 /**
  * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the result contains errors and the 'rejectOnErrors' option is set to 'true'.
@@ -194,12 +194,12 @@ export function asFragment(node:api10.Api|api10.Library|api10.Overlay|api10.Exte
 /**
  * High-level AST interfaces.
  */
-export import hl=require("./raml1/highLevelAST")
+export import hl=require("./parser/highLevelAST")
 
 /**
  * Low-level AST interfaces.
  */
-export import ll=require("./raml1/lowLevelAST")
+export import ll=require("./parser/lowLevelAST")
 
 /**
  * Search functionality, operates on high AST level.
@@ -221,7 +221,7 @@ export import project=require("./project")
 /**
  * Helpers for classification of high-level AST entity types.
  */
-export import universeHelpers=require("./raml1/tools/universeHelpers")
+export import universeHelpers=require("./parser/tools/universeHelpers")
 
 /**
  * Definition system.

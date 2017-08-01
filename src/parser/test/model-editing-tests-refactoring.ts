@@ -15,8 +15,8 @@ import hl=require("../highLevelAST")
 import util = require("./test-utils")
 import wrapper=require("../artifacts/raml10parser")
 import core = require('../wrapped-ast/parserCore')
-import universeModule = require("../../raml1/tools/universe")
-import services=require("../../raml1/definition-system/ramlServices")
+import universeModule = require("../../parser/tools/universe")
+import services=require("../../parser/definition-system/ramlServices")
 // describe('Low level model: refactoring', function() {
 //
 //   it('refactoring remove two methods #res00', function () {

@@ -1,14 +1,14 @@
 /// <reference path="../../typings/main.d.ts" />
 
 import defs=require("raml-definition-system")
-import hl=require("../raml1/highLevelAST")
-import ll=require("../raml1/lowLevelAST")
+import hl=require("../parser/highLevelAST")
+import ll=require("../parser/lowLevelAST")
 import _=require("underscore")
 
 import def=require( "raml-definition-system");
 // import high=require("../highLevelAST");
-import hlimpl=require("../raml1/highLevelImpl")
-import universes=require("../raml1/tools/universe")
+import hlimpl=require("../parser/highLevelImpl")
+import universes=require("../parser/tools/universe")
 import ramlServices=def
 import path=require("path")
 import nominalTypes=defs.rt.nominalTypes;
@@ -17,7 +17,7 @@ import sourceFinder = require("./sourceFinder")
 
 export type ITypeDefinition=hl.ITypeDefinition
 
-import resourceRegistry = require('../raml1/jsyaml/resourceRegistry');
+import resourceRegistry = require('../parser/jsyaml/resourceRegistry');
 
 
 export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {

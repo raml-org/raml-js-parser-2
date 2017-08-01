@@ -1,5 +1,5 @@
-import wh=require("./raml1/wrapped-ast/wrapperHelper")
-import api=require("./raml1/artifacts/raml10parserapi")
+import wh=require("./parser/wrapped-ast/wrapperHelper")
+import api=require("./parser/artifacts/raml10parserapi")
 export function completeRelativeUri(res:api.Resource):string {
     return wh.completeRelativeUri(res);
 }

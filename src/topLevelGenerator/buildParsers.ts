@@ -13,7 +13,7 @@ import path = require("path")
 
 //target paths
 
-var artifactsFolderPath = "../../src/raml1/artifacts";
+var artifactsFolderPath = "../../src/parser/artifacts";
 var parserInterfaceTargetPath10=path.join(__dirname, artifactsFolderPath + "/raml10parserapi.ts").toString();
 var parserImplementationTargetPath10=path.join(__dirname, artifactsFolderPath + "/raml10parser.ts").toString();
 
@@ -30,7 +30,7 @@ var apiType10=universe10.type("Api");
 var parserGenerator10 = wrapped.def2Parser(apiType10);
 var parserInterfaceContent10 = parserGenerator10.serializeInterfaceToString();
 var parserImplementationContent10 = parserGenerator10.serializeImplementationToString();
-var factoryContent10 = parserGenerator10.nodeFactory("../../raml1/highLevelAST","./raml10parser");
+var factoryContent10 = parserGenerator10.nodeFactory("../../parser/highLevelAST","./raml10parser");
 if (!fs.existsSync(path.dirname(parserInterfaceTargetPath10))) {
     fs.mkdirSync(path.dirname(parserInterfaceTargetPath10));
 }
@@ -44,7 +44,7 @@ var apiType08=universe08.type("Api");
 var parserGenerator08 = wrapped.def2Parser(apiType08);
 var parserInterfaceContent08 = parserGenerator08.serializeInterfaceToString();
 var parserImplementationContent08 = parserGenerator08.serializeImplementationToString();
-var factoryContent08 = parserGenerator08.nodeFactory("../../raml1/highLevelAST","./raml08parser");
+var factoryContent08 = parserGenerator08.nodeFactory("../../parser/highLevelAST","./raml08parser");
 if (!fs.existsSync(path.dirname(parserInterfaceTargetPath08))) {
     fs.mkdirSync(path.dirname(parserInterfaceTargetPath08));
 }

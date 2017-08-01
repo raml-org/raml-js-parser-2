@@ -80,7 +80,7 @@ export class Http2FSResolverAsync implements resolverApi.HTTPResolver{
             }
             dir = parent;
         }
-        this.rootDataDir = path.resolve(dir,"./src/raml1/test/data");
+        this.rootDataDir = path.resolve(dir,"./src/parser/test/data");
         return Promise.resolve(this.rootDataDir);
     }
 

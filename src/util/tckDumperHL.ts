@@ -1,27 +1,27 @@
 /// <reference path="../../typings/main.d.ts" />
-import core = require("../raml1/wrapped-ast/parserCore");
-import proxy = require("../raml1/ast.core/LowLevelASTProxy");
+import core = require("../parser/wrapped-ast/parserCore");
+import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import yaml = require("yaml-ast-parser");
 import def = require("raml-definition-system")
-import hl = require("../raml1/highLevelAST");
-import ll = require("../raml1/lowLevelAST");
-import llImpl = require("../raml1/jsyaml/jsyaml2lowLevel");
-import hlImpl = require("../raml1/highLevelImpl");
-import builder = require("../raml1/ast.core/builder");
-import expander=require("../raml1/ast.core/expanderHL");
-import referencePatcher=require("../raml1/ast.core/referencePatcher");
+import hl = require("../parser/highLevelAST");
+import ll = require("../parser/lowLevelAST");
+import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
+import hlImpl = require("../parser/highLevelImpl");
+import builder = require("../parser/ast.core/builder");
+import expander=require("../parser/ast.core/expanderHL");
+import referencePatcher=require("../parser/ast.core/referencePatcher");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
 import typeExpressions = typeSystem.typeExpressions;
 
-import universeHelpers = require("../raml1/tools/universeHelpers")
-import universes = require("../raml1/tools/universe")
+import universeHelpers = require("../parser/tools/universeHelpers")
+import universes = require("../parser/tools/universe")
 import util = require("../util/index")
 
-import defaultCalculator = require("../raml1/wrapped-ast/defaultCalculator");
-import helpersHL = require("../raml1/wrapped-ast/helpersHL");
-import stubs = require('../raml1/stubs');
+import defaultCalculator = require("../parser/wrapped-ast/defaultCalculator");
+import helpersHL = require("../parser/wrapped-ast/helpersHL");
+import stubs = require('../parser/stubs');
 
 import _ = require("underscore");
 import path = require("path");

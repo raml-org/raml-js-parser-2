@@ -154,7 +154,7 @@
     {
       "code": "INVALID_DATEONLY",
       "message": "'date-only' instance should match 'yyyy-mm-dd' pattern",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/LibraryExpansion/TraceTests/test001/libraries/lib2.raml",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/LibraryExpansion/TraceTests/test001/libraries/lib2.raml",
       "range": {
         "start": {
           "line": 7,

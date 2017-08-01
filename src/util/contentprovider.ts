@@ -3,11 +3,11 @@ import _ = require("underscore")
 import path = require('path');
 import URL = require('url');
 import fs = require('fs');
-import lowLevel = require("../raml1/lowLevelAST");
+import lowLevel = require("../parser/lowLevelAST");
 import util = require("./index");
-import ll = require("../raml1/lowLevelAST");
+import ll = require("../parser/lowLevelAST");
 
-import resourceRegistry = require("../raml1/jsyaml/resourceRegistry");
+import resourceRegistry = require("../parser/jsyaml/resourceRegistry");
 
 export class ContentProvider {
     constructor(private unit: lowLevel.ICompilationUnit) {

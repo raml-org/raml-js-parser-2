@@ -104,7 +104,7 @@
     {
       "code": "UNRESOLVED_REFERENCE",
       "message": "Reference: 'lib1.MyAnnotationType' can not be resolved",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/LibraryExpansion-newFormat/LibraryAnnotations/test002/lib.raml",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/LibraryExpansion-newFormat/LibraryAnnotations/test002/lib.raml",
       "range": {
         "start": {
           "line": 8,

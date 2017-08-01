@@ -1,13 +1,13 @@
-import rs=require("./raml1/jsyaml/resourceRegistry")
-import hlimpl=require("./raml1/highLevelImpl")
+import rs=require("./parser/jsyaml/resourceRegistry")
+import hlimpl=require("./parser/highLevelImpl")
 import defs=require("raml-definition-system")
-import jsyaml=require("./raml1/jsyaml/jsyaml2lowLevel")
-import expander=require("./raml1/ast.core/expander")
-import hl=require("./raml1/highLevelAST")
-import ll=require("./raml1/lowLevelAST")
-import linter=require("./raml1/ast.core/linter")
-import builder=require("./raml1/ast.core/builder")
-import universes = require("./raml1/tools/universe")
+import jsyaml=require("./parser/jsyaml/jsyaml2lowLevel")
+import expander=require("./parser/ast.core/expander")
+import hl=require("./parser/highLevelAST")
+import ll=require("./parser/lowLevelAST")
+import linter=require("./parser/ast.core/linter")
+import builder=require("./parser/ast.core/builder")
+import universes = require("./parser/tools/universe")
 
 export function hasAsyncRequests(){
     return rs.hasAsyncRequests();

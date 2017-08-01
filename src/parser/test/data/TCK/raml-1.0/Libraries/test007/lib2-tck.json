@@ -32,7 +32,7 @@
     {
       "code": "RECURRENT_DEFINITION",
       "message": "Recurrent type definition",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/TCK/raml-1.0/Libraries/test007/lib1.raml",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/TCK/raml-1.0/Libraries/test007/lib1.raml",
       "range": {
         "start": {
           "line": 7,

@@ -711,7 +711,7 @@ function fileContent(suiteStrings:string[],filePath:string,title:string) {
     var folder = projectFolder();
     var dstFolder = path.dirname(filePath);
 
-    var tckUtilPath = path.resolve(folder,"./src/raml1/test/scripts/tckUtil");
+    var tckUtilPath = path.resolve(folder,"./src/parser/test/scripts/tckUtil");
     var typingsPath = path.resolve(folder,"typings/main.d.ts");
     var relTckUtilPath = toIncludePath(dstFolder, tckUtilPath);
     var relTypingsPath = toIncludePath(dstFolder,typingsPath);

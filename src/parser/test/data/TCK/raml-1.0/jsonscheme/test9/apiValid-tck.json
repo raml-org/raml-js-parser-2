@@ -8,7 +8,7 @@
           "name": "MyType",
           "displayName": "MyType",
           "typePropertyKind": "JSON",
-          "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test9/remoteScheme.json",
+          "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test9/remoteScheme.json",
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"properties\":{\n        \"rootName\": {\"type\": \"string\"},\n        \"parent\": {\"$ref\": \"subdir/remoteScheme.json#\"}\n    },\n    \"required\": [ \"rootName\" ]\n}\n"
           ],

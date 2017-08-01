@@ -279,11 +279,11 @@ function getRamlModuleCode():string{
 
     return `/// <reference path="../../typings/main.d.ts" />
 import apiLoader = require('../../src/ramlscript/apiLoader');
-import json2lowlevel = require('../../src/raml1/jsyaml/json2lowLevel')
-import RamlWrapper = require('../../src/raml1/artifacts/raml10parser')
-import parserCore = require('../../src/raml1/wrapped-ast/parserCore')
+import json2lowlevel = require('../../src/parser/jsyaml/json2lowLevel')
+import RamlWrapper = require('../../src/parser/artifacts/raml10parser')
+import parserCore = require('../../src/parser/wrapped-ast/parserCore')
 import Opt = require('../../src/Opt');
-import typeSystem=require("../../src/raml1/definition-system/typeSystem");
+import typeSystem=require("../../src/parser/definition-system/typeSystem");
 
 
 export function loadApiSync(

@@ -1051,7 +1051,7 @@
     {
       "code": "INCORRECT_DISCRIMINATOR",
       "message": "None of the 'Pet' type known subtypes declare 'Mammal' as value of discriminating property 'kind'.",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/LibraryExpansion/Types/ObjectTypes/test037/NewLibrary.raml",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/LibraryExpansion/Types/ObjectTypes/test037/NewLibrary.raml",
       "range": {
         "start": {
           "line": 43,

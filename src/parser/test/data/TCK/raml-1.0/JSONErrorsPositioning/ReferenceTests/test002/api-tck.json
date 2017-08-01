@@ -28,7 +28,7 @@
     {
       "code": "CAN_NOT_PARSE_JSON",
       "message": "Can not parse JSON example: Unexpected token '\"eProp2\"'",
-      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/raml1/test/data/TCK/raml-1.0/JSONErrorsPositioning/ReferenceTests/test002/schema1.json",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/TCK/raml-1.0/JSONErrorsPositioning/ReferenceTests/test002/schema1.json",
       "range": {
         "start": {
           "line": 9,
