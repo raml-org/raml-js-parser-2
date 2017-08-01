@@ -6,13 +6,13 @@ var _ =require("underscore")
 var defaultCalculator = require("../parser/wrapped-ast/defaultCalculator")
 import services = require("../parser/definition-system/ramlServices")
 import hl = require("../parser/highLevelAST")
-
+let messageRegistry = require("../../resources/errorMessages");
 
 export function convertToJson(api, transform: boolean){
     var addTransformations = transform;
     if (true){
         if (!api.title()){
-            throw new Error("missing title")
+            throw new Error(messageRegistry.MISSING_TITLE.message)
         }
     }
     if (transform == null)

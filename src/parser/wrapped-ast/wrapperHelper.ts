@@ -16,7 +16,7 @@ import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
 import expander=require("../ast.core/expander")
-import expanderHL=require("../ast.core/expanderHL")
+import expanderLL=require("../ast.core/expanderLL")
 import proxy = require("../ast.core/LowLevelASTProxy")
 import referencePatcher = require("../ast.core/referencePatcher")
 import search=require("../../search/search-interface")
@@ -29,6 +29,8 @@ import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
 import builder = require("../ast.core/builder");
+
+let messageRegistry = require("../../../resources/errorMessages");
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
     return p.highLevel().localType();
@@ -70,7 +72,7 @@ export function completeRelativeUri(res:RamlWrapper.Resource):string{
  */
 export function expandLibrarySpec(lib:RamlWrapper.Library):RamlWrapper.Library{
 
-    var exp = lib.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = lib.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandLibrary(lib);
 }
 /**
@@ -95,7 +97,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     if(proxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandTraitsAndResourceTypes(api);
 }
 
@@ -104,7 +106,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
  * __$meta__={"name":"expandLibraries"}
  */
 export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
-    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandLibraries(api);
 }
 
@@ -118,6 +120,7 @@ export function absoluteUri(res:RamlWrapper.Resource):string{
         parent = res.parent();
     }
     while (parent.definition().key().name==universes.Universe10.Resource.name);
+    parent = getParent(res);
     uri = uri.replace(/\/\//g,'/');
     var buri=(<RamlWrapper.Api>parent).baseUri();
     var base =buri?buri.value():"";
@@ -320,8 +323,7 @@ export function methodId(method:RamlWrapper.Method):string{
     else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
-    throw new Error(`Method is supposed to be owned by Resource or ResourceType.
-Here the method is owned by ${method.definition().key().name}`);
+    throw new Error(linter.applyTemplate(messageRegistry.METHOD_OWNED_BY, {owner:method.definition().key().name}));
 }
 
 //__$helperMethod__ true for codes < 400 and false otherwise
@@ -489,7 +491,7 @@ export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.Type
     do{
         res = <RamlWrapper.Resource>parent;
         params = uriParameters(res).concat(params);
-        parent = res.parent();
+        parent = getParent(res);
 
     }
     while (parent.definition().key().name==universes.Universe10.Resource.name);
@@ -498,6 +500,18 @@ export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.Type
     var baseUriParams = api.baseUriParameters();
     params = baseUriParameters(api).concat(params);
     return params;
+}
+
+function getParent(wNode:core.BasicNode){
+    let parent =  wNode.parent();
+    if(!parent){
+        return null;
+    }
+    let slaveHL = parent.highLevel().getSlaveCounterPart();
+    if(slaveHL){
+        parent = slaveHL.wrapperNode();
+    }
+    return parent;
 }
 
 /**

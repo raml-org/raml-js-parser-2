@@ -20,7 +20,7 @@ import universes = require("../parser/tools/universe")
 import util = require("../util/index")
 
 import defaultCalculator = require("../parser/wrapped-ast/defaultCalculator");
-import helpersHL = require("../parser/wrapped-ast/helpersHL");
+import helpersLL = require("../parser/wrapped-ast/helpersLL");
 import stubs = require('../parser/stubs');
 
 import _ = require("underscore");
@@ -30,7 +30,7 @@ var pathUtils = require("path");
 const RAML_MEDIATYPE = "application/raml+yaml";
 
 export function dump(node: hl.IHighLevelNode|hl.IAttribute, options:SerializeOptions):any{
-    return new TCKDumper(options).dump(node);
+    return new JsonSerializer(options).dump(node);
 }
 
 var getRootPath = function (node:hl.IParseResult) {
@@ -47,7 +47,7 @@ var getRootPath = function (node:hl.IParseResult) {
     }
     return rootPath;
 };
-export class TCKDumper {
+export class JsonSerializer {
 
     constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
@@ -134,6 +134,7 @@ export class TCKDumper {
         };
         var isElement = node.isElement();
         if(isElement){
+            (<hlImpl.ASTNodeImpl>node).types();
             var eNode = node.asElement();
             var definition = eNode.definition();
             if(definition.universe().version()=="RAML08"){
@@ -146,8 +147,8 @@ export class TCKDumper {
                 }
             }
             if(universeHelpers.isApiSibling(definition)) {
-                this.helpersMap["traits"] = new TemplatesHandler(helpersHL.allTraits(eNode, false));
-                this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersHL.allResourceTypes(eNode, false));
+                this.helpersMap["traits"] = new TemplatesHandler(helpersLL.allTraits(eNode, false));
+                this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersLL.allResourceTypes(eNode, false));
             }
         }
     }
@@ -171,9 +172,24 @@ export class TCKDumper {
                 var eNode = node.asElement();
                 var definition = eNode.definition();
                 if (definition) {
-                    var ramlVersion = definition.universe().version();
+                    let universe = definition.universe();
+                    var ramlVersion = universe.version();
                     result.ramlVersion = ramlVersion;
-                    result.type = definition.nameId();
+                    let typeName = definition.nameId();
+                    if(!typeName){
+                        if(definition.isAssignableFrom(def.universesInfo.Universe10.TypeDeclaration.name)){
+                            let typeDecl = universe.type(def.universesInfo.Universe10.TypeDeclaration.name);
+                            let map:any = {};
+                            typeDecl.allSubTypes().forEach(x=>map[x.nameId()]=true);
+                            for(let st of definition.allSuperTypes()){
+                                if(map[st.nameId()]){
+                                    typeName = st.nameId();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    result.type = typeName;
                 }
                 result.errors = this.dumpErrors(core.errors(eNode));
             }
@@ -209,7 +225,7 @@ export class TCKDumper {
                 }
                 else {
                     let at = hlImpl.auxiliaryTypeForExample(eNode);
-                    let eObj:any = helpersHL.dumpExpandableExample(
+                    let eObj:any = helpersLL.dumpExpandableExample(
                         at.examples()[0], this.options.dumpXMLRepresentationOfExamples);
                     let uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x, x.property(),rp));
                     if (uses.length > 0) {
@@ -451,12 +467,12 @@ export class TCKDumper {
                 if (Object.keys(scalarsPaths).length > 0) {
                     result["scalarsPaths"] = scalarsPaths;
                 }
-                var pProps = helpersHL.getTemplateParametrizedProperties(eNode);
+                var pProps = helpersLL.getTemplateParametrizedProperties(eNode);
                 if (pProps) {
                     result["parametrizedProperties"] = pProps;
                 }
                 if (universeHelpers.isTypeDeclarationDescendant(definition)) {
-                    let fixedFacets = helpersHL.typeFixedFacets(eNode);
+                    let fixedFacets = helpersLL.typeFixedFacets(eNode);
                     if (fixedFacets) {
                         result["fixedFacets"] = fixedFacets;
                     }
@@ -717,15 +733,15 @@ function applyHelpers(
         newVal = uriParameters(node,pVal,p,serializeMetadata);
     }
     else if(universeHelpers.isTraitsProperty(p)){
-        var arr = helpersHL.allTraits(node,false);
+        var arr = helpersLL.allTraits(node,false);
         newVal = contributeExternalNodes(node,arr,p,serializeMetadata);
     }
     else if(universeHelpers.isResourceTypesProperty(p)){
-        var arr = helpersHL.allResourceTypes(node,false);
+        var arr = helpersLL.allResourceTypes(node,false);
         newVal = contributeExternalNodes(node,arr,p,serializeMetadata);
     }
     else if(p.nameId()=="schemaContent"){
-        var attr = helpersHL.schemaContent08Internal(node,schemasCache08);
+        var attr = helpersLL.schemaContent08Internal(node,schemasCache08);
         if(attr){
             newVal = new PropertyValue(p);
             newVal.registerValue(attr);
@@ -907,7 +923,7 @@ class SchemaContentHandler implements HelperMethod{
           p:hl.IProperty,
           serializeMetadata:boolean){
         var newVal:PropertyValue = null;
-        var attr = helpersHL.schemaContent08Internal(node, this.schemasCache08);
+        var attr = helpersLL.schemaContent08Internal(node, this.schemasCache08);
         if (attr) {
             newVal = new PropertyValue(p);
             newVal.registerValue(attr);
@@ -1228,11 +1244,11 @@ class ResourcesTransformer extends BasicTransformation{
                 segments.shift();
             }
             value["relativeUriPathSegments"] = segments;
-            value.absoluteUri = helpersHL.absoluteUri(node.asElement());
-            value.completeRelativeUri = helpersHL.completeRelativeUri(node.asElement());
+            value.absoluteUri = helpersLL.absoluteUri(node.asElement());
+            value.completeRelativeUri = helpersLL.completeRelativeUri(node.asElement());
             if(universeHelpers.isResourceType(node.parent().definition())){
-                value.parentUri = helpersHL.completeRelativeUri(node.parent());
-                value.absoluteParentUri = helpersHL.absoluteUri(node.parent());
+                value.parentUri = helpersLL.completeRelativeUri(node.parent());
+                value.absoluteParentUri = helpersLL.absoluteUri(node.parent());
             }
             else{
                 value.parentUri = "";
@@ -1259,8 +1275,8 @@ class MethodsTransformer extends BasicTransformation{
         if(!universeHelpers.isResourceType(parent.definition())){
             return value;
         }
-        value.parentUri = helpersHL.completeRelativeUri(parent);
-        value.absoluteParentUri = helpersHL.absoluteUri(parent);
+        value.parentUri = helpersLL.completeRelativeUri(parent);
+        value.absoluteParentUri = helpersLL.absoluteUri(parent);
         return value;
     }
 }
@@ -1299,13 +1315,13 @@ class TypeTransformer extends BasicTransformation{
             return _value;
         }
         var value = isArray ? _value[0] : _value;
-        var exampleObj = helpersHL.typeExample(
+        var exampleObj = helpersLL.typeExample(
             node.asElement(),this.options.dumpXMLRepresentationOfExamples);
         if(exampleObj){
             value["examples"] = [ exampleObj ];
         }
         else {
-            var examples = helpersHL.typeExamples(
+            var examples = helpersLL.typeExamples(
                 node.asElement(), this.options.dumpXMLRepresentationOfExamples);
             if (examples.length > 0) {
                 value["examples"] = examples;
@@ -1754,7 +1770,7 @@ class ReferencesTransformer extends MatcherBasedTransformation{
 
 class UsesDeclarationTransformer extends BasicTransformation {
 
-    constructor(private dumper:TCKDumper) {
+    constructor(private dumper:JsonSerializer) {
         super(universes.Universe10.LibraryBase.name, null, true, ["RAML10"]);
     }
 

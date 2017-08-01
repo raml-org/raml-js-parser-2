@@ -1,8 +1,4 @@
 {
-  "CONTEXT_REQUIREMENT_VIOLATION": {
-    "code" : "CONTEXT_REQUIREMENT_VIOLATION",
-    "message" : "{{name}} should be {{value}} to use property '{{propName}}'"
-  },
   "INVALID_PARAMETER_NAME" : {
     "code" : "INVALID_PARAMETER_NAME",
     "message" : "Invalid parameter name: '{{paramName}}' is reserved"
@@ -432,24 +428,192 @@
     "code" : "LIBRARY_PATH_MUST_BE_A_STRING",
     "message" : "Library path must be string"
   },
-  "1106" : {
-    "code" : "1106",
-    "message" : ""
+  "INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL" : {
+    "code" : "INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL",
+    "message" : "Invalid resource name: unmatched '{{symbol}}'"
   },
-  "1107" : {
-    "code" : "1107",
-    "message" : ""
+  "MESSAGE_PARAMETER_NO_VALUE" : {
+    "code" : "MESSAGE_PARAMETER_NO_VALUE",
+    "message" : "Message parameter '{{paramName}}' has no value specified."
   },
-  "1108" : {
-    "code" : "1108",
-    "message" : ""
+  "SETVALUE_ONLY_MULTI_VALUES_PROPERTIES" : {
+    "code" : "SETVALUE_ONLY_MULTI_VALUES_PROPERTIES",
+    "message" : "setValue(string) only apply to multi-values properties"
   },
-  "1109" : {
-    "code" : "1109",
-    "message" : ""
+  "ISEMPTY_ONLY_MULTI_VALUES_ATTRIBUTES" : {
+    "code" : "ISEMPTY_ONLY_MULTI_VALUES_ATTRIBUTES",
+    "message" : "isEmpty() only apply to multi-values attributes"
   },
-  "1110" : {
-    "code": "1110",
-    "message": ""
+  "PLUGIN_REPORTS_AN_ERROR" : {
+    "code" : "PLUGIN_REPORTS_AN_ERROR",
+    "message" : "The {{pluginId}} plugin reports an error"
+  },
+  "PROPERTIES_SHOULD_HAVE_SAME_GRAMMAR_KIND" : {
+    "code" : "PROPERTIES_SHOULD_HAVE_SAME_GRAMMAR_KIND",
+    "message" : "Different properties with same name should have same grammar kind at this moment"
+  },
+  "MISSING_TITLE" : {
+    "code" : "MISSING_TITLE",
+    "message" : "missing title"
+  },
+  "INVALID_ARGUMENT" : {
+    "code" : "INVALID_ARGUMENT",
+    "message" : "Invalid Argument"
+  },
+  "METHOD_OWNED_BY" : {
+    "code" : "METHOD_OWNED_BY",
+    "message" : "Method is supposed to be owned by Resource or ResourceType. Here the method is owned by {{owner}}"
+  },
+  "POSITION_EXCEEDS_TEXT_LENGTH" : {
+    "code" : "POSITION_EXCEEDS_TEXT_LENGTH",
+    "message" : "Character position exceeds text length: {{pos}} > + {{length}}. Unit path: {{absPath}}"
+  },
+  "LINE_MAPPER_HAS_NULL_CONTENT" : {
+    "code" : "LINE_MAPPER_HAS_NULL_CONTENT",
+    "message" : "Line Mapper has been given null content{{path}}"
+  },
+  "EXTENSIONS_AND_OVERLAYS_LEGAL_FILE_PATHS" : {
+    "code" : "EXTENSIONS_AND_OVERLAYS_LEGAL_FILE_PATHS",
+    "message" : "Extensions and overlays list should contain legal file paths"
+  },
+  "CAN_NOT_RESOLVE" : {
+    "code" : "CAN_NOT_RESOLVE",
+    "message" : "Can not resolve {{path}}"
+  },
+  "CAN_NOT_RESOLVE_REASON" : {
+    "code" : "CAN_NOT_RESOLVE_REASON",
+    "message" : "Can not resolve {{path}} due to: {{reason}}"
+  },
+  "INVALID_FIRST_LINE" : {
+    "code" : "INVALID_FIRST_LINE",
+    "message" : "Invalid first line. A RAML document is expected to start with '#%RAML <version> <?fragment type>'."
+  },
+  "EXTENSIONS_AND_OVERLAYS_NOT_SUPPORTED_0_8" : {
+    "code" : "EXTENSIONS_AND_OVERLAYS_NOT_SUPPORTED_0_8",
+    "message" : "Extensions and overlays are not supported in RAML 0.8."
+  },
+  "API_CONTAINS_ERROR" : {
+    "code" : "API_CONTAINS_ERROR",
+    "message" : "Api contains errors."
+  },
+  "COULD_NOT_SET_STRUCTURED_VALUE" : {
+    "code" : "COULD_NOT_SET_STRUCTURED_VALUE",
+    "message" : "couldn't set structured value to a key: {{key}}"
+  },
+  "NOT_IMPLEMENTED" : {
+    "code" : "NOT_IMPLEMENTED",
+    "message" : "not implemented"
+  },
+  "COULD_NOT_MIX_TYPES_INHERITANCE" : {
+    "code" : "COULD_NOT_MIX_TYPES_INHERITANCE",
+    "message" : "couldn't mix user defined and basic types in inheritance"
+  },
+  "SPECIFY_APIPATH" : {
+    "code" : "SPECIFY_APIPATH",
+    "message" : "Please, specify -apiPath parameter"
+  },
+  "UNABLE_TO_EXECUTE_GET" : {
+    "code" : "UNABLE_TO_EXECUTE_GET",
+    "message" : "Unable to execute GET {{url}}"
+  },
+  "UNIT_PATH_IS_NULL" : {
+    "code" : "UNIT_PATH_IS_NULL",
+    "message" : "Unit path is null"
+  },
+  "FSRESOLVER_IS_UNABLE_USE_EXTENDEDFSRESOLVER" : {
+    "code" : "FSRESOLVER_IS_UNABLE_USE_EXTENDEDFSRESOLVER",
+    "message" : "Provided FSResolver is unable to list files. Please, use ExtendedFSResolver."
+  },
+  "NOT_IMPLEMENTED_INSERT_INTO_EMPTY_REF" : {
+    "code" : "NOT_IMPLEMENTED_INSERT_INTO_EMPTY_REF",
+    "message" : "not implemented: insert into empty include ref"
+  },
+  "ATTR_SETVALUE_NOT_RESOLVE" : {
+    "code" : "ATTR_SETVALUE_NOT_RESOLVE",
+    "message" : "attr.setValue: couldn't resolve: {{path}}"
+  },
+  "ONLY_MAP_NODES_ALLOWED" : {
+    "code" : "ONLY_MAP_NODES_ALLOWED",
+    "message" : "only MAP/MAPPING nodes allowed as values"
+  },
+  "UNSUPPORTED_CHANGE_VALUE_CASE" : {
+    "code" : "UNSUPPORTED_CHANGE_VALUE_CASE",
+    "message" : "Unsupported change value case: {{name}}"
+  },
+  "UNSUPPORTED_CASE_ATTRIBUTE_VALUE_CONVERSION" : {
+    "code" : "UNSUPPORTED_CASE_ATTRIBUTE_VALUE_CONVERSION",
+    "message" : "Unsupported case: attribute value conversion: {{curval}} ==> {{newval}} not supported"
+  },
+  "UNSUPPORTED_COMMAND" : {
+    "code" : "UNSUPPORTED_COMMAND",
+    "message" : "UNSUPPORTED_COMMAND: {{name}}"
+  },
+  "NEW_NODE_CONTENTS_ERROR_BELOW" : {
+    "code" : "NEW_NODE_CONTENTS_ERROR_BELOW",
+    "message" : "New node contents (causes error below): \n {{content}}"
+  },
+  "REPARSE_ERROR" : {
+    "code" : "REPARSE_ERROR",
+    "message" : "Reparse error {{content}}"
+  },
+  "INSERT_INTO_MAPPING_VALUE_NOT_SUPPORTED" : {
+    "code" : "INSERT_INTO_MAPPING_VALUE_NOT_SUPPORTED",
+    "message" : "Insert into mapping with {{value}} value not supported"
+  },
+  "INSERT_INTO_NOT_SUPPORTED" : {
+    "code" : "INSERT_INTO_NOT_SUPPORTED",
+    "message" : "Insert into {{name}} unsupported"
+  },
+  "DELETE_FROM_NOT_SUPPORTED" : {
+    "code" : "DELETE_FROM_NOT_SUPPORTED",
+    "message" : "Delete from {{name}} unsupported"
+  },
+  "CAN_NOT_BE_PARSED" : {
+    "code" : "CAN_NOT_BE_PARSED",
+    "message" : "{path} can not be parsed"
+  },
+  "RECURSIVE_DEFINITION_EMPTY" : {
+    "code" : "RECURSIVE_DEFINITION_EMPTY",
+    "message" : "Recursive definition"
+  },
+  "SHOULD_NEVER_HAPPEN_KIND" : {
+    "code" : "SHOULD_NEVER_HAPPEN_KIND",
+    "message" : "Should never happen; kind : {{kind}}"
+  },
+  "UNKNOWN_NODE_KIND" : {
+    "code" : "UNKNOWN_NODE_KIND",
+    "message" : "Unknown node kind: '{{kind}}'"
+  },
+  "NOT_IMPLEMENTED_KIND" : {
+    "code" : "NOT_IMPLEMENTED_KIND",
+    "message" : "markup not implemented: {{kind}}"
+  },
+  "EXPECTED_INSTEAD_OF" : {
+    "code" : "EXPECTED_INSTEAD_OF",
+    "message" : "{{expected}} expected instead of {{received}}"
+  },
+  "INSERTION_POINT_TYPE" : {
+    "code" : "INSERTION_POINT_TYPE",
+    "message" : "insertion point type: {{type}}"
+  },
+  "UNSUPPORTED_OPERATION_EXCEPTION" : {
+    "code" : "UNSUPPORTED_OPERATION_EXCEPTION",
+    "message" : "Unsupported operation exception"
+  },
+  "UNABLE_TO_FIND_CHILD" : {
+    "code" : "UNABLE_TO_FIND_CHILD",
+    "message" : "Unable to find correct child"
+  },
+  "NETWORK_ERROR" : {
+    "code" : "NETWORK_ERROR",
+    "message" : "Network Error"
+  },
+  "COULD_NOT_LOAD_API_FROM" : {
+    "code" : "COULD_NOT_LOAD_API_FROM",
+    "message" : "couldn't load api from {{path}}"
+  },
+  "METHOD_MUST_BE_OVERRIDDEN" : {
+    "code" : "METHOD_MUST_BE_OVERRIDDEN",
+    "message" : "The method must be overridden"
   }
 }

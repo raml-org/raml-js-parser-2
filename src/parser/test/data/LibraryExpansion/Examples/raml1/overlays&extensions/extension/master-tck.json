@@ -93,7 +93,7 @@
         "relativeUriPathSegments": [
           "elements"
         ],
-        "absoluteUri": "/elements"
+        "absoluteUri": "http://myItems.com/elements"
       }
     ],
     "extends": "master.raml",

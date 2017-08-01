@@ -11,7 +11,7 @@ import hlimpl = require('../highLevelImpl');
 import defs = require('raml-definition-system');
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
-import expanderHL=require("../ast.core/expanderHL")
+import expanderLL=require("../ast.core/expanderLL")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import linter=require("../ast.core/linter")
 import Opt = require('../../Opt')
@@ -28,6 +28,8 @@ import _ = require("underscore");
 //    var tpe=typeexpression.typeFromNode(p.highLevel());
 //    return tpe.toRuntime();
 //}
+
+let messageRegistry = require("../../../resources/errorMessages");
 
 export function load(pth: string):core.BasicNode{
     var m=new ll.Project(path.dirname(pth));
@@ -49,7 +51,7 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     if(lowLevelProxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
-    var exp = api.highLevel().reusedNode() != null ? expanderHL : expander;
+    var exp = api.highLevel().reusedNode() != null ? expanderLL : expander;
     return exp.expandTraitsAndResourceTypes(api);
 }
 //__$helperMethod__ Path relative to API root
@@ -259,8 +261,7 @@ export function methodId(method:RamlWrapper.Method):string{
     else if(RamlWrapperImpl.ResourceTypeImpl.isInstance(parent)){
         return (<RamlWrapper.ResourceType>parent).name() + ' ' + method.method().toLowerCase();
     }
-    throw new Error(`Method is supposed to be owned by Resource or ResourceType.
-Here the method is owned by ${method.definition().key().name}`);
+    throw new Error(linter.applyTemplate(messageRegistry.METHOD_OWNED_BY, {owner:method.definition().key().name}));
 }
 
 //__$helperMethod__ true for codes < 400 and false otherwise

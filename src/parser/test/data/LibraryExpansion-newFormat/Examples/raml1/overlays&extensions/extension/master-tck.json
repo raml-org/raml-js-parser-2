@@ -87,7 +87,7 @@
             ],
             "method": "get",
             "parentUri": "/elements",
-            "absoluteParentUri": "/elements",
+            "absoluteParentUri": "http://myItems.com/elements",
             "path": "master.raml"
           }
         ],
@@ -103,7 +103,7 @@
         "relativeUriPathSegments": [
           "elements"
         ],
-        "absoluteUri": "/elements",
+        "absoluteUri": "http://myItems.com/elements",
         "completeRelativeUri": "/elements",
         "parentUri": "",
         "absoluteParentUri": "",

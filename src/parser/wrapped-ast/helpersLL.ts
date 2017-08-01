@@ -10,9 +10,9 @@ import universeDef = require("../tools/universe");
 import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
-import expander=require("../ast.core/expanderHL")
+import expander=require("../ast.core/expanderLL")
 import proxy = require("../ast.core/LowLevelASTProxy")
-import referencePatcher = require("../ast.core/referencePatcher")
+import referencePatcher = require("../ast.core/referencePatcherLL")
 import search=require("../../search/search-interface")
 import ll=require("../lowLevelAST");
 import llImpl=require("../jsyaml/jsyaml2lowLevel");
@@ -272,7 +272,7 @@ export function allTraits(hlNode:hl.IHighLevelNode,serializeMetadata=true):hl.IH
     if(hlNode.lowLevel().actual().libExpanded){
         return [];
     }
-    return findTemplates(hlNode,d=>universeHelpers.isTraitType(d),serializeMetadata);
+    return findTemplates(hlNode,d=>universeHelpers.isTraitType(d),serializeMetadata,"Trait");
 }
 
 /**
@@ -283,10 +283,10 @@ export function allResourceTypes(hlNode:hl.IHighLevelNode,serializeMetadata=true
     if(hlNode.lowLevel().actual().libExpanded){
         return [];
     }
-    return findTemplates(hlNode,d=>universeHelpers.isResourceTypeType(d),serializeMetadata);
+    return findTemplates(hlNode,d=>universeHelpers.isResourceTypeType(d),serializeMetadata,"ResourceType");
 }
 
-function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean):hl.IHighLevelNode[] {
+function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean,typeName:string):hl.IHighLevelNode[] {
     var arr = search.globalDeclarations(hlNode).filter(x=>filter(x.definition()));
     var ll = hlNode.lowLevel();
     var nodePath = ll.includePath();
@@ -302,9 +302,9 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
         var p = x.lowLevel().unit().path();
         if(isProxy){
             if(!proxy.LowLevelProxyNode.isInstance(x.lowLevel())) {
-                x = exp.createHighLevelNode(x, false);
+                x = exp.createHighLevelNode(x, false, rp, true, false);
             }
-            rp.process(x,hlNode,true,true);
+            rp.process(x.lowLevel(),hlNode.lowLevel(),typeName,true,true);
         }
         if(serializeMetadata&&p!=nodePath){
             (<core.NodeMetadataImpl>x.wrapperNode().meta()).setCalculated();

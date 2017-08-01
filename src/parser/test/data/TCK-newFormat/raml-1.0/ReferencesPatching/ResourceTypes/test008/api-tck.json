@@ -451,7 +451,7 @@
                 "parameters": [
                   {
                     "name": "errorResponseType",
-                    "value": "rt.ty.ErrorResponseType"
+                    "value": "ty.ErrorResponseType"
                   }
                 ]
               }

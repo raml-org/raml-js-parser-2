@@ -17,7 +17,7 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhbWwtb3JnL3JhbWwtanMtcGFyc2VyLTIvbWFzdGVyL3NyYy9yYW1sMS90ZXN0L2RhdGEvcGFyc2VyL2pzb25zY2hlbWUvdGVzdDYvcmVtb3RlU2NoZW1lLmpzb24vL2RlZmluaXRpb25zL0lubmVyVHlwZQ.json"
+        "path": "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhbWwtb3JnL3JhbWwtanMtcGFyc2VyLTIvZGV2ZWxvcC9zcmMvcGFyc2VyL3Rlc3QvZGF0YS9wYXJzZXIvanNvbnNjaGVtZS90ZXN0Ni9yZW1vdGVTY2hlbWUuanNvbi8vZGVmaW5pdGlvbnMvSW5uZXJUeXBl.json"
       }
     ],
     "title": "Api",
@@ -93,12 +93,12 @@
         "start": {
           "line": 12,
           "column": 8,
-          "position": 284
+          "position": 286
         },
         "end": {
           "line": 12,
           "column": 15,
-          "position": 291
+          "position": 293
         }
       }
     }

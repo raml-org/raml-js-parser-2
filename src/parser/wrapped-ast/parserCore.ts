@@ -10,7 +10,7 @@ import json2lowlevel = require('../jsyaml/json2lowLevel');
 import defaultCalculator = require("./defaultCalculator");
 import search=require("../../search/search-interface");
 import universeHelpers = require("../tools/universeHelpers")
-import tckDumper = require("../../util/TCKDumper")
+import jsonSerializer = require("../../util/jsonSerializer")
 import yaml=require("yaml-ast-parser")
 
 import parserCoreApi = require("./parserCoreApi")
@@ -310,11 +310,11 @@ export class BasicNodeImpl implements hl.BasicNode{
         return null;
     }
 
-    toJSON(serializeOptions?:tckDumper.SerializeOptions):any{
+    toJSON(serializeOptions?:jsonSerializer.SerializeOptions):any{
         var oldDefaults=defaultAttributeDefaultsValue;
         defaultAttributeDefaultsValue=this.attributeDefaults();
         try {
-            return new tckDumper.TCKDumper(serializeOptions).dump(this);
+            return new jsonSerializer.JsonSerializer(serializeOptions).dump(this);
         }
         finally {
             defaultAttributeDefaultsValue=oldDefaults;
@@ -463,8 +463,8 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
         return parent ? parent.wrapperNode() : null;
     }
 
-    toJSON(serializeOptions?:tckDumper.SerializeOptions):any{
-        return new tckDumper.TCKDumper(serializeOptions).dump(this);
+    toJSON(serializeOptions?:jsonSerializer.SerializeOptions):any{
+        return new jsonSerializer.JsonSerializer(serializeOptions).dump(this);
     }
 }
 
@@ -554,7 +554,7 @@ export class TypeInstanceImpl{
     }
 
     toJSON():any{
-        return new tckDumper.TCKDumper().serializeTypeInstance(this);
+        return new jsonSerializer.JsonSerializer().serializeTypeInstance(this);
     }
 
     isArray():boolean{

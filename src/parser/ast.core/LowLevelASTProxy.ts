@@ -13,6 +13,7 @@ import refResolvers=require("../jsyaml/includeRefResolvers")
 import universeHelpers = require("../tools/universeHelpers");
 import referencePatcher = require("./referencePatcher");
 var _ = require("underscore");
+let messageRegistry = require("../../../resources/errorMessages");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
@@ -81,7 +82,7 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     end():number { return this._originalNode.end(); }
 
     value(toString?:boolean):any {
-        throw new Error('The method must be overridden');
+        throw new Error(messageRegistry.METHOD_MUST_BE_OVERRIDDEN.message);
     }
 
     includeErrors():string[] { return this._originalNode.includeErrors(); }
@@ -111,7 +112,7 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     children():ll.ILowLevelASTNode[] {
 
-        throw new Error('The method must be overridden');
+        throw new Error(messageRegistry.METHOD_MUST_BE_OVERRIDDEN.message);
     }
 
     parent():ll.ILowLevelASTNode { return this._parent;}
@@ -197,15 +198,15 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     }
 
     text(unitText:string):string{
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     copy():LowLevelCompositeNode{
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     markup(json?: boolean): string {
-        throw new Error("not implemented");
+        throw new Error(messageRegistry.NOT_IMPLEMENTED.message);
     }
 
     nodeDefinition(): hl.INodeDefinition{
@@ -323,6 +324,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     protected isInsideResource:boolean;
 
     protected nonMergableChildren:{[key:string]:boolean} = {};
+
+    originalNode():LowLevelValueTransformingNode{
+        return <LowLevelValueTransformingNode>this._originalNode;
+    }
 
     adoptedNodes():ll.ILowLevelASTNode[]{
         return this._adoptedNodes;
@@ -504,7 +509,6 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
         }
 
-        var ramlVersion = this.unit().highLevel().root().definition().universe().version();
         var isResource = this.key()&&this.key()[0]=="/";
         var methodType = def.getUniverse("RAML10").type(universes.Universe10.Method.name);
         var options = methodType.property(universes.Universe10.Method.properties.method.name).enumOptions()
@@ -516,7 +520,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             var isMethod = options.indexOf(key)>=0;
             arr.forEach(x=>{
                 var isOpt = x.node.optional() &&
-                    (ramlVersion != "RAML10" ||
+                    (this.ramlVersion != "RAML10" ||
                     (isResource && isMethod));
                 allOptional = allOptional && isOpt;
                 hasPrimaryChildren = hasPrimaryChildren || x.isPrimary;
@@ -862,6 +866,8 @@ export interface ValueTransformer{
     resolvedValueKind(node:ll.ILowLevelASTNode):yaml.Kind
 
     includePath(node:ll.ILowLevelASTNode):string
+
+    paramNodesChain(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
 
     definingUnitSequence(str:string):ll.ICompilationUnit[]
 }

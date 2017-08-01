@@ -12,7 +12,6 @@ import search=require("../search/search-interface")
 import mutators=require("./ast.core/mutators")
 import linter=require("./ast.core/linter")
 import expander=require("./ast.core/expander")
-import referencePatcher=require("./ast.core/referencePatcher");
 import typeBuilder=require("./ast.core/typeBuilder")
 import universes=require("./tools/universe")
 import jsyaml=require("./jsyaml/jsyaml2lowLevel")
@@ -32,6 +31,8 @@ type IAttribute=high.IAttribute
 
 import contentprovider = require('../util/contentprovider')
 import utils = require('../utils')
+
+let messageRegistry = require("../../resources/errorMessages");
 
 type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
@@ -869,7 +870,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     }
 
     addValue(value: string|StructuredValue) {
-        if(!this.property().isMultiValue()) throw new Error("setValue(string) only apply to multi-values properties");
+        if(!this.property().isMultiValue()) throw new Error(messageRegistry.SETVALUE_ONLY_MULTI_VALUES_PROPERTIES.message);
         if(typeof value == 'string') {
             this.addStringValue(<string>value);
         } else {
@@ -897,7 +898,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     }
 
     isEmpty(): boolean {
-        if(!this.property().isMultiValue()) throw new Error("isEmpty() only apply to multi-values attributes");
+        if(!this.property().isMultiValue()) throw new Error(messageRegistry.ISEMPTY_ONLY_MULTI_VALUES_ATTRIBUTES.message);
         //console.log('remove: ' + this.name());
         var node = this.parent();
         var llnode = <jsyaml.ASTNode>node.lowLevel();
@@ -1032,7 +1033,18 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         if (this._children){
             return this._children;
         }
-        if (this.key()=="uses"&&!this._node.parent().parent()){
+
+        let isUses = this.key()=="uses";
+        if(isUses){
+            let parent = this._node.parent();
+            let grandParent = parent.parent();
+            if(grandParent!=null){
+                if(this._node.unit().absolutePath()==grandParent.unit().absolutePath()){
+                    isUses = false;
+                }
+            }
+        }
+        if (isUses){
             this._children= this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x,this._highLevelRoot))
         }
         else{
@@ -1507,6 +1519,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if (this.isAuxilary()) {
             if (!this._slaveIds) {
                 this._slaveIds={};
+                this._slaveIds[this.id()] = this;
                 var all=search.allChildren(<hl.IHighLevelNode>this);
                 all.forEach(x=>this._slaveIds[x.id()]=x);
             }
@@ -2418,7 +2431,7 @@ function toValidationIssue(x:hl.PluginValidationIssue, pluginId:string, node:hl.
     if (!vi) {
         var issueCode = x.issueCode || pluginId;
         var node1 = x.node || node;
-        var message = x.message || `The ${pluginId} plugin reports an error`;
+        var message = x.message || linter.createIssue1(messageRegistry.PLUGIN_REPORTS_AN_ERROR, {pluginId: pluginId}, node1, false).message;
         var isWarning = x.isWarning;
         vi = linter.createIssue(issueCode, message, node1, isWarning);
     }

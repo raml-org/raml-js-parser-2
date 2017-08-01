@@ -7,26 +7,25 @@ import yaml=require("yaml-ast-parser");
 import util=require("../../util/index");
 import proxy=require("./LowLevelASTProxy");
 import RamlWrapper=require("../artifacts/raml10parserapi");
-import wrapperHelper=require("../wrapped-ast/wrapperHelper");
-import wrapperHelper08=require("../wrapped-ast/wrapperHelper08");
 import pluralize = require("pluralize")
-import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore");
-import referencePatcher = require("./referencePatcher");
+import referencePatcher = require("./referencePatcherLL");
+import referencePatcherHL = require("./referencePatcher");
 import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
 import linter=require("../ast.core/linter")
 let messageRegistry = require("../../../resources/errorMessages");
 var mediaTypeParser = require("media-typer");
+
 var changeCase = require('change-case');
 
 export function expandTraitsAndResourceTypes<T>(api:T):T{
 
     if(!core.BasicNodeImpl.isInstance(api)){
-    // if(!((<any>api).kind
-    //     && ((<any>api).kind() == "Api" || (<any>api).kind() == "Overlay" || (<any>api).kind() == "Extension"))){
+        // if(!((<any>api).kind
+        //     && ((<any>api).kind() == "Api" || (<any>api).kind() == "Overlay" || (<any>api).kind() == "Extension"))){
         return null;
     }
     var apiNode = <core.BasicNodeImpl><any>api;
@@ -86,9 +85,9 @@ export function expandLibraryHL(lib:hl.IHighLevelNode):hl.IHighLevelNode{
 }
 
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
-    mergeMode: hlimpl.OverlayMergeMode) : hl.IHighLevelNode {
+                          mergeMode: hlimpl.OverlayMergeMode) : hl.IHighLevelNode {
     var masterApi = hlimpl.fromUnit(masterUnit);
-    if(!masterApi) throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_LOAD_API_FROM, {path:masterUnit.absolutePath()}));
+    if(!masterApi) throw new Error("couldn't load api from " + masterUnit.absolutePath());
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
         return masterApi.asElement();
@@ -100,7 +99,7 @@ export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:
         var unit = extensionsAndOverlays[i];
         var hlNode = hlimpl.fromUnit(unit);
         if(!hlNode){
-            throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_LOAD_API_FROM, {path:unit.absolutePath()}));
+            throw new Error("couldn't load api from " + unit.absolutePath());
         }
         highLevelNodes.push(<hlimpl.ASTNodeImpl>hlNode);
     }
@@ -136,9 +135,14 @@ function mergeHighLevelNodes(
     return currentMaster;
 };
 
+
 export class TraitsAndResourceTypesExpander {
 
     private ramlVersion:string;
+
+    private defaultMediaType:string;
+
+    private namespaceResolver:namespaceResolver.NamespaceResolver;
 
     expandTraitsAndResourceTypes(
         api:hl.IHighLevelNode,
@@ -155,16 +159,13 @@ export class TraitsAndResourceTypesExpander {
             return api;
         }
 
-        var unit = api.lowLevel().unit();
-        let project = (<jsyaml.Project>unit.project());
-        project.setMainUnitPath(unit.absolutePath());
-
         var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api,false,rp);
-        if (api.definition().key()==universeDef.Universe10.Overlay){
+        if (api.definition().key()==def.universesInfo.Universe10.Overlay){
             return hlNode;
         }
-        var hasFragments = project.namespaceResolver().hasFragments(unit);
-        var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments,true);
+        let unit = api.lowLevel().unit();
+        var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
+        var result = this.expandHighLevelNode(hlNode, rp, api,hasFragments);
         if (!result){
             return api;
         }
@@ -172,24 +173,44 @@ export class TraitsAndResourceTypesExpander {
     }
 
     init(api:hl.IHighLevelNode) {
-        this.ramlVersion = api.definition().universe().version();
+        let llNode = api.lowLevel();
+        let firstLine = hlimpl.ramlFirstLine(llNode.unit().contents());
+        if(firstLine && firstLine.length >= 2 && firstLine[1]=="0.8"){
+            this.ramlVersion = "RAML08";
+        }
+        else{
+            this.ramlVersion = "RAML10";
+        }
+        let mediaTypeNodes = llNode.children().filter(x=>
+            x.key()==def.universesInfo.Universe10.Api.properties.mediaType.name);
+
+        if(mediaTypeNodes.length>0) {
+            this.defaultMediaType = mediaTypeNodes[0].value();
+        }
+
+        let unit = api.lowLevel().unit();
+        let project = <jsyaml.Project>unit.project();
+        project.setMainUnitPath(unit.absolutePath());
+        this.namespaceResolver = (<jsyaml.Project>project).namespaceResolver();
     }
 
     expandHighLevelNode(
         hlNode:hl.IHighLevelNode,
         rp:referencePatcher.ReferencePatcher,
         api:hl.IHighLevelNode,
-        forceExpand=false,
-        initTypes=false) {
+        forceExpand=false) {
 
         this.init(hlNode);
 
         (<hlimpl.ASTNodeImpl>hlNode).setMergeMode((<hlimpl.ASTNodeImpl>api).getMergeMode());
 
-        var resources = hlNode.elementsOfKind("resources");
         var templateApplied = false;
-        resources.forEach(x=> templateApplied = this.processResource(x)||templateApplied);
-        if(!(templateApplied||forceExpand)){
+        var llNode = hlNode.lowLevel();
+        if(proxy.LowLevelCompositeNode.isInstance(llNode)) {
+            var resources = extractResources(llNode);
+            resources.forEach(x=> templateApplied = this.processResource(x) || templateApplied);
+        }
+        if(!(templateApplied||forceExpand||hlNode.getMaster()!=null)){
             return null;
         }
         if(hlimpl.ASTNodeImpl.isInstance(hlNode)) {
@@ -200,50 +221,48 @@ export class TraitsAndResourceTypesExpander {
         }
         if (this.ramlVersion=="RAML10") {
             rp = rp || new referencePatcher.ReferencePatcher();
-            rp.process(hlNode);
-            hlNode.lowLevel().actual().referencePatcher = rp;
-            if(initTypes) {
-                (<hlimpl.ASTNodeImpl>hlNode).types();
-            }
+            rp.process(llNode);
+            llNode.actual().referencePatcher = rp;
         }
-        //var result = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
-        //(<any>result).setAttributeDefaults((<any>api.wrapperNode()).getDefaultsCalculator().isEnabled());
         return hlNode;
     }
 
-    private getTemplate<T extends core.BasicNode>(
-        name:string,
-        context:hl.IHighLevelNode,
-        cache:{[key:string]:{[key:string]:T}},
-        globalList:T[]):T{
-
-        var unitPath = context.lowLevel().unit().path();
-        var unitCache = cache[unitPath];
-        if(!unitCache){
-            unitCache = {};
-            cache[unitPath] = unitCache;
-        }
-        var val = unitCache[name];
-
-        if(val!==undefined){
-            return val;
-        }
-        val = null;
-        val = _.find(globalList,x=>hlimpl.qName(x.highLevel(),context)==name);
-        if(!val){
-            val = null;
-        }
-        unitCache[name] = val;
-        return val;
-    }
+    // private getTemplate<T extends core.BasicNode>(
+    //     name:string,
+    //     context:hl.IHighLevelNode,
+    //     cache:{[key:string]:{[key:string]:T}},
+    //     globalList:T[]):T{
+    //
+    //     var unitPath = context.lowLevel().unit().path();
+    //     var unitCache = cache[unitPath];
+    //     if(!unitCache){
+    //         unitCache = {};
+    //         cache[unitPath] = unitCache;
+    //     }
+    //     var val = unitCache[name];
+    //
+    //     if(val!==undefined){
+    //         return val;
+    //     }
+    //     val = null;
+    //     val = _.find(globalList,x=>hlimpl.qName(x.highLevel(),context)==name);
+    //     if(!val){
+    //         val = null;
+    //     }
+    //     unitCache[name] = val;
+    //     return val;
+    // }
 
     public createHighLevelNode(
         _api:hl.IHighLevelNode,
         merge:boolean=true,
         rp:referencePatcher.ReferencePatcher = null,
-        forceProxy=false):hl.IHighLevelNode {
+        forceProxy=false,
+        doInit=true):hl.IHighLevelNode {
 
-        this.init(_api);
+        if(doInit) {
+            this.init(_api);
+        }
 
         var api = <hlimpl.ASTNodeImpl>_api;
         var highLevelNodes:hlimpl.ASTNodeImpl[] = [];
@@ -253,7 +272,8 @@ export class TraitsAndResourceTypesExpander {
 
             var llNode:ll.ILowLevelASTNode = node.lowLevel();
             var topComposite:ll.ILowLevelASTNode;
-            if (api.definition().key()!=universeDef.Universe10.Overlay||forceProxy){
+            var fLine = hlimpl.ramlFirstLine(llNode.unit().contents());
+            if ((fLine && (fLine.length<3 || fLine[2] != def.universesInfo.Universe10.Overlay.name)) || forceProxy){
                 if(proxy.LowLevelCompositeNode.isInstance(llNode)){
                     llNode = (<proxy.LowLevelCompositeNode>(<proxy.LowLevelCompositeNode>llNode).originalNode()).originalNode();
                 }
@@ -264,8 +284,6 @@ export class TraitsAndResourceTypesExpander {
                 topComposite = llNode;
             }
 
-
-
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
             newNode.setUniverse(node.universe());
@@ -273,6 +291,8 @@ export class TraitsAndResourceTypesExpander {
             if(!merge){
                 break;
             }
+            var extNode = _.find(llNode.children(),x=>x.key()==def.universesInfo.Universe10.Overlay.properties.extends.name);
+            if(extNode){}
             node = <hlimpl.ASTNodeImpl>node.getMaster();
         }
         var masterApi = highLevelNodes.pop();
@@ -283,40 +303,34 @@ export class TraitsAndResourceTypesExpander {
         return result;
     }
 
-    private processResource(resource:hl.IHighLevelNode,_nodes:hl.IParseResult[]=[]):boolean {
+    private processResource(resource:proxy.LowLevelCompositeNode,_nodes:ll.ILowLevelASTNode[]=[]):boolean {
         var result = false;
         var nodes = _nodes.concat(resource);
 
         var resourceData:ResourceGenericData[] = this.collectResourceData(resource,resource,undefined,undefined,nodes);
 
-
-        var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.lowLevel();
-        if(!proxy.LowLevelProxyNode.isInstance(resourceLowLevel)){
+        if(!proxy.LowLevelProxyNode.isInstance(resource)){
             return result;
         }
-        resourceLowLevel.preserveAnnotations();
-        resourceLowLevel.takeOnlyOriginalChildrenWithKey(
+        resource.preserveAnnotations();
+        resource.takeOnlyOriginalChildrenWithKey(
             def.universesInfo.Universe10.ResourceBase.properties.type.name);
-        resourceLowLevel.takeOnlyOriginalChildrenWithKey(
+        resource.takeOnlyOriginalChildrenWithKey(
             def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
-            var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.lowLevel();
+            var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node;
             var resourceTypeTransformer = x.resourceType.transformer;
             resourceTypeTransformer.owner = resource;
-            resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer);
+            resource.adopt(resourceTypeLowLevel, resourceTypeTransformer);
             result = true;
         });
 
-        var methods = resource.elementsOfKind("methods");
+        let methods = resource.children().filter(x=>isPossibleMethodName(x.key()));
+        for(var m of methods){
+            let name = m.key();
+            m.takeOnlyOriginalChildrenWithKey(
+                def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
 
-        methods.forEach(m=> {
-
-            var methodLowLevel = <proxy.LowLevelCompositeNode>m.lowLevel();
-            if(proxy.LowLevelCompositeNode.isInstance(methodLowLevel)) {
-                methodLowLevel.takeOnlyOriginalChildrenWithKey(
-                    def.universesInfo.Universe10.FragmentDeclaration.properties.uses.name);
-            }
-            var name = m.attr("method").value();
             var allTraits:GenericData[]=[]
             resourceData.forEach(x=>{
 
@@ -324,22 +338,24 @@ export class TraitsAndResourceTypesExpander {
                 if(methodTraits){
                     allTraits = allTraits.concat(methodTraits);
                     methodTraits.forEach(x=>{
-                        var traitLowLevel = x.node.lowLevel();
+                        var traitLowLevel = x.node;
                         var traitTransformer = x.transformer;
                         traitTransformer.owner = m;
-                        methodLowLevel.adopt(traitLowLevel,traitTransformer);
+                        m.adopt(traitLowLevel,traitTransformer);
                         result = true;
                     });
+                } else {
+
                 }
 
                 var resourceTraits = x.traits;
                 if(resourceTraits){
                     allTraits = allTraits.concat(resourceTraits);
                     resourceTraits.forEach(x=> {
-                        var traitLowLevel = x.node.lowLevel();
+                        var traitLowLevel = x.node;
                         var traitTransformer = x.transformer;
                         traitTransformer.owner = m;
-                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
+                        m.adopt(traitLowLevel, traitTransformer);
                         result = true;
                     });
                 }
@@ -347,38 +363,36 @@ export class TraitsAndResourceTypesExpander {
             // if(resource.definition().universe().version()=="RAML10") {
             //     this.appendTraitReferences(m, allTraits);
             // }
-        });
+        };
 
-        var resources = resource.elementsOfKind("resources");
+        var resources = extractResources(resource);
         resources.forEach(x=>result = this.processResource(x,nodes) || result);
-        resource.elementsOfKind("methods").forEach(x=>this.mergeBodiesForMethod(x));
+        methods.forEach(x=>this.mergeBodiesForMethod(x));
         return result;
     }
 
-    private mergeBodiesForMethod(method: hl.IHighLevelNode) {
-        let llNode = <proxy.LowLevelCompositeNode>method.lowLevel();
+    private mergeBodiesForMethod(method: proxy.LowLevelCompositeNode) {
+        let llNode = method;
         if (!proxy.LowLevelCompositeNode.isInstance(llNode)) {
             return;
         }
-        let defaultMediaType
-            = method.computedValue(universeDef.Universe10.Api.properties.mediaType.name);
 
-        if (defaultMediaType == null) {
+        if (this.defaultMediaType == null) {
             return;
         }
         let bodyNode: proxy.LowLevelCompositeNode;
         let bodyNodesArray: proxy.LowLevelCompositeNode[] = [];
         let llChildren = llNode.children();
         for(var ch of llChildren){
-            if(ch.key()==universeDef.Universe10.Method.properties.body.name){
+            if(ch.key()==def.universesInfo.Universe10.Method.properties.body.name){
                 bodyNode = ch;
             }
-            else if(ch.key()==universeDef.Universe10.Method.properties.responses.name){
+            else if(ch.key()==def.universesInfo.Universe10.Method.properties.responses.name){
                 let responses = ch.children();
                 for(var response of responses){
                     let responseChildren = response.children();
                     for(var respCh of responseChildren){
-                        if(respCh.key()==universeDef.Universe10.Response.properties.body.name){
+                        if(respCh.key()==def.universesInfo.Universe10.Response.properties.body.name){
                             bodyNodesArray.push(respCh);
                         }
                     }
@@ -389,11 +403,11 @@ export class TraitsAndResourceTypesExpander {
             bodyNodesArray.push(bodyNode);
         }
         for(var n of bodyNodesArray){
-            this.mergeBodies(n, defaultMediaType);
+            this.mergeBodies(n);
         }
     }
 
-    private mergeBodies(bodyNode:proxy.LowLevelCompositeNode, defaultMediaType:string):boolean{
+    private mergeBodies(bodyNode:proxy.LowLevelCompositeNode):boolean{
         let explicitCh:proxy.LowLevelCompositeNode;
         let implicitPart:proxy.LowLevelCompositeNode[] = [],
             otherMediaTypes:proxy.LowLevelCompositeNode[] = [];
@@ -403,7 +417,7 @@ export class TraitsAndResourceTypesExpander {
         let gotImplicitPart = false;
         for(let ch of bodyNode.children()){
             let key = ch.key();
-            if(key==defaultMediaType){
+            if(key==this.defaultMediaType){
                 explicitCh = ch;
                 newAdopted.push({node:referencePatcher.toOriginal(ch),transformer:ch.transformer()});
             }
@@ -436,7 +450,7 @@ export class TraitsAndResourceTypesExpander {
         }
         if(explicitCh==null){
             let oNode = referencePatcher.toOriginal(bodyNode);
-            let mapping = yaml.newMapping(yaml.newScalar(defaultMediaType),yaml.newMap([]));
+            let mapping = yaml.newMapping(yaml.newScalar(this.defaultMediaType),yaml.newMap([]));
             let newNode = new jsyaml.ASTNode(mapping,oNode.unit(),<jsyaml.ASTNode>oNode,null,null);
             explicitCh = bodyNode.replaceChild(null,newNode);
         }
@@ -445,11 +459,11 @@ export class TraitsAndResourceTypesExpander {
     }
 
     private collectResourceData(
-        original:hl.IHighLevelNode,
-        obj:hl.IHighLevelNode,
+        original:ll.ILowLevelASTNode,
+        obj:ll.ILowLevelASTNode,
         arr:ResourceGenericData[] = [],
         transformer?:ValueTransformer,
-        nodesChain:hl.IParseResult[]=[],
+        nodesChain:ll.ILowLevelASTNode[]=[],
         occuredResourceTypes:{[key:string]:boolean}={}):ResourceGenericData[]
 
     {
@@ -457,18 +471,25 @@ export class TraitsAndResourceTypesExpander {
         var ownTraits = this.extractTraits(obj,transformer,nodesChain);
 
         var methodTraitsMap:{[key:string]:GenericData[]} = {};
-        var methods = obj.elementsOfKind("methods");
-        methods.forEach(x=>{
-            var methodTraits = this.extractTraits(x,transformer,nodesChain);
-            if(methodTraits&&methodTraits.length>0){
-                methodTraitsMap[x.attr("method").value()] = methodTraits;
+        for(var ch of obj.children()) {
+
+            var mName = ch.key();
+            if(!isPossibleMethodName(mName)){
+                continue;
             }
-        });
+            var methodTraits = this.extractTraits(ch, transformer, nodesChain);
+            if (methodTraits && methodTraits.length > 0) {
+                methodTraitsMap[mName] = methodTraits;
+            }
+        }
 
         var rtData:GenericData;
-        var rtRef = obj.attr("type");
+        var rtRef = _.find(obj.children(),x=>x.key()==def.universesInfo.Universe10.ResourceBase.properties.type.name);
         if(rtRef!=null) {
             var units = toUnits1(nodesChain);
+            if(rtRef.valueKind() == yaml.Kind.SCALAR){
+                rtRef = jsyaml.createScalar(rtRef.value());
+            }
             rtData = this.readGenerictData(original, rtRef, obj, 'resource type', transformer, units);
         }
 
@@ -481,7 +502,7 @@ export class TraitsAndResourceTypesExpander {
 
         if(rtData) {
             var rt = rtData.node;
-            var qName = hlimpl.qName(rt,original);
+            var qName = rt.key() + "/" + rt.unit().absolutePath();
             if(!occuredResourceTypes[qName]) {
                 occuredResourceTypes[qName] = true;
                 this.collectResourceData(
@@ -494,10 +515,10 @@ export class TraitsAndResourceTypesExpander {
         return arr;
     }
 
-    private extractTraits(obj:hl.IHighLevelNode,
-                  _transformer:ValueTransformer,
-                  nodesChain:hl.IParseResult[],
-                  occuredTraits:{[key:string]:boolean} = {}):GenericData[]
+    private extractTraits(obj:ll.ILowLevelASTNode,
+                          _transformer:ValueTransformer,
+                          nodesChain:ll.ILowLevelASTNode[],
+                          occuredTraits:{[key:string]:boolean} = {}):GenericData[]
     {
         nodesChain = nodesChain.concat([obj]);
         var arr:GenericData[] = [];
@@ -508,41 +529,49 @@ export class TraitsAndResourceTypesExpander {
             var units = gd ? gd.unitsChain : toUnits1(nodesChain);
             var transformer:ValueTransformer = gd ? gd.transformer : _transformer;
 
-            _obj.attributes("is").forEach(x=> {
-                var unitsChain = toUnits2(units,x);
-                var traitData = this.readGenerictData(obj,
-                    x, _obj, 'trait', transformer,unitsChain);
+            for(var x of _obj.children().filter(x=>x.key()==def.universesInfo.Universe10.MethodBase.properties.is.name)){
+                for(var y of x.children()){
+                    var unitsChain = toUnits2(units, y);
+                    var traitData = this.readGenerictData(obj,
+                        y, _obj, 'trait', transformer, unitsChain);
 
-                if (traitData) {
-                    var name = traitData.name;
-                    //if (!occuredTraits[name]) {
+                    if (traitData) {
+                        var name = traitData.name;
+                        //if (!occuredTraits[name]) {
                         occuredTraits[name] = true;
                         arr.push(traitData);
-                    //}
+                        //}
+                    }
                 }
-            });
+            };
         }
         return arr;
     }
 
-    private readGenerictData(r:hl.IHighLevelNode,obj:hl.IAttribute,
-                     context:hl.IHighLevelNode,
-                     template:string,
-                     transformer:ValueTransformer,
-                     unitsChain:ll.ICompilationUnit[]=[]):GenericData {
+    private readGenerictData(r:ll.ILowLevelASTNode,obj:ll.ILowLevelASTNode,
+                             context:ll.ILowLevelASTNode,
+                             template:string,
+                             transformer:ValueTransformer,
+                             unitsChain:ll.ICompilationUnit[]=[]):GenericData {
 
         let value = <any>obj.value();
-        let sv:hlimpl.StructuredValue;
+        if(!value){
+            return;
+        }
         let name:string;
         let propName = pluralize.plural(changeCase.camelCase(template));
+        let hasParams = false;
         if (typeof(value) == 'string') {
             name = value;
         }
-        else if (hlimpl.StructuredValue.isInstance(value)) {
-            sv = <hlimpl.StructuredValue>value;
-            name = sv.valueName();
+        else if(jsyaml.ASTNode.isInstance(value)||proxy.LowLevelProxyNode.isInstance(value)) {
+            hasParams = true;
+            name = (<ll.ILowLevelASTNode>value).key();
         }
         else{
+            return null;
+        }
+        if(!name){
             return null;
         }
 
@@ -553,24 +582,24 @@ export class TraitsAndResourceTypesExpander {
         let scalarParams:{[key:string]:ll.ILowLevelASTNode} = {};
         let structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
 
-        let node = referencePatcher.getDeclaration(name, propName, unitsChain);
+        let node = getDeclaration(name, propName, this.namespaceResolver, unitsChain);
         if (node) {
             let ds = new DefaultTransformer(<any>r, null, unitsChain);
-            if (sv) {
+            if (hasParams) {
                 if (this.ramlVersion == 'RAML08') {
-                    sv.children().forEach(x=>scalarParamValues[x.valueName()] = x.lowLevel().value());
+                    value.children().forEach(x=>scalarParamValues[x.key()] = x.value());
                 }
                 else {
-                    sv.children().forEach(x=> {
-                        let llNode = referencePatcher.toOriginal(x.lowLevel());
-                        if(llNode.resolvedValueKind()==yaml.Kind.SCALAR) {
-                            scalarParamValues[x.valueName()] = llNode.value();
-                            scalarParams[x.valueName()] = llNode;
+                    for(let x of value.children()){
+                        let llNode = referencePatcher.toOriginal(x);
+                        if (x.resolvedValueKind() == yaml.Kind.SCALAR) {
+                            scalarParamValues[x.key()] = llNode.value();
+                            scalarParams[x.key()] = llNode;
                         }
-                        else{
-                            structuredParams[x.valueName()] = llNode;
+                        else {
+                            structuredParams[x.key()] = llNode;
                         }
-                    });
+                    };
                 }
                 Object.keys(scalarParamValues).forEach(x=> {
                     let q = ds.transform(scalarParamValues[x]);
@@ -648,8 +677,9 @@ export class LibraryExpander{
         let expander = new TraitsAndResourceTypesExpander();
         let rp = new referencePatcher.ReferencePatcher();
         let hlNode:hl.IHighLevelNode = expander.createHighLevelNode(lib,true,rp,true);
-        rp.process(hlNode);
-        rp.expandLibraries(hlNode,true);
+        let llNode = <proxy.LowLevelCompositeNode>hlNode.lowLevel();
+        rp.process(llNode);
+        rp.expandLibraries(llNode,true);
         return hlNode;
     }
 
@@ -659,24 +689,26 @@ export class LibraryExpander{
         }
         var master = <hl.IHighLevelNode>(<hlimpl.ASTNodeImpl>hlNode).getMaster();
         this.processNode(rp,master);
-        if(universeHelpers.isOverlayType(hlNode.definition())){
-            rp.process(hlNode);
+        var llNode = hlNode.lowLevel();
+        var fLine = hlimpl.ramlFirstLine(llNode.unit().contents());
+        if(fLine.length==3&&fLine[2]=="Overlay"){
+            rp.process(llNode);
         }
-        rp.expandLibraries(hlNode);
+        rp.expandLibraries(<proxy.LowLevelCompositeNode>llNode);
     }
 }
 
-function toUnits1(nodes:hl.IParseResult[]):ll.ICompilationUnit[]{
+function toUnits1(nodes:ll.ILowLevelASTNode[]):ll.ICompilationUnit[]{
     var result:ll.ICompilationUnit[] = [];
     for(var n of nodes){
         toUnits2(result,n,true);
     }
     return result;
 }
-function toUnits2(chainStart:ll.ICompilationUnit[], node:hl.IParseResult, append:boolean=false):ll.ICompilationUnit[]{
+function toUnits2(chainStart:ll.ICompilationUnit[], node:ll.ILowLevelASTNode, append:boolean=false):ll.ICompilationUnit[]{
 
     var result = append ? chainStart : chainStart.concat([]);
-    var unit = node.lowLevel().unit();
+    var unit = node.unit();
     if(unit==null){
         return result;
     }
@@ -692,8 +724,8 @@ function toUnits2(chainStart:ll.ICompilationUnit[], node:hl.IParseResult, append
     return result;
 }
 
-export function toUnits(node:hl.IParseResult):ll.ICompilationUnit[]{
-    var nodes:hl.IParseResult[] = [];
+export function toUnits(node:ll.ILowLevelASTNode):ll.ICompilationUnit[]{
+    var nodes:ll.ILowLevelASTNode[] = [];
     while(node){
         nodes.push(node);
         node = node.parent();
@@ -887,8 +919,8 @@ export class ValueTransformer implements proxy.ValueTransformer{
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
                     if(val) {
-                        if(referencePatcher.PatchedReference.isInstance(val)){
-                            val = (<referencePatcher.PatchedReference>val).value();
+                        if(referencePatcherHL.PatchedReference.isInstance(val)){
+                            val = (<referencePatcherHL.PatchedReference>val).value();
                         }
                         for(var tr of transformers) {
                             val = tr(val);
@@ -1056,7 +1088,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
 export class DefaultTransformer extends ValueTransformer{
 
     constructor(
-        public owner:hl.IHighLevelNode,
+        public owner:proxy.LowLevelCompositeNode,
         public delegate: ValueTransformer,
         unitsChain:ll.ICompilationUnit[]
     ){
@@ -1100,7 +1132,7 @@ export class DefaultTransformer extends ValueTransformer{
         var methodName:string;
         var resourcePath:string = "";
         var resourcePathName:string;
-        var ll=this.owner.lowLevel();
+        var ll=this.owner;
         var node = ll;
         var last=null;
         while(node){
@@ -1181,9 +1213,9 @@ export class DefaultTransformer extends ValueTransformer{
 
 interface GenericData{
 
-    node:hl.IHighLevelNode;
+    node:ll.ILowLevelASTNode;
 
-    ref:hl.IAttribute;
+    ref:ll.ILowLevelASTNode;
 
     name:string;
 
@@ -1204,6 +1236,96 @@ interface ResourceGenericData{
 }
 
 var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
+
+var possibleMethodNames;
+
+function isPossibleMethodName(n:string){
+    if(!possibleMethodNames){
+        possibleMethodNames = {};
+        var methodType = def.getUniverse("RAML10").type(def.universesInfo.Universe10.Method.name);
+        for(var opt of methodType.property(def.universesInfo.Universe10.Method.properties.method.name).enumOptions()){
+            possibleMethodNames[opt] = true;
+        }
+    }
+    return possibleMethodNames[n];
+}
+
+function getDeclaration(
+    elementName:string,
+    propName:string,
+    resolver:namespaceResolver.NamespaceResolver,
+    _units:ll.ICompilationUnit[]):ll.ILowLevelASTNode{
+
+    if(!elementName){
+        return null;
+    }
+
+    var ns = "";
+    var name = elementName;
+    var ind = elementName.lastIndexOf(".");
+    if(ind>=0){
+        ns = elementName.substring(0,ind);
+        name = elementName.substring(ind+1);
+    }
+    var result:ll.ILowLevelASTNode;
+    var gotLibrary = false;
+    var units:ll.ICompilationUnit[] = _units;
+    for(var i = units.length ; i > 0 ; i--){
+        var u = units[i-1];
+        var fLine = hlimpl.ramlFirstLine(u.contents());
+        var className = fLine && fLine.length==3 && fLine[2];
+        if(className==def.universesInfo.Universe10.Library.name){
+            if (gotLibrary) {
+                break;
+            }
+            gotLibrary = true;
+        }
+        var actualUnit = u;
+        if(ns){
+            actualUnit = null;
+            var map = resolver.nsMap(u);
+            if(map) {
+                var info = map[ns];
+                if (info) {
+                    actualUnit = info.unit;
+                }
+            }
+        }
+        if(!actualUnit){
+            continue;
+        }
+        var uModel = resolver.unitModel(actualUnit);
+        var c = <namespaceResolver.ElementsCollection>uModel[propName];
+        if(!namespaceResolver.ElementsCollection.isInstance(c)){
+            continue;
+        }
+        result = c.getElement(name);
+        if(result){
+            break;
+        }
+        if(i==1){
+            if(className==def.universesInfo.Universe10.Extension.name ||
+                className==def.universesInfo.Universe10.Overlay.name){
+
+                let extendedUnit = namespaceResolver.extendedUnit(u);
+                if(extendedUnit){
+                    i++;
+                    _units[0] = extendedUnit;
+                }
+            }
+        }
+    }
+    return result;
+}
+
+function extractResources(llNode:proxy.LowLevelCompositeNode):proxy.LowLevelCompositeNode[] {
+    var resources = llNode.children().filter(x=> {
+        var key = x.key();
+        return key && (key.length > 0) && (key.charAt(0) == "/");
+    });
+    return resources;
+};
+
 
 const sufficientTypeAttributes:any = {};
 sufficientTypeAttributes[def.universesInfo.Universe10.TypeDeclaration.properties.type.name] = true;

@@ -1080,6 +1080,9 @@ export function doDescrimination(node:hl.IHighLevelNode) {
             if(node.property()&&node.property().nameId()===universes.Universe10.LibraryBase.properties.annotationTypes.name) {
                 return descriminate(null, null, node);
             }
+            if(universeHelpers.isTypeDeclarationDescendant(node.definition())){
+                return descriminate(null, null, node);
+            }
 
             var result = null;
 

@@ -288,7 +288,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                 issue = createIssue1(messageRegistry.INVALID_PARAMETER_NAME, { paramName : paramName}, node);
             }
             else {
-                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node);
+                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node, true);
             }
         }
 
@@ -1889,10 +1889,10 @@ export class UrlParameterNameValidator implements PropertyValidator{
             }
         }
         if (count>0){
-            throw new Error("Invalid resource name: unmatched '{'")
+            throw new Error(applyTemplate(messageRegistry.INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL, {symbol: "{"}))
         }
         if (count<0){
-            throw new Error("Invalid resource name: unmatched '}'")
+            throw new Error(applyTemplate(messageRegistry.INVALID_RESOURCE_NAME_UNMATCHED_SYMBOL, {symbol: "}"}))
         }
         return result;
     }
@@ -4072,156 +4072,214 @@ function getMediaType2(node:hl.IAttribute){
 
 var offsetRegexp = /^[ ]*/;
 
-var localError = function (
-    node:hl.IParseResult,
-    c,
-    w,
+function subRangError(
+    hlNode:hl.IParseResult,
+    llNode:ll.ILowLevelASTNode,
+    code,
+    isWarning,
     message,
-    p:boolean,
+    setPath:boolean,
     prop:hl.IProperty,
-    positionsSource?:ll.ILowLevelASTNode,
-    internalRange?:def.rt.tsInterfaces.RangeObject,
-    forceScalar = false) {
-    var llNode = positionsSource ? positionsSource : node.lowLevel();
-    var contents = llNode.unit() && llNode.unit().contents();
-    var contentLength = contents && contents.length;
+    internalRange:def.rt.tsInterfaces.RangeObject,
+    forceScalar = false,
+    positionsFromValue = false):hl.ValidationIssue {
 
-    var st = llNode.start();
-    var et = llNode.end();
+    if (!internalRange) {
+        return null;
+    }
+
+    let st = llNode.start();
+    let et = llNode.end();
 
     let aNode = llNode.actual();
     let aValNode = aNode && aNode.value;
-    let rawVal = aValNode && aValNode.rawValue;;
+    let rawVal = aValNode && aValNode.rawValue;
+    ;
     let valueKind = llNode.valueKind();
-    if(valueKind==yaml.Kind.ANCHOR_REF) {
+    if (valueKind == yaml.Kind.ANCHOR_REF) {
         valueKind = llNode.anchorValueKind();
     }
     let vk1 = valueKind;
-    if(valueKind==yaml.Kind.INCLUDE_REF){
-        valueKind = node.lowLevel().resolvedValueKind();
+    if (valueKind == yaml.Kind.INCLUDE_REF) {
+        valueKind = llNode.resolvedValueKind();
     }
-    if(internalRange && (valueKind == yaml.Kind.SCALAR||forceScalar)){
-        if(vk1 == yaml.Kind.INCLUDE_REF){
-            let includedUnit = llNode.unit().resolve(llNode.includePath());
-            if(includedUnit) {
-                let lineMapper = includedUnit.lineMapper();
-                let sp = lineMapper.toPosition(internalRange.start.line, internalRange.start.column);
-                let ep = lineMapper.toPosition(internalRange.end.line, internalRange.end.column);
-                let result = {
-                    code: c,
-                    isWarning: w,
-                    message: message,
-                    node: null,
-                    start: sp.position,
-                    end: ep.position,
-                    path: includedUnit.path(),
-                    extras: [],
-                    unit: includedUnit
-                };
-                let trace = localError(node, c, w, message, p, prop, positionsSource);
-                result.extras.push(trace);
-                return result;
-            }
-        }
-        let lineMapper = llNode.unit().lineMapper();
-        let vs = llNode.valueStart();
-        if(vs<0){
-            vs = llNode.start();
-        }
 
-        let vsPos = lineMapper.position(vs);
-        let aSCol:number;
-        let aECol:number;
-        let aSLine = vsPos.line+internalRange.start.line;
-        let aELine = vsPos.line+internalRange.end.line;
-        if(rawVal && typeof rawVal == "string" && rawVal.charAt(0)=="|"){
-            //let keyCol = lineMapper.position(llNode.keyStart()).column;
-            let i0 = rawVal.indexOf("\n")+1;
-            let i1 = rawVal.indexOf("\n",i0);
-            if(i1<0){
-                i1 = rawVal.length;
+    if (valueKind != yaml.Kind.SCALAR && !forceScalar) {
+        return null;
+    }
+    if (vk1 == yaml.Kind.INCLUDE_REF) {
+        let includedUnit = llNode.unit().resolve(llNode.includePath());
+        if (includedUnit) {
+            let lineMapper = includedUnit.lineMapper();
+            let sp = lineMapper.toPosition(internalRange.start.line, internalRange.start.column);
+            let ep = lineMapper.toPosition(internalRange.end.line, internalRange.end.column);
+            let result = {
+                code: code,
+                isWarning: isWarning,
+                message: message,
+                node: null,
+                start: sp.position,
+                end: ep.position,
+                path: includedUnit.path(),
+                extras: [],
+                unit: includedUnit
+            };
+            let trace:hl.ValidationIssue;
+            if(hlNode){
+                trace = localError(hlNode, code, isWarning, message, setPath, prop, llNode);
             }
-            let off = offsetRegexp.exec(rawVal.substring(i0,i1))[0].length;
-            aSCol = off + internalRange.start.column;
-            aECol = off + internalRange.end.column;
-            aSLine++;
-            aELine++;
-        }
-        else{
-            aSCol = vsPos.column + internalRange.start.column;
-            aECol = vsPos.column + internalRange.end.column;
-            if(aValNode && (aValNode.singleQuoted||aValNode.doubleQuoted)){
-                aSCol++;
-                aECol++;
+            else{
+                trace = localLowLevelError(llNode,null,code,isWarning,message,setPath,null,positionsFromValue);
             }
+            result.extras.push(trace);
+            return result;
         }
-        let sPoint = lineMapper.toPosition(aSLine,aSCol);
-        let ePoint = lineMapper.toPosition(aELine,aECol);
-        if(sPoint && ePoint) {
-            st = sPoint.position;
-            et = ePoint.position;
+    }
+    let lineMapper = llNode.unit().lineMapper();
+    let vs = llNode.valueStart();
+    if (vs < 0) {
+        vs = llNode.start();
+    }
+
+    let vsPos = lineMapper.position(vs);
+    let aSCol: number;
+    let aECol: number;
+    let aSLine = vsPos.line + internalRange.start.line;
+    let aELine = vsPos.line + internalRange.end.line;
+    if (rawVal && typeof rawVal == "string" && rawVal.charAt(0) == "|") {
+        //let keyCol = lineMapper.position(llNode.keyStart()).column;
+        let i0 = rawVal.indexOf("\n") + 1;
+        let i1 = rawVal.indexOf("\n", i0);
+        if (i1 < 0) {
+            i1 = rawVal.length;
         }
+        let off = offsetRegexp.exec(rawVal.substring(i0, i1))[0].length;
+        aSCol = off + internalRange.start.column;
+        aECol = off + internalRange.end.column;
+        aSLine++;
+        aELine++;
     }
     else {
-        if (contentLength && contentLength < et) {
-            et = contentLength - 1;
+        aSCol = vsPos.column + internalRange.start.column;
+        aECol = vsPos.column + internalRange.end.column;
+        if (aValNode && (aValNode.singleQuoted || aValNode.doubleQuoted)) {
+            aSCol++;
+            aECol++;
         }
-
-        if (llNode.key() && llNode.keyStart()) {
-            let ks = llNode.keyStart();
-            if (ks > 0) {
-                st = ks;
-            }
-            let ke = llNode.keyEnd();
-            if (ke > 0) {
-                et = ke;
-            }
-        }
-        if (et < st) {
-            et = st + 1;
-            //this happens for empty APIs, when we basically have nothing to parse
-            if (node.isElement()) {
-                var definition = (<hl.IHighLevelNode> node).definition();
-                if (universeHelpers.isApiType(definition)) {
-                    st = contentLength == 0 ? 0 : contentLength - 1;
-                    et = st;
-                }
-            }
-        }
-        if (prop && !prop.getAdapter(services.RAMLPropertyService).isMerged() && node.parent() == null) {
-            var nm = _.find(llNode.children(), x => x.key() == prop.nameId());
-            if (nm) {
-                let ks = nm.keyStart();
-                let ke = nm.keyEnd();
-                if (ks > 0 && ke > ks) {
-                    st = ks;
-                    et = ke;
-                }
-            }
-
-        }
+    }
+    let sPoint = lineMapper.toPosition(aSLine, aSCol);
+    let ePoint = lineMapper.toPosition(aELine, aECol);
+    if (sPoint && ePoint) {
+        st = sPoint.position;
+        et = ePoint.position;
     }
 
     return {
-        code: c,
-        isWarning: w,
+        code: code,
+        isWarning: isWarning,
+        message: message,
+        node: hlNode,
+        start: st,
+        end: et,
+        path: setPath ? (llNode.unit() ? llNode.unit().path() : "") : null,
+        extras: [],
+        unit: llNode ? llNode.unit() : null
+    }
+
+}
+
+var localError = function (
+    node:hl.IParseResult,
+    code,
+    isWarning,
+    message,
+    setPath:boolean,
+    prop:hl.IProperty,
+    positionsSource?:ll.ILowLevelASTNode,
+    internalRange?:def.rt.tsInterfaces.RangeObject,
+    forceScalar = false):hl.ValidationIssue {
+    let llNode = positionsSource ? positionsSource : node.lowLevel();
+
+    if(internalRange){
+        let err = subRangError(node,llNode,code,isWarning,message,setPath,prop,internalRange,forceScalar);
+        if(err){
+            return err;
+        }
+    }
+    let contents = llNode.unit() && llNode.unit().contents();
+    let contentLength = contents && contents.length;
+
+    let st = llNode.start();
+    let et = llNode.end();
+
+    if (contentLength && contentLength < et) {
+        et = contentLength - 1;
+    }
+
+    if (llNode.key() && llNode.keyStart()) {
+        let ks = llNode.keyStart();
+        if (ks > 0) {
+            st = ks;
+        }
+        let ke = llNode.keyEnd();
+        if (ke > 0) {
+            et = ke;
+        }
+    }
+    if (et < st) {
+        et = st + 1;
+        //this happens for empty APIs, when we basically have nothing to parse
+        if (node.isElement()) {
+            var definition = (<hl.IHighLevelNode> node).definition();
+            if (universeHelpers.isApiType(definition)) {
+                st = contentLength == 0 ? 0 : contentLength - 1;
+                et = st;
+            }
+        }
+    }
+    if (prop && !prop.getAdapter(services.RAMLPropertyService).isMerged() && node.parent() == null) {
+        var nm = _.find(llNode.children(), x => x.key() == prop.nameId());
+        if (nm) {
+            let ks = nm.keyStart();
+            let ke = nm.keyEnd();
+            if (ks > 0 && ke > ks) {
+                st = ks;
+                et = ke;
+            }
+        }
+
+    }
+    return {
+        code: code,
+        isWarning: isWarning,
         message: message,
         node: node,
         start: st,
         end: et,
-        path: p?(llNode.unit() ? llNode.unit().path() : ""):null,
-        extras:[],
-        unit:node?llNode.unit():null
+        path: setPath ? (llNode.unit() ? llNode.unit().path() : "") : null,
+        extras: [],
+        unit: node ? llNode.unit() : null
     }
 };
 
 var localLowLevelError = function (
     node:ll.ILowLevelASTNode,
     highLevelAnchor : hl.IParseResult,
-    issueCode,
+    code,
     isWarning,
-    message,path:boolean,
-    range?:def.rt.tsInterfaces.RangeObject) : hl.ValidationIssue {
+    message,
+    setPath:boolean,
+    internalRange?:def.rt.tsInterfaces.RangeObject,
+    positionsFromValue=false,
+    forceScalar=false) : hl.ValidationIssue {
+
+    if(internalRange){
+        let err = subRangError(
+            null,node,code,isWarning,message,setPath,null,internalRange,forceScalar,positionsFromValue);
+        if(err){
+            return err;
+        }
+    }
 
     var contents = node.unit() && node.unit().contents();
     var contentLength = contents && contents.length;
@@ -4242,16 +4300,21 @@ var localLowLevelError = function (
             et = ke;
         }
     }
+    let val = node.value(true);
+    if(positionsFromValue && val && val.length>0){
+        st = node.valueStart();
+        et = node.valueEnd();
+    }
 
 
     return {
-        code: issueCode,
+        code: code,
         isWarning: isWarning,
         message: message,
         node: highLevelAnchor,
         start: st,
         end: et,
-        path: path?(node.unit() ? node.unit().path() : ""):null,
+        path: setPath?(node.unit() ? node.unit().path() : ""):null,
         extras:[],
         unit:node?node.unit():null
     }
@@ -4318,9 +4381,34 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange,forceScalar);
+                let paramsChain = proxyNode.transformer() && proxyNode.transformer().paramNodesChain(proxyNode);
+                if(paramsChain && paramsChain.length>0){
+                    if(node.lowLevel().valueKind()!=node.lowLevel().resolvedValueKind()) {
+                        original = localError(node, issueCode, isWarning, message, false, pr, null, internalRange,forceScalar);
+                        internalRange = null;
+                        forceScalar = false;
+                    }
+                    else{
+                        original = localError(node, issueCode, isWarning, message, false, pr, null);
+                    }
+                    let o = original;
+                    while(o.extras.length>0){
+                        o = o.extras[0];
+                    }
+                    for(let i = 0 ; i < paramsChain.length ; i++){
+                        let pNode = paramsChain[i];
+                        let ir = (i==paramsChain.length-1) ? internalRange : null;
+                        let fs = (i==paramsChain.length-1) ? forceScalar : false;
+                        let e = localLowLevelError(pNode,null,issueCode,isWarning,message,false,ir,true,fs);
+                        o.extras.push(e);
+                        o = e;
+                    }
+                    return original;
+                }
+                else{
+                    original=localError(node,issueCode,isWarning,message,true,pr,null,internalRange,forceScalar);
+                }
                 internalRange = null;
-                //message +="(template expansion affected)"
             }
             node=node.parent();
             proxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
@@ -4365,7 +4453,11 @@ export function createIssue(
     }
     var error=localError(node, issueCode, isWarning, message,false,pr,null,internalRange,forceScalar);
     if (original) {
-        original.extras.push(error);
+        let o = original;
+        while(o.extras && o.extras.length>0){
+            o = o.extras[0];
+        }
+        o.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
             var messageEntry = messageRegistry.ERROR_IN_INCLUDED_FILE;
             error.code = messageEntry.code;
@@ -4426,7 +4518,7 @@ export function createLLIssue(
     if (original) {
         original.extras.push(error);
         if(node.valueKind()==yaml.Kind.INCLUDE_REF) {
-            error.message = "Error in the included file: " + error.message;
+            error.message = applyTemplate(messageRegistry.ERROR_IN_INCLUDED_FILE, {msg: error.message});
         }
         error = original;
     }
@@ -4447,13 +4539,13 @@ export function validateResponseString(v:string):any{
 }
 
 
-interface Message{
+export interface Message{
     code: number
     message: string
     func?: (x:any)=>string
 }
 
-function applyTemplate(messageEntry:Message, params:any):string {
+export function applyTemplate(messageEntry:Message, params:any):string {
     var result = "";
     var msg = messageEntry.message;
     var prev = 0;
@@ -4469,7 +4561,7 @@ function applyTemplate(messageEntry:Message, params:any):string {
         prev += "}}".length;
         var paramValue = params[paramName];
         if (paramValue === undefined) {
-            throw new Error(`Message parameter '${paramName}' has no value specified.`);
+            throw new Error(applyTemplate(messageRegistry.MESSAGE_PARAMETER_NO_VALUE, {paramName: paramName}));
         }
         result += paramValue;
     }

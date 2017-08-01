@@ -16,6 +16,8 @@ import fs=require("fs");
 import universes=require("../tools/universe")
 import universeHelpers=require("../tools/universeHelpers")
 import services=defs
+import linter=require("./linter")
+let messageRegistry = require("../../../resources/errorMessages");
 function findLastAttributeIndex(n:hl.IHighLevelNode): number {
     var last = -1;
     var children = n.lowLevel().children();
@@ -210,7 +212,7 @@ export function setValue(node:hlimpl.ASTPropImpl,value: string|hlimpl.Structured
         }
     } else {
         if ((<def.Property>node.property()).isFromParentKey()) {
-            throw new Error("couldn't set structured value to a key: " + node.property().nameId());
+            throw new Error(linter.applyTemplate(messageRegistry.COULD_NOT_SET_STRUCTURED_VALUE, {key:node.property().nameId()}));
         }
         var sval = <hlimpl.StructuredValue>value;
         c.commands.push(ll.setAttrStructured(node.lowLevel(), sval));
@@ -264,7 +266,7 @@ export function removeAttr(attr:hlimpl.ASTPropImpl) {
 }
 
 export function setValues(attr:hlimpl.ASTPropImpl,values: string[]) {
-    if(!attr.property().isMultiValue()) throw new Error("setValue(string[]) only apply to multi-values properties");
+    if(!attr.property().isMultiValue()) throw new Error(messageRegistry.SETVALUE_ONLY_MULTI_VALUES_PROPERTIES.message);
     var node: hlimpl.ASTNodeImpl = <hlimpl.ASTNodeImpl>attr.parent();
 
     if(node && isTypeShortcut(<hlimpl.ASTNodeImpl>node)) {
@@ -415,7 +417,7 @@ export function addToNode(target:hlimpl.ASTNodeImpl,node:hl.IParseResult){
             }
         });
         if (!cp){
-            throw new Error("Unable to find correct child")
+            throw new Error(messageRegistry.UNABLE_TO_FIND_CHILD.message)
         }
         else{
             an.patchProp(cp);

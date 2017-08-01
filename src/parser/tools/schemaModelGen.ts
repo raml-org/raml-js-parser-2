@@ -10,7 +10,7 @@ import wrapper=require("../artifacts/raml10parser")
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
 
 import schemaGenApi = require("./schemaModelGenApi")
-
+let messageRegistry = require("../../../resources/errorMessages");
 
 export class SchemaToModelGenerator implements schemaGenApi.SchemaToModelGenerator {
 
@@ -170,7 +170,7 @@ export class ModelToSchemaGenerator {
           if(this.isSimpleType(typevalue)) {
             obj.type = typevalue;
             simple = true;
-            if (inherited) throw new Error("couldn't mix user defined and basic types in inheritance");
+            if (inherited) throw new Error(messageRegistry.COULD_NOT_MIX_TYPES_INHERITANCE.message);
           } else {
             var t = this.resolveType(type, typevalue);
             if (t) {
@@ -184,7 +184,7 @@ export class ModelToSchemaGenerator {
               }
               obj.type = 'object';
               inherited = true;
-              if (simple) throw new Error("couldn't mix user defined and basic types in inheritance");
+              if (simple) throw new Error(messageRegistry.COULD_NOT_MIX_TYPES_INHERITANCE.message);
             } else {
               var ppp = this.generateTypeExp(typevalue, typelist);
               //console.log('xtype: ' + typevalue + '\n' + JSON.stringify(ppp));

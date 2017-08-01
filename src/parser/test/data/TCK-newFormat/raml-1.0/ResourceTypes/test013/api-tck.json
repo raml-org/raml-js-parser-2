@@ -56,8 +56,11 @@
             "path": "hasResponseCollection.raml"
           }
         ],
-        "name": "hasResponseCollection",
+        "name": "lib.hasResponseCollection",
         "usage": "Use this trait for resources whose response body is a collection of items",
+        "__METADATA__": {
+          "calculated": true
+        },
         "path": "hasResponseCollection.raml"
       },
       {
@@ -86,11 +89,8 @@
             "path": "hasResponseCollection.raml"
           }
         ],
-        "name": "lib.hasResponseCollection",
+        "name": "hasResponseCollection",
         "usage": "Use this trait for resources whose response body is a collection of items",
-        "__METADATA__": {
-          "calculated": true
-        },
         "path": "hasResponseCollection.raml"
       }
     ],
