@@ -425,7 +425,8 @@ export interface TestOptions{
     regenerteJSON?:boolean,
     expandLib?:boolean,
     unfoldTypes?:boolean,
-    newFormat?:boolean
+    newFormat?:boolean,
+    serializeMetadata?:boolean
 }
 
 export function testAPIScript(o:TestOptions){
@@ -438,7 +439,8 @@ export function testAPIScript(o:TestOptions){
         true,
         true,
         o.expandLib,
-        o.unfoldTypes);
+        o.unfoldTypes,
+        o.serializeMetadata);
 
 }
 
@@ -472,7 +474,8 @@ function doTestAPI(
     callTests:boolean=true,
     doAssert:boolean = true,
     expandLib:boolean = false,
-    unfoldTypes = false):TestResult{
+    unfoldTypes = false,
+    serializeMetadata = true):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
@@ -493,7 +496,8 @@ function doTestAPI(
         }
         json = index.loadSync(apiPath,{
             expandLibraries: expandLib,
-            unfoldTypes: unfoldTypes
+            unfoldTypes: unfoldTypes,
+            serializeMetadata: serializeMetadata
         });
     }
     else {
@@ -510,7 +514,7 @@ function doTestAPI(
         }
 
         (<any>expanded).setAttributeDefaults(true);
-        json = expanded.toJSON({rootNodeDetails: true});
+        json = expanded.toJSON({rootNodeDetails: true, serializeMetadata: serializeMetadata});
     }
 
     if(!tckJsonPath){
