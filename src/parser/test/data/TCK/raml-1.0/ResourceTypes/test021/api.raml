@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: My API
+
+types:
+  song: !include schema.json
+
+resourceTypes:
+  type1:
+    type:
+      collection:
+          exampleItem: <<param1>>
+  collection:
+    post:
+      body:
+        application/json:
+          type: <<resourcePathName|!singularize>>
+          example: |
+            <<exampleItem>>
+/songs:
+  type:
+    type1:
+      param1: |
+        {
+          "songId": "550e8400-e29b-41d4-a716-446655440000",
+          "songTitle": true,
+          "albumId": "183100e3-0e2b-4404-a716-66104d440550"
+        }
