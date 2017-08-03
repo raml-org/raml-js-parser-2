@@ -23,12 +23,12 @@
       {
         "key": "lib1",
         "value": "lib1.raml",
-        "path": "e1.raml"
+        "path": "e2.raml"
       },
       {
         "key": "lib0",
         "value": "lib0.raml",
-        "path": "api.raml"
+        "path": "e2.raml"
       }
     ],
     "title": "test API",
