@@ -419,14 +419,15 @@ var printTime = function (message) {
 };
 
 export interface TestOptions{
-    apiPath:string,
+    apiPath?:string,
     extensions?:string[],
     tckJsonPath?:string,
     regenerteJSON?:boolean,
     expandLib?:boolean,
     unfoldTypes?:boolean,
     newFormat?:boolean,
-    serializeMetadata?:boolean
+    serializeMetadata?:boolean,
+    expandTypes?: boolean
 }
 
 export function testAPIScript(o:TestOptions){
@@ -440,7 +441,8 @@ export function testAPIScript(o:TestOptions){
         true,
         o.expandLib,
         o.unfoldTypes,
-        o.serializeMetadata);
+        o.serializeMetadata,
+        o);
 
 }
 
@@ -475,7 +477,8 @@ function doTestAPI(
     doAssert:boolean = true,
     expandLib:boolean = false,
     unfoldTypes = false,
-    serializeMetadata = true):TestResult{
+    serializeMetadata = true,
+    o:TestOptions={}):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
@@ -496,7 +499,8 @@ function doTestAPI(
         }
         json = index.loadSync(apiPath,{
             expandLibraries: expandLib,
-            serializeMetadata: serializeMetadata
+            serializeMetadata: serializeMetadata,
+            expandTypes: o.expandTypes
         });
     }
     else {

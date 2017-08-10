@@ -57,7 +57,7 @@ export class PropertyEntry implements Entry{
     }
 
     append(te:GeneralTypeEntry,bd:BranchingData):void{
-        let etp = new GeneralTypeEntry(this._type.original(),[],null,[]);
+        let etp = new GeneralTypeEntry(this._type.original(),[],null,[], [], this._type.name());
         this._type.append(etp,bd);
         let newPropEntry = new PropertyEntry(this._original,this._name,etp);
         if(this.isFacet){
@@ -213,12 +213,13 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
         _superTypes:TypeEntry[]=[],
         protected _componentType: TypeEntry,
         protected _properties: PropertyEntry[]=[],
-        protected _facets: PropertyEntry[]=[]){
+        protected _facets: PropertyEntry[]=[],
+        protected _name:string){
         super(_original,_superTypes);
     }
 
     clone(ct?:TypeEntry):GeneralTypeEntry{
-        return new GeneralTypeEntry(this._original,[],ct);
+        return new GeneralTypeEntry(this._original,[],ct, [], [], this.name());
     }
 
     possibleBuiltInTypes():string[]{
@@ -280,10 +281,12 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
 
     append(te:GeneralTypeEntry,bd:BranchingData):void{
 
-            if(this.isExternal()) {
-                te._original = this._original;
-                return;
-            }
+        if (this._original && this._original.kind() != "union") {
+            te._original = this._original;
+        }
+        if (this.isExternal()) {
+            return;
+        }
         if(bd.typeMap().hasType(this)){
             return;
         }
@@ -296,7 +299,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
                     te.setComponentType(ct);
                 // }
                 // else{
-                //     let cType = new GeneralTypeEntry(null,[],null,[]);
+                //     let cType = new GeneralTypeEntry(null,[],null,[],[],null);
                 //     te.componentType().append(cType,null);
                 //     ct.append(cType,null);
                 //     te.setComponentType(cType);
@@ -319,7 +322,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
                         pArr[0].append(te, bd);
                     }
                     else{
-                        let pType = new GeneralTypeEntry(null,[],null,[]);
+                        let pType = new GeneralTypeEntry(null,[],null,[], [], null);
                         pArr.forEach(x=>pType.addSuperType(x.type()));
                         let mergedProp = new PropertyEntry(null,pName,pType);
                         mergedProp.append(te, bd);
@@ -339,6 +342,10 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
         finally {
             bd.typeMap().removeType(this);
         }
+    }
+
+    name(){
+        return this._name || super.name();
     }
 }
 
@@ -450,7 +457,7 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     if(t.name() && !t.isUnion() && occured[t.name()]){
         return occured[t.name()];
     }
-    let result = new GeneralTypeEntry(t, [],null,[]);
+    let result = new GeneralTypeEntry(t, [],null,[], [], t.name());
     occured[t.name()] = result;
     let superTypes = t.allSuperTypes().filter(x=>!x.isUnion());
     let superTypeEntries:TypeEntry[] = [];
@@ -493,7 +500,7 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     for(let pe of propertyEntries){
         result.addProperty(pe);
     }
-    let definedFacets = t.definedFacets();
+    let definedFacets = t.allDefinedFacets();
     if(definedFacets.length>0){
         for(let p of definedFacets){
             let pt = p.range();
@@ -516,7 +523,7 @@ function expandHierarchy(e:TypeEntry,reg:BranchingRegistry,typeMap?:TypeMap):Typ
 
     let entries:TypeEntry[] = [];
     for(let bd of reg.possibleBranches(typeMap)){
-        let branchEntry = new GeneralTypeEntry(null,[],null,[]);
+        let branchEntry = new GeneralTypeEntry(null,[],null,[], [], e.name());
         e.append(branchEntry,bd);
         entries.push(branchEntry);
     }
@@ -619,7 +626,7 @@ class BasicBranchingRegistry implements BranchingRegistry{
 export function dump(te:TypeEntry):any{
 
     let result:any = {};
-    let name = te.original() && te.original().name();
+    let name = te.name();
     if(name){
         result.name = name;
     }
@@ -683,7 +690,7 @@ export function dump(te:TypeEntry):any{
 }
 
 export function dumpFacets(te: TypeEntry, result: any) {
-    let customFacets = te.original() && te.original().customFacets();
+    let customFacets = te.original() && te.original().allCustomFacets();
     if(customFacets && customFacets.length>0) {
         let facetsObj:any = {};
         result.fixedFacets = facetsObj;
