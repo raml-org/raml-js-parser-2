@@ -10,6 +10,7 @@ import hlImpl = require("../parser/highLevelImpl");
 import builder = require("../parser/ast.core/builder");
 import expander=require("../parser/ast.core/expanderHL");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
+import typeExpander = require("./typeExpander");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
@@ -66,6 +67,9 @@ export class JsonSerializer {
         if(this.options.unfoldTypes == null){
             this.options.unfoldTypes = true;
         }
+        if (this.options.expandTypes == null) {
+            //this.options.expandTypes = true;
+        }
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
         this.nodeTransformers = [
             new MethodsTransformer(),
@@ -80,7 +84,7 @@ export class JsonSerializer {
             new ReferencesTransformer(),
             new Api10SchemasTransformer(),
             new SecurityExpandingTransformer(this.options.expandSecurity),
-            new AllParametersTransformer(this.options.allParameters)
+            new AllParametersTransformer(this.options.allParameters,this.options.serializeMetadata)
         ];
         fillTransformersMap(this.nodeTransformers,this.nodeTransformersMap);
         fillTransformersMap(this.nodePropertyTransformers,this.nodePropertyTransformersMap);
@@ -686,6 +690,8 @@ export interface SerializeOptions{
     expandSecurity?:boolean
 
     unfoldTypes?:boolean
+
+    expandTypes?:boolean
 }
 
 class PropertyValue{
@@ -936,7 +942,7 @@ export interface Transformation{
 
     match(node:hl.IParseResult,prop:nominals.IProperty):boolean
 
-    transform(value:any,node?:hl.IParseResult);
+    transform(value:any,node:hl.IParseResult);
 
     registrationInfo():Object;
 }
@@ -1146,7 +1152,7 @@ abstract class MatcherBasedTransformation implements Transformation{
         return definition ? this.matcher.match(definition,prop) : false;
     }
 
-    abstract transform(_value:any,node?:hl.IParseResult);
+    abstract transform(_value:any,node:hl.IParseResult);
 
     registrationInfo():Object{
         return this.matcher.registrationInfo();
@@ -1308,7 +1314,13 @@ class TypeTransformer extends BasicTransformation{
         super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
-    transform(_value:any,node?:hl.IParseResult){
+    transform(_value:any,node:hl.IParseResult){
+
+        if(this.options.expandTypes && node&&node.isElement()){
+            let pt = node.asElement().parsedType();
+            return typeExpander.dumpType(pt);
+        }
+
 
         var isArray = Array.isArray(_value);
         if(isArray && _value.length==0){
@@ -1620,7 +1632,7 @@ class SimpleNamesTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any,node?:hl.IParseResult){
+    transform(value:any,node:hl.IParseResult){
 
         if(!node.parent() || !node.parent().lowLevel()["libProcessed"]){
             return value;
@@ -1657,7 +1669,7 @@ class TemplateParametrizedPropertiesTransformer extends MatcherBasedTransformati
         ]));
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)){
             return value;
         }
@@ -1691,7 +1703,7 @@ class SchemasTransformer extends BasicTransformation{
         super(universes.Universe08.GlobalSchema.name,universes.Universe08.Api.properties.schemas.name,true, ["RAML08"]);
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(Array.isArray(value)){
             return value;
         }
@@ -1713,7 +1725,7 @@ class ProtocolsToUpperCaseTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(typeof(value)=='string'){
             return value.toUpperCase();
         }
@@ -1734,7 +1746,7 @@ class ReferencesTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any){
+    transform(value:any,node:hl.IParseResult){
         if(value==null){
             return null;
         }
@@ -1864,7 +1876,7 @@ class SecurityExpandingTransformer extends MatcherBasedTransformation {
         return this.enabled ? super.registrationInfo() : null;
     }
 
-    transform(value:any,_node?:hl.IParseResult){
+    transform(value:any,_node:hl.IParseResult){
         this.processApi(value);
         return value;
     }
@@ -1963,7 +1975,7 @@ class SecurityExpandingTransformer extends MatcherBasedTransformation {
 
 class AllParametersTransformer extends MatcherBasedTransformation{
 
-    constructor(private enabled:boolean=false){
+    constructor(private enabled:boolean=false,private serializeMetadata=false){
         super(new CompositeObjectPropertyMatcher([
             new BasicObjectPropertyMatcher(universes.Universe10.Api.name,null,true)
         ]));
@@ -1996,7 +2008,7 @@ class AllParametersTransformer extends MatcherBasedTransformation{
 
     private static responsesPropName = universes.Universe10.Method.properties.responses.name;
 
-    transform(value:any,node?:hl.IParseResult,uriParams?:any){
+    transform(value:any,node:hl.IParseResult,uriParams?:any){
 
         this.processApi(value);
         return value;
@@ -2072,13 +2084,15 @@ class AllParametersTransformer extends MatcherBasedTransformation{
     private extract(api: any,pName:string) {
         let arr = api[pName] || [];
         arr = JSON.parse(JSON.stringify(arr));
-        for(let x of arr){
-            let mtd = x["__METADATA__"];
-            if(!mtd){
-                mtd = {};
-                x["__METADATA__"] = mtd;
+        if(this.serializeMetadata) {
+            for (let x of arr) {
+                let mtd = x["__METADATA__"];
+                if (!mtd) {
+                    mtd = {};
+                    x["__METADATA__"] = mtd;
+                }
+                mtd["calculated"] = true;
             }
-            mtd["calculated"] = true;
         }
         return arr;
     }
@@ -2206,7 +2220,7 @@ class Api10SchemasTransformer extends MatcherBasedTransformation{
         ]));
     }
 
-    transform(value:any,node?:hl.IParseResult){
+    transform(value:any,node:hl.IParseResult){
 
         if(!value){
             return value;

@@ -867,51 +867,61 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         return res;
     }
 }
+
 function getBaseTypes(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition[]{
+    let universe = node.definition().universe();
     if (!expression) {
-        return [node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name)];
+        return [universe.type(universes.Universe10.StringTypeDeclaration.name)];
     }
     var pt=node.parsedType();
 
-    let result:hl.ITypeDefinition[] = [];
-    if (pt.isString()){
-        result.push(node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name));
+    let result = mapType(pt, universe);
+    return result;
+}
+
+export function mapType(
+    pt:def.rt.tsInterfaces.IParsedType,
+    universe:def.rt.nominalInterfaces.IUniverse = def.getUniverse("RAML10")):hl.ITypeDefinition[] {
+
+    let result: hl.ITypeDefinition[] = [];
+    if (pt.isString()) {
+        result.push(universe.type(universes.Universe10.StringTypeDeclaration.name));
     }
-    else if (pt.isNumber()){
-        if (pt.isInteger()){
-            result.push(node.definition().universe().type(universes.Universe10.IntegerTypeDeclaration.name));
+    else if (pt.isNumber()) {
+        if (pt.isInteger()) {
+            result.push(universe.type(universes.Universe10.IntegerTypeDeclaration.name));
         }
-        result.push(node.definition().universe().type(universes.Universe10.NumberTypeDeclaration.name));
+        result.push(universe.type(universes.Universe10.NumberTypeDeclaration.name));
     }
-    else if (pt.isBoolean()){
-        result.push(node.definition().universe().type(universes.Universe10.BooleanTypeDeclaration.name));
+    else if (pt.isBoolean()) {
+        result.push(universe.type(universes.Universe10.BooleanTypeDeclaration.name));
     }
-    else if (pt.isObject()){
-        result.push(node.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name));
+    else if (pt.isObject()) {
+        result.push(universe.type(universes.Universe10.ObjectTypeDeclaration.name));
     }
-    else if (pt.isArray()){
-        result.push(node.definition().universe().type(universes.Universe10.ArrayTypeDeclaration.name));
+    else if (pt.isArray()) {
+        result.push(universe.type(universes.Universe10.ArrayTypeDeclaration.name));
     }
-    else if (pt.isFile()){
-        result.push(node.definition().universe().type(universes.Universe10.FileTypeDeclaration.name));
+    else if (pt.isFile()) {
+        result.push(universe.type(universes.Universe10.FileTypeDeclaration.name));
     }
-    else if (pt.isDateTime()){
-        result.push(node.definition().universe().type(universes.Universe10.DateTimeTypeDeclaration.name));
+    else if (pt.isDateTime()) {
+        result.push(universe.type(universes.Universe10.DateTimeTypeDeclaration.name));
     }
-    else if (pt.isDateTimeOnly()){
-        result.push(node.definition().universe().type(universes.Universe10.DateTimeOnlyTypeDeclaration.name));
+    else if (pt.isDateTimeOnly()) {
+        result.push(universe.type(universes.Universe10.DateTimeOnlyTypeDeclaration.name));
     }
-    else if (pt.isDateOnly()){
-        result.push(node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
+    else if (pt.isDateOnly()) {
+        result.push(universe.type(universes.Universe10.DateOnlyTypeDeclaration.name));
     }
-    else if (pt.isTimeOnly()){
-        result.push(node.definition().universe().type(universes.Universe10.TimeOnlyTypeDeclaration.name));
+    else if (pt.isTimeOnly()) {
+        result.push(universe.type(universes.Universe10.TimeOnlyTypeDeclaration.name));
     }
-    if (pt.isUnion()){
-        result.push(node.definition().universe().type(universes.Universe10.UnionTypeDeclaration.name));
+    if (pt.isUnion()) {
+        result.push(universe.type(universes.Universe10.UnionTypeDeclaration.name));
     }
-    if(result.length==0){
-        result.push(node.definition().universe().type(universes.Universe10.TypeDeclaration.name));
+    if (result.length == 0) {
+        result.push(universe.type(universes.Universe10.TypeDeclaration.name));
     }
     return result;
 }

@@ -90,4 +90,9 @@ export interface Options2 {
      */
     serializeMetadata?:boolean
 
+    /**
+     * Whether to expand types
+     */
+    expandTypes?: boolean
+
 }
