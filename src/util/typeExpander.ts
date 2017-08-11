@@ -3,7 +3,7 @@ var universe = require("../parser/tools/universe");
 import coreApi = require("../parser/wrapped-ast/parserCoreApi");
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
-import def = require("raml-definition-system")
+import def = require("raml-definition-system");
 import hl = require("../parser/highLevelAST");
 import ll = require("../parser/lowLevelAST");
 import hlImpl = require("../parser/highLevelImpl");
@@ -48,7 +48,7 @@ export interface Entry{
 export class PropertyEntry implements Entry{
 
     constructor(protected _original:typeSystem.IPropertyInfo, protected _name:string,
-                protected _type:TypeEntry,protected isFacet=false){
+                protected _type:TypeEntry,protected isFacet=false, protected _required?:boolean){
 
     }
 
@@ -59,7 +59,7 @@ export class PropertyEntry implements Entry{
     append(te:GeneralTypeEntry,bd:BranchingData):void{
         let etp = new GeneralTypeEntry(this._type.original(),[],null,[], [], this._type.name());
         this._type.append(etp,bd);
-        let newPropEntry = new PropertyEntry(this._original,this._name,etp);
+        let newPropEntry = new PropertyEntry(this._original,this._name,etp,this.isFacet,this.required());
         if(this.isFacet){
             te.addFacet(newPropEntry);
         }
@@ -70,6 +70,13 @@ export class PropertyEntry implements Entry{
 
     type():TypeEntry{
         return this._type;
+    }
+
+    required():boolean{
+        if(this._required!=null){
+            return this._required;
+        }
+        return this._original.required();
     }
 }
 
@@ -101,6 +108,10 @@ export interface TypeEntry extends Entry{
     branchingRegistry(): BranchingRegistry;
 
     allFacets(): typeSystem.ITypeFacet[];
+
+    isRecursionPoint():boolean;
+
+    examples():typeSystem.IExample[]
 }
 
 export class AbstractTypeEntry implements TypeEntry{
@@ -202,6 +213,14 @@ export class AbstractTypeEntry implements TypeEntry{
             return result;
         }
     }
+
+    isRecursionPoint():boolean{
+        return false;
+    }
+
+    examples():typeSystem.IExample[]{
+        return this._original != null ? this._original.examples() : [];
+    }
 }
 
 export class GeneralTypeEntry extends AbstractTypeEntry{
@@ -217,6 +236,8 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
         protected _name:string){
         super(_original,_superTypes);
     }
+
+    private _isRecursionPoint:boolean;
 
     clone(ct?:TypeEntry):GeneralTypeEntry{
         return new GeneralTypeEntry(this._original,[],ct, [], [], this.name());
@@ -288,6 +309,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
             return;
         }
         if(bd.typeMap().hasType(this)){
+            te.setIsRecursionPoint();
             return;
         }
         bd.typeMap().addType(this);
@@ -323,8 +345,12 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
                     }
                     else{
                         let pType = new GeneralTypeEntry(null,[],null,[], [], null);
-                        pArr.forEach(x=>pType.addSuperType(x.type()));
-                        let mergedProp = new PropertyEntry(null,pName,pType);
+                        let required = false;
+                        pArr.forEach(x=>{
+                            pType.addSuperType(x.type());
+                            required = required || x.required();
+                        });
+                        let mergedProp = new PropertyEntry(null,pName,pType,false,required);
                         mergedProp.append(te, bd);
                     }
                 }
@@ -346,6 +372,14 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
 
     name(){
         return this._name || super.name();
+    }
+
+    isRecursionPoint():boolean{
+        return this._isRecursionPoint;
+    }
+
+    setIsRecursionPoint(val:boolean=true){
+        this._isRecursionPoint = val;
     }
 }
 
@@ -383,7 +417,7 @@ export class UnionTypeEntry extends AbstractTypeEntry{
     }
 
     branchId():number{
-        return this._branchId
+        return this._branchId;
     }
 
     append(te:GeneralTypeEntry,bd:BranchingData):void{
@@ -536,7 +570,7 @@ function expandHierarchy(e:TypeEntry,reg:BranchingRegistry,typeMap?:TypeMap):Typ
 
 class BasicTypeMap implements TypeMap{
 
-    private map:{[key:string]:TypeEntry} = {}
+    private map:{[key:string]:TypeEntry} = {};
 
     addType(t:TypeEntry):void{
         let n = t.name();
@@ -629,6 +663,11 @@ export function dump(te:TypeEntry):any{
     let name = te.name();
     if(name){
         result.name = name;
+        if(te.isRecursionPoint()){
+            return {
+                type: [ name ]
+            };
+        }
     }
     if(te.isBuiltIn()) {
         result = {
@@ -666,6 +705,7 @@ export function dump(te:TypeEntry):any{
             for (let p of properties) {
                 let dumpedPropertyType = dump(p.type());
                 dumpedPropertyType.name = p.name();
+                dumpedPropertyType.required = p.required();
                 props.push(dumpedPropertyType);
             }
         }
@@ -686,8 +726,57 @@ export function dump(te:TypeEntry):any{
         }
         dumpFacets(te, result);
     }
+    let examples = te.examples();
+    if(examples.length > 0){
+        let simplified:any[] = [];
+        let examplesArr:any[] = [];
+        result.examples = examplesArr;
+        result.simplifiedExamples = simplified;
+        for(let e of examples){
+            let val = e.value();
+            let needStringify = false;
+            if(Array.isArray(val)){
+                for(let c of val){
+                    if(Array.isArray(c) || (typeof val == "object")){
+                        needStringify = true;
+                        break;
+                    }
+                }
+            }
+            else if(typeof val == "object"){
+                needStringify = true;
+            }
+            let simpleValue = needStringify ? JSON.stringify(val) : val;
+            simplified.push(simpleValue);
+            let eObj:any = {
+                strict: e.strict(),
+                value: val
+            };
+            if(e.name()){
+                eObj.name = e.name();
+            }
+            let annotations = e.annotations();
+            let aArr = dumpAnnotations(annotations, eObj);
+            examplesArr.push(eObj);
+        }
+    }
+    let annotations = te.original() && te.original().annotations();
+    dumpAnnotations(annotations,result);
     return result;
 }
+
+function dumpAnnotations(annotations:typeSystem.IAnnotation[], obj:any) {
+    if (annotations && annotations.length > 0) {
+        let aArr: any[] = [];
+        obj.annotations = aArr;
+        annotations.forEach(x => {
+            aArr.push({
+                name: x.name(),
+                value: x.value()
+            })
+        })
+    }
+};
 
 export function dumpFacets(te: TypeEntry, result: any) {
     let customFacets = te.original() && te.original().allCustomFacets();
@@ -746,7 +835,7 @@ export function dumpFacets(te: TypeEntry, result: any) {
             result[fn] = val;
         }
     }
-};
+}
 
 
 export function dumpType(t:typeSystem.IParsedType){
