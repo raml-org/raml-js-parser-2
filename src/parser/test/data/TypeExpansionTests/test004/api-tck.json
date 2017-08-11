@@ -1,0 +1,189 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T2",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true
+          },
+          {
+            "name": "p2",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T3",
+        "type": [
+          "array"
+        ],
+        "items": {
+          "type": [
+            "object"
+          ],
+          "properties": [
+            {
+              "name": "p3",
+              "type": [
+                "string"
+              ],
+              "required": true
+            }
+          ]
+        },
+        "path": "api.raml"
+      },
+      {
+        "name": "T4",
+        "anyOf": [
+          {
+            "name": "T4",
+            "type": [
+              "array"
+            ],
+            "items": {
+              "name": "T2",
+              "type": [
+                "object"
+              ],
+              "properties": [
+                {
+                  "name": "p1",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true
+                },
+                {
+                  "name": "p2",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          },
+          {
+            "name": "T4",
+            "type": [
+              "array"
+            ],
+            "items": {
+              "type": [
+                "object"
+              ],
+              "properties": [
+                {
+                  "name": "p3",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T5",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p5",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T6",
+        "type": [
+          "array"
+        ],
+        "items": {
+          "anyOf": [
+            {
+              "name": "T2",
+              "type": [
+                "object"
+              ],
+              "properties": [
+                {
+                  "name": "p1",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true
+                },
+                {
+                  "name": "p2",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "name": "T5",
+              "type": [
+                "object"
+              ],
+              "properties": [
+                {
+                  "name": "p5",
+                  "type": [
+                    "string"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        "path": "api.raml"
+      }
+    ],
+    "title": "test API",
+    "path": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

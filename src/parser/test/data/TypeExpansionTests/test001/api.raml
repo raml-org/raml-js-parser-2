@@ -1,0 +1,22 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  T1:
+    properties:
+      p1:
+
+  T2:
+    type: T1
+    properties:
+      p2:
+
+  T3:
+    properties:
+      p3:
+
+  T4:
+    type: T2|T3
+    properties:
+      p4:

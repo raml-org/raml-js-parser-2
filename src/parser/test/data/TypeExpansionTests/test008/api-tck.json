@@ -1,0 +1,370 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "examples": [
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue1"
+            }
+          }
+        ],
+        "simplifiedExamples": [
+          "{\"p1\":\"stringValue1\"}"
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T2",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true
+          },
+          {
+            "name": "p2",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "examples": [
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue11",
+              "p2": "stringValue21"
+            },
+            "name": "e1"
+          },
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue12",
+              "p2": "stringValue22"
+            },
+            "name": "e2"
+          }
+        ],
+        "simplifiedExamples": [
+          "{\"p1\":\"stringValue11\",\"p2\":\"stringValue21\"}",
+          "{\"p1\":\"stringValue12\",\"p2\":\"stringValue22\"}"
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T3",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "p3",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T4",
+        "anyOf": [
+          {
+            "name": "T4",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p4",
+                "type": [
+                  "string"
+                ],
+                "required": true
+              },
+              {
+                "name": "p1",
+                "type": [
+                  "string"
+                ],
+                "required": true
+              },
+              {
+                "name": "p2",
+                "type": [
+                  "string"
+                ],
+                "required": true
+              }
+            ],
+            "examples": [
+              {
+                "strict": true,
+                "value": {
+                  "p1": "stringValue11",
+                  "p2": "stringValue21"
+                },
+                "name": "e1"
+              },
+              {
+                "strict": true,
+                "value": {
+                  "p1": "stringValue12",
+                  "p2": "stringValue22"
+                },
+                "name": "e2"
+              }
+            ],
+            "simplifiedExamples": [
+              "{\"p1\":\"stringValue11\",\"p2\":\"stringValue21\"}",
+              "{\"p1\":\"stringValue12\",\"p2\":\"stringValue22\"}"
+            ]
+          },
+          {
+            "name": "T4",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "name": "p4",
+                "type": [
+                  "string"
+                ],
+                "required": true
+              },
+              {
+                "name": "p3",
+                "type": [
+                  "string"
+                ],
+                "required": true
+              }
+            ]
+          }
+        ],
+        "examples": [
+          {
+            "strict": true,
+            "value": {
+              "p3": "stringValue3",
+              "p4": "stringValue4"
+            },
+            "name": "e1"
+          },
+          {
+            "strict": true,
+            "value": {
+              "p1": "stringValue13",
+              "p2": "stringValue23",
+              "p4": "stringValue4"
+            },
+            "name": "e2"
+          }
+        ],
+        "simplifiedExamples": [
+          "{\"p3\":\"stringValue3\",\"p4\":\"stringValue4\"}",
+          "{\"p1\":\"stringValue13\",\"p2\":\"stringValue23\",\"p4\":\"stringValue4\"}"
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "MyComplexType",
+        "anyOf": [
+          {
+            "name": "MyComplexType",
+            "type": [
+              "scalar"
+            ],
+            "examples": [
+              {
+                "strict": false,
+                "value": "stringExampleValue",
+                "name": "stringExample",
+                "annotations": [
+                  {
+                    "name": "myAnntoation",
+                    "value": "annotationValue"
+                  }
+                ]
+              },
+              {
+                "strict": true,
+                "value": true,
+                "name": "trueBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": false,
+                "name": "falseBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": 15,
+                "name": "numberExample"
+              }
+            ],
+            "simplifiedExamples": [
+              "stringExampleValue",
+              true,
+              false,
+              15
+            ]
+          },
+          {
+            "name": "MyComplexType",
+            "type": [
+              "scalar"
+            ],
+            "examples": [
+              {
+                "strict": false,
+                "value": "stringExampleValue",
+                "name": "stringExample",
+                "annotations": [
+                  {
+                    "name": "myAnntoation",
+                    "value": "annotationValue"
+                  }
+                ]
+              },
+              {
+                "strict": true,
+                "value": true,
+                "name": "trueBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": false,
+                "name": "falseBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": 15,
+                "name": "numberExample"
+              }
+            ],
+            "simplifiedExamples": [
+              "stringExampleValue",
+              true,
+              false,
+              15
+            ]
+          },
+          {
+            "name": "MyComplexType",
+            "type": [
+              "scalar"
+            ],
+            "examples": [
+              {
+                "strict": false,
+                "value": "stringExampleValue",
+                "name": "stringExample",
+                "annotations": [
+                  {
+                    "name": "myAnntoation",
+                    "value": "annotationValue"
+                  }
+                ]
+              },
+              {
+                "strict": true,
+                "value": true,
+                "name": "trueBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": false,
+                "name": "falseBooleanExample"
+              },
+              {
+                "strict": true,
+                "value": 15,
+                "name": "numberExample"
+              }
+            ],
+            "simplifiedExamples": [
+              "stringExampleValue",
+              true,
+              false,
+              15
+            ]
+          }
+        ],
+        "examples": [
+          {
+            "strict": false,
+            "value": "stringExampleValue",
+            "name": "stringExample",
+            "annotations": [
+              {
+                "name": "myAnntoation",
+                "value": "annotationValue"
+              }
+            ]
+          },
+          {
+            "strict": true,
+            "value": true,
+            "name": "trueBooleanExample"
+          },
+          {
+            "strict": true,
+            "value": false,
+            "name": "falseBooleanExample"
+          },
+          {
+            "strict": true,
+            "value": 15,
+            "name": "numberExample"
+          }
+        ],
+        "simplifiedExamples": [
+          "stringExampleValue",
+          true,
+          false,
+          15
+        ],
+        "path": "api.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "myAnntoation",
+        "type": [
+          "string"
+        ],
+        "path": "api.raml"
+      }
+    ],
+    "title": "test API",
+    "path": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

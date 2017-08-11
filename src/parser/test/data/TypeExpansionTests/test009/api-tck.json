@@ -1,0 +1,350 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T1.p1",
+                  "ap2": 1
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T1.p1"
+              }
+            ],
+            "name": "p1",
+            "required": true
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T1",
+              "ap2": 0
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T1"
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T2",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T1.p1",
+                  "ap2": 1
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T1.p1"
+              }
+            ],
+            "name": "p1",
+            "required": true
+          },
+          {
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T2.p2",
+                  "ap2": 3
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T2.p2"
+              }
+            ],
+            "name": "p2",
+            "required": true
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T2",
+              "ap2": 2
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T2"
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T3",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "type": [
+              "string"
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T3.p3",
+                  "ap2": 5
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T3.p3"
+              }
+            ],
+            "name": "p3",
+            "required": true
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T3",
+              "ap2": 4
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T3"
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T4",
+        "anyOf": [
+          {
+            "name": "T4",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T4.p4",
+                      "ap2": 7
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T4.p4"
+                  }
+                ],
+                "name": "p4",
+                "required": true
+              },
+              {
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T1.p1",
+                      "ap2": 1
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T1.p1"
+                  }
+                ],
+                "name": "p1",
+                "required": true
+              },
+              {
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T2.p2",
+                      "ap2": 3
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T2.p2"
+                  }
+                ],
+                "name": "p2",
+                "required": true
+              }
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T2",
+                  "ap2": 2
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T2"
+              }
+            ]
+          },
+          {
+            "name": "T4",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T4.p4",
+                      "ap2": 7
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T4.p4"
+                  }
+                ],
+                "name": "p4",
+                "required": true
+              },
+              {
+                "type": [
+                  "string"
+                ],
+                "annotations": [
+                  {
+                    "name": "MyObjectAnnotation",
+                    "value": {
+                      "ap1": "T3.p3",
+                      "ap2": 5
+                    }
+                  },
+                  {
+                    "name": "MyStringAnnotation",
+                    "value": "T3.p3"
+                  }
+                ],
+                "name": "p3",
+                "required": true
+              }
+            ],
+            "annotations": [
+              {
+                "name": "MyObjectAnnotation",
+                "value": {
+                  "ap1": "T3",
+                  "ap2": 4
+                }
+              },
+              {
+                "name": "MyStringAnnotation",
+                "value": "T3"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "MyObjectAnnotation",
+            "value": {
+              "ap1": "T4",
+              "ap2": 6
+            }
+          },
+          {
+            "name": "MyStringAnnotation",
+            "value": "T4"
+          }
+        ],
+        "path": "api.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "name": "MyObjectAnnotation",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "name": "ap2",
+            "type": [
+              "number"
+            ],
+            "required": true
+          },
+          {
+            "name": "ap1",
+            "type": [
+              "string"
+            ],
+            "required": true
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "MyStringAnnotation",
+        "type": [
+          "string"
+        ],
+        "path": "api.raml"
+      }
+    ],
+    "title": "test API",
+    "path": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

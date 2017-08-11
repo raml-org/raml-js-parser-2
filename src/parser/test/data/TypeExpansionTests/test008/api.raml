@@ -1,0 +1,53 @@
+#%RAML 1.0
+
+title: test API
+
+annotationTypes:
+  myAnntoation:
+
+types:
+  T1:
+    properties:
+      p1:
+    example:
+      p1: stringValue1
+
+  T2:
+    type: T1
+    properties:
+      p2:
+    examples:
+      e1:
+        p1: stringValue11
+        p2: stringValue21
+      e2:
+        p1: stringValue12
+        p2: stringValue22
+
+  T3:
+    properties:
+      p3:
+
+  T4:
+    type: T2|T3
+    properties:
+      p4:
+    examples:
+      e1:
+        p3: stringValue3
+        p4: stringValue4
+      e2:
+        p1: stringValue13
+        p2: stringValue23
+        p4: stringValue4
+
+  MyComplexType:
+    type: string|boolean|number
+    examples:
+      stringExample:
+        value: stringExampleValue
+        strict: false
+        (myAnntoation): annotationValue
+      trueBooleanExample: true
+      falseBooleanExample: false
+      numberExample: 15

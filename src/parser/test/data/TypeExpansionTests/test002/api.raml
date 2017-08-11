@@ -1,0 +1,25 @@
+#%RAML 1.0
+
+title: test API
+
+types:
+  T1:
+    properties:
+      //:
+        properties:
+          p1:
+
+    maxProperties: 15
+
+  T2:
+    properties:
+      //:
+        properties:
+          p2:
+
+    maxProperties: 10
+
+  T3:
+    type: [ T1, T2 ]
+    properties:
+      t3Prop:

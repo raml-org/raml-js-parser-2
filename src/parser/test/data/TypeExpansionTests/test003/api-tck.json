@@ -1,0 +1,62 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "type": [
+          "string"
+        ],
+        "facets": [
+          {
+            "name": "f1",
+            "type": [
+              "string"
+            ]
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T2",
+        "type": [
+          "string"
+        ],
+        "facets": [
+          {
+            "name": "f1",
+            "type": [
+              "string"
+            ]
+          }
+        ],
+        "fixedFacets": {
+          "f1": "stringValue"
+        },
+        "path": "api.raml"
+      },
+      {
+        "name": "T3",
+        "type": [
+          "string"
+        ],
+        "facets": [
+          {
+            "name": "f1",
+            "type": [
+              "string"
+            ]
+          }
+        ],
+        "fixedFacets": {
+          "f1": "stringValue"
+        },
+        "path": "api.raml"
+      }
+    ],
+    "title": "test API",
+    "path": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}
