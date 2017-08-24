@@ -1,0 +1,263 @@
+{
+  "specification": {
+    "annotations": {
+      "library.highLevelApiDescription": {
+        "name": "library.highLevelApiDescription",
+        "structuredValue": null
+      },
+      "library.apiLogo": {
+        "name": "library.apiLogo",
+        "structuredValue": null
+      },
+      "library.specAuthor": {
+        "name": "library.specAuthor",
+        "structuredValue": "mulesoft.com"
+      },
+      "library.devPortal": {
+        "name": "library.devPortal",
+        "structuredValue": null
+      },
+      "library.extraResources": {
+        "name": "library.extraResources",
+        "structuredValue": [
+          {
+            "title": "API Notebook",
+            "type": "notebook",
+            "uri": "blah"
+          }
+        ]
+      }
+    },
+    "types": {
+      "library.apiResource": {
+        "name": "apiResource",
+        "displayName": "apiResource",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "title": {
+            "name": "title",
+            "displayName": "title",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "uri": {
+            "name": "uri",
+            "displayName": "uri",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "annotationTypes": {
+      "library.highLevelApiDescription": {
+        "name": "highLevelApiDescription",
+        "displayName": "Api Description",
+        "type": [
+          "string"
+        ],
+        "description": "Description of the RAML API spec.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "library.apiLogo": {
+        "name": "apiLogo",
+        "displayName": "Logo",
+        "type": [
+          "string"
+        ],
+        "description": "Service logo.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "library.specAuthor": {
+        "name": "specAuthor",
+        "displayName": "Spec Author",
+        "type": [
+          "string"
+        ],
+        "description": "Author of the RAML spec.",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "library.devPortal": {
+        "name": "devPortal",
+        "displayName": "Developer Portal",
+        "type": [
+          "string"
+        ],
+        "description": "URL to the developer portal",
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {}
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "library.extraResources": {
+        "name": "extraResources",
+        "displayName": "extraResources",
+        "type": [
+          "array"
+        ],
+        "allowedTargets": [
+          "API",
+          "Overlay"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "items": "library.apiResource"
+      }
+    },
+    "title": "Api",
+    "extends": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "errors": [
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "overlay.raml",
+      "range": {
+        "start": {
+          "line": 4,
+          "column": 0,
+          "position": 211
+        },
+        "end": {
+          "line": 4,
+          "column": 33,
+          "position": 244
+        }
+      }
+    },
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "overlay.raml",
+      "range": {
+        "start": {
+          "line": 5,
+          "column": 0,
+          "position": 246
+        },
+        "end": {
+          "line": 5,
+          "column": 17,
+          "position": 263
+        }
+      }
+    },
+    {
+      "code": "NULL_NOT_ALLOWED",
+      "message": "Null or undefined value is not allowed",
+      "path": "overlay.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 0,
+          "position": 300
+        },
+        "end": {
+          "line": 7,
+          "column": 19,
+          "position": 319
+        }
+      }
+    }
+  ]
+}

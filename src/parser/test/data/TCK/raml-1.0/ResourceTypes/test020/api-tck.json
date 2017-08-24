@@ -1,0 +1,206 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "song": {
+          "name": "song",
+          "displayName": "song",
+          "typePropertyKind": "JSON",
+          "schemaPath": "schema.json",
+          "type": [
+            "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"properties\": {\n    \"songId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    },\n    \"songTitle\": {\n      \"type\": \"string\"\n    },\n    \"albumId\": {\n      \"type\": \"string\",\n      \"minLength\": 36,\n      \"maxLength\": 36\n    }\n  },\n  \"required\": [\n    \"songId\",\n    \"songTitle\"\n  ]\n}\n"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "type1": {
+          "type": {
+            "collection": {
+              "exampleItem": "<<param1>>"
+            }
+          },
+          "name": "type1"
+        }
+      },
+      {
+        "collection": {
+          "name": "collection",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<resourcePathName|!singularize>>"
+                ],
+                "example": "<<exampleItem>>\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "<<exampleItem>>\n",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "<<exampleItem>>\n"
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "My API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "INPLACE",
+                "type": [
+                  "song"
+                ],
+                "example": {
+                  "songId": "550e8400-e29b-41d4-a716-446655440000",
+                  "songTitle": true,
+                  "albumId": "183100e3-0e2b-4404-a716-66104d440550"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"songId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"songTitle\": true,\n  \"albumId\": \"183100e3-0e2b-4404-a716-66104d440550\"\n}\n\n",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "songId": "550e8400-e29b-41d4-a716-446655440000",
+                    "songTitle": true,
+                    "albumId": "183100e3-0e2b-4404-a716-66104d440550"
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "type": {
+          "type1": {
+            "param1": "{\n  \"songId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"songTitle\": true,\n  \"albumId\": \"183100e3-0e2b-4404-a716-66104d440550\"\n}\n"
+          }
+        },
+        "relativeUri": "/songs",
+        "displayName": "/songs",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "songs"
+        ],
+        "absoluteUri": "/songs"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+      "message": "Content is not valid according to schema: Expected type string but found type boolean",
+      "path": "example.json",
+      "range": {
+        "start": {
+          "line": 2,
+          "column": 2,
+          "position": 56
+        },
+        "end": {
+          "line": 2,
+          "column": 19,
+          "position": 73
+        }
+      },
+      "trace": [
+        {
+          "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+          "message": "Content is not valid according to schema: Expected type string but found type boolean",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 16,
+              "column": 10,
+              "position": 271
+            },
+            "end": {
+              "line": 16,
+              "column": 17,
+              "position": 278
+            }
+          },
+          "trace": [
+            {
+              "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+              "message": "Content is not valid according to schema: Expected type string but found type boolean",
+              "path": "api.raml",
+              "range": {
+                "start": {
+                  "line": 10,
+                  "column": 23,
+                  "position": 138
+                },
+                "end": {
+                  "line": 10,
+                  "column": 33,
+                  "position": 148
+                }
+              },
+              "trace": [
+                {
+                  "code": "CONTENT_DOES_NOT_MATCH_THE_SCHEMA",
+                  "message": "Content is not valid according to schema: Expected type string but found type boolean",
+                  "path": "api.raml",
+                  "range": {
+                    "start": {
+                      "line": 22,
+                      "column": 23,
+                      "position": 361
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 35,
+                      "position": 373
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

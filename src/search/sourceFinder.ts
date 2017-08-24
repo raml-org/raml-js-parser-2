@@ -2,9 +2,9 @@
 
 import def=require("raml-definition-system")
 import ramlTypes=def.rt;
-import hl=require("../raml1/highLevelAST")
-import lowLevel = require("../raml1/lowLevelAST")
-import universes=require("../raml1/tools/universe")
+import hl=require("../parser/highLevelAST")
+import lowLevel = require("../parser/lowLevelAST")
+import universes=require("../parser/tools/universe")
 import _=require("underscore")
 
 export interface IHighLevelSourceProvider {

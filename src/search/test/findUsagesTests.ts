@@ -3,12 +3,12 @@ import assert = require("assert")
 
 import fs = require("fs")
 import path = require("path")
-import yll=require("../../raml1/jsyaml/jsyaml2lowLevel")
-import high = require("../../raml1/highLevelImpl")
-import hl=require("../../raml1/highLevelAST")
+import yll=require("../../parser/jsyaml/jsyaml2lowLevel")
+import high = require("../../parser/highLevelImpl")
+import hl=require("../../parser/highLevelAST")
 import _=require("underscore")
 import search=require("../search-implementation")
-import util = require("../../raml1/test/test-utils")
+import util = require("../../parser/test/test-utils")
 
 describe('Find usages tests',function(){
     it ("inheritance",function(){
@@ -78,7 +78,7 @@ export interface DeclarationData{
     offset: number
     api: high.ASTNodeImpl;
 }
-var dir=path.resolve(__dirname,"../../../src/raml1/test/")
+var dir=path.resolve(__dirname,"../../../src/parser/test/")
 
 var pdir = path.resolve(dir, ".");
 

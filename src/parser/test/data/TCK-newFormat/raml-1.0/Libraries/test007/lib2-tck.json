@@ -1,0 +1,86 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      }
+    ],
+    "types": {
+      "T1": {
+        "name": "T1",
+        "displayName": "T1",
+        "type": [
+          "lib1.T1"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    }
+  },
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "errors": [
+    {
+      "code": "RECURRENT_DEFINITION",
+      "message": "Recurrent type definition",
+      "path": "lib1.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 5,
+          "position": 65
+        },
+        "end": {
+          "line": 7,
+          "column": 9,
+          "position": 69
+        }
+      },
+      "trace": [
+        {
+          "code": "ISSUES_IN_THE_LIBRARY",
+          "message": "Issues in the used library: 'lib1.raml'",
+          "path": "lib2.raml",
+          "range": {
+            "start": {
+              "line": 3,
+              "column": 3,
+              "position": 29
+            },
+            "end": {
+              "line": 3,
+              "column": 7,
+              "position": 33
+            }
+          },
+          "isWarning": true
+        }
+      ]
+    },
+    {
+      "code": "RECURRENT_DEFINITION",
+      "message": "Recurrent type definition",
+      "path": "lib2.raml",
+      "range": {
+        "start": {
+          "line": 7,
+          "column": 5,
+          "position": 65
+        },
+        "end": {
+          "line": 7,
+          "column": 9,
+          "position": 69
+        }
+      }
+    }
+  ]
+}

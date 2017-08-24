@@ -1,0 +1,11 @@
+#%RAML 1.0 DataType
+
+displayName: Test Type
+
+type: !include dependencies/supertype.raml
+properties:
+  ownProp1: !include dependencies/ownPropertyType.raml
+  ownProp2:
+    type: !include dependencies/ownPropertyType.raml
+    properties:
+      p5: string

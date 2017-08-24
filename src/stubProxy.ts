@@ -1,9 +1,9 @@
-import hl=require("./raml1/highLevelAST")
-import hlimpl=require("./raml1/highLevelImpl")
-import jsyaml=require("./raml1/jsyaml/jsyaml2lowLevel")
+import hl=require("./parser/highLevelAST")
+import hlimpl=require("./parser/highLevelImpl")
+import jsyaml=require("./parser/jsyaml/jsyaml2lowLevel")
 
-import ll=require("./raml1/lowLevelAST")
-import stubs=require("./raml1/stubs")
+import ll=require("./parser/lowLevelAST")
+import stubs=require("./parser/stubs")
 export function createStubNode(t:hl.ITypeDefinition,p: hl.IProperty, key: string=null, unit?: ll.ICompilationUnit): hl.IHighLevelNode {
     return stubs.createStubNode(t,p,key,unit);
 }

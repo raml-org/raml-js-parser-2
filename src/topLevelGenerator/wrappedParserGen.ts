@@ -15,14 +15,14 @@ var helperSources = {
 
     "RAML10":{
         "helper": {
-            "source": path.resolve(__dirname, "../../src/raml1/wrapped-ast/wrapperHelper.ts"),
-            "import": "../../raml1/wrapped-ast/wrapperHelper"
+            "source": path.resolve(__dirname, "../../src/parser/wrapped-ast/wrapperHelper.ts"),
+            "import": "../../parser/wrapped-ast/wrapperHelper"
         }
     },
     "RAML08":{
         "helper": {
-            "source": path.resolve(__dirname, "../../src/raml1/wrapped-ast/wrapperHelper08.ts"),
-            "import": "../../raml1/wrapped-ast/wrapperHelper08"
+            "source": path.resolve(__dirname, "../../src/parser/wrapped-ast/wrapperHelper08.ts"),
+            "import": "../../parser/wrapped-ast/wrapperHelper08"
         }
     }
 };
@@ -698,8 +698,8 @@ Set ${x.nameId()} value`;
 
     serializeInterfaceImportsToString() {
         return `${this.ramlVersion == 'RAML10' ? raml10parserJsDoc : ''}
-import hl=require("../../raml1/highLevelAST");
-import core=require("../../raml1/wrapped-ast/parserCoreApi");
+import hl=require("../../parser/highLevelAST");
+import core=require("../../parser/wrapped-ast/parserCoreApi");
 
 `;
     }
@@ -739,16 +739,16 @@ export function is${processedName}(node: core.AbstractWrapperNode) : node is ${p
         });
 
         return `${this.ramlVersion == 'RAML10' ? raml10parserJsDoc : ''}
-import hl=require("../../raml1/highLevelAST");
-import stubs=require("../../raml1/stubs");
-import hlImpl=require("../../raml1/highLevelImpl");
-import jsyaml=require("../../raml1/jsyaml/jsyaml2lowLevel");
-import json2lowlevel = require('../../raml1/jsyaml/json2lowLevel');
+import hl=require("../../parser/highLevelAST");
+import stubs=require("../../parser/stubs");
+import hlImpl=require("../../parser/highLevelImpl");
+import jsyaml=require("../../parser/jsyaml/jsyaml2lowLevel");
+import json2lowlevel = require('../../parser/jsyaml/json2lowLevel');
 import def=require("raml-definition-system");
-import services=require("../../raml1/definition-system/ramlServices");
-import core=require("../../raml1/wrapped-ast/parserCore");
-import apiLoader=require("../../raml1/apiLoader");
-import coreApi=require("../../raml1/wrapped-ast/parserCoreApi");
+import services=require("../../parser/definition-system/ramlServices");
+import core=require("../../parser/wrapped-ast/parserCore");
+import apiLoader=require("../../parser/apiLoader");
+import coreApi=require("../../parser/wrapped-ast/parserCoreApi");
 import pApi = require("${this.getApiImportFile()}");
 ${Object.keys(this.helperSources).filter(x=>this.helperSources[x]['import'] != null)
             .map(x=>`import ${x}=require("${this.helperSources[x]['import']}")`).join('\n')}

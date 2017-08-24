@@ -1,0 +1,65 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "typePropertyKind": "JSON",
+          "schemaPath": "schema.json",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"$ref\" : \"./schema1.json#/definitions/entry\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "CAN_NOT_PARSE_JSON",
+      "message": "Can not parse JSON example: Unexpected token '\"eProp2\"'",
+      "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/TCK/raml-1.0/JSONErrorsPositioning/ReferenceTests/test002/schema1.json",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 8,
+          "position": 192
+        },
+        "end": {
+          "line": 9,
+          "column": 16,
+          "position": 200
+        }
+      },
+      "trace": [
+        {
+          "code": "CAN_NOT_PARSE_JSON",
+          "message": "Can not parse JSON example: Unexpected token '\"eProp2\"'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 5,
+              "column": 4,
+              "position": 49
+            },
+            "end": {
+              "line": 5,
+              "column": 8,
+              "position": 53
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

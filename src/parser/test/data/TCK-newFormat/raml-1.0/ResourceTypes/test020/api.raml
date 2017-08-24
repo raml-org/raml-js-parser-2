@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: My API
+
+types:
+  song: !include schema.json
+
+resourceTypes:
+  type1:
+    type:
+      collection:
+          exampleItem: <<param1>>
+  collection:
+    post:
+      body:
+        application/json:
+          type: <<resourcePathName|!singularize>>
+          example: |
+            <<exampleItem>>
+
+/songs:
+  type:
+    type1:
+      param1: !include example.json
