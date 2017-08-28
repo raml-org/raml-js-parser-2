@@ -95,4 +95,5 @@ export interface Options2 {
      */
     expandTypes?: boolean
 
+    typeExpansionRecursionDepth?:number
 }

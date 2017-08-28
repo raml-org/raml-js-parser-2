@@ -70,7 +70,8 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
         attributeDefaults: true,
         serializeMetadata: options.serializeMetadata||false,
         unfoldTypes: options.unfoldTypes,
-        expandTypes: options.expandTypes
+        expandTypes: options.expandTypes,
+        typeExpansionRecursionDepth: options.typeExpansionRecursionDepth
     });
 }
 

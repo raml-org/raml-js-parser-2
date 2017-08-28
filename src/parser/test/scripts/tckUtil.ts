@@ -427,7 +427,8 @@ export interface TestOptions{
     unfoldTypes?:boolean,
     newFormat?:boolean,
     serializeMetadata?:boolean,
-    expandTypes?: boolean
+    expandTypes?: boolean,
+    recursionDepth?: number
 }
 
 export function testAPIScript(o:TestOptions){
@@ -500,7 +501,8 @@ function doTestAPI(
         json = index.loadSync(apiPath,{
             expandLibraries: expandLib,
             serializeMetadata: serializeMetadata,
-            expandTypes: o.expandTypes
+            expandTypes: o.expandTypes,
+            typeExpansionRecursionDepth: o.recursionDepth
         });
     }
     else {

@@ -692,6 +692,8 @@ export interface SerializeOptions{
     unfoldTypes?:boolean
 
     expandTypes?:boolean
+
+    typeExpansionRecursionDepth?:number
 }
 
 class PropertyValue{
@@ -1317,8 +1319,12 @@ class TypeTransformer extends BasicTransformation{
     transform(_value:any,node:hl.IParseResult){
 
         if(this.options.expandTypes && node&&node.isElement()){
+            let parent = node.parent();
+            if(parent && universeHelpers.isTypeDeclarationDescendant(parent.definition())){
+                return {};
+            }
             let pt = node.asElement().parsedType();
-            return typeExpander.dumpType(pt);
+            return typeExpander.dumpType(pt,this.options.typeExpansionRecursionDepth);
         }
 
 

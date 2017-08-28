@@ -1,0 +1,388 @@
+{
+  "specification": {
+    "types": [
+      {
+        "name": "T1",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "type": [
+              "array"
+            ],
+            "items": {
+              "name": "T1",
+              "type": [
+                "object"
+              ],
+              "properties": [
+                {
+                  "type": [
+                    "array"
+                  ],
+                  "items": {
+                    "name": "T1",
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "array"
+                        ],
+                        "items": {
+                          "type": [
+                            "T1"
+                          ]
+                        },
+                        "name": "p2",
+                        "required": true
+                      },
+                      {
+                        "type": [
+                          "T1"
+                        ],
+                        "name": "p1",
+                        "required": false
+                      }
+                    ]
+                  },
+                  "name": "p2",
+                  "required": true
+                },
+                {
+                  "name": "p1",
+                  "type": [
+                    "object"
+                  ],
+                  "properties": [
+                    {
+                      "type": [
+                        "array"
+                      ],
+                      "items": {
+                        "type": [
+                          "T1"
+                        ]
+                      },
+                      "name": "p2",
+                      "required": true
+                    },
+                    {
+                      "type": [
+                        "T1"
+                      ],
+                      "name": "p1",
+                      "required": false
+                    }
+                  ],
+                  "required": false
+                }
+              ]
+            },
+            "name": "p2",
+            "required": true
+          },
+          {
+            "name": "p1",
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "name": "T1",
+                  "type": [
+                    "object"
+                  ],
+                  "properties": [
+                    {
+                      "type": [
+                        "array"
+                      ],
+                      "items": {
+                        "type": [
+                          "T1"
+                        ]
+                      },
+                      "name": "p2",
+                      "required": true
+                    },
+                    {
+                      "type": [
+                        "T1"
+                      ],
+                      "name": "p1",
+                      "required": false
+                    }
+                  ]
+                },
+                "name": "p2",
+                "required": true
+              },
+              {
+                "name": "p1",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": {
+                      "type": [
+                        "T1"
+                      ]
+                    },
+                    "name": "p2",
+                    "required": true
+                  },
+                  {
+                    "type": [
+                      "T1"
+                    ],
+                    "name": "p1",
+                    "required": false
+                  }
+                ],
+                "required": false
+              }
+            ],
+            "required": false
+          }
+        ],
+        "path": "api.raml"
+      },
+      {
+        "name": "T2",
+        "type": [
+          "object"
+        ],
+        "properties": [
+          {
+            "type": [
+              "object"
+            ],
+            "properties": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "name": "T2",
+                  "type": [
+                    "object"
+                  ],
+                  "properties": [
+                    {
+                      "type": [
+                        "object"
+                      ],
+                      "properties": [
+                        {
+                          "type": [
+                            "array"
+                          ],
+                          "items": {
+                            "name": "T2",
+                            "type": [
+                              "object"
+                            ],
+                            "properties": [
+                              {
+                                "type": [
+                                  "object"
+                                ],
+                                "properties": [
+                                  {
+                                    "type": [
+                                      "array"
+                                    ],
+                                    "items": {
+                                      "type": [
+                                        "T2"
+                                      ]
+                                    },
+                                    "name": "r2",
+                                    "required": true
+                                  },
+                                  {
+                                    "type": [
+                                      "T2"
+                                    ],
+                                    "name": "r1",
+                                    "required": false
+                                  }
+                                ],
+                                "name": "q1",
+                                "required": true
+                              }
+                            ]
+                          },
+                          "name": "r2",
+                          "required": true
+                        },
+                        {
+                          "name": "r1",
+                          "type": [
+                            "object"
+                          ],
+                          "properties": [
+                            {
+                              "type": [
+                                "object"
+                              ],
+                              "properties": [
+                                {
+                                  "type": [
+                                    "array"
+                                  ],
+                                  "items": {
+                                    "type": [
+                                      "T2"
+                                    ]
+                                  },
+                                  "name": "r2",
+                                  "required": true
+                                },
+                                {
+                                  "type": [
+                                    "T2"
+                                  ],
+                                  "name": "r1",
+                                  "required": false
+                                }
+                              ],
+                              "name": "q1",
+                              "required": true
+                            }
+                          ],
+                          "required": false
+                        }
+                      ],
+                      "name": "q1",
+                      "required": true
+                    }
+                  ]
+                },
+                "name": "r2",
+                "required": true
+              },
+              {
+                "name": "r1",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "array"
+                        ],
+                        "items": {
+                          "name": "T2",
+                          "type": [
+                            "object"
+                          ],
+                          "properties": [
+                            {
+                              "type": [
+                                "object"
+                              ],
+                              "properties": [
+                                {
+                                  "type": [
+                                    "array"
+                                  ],
+                                  "items": {
+                                    "type": [
+                                      "T2"
+                                    ]
+                                  },
+                                  "name": "r2",
+                                  "required": true
+                                },
+                                {
+                                  "type": [
+                                    "T2"
+                                  ],
+                                  "name": "r1",
+                                  "required": false
+                                }
+                              ],
+                              "name": "q1",
+                              "required": true
+                            }
+                          ]
+                        },
+                        "name": "r2",
+                        "required": true
+                      },
+                      {
+                        "name": "r1",
+                        "type": [
+                          "object"
+                        ],
+                        "properties": [
+                          {
+                            "type": [
+                              "object"
+                            ],
+                            "properties": [
+                              {
+                                "type": [
+                                  "array"
+                                ],
+                                "items": {
+                                  "type": [
+                                    "T2"
+                                  ]
+                                },
+                                "name": "r2",
+                                "required": true
+                              },
+                              {
+                                "type": [
+                                  "T2"
+                                ],
+                                "name": "r1",
+                                "required": false
+                              }
+                            ],
+                            "name": "q1",
+                            "required": true
+                          }
+                        ],
+                        "required": false
+                      }
+                    ],
+                    "name": "q1",
+                    "required": true
+                  }
+                ],
+                "required": false
+              }
+            ],
+            "name": "q1",
+            "required": true
+          }
+        ],
+        "path": "api.raml"
+      }
+    ],
+    "title": "test API",
+    "path": "api.raml"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

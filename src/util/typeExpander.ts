@@ -239,28 +239,40 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
 
     private _isRecursionPoint:boolean;
 
+    private _depth:number;
+
+    setDepth(d:number){
+        this._depth = d;
+    }
+
+    depth(){
+        return this._depth;
+    }
+
     clone(ct?:TypeEntry):GeneralTypeEntry{
         return new GeneralTypeEntry(this._original,[],ct, [], [], this.name());
     }
 
     possibleBuiltInTypes():string[]{
         let result:string[] = [];
-        if(this.original()) {
-            let possibleTypes = [this.original()].concat(this.original().allSuperTypes()).filter(x => x.isBuiltin());
-            for (let o of this.original().allOptions()) {
-                possibleTypes = possibleTypes.concat(o.allSuperTypes().filter(x => x.isBuiltin()));
-            }
-            possibleTypes = _.unique(possibleTypes);
-            let map:{[key:string]:typeSystem.IParsedType} = {};
-            possibleTypes.forEach(x=>map[x.name()]=x);
-            possibleTypes.forEach(x=>{
-                x.allSuperTypes().forEach(y=>delete map[y.name()]);
-            });
-            result = _.unique(Object.keys(map));
-        }
-        else {
+        // if(this.original()&&!this.original().isUnion()) {
+        //     let possibleTypes = [this.original()].concat(this.original().allSuperTypes()).filter(x => x.isBuiltin());
+        //     for (let o of this.original().allOptions()) {
+        //         possibleTypes = possibleTypes.concat([o].concat(o.allSuperTypes()).filter(x => x.isBuiltin()));
+        //     }
+        //     possibleTypes = _.unique(possibleTypes);
+        //     let map:{[key:string]:typeSystem.IParsedType} = {};
+        //     possibleTypes.forEach(x=>map[x.name()]=x);
+        //     possibleTypes.forEach(x=>{
+        //         x.allSuperTypes().forEach(y=>delete map[y.name()]);
+        //     });
+        //     result = _.unique(Object.keys(map));
+        // }
+        // else {
             for(let st of this.superTypes()){
-                result = result.concat(st.possibleBuiltInTypes());
+                if(!st.isUnion()) {
+                    result = result.concat(st.possibleBuiltInTypes());
+                }
             }
             let map:{[key:string]:boolean} = {};
             result.forEach(x=>map[x]=true);
@@ -272,7 +284,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
             });
             delete map["unknown"];
             result = Object.keys(map);
-        }
+       // }
         return result;
     }
 
@@ -308,7 +320,7 @@ export class GeneralTypeEntry extends AbstractTypeEntry{
         if (this.isExternal()) {
             return;
         }
-        if(bd.typeMap().hasType(this)){
+        if(bd.typeMap().hasType(this)&&this.depth()==0){
             te.setIsRecursionPoint();
             return;
         }
@@ -471,8 +483,9 @@ export class IntersectionTypeEntry extends AbstractTypeEntry{
 }
 
 function createHierarchyEntry(t:typeSystem.IParsedType,
-    occured:{[key:string]:TypeEntry}={},
-    branchingRegistry?:BranchingRegistry):TypeEntry{
+                              typeExpansionRecursionDepth:number,
+                              occured:{[key:string]:TypeEntry}={},
+                              branchingRegistry?:BranchingRegistry):TypeEntry{
 
     let isNewTree = false;
     if(!branchingRegistry){
@@ -488,16 +501,27 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
         }
         return result;
     }
-    if(t.name() && !t.isUnion() && occured[t.name()]){
-        return occured[t.name()];
+    let d = 0;
+    if(t.name() && occured[t.name()]){
+        if(typeExpansionRecursionDepth==0) {
+            return occured[t.name()];
+        }
+        else{
+            d = typeExpansionRecursionDepth;
+            typeExpansionRecursionDepth--;
+        }
     }
     let result = new GeneralTypeEntry(t, [],null,[], [], t.name());
-    occured[t.name()] = result;
+    result.setDepth(d);
+    if(!occured[t.name()]) {
+        occured[t.name()] = result;
+    }
     let superTypes = t.allSuperTypes().filter(x=>!x.isUnion());
     let superTypeEntries:TypeEntry[] = [];
     for(let st of superTypes){
         if(st.isBuiltin()){
-            let ste = createHierarchyEntry(st,occured,branchingRegistry);
+            let ste = createHierarchyEntry(
+                st,typeExpansionRecursionDepth,occured,branchingRegistry);
             superTypeEntries.push(ste);
         }
     }
@@ -506,7 +530,8 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     if(options.length>1){
         let optionEntries:TypeEntry[] = [];
         for(let o of options){
-            optionEntries.push(createHierarchyEntry(o,occured,branchingRegistry));
+            optionEntries.push(createHierarchyEntry(
+                o,typeExpansionRecursionDepth,occured,branchingRegistry));
         }
         let branchId = branchingRegistry.nextBranchId(optionEntries.length);
         let unionSuperType = new UnionTypeEntry(t, optionEntries, branchId);
@@ -515,7 +540,8 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     if(t.isArray()){
         let ct = t.componentType();
         if(ct) {
-            let componentTypeEntry = createHierarchyEntry(ct, occured);
+            let componentTypeEntry = createHierarchyEntry(
+                ct,typeExpansionRecursionDepth, occured);
             result.setComponentType(componentTypeEntry);
         }
     }
@@ -523,7 +549,8 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     if(properties.length>0){
         for(let p of properties){
             let pt = p.range();
-            let pte = createHierarchyEntry(pt,occured,branchingRegistry);
+            let pte = createHierarchyEntry(
+                pt,typeExpansionRecursionDepth,occured,branchingRegistry);
             let pe = new PropertyEntry(p,null,pte);
             propertyEntries.push(pe);
         }
@@ -538,7 +565,8 @@ function createHierarchyEntry(t:typeSystem.IParsedType,
     if(definedFacets.length>0){
         for(let p of definedFacets){
             let pt = p.range();
-            let pte = createHierarchyEntry(pt,occured,branchingRegistry);
+            let pte = createHierarchyEntry(
+                pt,typeExpansionRecursionDepth,occured,branchingRegistry);
             let fe = new PropertyEntry(p,null,pte,true);
             result.addFacet(fe);
         }
@@ -838,8 +866,8 @@ export function dumpFacets(te: TypeEntry, result: any) {
 }
 
 
-export function dumpType(t:typeSystem.IParsedType){
-    let he = createHierarchyEntry(t);
+export function dumpType(t:typeSystem.IParsedType,typeExpansionRecursionDepth:number){
+    let he = createHierarchyEntry(t,typeExpansionRecursionDepth);
     let ee = expandHierarchy(he,he.branchingRegistry());
     let result = dump(ee);
     return result;
