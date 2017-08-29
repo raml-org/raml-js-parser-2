@@ -17,7 +17,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "schema.json"
+        "sourceMap": {
+          "path": "schema.json"
+        }
       }
     ],
     "resourceTypes": [
@@ -32,7 +34,9 @@
           ]
         },
         "name": "type1",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "methods": [
@@ -63,15 +67,21 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "name": "collection",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "My API",
@@ -108,13 +118,17 @@
                   "{\"songId\":\"550e8400-e29b-41d4-a716-446655440000\",\"songTitle\":true,\"albumId\":\"183100e3-0e2b-4404-a716-66104d440550\"}"
                 ],
                 "mediaType": "application/json",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/songs",
             "absoluteParentUri": "/songs",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -142,10 +156,14 @@
         "completeRelativeUri": "/songs",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-expression.raml"
+            "sourceMap": {
+              "path": "type-expression.raml"
+            }
           },
           {
             "name": "numberOfSIMCards",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-expression.raml"
+            "sourceMap": {
+              "path": "type-expression.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -60,7 +64,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "type-expression.raml"
+        "sourceMap": {
+          "path": "type-expression.raml"
+        }
       },
       {
         "name": "Notebook",
@@ -88,7 +94,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-expression.raml"
+            "sourceMap": {
+              "path": "type-expression.raml"
+            }
           },
           {
             "name": "numberOfUSBPorts",
@@ -109,7 +117,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-expression.raml"
+            "sourceMap": {
+              "path": "type-expression.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -121,7 +131,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "type-expression.raml"
+        "sourceMap": {
+          "path": "type-expression.raml"
+        }
       },
       {
         "name": "Person",
@@ -160,7 +172,9 @@
                 ]
               }
             ],
-            "path": "type-expression.raml"
+            "sourceMap": {
+              "path": "type-expression.raml"
+            }
           },
           {
             "name": "reports",
@@ -184,7 +198,9 @@
             "items": [
               "Person"
             ],
-            "path": "type-expression.raml"
+            "sourceMap": {
+              "path": "type-expression.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -196,11 +212,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "type-expression.raml"
+        "sourceMap": {
+          "path": "type-expression.raml"
+        }
       }
     ],
     "title": "My API With Types",
-    "path": "type-expression.raml"
+    "sourceMap": {
+      "path": "type-expression.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

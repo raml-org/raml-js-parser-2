@@ -26,11 +26,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "pagination.raml"
+            "sourceMap": {
+              "path": "pagination.raml"
+            }
           }
         ],
         "name": "pagination",
-        "path": "pagination.raml"
+        "sourceMap": {
+          "path": "pagination.raml"
+        }
       }
     ],
     "title": "API Animals & People!",
@@ -62,7 +66,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "pagination.raml"
+                "sourceMap": {
+                  "path": "pagination.raml"
+                }
               }
             ],
             "is": [
@@ -73,7 +79,9 @@
             "method": "get",
             "parentUri": "/some",
             "absoluteParentUri": "/some",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/some",
@@ -92,10 +100,14 @@
         "completeRelativeUri": "/some",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -5,15 +5,21 @@
       {
         "title": "Section 1",
         "content": "Some string value\n",
-        "path": "docs.raml"
+        "sourceMap": {
+          "path": "docs.raml"
+        }
       },
       {
         "title": "Section 2",
         "content": "Some string value\n",
-        "path": "docs.raml"
+        "sourceMap": {
+          "path": "docs.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

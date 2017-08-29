@@ -28,7 +28,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "responses.raml"
+            "sourceMap": {
+              "path": "responses.raml"
+            }
           },
           {
             "name": "vendorName",
@@ -52,7 +54,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "responses.raml"
+            "sourceMap": {
+              "path": "responses.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -67,7 +71,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "responses.raml"
+        "sourceMap": {
+          "path": "responses.raml"
+        }
       }
     ],
     "title": "Example with responses",
@@ -108,7 +114,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "responses.raml"
+                        "sourceMap": {
+                          "path": "responses.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -120,16 +128,22 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "responses.raml"
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    }
                   }
                 ],
-                "path": "responses.raml"
+                "sourceMap": {
+                  "path": "responses.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/invoices",
             "absoluteParentUri": "/invoices",
-            "path": "responses.raml"
+            "sourceMap": {
+              "path": "responses.raml"
+            }
           },
           {
             "responses": [
@@ -168,7 +182,9 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "responses.raml"
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    }
                   }
                 ],
                 "body": [
@@ -188,7 +204,9 @@
                     },
                     "mediaType": "application/json",
                     "typePropertyKind": "JSON",
-                    "path": "responses.raml"
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    }
                   },
                   {
                     "name": "text/xml",
@@ -206,10 +224,14 @@
                     },
                     "mediaType": "application/xml",
                     "typePropertyKind": "XML",
-                    "path": "responses.raml"
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    }
                   }
                 ],
-                "path": "responses.raml"
+                "sourceMap": {
+                  "path": "responses.raml"
+                }
               },
               {
                 "code": "422",
@@ -243,7 +265,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "responses.raml"
+                        "sourceMap": {
+                          "path": "responses.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -270,10 +294,14 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "responses.raml"
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    }
                   }
                 ],
-                "path": "responses.raml"
+                "sourceMap": {
+                  "path": "responses.raml"
+                }
               }
             ],
             "body": [
@@ -292,13 +320,17 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "responses.raml"
+                "sourceMap": {
+                  "path": "responses.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/invoices",
             "absoluteParentUri": "/invoices",
-            "path": "responses.raml"
+            "sourceMap": {
+              "path": "responses.raml"
+            }
           }
         ],
         "relativeUri": "/invoices",
@@ -317,10 +349,14 @@
         "completeRelativeUri": "/invoices",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "responses.raml"
+        "sourceMap": {
+          "path": "responses.raml"
+        }
       }
     ],
-    "path": "responses.raml"
+    "sourceMap": {
+      "path": "responses.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -45,7 +45,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "items",
@@ -69,7 +71,9 @@
             "items": [
               "VV"
             ],
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -84,7 +88,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "VV",
@@ -115,7 +121,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "c",
@@ -136,7 +144,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "r1",
@@ -160,7 +170,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -172,7 +184,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -202,7 +216,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -217,14 +233,18 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "WebOfMe",
     "mediaType": [
       "application/json"
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

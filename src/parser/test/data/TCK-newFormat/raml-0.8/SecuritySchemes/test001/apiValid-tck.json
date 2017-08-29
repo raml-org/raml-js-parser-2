@@ -6,10 +6,14 @@
       {
         "name": "auth",
         "type": "x-sls",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

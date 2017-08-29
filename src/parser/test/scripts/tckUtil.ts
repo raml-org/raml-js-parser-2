@@ -424,7 +424,7 @@ export interface TestOptions{
     tckJsonPath?:string,
     regenerteJSON?:boolean,
     expandLib?:boolean,
-    unfoldTypes?:boolean,
+    expandExpressions?:boolean,
     newFormat?:boolean,
     serializeMetadata?:boolean,
     expandTypes?: boolean,
@@ -441,7 +441,7 @@ export function testAPIScript(o:TestOptions){
         true,
         true,
         o.expandLib,
-        o.unfoldTypes,
+        o.expandExpressions,
         o.serializeMetadata,
         o);
 
@@ -477,7 +477,7 @@ function doTestAPI(
     callTests:boolean=true,
     doAssert:boolean = true,
     expandLib:boolean = false,
-    unfoldTypes = false,
+    expandExpressions = false,
     serializeMetadata = true,
     o:TestOptions={}):TestResult{
 
@@ -494,7 +494,7 @@ function doTestAPI(
         tckJsonPath = testUtil.data(tckJsonPath);
     }
     var json:any;
-    if(newFormat||unfoldTypes){
+    if(newFormat||expandExpressions){
         if(extensions && extensions.length>0){
             apiPath = extensions[extensions.length-1];
         }
@@ -502,7 +502,8 @@ function doTestAPI(
             expandLibraries: expandLib,
             serializeMetadata: serializeMetadata,
             expandTypes: o.expandTypes,
-            typeExpansionRecursionDepth: o.recursionDepth
+            typeExpansionRecursionDepth: o.recursionDepth,
+            sourceMap: true
         });
     }
     else {
@@ -608,7 +609,7 @@ export function generateMochaSuite(
     mochaSuiteTitle:string,
     libExpand:boolean=false,
     newFormat=false,
-    unfoldTypes = false){
+    expandExpressions = false){
 
     var dirs = iterateFolder(folderAbsPath);
     var map:{[key:string]:Test[]} = {};
@@ -634,7 +635,7 @@ export function generateMochaSuite(
         if(title==null){
             continue;
         }
-        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand,newFormat,unfoldTypes);
+        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand,newFormat,expandExpressions);
         suiteStrings.push(suiteStr);
     }
     var content = fileContent(suiteStrings,dstPath,mochaSuiteTitle);
@@ -655,9 +656,9 @@ function dumpSuite(
     tests:Test[],
     libExpand:boolean,
     newFormat:boolean,
-    unfoldTypes:boolean):string{
+    expandExpressions:boolean):string{
 
-    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand,newFormat,unfoldTypes));
+    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand,newFormat,expandExpressions));
 
     var testsStr = dumpedTests.join("\n\n");
     return`describe('${title}',function(){
@@ -667,7 +668,7 @@ ${testsStr}
 });`
 }
 
-function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean,unfoldTypes:boolean):string{
+function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean,expandExpressions:boolean):string{
 
 
     var relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
@@ -689,8 +690,8 @@ function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean,
     if(newFormat){
         options.newFormat = true;
     }
-    if(unfoldTypes){
-        options.unfoldTypes = true;
+    if(expandExpressions){
+        options.expandExpressions = true;
     }
 
     var testMethod = 'testAPIScript';

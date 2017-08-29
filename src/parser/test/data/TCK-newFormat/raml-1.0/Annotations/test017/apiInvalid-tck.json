@@ -35,7 +35,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -50,7 +52,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "name": "TargetType",
@@ -78,7 +82,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -93,7 +99,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "traits": [
@@ -121,11 +129,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "trait1",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -147,11 +159,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "title": "MyApi",
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

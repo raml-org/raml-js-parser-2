@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "y",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -60,7 +64,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -93,7 +99,9 @@
             "items": [
               "Point"
             ],
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -108,7 +116,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "New API",
@@ -153,7 +163,9 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -163,7 +175,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

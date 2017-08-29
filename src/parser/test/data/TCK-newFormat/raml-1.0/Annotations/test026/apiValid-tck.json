@@ -16,7 +16,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
       {
         "name": "a2",
@@ -33,7 +35,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "title": "API",
@@ -67,10 +71,14 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

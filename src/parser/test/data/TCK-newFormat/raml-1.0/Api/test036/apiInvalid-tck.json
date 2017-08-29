@@ -6,7 +6,9 @@
       "HTTP",
       "https1"
     ],
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

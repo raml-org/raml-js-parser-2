@@ -24,22 +24,32 @@
                     },
                     "mediaType": "application/json",
                     "typePropertyKind": "JSON",
-                    "path": "resourceType.raml"
+                    "sourceMap": {
+                      "path": "resourceType.raml"
+                    }
                   }
                 ],
-                "path": "resourceType.raml"
+                "sourceMap": {
+                  "path": "resourceType.raml"
+                }
               }
             ],
             "method": "get",
-            "path": "resourceType.raml"
+            "sourceMap": {
+              "path": "resourceType.raml"
+            }
           }
         ],
         "name": "test",
-        "path": "resourceType.raml"
+        "sourceMap": {
+          "path": "resourceType.raml"
+        }
       }
     ],
     "title": "test API",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

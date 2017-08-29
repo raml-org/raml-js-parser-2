@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "kind",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "discriminator": "kind",
@@ -64,7 +68,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "ChildType1",
@@ -82,7 +88,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "ChildType2",
@@ -111,7 +119,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "discriminatorValue": "k2",
@@ -124,7 +134,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
@@ -177,13 +189,17 @@
                 "items": [
                   "ParentType"
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -202,10 +218,14 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

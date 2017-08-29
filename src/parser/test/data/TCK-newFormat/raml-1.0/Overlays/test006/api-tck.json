@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "NewOverlay.raml"
+            "sourceMap": {
+              "path": "NewOverlay.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -42,12 +44,16 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "NewOverlay.raml"
+        "sourceMap": {
+          "path": "NewOverlay.raml"
+        }
       }
     ],
     "title": "Pet Shop Overlay",
     "extends": "api.raml",
-    "path": "NewOverlay.raml"
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

@@ -4,7 +4,9 @@
       {
         "key": "decls",
         "value": "lib/decls.raml",
-        "path": "extension.raml"
+        "sourceMap": {
+          "path": "extension.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -23,7 +25,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/decls.raml"
+        "sourceMap": {
+          "path": "lib/decls.raml"
+        }
       }
     ],
     "title": "ApiExtension",
@@ -55,7 +59,9 @@
             },
             "parentUri": "/items",
             "absoluteParentUri": "http://myItems.com/items",
-            "path": "extension.raml"
+            "sourceMap": {
+              "path": "extension.raml"
+            }
           }
         ],
         "relativeUri": "/items",
@@ -74,7 +80,9 @@
         "completeRelativeUri": "/items",
         "parentUri": "",
         "absoluteParentUri": "http://myItems.com",
-        "path": "extension.raml"
+        "sourceMap": {
+          "path": "extension.raml"
+        }
       },
       {
         "methods": [
@@ -82,13 +90,17 @@
             "responses": [
               {
                 "code": "200",
-                "path": "master.raml"
+                "sourceMap": {
+                  "path": "master.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/elements",
             "absoluteParentUri": "http://myItems.com/elements",
-            "path": "master.raml"
+            "sourceMap": {
+              "path": "master.raml"
+            }
           }
         ],
         "relativeUri": "/elements",
@@ -107,7 +119,9 @@
         "completeRelativeUri": "/elements",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "master.raml"
+        "sourceMap": {
+          "path": "master.raml"
+        }
       }
     ],
     "extends": "master.raml",
@@ -118,7 +132,9 @@
         }
       }
     },
-    "path": "extension.raml"
+    "sourceMap": {
+      "path": "extension.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

@@ -11,7 +11,9 @@
             "type": "string",
             "required": false,
             "repeat": false,
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "methods": [
@@ -32,13 +34,17 @@
                     }
                   }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/single-query-record/{code}",
             "absoluteParentUri": "/single-query-record/{code}",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "code",
@@ -46,7 +52,9 @@
                 "type": "string",
                 "required": false,
                 "repeat": false,
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -70,10 +78,14 @@
         "completeRelativeUri": "/single-query-record/{code}",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

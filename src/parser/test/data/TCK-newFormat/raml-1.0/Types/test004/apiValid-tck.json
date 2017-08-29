@@ -32,11 +32,15 @@
         "items": [
           "string"
         ],
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "title": "API",
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

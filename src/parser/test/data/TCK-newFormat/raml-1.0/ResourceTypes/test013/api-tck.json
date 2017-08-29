@@ -4,7 +4,9 @@
       {
         "key": "lib",
         "value": "library.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -26,7 +28,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -50,10 +54,14 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "hasResponseCollection.raml"
+                "sourceMap": {
+                  "path": "hasResponseCollection.raml"
+                }
               }
             ],
-            "path": "hasResponseCollection.raml"
+            "sourceMap": {
+              "path": "hasResponseCollection.raml"
+            }
           }
         ],
         "name": "lib.hasResponseCollection",
@@ -61,7 +69,9 @@
         "__METADATA__": {
           "calculated": true
         },
-        "path": "hasResponseCollection.raml"
+        "sourceMap": {
+          "path": "hasResponseCollection.raml"
+        }
       },
       {
         "responses": [
@@ -83,15 +93,21 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "hasResponseCollection.raml"
+                "sourceMap": {
+                  "path": "hasResponseCollection.raml"
+                }
               }
             ],
-            "path": "hasResponseCollection.raml"
+            "sourceMap": {
+              "path": "hasResponseCollection.raml"
+            }
           }
         ],
         "name": "hasResponseCollection",
         "usage": "Use this trait for resources whose response body is a collection of items",
-        "path": "hasResponseCollection.raml"
+        "sourceMap": {
+          "path": "hasResponseCollection.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -105,7 +121,9 @@
             ],
             "description": "Get all <<resourcePathName|!uppercamelcase>>,\noptionally filtered\n",
             "method": "get",
-            "path": "collection.raml"
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           },
           {
             "is": [
@@ -115,12 +133,16 @@
             ],
             "description": "Create a <<resourcePathName|!uppercamelcase>>\n",
             "method": "post",
-            "path": "collection.raml"
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           }
         ],
         "description": "A collection of <<resourcePathName|!uppercamelcase>>",
         "name": "collection",
-        "path": "collection.raml"
+        "sourceMap": {
+          "path": "collection.raml"
+        }
       }
     ],
     "title": "My API",
@@ -147,10 +169,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "hasResponseCollection.raml"
+                    "sourceMap": {
+                      "path": "hasResponseCollection.raml"
+                    }
                   }
                 ],
-                "path": "hasResponseCollection.raml"
+                "sourceMap": {
+                  "path": "hasResponseCollection.raml"
+                }
               }
             ],
             "is": [
@@ -162,7 +188,9 @@
             "method": "get",
             "parentUri": "/example",
             "absoluteParentUri": "/example",
-            "path": "collection.raml"
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           },
           {
             "responses": [
@@ -184,10 +212,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "hasResponseCollection.raml"
+                    "sourceMap": {
+                      "path": "hasResponseCollection.raml"
+                    }
                   }
                 ],
-                "path": "hasResponseCollection.raml"
+                "sourceMap": {
+                  "path": "hasResponseCollection.raml"
+                }
               }
             ],
             "is": [
@@ -199,7 +231,9 @@
             "method": "post",
             "parentUri": "/example",
             "absoluteParentUri": "/example",
-            "path": "collection.raml"
+            "sourceMap": {
+              "path": "collection.raml"
+            }
           }
         ],
         "type": {
@@ -222,10 +256,14 @@
         "completeRelativeUri": "/example",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

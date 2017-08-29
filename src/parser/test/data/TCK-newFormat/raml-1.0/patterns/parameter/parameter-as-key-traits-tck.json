@@ -6,11 +6,15 @@
           {
             "code": "<<status>>",
             "description": "<<description>>",
-            "path": "parameter-as-key-traits.raml"
+            "sourceMap": {
+              "path": "parameter-as-key-traits.raml"
+            }
           }
         ],
         "name": "respCode",
-        "path": "parameter-as-key-traits.raml"
+        "sourceMap": {
+          "path": "parameter-as-key-traits.raml"
+        }
       }
     ],
     "title": "Example API",
@@ -23,7 +27,9 @@
               {
                 "code": "201",
                 "description": "Post created, returns the created post.",
-                "path": "parameter-as-key-traits.raml"
+                "sourceMap": {
+                  "path": "parameter-as-key-traits.raml"
+                }
               }
             ],
             "is": [
@@ -45,7 +51,9 @@
             "method": "get",
             "parentUri": "/servers",
             "absoluteParentUri": "/servers",
-            "path": "parameter-as-key-traits.raml"
+            "sourceMap": {
+              "path": "parameter-as-key-traits.raml"
+            }
           }
         ],
         "relativeUri": "/servers",
@@ -64,10 +72,14 @@
         "completeRelativeUri": "/servers",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "parameter-as-key-traits.raml"
+        "sourceMap": {
+          "path": "parameter-as-key-traits.raml"
+        }
       }
     ],
-    "path": "parameter-as-key-traits.raml"
+    "sourceMap": {
+      "path": "parameter-as-key-traits.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

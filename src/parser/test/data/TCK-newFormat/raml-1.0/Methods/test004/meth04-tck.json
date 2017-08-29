@@ -36,10 +36,14 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "meth04.raml"
+                    "sourceMap": {
+                      "path": "meth04.raml"
+                    }
                   }
                 ],
-                "path": "meth04.raml"
+                "sourceMap": {
+                  "path": "meth04.raml"
+                }
               }
             ],
             "body": [
@@ -60,13 +64,17 @@
                   "TestSchema"
                 ],
                 "mediaType": "application/json",
-                "path": "meth04.raml"
+                "sourceMap": {
+                  "path": "meth04.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test",
-            "path": "meth04.raml"
+            "sourceMap": {
+              "path": "meth04.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -85,7 +93,9 @@
         "completeRelativeUri": "/test",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "meth04.raml"
+        "sourceMap": {
+          "path": "meth04.raml"
+        }
       }
     ],
     "types": [
@@ -104,10 +114,14 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "meth04.raml"
+        "sourceMap": {
+          "path": "meth04.raml"
+        }
       }
     ],
-    "path": "meth04.raml"
+    "sourceMap": {
+      "path": "meth04.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -12,16 +12,22 @@
                 "body": [
                   {
                     "name": "applicationjson",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/g",
             "absoluteParentUri": "/g",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/g",
@@ -39,10 +45,14 @@
         "completeRelativeUri": "/g",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

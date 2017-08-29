@@ -41,7 +41,9 @@
             "value": "T1"
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T2",
@@ -103,7 +105,9 @@
             "value": "T2"
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T3",
@@ -145,7 +149,9 @@
             "value": "T3"
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T4",
@@ -306,7 +312,9 @@
             "value": "T4"
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -331,18 +339,24 @@
             "required": true
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "MyStringAnnotation",
         "type": [
           "string"
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -4,7 +4,9 @@
       {
         "key": "lib",
         "value": "lib.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Test API",
@@ -40,7 +42,9 @@
         ]
       ]
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

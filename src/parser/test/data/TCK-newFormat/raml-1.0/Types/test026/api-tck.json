@@ -33,7 +33,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "protocols": [
@@ -74,7 +76,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
                       {
                         "name": "prop2",
@@ -95,7 +99,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -110,7 +116,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -122,7 +130,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -138,7 +148,9 @@
             },
             "parentUri": "/teams",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -169,7 +181,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -190,7 +204,9 @@
         "completeRelativeUri": "/teams",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -221,7 +237,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -245,7 +263,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -261,7 +281,9 @@
             },
             "parentUri": "/teams2",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams2",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -292,7 +314,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -313,7 +337,9 @@
         "completeRelativeUri": "/teams2",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -344,7 +370,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -371,7 +399,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -387,7 +417,9 @@
             },
             "parentUri": "/teams3",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams3",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -418,7 +450,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -439,7 +473,9 @@
         "completeRelativeUri": "/teams3",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -470,7 +506,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -496,7 +534,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -512,7 +552,9 @@
             },
             "parentUri": "/teams4",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams4",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -543,7 +585,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -564,7 +608,9 @@
         "completeRelativeUri": "/teams4",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -595,7 +641,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -618,7 +666,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -634,7 +684,9 @@
             },
             "parentUri": "/teams5",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams5",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -665,7 +717,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -686,7 +740,9 @@
         "completeRelativeUri": "/teams5",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -717,7 +773,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -740,7 +798,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -756,7 +816,9 @@
             },
             "parentUri": "/teams6",
             "absoluteParentUri": "http://api.samplehost.com/{version}/teams6",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -787,7 +849,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -808,7 +872,9 @@
         "completeRelativeUri": "/teams6",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -839,7 +905,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       }
@@ -851,7 +919,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

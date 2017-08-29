@@ -32,13 +32,17 @@
                 ],
                 "mediaType": "application/xml",
                 "typePropertyKind": "XML",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/example",
             "absoluteParentUri": "/example",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/example",
@@ -57,10 +61,14 @@
         "completeRelativeUri": "/example",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

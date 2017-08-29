@@ -4,13 +4,17 @@
       {
         "key": "lib",
         "value": "./lib/lib.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
       {
         "name": "lib.boolean",
-        "path": "lib/lib.raml"
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -29,22 +33,30 @@
           }
         ],
         "name": "lib.number",
-        "path": "lib/lib.raml"
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
     ],
     "securitySchemes": [
       {
         "name": "lib.oauth",
         "type": "OAuth 2.0",
-        "path": "lib/lib.raml"
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       },
       {
         "name": "lib.number",
         "type": "Basic Authentication",
-        "path": "lib/lib.raml"
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

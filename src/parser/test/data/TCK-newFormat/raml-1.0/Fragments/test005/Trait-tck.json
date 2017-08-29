@@ -20,10 +20,14 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "Trait.raml"
+        "sourceMap": {
+          "path": "Trait.raml"
+        }
       }
     ],
-    "path": "Trait.raml"
+    "sourceMap": {
+      "path": "Trait.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Trait",

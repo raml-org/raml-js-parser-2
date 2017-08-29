@@ -9,13 +9,17 @@
             "method": "post",
             "parentUri": "/books",
             "absoluteParentUri": "/books",
-            "path": "extension-post.raml"
+            "sourceMap": {
+              "path": "extension-post.raml"
+            }
           },
           {
             "method": "get",
             "parentUri": "/books",
             "absoluteParentUri": "/books",
-            "path": "librarybooks.raml"
+            "sourceMap": {
+              "path": "librarybooks.raml"
+            }
           }
         ],
         "description": "The collection of library books",
@@ -35,24 +39,32 @@
         "completeRelativeUri": "/books",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "extension-post.raml"
+        "sourceMap": {
+          "path": "extension-post.raml"
+        }
       }
     ],
     "documentation": [
       {
         "title": "Introduction",
         "content": "Automated access to books",
-        "path": "librarybooks.raml"
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       },
       {
         "title": "Licensing",
         "content": "Please respect copyrights on our books.",
-        "path": "librarybooks.raml"
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       }
     ],
     "usage": "Add administrative functionality",
     "extends": "librarybooks.raml",
-    "path": "extension-post.raml"
+    "sourceMap": {
+      "path": "extension-post.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

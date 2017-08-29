@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-names-question-mark.raml"
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           },
           {
             "name": "foto?",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-names-question-mark.raml"
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           },
           {
             "name": "description?",
@@ -72,7 +76,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-names-question-mark.raml"
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           },
           {
             "name": "link",
@@ -96,7 +102,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type-names-question-mark.raml"
+            "sourceMap": {
+              "path": "type-names-question-mark.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -111,12 +119,16 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "type-names-question-mark.raml"
+        "sourceMap": {
+          "path": "type-names-question-mark.raml"
+        }
       }
     ],
     "title": "My API With Types",
     "description": "This RAML illustrates a type properties that includes a question mark in its\nname. The expections here is that the question mark is part of the\nproperty name if either required is explicitly applied to the\nproperty or someone uses ??. Otherwise, the question mark indicates an optional\nproperty.\n",
-    "path": "type-names-question-mark.raml"
+    "sourceMap": {
+      "path": "type-names-question-mark.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

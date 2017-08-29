@@ -1,6 +1,8 @@
 {
   "specification": {
-    "path": "emptyApi.raml"
+    "sourceMap": {
+      "path": "emptyApi.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

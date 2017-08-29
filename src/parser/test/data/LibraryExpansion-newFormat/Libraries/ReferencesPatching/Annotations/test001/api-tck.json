@@ -4,12 +4,16 @@
       {
         "key": "lib1",
         "value": "./lib/lib1.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
         "value": "lib/lib2.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -39,11 +43,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib/lib2.raml"
+            "sourceMap": {
+              "path": "lib/lib2.raml"
+            }
           }
         ],
         "name": "lib1.lib2.myTrait",
-        "path": "lib/lib2.raml"
+        "sourceMap": {
+          "path": "lib/lib2.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -54,7 +62,9 @@
           }
         ],
         "name": "lib1.rt",
-        "path": "lib/lib1.raml"
+        "sourceMap": {
+          "path": "lib/lib1.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -73,10 +83,14 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib2.raml"
+        "sourceMap": {
+          "path": "lib/lib2.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

@@ -23,18 +23,26 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "parameter-as-key-rt-mediatype.raml"
+                    "sourceMap": {
+                      "path": "parameter-as-key-rt-mediatype.raml"
+                    }
                   }
                 ],
-                "path": "parameter-as-key-rt-mediatype.raml"
+                "sourceMap": {
+                  "path": "parameter-as-key-rt-mediatype.raml"
+                }
               }
             ],
             "method": "get",
-            "path": "parameter-as-key-rt-mediatype.raml"
+            "sourceMap": {
+              "path": "parameter-as-key-rt-mediatype.raml"
+            }
           }
         ],
         "name": "thingy",
-        "path": "parameter-as-key-rt-mediatype.raml"
+        "sourceMap": {
+          "path": "parameter-as-key-rt-mediatype.raml"
+        }
       }
     ],
     "title": "Parameterizing media type must be valid",
@@ -61,16 +69,22 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "parameter-as-key-rt-mediatype.raml"
+                    "sourceMap": {
+                      "path": "parameter-as-key-rt-mediatype.raml"
+                    }
                   }
                 ],
-                "path": "parameter-as-key-rt-mediatype.raml"
+                "sourceMap": {
+                  "path": "parameter-as-key-rt-mediatype.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/books",
             "absoluteParentUri": "/books",
-            "path": "parameter-as-key-rt-mediatype.raml"
+            "sourceMap": {
+              "path": "parameter-as-key-rt-mediatype.raml"
+            }
           }
         ],
         "type": {
@@ -98,10 +112,14 @@
         "completeRelativeUri": "/books",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "parameter-as-key-rt-mediatype.raml"
+        "sourceMap": {
+          "path": "parameter-as-key-rt-mediatype.raml"
+        }
       }
     ],
-    "path": "parameter-as-key-rt-mediatype.raml"
+    "sourceMap": {
+      "path": "parameter-as-key-rt-mediatype.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

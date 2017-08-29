@@ -15,9 +15,13 @@
             "admin",
             "user"
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
@@ -35,12 +39,18 @@
           "scopes": [
             "hello"
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

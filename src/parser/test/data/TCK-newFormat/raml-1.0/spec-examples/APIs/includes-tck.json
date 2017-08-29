@@ -19,7 +19,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "myTypes.raml"
+        "sourceMap": {
+          "path": "myTypes.raml"
+        }
       },
       {
         "name": "User",
@@ -39,11 +41,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "myTypes.raml"
+        "sourceMap": {
+          "path": "myTypes.raml"
+        }
       }
     ],
     "title": "My API with Types",
-    "path": "includes.raml"
+    "sourceMap": {
+      "path": "includes.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

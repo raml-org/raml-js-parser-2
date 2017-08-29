@@ -4,7 +4,9 @@
       {
         "key": "NewLibrary",
         "value": "NewLibrary.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -23,7 +25,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "Bird",
@@ -51,7 +55,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -63,7 +69,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Pet Shop",
@@ -103,7 +111,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "responses": [
@@ -128,10 +138,14 @@
                     "items": [
                       "NewLibrary.Pet"
                     ],
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -147,7 +161,9 @@
             },
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "body": [
@@ -166,7 +182,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -182,7 +200,9 @@
             },
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/pets",
@@ -194,7 +214,9 @@
                 "responses": [
                   {
                     "code": "204",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -210,7 +232,9 @@
                 },
                 "parentUri": "/pets/{id}",
                 "absoluteParentUri": "/shop/pets/{id}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "uriParameters": [
                   {
                     "name": "id",
@@ -235,7 +259,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               },
@@ -256,7 +282,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -272,7 +300,9 @@
                 },
                 "parentUri": "/pets/{id}",
                 "absoluteParentUri": "/shop/pets/{id}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "uriParameters": [
                   {
                     "name": "id",
@@ -297,7 +327,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               }
@@ -326,7 +358,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "relativeUri": "/{id}",
@@ -345,7 +379,9 @@
             "completeRelativeUri": "/pets/{id}",
             "parentUri": "/pets",
             "absoluteParentUri": "/shop/pets",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -362,7 +398,9 @@
         "completeRelativeUri": "/pets",
         "parentUri": "",
         "absoluteParentUri": "/shop",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "methods": [
@@ -389,10 +427,14 @@
                     "items": [
                       "Bird"
                     ],
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -408,7 +450,9 @@
             },
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "body": [
@@ -427,7 +471,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -443,7 +489,9 @@
             },
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/birds",
@@ -455,7 +503,9 @@
                 "responses": [
                   {
                     "code": "204",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -471,7 +521,9 @@
                 },
                 "parentUri": "/birds/{id}",
                 "absoluteParentUri": "/shop/birds/{id}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "uriParameters": [
                   {
                     "name": "id",
@@ -496,7 +548,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               },
@@ -517,7 +571,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -533,7 +589,9 @@
                 },
                 "parentUri": "/birds/{id}",
                 "absoluteParentUri": "/shop/birds/{id}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "uriParameters": [
                   {
                     "name": "id",
@@ -558,7 +616,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               }
@@ -587,7 +647,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "relativeUri": "/{id}",
@@ -606,7 +668,9 @@
             "completeRelativeUri": "/birds/{id}",
             "parentUri": "/birds",
             "absoluteParentUri": "/shop/birds",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -623,7 +687,9 @@
         "completeRelativeUri": "/birds",
         "parentUri": "",
         "absoluteParentUri": "/shop",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "methods": [
@@ -650,10 +716,14 @@
                     "items": [
                       "Mammal"
                     ],
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -669,7 +739,9 @@
             },
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "body": [
@@ -688,7 +760,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -704,7 +778,9 @@
             },
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/mammals",
@@ -716,7 +792,9 @@
                 "responses": [
                   {
                     "code": "204",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -732,7 +810,9 @@
                 },
                 "parentUri": "/mammals/{id}",
                 "absoluteParentUri": "/shop/mammals/{id}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "uriParameters": [
                   {
                     "name": "id",
@@ -757,7 +837,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               },
@@ -778,7 +860,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -794,7 +878,9 @@
                 },
                 "parentUri": "/mammals/{id}",
                 "absoluteParentUri": "/shop/mammals/{id}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "uriParameters": [
                   {
                     "name": "id",
@@ -819,7 +905,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               }
@@ -848,7 +936,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "relativeUri": "/{id}",
@@ -867,7 +957,9 @@
             "completeRelativeUri": "/mammals/{id}",
             "parentUri": "/mammals",
             "absoluteParentUri": "/shop/mammals",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -884,7 +976,9 @@
         "completeRelativeUri": "/mammals",
         "parentUri": "",
         "absoluteParentUri": "/shop",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -894,7 +988,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

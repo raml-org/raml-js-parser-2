@@ -10,9 +10,13 @@
       "scopes": [
         "http://example.com"
       ],
-      "path": "securitySchemeFragment.raml"
+      "sourceMap": {
+        "path": "securitySchemeFragment.raml"
+      }
     },
-    "path": "securitySchemeFragment.raml"
+    "sourceMap": {
+      "path": "securitySchemeFragment.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "OAuth2SecurityScheme",

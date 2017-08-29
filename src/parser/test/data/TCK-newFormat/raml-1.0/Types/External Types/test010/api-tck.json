@@ -4,7 +4,9 @@
       {
         "name": "bar",
         "usage": "bar usage",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Foo API",
@@ -50,7 +52,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -62,7 +66,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -78,7 +84,9 @@
             },
             "parentUri": "/baz",
             "absoluteParentUri": "https://example.com/baz",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/baz",
@@ -97,10 +105,14 @@
         "completeRelativeUri": "/baz",
         "parentUri": "",
         "absoluteParentUri": "https://example.com",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

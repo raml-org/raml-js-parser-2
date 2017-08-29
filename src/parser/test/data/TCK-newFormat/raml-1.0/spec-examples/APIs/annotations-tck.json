@@ -16,7 +16,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       },
       {
         "name": "experimental",
@@ -37,7 +39,9 @@
           "nil",
           "string"
         ],
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       },
       {
         "name": "feedbackRequested",
@@ -54,7 +58,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       },
       {
         "name": "testHarness",
@@ -71,7 +77,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       },
       {
         "name": "badge",
@@ -91,7 +99,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       },
       {
         "name": "clearanceLevel",
@@ -124,7 +134,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "annotations.raml"
+            "sourceMap": {
+              "path": "annotations.raml"
+            }
           },
           {
             "name": "signature",
@@ -146,7 +158,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "annotations.raml"
+            "sourceMap": {
+              "path": "annotations.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -161,7 +175,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       }
     ],
     "title": "Illustrating annotations",
@@ -196,7 +212,9 @@
         "completeRelativeUri": "/groups",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       },
       {
         "annotations": [
@@ -235,13 +253,17 @@
             "responses": [
               {
                 "code": "200",
-                "path": "annotations.raml"
+                "sourceMap": {
+                  "path": "annotations.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/users",
             "absoluteParentUri": "/users",
-            "path": "annotations.raml"
+            "sourceMap": {
+              "path": "annotations.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -260,10 +282,14 @@
         "completeRelativeUri": "/users",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "annotations.raml"
+        "sourceMap": {
+          "path": "annotations.raml"
+        }
       }
     ],
-    "path": "annotations.raml"
+    "sourceMap": {
+      "path": "annotations.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

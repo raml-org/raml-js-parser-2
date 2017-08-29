@@ -4,7 +4,9 @@
       {
         "key": "dataTypes",
         "value": "libraries/type.raml",
-        "path": "sample-api.raml"
+        "sourceMap": {
+          "path": "sample-api.raml"
+        }
       }
     ],
     "types": [
@@ -38,7 +40,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/commonBase.raml"
+                "sourceMap": {
+                  "path": "schemas/commonBase.raml"
+                }
               },
               {
                 "name": "eTag",
@@ -59,7 +63,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/commonBase.raml"
+                "sourceMap": {
+                  "path": "schemas/commonBase.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -71,7 +77,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "schemas/commonBase.raml"
+            "sourceMap": {
+              "path": "schemas/commonBase.raml"
+            }
           }
         ],
         "properties": [
@@ -94,7 +102,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "schemas/customer.raml"
+            "sourceMap": {
+              "path": "schemas/customer.raml"
+            }
           },
           {
             "name": "age",
@@ -112,7 +122,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "schemas/customer.raml"
+            "sourceMap": {
+              "path": "schemas/customer.raml"
+            }
           },
           {
             "name": "email",
@@ -133,7 +145,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "schemas/customer.raml"
+            "sourceMap": {
+              "path": "schemas/customer.raml"
+            }
           },
           {
             "name": "mobile",
@@ -154,7 +168,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "schemas/customer.raml"
+            "sourceMap": {
+              "path": "schemas/customer.raml"
+            }
           },
           {
             "name": "addresses",
@@ -190,7 +206,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/address.raml"
+                "sourceMap": {
+                  "path": "schemas/address.raml"
+                }
               },
               {
                 "name": "line1",
@@ -211,7 +229,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/address.raml"
+                "sourceMap": {
+                  "path": "schemas/address.raml"
+                }
               },
               {
                 "name": "line2",
@@ -232,7 +252,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/address.raml"
+                "sourceMap": {
+                  "path": "schemas/address.raml"
+                }
               },
               {
                 "name": "suburb",
@@ -253,7 +275,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/address.raml"
+                "sourceMap": {
+                  "path": "schemas/address.raml"
+                }
               },
               {
                 "name": "postcode",
@@ -274,7 +298,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/address.raml"
+                "sourceMap": {
+                  "path": "schemas/address.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -286,7 +312,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "schemas/address.raml"
+            "sourceMap": {
+              "path": "schemas/address.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -298,7 +326,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE",
-        "path": "schemas/customer.raml"
+        "sourceMap": {
+          "path": "schemas/customer.raml"
+        }
       }
     ],
     "title": "sample-api",
@@ -337,7 +367,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "sample-api.raml"
+                        "sourceMap": {
+                          "path": "sample-api.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -372,10 +404,14 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "sample-api.raml"
+                    "sourceMap": {
+                      "path": "sample-api.raml"
+                    }
                   }
                 ],
-                "path": "sample-api.raml"
+                "sourceMap": {
+                  "path": "sample-api.raml"
+                }
               }
             ],
             "protocols": [
@@ -391,7 +427,9 @@
             },
             "parentUri": "/customers",
             "absoluteParentUri": "http://api.samplehost.com/customers",
-            "path": "sample-api.raml"
+            "sourceMap": {
+              "path": "sample-api.raml"
+            }
           }
         ],
         "relativeUri": "/customers",
@@ -410,7 +448,9 @@
         "completeRelativeUri": "/customers",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com",
-        "path": "sample-api.raml"
+        "sourceMap": {
+          "path": "sample-api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -420,7 +460,9 @@
         }
       }
     },
-    "path": "sample-api.raml"
+    "sourceMap": {
+      "path": "sample-api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

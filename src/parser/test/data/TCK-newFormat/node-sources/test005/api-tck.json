@@ -5,25 +5,31 @@
       {
         "title": "section1",
         "content": "string value 1\n",
-        "scalarsPaths": {
-          "content": [
-            "doc1.txt"
-          ]
-        },
-        "path": "api.raml"
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              "doc1.txt"
+            ]
+          },
+          "path": "api.raml"
+        }
       },
       {
         "title": "section2",
         "content": "string value 2\n",
-        "scalarsPaths": {
-          "content": [
-            "doc2.txt"
-          ]
-        },
-        "path": "api.raml"
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              "doc2.txt"
+            ]
+          },
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

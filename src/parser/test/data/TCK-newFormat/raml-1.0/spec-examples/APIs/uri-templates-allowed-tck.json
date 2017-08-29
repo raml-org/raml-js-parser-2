@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "uri-templates-allowed.raml"
+            "sourceMap": {
+              "path": "uri-templates-allowed.raml"
+            }
           }
         ],
         "relativeUri": "/users/{userId}",
@@ -47,7 +49,9 @@
         "completeRelativeUri": "/users/{userId}",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "uri-templates-allowed.raml"
+        "sourceMap": {
+          "path": "uri-templates-allowed.raml"
+        }
       },
       {
         "uriParameters": [
@@ -74,7 +78,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "uri-templates-allowed.raml"
+            "sourceMap": {
+              "path": "uri-templates-allowed.raml"
+            }
           }
         ],
         "relativeUri": "/users/{username}",
@@ -94,7 +100,9 @@
         "completeRelativeUri": "/users/{username}",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "uri-templates-allowed.raml"
+        "sourceMap": {
+          "path": "uri-templates-allowed.raml"
+        }
       },
       {
         "relativeUri": "/users/me",
@@ -114,10 +122,14 @@
         "completeRelativeUri": "/users/me",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "uri-templates-allowed.raml"
+        "sourceMap": {
+          "path": "uri-templates-allowed.raml"
+        }
       }
     ],
-    "path": "uri-templates-allowed.raml"
+    "sourceMap": {
+      "path": "uri-templates-allowed.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

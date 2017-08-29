@@ -26,7 +26,9 @@
         "simplifiedExamples": [
           "{\"p1\":\"stringValue1\"}"
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T2",
@@ -71,7 +73,9 @@
           "{\"p1\":\"stringValue11\",\"p2\":\"stringValue21\"}",
           "{\"p1\":\"stringValue12\",\"p2\":\"stringValue22\"}"
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T3",
@@ -87,7 +91,9 @@
             "required": true
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T4",
@@ -189,7 +195,9 @@
           "{\"p3\":\"stringValue3\",\"p4\":\"stringValue4\"}",
           "{\"p1\":\"stringValue13\",\"p2\":\"stringValue23\",\"p4\":\"stringValue4\"}"
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "MyComplexType",
@@ -349,7 +357,9 @@
           false,
           15
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -358,11 +368,15 @@
         "type": [
           "string"
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

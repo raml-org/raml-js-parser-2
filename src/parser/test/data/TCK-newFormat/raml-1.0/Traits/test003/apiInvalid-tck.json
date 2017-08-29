@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -42,7 +44,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "name": "RTType2",
@@ -70,7 +74,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -85,7 +91,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "name": "Type1",
@@ -113,7 +121,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -128,7 +138,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "name": "Type2",
@@ -156,7 +168,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -171,7 +185,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "traits": [
@@ -192,11 +208,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "RTTrait",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "responses": [
@@ -229,7 +249,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   },
                   {
                     "name": "traitProperty2",
@@ -250,7 +272,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   },
                   {
                     "name": "traitProperty1_3",
@@ -271,7 +295,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -286,14 +312,20 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "Trait1",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "responses": [
@@ -326,7 +358,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   },
                   {
                     "name": "traitProperty2",
@@ -347,7 +381,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   },
                   {
                     "name": "traitProperty2_3",
@@ -368,7 +404,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -383,14 +421,20 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "Trait2",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -409,11 +453,15 @@
               }
             ],
             "method": "put",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "ResourceType1",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "methods": [
@@ -430,11 +478,15 @@
               }
             ],
             "method": "put",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "ResourceType2",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "title": "API",
@@ -472,7 +524,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "traitProperty2",
@@ -493,7 +547,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "traitProperty1_3",
@@ -514,7 +570,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "traitProperty2_3",
@@ -535,7 +593,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -550,10 +610,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
                 ],
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
             "body": [
@@ -584,7 +648,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
             "is": [
@@ -601,7 +667,9 @@
             "method": "put",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           },
           {
             "responses": [
@@ -634,7 +702,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "traitProperty2",
@@ -655,7 +725,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "traitProperty1_3",
@@ -676,7 +748,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "traitProperty2_3",
@@ -697,7 +771,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -727,16 +803,22 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
                 ],
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "is": [
@@ -766,10 +848,14 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -6,7 +6,9 @@
           {
             "description": "Retrieve all items",
             "method": "get",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
           {
             "responses": [
@@ -35,21 +37,29 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
                 ],
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "description": "Add an item",
             "method": "post",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "description": "A collection resource",
         "name": "collection",
         "usage": "Use this to describe a resource that lists items",
-        "path": "resourceTypes/collection.raml"
+        "sourceMap": {
+          "path": "resourceTypes/collection.raml"
+        }
       }
     ],
     "title": "Products API",
@@ -61,7 +71,9 @@
             "method": "get",
             "parentUri": "/products",
             "absoluteParentUri": "/products",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
           {
             "responses": [
@@ -90,17 +102,23 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
                 ],
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "description": "Add an item",
             "method": "post",
             "parentUri": "/products",
             "absoluteParentUri": "/products",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": {
@@ -123,10 +141,14 @@
         "completeRelativeUri": "/products",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "fragments-simple.raml"
+        "sourceMap": {
+          "path": "fragments-simple.raml"
+        }
       }
     ],
-    "path": "fragments-simple.raml"
+    "sourceMap": {
+      "path": "fragments-simple.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

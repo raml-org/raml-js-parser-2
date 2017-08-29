@@ -12,9 +12,15 @@ export interface SourceInfo{
 
 }
 
-export interface HasSource extends SourceInfo{
+export interface ElementSourceInfo extends SourceInfo{
 
     scalarsSources?: { [key:string]:SourceInfo[] }
+
+}
+
+export interface HasSource {
+
+    sourceMap?: ElementSourceInfo
 
     __METADATA__?: any
 }

@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType05.raml"
+            "sourceMap": {
+              "path": "oType05.raml"
+            }
           },
           {
             "name": "initial_comments",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType05.raml"
+            "sourceMap": {
+              "path": "oType05.raml"
+            }
           }
         ],
         "minProperties": 2,
@@ -62,11 +66,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "oType05.raml"
+        "sourceMap": {
+          "path": "oType05.raml"
+        }
       }
     ],
     "title": "My API With Types",
-    "path": "oType05.raml"
+    "sourceMap": {
+      "path": "oType05.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

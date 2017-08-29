@@ -30,7 +30,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries.raml"
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           },
           {
             "name": "length",
@@ -51,7 +53,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries.raml"
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -66,7 +70,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries.raml"
+        "sourceMap": {
+          "path": "libraries.raml"
+        }
       }
     ],
     "traits": [
@@ -94,11 +100,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries.raml"
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
         ],
         "name": "drm",
-        "path": "libraries.raml"
+        "sourceMap": {
+          "path": "libraries.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -111,7 +121,9 @@
               }
             ],
             "method": "get",
-            "path": "libraries.raml"
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           },
           {
             "is": [
@@ -120,15 +132,21 @@
               }
             ],
             "method": "put",
-            "path": "libraries.raml"
+            "sourceMap": {
+              "path": "libraries.raml"
+            }
           }
         ],
         "name": "file",
-        "path": "libraries.raml"
+        "sourceMap": {
+          "path": "libraries.raml"
+        }
       }
     ],
     "usage": "Use to define some basic file-related constructs.\n",
-    "path": "libraries.raml"
+    "sourceMap": {
+      "path": "libraries.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

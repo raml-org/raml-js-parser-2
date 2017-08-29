@@ -16,7 +16,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "z",
@@ -44,7 +46,9 @@
           "{\"message\":2}"
         ],
         "mediaType": "application/json",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "z2",
@@ -72,11 +76,15 @@
           "{\"id\":\"4\"}"
         ],
         "mediaType": "application/json",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "A",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

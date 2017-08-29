@@ -1,12 +1,14 @@
 {
   "specification": {
     "title": "Can not resolve relative.md",
-    "scalarsPaths": {
-      "title": [
-        "../../../../../../../../relative.md"
-      ]
-    },
-    "path": "api.raml"
+    "sourceMap": {
+      "scalarsSources": {
+        "title": [
+          "../../../../../../../../relative.md"
+        ]
+      },
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

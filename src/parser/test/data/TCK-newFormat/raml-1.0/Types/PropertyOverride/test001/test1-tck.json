@@ -30,7 +30,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           },
           {
             "name": "geometry",
@@ -51,7 +53,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           },
           {
             "name": "properties",
@@ -72,7 +76,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -84,7 +90,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       },
       {
         "name": "ZoomEmbed",
@@ -116,7 +124,9 @@
             "items": [
               "object"
             ],
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           },
           {
             "name": "_links",
@@ -135,7 +145,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -150,7 +162,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       },
       {
         "name": "Scene",
@@ -179,7 +193,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -191,7 +207,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       },
       {
         "name": "PlanetScene",
@@ -219,7 +237,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           },
           {
             "name": "_links",
@@ -249,7 +269,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "test1.raml"
+                "sourceMap": {
+                  "path": "test1.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -264,7 +286,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -276,7 +300,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       },
       {
         "name": "BaseProperties",
@@ -304,7 +330,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -319,7 +347,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       },
       {
         "name": "PlanetProperties",
@@ -348,7 +378,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -360,7 +392,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       },
       {
         "name": "ResourceURL",
@@ -378,7 +412,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       }
     ],
     "title": "Planet RAML Experiments",
@@ -408,7 +444,9 @@
             },
             "parentUri": "/v1",
             "absoluteParentUri": "http://api.planet.com/v1",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "relativeUri": "/v1",
@@ -431,7 +469,9 @@
                 },
                 "parentUri": "/v1/scenes",
                 "absoluteParentUri": "http://api.planet.com/v1/scenes",
-                "path": "test1.raml"
+                "sourceMap": {
+                  "path": "test1.raml"
+                }
               }
             ],
             "relativeUri": "/scenes",
@@ -486,10 +526,14 @@
                             "items": [
                               "PlanetScene"
                             ],
-                            "path": "test1.raml"
+                            "sourceMap": {
+                              "path": "test1.raml"
+                            }
                           }
                         ],
-                        "path": "test1.raml"
+                        "sourceMap": {
+                          "path": "test1.raml"
+                        }
                       }
                     ],
                     "protocols": [
@@ -506,7 +550,9 @@
                     },
                     "parentUri": "/v1/scenes/planetscope",
                     "absoluteParentUri": "http://api.planet.com/v1/scenes/planetscope",
-                    "path": "test1.raml"
+                    "sourceMap": {
+                      "path": "test1.raml"
+                    }
                   }
                 ],
                 "relativeUri": "/planetscope",
@@ -525,7 +571,9 @@
                 "completeRelativeUri": "/v1/scenes/planetscope",
                 "parentUri": "/v1/scenes",
                 "absoluteParentUri": "http://api.planet.com/v1/scenes",
-                "path": "test1.raml"
+                "sourceMap": {
+                  "path": "test1.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -542,7 +590,9 @@
             "completeRelativeUri": "/v1/scenes",
             "parentUri": "/v1",
             "absoluteParentUri": "http://api.planet.com/v1",
-            "path": "test1.raml"
+            "sourceMap": {
+              "path": "test1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -559,10 +609,14 @@
         "completeRelativeUri": "/v1",
         "parentUri": "",
         "absoluteParentUri": "http://api.planet.com",
-        "path": "test1.raml"
+        "sourceMap": {
+          "path": "test1.raml"
+        }
       }
     ],
-    "path": "test1.raml"
+    "sourceMap": {
+      "path": "test1.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

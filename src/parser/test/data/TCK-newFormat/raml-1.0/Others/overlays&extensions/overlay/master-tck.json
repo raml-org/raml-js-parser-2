@@ -4,7 +4,9 @@
       {
         "key": "decls",
         "value": "lib/decls.raml",
-        "path": "slave.raml"
+        "sourceMap": {
+          "path": "slave.raml"
+        }
       }
     ],
     "title": "Slave RAML",
@@ -21,14 +23,18 @@
             "responses": [
               {
                 "code": "200",
-                "path": "master.raml"
+                "sourceMap": {
+                  "path": "master.raml"
+                }
               }
             ],
             "description": "describing your method here\n",
             "method": "get",
             "parentUri": "/elements",
             "absoluteParentUri": "/elements",
-            "path": "slave.raml"
+            "sourceMap": {
+              "path": "slave.raml"
+            }
           }
         ],
         "relativeUri": "/elements",
@@ -47,11 +53,15 @@
         "completeRelativeUri": "/elements",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "slave.raml"
+        "sourceMap": {
+          "path": "slave.raml"
+        }
       }
     ],
     "extends": "master.raml",
-    "path": "slave.raml"
+    "sourceMap": {
+      "path": "slave.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

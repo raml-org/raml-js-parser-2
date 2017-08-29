@@ -19,7 +19,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "securitySchemes": [
@@ -42,9 +44,13 @@
           "requestTokenUri": "https://example.com/requesttoken",
           "authorizationUri": "https://example.com/authorize",
           "tokenCredentialsUri": "https://example.com/credentials",
-          "path": "apiInvalid.raml"
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          }
         },
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "title": "Test",
@@ -62,7 +68,9 @@
         }
       }
     },
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -64,8 +64,8 @@ export class JsonSerializer {
         if (this.options.attributeDefaults == null) {
             this.options.attributeDefaults = true;
         }
-        if(this.options.unfoldTypes == null){
-            this.options.unfoldTypes = true;
+        if(this.options.expandExpressions == null){
+            this.options.expandExpressions = true;
         }
         if (this.options.expandTypes == null) {
             //this.options.expandTypes = true;
@@ -262,7 +262,7 @@ export class JsonSerializer {
                     }
                 }
                 let scalarsAnnotations:any = {};
-                let scalarsPaths:any = {};
+                let scalarsSources:any = {};
                 for (let p of definition.allProperties()
                     .concat((<def.NodeClass>definition).allCustomProperties())) {
 
@@ -336,7 +336,7 @@ export class JsonSerializer {
                                     scalarsAnnotations[pName] = sAnnotations;
                                 }
                                 if(sPaths.filter(x=>x!=null).length>0){
-                                    scalarsPaths[pName] = sPaths;
+                                    scalarsSources[pName] = sPaths;
                                 }
                             }
                             if (universeHelpers.isTypeDeclarationDescendant(definition)
@@ -361,7 +361,7 @@ export class JsonSerializer {
                                 if(!(<hlImpl.ASTPropImpl>attr).isFromKey()) {
                                     let sPath = actualPath(attr, true);
                                     if (sPath) {
-                                        scalarsPaths[pName] = [sPath];
+                                        scalarsSources[pName] = [sPath];
                                     }
                                 }
                             }
@@ -468,8 +468,13 @@ export class JsonSerializer {
                 if (Object.keys(scalarsAnnotations).length > 0) {
                     result["scalarsAnnotations"] = scalarsAnnotations;
                 }
-                if (Object.keys(scalarsPaths).length > 0) {
-                    result["scalarsPaths"] = scalarsPaths;
+                if (this.options.sourceMap && Object.keys(scalarsSources).length > 0) {
+                    let sourceMap = result.sourceMap;
+                    if(!sourceMap){
+                        sourceMap = {};
+                        result.sourceMap = sourceMap;
+                    }
+                    sourceMap.scalarsSources = scalarsSources;
                 }
                 var pProps = helpersLL.getTemplateParametrizedProperties(eNode);
                 if (pProps) {
@@ -483,9 +488,14 @@ export class JsonSerializer {
                 }
                 result = applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.nodeTransformersMap);
             }
-            if(typeof result == "object") {
+            if(this.options.sourceMap && typeof result == "object") {
                 let unitPath = actualPath(eNode);
-                result.path = unitPath;
+                let sourceMap = result.sourceMap;
+                if(!sourceMap){
+                    sourceMap = {};
+                    result.sourceMap = sourceMap;
+                }
+                sourceMap.path = unitPath;
             }
         }
         else if (_node.isAttr()) {
@@ -689,11 +699,13 @@ export interface SerializeOptions{
 
     expandSecurity?:boolean
 
-    unfoldTypes?:boolean
+    expandExpressions?:boolean
 
     expandTypes?:boolean
 
     typeExpansionRecursionDepth?:number
+
+    sourceMap?:boolean
 }
 
 class PropertyValue{
@@ -1444,7 +1456,7 @@ class TypeTransformer extends BasicTransformation{
         } else if (typeof typeValue === "object"){
             value["typePropertyKind"] = "INPLACE";
         }
-        if(this.options.unfoldTypes) {
+        if(this.options.expandExpressions) {
             this.processExpressions(value);
         }
         return _value;
@@ -1714,7 +1726,12 @@ class SchemasTransformer extends BasicTransformation{
             return value;
         }
         else {
-            delete value["scalarsPaths"];
+            if(value.sourceMap){
+                delete value.sourceMap["scalarsSources"];
+                if(Object.keys(value.sourceMap).length==0){
+                    delete value["sourceMap"];
+                }
+            }
             value.name = value.key;
             delete value.key;
             return value;

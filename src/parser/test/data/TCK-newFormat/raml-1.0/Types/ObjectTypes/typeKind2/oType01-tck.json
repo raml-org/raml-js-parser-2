@@ -31,7 +31,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "typeFragment.raml"
+                "sourceMap": {
+                  "path": "typeFragment.raml"
+                }
               },
               {
                 "name": "initial_comments",
@@ -52,7 +54,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "typeFragment.raml"
+                "sourceMap": {
+                  "path": "typeFragment.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -67,7 +71,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "typeFragment.raml"
+            "sourceMap": {
+              "path": "typeFragment.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -79,11 +85,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE",
-        "path": "oType01.raml"
+        "sourceMap": {
+          "path": "oType01.raml"
+        }
       }
     ],
     "title": "My API With Types",
-    "path": "oType01.raml"
+    "sourceMap": {
+      "path": "oType01.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

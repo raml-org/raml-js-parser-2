@@ -33,7 +33,9 @@
             }
           }
         },
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "protocols": [
@@ -50,9 +52,13 @@
           "authorizationGrants": [
             "client_credentials"
           ],
-          "path": "apiValid.raml"
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         },
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -62,7 +68,9 @@
         }
       }
     },
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -35,7 +35,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "methResp05.raml"
+                        "sourceMap": {
+                          "path": "methResp05.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -60,16 +62,22 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "methResp05.raml"
+                    "sourceMap": {
+                      "path": "methResp05.raml"
+                    }
                   }
                 ],
-                "path": "methResp05.raml"
+                "sourceMap": {
+                  "path": "methResp05.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test",
-            "path": "methResp05.raml"
+            "sourceMap": {
+              "path": "methResp05.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -88,7 +96,9 @@
         "completeRelativeUri": "/test",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "methResp05.raml"
+        "sourceMap": {
+          "path": "methResp05.raml"
+        }
       }
     ],
     "types": [
@@ -107,7 +117,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "methResp05.raml"
+        "sourceMap": {
+          "path": "methResp05.raml"
+        }
       },
       {
         "name": "TypeBase",
@@ -135,7 +147,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "methResp05.raml"
+            "sourceMap": {
+              "path": "methResp05.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -159,7 +173,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "methResp05.raml"
+        "sourceMap": {
+          "path": "methResp05.raml"
+        }
       },
       {
         "name": "TestType",
@@ -187,7 +203,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "methResp05.raml"
+            "sourceMap": {
+              "path": "methResp05.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -212,10 +230,14 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "methResp05.raml"
+        "sourceMap": {
+          "path": "methResp05.raml"
+        }
       }
     ],
-    "path": "methResp05.raml"
+    "sourceMap": {
+      "path": "methResp05.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

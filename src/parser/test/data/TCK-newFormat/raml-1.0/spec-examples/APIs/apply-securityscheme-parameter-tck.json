@@ -27,7 +27,9 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
           "headers": [
@@ -51,22 +53,30 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
           "responses": [
             {
               "code": "401",
               "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
             {
               "code": "403",
               "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -80,9 +90,13 @@
             "USER",
             "ADMINISTRATOR"
           ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
         },
-        "path": "securitySchemes/oauth_2_0.raml"
+        "sourceMap": {
+          "path": "securitySchemes/oauth_2_0.raml"
+        }
       }
     ],
     "title": "GitHub API",
@@ -126,7 +140,9 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     }
                   ],
                   "headers": [
@@ -150,22 +166,30 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     },
                     {
                       "code": "403",
                       "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     }
                   ],
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 },
                 "settings": {
                   "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -178,9 +202,13 @@
                   "scopes": [
                     "ADMINISTRATOR"
                   ],
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 },
-                "path": "securitySchemes/oauth_2_0.raml"
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "method": "get",
@@ -193,7 +221,9 @@
             },
             "parentUri": "/users/{userid}/gists",
             "absoluteParentUri": "https://api.github.com/users/{userid}/gists",
-            "path": "apply-securityscheme-parameter.raml",
+            "sourceMap": {
+              "path": "apply-securityscheme-parameter.raml"
+            },
             "headers": [
               {
                 "name": "Authorization",
@@ -216,14 +246,18 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "securitySchemes/oauth_2_0.raml"
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                "path": "securitySchemes/oauth_2_0.raml",
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -231,7 +265,9 @@
               {
                 "code": "403",
                 "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                "path": "securitySchemes/oauth_2_0.raml",
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -259,7 +295,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "securitySchemes/oauth_2_0.raml"
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "uriParameters": [
@@ -286,7 +324,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apply-securityscheme-parameter.raml"
+                "sourceMap": {
+                  "path": "apply-securityscheme-parameter.raml"
+                }
               }
             ]
           }
@@ -315,7 +355,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apply-securityscheme-parameter.raml"
+            "sourceMap": {
+              "path": "apply-securityscheme-parameter.raml"
+            }
           }
         ],
         "relativeUri": "/users/{userid}/gists",
@@ -336,7 +378,9 @@
         "completeRelativeUri": "/users/{userid}/gists",
         "parentUri": "",
         "absoluteParentUri": "https://api.github.com",
-        "path": "apply-securityscheme-parameter.raml"
+        "sourceMap": {
+          "path": "apply-securityscheme-parameter.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -346,7 +390,9 @@
         }
       }
     },
-    "path": "apply-securityscheme-parameter.raml"
+    "sourceMap": {
+      "path": "apply-securityscheme-parameter.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

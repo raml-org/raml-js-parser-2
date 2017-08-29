@@ -18,11 +18,15 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "external-types.raml"
+        "sourceMap": {
+          "path": "external-types.raml"
+        }
       }
     ],
     "title": "External Types",
-    "path": "external-types.raml"
+    "sourceMap": {
+      "path": "external-types.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -19,7 +19,9 @@
         "completeRelativeUri": "/resource2",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "NewOverlay.raml"
+        "sourceMap": {
+          "path": "NewOverlay.raml"
+        }
       },
       {
         "methods": [
@@ -52,7 +54,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -64,13 +68,17 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -89,11 +97,15 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "extends": "api.raml",
-    "path": "NewOverlay.raml"
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

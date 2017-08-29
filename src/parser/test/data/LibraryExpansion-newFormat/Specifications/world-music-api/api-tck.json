@@ -12,12 +12,16 @@
       {
         "key": "SongsLib",
         "value": "libraries/songs-library.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "ApiLib",
         "value": "libraries/api-library.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -36,7 +40,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "AnotherEntry",
@@ -53,7 +59,9 @@
           }
         },
         "mediaType": "application/json",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "User",
@@ -81,7 +89,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "lastname",
@@ -109,7 +119,9 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -136,7 +148,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "ApiLib.RamlDataType",
@@ -164,7 +178,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "propStringArray1",
@@ -188,7 +204,9 @@
             "items": [
               "string"
             ],
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "ideas",
@@ -224,7 +242,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "schemas/idea.raml"
+                    "sourceMap": {
+                      "path": "schemas/idea.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -239,7 +259,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/idea.raml"
+                "sourceMap": {
+                  "path": "schemas/idea.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -254,7 +276,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "extIdeas",
@@ -286,7 +310,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "schemas/idea.raml"
+                    "sourceMap": {
+                      "path": "schemas/idea.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -301,7 +327,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "schemas/idea.raml"
+                "sourceMap": {
+                  "path": "schemas/idea.raml"
+                }
               }
             ],
             "required": true,
@@ -325,7 +353,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "libraries/api-library.raml"
+                "sourceMap": {
+                  "path": "libraries/api-library.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -340,7 +370,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "INPLACE",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "feedback",
@@ -375,7 +407,9 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "propNumber",
@@ -400,7 +434,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "propInteger",
@@ -425,7 +461,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "propBoolean",
@@ -446,7 +484,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "propDate",
@@ -477,7 +517,9 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "userPicture",
@@ -503,7 +545,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "NilValue",
@@ -535,7 +579,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "libraries/api-library.raml"
+                "sourceMap": {
+                  "path": "libraries/api-library.raml"
+                }
               },
               {
                 "name": "comment",
@@ -556,7 +602,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "libraries/api-library.raml"
+                "sourceMap": {
+                  "path": "libraries/api-library.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -571,7 +619,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "CatOrDog",
@@ -596,7 +646,9 @@
               "ApiLib.Cat",
               "ApiLib.Dog"
             ],
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "CatAndDog",
@@ -618,7 +670,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "PossibleMeetingDate",
@@ -645,7 +699,9 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -657,7 +713,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries/api-library.raml"
+        "sourceMap": {
+          "path": "libraries/api-library.raml"
+        }
       },
       {
         "name": "ApiLib.Cat",
@@ -685,7 +743,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "color",
@@ -706,7 +766,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -718,7 +780,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries/api-library.raml"
+        "sourceMap": {
+          "path": "libraries/api-library.raml"
+        }
       },
       {
         "name": "ApiLib.Dog",
@@ -746,7 +810,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "fangs",
@@ -767,7 +833,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -779,7 +847,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries/api-library.raml"
+        "sourceMap": {
+          "path": "libraries/api-library.raml"
+        }
       },
       {
         "name": "ApiLib.CustomDate",
@@ -800,7 +870,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           },
           {
             "name": "noHolidays",
@@ -817,7 +889,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/api-library.raml"
+            "sourceMap": {
+              "path": "libraries/api-library.raml"
+            }
           }
         ],
         "type": [
@@ -832,7 +906,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries/api-library.raml"
+        "sourceMap": {
+          "path": "libraries/api-library.raml"
+        }
       },
       {
         "name": "SongsLib.Song",
@@ -878,7 +954,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/songs-library.raml"
+            "sourceMap": {
+              "path": "libraries/songs-library.raml"
+            }
           },
           {
             "name": "length",
@@ -899,7 +977,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libraries/songs-library.raml"
+            "sourceMap": {
+              "path": "libraries/songs-library.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -918,7 +998,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libraries/songs-library.raml"
+        "sourceMap": {
+          "path": "libraries/songs-library.raml"
+        }
       }
     ],
     "traits": [
@@ -943,7 +1025,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "secured/accessToken.raml"
+            "sourceMap": {
+              "path": "secured/accessToken.raml"
+            }
           }
         ],
         "securedBy": [
@@ -973,23 +1057,33 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad token.\n",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 {
                   "code": "403",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "name": "secured",
@@ -1001,7 +1095,9 @@
             }
           }
         },
-        "path": "secured/accessToken.raml"
+        "sourceMap": {
+          "path": "secured/accessToken.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -1030,10 +1126,14 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "securedBy": [
@@ -1063,23 +1163,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "description": "returns a list of <<resourcePathName|!singularize>>",
@@ -1091,7 +1201,9 @@
                 }
               }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "securedBy": [
@@ -1121,23 +1233,33 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad token.\n",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 {
                   "code": "403",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "name": "collection",
@@ -1148,7 +1270,9 @@
             }
           }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -1178,7 +1302,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "deprecatedBy",
@@ -1199,7 +1325,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "comment",
@@ -1224,7 +1352,9 @@
               "nil",
               "string"
             ],
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -1239,7 +1369,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "monitoringInterval",
@@ -1267,7 +1399,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "ready",
@@ -1288,7 +1422,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "info",
@@ -1323,7 +1459,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -1338,7 +1476,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "rediractable",
@@ -1355,7 +1495,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "securitySchemes": [
@@ -1371,9 +1513,13 @@
             "HMAC-SHA1",
             "PLAINTEXT"
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "oauth_2_0",
@@ -1401,7 +1547,9 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "headers": [
@@ -1425,22 +1573,30 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "responses": [
             {
               "code": "401",
               "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "code": "403",
               "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -1450,9 +1606,13 @@
             "implicit",
             "urn:ietf:params:oauth:grant-type:saml2-bearer"
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "custom_scheme",
@@ -1480,23 +1640,33 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "responses": [
             {
               "code": "401",
               "description": "Bad token.\n",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "code": "403",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "World Music API",
@@ -1529,7 +1699,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "version",
@@ -1560,7 +1732,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "protocols": [
@@ -1597,23 +1771,33 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "responses": [
             {
               "code": "401",
               "description": "Bad token.\n",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "code": "403",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
-          "path": "api.raml"
+          "sourceMap": {
+            "path": "api.raml"
+          }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resources": [
@@ -1646,7 +1830,9 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 {
                   "name": "page-size",
@@ -1667,7 +1853,9 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "__METADATA__": {
@@ -1682,7 +1870,9 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             "protocols": [
               "HTTP"
@@ -1714,23 +1904,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "get",
@@ -1746,7 +1946,9 @@
             },
             "parentUri": "/api",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "headers": [
               {
                 "name": "SpecialToken",
@@ -1769,21 +1971,27 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad token.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
               },
               {
                 "code": "403",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -1816,7 +2024,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -1847,7 +2057,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           },
@@ -1868,7 +2080,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -1901,23 +2115,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
@@ -1933,7 +2157,9 @@
             },
             "parentUri": "/api",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/api",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "headers": [
               {
                 "name": "SpecialToken",
@@ -1956,21 +2182,27 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad token.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
               },
               {
                 "code": "403",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -2003,7 +2235,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -2034,7 +2268,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -2066,23 +2302,33 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad token.\n",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 {
                   "code": "403",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/api",
@@ -2104,7 +2350,9 @@
         "completeRelativeUri": "/api",
         "parentUri": "",
         "absoluteParentUri": "http://{environment}.musicapi.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "headers": [
           {
             "name": "SpecialToken",
@@ -2127,21 +2375,27 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "responses": [
           {
             "code": "401",
             "description": "Bad token.\n",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
           },
           {
             "code": "403",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
@@ -2174,7 +2428,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "version",
@@ -2205,7 +2461,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -2230,22 +2488,30 @@
                       }
                     },
                     "mediaType": "application/json",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "code": "401",
                 "description": "Bad token.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
               },
               {
                 "code": "403",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -2281,23 +2547,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
@@ -2313,7 +2589,9 @@
             },
             "parentUri": "/entry",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "headers": [
               {
                 "name": "SpecialToken",
@@ -2336,7 +2614,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "uriParameters": [
@@ -2366,7 +2646,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -2397,7 +2679,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           },
@@ -2423,22 +2707,30 @@
                       "Entry"
                     ],
                     "mediaType": "application/json",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "code": "401",
                 "description": "Bad token.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
               },
               {
                 "code": "403",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -2474,23 +2766,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "description": "returns a list of entry",
@@ -2507,7 +2809,9 @@
             },
             "parentUri": "/entry",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/entry",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "headers": [
               {
                 "name": "SpecialToken",
@@ -2530,7 +2834,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "uriParameters": [
@@ -2560,7 +2866,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -2591,7 +2899,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -2626,23 +2936,33 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad token.\n",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 {
                   "code": "403",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/entry",
@@ -2664,7 +2984,9 @@
         "completeRelativeUri": "/entry",
         "parentUri": "",
         "absoluteParentUri": "http://{environment}.musicapi.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "headers": [
           {
             "name": "SpecialToken",
@@ -2687,21 +3009,27 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "responses": [
           {
             "code": "401",
             "description": "Bad token.\n",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
           },
           {
             "code": "403",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
@@ -2734,7 +3062,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "version",
@@ -2765,7 +3095,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       },
@@ -2808,7 +3140,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "access_token",
@@ -2829,7 +3163,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "secured/accessToken.raml"
+                "sourceMap": {
+                  "path": "secured/accessToken.raml"
+                }
               },
               {
                 "name": "access_token",
@@ -2852,7 +3188,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -2885,7 +3223,9 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "headers": [
@@ -2909,22 +3249,30 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
                       "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 "settings": {
                   "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -2934,9 +3282,13 @@
                     "implicit",
                     "urn:ietf:params:oauth:grant-type:saml2-bearer"
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               null
             ],
@@ -2950,7 +3302,9 @@
             },
             "parentUri": "/songs",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "headers": [
               {
                 "name": "Authorization",
@@ -2973,14 +3327,18 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -2988,7 +3346,9 @@
               {
                 "code": "403",
                 "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -3021,7 +3381,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -3052,7 +3414,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           },
@@ -3077,7 +3441,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "secured/accessToken.raml"
+                "sourceMap": {
+                  "path": "secured/accessToken.raml"
+                }
               }
             ],
             "protocols": [
@@ -3110,23 +3476,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
@@ -3142,7 +3518,9 @@
             },
             "parentUri": "/songs",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
-            "path": "secured/accessToken.raml",
+            "sourceMap": {
+              "path": "secured/accessToken.raml"
+            },
             "headers": [
               {
                 "name": "SpecialToken",
@@ -3165,21 +3543,27 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad token.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
               },
               {
                 "code": "403",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -3212,7 +3596,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -3243,7 +3629,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -3281,23 +3669,33 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad token.\n",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
                 {
                   "code": "403",
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
-              "path": "api.raml"
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/songs",
@@ -3337,7 +3735,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "api.raml"
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
                       {
                         "name": "application/xml",
@@ -3365,22 +3765,30 @@
                         ],
                         "mediaType": "application/xml",
                         "typePropertyKind": "XML",
-                        "path": "api.raml"
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       }
                     ],
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   },
                   {
                     "code": "401",
                     "description": "Bad token.\n",
-                    "path": "api.raml",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "__METADATA__": {
                       "calculated": true
                     }
                   },
                   {
                     "code": "403",
-                    "path": "api.raml",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "__METADATA__": {
                       "calculated": true
                     }
@@ -3416,23 +3824,33 @@
                           },
                           "mediaType": "application/raml+yaml",
                           "typePropertyKind": "TYPE_EXPRESSION",
-                          "path": "api.raml"
+                          "sourceMap": {
+                            "path": "api.raml"
+                          }
                         }
                       ],
                       "responses": [
                         {
                           "code": "401",
                           "description": "Bad token.\n",
-                          "path": "api.raml"
+                          "sourceMap": {
+                            "path": "api.raml"
+                          }
                         },
                         {
                           "code": "403",
-                          "path": "api.raml"
+                          "sourceMap": {
+                            "path": "api.raml"
+                          }
                         }
                       ],
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "method": "get",
@@ -3448,7 +3866,9 @@
                 },
                 "parentUri": "/songs/{songId}",
                 "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "headers": [
                   {
                     "name": "SpecialToken",
@@ -3471,7 +3891,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "uriParameters": [
@@ -3501,7 +3923,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   },
                   {
                     "name": "version",
@@ -3532,7 +3956,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   },
                   {
                     "name": "songId",
@@ -3557,7 +3983,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ]
               }
@@ -3589,23 +4017,33 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad token.\n",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     },
                     {
                       "code": "403",
-                      "path": "api.raml"
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   ],
-                  "path": "api.raml"
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "uriParameters": [
@@ -3635,7 +4073,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "version",
@@ -3666,7 +4106,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               {
                 "name": "songId",
@@ -3691,7 +4133,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "relativeUri": "/{songId}",
@@ -3713,7 +4157,9 @@
             "completeRelativeUri": "/songs/{songId}",
             "parentUri": "/songs",
             "absoluteParentUri": "http://{environment}.musicapi.com/{version}/songs",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "headers": [
               {
                 "name": "SpecialToken",
@@ -3736,21 +4182,27 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad token.\n",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
               },
               {
                 "code": "403",
-                "path": "api.raml",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -3772,7 +4224,9 @@
         "completeRelativeUri": "/songs",
         "parentUri": "",
         "absoluteParentUri": "http://{environment}.musicapi.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "headers": [
           {
             "name": "SpecialToken",
@@ -3795,21 +4249,27 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "responses": [
           {
             "code": "401",
             "description": "Bad token.\n",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
           },
           {
             "code": "403",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
@@ -3842,7 +4302,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "name": "version",
@@ -3873,7 +4335,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       }
@@ -3882,12 +4346,16 @@
       {
         "title": "Getting Started",
         "content": "This is a getting started guide for the World Music API.\n",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "title": "Legal",
         "content": "See http://legal.musicapi.com",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "scalarsAnnotations": {
@@ -3900,7 +4368,9 @@
         ]
       ]
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

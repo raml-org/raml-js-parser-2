@@ -8,7 +8,9 @@
             "responses": [
               {
                 "code": "201",
-                "path": "meth02.raml"
+                "sourceMap": {
+                  "path": "meth02.raml"
+                }
               }
             ],
             "body": [
@@ -29,13 +31,17 @@
                   "TestSchema"
                 ],
                 "mediaType": "application/json",
-                "path": "meth02.raml"
+                "sourceMap": {
+                  "path": "meth02.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/test",
             "absoluteParentUri": "/test",
-            "path": "meth02.raml"
+            "sourceMap": {
+              "path": "meth02.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -54,7 +60,9 @@
         "completeRelativeUri": "/test",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "meth02.raml"
+        "sourceMap": {
+          "path": "meth02.raml"
+        }
       }
     ],
     "types": [
@@ -73,10 +81,14 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "meth02.raml"
+        "sourceMap": {
+          "path": "meth02.raml"
+        }
       }
     ],
-    "path": "meth02.raml"
+    "sourceMap": {
+      "path": "meth02.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

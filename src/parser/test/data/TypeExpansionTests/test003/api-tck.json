@@ -14,7 +14,9 @@
             ]
           }
         ],
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T2",
@@ -32,7 +34,9 @@
         "fixedFacets": {
           "f1": "stringValue"
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "T3",
@@ -50,11 +54,15 @@
         "fixedFacets": {
           "f1": "stringValue"
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

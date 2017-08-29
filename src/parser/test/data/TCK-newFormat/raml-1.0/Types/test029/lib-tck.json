@@ -32,7 +32,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "lib.raml"
+                "sourceMap": {
+                  "path": "lib.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -44,14 +46,20 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "name": "tr",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
-    "path": "lib.raml"
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

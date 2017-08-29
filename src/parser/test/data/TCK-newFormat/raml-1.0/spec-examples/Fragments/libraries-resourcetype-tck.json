@@ -8,17 +8,23 @@
           }
         ],
         "method": "get",
-        "path": "libraries-resourcetype.raml"
+        "sourceMap": {
+          "path": "libraries-resourcetype.raml"
+        }
       }
     ],
     "uses": [
       {
         "key": "files",
         "value": "libraries/files.raml",
-        "path": "libraries-resourcetype.raml"
+        "sourceMap": {
+          "path": "libraries-resourcetype.raml"
+        }
       }
     ],
-    "path": "libraries-resourcetype.raml"
+    "sourceMap": {
+      "path": "libraries-resourcetype.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "ResourceType",

@@ -32,12 +32,16 @@
       {
         "key": "library",
         "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml",
-        "path": "overlay.raml"
+        "sourceMap": {
+          "path": "overlay.raml"
+        }
       }
     ],
     "title": "Api",
     "extends": "api.raml",
-    "path": "overlay.raml"
+    "sourceMap": {
+      "path": "overlay.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

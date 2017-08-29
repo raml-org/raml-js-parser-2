@@ -21,10 +21,14 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "libraries-invalid-chaining.raml"
+                "sourceMap": {
+                  "path": "libraries-invalid-chaining.raml"
+                }
               }
             ],
-            "path": "libraries-invalid-chaining.raml"
+            "sourceMap": {
+              "path": "libraries-invalid-chaining.raml"
+            }
           }
         ],
         "is": [
@@ -33,17 +37,23 @@
           }
         ],
         "method": "get",
-        "path": "libraries-invalid-chaining.raml"
+        "sourceMap": {
+          "path": "libraries-invalid-chaining.raml"
+        }
       }
     ],
     "uses": [
       {
         "key": "files",
         "value": "libraries/files.raml",
-        "path": "libraries-invalid-chaining.raml"
+        "sourceMap": {
+          "path": "libraries-invalid-chaining.raml"
+        }
       }
     ],
-    "path": "libraries-invalid-chaining.raml"
+    "sourceMap": {
+      "path": "libraries-invalid-chaining.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "ResourceType",

@@ -26,11 +26,15 @@
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
             "<<isRequired>>": "<<value>>",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "name": "helloNightmare",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "annotationTypes": [
@@ -49,7 +53,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       },
       {
         "name": "sortable",
@@ -82,7 +88,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -97,7 +105,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "title": "test",
@@ -146,7 +156,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
             "responses": [
@@ -171,16 +183,22 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
                 ],
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/animals",
             "absoluteParentUri": "/animals",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/animals",
@@ -199,10 +217,14 @@
         "completeRelativeUri": "/animals",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
           {
             "name": "property2",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -63,7 +67,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
       {
         "name": "SimpleType2",
@@ -91,7 +97,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
           {
             "name": "property4",
@@ -112,7 +120,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -127,7 +137,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
       {
         "name": "SimpleUnion",
@@ -148,7 +160,9 @@
           "SimpleType1",
           "SimpleType2"
         ],
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       },
       {
         "name": "TypeWithUnionProps",
@@ -176,7 +190,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
           {
             "name": "union2",
@@ -197,7 +213,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -228,11 +246,15 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "title": "API",
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

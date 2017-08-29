@@ -33,7 +33,9 @@
             }
           }
         },
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "protocols": [
@@ -45,9 +47,13 @@
         "type": "OAuth 2.0",
         "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
         "settings": {
-          "path": "apiInvalid.raml"
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          }
         },
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -57,7 +63,9 @@
         }
       }
     },
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

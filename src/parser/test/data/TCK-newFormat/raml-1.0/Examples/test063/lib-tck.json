@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           },
           {
             "name": "p2",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -63,7 +67,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
     "title": "Customer API",
@@ -104,13 +110,17 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "lib.raml"
+                "sourceMap": {
+                  "path": "lib.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/customer",
             "absoluteParentUri": "/customer",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "relativeUri": "/customer",
@@ -129,10 +139,14 @@
         "completeRelativeUri": "/customer",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
-    "path": "lib.raml"
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

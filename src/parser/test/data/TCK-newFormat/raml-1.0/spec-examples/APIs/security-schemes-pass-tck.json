@@ -26,7 +26,9 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "security-schemes-pass.raml"
+              "sourceMap": {
+                "path": "security-schemes-pass.raml"
+              }
             }
           ],
           "headers": [
@@ -49,12 +51,18 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "security-schemes-pass.raml"
+              "sourceMap": {
+                "path": "security-schemes-pass.raml"
+              }
             }
           ],
-          "path": "security-schemes-pass.raml"
+          "sourceMap": {
+            "path": "security-schemes-pass.raml"
+          }
         },
-        "path": "security-schemes-pass.raml"
+        "sourceMap": {
+          "path": "security-schemes-pass.raml"
+        }
       }
     ],
     "title": "Dropbox API",
@@ -90,7 +98,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "security-schemes-pass.raml"
+        "sourceMap": {
+          "path": "security-schemes-pass.raml"
+        }
       }
     ],
     "protocols": [
@@ -103,7 +113,9 @@
         }
       }
     },
-    "path": "security-schemes-pass.raml"
+    "sourceMap": {
+      "path": "security-schemes-pass.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

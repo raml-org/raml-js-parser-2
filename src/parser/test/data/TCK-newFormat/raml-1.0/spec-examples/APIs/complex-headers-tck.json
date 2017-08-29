@@ -41,7 +41,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-headers.raml"
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -56,11 +58,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-headers.raml"
+            "sourceMap": {
+              "path": "complex-headers.raml"
+            }
           }
         ],
         "name": "chargeable",
-        "path": "complex-headers.raml"
+        "sourceMap": {
+          "path": "complex-headers.raml"
+        }
       },
       {
         "headers": [
@@ -98,11 +104,15 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-headers.raml"
+            "sourceMap": {
+              "path": "complex-headers.raml"
+            }
           }
         ],
         "name": "traceable",
-        "path": "complex-headers.raml"
+        "sourceMap": {
+          "path": "complex-headers.raml"
+        }
       }
     ],
     "title": "Example with headers",
@@ -149,7 +159,9 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "complex-headers.raml"
+                    "sourceMap": {
+                      "path": "complex-headers.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -177,7 +189,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-headers.raml"
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                }
               },
               {
                 "name": "X-Tracker",
@@ -213,7 +227,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-headers.raml"
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                }
               }
             ],
             "is": [
@@ -228,7 +244,9 @@
             "method": "get",
             "parentUri": "/users",
             "absoluteParentUri": "/users",
-            "path": "complex-headers.raml"
+            "sourceMap": {
+              "path": "complex-headers.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -247,10 +265,14 @@
         "completeRelativeUri": "/users",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "complex-headers.raml"
+        "sourceMap": {
+          "path": "complex-headers.raml"
+        }
       }
     ],
-    "path": "complex-headers.raml"
+    "sourceMap": {
+      "path": "complex-headers.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

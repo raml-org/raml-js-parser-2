@@ -30,7 +30,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "null-type.raml"
+            "sourceMap": {
+              "path": "null-type.raml"
+            }
           },
           {
             "name": "comment",
@@ -51,7 +53,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "null-type.raml"
+            "sourceMap": {
+              "path": "null-type.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -76,11 +80,15 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "null-type.raml"
+        "sourceMap": {
+          "path": "null-type.raml"
+        }
       }
     ],
     "title": "Null Type",
-    "path": "null-type.raml"
+    "sourceMap": {
+      "path": "null-type.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -31,7 +31,8 @@ export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../parser/definition-system/universeProvider")
 
-export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Object>{
+
+export function load(ramlPath:string,options?:parserCoreApi.LoadOptions):Promise<Object>{
     options = options || {};
     return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
@@ -41,16 +42,12 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
         else{
             expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode);
         }
-        return jsonSerializerHL.dump(expanded,{
-            rootNodeDetails: true,
-            attributeDefaults: true,
-            serializeMetadata: options.serializeMetadata||false,
-            unfoldTypes: options.unfoldTypes
-        });
+        let sOptions = toSerializationOptions(options);
+        return jsonSerializerHL.dump(expanded,sOptions);
     });
 }
 
-export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object{
+export function loadSync(ramlPath:string,options?:parserCoreApi.LoadOptions):Object{
     options = options || {};
     var hlNode = loadRAMLInternalHL(ramlPath);
     var expanded:hl.IHighLevelNode;
@@ -65,15 +62,21 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
     else {
         expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode)||hlNode;
     }
-    return jsonSerializerHL.dump(expanded,{
+    let sOptions = toSerializationOptions(options);
+    return jsonSerializerHL.dump(expanded,sOptions);
+}
+
+function toSerializationOptions(options: parserCoreApi.LoadOptions) {
+    return {
         rootNodeDetails: true,
         attributeDefaults: true,
-        serializeMetadata: options.serializeMetadata||false,
-        unfoldTypes: options.unfoldTypes,
+        serializeMetadata: options.serializeMetadata || false,
+        expandExpressions: options.expandExpressions,
         expandTypes: options.expandTypes,
-        typeExpansionRecursionDepth: options.typeExpansionRecursionDepth
-    });
-}
+        typeExpansionRecursionDepth: options.typeExpansionRecursionDepth,
+        sourceMap: options.sourceMap
+    };
+};
 
 /***
  * Load API synchronously. Detects RAML version and uses corresponding parser.

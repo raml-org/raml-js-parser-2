@@ -17,7 +17,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json"
+        "sourceMap": {
+          "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json"
+        }
       }
     ],
     "title": "Api",
@@ -55,13 +57,17 @@
                   "{\"name\":\"somename\",\"child\":{\"innerTypeName\":\"anothername\"}}"
                 ],
                 "mediaType": "application/json",
-                "path": "apiValid.raml"
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -80,10 +86,14 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -4,7 +4,9 @@
       {
         "key": "lib",
         "value": "lib.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -13,7 +15,9 @@
           {
             "name": "lib.number",
             "type": "Basic Authentication",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "name": "lib.boolean",
@@ -24,7 +28,9 @@
             }
           }
         },
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -38,28 +44,38 @@
           {
             "name": "lib.oauth",
             "type": "OAuth 2.0",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           },
           {
             "name": "lib.number",
             "type": "Basic Authentication",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "name": "lib.number",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
     "securitySchemes": [
       {
         "name": "lib.oauth",
         "type": "OAuth 2.0",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
       {
         "name": "lib.number",
         "type": "Basic Authentication",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
     "title": "test API",
@@ -67,7 +83,9 @@
       {
         "name": "lib.number",
         "type": "Basic Authentication",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
     "resources": [
@@ -84,12 +102,16 @@
           {
             "name": "lib.oauth",
             "type": "OAuth 2.0",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           },
           {
             "name": "lib.number",
             "type": "Basic Authentication",
-            "path": "lib.raml"
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -108,10 +130,14 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

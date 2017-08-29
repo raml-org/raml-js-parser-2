@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type.raml"
+            "sourceMap": {
+              "path": "union-type.raml"
+            }
           },
           {
             "name": "numberOfSIMCards",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type.raml"
+            "sourceMap": {
+              "path": "union-type.raml"
+            }
           },
           {
             "name": "kind",
@@ -69,7 +73,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type.raml"
+            "sourceMap": {
+              "path": "union-type.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -81,7 +87,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "union-type.raml"
+        "sourceMap": {
+          "path": "union-type.raml"
+        }
       },
       {
         "name": "Notebook",
@@ -109,7 +117,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type.raml"
+            "sourceMap": {
+              "path": "union-type.raml"
+            }
           },
           {
             "name": "numberOfUSBPorts",
@@ -130,7 +140,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type.raml"
+            "sourceMap": {
+              "path": "union-type.raml"
+            }
           },
           {
             "name": "kind",
@@ -151,7 +163,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "union-type.raml"
+            "sourceMap": {
+              "path": "union-type.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -163,7 +177,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "union-type.raml"
+        "sourceMap": {
+          "path": "union-type.raml"
+        }
       },
       {
         "name": "Device",
@@ -184,11 +200,15 @@
           "Notebook",
           "Phone"
         ],
-        "path": "union-type.raml"
+        "sourceMap": {
+          "path": "union-type.raml"
+        }
       }
     ],
     "title": "My API With Types",
-    "path": "union-type.raml"
+    "sourceMap": {
+      "path": "union-type.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

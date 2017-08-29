@@ -19,7 +19,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "invalid-discriminator-usage.raml"
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        }
       },
       {
         "name": "Dog",
@@ -39,7 +41,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "invalid-discriminator-usage.raml"
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        }
       },
       {
         "name": "PersonOrDog",
@@ -60,7 +64,9 @@
           "Dog",
           "Person"
         ],
-        "path": "invalid-discriminator-usage.raml"
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        }
       }
     ],
     "title": "Invalid Discriminator Usage",
@@ -99,7 +105,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "invalid-discriminator-usage.raml"
+                        "sourceMap": {
+                          "path": "invalid-discriminator-usage.raml"
+                        }
                       }
                     ],
                     "discriminator": "kind",
@@ -115,16 +123,22 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "invalid-discriminator-usage.raml"
+                    "sourceMap": {
+                      "path": "invalid-discriminator-usage.raml"
+                    }
                   }
                 ],
-                "path": "invalid-discriminator-usage.raml"
+                "sourceMap": {
+                  "path": "invalid-discriminator-usage.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/inline",
             "absoluteParentUri": "/inline",
-            "path": "invalid-discriminator-usage.raml"
+            "sourceMap": {
+              "path": "invalid-discriminator-usage.raml"
+            }
           }
         ],
         "relativeUri": "/inline",
@@ -143,10 +157,14 @@
         "completeRelativeUri": "/inline",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "invalid-discriminator-usage.raml"
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        }
       }
     ],
-    "path": "invalid-discriminator-usage.raml"
+    "sourceMap": {
+      "path": "invalid-discriminator-usage.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

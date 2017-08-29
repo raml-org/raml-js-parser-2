@@ -28,7 +28,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/supertype.raml"
+            "sourceMap": {
+              "path": "dependencies/supertype.raml"
+            }
           },
           {
             "name": "p2",
@@ -49,7 +51,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/supertype.raml"
+            "sourceMap": {
+              "path": "dependencies/supertype.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -61,7 +65,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "dependencies/supertype.raml"
+        "sourceMap": {
+          "path": "dependencies/supertype.raml"
+        }
       }
     ],
     "required": true,
@@ -93,7 +99,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/ownPropertyType.raml"
+            "sourceMap": {
+              "path": "dependencies/ownPropertyType.raml"
+            }
           },
           {
             "name": "p4",
@@ -114,7 +122,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/ownPropertyType.raml"
+            "sourceMap": {
+              "path": "dependencies/ownPropertyType.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -129,7 +139,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "dependencies/ownPropertyType.raml"
+        "sourceMap": {
+          "path": "dependencies/ownPropertyType.raml"
+        }
       },
       {
         "name": "ownProp2",
@@ -161,7 +173,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "dependencies/ownPropertyType.raml"
+                "sourceMap": {
+                  "path": "dependencies/ownPropertyType.raml"
+                }
               },
               {
                 "name": "p4",
@@ -182,7 +196,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "dependencies/ownPropertyType.raml"
+                "sourceMap": {
+                  "path": "dependencies/ownPropertyType.raml"
+                }
               }
             ],
             "__METADATA__": {
@@ -194,7 +210,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/ownPropertyType.raml"
+            "sourceMap": {
+              "path": "dependencies/ownPropertyType.raml"
+            }
           }
         ],
         "required": true,
@@ -218,7 +236,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "type.raml"
+            "sourceMap": {
+              "path": "type.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -233,7 +253,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE",
-        "path": "type.raml"
+        "sourceMap": {
+          "path": "type.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -245,7 +267,9 @@
     },
     "mediaType": "application/raml+yaml",
     "typePropertyKind": "INPLACE",
-    "path": "type.raml"
+    "sourceMap": {
+      "path": "type.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "ObjectTypeDeclaration",

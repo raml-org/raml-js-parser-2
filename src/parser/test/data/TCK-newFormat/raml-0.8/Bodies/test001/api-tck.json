@@ -33,7 +33,9 @@
             }
           }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "protocols": [
@@ -54,10 +56,14 @@
                     "schema": "{}",
                     "example": "{}",
                     "schemaContent": "{}",
-                    "path": "api.raml"
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "body": [
@@ -66,7 +72,9 @@
                 "schema": "{}",
                 "example": "{}",
                 "schemaContent": "{}",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -82,7 +90,9 @@
             },
             "parentUri": "/resource",
             "absoluteParentUri": "http://api.samplehost.com/{version}/resource",
-            "path": "api.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -113,7 +123,9 @@
                     }
                   }
                 },
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ]
           }
@@ -133,7 +145,9 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "http://api.samplehost.com/{version}",
-        "path": "api.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -164,7 +178,9 @@
                 }
               }
             },
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ]
       }
@@ -176,7 +192,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -4,7 +4,9 @@
       {
         "key": "primitives",
         "value": "library.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -24,7 +26,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "library.raml"
+        "sourceMap": {
+          "path": "library.raml"
+        }
       },
       {
         "name": "primitives.Locale",
@@ -40,7 +44,9 @@
           }
         },
         "mediaType": "application/json",
-        "path": "library.raml"
+        "sourceMap": {
+          "path": "library.raml"
+        }
       }
     ],
     "title": "Library test",
@@ -63,13 +69,17 @@
                   }
                 },
                 "mediaType": "application/json",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/exampleRes",
             "absoluteParentUri": "/exampleRes",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/exampleRes",
@@ -88,10 +98,14 @@
         "completeRelativeUri": "/exampleRes",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

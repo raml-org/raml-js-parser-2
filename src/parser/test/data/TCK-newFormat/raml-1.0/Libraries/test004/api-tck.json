@@ -4,7 +4,9 @@
       {
         "key": "lib",
         "value": "lib.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -13,22 +15,30 @@
         "__METADATA__": {
           "calculated": true
         },
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
       {
         "name": "lib.libTrait2",
         "__METADATA__": {
           "calculated": true
         },
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
       {
         "name": "ownTrait1",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "ownTrait2",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -37,22 +47,30 @@
         "__METADATA__": {
           "calculated": true
         },
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
       {
         "name": "lib.libResourceType2",
         "__METADATA__": {
           "calculated": true
         },
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
       {
         "name": "ownResourceType1",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "ownResourceType2",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "TCK Sample. RAML 1.0 Libraries 001.",
@@ -68,7 +86,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

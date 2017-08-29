@@ -6,7 +6,9 @@
     },
     "strict": true,
     "name": null,
-    "path": "Example1.raml"
+    "sourceMap": {
+      "path": "Example1.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "ExampleSpec",

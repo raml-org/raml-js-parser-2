@@ -39,7 +39,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       },
                       {
                         "name": "age",
@@ -60,7 +62,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "apiInvalid.raml"
+                        "sourceMap": {
+                          "path": "apiInvalid.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -85,10 +89,14 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiInvalid.raml"
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
+                    }
                   }
                 ],
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ],
             "protocols": [
@@ -104,7 +112,9 @@
             },
             "parentUri": "/someChildUri/{blah}",
             "absoluteParentUri": "/some/base/uri/someChildUri/{blah}",
-            "path": "apiInvalid.raml",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            },
             "uriParameters": [
               {
                 "name": "blah",
@@ -126,7 +136,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "apiInvalid.raml"
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                }
               }
             ]
           }
@@ -151,7 +163,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "apiInvalid.raml"
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/someChildUri/{blah}",
@@ -171,7 +185,9 @@
         "completeRelativeUri": "/someChildUri/{blah}",
         "parentUri": "",
         "absoluteParentUri": "/some/base/uri",
-        "path": "apiInvalid.raml"
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -181,7 +197,9 @@
         }
       }
     },
-    "path": "apiInvalid.raml"
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -32,10 +32,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "sourceMap": {
+                      "path": "apiValid.raml"
+                    }
                   }
                 ],
-                "path": "apiValid.raml"
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                }
               }
             ],
             "protocols": [
@@ -51,7 +55,9 @@
             },
             "parentUri": "/someChildUri",
             "absoluteParentUri": "/some/base/uri/someChildUri",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "relativeUri": "/someChildUri",
@@ -80,7 +86,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "apiValid.raml"
+                    "sourceMap": {
+                      "path": "apiValid.raml"
+                    }
                   }
                 ],
                 "protocols": [
@@ -96,7 +104,9 @@
                 },
                 "parentUri": "/someChildUri/anotherChild",
                 "absoluteParentUri": "/some/base/uri/someChildUri/anotherChild",
-                "path": "apiValid.raml"
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                }
               }
             ],
             "relativeUri": "/anotherChild",
@@ -115,7 +125,9 @@
             "completeRelativeUri": "/someChildUri/anotherChild",
             "parentUri": "/someChildUri",
             "absoluteParentUri": "/some/base/uri/someChildUri",
-            "path": "apiValid.raml"
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -132,7 +144,9 @@
         "completeRelativeUri": "/someChildUri",
         "parentUri": "",
         "absoluteParentUri": "/some/base/uri",
-        "path": "apiValid.raml"
+        "sourceMap": {
+          "path": "apiValid.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -142,7 +156,9 @@
         }
       }
     },
-    "path": "apiValid.raml"
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

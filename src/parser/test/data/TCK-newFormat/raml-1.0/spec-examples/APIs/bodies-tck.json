@@ -30,7 +30,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "bodies.raml"
+            "sourceMap": {
+              "path": "bodies.raml"
+            }
           },
           {
             "name": "lastName",
@@ -54,7 +56,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "bodies.raml"
+            "sourceMap": {
+              "path": "bodies.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -69,7 +73,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "bodies.raml"
+        "sourceMap": {
+          "path": "bodies.raml"
+        }
       }
     ],
     "title": "Example of request bodies",
@@ -96,13 +102,17 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "bodies.raml"
+                "sourceMap": {
+                  "path": "bodies.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/users",
             "absoluteParentUri": "/users",
-            "path": "bodies.raml"
+            "sourceMap": {
+              "path": "bodies.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -121,7 +131,9 @@
         "completeRelativeUri": "/users",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "bodies.raml"
+        "sourceMap": {
+          "path": "bodies.raml"
+        }
       },
       {
         "methods": [
@@ -156,7 +168,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "bodies.raml"
+                    "sourceMap": {
+                      "path": "bodies.raml"
+                    }
                   },
                   {
                     "name": "deptCode",
@@ -177,7 +191,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "bodies.raml"
+                    "sourceMap": {
+                      "path": "bodies.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -192,7 +208,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "bodies.raml"
+                "sourceMap": {
+                  "path": "bodies.raml"
+                }
               },
               {
                 "name": "text/xml",
@@ -210,13 +228,17 @@
                 },
                 "mediaType": "application/xml",
                 "typePropertyKind": "XML",
-                "path": "bodies.raml"
+                "sourceMap": {
+                  "path": "bodies.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/groups",
             "absoluteParentUri": "/groups",
-            "path": "bodies.raml"
+            "sourceMap": {
+              "path": "bodies.raml"
+            }
           }
         ],
         "relativeUri": "/groups",
@@ -235,10 +257,14 @@
         "completeRelativeUri": "/groups",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "bodies.raml"
+        "sourceMap": {
+          "path": "bodies.raml"
+        }
       }
     ],
-    "path": "bodies.raml"
+    "sourceMap": {
+      "path": "bodies.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

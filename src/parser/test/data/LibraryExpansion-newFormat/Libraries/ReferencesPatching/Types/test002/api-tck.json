@@ -4,12 +4,16 @@
       {
         "key": "lib1",
         "value": "./lib/lib1.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
         "value": "lib/lib2.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -39,7 +43,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib/lib1.raml"
+            "sourceMap": {
+              "path": "lib/lib1.raml"
+            }
           },
           {
             "name": "prop2",
@@ -60,7 +66,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib/lib1.raml"
+            "sourceMap": {
+              "path": "lib/lib1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -75,7 +83,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib1.raml"
+        "sourceMap": {
+          "path": "lib/lib1.raml"
+        }
       },
       {
         "name": "lib1.CollectionType",
@@ -106,7 +116,9 @@
             "items": [
               "lib1.ComponentType"
             ],
-            "path": "lib/lib1.raml"
+            "sourceMap": {
+              "path": "lib/lib1.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -118,7 +130,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib1.raml"
+        "sourceMap": {
+          "path": "lib/lib1.raml"
+        }
       },
       {
         "name": "lib1.lib2.SuperType",
@@ -135,10 +149,14 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib2.raml"
+        "sourceMap": {
+          "path": "lib/lib2.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

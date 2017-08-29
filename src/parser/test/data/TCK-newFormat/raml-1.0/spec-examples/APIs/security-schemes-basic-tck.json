@@ -5,7 +5,9 @@
         "name": "basic",
         "type": "Basic Authentication",
         "description": "This API supports Basic Authentication.\n",
-        "path": "security-schemes-basic.raml"
+        "sourceMap": {
+          "path": "security-schemes-basic.raml"
+        }
       }
     ],
     "title": "Dropbox API",
@@ -41,7 +43,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "security-schemes-basic.raml"
+        "sourceMap": {
+          "path": "security-schemes-basic.raml"
+        }
       }
     ],
     "protocols": [
@@ -54,7 +58,9 @@
         }
       }
     },
-    "path": "security-schemes-basic.raml"
+    "sourceMap": {
+      "path": "security-schemes-basic.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

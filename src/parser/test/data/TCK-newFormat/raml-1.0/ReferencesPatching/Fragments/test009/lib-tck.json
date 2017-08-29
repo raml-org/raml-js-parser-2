@@ -19,7 +19,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       },
       {
         "name": "includedType",
@@ -47,7 +49,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/type.raml"
+            "sourceMap": {
+              "path": "dependencies/type.raml"
+            }
           },
           {
             "name": "p2",
@@ -68,14 +72,18 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "dependencies/type.raml"
+            "sourceMap": {
+              "path": "dependencies/type.raml"
+            }
           }
         ],
         "uses": [
           {
             "key": "lib",
             "value": "../lib.raml",
-            "path": "dependencies/type.raml"
+            "sourceMap": {
+              "path": "dependencies/type.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -90,10 +98,14 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "dependencies/type.raml"
+        "sourceMap": {
+          "path": "dependencies/type.raml"
+        }
       }
     ],
-    "path": "lib.raml"
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

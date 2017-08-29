@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "using-discriminatorvalue.raml"
+            "sourceMap": {
+              "path": "using-discriminatorvalue.raml"
+            }
           },
           {
             "name": "kind",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "using-discriminatorvalue.raml"
+            "sourceMap": {
+              "path": "using-discriminatorvalue.raml"
+            }
           }
         ],
         "discriminator": "kind",
@@ -61,7 +65,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "using-discriminatorvalue.raml"
+        "sourceMap": {
+          "path": "using-discriminatorvalue.raml"
+        }
       },
       {
         "name": "Employee",
@@ -89,7 +95,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "using-discriminatorvalue.raml"
+            "sourceMap": {
+              "path": "using-discriminatorvalue.raml"
+            }
           }
         ],
         "discriminatorValue": "employee",
@@ -102,7 +110,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "using-discriminatorvalue.raml"
+        "sourceMap": {
+          "path": "using-discriminatorvalue.raml"
+        }
       },
       {
         "name": "User",
@@ -130,7 +140,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "using-discriminatorvalue.raml"
+            "sourceMap": {
+              "path": "using-discriminatorvalue.raml"
+            }
           }
         ],
         "discriminatorValue": "user",
@@ -143,11 +155,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "using-discriminatorvalue.raml"
+        "sourceMap": {
+          "path": "using-discriminatorvalue.raml"
+        }
       }
     ],
     "title": "My API With Types",
-    "path": "using-discriminatorvalue.raml"
+    "sourceMap": {
+      "path": "using-discriminatorvalue.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

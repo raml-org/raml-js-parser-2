@@ -26,11 +26,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "resourcetypes-traits-parameter.raml"
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameter.raml"
+            }
           }
         ],
         "name": "secured",
-        "path": "resourcetypes-traits-parameter.raml"
+        "sourceMap": {
+          "path": "resourcetypes-traits-parameter.raml"
+        }
       },
       {
         "queryParameters": [
@@ -57,11 +61,15 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "resourcetypes-traits-parameter.raml"
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameter.raml"
+            }
           }
         ],
         "name": "paged",
-        "path": "resourcetypes-traits-parameter.raml"
+        "sourceMap": {
+          "path": "resourcetypes-traits-parameter.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -92,7 +100,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourcetypes-traits-parameter.raml"
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
+                }
               },
               {
                 "name": "<<fallbackParamName>>",
@@ -117,15 +127,21 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourcetypes-traits-parameter.raml"
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
+                }
               }
             ],
             "method": "get",
-            "path": "resourcetypes-traits-parameter.raml"
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameter.raml"
+            }
           }
         ],
         "name": "searchableCollection",
-        "path": "resourcetypes-traits-parameter.raml"
+        "sourceMap": {
+          "path": "resourcetypes-traits-parameter.raml"
+        }
       }
     ],
     "title": "Example API",
@@ -158,7 +174,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourcetypes-traits-parameter.raml"
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
+                }
               },
               {
                 "name": "digest_all_fields",
@@ -183,7 +201,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourcetypes-traits-parameter.raml"
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
+                }
               },
               {
                 "name": "access_token",
@@ -208,7 +228,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourcetypes-traits-parameter.raml"
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
+                }
               },
               {
                 "name": "numPages",
@@ -233,7 +255,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourcetypes-traits-parameter.raml"
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
+                }
               }
             ],
             "is": [
@@ -259,7 +283,9 @@
             "method": "get",
             "parentUri": "/books",
             "absoluteParentUri": "/books",
-            "path": "resourcetypes-traits-parameter.raml"
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameter.raml"
+            }
           }
         ],
         "type": {
@@ -291,10 +317,14 @@
         "completeRelativeUri": "/books",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "resourcetypes-traits-parameter.raml"
+        "sourceMap": {
+          "path": "resourcetypes-traits-parameter.raml"
+        }
       }
     ],
-    "path": "resourcetypes-traits-parameter.raml"
+    "sourceMap": {
+      "path": "resourcetypes-traits-parameter.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

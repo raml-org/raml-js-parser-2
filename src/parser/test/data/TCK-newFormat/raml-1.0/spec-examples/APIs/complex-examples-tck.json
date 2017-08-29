@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
           {
             "name": "lastname",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -73,7 +77,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "complex-examples.raml"
+        "sourceMap": {
+          "path": "complex-examples.raml"
+        }
       },
       {
         "name": "Org",
@@ -101,7 +107,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
           {
             "name": "address",
@@ -122,7 +130,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
           {
             "name": "value",
@@ -143,7 +153,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -155,7 +167,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "complex-examples.raml"
+        "sourceMap": {
+          "path": "complex-examples.raml"
+        }
       }
     ],
     "title": "API with Examples",
@@ -194,7 +208,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-examples.raml"
+                "sourceMap": {
+                  "path": "complex-examples.raml"
+                }
               }
             ],
             "body": [
@@ -226,13 +242,17 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "complex-examples.raml"
+                "sourceMap": {
+                  "path": "complex-examples.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/organization",
             "absoluteParentUri": "/organization",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           },
           {
             "responses": [
@@ -276,17 +296,23 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "complex-examples.raml"
+                    "sourceMap": {
+                      "path": "complex-examples.raml"
+                    }
                   }
                 ],
-                "path": "complex-examples.raml"
+                "sourceMap": {
+                  "path": "complex-examples.raml"
+                }
               }
             ],
             "description": "Returns an organization entity.",
             "method": "get",
             "parentUri": "/organization",
             "absoluteParentUri": "/organization",
-            "path": "complex-examples.raml"
+            "sourceMap": {
+              "path": "complex-examples.raml"
+            }
           }
         ],
         "relativeUri": "/organization",
@@ -305,10 +331,14 @@
         "completeRelativeUri": "/organization",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "complex-examples.raml"
+        "sourceMap": {
+          "path": "complex-examples.raml"
+        }
       }
     ],
-    "path": "complex-examples.raml"
+    "sourceMap": {
+      "path": "complex-examples.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

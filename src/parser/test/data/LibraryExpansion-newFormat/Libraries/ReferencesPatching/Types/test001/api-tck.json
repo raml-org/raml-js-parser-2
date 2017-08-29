@@ -4,7 +4,9 @@
       {
         "key": "primitives",
         "value": "./lib/library.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -24,7 +26,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "lib/library.raml"
+        "sourceMap": {
+          "path": "lib/library.raml"
+        }
       },
       {
         "name": "primitives.Locale",
@@ -40,10 +44,14 @@
           }
         },
         "mediaType": "application/json",
-        "path": "lib/library.raml"
+        "sourceMap": {
+          "path": "lib/library.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

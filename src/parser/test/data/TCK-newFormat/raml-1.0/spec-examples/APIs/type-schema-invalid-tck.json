@@ -19,7 +19,9 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "INPLACE",
-        "path": "type-schema-invalid.raml"
+        "sourceMap": {
+          "path": "type-schema-invalid.raml"
+        }
       }
     ],
     "title": "Types / Schema mutual exclusive",
@@ -50,16 +52,22 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "INPLACE",
-                    "path": "type-schema-invalid.raml"
+                    "sourceMap": {
+                      "path": "type-schema-invalid.raml"
+                    }
                   }
                 ],
-                "path": "type-schema-invalid.raml"
+                "sourceMap": {
+                  "path": "type-schema-invalid.raml"
+                }
               }
             ],
             "method": "get",
             "parentUri": "/resource",
             "absoluteParentUri": "/resource",
-            "path": "type-schema-invalid.raml"
+            "sourceMap": {
+              "path": "type-schema-invalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -78,10 +86,14 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "type-schema-invalid.raml"
+        "sourceMap": {
+          "path": "type-schema-invalid.raml"
+        }
       }
     ],
-    "path": "type-schema-invalid.raml"
+    "sourceMap": {
+      "path": "type-schema-invalid.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

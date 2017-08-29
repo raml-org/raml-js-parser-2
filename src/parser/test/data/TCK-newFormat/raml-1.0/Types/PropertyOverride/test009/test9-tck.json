@@ -20,7 +20,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test9.raml"
+            "sourceMap": {
+              "path": "test9.raml"
+            }
           }
         ],
         "type": [
@@ -38,7 +40,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test9.raml"
+        "sourceMap": {
+          "path": "test9.raml"
+        }
       },
       {
         "name": "SubType",
@@ -59,7 +63,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "test9.raml"
+            "sourceMap": {
+              "path": "test9.raml"
+            }
           }
         ],
         "type": [
@@ -74,11 +80,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "test9.raml"
+        "sourceMap": {
+          "path": "test9.raml"
+        }
       }
     ],
     "title": "test",
-    "path": "test9.raml"
+    "sourceMap": {
+      "path": "test9.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

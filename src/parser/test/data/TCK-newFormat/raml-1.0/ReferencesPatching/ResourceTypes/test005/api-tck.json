@@ -4,12 +4,16 @@
       {
         "key": "lib1",
         "value": "lib1.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
         "value": "lib2.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -30,14 +34,18 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "lib2.raml"
+            "sourceMap": {
+              "path": "lib2.raml"
+            }
           }
         ],
         "name": "lib1.lib2.myTrait",
         "__METADATA__": {
           "calculated": true
         },
-        "path": "lib2.raml"
+        "sourceMap": {
+          "path": "lib2.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -51,7 +59,9 @@
         "__METADATA__": {
           "calculated": true
         },
-        "path": "lib1.raml"
+        "sourceMap": {
+          "path": "lib1.raml"
+        }
       }
     ],
     "title": "test API.",
@@ -80,7 +90,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "api.raml"
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             ],
             "protocols": [
@@ -96,7 +108,9 @@
             },
             "parentUri": "/resource",
             "absoluteParentUri": "https://example.com/raml/resource",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "is": [
@@ -123,7 +137,9 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "https://example.com/raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -133,7 +149,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

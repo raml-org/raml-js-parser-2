@@ -62,7 +62,7 @@ export interface Options{
 }
 
 
-export interface Options2 {
+export interface LoadOptions {
 
     /**
      * Whether to expand libraries
@@ -72,7 +72,7 @@ export interface Options2 {
     /**
      * Whether to unfold types
      */
-    unfoldTypes?:boolean
+    expandExpressions?:boolean
 
     /**
      * Module used for operations with file system
@@ -96,4 +96,9 @@ export interface Options2 {
     expandTypes?: boolean
 
     typeExpansionRecursionDepth?:number
+
+    /**
+     * Whether to serialize source maps
+     */
+    sourceMap?: boolean
 }

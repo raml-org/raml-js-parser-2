@@ -4,7 +4,9 @@
       {
         "key": "lib",
         "value": "./lib/lib.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -23,7 +25,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "lib/lib.raml"
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
     ],
     "traits": [
@@ -47,17 +51,25 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "lib/lib.raml"
+                "sourceMap": {
+                  "path": "lib/lib.raml"
+                }
               }
             ],
-            "path": "lib/lib.raml"
+            "sourceMap": {
+              "path": "lib/lib.raml"
+            }
           }
         ],
         "name": "lib.libTrait1",
-        "path": "lib/lib.raml"
+        "sourceMap": {
+          "path": "lib/lib.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

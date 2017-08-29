@@ -6,7 +6,9 @@
           {
             "name": "x-ttt",
             "type": "Digest Authentication",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "overlayDisplayName2",
@@ -18,7 +20,9 @@
             }
           }
         },
-        "path": "NewOverlay2.raml"
+        "sourceMap": {
+          "path": "NewOverlay2.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -27,7 +31,9 @@
           {
             "name": "x-ttt",
             "type": "Digest Authentication",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "name": "servers-collection",
@@ -39,14 +45,18 @@
             }
           }
         },
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "securitySchemes": [
       {
         "name": "x-ttt",
         "type": "Digest Authentication",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Extension2",
@@ -62,7 +72,9 @@
       {
         "name": "x-ttt",
         "type": "Digest Authentication",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resources": [
@@ -76,7 +88,9 @@
           {
             "name": "x-ttt",
             "type": "Digest Authentication",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/servers",
@@ -95,11 +109,15 @@
         "completeRelativeUri": "/servers",
         "parentUri": "",
         "absoluteParentUri": "https://anypoint.mulesoft.com/hybrid/api/v1",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "extends": "NewOverlay.raml",
-    "path": "NewOverlay2.raml"
+    "sourceMap": {
+      "path": "NewOverlay2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

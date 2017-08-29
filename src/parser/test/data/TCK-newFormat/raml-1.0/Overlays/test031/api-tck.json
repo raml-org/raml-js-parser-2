@@ -18,22 +18,30 @@
       {
         "key": "lib2",
         "value": "lib2.raml",
-        "path": "o2.raml"
+        "sourceMap": {
+          "path": "o2.raml"
+        }
       },
       {
         "key": "lib1",
         "value": "lib1.raml",
-        "path": "o1.raml"
+        "sourceMap": {
+          "path": "o1.raml"
+        }
       },
       {
         "key": "lib0",
         "value": "lib0.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
     "extends": "o1.raml",
-    "path": "o2.raml"
+    "sourceMap": {
+      "path": "o2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

@@ -33,7 +33,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "query-parameter.raml"
+        "sourceMap": {
+          "path": "query-parameter.raml"
+        }
       }
     ],
     "protocols": [
@@ -71,7 +73,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "query-parameter.raml"
+                "sourceMap": {
+                  "path": "query-parameter.raml"
+                }
               },
               {
                 "name": "per_page",
@@ -106,7 +110,9 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "query-parameter.raml"
+                "sourceMap": {
+                  "path": "query-parameter.raml"
+                }
               }
             ],
             "protocols": [
@@ -123,7 +129,9 @@
             },
             "parentUri": "/users",
             "absoluteParentUri": "https://api.github.com/{version}/users",
-            "path": "query-parameter.raml",
+            "sourceMap": {
+              "path": "query-parameter.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -154,7 +162,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "query-parameter.raml"
+                "sourceMap": {
+                  "path": "query-parameter.raml"
+                }
               }
             ]
           }
@@ -175,7 +185,9 @@
         "completeRelativeUri": "/users",
         "parentUri": "",
         "absoluteParentUri": "https://api.github.com/{version}",
-        "path": "query-parameter.raml",
+        "sourceMap": {
+          "path": "query-parameter.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -206,7 +218,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "query-parameter.raml"
+            "sourceMap": {
+              "path": "query-parameter.raml"
+            }
           }
         ]
       }
@@ -218,7 +232,9 @@
         }
       }
     },
-    "path": "query-parameter.raml"
+    "sourceMap": {
+      "path": "query-parameter.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

@@ -33,13 +33,17 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "traits/secured.raml"
+            "sourceMap": {
+              "path": "traits/secured.raml"
+            }
           }
         ],
         "description": "Some requests require authentication.",
         "name": "secured",
         "usage": "Apply this to any method that needs to be secured",
-        "path": "traits/secured.raml"
+        "sourceMap": {
+          "path": "traits/secured.raml"
+        }
       },
       {
         "headers": [
@@ -70,13 +74,17 @@
             ],
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "traits/rate-limited.raml"
+            "sourceMap": {
+              "path": "traits/rate-limited.raml"
+            }
           }
         ],
         "description": "Some requests require rate limiting.",
         "name": "rateLimited",
         "usage": "Apply this to any method that needs to be rate limited",
-        "path": "traits/rate-limited.raml"
+        "sourceMap": {
+          "path": "traits/rate-limited.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -85,7 +93,9 @@
           {
             "description": "Retrieve all items",
             "method": "get",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
           {
             "responses": [
@@ -114,39 +124,53 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
                 ],
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "description": "Add an item",
             "method": "post",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "description": "A collection resource",
         "name": "collection",
         "usage": "Use this to describe a resource that lists items",
-        "path": "resourceTypes/collection.raml"
+        "sourceMap": {
+          "path": "resourceTypes/collection.raml"
+        }
       },
       {
         "methods": [
           {
             "description": "Get a <<resourcePathName | !singularize>>",
             "method": "get",
-            "path": "resourceTypes/member.raml"
+            "sourceMap": {
+              "path": "resourceTypes/member.raml"
+            }
           }
         ],
         "description": "A single <<resourcePathName | !singularize>>",
         "name": "member",
         "usage": "This resourceType should be used for any specific member of a collection",
-        "path": "resourceTypes/member.raml"
+        "sourceMap": {
+          "path": "resourceTypes/member.raml"
+        }
       }
     ],
     "title": "Example API",
     "version": "v1",
-    "path": "resurcetypes-traits-external.raml"
+    "sourceMap": {
+      "path": "resurcetypes-traits-external.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

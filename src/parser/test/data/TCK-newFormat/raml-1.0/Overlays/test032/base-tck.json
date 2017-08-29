@@ -16,7 +16,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "mystring",
@@ -33,7 +35,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "base.raml"
+        "sourceMap": {
+          "path": "base.raml"
+        }
       }
     ],
     "traits": [
@@ -58,14 +62,18 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "trait.raml"
+            "sourceMap": {
+              "path": "trait.raml"
+            }
           }
         ],
         "name": "foo",
         "__METADATA__": {
           "calculated": true
         },
-        "path": "trait.raml"
+        "sourceMap": {
+          "path": "trait.raml"
+        }
       }
     ],
     "title": "foo",
@@ -93,7 +101,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "trait.raml"
+                "sourceMap": {
+                  "path": "trait.raml"
+                }
               }
             ],
             "is": [
@@ -104,7 +114,9 @@
             "method": "get",
             "parentUri": "/foobar",
             "absoluteParentUri": "/foobar",
-            "path": "api.raml"
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/foobar",
@@ -123,11 +135,15 @@
         "completeRelativeUri": "/foobar",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "extends": "./base.raml",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

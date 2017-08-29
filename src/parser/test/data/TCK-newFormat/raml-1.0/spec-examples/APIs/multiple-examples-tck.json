@@ -45,7 +45,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "sourceMap": {
+              "path": "multiple-examples.raml"
+            }
           },
           {
             "name": "body",
@@ -66,7 +68,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "sourceMap": {
+              "path": "multiple-examples.raml"
+            }
           },
           {
             "name": "name",
@@ -87,7 +91,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "sourceMap": {
+              "path": "multiple-examples.raml"
+            }
           },
           {
             "name": "comment",
@@ -108,7 +114,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "multiple-examples.raml"
+            "sourceMap": {
+              "path": "multiple-examples.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -127,11 +135,15 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "multiple-examples.raml"
+        "sourceMap": {
+          "path": "multiple-examples.raml"
+        }
       }
     ],
     "title": "Multiple examples",
-    "path": "multiple-examples.raml"
+    "sourceMap": {
+      "path": "multiple-examples.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

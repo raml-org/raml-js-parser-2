@@ -16,7 +16,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "name": "Player2",
@@ -33,7 +35,9 @@
         },
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Types 002.",
@@ -49,7 +53,9 @@
         }
       }
     },
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

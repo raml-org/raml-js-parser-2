@@ -4,7 +4,9 @@
       {
         "key": "types",
         "value": "types.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -30,10 +32,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
                 ],
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "body": [
@@ -52,11 +58,15 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "method": "post",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": {
@@ -69,7 +79,9 @@
           ]
         },
         "name": "standardResponse",
-        "path": "resourceTypes/collection.raml"
+        "sourceMap": {
+          "path": "resourceTypes/collection.raml"
+        }
       },
       {
         "methods": [
@@ -93,10 +105,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
                 ],
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "body": [
@@ -115,11 +131,15 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "method": "post",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": {
@@ -132,7 +152,9 @@
           ]
         },
         "name": "collection",
-        "path": "resourceTypes/collection.raml"
+        "sourceMap": {
+          "path": "resourceTypes/collection.raml"
+        }
       }
     ],
     "title": "Box",
@@ -159,10 +181,14 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "resourceTypes/collection.raml"
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
+                    }
                   }
                 ],
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "body": [
@@ -181,13 +207,17 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "resourceTypes/collection.raml"
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
+                }
               }
             ],
             "method": "post",
             "parentUri": "/folders",
             "absoluteParentUri": "/folders",
-            "path": "resourceTypes/collection.raml"
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": {
@@ -215,10 +245,14 @@
         "completeRelativeUri": "/folders",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

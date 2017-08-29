@@ -4,17 +4,23 @@
       {
         "key": "lib",
         "value": "libs/types.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "types2",
         "value": "libs/types2.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib0",
         "value": "libs/lib.raml",
-        "path": "api.raml"
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -44,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libs/lib.raml"
+            "sourceMap": {
+              "path": "libs/lib.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -59,7 +67,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libs/lib.raml"
+        "sourceMap": {
+          "path": "libs/lib.raml"
+        }
       },
       {
         "name": "lib0.MyStringType",
@@ -77,7 +87,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libs/lib.raml"
+        "sourceMap": {
+          "path": "libs/lib.raml"
+        }
       },
       {
         "name": "lib.MyType",
@@ -94,7 +106,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libs/types.raml"
+        "sourceMap": {
+          "path": "libs/types.raml"
+        }
       },
       {
         "name": "types2.MyObjectType",
@@ -122,7 +136,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "libs/types2.raml"
+            "sourceMap": {
+              "path": "libs/types2.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -137,7 +153,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "libs/types2.raml"
+        "sourceMap": {
+          "path": "libs/types2.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -175,7 +193,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "fragments/type.raml"
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       },
                       {
                         "name": "rootLibProperty",
@@ -196,7 +216,9 @@
                         },
                         "mediaType": "application/raml+yaml",
                         "typePropertyKind": "TYPE_EXPRESSION",
-                        "path": "fragments/type.raml"
+                        "sourceMap": {
+                          "path": "fragments/type.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -211,7 +233,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "fragments/type.raml"
+                    "sourceMap": {
+                      "path": "fragments/type.raml"
+                    }
                   }
                 ],
                 "__METADATA__": {
@@ -240,18 +264,26 @@
                 ],
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "INPLACE",
-                "path": "fragments/rt.raml"
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
+                }
               }
             ],
             "method": "post",
-            "path": "fragments/rt.raml"
+            "sourceMap": {
+              "path": "fragments/rt.raml"
+            }
           }
         ],
         "name": "rt",
-        "path": "fragments/rt.raml"
+        "sourceMap": {
+          "path": "fragments/rt.raml"
+        }
       }
     ],
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

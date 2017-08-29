@@ -3,7 +3,9 @@
     "title": "Pet shop",
     "version": "6",
     "extends": "api.raml",
-    "path": "NewOverlay.raml"
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Overlay",

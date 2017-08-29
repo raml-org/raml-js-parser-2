@@ -4,7 +4,9 @@
       {
         "key": "lib",
         "value": "lib.raml",
-        "path": "lib.raml"
+        "sourceMap": {
+          "path": "lib.raml"
+        }
       }
     ],
     "types": [
@@ -34,7 +36,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "workItem.raml"
+            "sourceMap": {
+              "path": "workItem.raml"
+            }
           },
           {
             "name": "reference",
@@ -55,7 +59,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "workItem.raml"
+            "sourceMap": {
+              "path": "workItem.raml"
+            }
           },
           {
             "name": "weight",
@@ -76,7 +82,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "workItem.raml"
+            "sourceMap": {
+              "path": "workItem.raml"
+            }
           },
           {
             "name": "workItmes",
@@ -100,7 +108,9 @@
             "items": [
               "workItem"
             ],
-            "path": "workItem.raml"
+            "sourceMap": {
+              "path": "workItem.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -112,10 +122,14 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "workItem.raml"
+        "sourceMap": {
+          "path": "workItem.raml"
+        }
       }
     ],
-    "path": "lib.raml"
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Library",

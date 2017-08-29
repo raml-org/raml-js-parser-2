@@ -16,7 +16,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "annotating-scalar-nodes.raml"
+        "sourceMap": {
+          "path": "annotating-scalar-nodes.raml"
+        }
       }
     ],
     "title": "Annotating scalar nodes",
@@ -41,7 +43,9 @@
         ]
       ]
     },
-    "path": "annotating-scalar-nodes.raml"
+    "sourceMap": {
+      "path": "annotating-scalar-nodes.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

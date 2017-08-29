@@ -19,7 +19,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "types/gist.raml"
+        "sourceMap": {
+          "path": "types/gist.raml"
+        }
       },
       {
         "name": "Gists",
@@ -39,7 +41,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "types/gists.raml"
+        "sourceMap": {
+          "path": "types/gists.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -72,7 +76,9 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 }
               ],
               "headers": [
@@ -96,22 +102,30 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 },
                 {
                   "code": "403",
                   "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 }
               ],
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
             "settings": {
               "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -125,9 +139,13 @@
                 "USER",
                 "ADMINISTRATOR"
               ],
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
-            "path": "securitySchemes/oauth_2_0.raml"
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           }
         ],
         "name": "collection",
@@ -138,7 +156,9 @@
             }
           }
         },
-        "path": "types/collection.raml"
+        "sourceMap": {
+          "path": "types/collection.raml"
+        }
       }
     ],
     "securitySchemes": [
@@ -168,7 +188,9 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
           "headers": [
@@ -192,22 +214,30 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
           "responses": [
             {
               "code": "401",
               "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
             {
               "code": "403",
               "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -221,9 +251,13 @@
             "USER",
             "ADMINISTRATOR"
           ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
         },
-        "path": "securitySchemes/oauth_2_0.raml"
+        "sourceMap": {
+          "path": "securitySchemes/oauth_2_0.raml"
+        }
       }
     ],
     "title": "GitHub API",
@@ -262,7 +296,9 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
           "headers": [
@@ -286,22 +322,30 @@
               },
               "mediaType": "application/raml+yaml",
               "typePropertyKind": "TYPE_EXPRESSION",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
           "responses": [
             {
               "code": "401",
               "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
             {
               "code": "403",
               "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             }
           ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
         },
         "settings": {
           "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -315,9 +359,13 @@
             "USER",
             "ADMINISTRATOR"
           ],
-          "path": "securitySchemes/oauth_2_0.raml"
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
+          }
         },
-        "path": "securitySchemes/oauth_2_0.raml"
+        "sourceMap": {
+          "path": "securitySchemes/oauth_2_0.raml"
+        }
       }
     ],
     "resources": [
@@ -349,7 +397,9 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 }
               ],
               "headers": [
@@ -373,22 +423,30 @@
                   },
                   "mediaType": "application/raml+yaml",
                   "typePropertyKind": "TYPE_EXPRESSION",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 }
               ],
               "responses": [
                 {
                   "code": "401",
                   "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 },
                 {
                   "code": "403",
                   "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 }
               ],
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
             "settings": {
               "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -402,9 +460,13 @@
                 "USER",
                 "ADMINISTRATOR"
               ],
-              "path": "securitySchemes/oauth_2_0.raml"
+              "sourceMap": {
+                "path": "securitySchemes/oauth_2_0.raml"
+              }
             },
-            "path": "securitySchemes/oauth_2_0.raml"
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           }
         ],
         "relativeUri": "/search",
@@ -443,7 +505,9 @@
                           },
                           "mediaType": "application/raml+yaml",
                           "typePropertyKind": "TYPE_EXPRESSION",
-                          "path": "securitySchemes/oauth_2_0.raml"
+                          "sourceMap": {
+                            "path": "securitySchemes/oauth_2_0.raml"
+                          }
                         }
                       ],
                       "headers": [
@@ -467,22 +531,30 @@
                           },
                           "mediaType": "application/raml+yaml",
                           "typePropertyKind": "TYPE_EXPRESSION",
-                          "path": "securitySchemes/oauth_2_0.raml"
+                          "sourceMap": {
+                            "path": "securitySchemes/oauth_2_0.raml"
+                          }
                         }
                       ],
                       "responses": [
                         {
                           "code": "401",
                           "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                          "path": "securitySchemes/oauth_2_0.raml"
+                          "sourceMap": {
+                            "path": "securitySchemes/oauth_2_0.raml"
+                          }
                         },
                         {
                           "code": "403",
                           "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                          "path": "securitySchemes/oauth_2_0.raml"
+                          "sourceMap": {
+                            "path": "securitySchemes/oauth_2_0.raml"
+                          }
                         }
                       ],
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     },
                     "settings": {
                       "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -496,9 +568,13 @@
                         "USER",
                         "ADMINISTRATOR"
                       ],
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     },
-                    "path": "securitySchemes/oauth_2_0.raml"
+                    "sourceMap": {
+                      "path": "securitySchemes/oauth_2_0.raml"
+                    }
                   }
                 ],
                 "method": "get",
@@ -514,7 +590,9 @@
                 },
                 "parentUri": "/search/code",
                 "absoluteParentUri": "https://api.github.com/search/code",
-                "path": "root.raml",
+                "sourceMap": {
+                  "path": "root.raml"
+                },
                 "headers": [
                   {
                     "name": "Authorization",
@@ -537,14 +615,18 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "securitySchemes/oauth_2_0.raml"
+                    "sourceMap": {
+                      "path": "securitySchemes/oauth_2_0.raml"
+                    }
                   }
                 ],
                 "responses": [
                   {
                     "code": "401",
                     "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                    "path": "securitySchemes/oauth_2_0.raml",
+                    "sourceMap": {
+                      "path": "securitySchemes/oauth_2_0.raml"
+                    },
                     "__METADATA__": {
                       "calculated": true
                     }
@@ -552,7 +634,9 @@
                   {
                     "code": "403",
                     "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                    "path": "securitySchemes/oauth_2_0.raml",
+                    "sourceMap": {
+                      "path": "securitySchemes/oauth_2_0.raml"
+                    },
                     "__METADATA__": {
                       "calculated": true
                     }
@@ -580,7 +664,9 @@
                     },
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "path": "securitySchemes/oauth_2_0.raml"
+                    "sourceMap": {
+                      "path": "securitySchemes/oauth_2_0.raml"
+                    }
                   }
                 ]
               }
@@ -616,7 +702,9 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     }
                   ],
                   "headers": [
@@ -640,22 +728,30 @@
                       },
                       "mediaType": "application/raml+yaml",
                       "typePropertyKind": "TYPE_EXPRESSION",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     }
                   ],
                   "responses": [
                     {
                       "code": "401",
                       "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     },
                     {
                       "code": "403",
                       "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                      "path": "securitySchemes/oauth_2_0.raml"
+                      "sourceMap": {
+                        "path": "securitySchemes/oauth_2_0.raml"
+                      }
                     }
                   ],
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 },
                 "settings": {
                   "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -669,9 +765,13 @@
                     "USER",
                     "ADMINISTRATOR"
                   ],
-                  "path": "securitySchemes/oauth_2_0.raml"
+                  "sourceMap": {
+                    "path": "securitySchemes/oauth_2_0.raml"
+                  }
                 },
-                "path": "securitySchemes/oauth_2_0.raml"
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "relativeUri": "/code",
@@ -693,7 +793,9 @@
             "completeRelativeUri": "/search/code",
             "parentUri": "/search",
             "absoluteParentUri": "https://api.github.com/search",
-            "path": "root.raml",
+            "sourceMap": {
+              "path": "root.raml"
+            },
             "headers": [
               {
                 "name": "Authorization",
@@ -716,14 +818,18 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "securitySchemes/oauth_2_0.raml"
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ],
             "responses": [
               {
                 "code": "401",
                 "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-                "path": "securitySchemes/oauth_2_0.raml",
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -731,7 +837,9 @@
               {
                 "code": "403",
                 "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-                "path": "securitySchemes/oauth_2_0.raml",
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                },
                 "__METADATA__": {
                   "calculated": true
                 }
@@ -759,7 +867,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "securitySchemes/oauth_2_0.raml"
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
+                }
               }
             ]
           }
@@ -781,7 +891,9 @@
         "completeRelativeUri": "/search",
         "parentUri": "",
         "absoluteParentUri": "https://api.github.com",
-        "path": "root.raml",
+        "sourceMap": {
+          "path": "root.raml"
+        },
         "headers": [
           {
             "name": "Authorization",
@@ -804,14 +916,18 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "securitySchemes/oauth_2_0.raml"
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           }
         ],
         "responses": [
           {
             "code": "401",
             "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
-            "path": "securitySchemes/oauth_2_0.raml",
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
@@ -819,7 +935,9 @@
           {
             "code": "403",
             "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
-            "path": "securitySchemes/oauth_2_0.raml",
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            },
             "__METADATA__": {
               "calculated": true
             }
@@ -847,7 +965,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "securitySchemes/oauth_2_0.raml"
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
           }
         ]
       }
@@ -859,7 +979,9 @@
         }
       }
     },
-    "path": "root.raml"
+    "sourceMap": {
+      "path": "root.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

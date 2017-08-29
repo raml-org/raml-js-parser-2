@@ -19,11 +19,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "default-types-2.raml"
+        "sourceMap": {
+          "path": "default-types-2.raml"
+        }
       }
     ],
     "title": "Default type 2",
-    "path": "default-types-2.raml"
+    "sourceMap": {
+      "path": "default-types-2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

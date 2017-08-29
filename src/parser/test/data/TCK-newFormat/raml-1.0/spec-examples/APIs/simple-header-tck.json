@@ -33,7 +33,9 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "simple-header.raml"
+        "sourceMap": {
+          "path": "simple-header.raml"
+        }
       }
     ],
     "protocols": [
@@ -67,7 +69,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "simple-header.raml"
+                "sourceMap": {
+                  "path": "simple-header.raml"
+                }
               }
             ],
             "protocols": [
@@ -84,7 +88,9 @@
             },
             "parentUri": "/jobs",
             "absoluteParentUri": "https://app.zencoder.com/api/{version}/jobs",
-            "path": "simple-header.raml",
+            "sourceMap": {
+              "path": "simple-header.raml"
+            },
             "uriParameters": [
               {
                 "name": "version",
@@ -115,7 +121,9 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "path": "simple-header.raml"
+                "sourceMap": {
+                  "path": "simple-header.raml"
+                }
               }
             ]
           }
@@ -136,7 +144,9 @@
         "completeRelativeUri": "/jobs",
         "parentUri": "",
         "absoluteParentUri": "https://app.zencoder.com/api/{version}",
-        "path": "simple-header.raml",
+        "sourceMap": {
+          "path": "simple-header.raml"
+        },
         "uriParameters": [
           {
             "name": "version",
@@ -167,7 +177,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "simple-header.raml"
+            "sourceMap": {
+              "path": "simple-header.raml"
+            }
           }
         ]
       }
@@ -179,7 +191,9 @@
         }
       }
     },
-    "path": "simple-header.raml"
+    "sourceMap": {
+      "path": "simple-header.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

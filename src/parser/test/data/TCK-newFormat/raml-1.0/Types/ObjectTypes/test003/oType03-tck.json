@@ -27,7 +27,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType03.raml"
+            "sourceMap": {
+              "path": "oType03.raml"
+            }
           },
           {
             "name": "initial_comments",
@@ -48,7 +50,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType03.raml"
+            "sourceMap": {
+              "path": "oType03.raml"
+            }
           },
           {
             "name": "user",
@@ -69,7 +73,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType03.raml"
+            "sourceMap": {
+              "path": "oType03.raml"
+            }
           },
           {
             "name": "time_stamp",
@@ -90,7 +96,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType03.raml"
+            "sourceMap": {
+              "path": "oType03.raml"
+            }
           },
           {
             "name": "created",
@@ -111,7 +119,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "oType03.raml"
+            "sourceMap": {
+              "path": "oType03.raml"
+            }
           }
         ],
         "minProperties": 2,
@@ -141,11 +151,15 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "oType03.raml"
+        "sourceMap": {
+          "path": "oType03.raml"
+        }
       }
     ],
     "title": "My API With Types",
-    "path": "oType03.raml"
+    "sourceMap": {
+      "path": "oType03.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

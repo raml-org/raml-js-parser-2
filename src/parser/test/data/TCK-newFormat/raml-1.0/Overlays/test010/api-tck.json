@@ -12,7 +12,9 @@
         "completeRelativeUri": "/resource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "NewExtension2.raml"
+        "sourceMap": {
+          "path": "NewExtension2.raml"
+        }
       },
       {
         "relativeUri": "/anotherResource",
@@ -31,11 +33,15 @@
         "completeRelativeUri": "/anotherResource",
         "parentUri": "",
         "absoluteParentUri": "",
-        "path": "NewExtension2.raml"
+        "sourceMap": {
+          "path": "NewExtension2.raml"
+        }
       }
     ],
     "extends": "NewOverlay.raml",
-    "path": "NewExtension2.raml"
+    "sourceMap": {
+      "path": "NewExtension2.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Extension",

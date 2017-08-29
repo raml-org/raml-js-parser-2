@@ -30,7 +30,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "typeFragment.raml"
+            "sourceMap": {
+              "path": "typeFragment.raml"
+            }
           },
           {
             "name": "p2",
@@ -54,7 +56,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "typeFragment.raml"
+            "sourceMap": {
+              "path": "typeFragment.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -66,11 +70,15 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "typeFragment.raml"
+        "sourceMap": {
+          "path": "typeFragment.raml"
+        }
       }
     ],
     "title": "BaseUri error message",
-    "path": "api.raml"
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

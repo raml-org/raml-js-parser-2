@@ -24,7 +24,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "types-pattern-properties.raml"
+            "sourceMap": {
+              "path": "types-pattern-properties.raml"
+            }
           },
           {
             "name": "age",
@@ -42,7 +44,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "types-pattern-properties.raml"
+            "sourceMap": {
+              "path": "types-pattern-properties.raml"
+            }
           },
           {
             "name": "/^note\\d+$/",
@@ -63,7 +67,9 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "path": "types-pattern-properties.raml"
+            "sourceMap": {
+              "path": "types-pattern-properties.raml"
+            }
           }
         ],
         "__METADATA__": {
@@ -78,12 +84,16 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "path": "types-pattern-properties.raml"
+        "sourceMap": {
+          "path": "types-pattern-properties.raml"
+        }
       }
     ],
     "title": "My API With Types",
     "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n",
-    "path": "types-pattern-properties.raml"
+    "sourceMap": {
+      "path": "types-pattern-properties.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
