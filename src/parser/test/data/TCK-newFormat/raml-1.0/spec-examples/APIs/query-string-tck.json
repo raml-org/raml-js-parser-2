@@ -206,7 +206,7 @@
                   "type": [
                     "union"
                   ],
-                  "oneOf": [
+                  "anyOf": [
                     "lat-long",
                     "loc"
                   ]

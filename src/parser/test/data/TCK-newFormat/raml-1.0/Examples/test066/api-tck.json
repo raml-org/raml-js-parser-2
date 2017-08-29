@@ -79,7 +79,7 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
+        "anyOf": [
           "nil",
           "t"
         ],
@@ -114,7 +114,7 @@
         ],
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
+        "anyOf": [
           "nil",
           "t"
         ],

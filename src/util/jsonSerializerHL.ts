@@ -1582,7 +1582,7 @@ class TypeTransformer extends BasicTransformation{
             let union = <typeExpressions.Union>expr;
             result = {
                 type: ["union"],
-                oneOf: []
+                anyOf: []
             };
             let components = this.toOptionsArray(union);
             for(var c of components){
@@ -1591,9 +1591,9 @@ class TypeTransformer extends BasicTransformation{
                     break;
                 }
                 let c1 = this.expressionToObject(c,escapeData);
-                result.oneOf.push(c1);
+                result.anyOf.push(c1);
             }
-            result.oneOf = _.unique(result.oneOf).sort()
+            result.anyOf = _.unique(result.anyOf).sort()
         }
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;

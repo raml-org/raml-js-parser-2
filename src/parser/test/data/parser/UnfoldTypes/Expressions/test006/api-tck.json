@@ -111,7 +111,7 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "oneOf": [
+                "anyOf": [
                   {
                     "type": [
                       "array"
@@ -121,7 +121,7 @@
                         "type": [
                           "union"
                         ],
-                        "oneOf": [
+                        "anyOf": [
                           "T1",
                           "T2"
                         ]

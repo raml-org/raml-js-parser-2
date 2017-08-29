@@ -40,7 +40,7 @@
             "type": [
               "union"
             ],
-            "oneOf": [
+            "anyOf": [
               "Person",
               "string"
             ]

@@ -2462,7 +2462,7 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
+            "anyOf": [
               "any",
               "nil"
             ],
@@ -3116,7 +3116,7 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
+            "anyOf": [
               "nil",
               "types.Comment"
             ],
@@ -3258,7 +3258,7 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
+            "anyOf": [
               "nil",
               "types.Location"
             ],
@@ -3671,7 +3671,7 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "oneOf": [
+                "anyOf": [
                   "nil",
                   "types.Comment"
                 ],
@@ -3813,7 +3813,7 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "oneOf": [
+                "anyOf": [
                   "nil",
                   "types.Location"
                 ],
@@ -4169,7 +4169,7 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
+            "anyOf": [
               "nil",
               "types.Comment"
             ],
@@ -4334,7 +4334,7 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
+            "anyOf": [
               "nil",
               "types.Location"
             ],
@@ -4863,7 +4863,7 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "oneOf": [
+                "anyOf": [
                   "nil",
                   "types.Comment"
                 ],
@@ -5028,7 +5028,7 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "oneOf": [
+                "anyOf": [
                   "nil",
                   "types.Location"
                 ],
@@ -5206,7 +5206,7 @@
             },
             "mediaType": "application/raml+yaml",
             "typePropertyKind": "TYPE_EXPRESSION",
-            "oneOf": [
+            "anyOf": [
               "types.MediaSearchFirstType",
               "types.MediaSearchSecondType"
             ],
@@ -5259,7 +5259,7 @@
                 "type": [
                   "union"
                 ],
-                "oneOf": [
+                "anyOf": [
                   "types.MediaSearchFirstType",
                   "types.MediaSearchSecondType"
                 ]
@@ -6791,7 +6791,7 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "oneOf": [
+                    "anyOf": [
                       "string",
                       "types.OkStatus"
                     ],
@@ -6905,7 +6905,7 @@
                     ],
                     "mediaType": "application/raml+yaml",
                     "typePropertyKind": "TYPE_EXPRESSION",
-                    "oneOf": [
+                    "anyOf": [
                       "string",
                       "types.OkStatus"
                     ],
@@ -9339,7 +9339,7 @@
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "oneOf": [
+                            "anyOf": [
                               "string",
                               "types.OkStatus"
                             ],
@@ -9687,7 +9687,7 @@
                                 ],
                                 "mediaType": "application/raml+yaml",
                                 "typePropertyKind": "TYPE_EXPRESSION",
-                                "oneOf": [
+                                "anyOf": [
                                   "string",
                                   "types.OkStatus"
                                 ],
@@ -10538,7 +10538,7 @@
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "oneOf": [
+                            "anyOf": [
                               "string",
                               "types.OkStatus"
                             ],
@@ -10765,7 +10765,7 @@
                             ],
                             "mediaType": "application/raml+yaml",
                             "typePropertyKind": "TYPE_EXPRESSION",
-                            "oneOf": [
+                            "anyOf": [
                               "string",
                               "types.OkStatus"
                             ],

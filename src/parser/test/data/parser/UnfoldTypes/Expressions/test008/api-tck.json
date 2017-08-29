@@ -107,7 +107,7 @@
                     "type": [
                       "union"
                     ],
-                    "oneOf": [
+                    "anyOf": [
                       "T1",
                       "T2",
                       "T3",

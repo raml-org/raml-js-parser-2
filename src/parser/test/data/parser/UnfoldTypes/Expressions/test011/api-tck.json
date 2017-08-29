@@ -106,7 +106,7 @@
                     "type": [
                       "union"
                     ],
-                    "oneOf": [
+                    "anyOf": [
                       "<<param2>>",
                       "T3",
                       {
@@ -118,7 +118,7 @@
                             "type": [
                               "union"
                             ],
-                            "oneOf": [
+                            "anyOf": [
                               "<<param1>>",
                               "T1"
                             ]
@@ -171,7 +171,7 @@
                     "type": [
                       "union"
                     ],
-                    "oneOf": [
+                    "anyOf": [
                       "T3",
                       "T4",
                       {
@@ -183,7 +183,7 @@
                             "type": [
                               "union"
                             ],
-                            "oneOf": [
+                            "anyOf": [
                               "T1",
                               "T2"
                             ]

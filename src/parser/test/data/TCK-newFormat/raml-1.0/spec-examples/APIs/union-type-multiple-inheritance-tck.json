@@ -188,7 +188,7 @@
             "type": [
               "union"
             ],
-            "oneOf": [
+            "anyOf": [
               "Cat",
               "Dog"
             ]

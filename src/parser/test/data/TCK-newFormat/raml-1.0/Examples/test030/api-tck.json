@@ -253,7 +253,7 @@
         },
         "mediaType": "application/raml+yaml",
         "typePropertyKind": "TYPE_EXPRESSION",
-        "oneOf": [
+        "anyOf": [
           "amazon-apigateway-integration-HTTP",
           "amazon-apigateway-integration-aws",
           "amazon-apigateway-integration-lambda",

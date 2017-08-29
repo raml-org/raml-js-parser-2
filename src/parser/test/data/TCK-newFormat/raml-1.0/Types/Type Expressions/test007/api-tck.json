@@ -166,7 +166,7 @@
                 "type": [
                   "union"
                 ],
-                "oneOf": [
+                "anyOf": [
                   "Notebook",
                   "Phone"
                 ]

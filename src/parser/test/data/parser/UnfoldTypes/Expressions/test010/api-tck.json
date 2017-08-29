@@ -107,7 +107,7 @@
                     "type": [
                       "union"
                     ],
-                    "oneOf": [
+                    "anyOf": [
                       "T3",
                       "T4",
                       {
@@ -119,7 +119,7 @@
                             "type": [
                               "union"
                             ],
-                            "oneOf": [
+                            "anyOf": [
                               "T1",
                               "T2"
                             ]
