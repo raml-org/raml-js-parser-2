@@ -1,34 +1,47 @@
 {
   "specification": {
-    "traits": {
-      "tr1": {
-        "name": "tr1"
+    "traits": [
+      {
+        "name": "tr1",
+        "path": "api.raml"
       }
-    },
-    "resourceTypes": {
-      "rt1": {
-        "name": "rt1"
+    ],
+    "resourceTypes": [
+      {
+        "name": "rt1",
+        "path": "api.raml"
       }
-    },
+    ],
     "title": "test API",
     "resources": [
       {
-        "methods": {
-          "get": {
+        "methods": [
+          {
             "is": [
               {
-                "tr1": {
-                  "param": "stringValue"
-                }
+                "name": "tr1",
+                "parameters": [
+                  {
+                    "name": "param",
+                    "value": "stringValue"
+                  }
+                ]
               }
             ],
-            "method": "get"
+            "method": "get",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "path": "api.raml"
           }
-        },
+        ],
         "type": {
-          "rt1": {
-            "param": "stringValue"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "param",
+              "value": "stringValue"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -44,9 +57,12 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "path": "api.raml"
       }
-    ]
+    ],
+    "path": "api.raml"
   },
   "ramlVersion": "RAML10",
   "type": "Api",
