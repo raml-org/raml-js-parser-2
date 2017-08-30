@@ -15,7 +15,7 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/raml-typesystem.git",
-    "gitBranch" : "hotfix-781",
+    "gitBranch" : "develop",
     "installTypings" : true
   },
   "raml-xml-validation" : {
