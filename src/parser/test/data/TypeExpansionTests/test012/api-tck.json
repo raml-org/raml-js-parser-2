@@ -11,72 +11,34 @@
             ],
             "properties": [
               {
-                "type": [
-                  "number"
-                ],
-                "name": "utp",
-                "required": true
-              },
-              {
                 "name": "p1",
                 "type": [
                   "object"
                 ],
                 "properties": [
+                  {
+                    "type": [
+                      "T1"
+                    ],
+                    "name": "p1",
+                    "required": false
+                  },
                   {
                     "type": [
                       "number"
                     ],
                     "name": "utp",
                     "required": true
-                  },
-                  {
-                    "type": [
-                      "T1"
-                    ],
-                    "name": "p1",
-                    "required": false
                   }
                 ],
                 "required": false
-              }
-            ]
-          },
-          {
-            "name": "T1",
-            "type": [
-              "object"
-            ],
-            "properties": [
+              },
               {
                 "type": [
                   "number"
                 ],
                 "name": "utp",
                 "required": true
-              },
-              {
-                "name": "p1",
-                "type": [
-                  "object"
-                ],
-                "properties": [
-                  {
-                    "type": [
-                      "object"
-                    ],
-                    "name": "utp",
-                    "required": true
-                  },
-                  {
-                    "type": [
-                      "T1"
-                    ],
-                    "name": "p1",
-                    "required": false
-                  }
-                ],
-                "required": false
               }
             ]
           },
@@ -87,34 +49,34 @@
             ],
             "properties": [
               {
-                "type": [
-                  "object"
-                ],
-                "name": "utp",
-                "required": true
-              },
-              {
                 "name": "p1",
                 "type": [
                   "object"
                 ],
                 "properties": [
+                  {
+                    "type": [
+                      "T1"
+                    ],
+                    "name": "p1",
+                    "required": false
+                  },
                   {
                     "type": [
                       "number"
                     ],
                     "name": "utp",
                     "required": true
-                  },
-                  {
-                    "type": [
-                      "T1"
-                    ],
-                    "name": "p1",
-                    "required": false
                   }
                 ],
                 "required": false
+              },
+              {
+                "type": [
+                  "object"
+                ],
+                "name": "utp",
+                "required": true
               }
             ]
           },
@@ -125,12 +87,43 @@
             ],
             "properties": [
               {
+                "name": "p1",
                 "type": [
                   "object"
                 ],
+                "properties": [
+                  {
+                    "type": [
+                      "T1"
+                    ],
+                    "name": "p1",
+                    "required": false
+                  },
+                  {
+                    "type": [
+                      "object"
+                    ],
+                    "name": "utp",
+                    "required": true
+                  }
+                ],
+                "required": false
+              },
+              {
+                "type": [
+                  "number"
+                ],
                 "name": "utp",
                 "required": true
-              },
+              }
+            ]
+          },
+          {
+            "name": "T1",
+            "type": [
+              "object"
+            ],
+            "properties": [
               {
                 "name": "p1",
                 "type": [
@@ -139,20 +132,27 @@
                 "properties": [
                   {
                     "type": [
-                      "object"
-                    ],
-                    "name": "utp",
-                    "required": true
-                  },
-                  {
-                    "type": [
                       "T1"
                     ],
                     "name": "p1",
                     "required": false
+                  },
+                  {
+                    "type": [
+                      "object"
+                    ],
+                    "name": "utp",
+                    "required": true
                   }
                 ],
                 "required": false
+              },
+              {
+                "type": [
+                  "object"
+                ],
+                "name": "utp",
+                "required": true
               }
             ]
           }

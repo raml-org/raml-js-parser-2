@@ -9,6 +9,13 @@
         "properties": [
           {
             "type": [
+              "T1"
+            ],
+            "name": "p1",
+            "required": false
+          },
+          {
+            "type": [
               "array"
             ],
             "items": {
@@ -18,13 +25,6 @@
             },
             "name": "p2",
             "required": true
-          },
-          {
-            "type": [
-              "T1"
-            ],
-            "name": "p1",
-            "required": false
           }
         ],
         "sourceMap": {
@@ -44,6 +44,13 @@
             "properties": [
               {
                 "type": [
+                  "T2"
+                ],
+                "name": "r1",
+                "required": false
+              },
+              {
+                "type": [
                   "array"
                 ],
                 "items": {
@@ -53,13 +60,6 @@
                 },
                 "name": "r2",
                 "required": true
-              },
-              {
-                "type": [
-                  "T2"
-                ],
-                "name": "r1",
-                "required": false
               }
             ],
             "name": "q1",

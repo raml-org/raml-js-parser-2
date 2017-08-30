@@ -8,45 +8,18 @@
         ],
         "properties": [
           {
-            "type": [
-              "array"
-            ],
-            "items": {
-              "name": "T1",
-              "type": [
-                "object"
-              ],
-              "properties": [
-                {
-                  "type": [
-                    "array"
-                  ],
-                  "items": {
-                    "type": [
-                      "T1"
-                    ]
-                  },
-                  "name": "p2",
-                  "required": true
-                },
-                {
-                  "type": [
-                    "T1"
-                  ],
-                  "name": "p1",
-                  "required": false
-                }
-              ]
-            },
-            "name": "p2",
-            "required": true
-          },
-          {
             "name": "p1",
             "type": [
               "object"
             ],
             "properties": [
+              {
+                "type": [
+                  "T1"
+                ],
+                "name": "p1",
+                "required": false
+              },
               {
                 "type": [
                   "array"
@@ -58,16 +31,43 @@
                 },
                 "name": "p2",
                 "required": true
-              },
-              {
-                "type": [
-                  "T1"
-                ],
-                "name": "p1",
-                "required": false
               }
             ],
             "required": false
+          },
+          {
+            "type": [
+              "array"
+            ],
+            "items": {
+              "name": "T1",
+              "type": [
+                "object"
+              ],
+              "properties": [
+                {
+                  "type": [
+                    "T1"
+                  ],
+                  "name": "p1",
+                  "required": false
+                },
+                {
+                  "type": [
+                    "array"
+                  ],
+                  "items": {
+                    "type": [
+                      "T1"
+                    ]
+                  },
+                  "name": "p2",
+                  "required": true
+                }
+              ]
+            },
+            "name": "p2",
+            "required": true
           }
         ],
         "sourceMap": {
@@ -86,6 +86,43 @@
             ],
             "properties": [
               {
+                "name": "r1",
+                "type": [
+                  "object"
+                ],
+                "properties": [
+                  {
+                    "type": [
+                      "object"
+                    ],
+                    "properties": [
+                      {
+                        "type": [
+                          "T2"
+                        ],
+                        "name": "r1",
+                        "required": false
+                      },
+                      {
+                        "type": [
+                          "array"
+                        ],
+                        "items": {
+                          "type": [
+                            "T2"
+                          ]
+                        },
+                        "name": "r2",
+                        "required": true
+                      }
+                    ],
+                    "name": "q1",
+                    "required": true
+                  }
+                ],
+                "required": false
+              },
+              {
                 "type": [
                   "array"
                 ],
@@ -102,6 +139,13 @@
                       "properties": [
                         {
                           "type": [
+                            "T2"
+                          ],
+                          "name": "r1",
+                          "required": false
+                        },
+                        {
+                          "type": [
                             "array"
                           ],
                           "items": {
@@ -111,13 +155,6 @@
                           },
                           "name": "r2",
                           "required": true
-                        },
-                        {
-                          "type": [
-                            "T2"
-                          ],
-                          "name": "r1",
-                          "required": false
                         }
                       ],
                       "name": "q1",
@@ -127,43 +164,6 @@
                 },
                 "name": "r2",
                 "required": true
-              },
-              {
-                "name": "r1",
-                "type": [
-                  "object"
-                ],
-                "properties": [
-                  {
-                    "type": [
-                      "object"
-                    ],
-                    "properties": [
-                      {
-                        "type": [
-                          "array"
-                        ],
-                        "items": {
-                          "type": [
-                            "T2"
-                          ]
-                        },
-                        "name": "r2",
-                        "required": true
-                      },
-                      {
-                        "type": [
-                          "T2"
-                        ],
-                        "name": "r1",
-                        "required": false
-                      }
-                    ],
-                    "name": "q1",
-                    "required": true
-                  }
-                ],
-                "required": false
               }
             ],
             "name": "q1",

@@ -62,19 +62,26 @@
         ],
         "properties": [
           {
+            "name": "t3Prop",
+            "type": [
+              "string"
+            ],
+            "required": true
+          },
+          {
             "type": [
               "object"
             ],
             "properties": [
               {
-                "name": "p2",
+                "name": "p1",
                 "type": [
                   "string"
                 ],
                 "required": true
               },
               {
-                "name": "p1",
+                "name": "p2",
                 "type": [
                   "string"
                 ],
@@ -83,13 +90,6 @@
             ],
             "name": "//",
             "required": false
-          },
-          {
-            "name": "t3Prop",
-            "type": [
-              "string"
-            ],
-            "required": true
           }
         ],
         "maxProperties": 10,

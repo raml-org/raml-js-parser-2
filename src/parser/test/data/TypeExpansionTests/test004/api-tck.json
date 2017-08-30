@@ -26,14 +26,14 @@
         ],
         "properties": [
           {
-            "name": "p1",
+            "name": "p2",
             "type": [
               "string"
             ],
             "required": true
           },
           {
-            "name": "p2",
+            "name": "p1",
             "type": [
               "string"
             ],
@@ -82,14 +82,14 @@
               ],
               "properties": [
                 {
-                  "name": "p1",
+                  "name": "p2",
                   "type": [
                     "string"
                   ],
                   "required": true
                 },
                 {
-                  "name": "p2",
+                  "name": "p1",
                   "type": [
                     "string"
                   ],
@@ -155,14 +155,14 @@
               ],
               "properties": [
                 {
-                  "name": "p1",
+                  "name": "p2",
                   "type": [
                     "string"
                   ],
                   "required": true
                 },
                 {
-                  "name": "p2",
+                  "name": "p1",
                   "type": [
                     "string"
                   ],
