@@ -969,7 +969,10 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
         return;
     }
     if (node.isElement()){
-        var vl=node.name();
+        let vl=node.name();
+        if(typeOfContainingTemplate(node)!=null){
+            vl = vl.replace(/<<[^<>]*>>/g,'');
+        }
         if (typeof vl=="string") {
             if (vl != null && vl.indexOf(" ") != -1) {
                 v.accept(createIssue1(messageRegistry.SPACES_IN_KEY, { value : vl}, node,true));

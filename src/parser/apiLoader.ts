@@ -32,6 +32,7 @@ export type IParseResult=hl.IParseResult;
 import universeProvider=require("../parser/definition-system/universeProvider")
 
 export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Object>{
+    options = options || {};
     return parse(ramlPath,options).then(expanded=>{
         return jsonSerializerHL.dump(expanded,{
             rootNodeDetails: true,
@@ -43,6 +44,7 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
 }
 
 export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object{
+    options = options || {};
     let expanded = parseSync(ramlPath,options);
     return jsonSerializerHL.dump(expanded,{
         rootNodeDetails: true,
