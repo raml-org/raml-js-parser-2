@@ -31,8 +31,20 @@ export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../parser/definition-system/universeProvider")
 
-
 export function load(ramlPath:string,options?:parserCoreApi.LoadOptions):Promise<Object>{
+    return parse(ramlPath,options).then(expanded=>{
+    	let sOptions = toSerializationOptions(options);
+        return jsonSerializerHL.dump(expanded,sOptions);
+    });
+}
+
+export function loadSync(ramlPath:string,options?:parserCoreApi.LoadOptions):Object{
+    let expanded = parseSync(ramlPath,options);
+    let sOptions = toSerializationOptions(options);
+    return jsonSerializerHL.dump(expanded,sOptions);
+}
+
+export function parse(ramlPath:string,options?:parserCoreApi.LoadOptions):Promise<hl.IHighLevelNode>{
     options = options || {};
     return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
@@ -42,12 +54,11 @@ export function load(ramlPath:string,options?:parserCoreApi.LoadOptions):Promise
         else{
             expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode);
         }
-        let sOptions = toSerializationOptions(options);
-        return jsonSerializerHL.dump(expanded,sOptions);
+        return expanded;
     });
 }
 
-export function loadSync(ramlPath:string,options?:parserCoreApi.LoadOptions):Object{
+export function parseSync(ramlPath:string,options?:parserCoreApi.LoadOptions):hl.IHighLevelNode{
     options = options || {};
     var hlNode = loadRAMLInternalHL(ramlPath);
     var expanded:hl.IHighLevelNode;
@@ -62,11 +73,11 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.LoadOptions):Obj
     else {
         expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode)||hlNode;
     }
-    let sOptions = toSerializationOptions(options);
-    return jsonSerializerHL.dump(expanded,sOptions);
+    return expanded;
 }
 
-function toSerializationOptions(options: parserCoreApi.LoadOptions) {
+function toSerializationOptions(options: parserCoreApi.LoadOptions):jsonSerializerHL.SerializeOptions {
+    options = options || {};
     return {
         rootNodeDetails: true,
         attributeDefaults: true,

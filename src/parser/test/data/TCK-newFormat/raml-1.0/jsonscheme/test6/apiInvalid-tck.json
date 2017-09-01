@@ -4,9 +4,9 @@
       {
         "name": "MyType",
         "displayName": "MyType",
-        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType",
+        "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType",
         "type": [
-          "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
+          "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
         ],
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -18,7 +18,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
         "sourceMap": {
-          "path": "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhbWwtb3JnL3JhbWwtanMtcGFyc2VyLTIvZGV2ZWxvcC9zcmMvcGFyc2VyL3Rlc3QvZGF0YS9wYXJzZXIvanNvbnNjaGVtZS90ZXN0Ni9yZW1vdGVTY2hlbWUuanNvbi8vZGVmaW5pdGlvbnMvSW5uZXJUeXBl.json"
+          "path": "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhbWwtb3JnL3JhbWwtanMtcGFyc2VyLTIvbWFzdGVyL3NyYy9wYXJzZXIvdGVzdC9kYXRhL3BhcnNlci9qc29uc2NoZW1lL3Rlc3Q2L3JlbW90ZVNjaGVtZS5qc29uLy9kZWZpbml0aW9ucy9Jbm5lclR5cGU.json"
         }
       }
     ],
@@ -103,12 +103,12 @@
         "start": {
           "line": 12,
           "column": 8,
-          "position": 286
+          "position": 285
         },
         "end": {
           "line": 12,
           "column": 15,
-          "position": 293
+          "position": 292
         }
       }
     }

@@ -936,7 +936,7 @@ describe('XML parsing tests', function () {
         testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid3.raml"), 1);
     })
     it("XML parsing tests 5" ,function() {
-        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid4.raml"), 1);
+        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid4.raml"));
     })
 
 

@@ -21,6 +21,7 @@ import services=def
 import yaml=require("yaml-ast-parser")
 import core=require("./wrapped-ast/parserCore");
 import wrapperHelper=require("./wrapped-ast/wrapperHelper");
+import jsonSerializerHL = require("../util/jsonSerializerHL");
 import factory10 = require("./artifacts/raml10factory")
 import factory08 = require("./artifacts/raml08factory")
 import universeHelpers = require("./tools/universeHelpers")
@@ -708,6 +709,63 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         this._value=this.calcValue();
         return this._value;
     }
+
+    plainValue():any{
+        let val = this.value();
+        if(StructuredValue.isInstance(val)){
+            let sVal = (<StructuredValue>val);
+            let llNode = sVal.lowLevel();
+            val = llNode ? llNode.dumpToObject() : null;
+
+            let prop = this.property();
+            let rangeType = prop.range();
+            let propName = prop.nameId();
+            if (rangeType.isAssignableFrom("Reference")) {
+                let key = Object.keys(val)[0];
+                let name = sVal.valueName();
+                let refVal = val[key];
+                if (refVal === undefined) {
+                    refVal = null;
+                }
+                val = {
+                    name: name,
+                    structuredValue: refVal
+                }
+            }
+            else if (propName == "type") {
+                let llNode = this.lowLevel();
+                let tdl = null;
+                let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                let tNode = new ASTNodeImpl(llNode, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
+                tNode.patchType(builder.doDescrimination(tNode));
+                val = tNode;
+            }
+            else if (propName == "items" && typeof val === "object") {
+                let isArr = Array.isArray(val);
+                let isObj = !isArr;
+                if (isArr) {
+                    isObj = _.find(val, x=>typeof(x) == "object") != null;
+                }
+                if (isObj) {
+                    val = null;
+                    let a = this.parent().lowLevel();
+                    let tdl = null;
+                    a.children().forEach(x=> {
+                        if (x.key() == "items") {
+                            let td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
+                            let hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
+                            let tNode = new ASTNodeImpl(x, this.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
+                            tNode.patchType(builder.doDescrimination(tNode));
+                            val = tNode;
+                        }
+                    });
+                }
+            }
+        }
+        return val;
+    }
+
     private calcValue():any{
         if (this._computed){
             return this.computedValue(this.property().nameId());
@@ -2190,6 +2248,15 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     resetRuntimeTypes(){
         delete this._associatedDef;
         this.elements().forEach(x=>(<ASTNodeImpl>x).resetRuntimeTypes());
+    }
+
+    /**
+     * Turns high level model node into an object.
+     * @param options serialization options
+     * @return Stringifyable object representation of the node.
+     **/
+    toJSON(options:jsonSerializerHL.SerializeOptions):any{
+        return new jsonSerializerHL.JsonSerializer(options).dump(this);
     }
 }
 
