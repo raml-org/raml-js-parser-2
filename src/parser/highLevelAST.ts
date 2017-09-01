@@ -1,6 +1,7 @@
 import lowLevel = require("./lowLevelAST")
 import ds=require("raml-definition-system")
 import typeSystem=ds.rt.nominalTypes;
+import jsonSerializerHL = require("../util/jsonSerializerHL");
 import rTypes=ds.rt;
 export type ITypeDefinition=typeSystem.ITypeDefinition;
 export type IProperty=typeSystem.IProperty;
@@ -427,6 +428,16 @@ export interface IAttribute extends IParseResult {
      */
     value(): any;
 
+
+    /**
+     * Plain attribute value. Unlike the 'value', for parametrized template
+     * references and annotation instances this method returns plain objects
+     * or arrays instead of StructuredValue instances. For inline type instances
+     * (i.e. those types which are defined as 'type' or 'items' values) the method
+     * return IHighLevelNode instances describing the types.
+     */
+    plainValue(): any;
+
     /**
      * Set key to the underlying YAML node
      */
@@ -650,6 +661,13 @@ export interface IHighLevelNode extends IParseResult {
      * returns the last slave in the dependency sequence.
      */
     getLastSlaveCounterPart() : IHighLevelNode;
+
+    /**
+     * Turns high level model node into an object.
+     * @param options serialization options
+     * @return Stringifyable object representation of the node.
+     **/
+    toJSON(options:jsonSerializerHL.SerializeOptions):any
 }
 
 export interface IEditableHighLevelNode extends IHighLevelNode {

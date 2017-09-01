@@ -8,7 +8,7 @@ import services=def
 export function def2Doc(t:def.NodeClass,refPrefix:string=''):string{
     //result.push("<input type='checkbox' />Hello</input>")
 
-    return hide() +
+    return head() + hide() +
         //generateAdjust("inherited","Show inherited properties") +
         //generateAdjust("issue","Show issues") +
         //generateAdjust("clarify","Show things to clarify") +
@@ -18,6 +18,27 @@ export function def2Doc(t:def.NodeClass,refPrefix:string=''):string{
         "<h1 id='-a-name-appendix'><a name='TypeTables'>Type tables</a></h1><hr/>" +
         genDoc(t,{},refPrefix).join("\n");
 }
+function head(){
+    return `<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IUniverseDescriptor | RAML JS Parser 2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script src="./assets/js/modernizr.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+`;
+}
+
 export function hide(){
     return `<script>
     function hide(className,visible){
@@ -253,7 +274,9 @@ export class NameColumn implements IColumn<def.Property>{
     }
 
     value(c:def.Property):any {
-        var name = (c.getAdapter(services.RAMLPropertyDocumentationService).docTableName() ? c.getAdapter(services.RAMLPropertyDocumentationService).docTableName() : c.nameId());
+        //let docTableName = c.getAdapter(services.RAMLPropertyDocumentationService).docTableName();
+        //let name = (docTableName ? docTableName : c.nameId());
+        let name = c.nameId();
         return "<strong>" + name + "</strong>" +(c.isRequired()?"":"?")+(c.isKey()?"<em> (key) </em>":"");
     }
 

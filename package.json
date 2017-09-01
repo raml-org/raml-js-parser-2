@@ -9,6 +9,7 @@
     "generateTckSuite": "node dist/parser/test/scripts/generateTCKMocha.js && tsc src/parser/test/TCK2.ts --outDir dist -m commonjs --sourceMap && tsc src/parser/test/libraryExpansion.ts --outDir dist -m commonjs --sourceMap",
     "tck": "node dist/parser/test/scripts/launchTCKRepo.js",
     "generateDocumentation": "node dist/parser/tools/packageTSParser.js -skipSources",
+    "generateTables": "node dist/parser/tools/docGenScript.js",
     "generateBrowserVersion": "node dist/browserVersionGenerator/browserVersionGenerator.js",
     "generateBrowserVersionDev": "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
     "pullall": "dev-env-installer pullall",

@@ -32,15 +32,7 @@ export type IParseResult=hl.IParseResult;
 import universeProvider=require("../parser/definition-system/universeProvider")
 
 export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Object>{
-    options = options || {};
-    return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
-        var expanded:hl.IHighLevelNode;
-        if(!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
-            expanded = expanderLL.expandLibrariesHL(hlNode);
-        }
-        else{
-            expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode);
-        }
+    return parse(ramlPath,options).then(expanded=>{
         return jsonSerializerHL.dump(expanded,{
             rootNodeDetails: true,
             attributeDefaults: true,
@@ -51,6 +43,30 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
 }
 
 export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object{
+    let expanded = parseSync(ramlPath,options);
+    return jsonSerializerHL.dump(expanded,{
+        rootNodeDetails: true,
+        attributeDefaults: true,
+        serializeMetadata: true,
+        unfoldTypes: options.unfoldTypes
+    });
+}
+
+export function parse(ramlPath:string,options?:parserCoreApi.Options2):Promise<hl.IHighLevelNode>{
+    options = options || {};
+    return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
+        var expanded:hl.IHighLevelNode;
+        if(!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
+            expanded = expanderLL.expandLibrariesHL(hlNode);
+        }
+        else{
+            expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode);
+        }
+        return expanded;
+    });
+}
+
+export function parseSync(ramlPath:string,options?:parserCoreApi.Options2):hl.IHighLevelNode{
     options = options || {};
     var hlNode = loadRAMLInternalHL(ramlPath);
     var expanded:hl.IHighLevelNode;
@@ -65,12 +81,7 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
     else {
         expanded = expanderLL.expandTraitsAndResourceTypesHL(hlNode)||hlNode;
     }
-    return jsonSerializerHL.dump(expanded,{
-        rootNodeDetails: true,
-        attributeDefaults: true,
-        serializeMetadata: true,
-        unfoldTypes: options.unfoldTypes
-    });
+    return expanded;
 }
 
 /***

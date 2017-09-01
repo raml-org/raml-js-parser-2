@@ -484,53 +484,9 @@ export class JsonSerializer {
             }
             else {
                 if (hlImpl.isStructuredValue(val)) {
-                    var sVal = (<hlImpl.StructuredValue>val);
-                    var llNode = sVal.lowLevel();
-                    val = llNode ? llNode.dumpToObject() : null;
-                    var propName = prop.nameId();
-                    if (rangeType.isAssignableFrom("Reference")) {
-                        //TODO implement as transformer
-                        var key = Object.keys(val)[0];
-                        var name = sVal.valueName();
-                        var refVal = val[key];
-                        if (refVal === undefined) {
-                            refVal = null;
-                        }
-                        val = {
-                            name: name,
-                            structuredValue: refVal
-                        }
-                    }
-                    else if (propName == "type") {
-                        var llNode = aNode.lowLevel();
-                        var tdl = null;
-                        var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                        var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                        var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name))
-                        tNode.patchType(builder.doDescrimination(tNode));
-                        val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
-                    }
-                    else if (propName == "items" && typeof val === "object") {
-                        var isArr = Array.isArray(val);
-                        var isObj = !isArr;
-                        if (isArr) {
-                            isObj = _.find(val, x=>typeof(x) == "object") != null;
-                        }
-                        if (isObj) {
-                            val = null;
-                            var a = _node.parent().lowLevel();
-                            var tdl = null;
-                            a.children().forEach(x=> {
-                                if (x.key() == "items") {
-                                    var td = def.getUniverse("RAML10").type(universes.Universe10.TypeDeclaration.name);
-                                    var hasType = def.getUniverse("RAML10").type(universes.Universe10.LibraryBase.name);
-                                    var tNode = new hlImpl.ASTNodeImpl(x, aNode.parent(), td, hasType.property(universes.Universe10.LibraryBase.properties.types.name));
-                                    tNode.patchType(builder.doDescrimination(tNode));
-                                    val = this.dumpInternal(tNode, nodeProperty || aNode.property(),rp, null,true);
-                                    propName = x.key();
-                                }
-                            })
-                        }
+                    val = aNode.plainValue();
+                    if(hlImpl.BasicASTNode.isInstance(val)){
+                        val = this.dumpInternal(val, nodeProperty || aNode.property(),rp, null,true);
                     }
                 }
                 val = applyTransformersMap(aNode, nodeProperty || aNode.property(), val, this.nodeTransformersMap);

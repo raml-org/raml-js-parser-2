@@ -33,6 +33,27 @@ export function load(ramlPath:string,options?:parserCore.Options2):Promise<Objec
 export function loadSync(ramlPath:string,options?:parserCore.Options2):Object{
     return apiLoader.loadSync(ramlPath,options);
 }
+
+/**
+ * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the result contains errors and the 'rejectOnErrors' option is set to 'true'.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @return High level AST root wrapped into a Promise.
+ **/
+export function parse(ramlPath:string,options?:parserCore.Options2):Promise<hl.IHighLevelNode>{
+    return apiLoader.parse(ramlPath,options);
+}
+
+/**
+ * Load RAML synchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @return High level AST root.
+ **/
+export function parseSync(ramlPath:string,options?:parserCore.Options2):hl.IHighLevelNode{
+    return apiLoader.parseSync(ramlPath,options);
+}
+
 /**
  * Load API synchronously. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for Api which contains errors.
  * @param apiPath Path to API: local file system path or Web URL

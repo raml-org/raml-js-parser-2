@@ -1,0 +1,2312 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IUniverseDescriptor | RAML JS Parser 2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script src="./assets/js/modernizr.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<script>
+    function hide(className,visible){
+        var visibleString=visible?"visible":"none";
+        var els=document.getElementsByClassName(className)
+        for (var i=0;i<els.length;i++){
+            els.item(i).setAttribute('style','display:'+visibleString)
+        }
+
+    }</script>
+    <h1 id='-a-name-appendix'><a name='Index'>Index of used types</a></h1><li><a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a></li>
+<li><a href='#AnyType'>AnyType</a></li>
+<li><a href='#Api'>Api</a></li>
+<li><a href='#BasicSecurityScheme'>BasicSecurityScheme</a></li>
+<li><a href='#BodyLike'>BodyLike</a></li>
+<li><a href='#BooleanTypeDeclaration'>BooleanTypeDeclaration</a></li>
+<li><a href='#CustomSecurityScheme'>CustomSecurityScheme</a></li>
+<li><a href='#DateTypeDeclaration'>DateTypeDeclaration</a></li>
+<li><a href='#DigestSecurityScheme'>DigestSecurityScheme</a></li>
+<li><a href='#DocumentationItem'>DocumentationItem</a></li>
+<li><a href='#ExampleString'>ExampleString</a></li>
+<li><a href='#FileTypeDeclaration'>FileTypeDeclaration</a></li>
+<li><a href='#FixedUri'>FixedUri</a></li>
+<li><a href='#FullUriTemplateString'>FullUriTemplateString</a></li>
+<li><a href='#GlobalSchema'>GlobalSchema</a></li>
+<li><a href='#IntegerTypeDeclaration'>IntegerTypeDeclaration</a></li>
+<li><a href='#JSONBody'>JSONBody</a></li>
+<li><a href='#JSonSchemaString'>JSonSchemaString</a></li>
+<li><a href='#MarkdownString'>MarkdownString</a></li>
+<li><a href='#Method'>Method</a></li>
+<li><a href='#MimeType'>MimeType</a></li>
+<li><a href='#NumberTypeDeclaration'>NumberTypeDeclaration</a></li>
+<li><a href='#OAuth1SecurityScheme'>OAuth1SecurityScheme</a></li>
+<li><a href='#OAuth1SecuritySchemeSettings'>OAuth1SecuritySchemeSettings</a></li>
+<li><a href='#OAuth2SecurityScheme'>OAuth2SecurityScheme</a></li>
+<li><a href='#OAuth2SecuritySchemeSettings'>OAuth2SecuritySchemeSettings</a></li>
+<li><a href='#Parameter'>Parameter</a></li>
+<li><a href='#ParameterLocation'>ParameterLocation</a></li>
+<li><a href='#RelativeUriString'>RelativeUriString</a></li>
+<li><a href='#Resource'>Resource</a></li>
+<li><a href='#ResourceType'>ResourceType</a></li>
+<li><a href='#ResourceTypeRef'>ResourceTypeRef</a></li>
+<li><a href='#Response'>Response</a></li>
+<li><a href='#SchemaString'>SchemaString</a></li>
+<li><a href='#SecuritySchemePart'>SecuritySchemePart</a></li>
+<li><a href='#SecuritySchemeRef'>SecuritySchemeRef</a></li>
+<li><a href='#SecuritySchemeSettings'>SecuritySchemeSettings</a></li>
+<li><a href='#StatusCodeString'>StatusCodeString</a></li>
+<li><a href='#StringTypeDeclaration'>StringTypeDeclaration</a></li>
+<li><a href='#Trait'>Trait</a></li>
+<li><a href='#TraitRef'>TraitRef</a></li>
+<li><a href='#XMLBody'>XMLBody</a></li>
+<li><a href='#XMLSchemaString'>XMLSchemaString</a></li><h1 id='-a-name-appendix'><a name='TypeHierarchy'>Complete Type hierarchy</a></h1>
+<ul>
+<li><a href='#Api'>Api</a><ul></ul></li>
+<li><a href='#ValueType'>ValueType</a><ul><li><a href='#StringType'>StringType</a><ul><li><a href='#UriTemplate'>UriTemplate</a><ul><li><a href='#RelativeUriString'>RelativeUriString</a><ul></ul></li><li><a href='#FullUriTemplateString'>FullUriTemplateString</a><ul></ul></li></ul></li><li><a href='#FixedUri'>FixedUri</a><ul></ul></li><li><a href='#MarkdownString'>MarkdownString</a><ul></ul></li><li><a href='#SchemaString'>SchemaString</a><ul><li><a href='#JSonSchemaString'>JSonSchemaString</a><ul></ul></li><li><a href='#XMLSchemaString'>XMLSchemaString</a><ul></ul></li></ul></li><li><a href='#ExampleString'>ExampleString</a><ul><li><a href='#JSONExample'>JSONExample</a><ul></ul></li><li><a href='#XMLExample'>XMLExample</a><ul></ul></li></ul></li><li><a href='#StatusCodeString'>StatusCodeString</a><ul></ul></li><li><a href='#MimeType'>MimeType</a><ul></ul></li></ul></li><li><a href='#AnyType'>AnyType</a><ul></ul></li><li><a href='#NumberType'>NumberType</a><ul></ul></li><li><a href='#BooleanType'>BooleanType</a><ul></ul></li><li><a href='#Reference'>Reference</a><ul><li><a href='#ResourceTypeRef'>ResourceTypeRef</a><ul></ul></li><li><a href='#TraitRef'>TraitRef</a><ul></ul></li><li><a href='#SecuritySchemeRef'>SecuritySchemeRef</a><ul></ul></li></ul></li></ul></li>
+<li><a href='#Parameter'>Parameter</a><ul><li><a href='#StringTypeDeclaration'>StringTypeDeclaration</a><ul></ul></li><li><a href='#BooleanTypeDeclaration'>BooleanTypeDeclaration</a><ul></ul></li><li><a href='#NumberTypeDeclaration'>NumberTypeDeclaration</a><ul><li><a href='#IntegerTypeDeclaration'>IntegerTypeDeclaration</a><ul></ul></li></ul></li><li><a href='#DateTypeDeclaration'>DateTypeDeclaration</a><ul></ul></li><li><a href='#FileTypeDeclaration'>FileTypeDeclaration</a><ul></ul></li></ul></li>
+<li><a href='#ParameterLocation'>ParameterLocation</a><ul></ul></li>
+<li><a href='#RAMLSimpleElement'>RAMLSimpleElement</a><ul><li><a href='#GlobalSchema'>GlobalSchema</a><ul></ul></li><li><a href='#DocumentationItem'>DocumentationItem</a><ul></ul></li></ul></li>
+<li><a href='#Response'>Response</a><ul></ul></li>
+<li><a href='#BodyLike'>BodyLike</a><ul><li><a href='#XMLBody'>XMLBody</a><ul></ul></li><li><a href='#JSONBody'>JSONBody</a><ul></ul></li></ul></li>
+<li><a href='#MethodBase'>MethodBase</a><ul><li><a href='#Method'>Method</a><ul></ul></li><li><a href='#Trait'>Trait</a><ul></ul></li><li><a href='#SecuritySchemePart'>SecuritySchemePart</a><ul></ul></li></ul></li>
+<li><a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a><ul><li><a href='#OAuth2SecurityScheme'>OAuth2SecurityScheme</a><ul></ul></li><li><a href='#OAuth1SecurityScheme'>OAuth1SecurityScheme</a><ul></ul></li><li><a href='#BasicSecurityScheme'>BasicSecurityScheme</a><ul></ul></li><li><a href='#DigestSecurityScheme'>DigestSecurityScheme</a><ul></ul></li><li><a href='#CustomSecurityScheme'>CustomSecurityScheme</a><ul></ul></li></ul></li>
+<li><a href='#SecuritySchemeSettings'>SecuritySchemeSettings</a><ul><li><a href='#OAuth1SecuritySchemeSettings'>OAuth1SecuritySchemeSettings</a><ul></ul></li><li><a href='#OAuth2SecuritySchemeSettings'>OAuth2SecuritySchemeSettings</a><ul></ul></li></ul></li>
+<li><a href='#ResourceType'>ResourceType</a><ul></ul></li>
+<li><a href='#Resource'>Resource</a><ul></ul></li>
+</ul><h1 id='-a-name-appendix'><a name='TypeTables'>Type tables</a></h1><hr/><h2 class="a" id="FullUriTemplateString">FullUriTemplateString</h2>
+<p>This  type describes absolute uri templates</p>
+
+<table>
+<h2 class="a" id="ParameterLocation">ParameterLocation</h2>
+
+<table>
+Enum values:
+<ul>
+<li>QUERY</li>
+<li>HEADERS</li>
+<li>URI</li>
+<li>FORM</li>
+<li>BURI</li>
+</ul>
+<h2 class="a" id="AnyType">AnyType</h2>
+
+<table>
+<h2 class="a" id="MarkdownString">MarkdownString</h2>
+<p>Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0</p>
+
+<table>
+<h2 class="a"><a name='Parameter'>Parameter</a></h2>
+<p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='StringTypeDeclaration'>StringTypeDeclaration</a></h2>
+requires type=string extends <a href='#Parameter'>Parameter</a><p>Description:Value must be a string</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>pattern</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>enum</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
+</td>
+<td>
+StringType[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>minLength</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters.
+</td>
+<td>
+NumberType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>maxLength</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters.
+</td>
+<td>
+NumberType
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='BooleanTypeDeclaration'>BooleanTypeDeclaration</a></h2>
+requires type=boolean extends <a href='#Parameter'>Parameter</a><p>Description:Value must be a boolean</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='NumberTypeDeclaration'>NumberTypeDeclaration</a></h2>
+requires type=number extends <a href='#Parameter'>Parameter</a><p>Description:Value MUST be a number. Indicate floating point numbers as defined by YAML.</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>minimum</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
+</td>
+<td>
+NumberType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>maximum</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
+</td>
+<td>
+NumberType
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='IntegerTypeDeclaration'>IntegerTypeDeclaration</a></h2>
+requires type=integer extends <a href='#NumberTypeDeclaration'>NumberTypeDeclaration</a><p>Description:Value MUST be a integer.</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>minimum</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
+</td>
+<td>
+NumberType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>maximum</strong>?
+</td>
+<td>
+(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
+</td>
+<td>
+NumberType
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='DateTypeDeclaration'>DateTypeDeclaration</a></h2>
+requires type=date extends <a href='#Parameter'>Parameter</a><p>Description:Value MUST be a string representation of a date as defined in RFC2616 Section 3.3. </p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='FileTypeDeclaration'>FileTypeDeclaration</a></h2>
+requires type=file extends <a href='#Parameter'>Parameter</a><h3>Context requirements:</h3><li>location=ParameterLocation.FORM</li><p>Description:(Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the parameter
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+</td>
+<td>
+StringType<p><em>Default value:string</em></p><p><small>this property may be repeated multiple times, and it will cause duplication of parent node with extra attributes inherited or overriden from this mapping children(only used for multiple parameter types)</small></p><b>Descriminating Property</b>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>location</strong>?
+</td>
+<td>
+Location of the parameter (can not be edited by user)
+</td>
+<td>
+ParameterLocation<small>(System value )</small>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>required</strong>?
+</td>
+<td>
+Set to true if parameter is required
+</td>
+<td>
+BooleanType<p><em>Default value:true</em></p>
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>default</strong>?
+</td>
+<td>
+The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+</td>
+<td>
+AnyType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>repeat</strong>?
+</td>
+<td>
+The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+</td>
+<td>
+BooleanType
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a" id="MimeType">MimeType</h2>
+<p>This sub type of the string represents mime types</p>
+
+<table>
+<h2 class="a" id="SchemaString">SchemaString</h2>
+<p>Schema at this moment only two subtypes are supported (json schema and xsd)</p>
+
+<table>
+<h2 class="a"><a name='GlobalSchema'>GlobalSchema</a></h2>
+ extends <a href='#RAMLSimpleElement'>RAMLSimpleElement</a>Globally declarates referencable instance of <a href='#SchemaString'>SchemaString</a><p>Description:Content of the schema</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>value</strong>?
+</td>
+<td>
+Content of the schema
+</td>
+<td>
+SchemaString
+</td>
+<tr>
+</table>
+<h2 class="a" id="StatusCodeString">StatusCodeString</h2>
+
+<table>
+<h2 class="a" id="ExampleString">ExampleString</h2>
+
+<table>
+<h2 class="a"><a name='BodyLike'>BodyLike</a></h2>
+<p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>schema</strong>?
+</td>
+<td>
+The structure of a request or response body MAY be further specified by the schema property under the appropriate media type. The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data. All parsers of RAML MUST be able to interpret JSON Schema and XML Schema. Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline. Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
+</td>
+<td>
+SchemaString<h3>Context requirements:</h3><p class='req'><span >this.name.isForm()=false</span></p>
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+Documentation generators MUST use body properties' example attributes to generate example invocations.
+</td>
+<td>
+ExampleString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>formParameters</strong>?
+</td>
+<td>
+Web forms REQUIRE special encoding and custom declaration. If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting. The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+Human readable description of the body
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a" id="XMLSchemaString">XMLSchemaString</h2>
+<p>XSD schema</p>
+
+<table>
+<h2 class="a"><a name='XMLBody'>XMLBody</a></h2>
+ extends <a href='#BodyLike'>BodyLike</a><p>Description:Needed to set connection between xml related mime types and xsd schema</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>schema</strong>?
+</td>
+<td>
+XSD Schema
+</td>
+<td>
+XMLSchemaString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+Documentation generators MUST use body properties' example attributes to generate example invocations.
+</td>
+<td>
+ExampleString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>formParameters</strong>?
+</td>
+<td>
+Web forms REQUIRE special encoding and custom declaration. If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting. The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+Human readable description of the body
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a" id="JSonSchemaString">JSonSchemaString</h2>
+<p>JSON schema</p>
+
+<table>
+<h2 class="a"><a name='JSONBody'>JSONBody</a></h2>
+ extends <a href='#BodyLike'>BodyLike</a><p>Description:Needed to set connection between json related mime types and json schema</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>schema</strong>?
+</td>
+<td>
+JSON Schema
+</td>
+<td>
+JSonSchemaString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>example</strong>?
+</td>
+<td>
+Documentation generators MUST use body properties' example attributes to generate example invocations.
+</td>
+<td>
+ExampleString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>formParameters</strong>?
+</td>
+<td>
+Web forms REQUIRE special encoding and custom declaration. If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting. The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+Human readable description of the body
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='Response'>Response</a></h2>
+<p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>headers</strong>?
+</td>
+<td>
+An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>body</strong>?
+</td>
+<td>
+Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `*/*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `*/*` is used.
+</td>
+<td>
+BodyLike[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a" id="SecuritySchemeRef">SecuritySchemeRef</h2>
+
+<table>
+Instantiation of <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a>
+<h2 class="a"><a name='Trait'>Trait</a></h2>
+ extends <a href='#MethodBase'>MethodBase</a>Globally declarates referencable instance of <a href='#Trait'>Trait</a><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>responses</strong>?
+</td>
+<td>
+Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
+</td>
+<td>
+Response[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>body</strong>?
+</td>
+<td>
+Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+</td>
+<td>
+BodyLike[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>protocols</strong>?
+</td>
+<td>
+A method can override an API's protocols value for that single method by setting a different value for the fields.
+</td>
+<td>
+StringType[]<br>one of: HTTP, HTTPS
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>securedBy</strong>?
+</td>
+<td>
+A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+</td>
+<td>
+SecuritySchemeRef[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>baseUriParameters</strong>?
+</td>
+<td>
+A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>queryParameters</strong>?
+</td>
+<td>
+An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>headers</strong>?
+</td>
+<td>
+Headers that allowed at this position
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>usage</strong>?
+</td>
+<td>
+Instructions on how and when the trait should be used.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the trait
+</td>
+<td>
+StringType
+</td>
+<tr>
+</table>
+<h2 class="a" id="TraitRef">TraitRef</h2>
+
+<table>
+Instantiation of <a href='#Trait'>Trait</a>
+<h2 class="a"><a name='SecuritySchemePart'>SecuritySchemePart</a></h2>
+ extends <a href='#MethodBase'>MethodBase</a><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>responses</strong>?
+</td>
+<td>
+Optional array of responses, describing the possible responses that could be sent.
+</td>
+<td>
+Response[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>body</strong>?
+</td>
+<td>
+Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+</td>
+<td>
+BodyLike[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>protocols</strong>?
+</td>
+<td>
+A method can override an API's protocols value for that single method by setting a different value for the fields.
+</td>
+<td>
+StringType[]<br>one of: HTTP, HTTPS
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>securedBy</strong>?
+</td>
+<td>
+A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+</td>
+<td>
+SecuritySchemeRef[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>baseUriParameters</strong>?
+</td>
+<td>
+A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>queryParameters</strong>?
+</td>
+<td>
+Query parameters, used by the schema in order to authorize the request. Mutually exclusive with queryString.
+</td>
+<td>
+Object whose property names are the query parameter names and whose values describe the values.
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>headers</strong>?
+</td>
+<td>
+Optional array of headers, documenting the possible headers that could be accepted.
+</td>
+<td>
+Object whose property names are the request header names and whose values describe the values.
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+A longer, human-friendly description of the security scheme part
+</td>
+<td>
+Markdown string
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the security scheme part
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>is</strong>?
+</td>
+<td>
+Instantiation of applyed traits
+</td>
+<td>
+TraitRef[]
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='SecuritySchemeSettings'>SecuritySchemeSettings</a></h2>
+<h3>This node allows any children</h3><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+</table>
+<h2 class="a" id="FixedUri">FixedUri</h2>
+<p>This  type describes fixed uris</p>
+
+<table>
+<h2 class="a"><a name='OAuth1SecuritySchemeSettings'>OAuth1SecuritySchemeSettings</a></h2>
+ extends <a href='#SecuritySchemeSettings'>SecuritySchemeSettings</a><h3>This node allows any children</h3><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>requestTokenUri</strong>
+</td>
+<td>
+The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+</td>
+<td>
+FixedUriString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>authorizationUri</strong>
+</td>
+<td>
+The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+</td>
+<td>
+FixedUriString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>tokenCredentialsUri</strong>
+</td>
+<td>
+The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+</td>
+<td>
+FixedUriString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='OAuth2SecuritySchemeSettings'>OAuth2SecuritySchemeSettings</a></h2>
+ extends <a href='#SecuritySchemeSettings'>SecuritySchemeSettings</a><h3>This node allows any children</h3><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>accessTokenUri</strong>
+</td>
+<td>
+The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type.
+</td>
+<td>
+FixedUriString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>authorizationUri</strong>
+</td>
+<td>
+The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types.
+</td>
+<td>
+FixedUriString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>authorizationGrants</strong>?
+</td>
+<td>
+A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of:<br>* authorization_code<br>* password<br>* client_credentials <br>* implicit<br>* refresh_token.
+</td>
+<td>
+StringType[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>scopes</strong>?
+</td>
+<td>
+A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
+</td>
+<td>
+StringType[]
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='AbstractSecurityScheme'>AbstractSecurityScheme</a></h2>
+Globally declarates referencable instance of <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a><p>Description:Declares globally referable security schema definition</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>type</strong>
+</td>
+<td>
+The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+</td>
+<td>
+string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0, <br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute MAY be used to describe a security schemes property.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>describedBy</strong>?
+</td>
+<td>
+A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
+</td>
+<td>
+SecuritySchemePart
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>settings</strong>?
+</td>
+<td>
+The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+</td>
+<td>
+SecuritySchemeSettings
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='OAuth2SecurityScheme'>OAuth2SecurityScheme</a></h2>
+requires type=OAuth 2.0 extends <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a>Globally declarates referencable instance of <a href='#OAuth2SecurityScheme'>OAuth2SecurityScheme</a><p>Description:Declares globally referable security schema definition</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>
+</td>
+<td>
+The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+</td>
+<td>
+string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0, <br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute MAY be used to describe a security schemes property.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>describedBy</strong>?
+</td>
+<td>
+A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
+</td>
+<td>
+SecuritySchemePart
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>settings</strong>?
+</td>
+<td>
+
+</td>
+<td>
+OAuth2SecuritySchemeSettings
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='OAuth1SecurityScheme'>OAuth1SecurityScheme</a></h2>
+requires type=OAuth 1.0 extends <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a>Globally declarates referencable instance of <a href='#OAuth1SecurityScheme'>OAuth1SecurityScheme</a><p>Description:Declares globally referable security schema definition</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>
+</td>
+<td>
+The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+</td>
+<td>
+string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0, <br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute MAY be used to describe a security schemes property.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>describedBy</strong>?
+</td>
+<td>
+A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
+</td>
+<td>
+SecuritySchemePart
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>settings</strong>?
+</td>
+<td>
+
+</td>
+<td>
+OAuth1SecuritySchemeSettings
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='BasicSecurityScheme'>BasicSecurityScheme</a></h2>
+requires type=Basic Authentication extends <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a>Globally declarates referencable instance of <a href='#BasicSecurityScheme'>BasicSecurityScheme</a><p>Description:Declares globally referable security schema definition</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>
+</td>
+<td>
+The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+</td>
+<td>
+string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0, <br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute MAY be used to describe a security schemes property.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>describedBy</strong>?
+</td>
+<td>
+A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
+</td>
+<td>
+SecuritySchemePart
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>settings</strong>?
+</td>
+<td>
+The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+</td>
+<td>
+SecuritySchemeSettings
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='DigestSecurityScheme'>DigestSecurityScheme</a></h2>
+requires type=Digest Authentication extends <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a>Globally declarates referencable instance of <a href='#DigestSecurityScheme'>DigestSecurityScheme</a><p>Description:Declares globally referable security schema definition</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>
+</td>
+<td>
+The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+</td>
+<td>
+string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0, <br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute MAY be used to describe a security schemes property.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>describedBy</strong>?
+</td>
+<td>
+A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
+</td>
+<td>
+SecuritySchemePart
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>settings</strong>?
+</td>
+<td>
+The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+</td>
+<td>
+SecuritySchemeSettings
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='CustomSecurityScheme'>CustomSecurityScheme</a></h2>
+requires type=x-{other} extends <a href='#AbstractSecurityScheme'>AbstractSecurityScheme</a>Globally declarates referencable instance of <a href='#CustomSecurityScheme'>CustomSecurityScheme</a><p>Description:Declares globally referable security schema definition</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>type</strong>
+</td>
+<td>
+The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+</td>
+<td>
+string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0, <br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute MAY be used to describe a security schemes property.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>describedBy</strong>?
+</td>
+<td>
+A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
+</td>
+<td>
+SecuritySchemePart
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>settings</strong>?
+</td>
+<td>
+The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+</td>
+<td>
+SecuritySchemeSettings
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='Method'>Method</a></h2>
+ extends <a href='#MethodBase'>MethodBase</a><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="inherited">
+<td>
+<strong>responses</strong>?
+</td>
+<td>
+Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
+</td>
+<td>
+Response[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>body</strong>?
+</td>
+<td>
+Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+</td>
+<td>
+BodyLike[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>protocols</strong>?
+</td>
+<td>
+A method can override an API's protocols value for that single method by setting a different value for the fields.
+</td>
+<td>
+StringType[]<br>one of: HTTP, HTTPS
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>securedBy</strong>?
+</td>
+<td>
+A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+</td>
+<td>
+SecuritySchemeRef[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>baseUriParameters</strong>?
+</td>
+<td>
+A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>queryParameters</strong>?
+</td>
+<td>
+An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>headers</strong>?
+</td>
+<td>
+Headers that allowed at this position
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="inherited">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>is</strong>?
+</td>
+<td>
+Instantiation of applyed traits
+</td>
+<td>
+TraitRef[]
+</td>
+<tr>
+</table>
+<h2 class="a" id="ResourceTypeRef">ResourceTypeRef</h2>
+
+<table>
+Instantiation of <a href='#ResourceType'>ResourceType</a>
+<h2 class="a"><a name='ResourceType'>ResourceType</a></h2>
+Globally declarates referencable instance of <a href='#ResourceType'>ResourceType</a><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>usage</strong>?
+</td>
+<td>
+Instructions on how and when the resource type should be used.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>methods</strong>?
+</td>
+<td>
+Methods that are part of this resource type definition
+</td>
+<td>
+Method[]<br>one of: get, put, post, delete, patch, options, head, trace, connect
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>is</strong>?
+</td>
+<td>
+Instantiation of applyed traits
+</td>
+<td>
+TraitRef[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+Instantiation of applyed resource type
+</td>
+<td>
+ResourceTypeRef
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>securedBy</strong>?
+</td>
+<td>
+securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+</td>
+<td>
+SecuritySchemeRef[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>uriParameters</strong>?
+</td>
+<td>
+Uri parameters of this resource
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the resource type
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>baseUriParameters</strong>?
+</td>
+<td>
+A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a" id="RelativeUriString">RelativeUriString</h2>
+<p>This  type describes relative uri templates</p>
+
+<table>
+<h2 class="a"><a name='Resource'>Resource</a></h2>
+<p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>type</strong>?
+</td>
+<td>
+Instantiation of applyed resource type
+</td>
+<td>
+ResourceTypeRef
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>is</strong>?
+</td>
+<td>
+Instantiation of applyed traits
+</td>
+<td>
+TraitRef[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>securedBy</strong>?
+</td>
+<td>
+securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+</td>
+<td>
+SecuritySchemeRef[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>uriParameters</strong>?
+</td>
+<td>
+Uri parameters of this resource
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>methods</strong>?
+</td>
+<td>
+Methods that can be called on this resource
+</td>
+<td>
+Method[]<br>one of: get, put, post, delete, patch, options, head, trace, connect
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>resources</strong>?
+</td>
+<td>
+Children resources
+</td>
+<td>
+Resource[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>displayName</strong>?
+</td>
+<td>
+An alternate, human-friendly name for the resource
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>baseUriParameters</strong>?
+</td>
+<td>
+A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>description</strong>?
+</td>
+<td>
+The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='DocumentationItem'>DocumentationItem</a></h2>
+ extends <a href='#RAMLSimpleElement'>RAMLSimpleElement</a><p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>title</strong>
+</td>
+<td>
+title of documentation section
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>content</strong>
+</td>
+<td>
+Content of documentation section
+</td>
+<td>
+MarkdownString
+</td>
+<tr>
+</table>
+<h2 class="a"><a name='Api'>Api</a></h2>
+<p>Description:Not described yet</p>
+<table>
+<tr>
+<th width="25%">Property</th>
+<th width="45%">Description</th>
+<th width="30%">Value type</th>
+</tr>
+<tr class="owned">
+<td>
+<strong>title</strong>
+</td>
+<td>
+The title property is a short plain text description of the RESTful API. The value SHOULD be suitable for use as a title for the contained user documentation.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>version</strong>?
+</td>
+<td>
+If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if: The API itself is not versioned. The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change. The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, 'v3', 'v3.0', and 'V3' are all allowed, but are not considered to be equal.
+</td>
+<td>
+StringType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>baseUri</strong>?
+</td>
+<td>
+(Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification RFC2396 or a Level 1 Template URI as defined in RFC6570. The baseUri property SHOULD only be used as a reference value.
+</td>
+<td>
+FullUriTemplateString
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>baseUriParameters</strong>?
+</td>
+<td>
+Base uri parameters are named parameters which described template parameters in the base uri
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>uriParameters</strong>?
+</td>
+<td>
+URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
+</td>
+<td>
+Parameter[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>protocols</strong>?
+</td>
+<td>
+A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
+</td>
+<td>
+StringType[]<br>one of: HTTP, HTTPS
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>mediaType</strong>?
+</td>
+<td>
+(Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type described in the specification.
+</td>
+<td>
+MimeType
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>schemas</strong>?
+</td>
+<td>
+To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.
+</td>
+<td>
+GlobalSchema[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>traits</strong>?
+</td>
+<td>
+Declarations of traits used in this API
+</td>
+<td>
+Trait[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>securedBy</strong>?
+</td>
+<td>
+A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.
+</td>
+<td>
+SecuritySchemeRef[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>securitySchemes</strong>?
+</td>
+<td>
+Security schemes that can be applied using securedBy
+</td>
+<td>
+AbstractSecurityScheme[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>resourceTypes</strong>?
+</td>
+<td>
+Declaration of resource types used in this API
+</td>
+<td>
+ResourceType[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>resources</strong>?
+</td>
+<td>
+Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.
+</td>
+<td>
+Resource[]
+</td>
+<tr>
+<tr class="owned">
+<td>
+<strong>documentation</strong>?
+</td>
+<td>
+The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared. To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document. Documentation-generators MUST process the content field as if it was defined using Markdown.
+</td>
+<td>
+DocumentationItem[]
+</td>
+<tr>
+</table>
