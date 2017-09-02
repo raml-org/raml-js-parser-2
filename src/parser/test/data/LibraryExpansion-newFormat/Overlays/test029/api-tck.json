@@ -3,11 +3,11 @@
     "annotations": [
       {
         "name": "library.highLevelApiDescription",
-        "structuredValue": null
+        "value": null
       },
       {
         "name": "library.apiLogo",
-        "structuredValue": null
+        "value": null
       },
       {
         "name": "library.specAuthor",
@@ -15,7 +15,7 @@
       },
       {
         "name": "library.devPortal",
-        "structuredValue": null
+        "value": null
       },
       {
         "name": "library.extraResources",

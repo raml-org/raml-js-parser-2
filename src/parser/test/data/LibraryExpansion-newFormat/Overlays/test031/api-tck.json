@@ -3,15 +3,15 @@
     "annotations": [
       {
         "name": "lib2.a2",
-        "structuredValue": null
+        "value": null
       },
       {
         "name": "lib1.a1",
-        "structuredValue": null
+        "value": null
       },
       {
         "name": "lib0.a0",
-        "structuredValue": null
+        "value": null
       }
     ],
     "uses": [

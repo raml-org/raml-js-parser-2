@@ -38,7 +38,7 @@
             "annotations": [
               {
                 "name": "decls.important",
-                "structuredValue": null
+                "value": null
               }
             ],
             "responses": [

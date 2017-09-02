@@ -74,7 +74,6 @@ export class JsonSerializer {
         this.nodeTransformers = [
             new MethodsTransformer(),
             new ResourcesTransformer(),
-            new AnnotationTransformer(),
             new TypeTransformer(this.options),
             new UsesDeclarationTransformer(this),
             new SimpleNamesTransformer(),
@@ -1257,27 +1256,6 @@ class MethodsTransformer extends BasicTransformation{
     }
 }
 
-class AnnotationTransformer extends BasicTransformation{
-
-    constructor(){
-        super(universes.Universe10.AnnotationRef.name,null,true);
-    }
-
-    transform(value:any,node:hl.IParseResult){
-        if(Array.isArray(value)){
-            return value;
-        }
-        var pName = universes.Universe10.Reference.properties.structuredValue.name;
-        let structuredValue = value[pName];
-        if(structuredValue){
-            delete value[pName];
-            value.value = structuredValue;
-        }
-        return value;
-    }
-}
-
-
 class TypeTransformer extends BasicTransformation{
 
     constructor(private options:SerializeOptions = {}){
@@ -1744,7 +1722,7 @@ class ReferencesTransformer extends MatcherBasedTransformation{
         let result:any = {
             name: x['name']
         }
-        var params = x['structuredValue'];
+        var params = x['value'];
         if (params) {
             Object.keys(params).forEach(y=>{
                 result.parameters = result.parameters||[];

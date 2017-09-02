@@ -729,7 +729,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 }
                 val = {
                     name: name,
-                    structuredValue: refVal
+                    value: refVal
                 }
             }
             else if (propName == "type") {

@@ -29,7 +29,7 @@
             "annotations": [
               {
                 "name": "deprecated",
-                "structuredValue": null
+                "value": null
               }
             ],
             "method": "get",

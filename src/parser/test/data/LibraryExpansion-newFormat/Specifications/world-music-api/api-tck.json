@@ -3105,7 +3105,7 @@
         "annotations": [
           {
             "name": "ready",
-            "structuredValue": null
+            "value": null
           }
         ],
         "methods": [

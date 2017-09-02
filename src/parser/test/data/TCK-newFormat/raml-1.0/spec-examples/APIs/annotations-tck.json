@@ -189,11 +189,11 @@
         "annotations": [
           {
             "name": "experimental",
-            "structuredValue": null
+            "value": null
           },
           {
             "name": "feedbackRequested",
-            "structuredValue": null
+            "value": null
           }
         ],
         "relativeUri": "/groups",
@@ -239,11 +239,11 @@
             "annotations": [
               {
                 "name": "deprecated",
-                "structuredValue": null
+                "value": null
               },
               {
                 "name": "experimental",
-                "structuredValue": null
+                "value": null
               },
               {
                 "name": "feedbackRequested",

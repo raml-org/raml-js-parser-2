@@ -80,7 +80,7 @@
             "annotations": [
               {
                 "name": "lib.lib.Monkey",
-                "structuredValue": false
+                "value": false
               }
             ],
             "method": "put",
@@ -224,7 +224,7 @@
             "annotations": [
               {
                 "name": "lib.lib.Monkey",
-                "structuredValue": false
+                "value": false
               }
             ],
             "method": "put",
