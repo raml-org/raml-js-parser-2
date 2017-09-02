@@ -684,7 +684,7 @@ PetCollection : ArrayTypeDeclaration
 RandomPet : UnionTypeDeclaration
 ```
 
-###Nominal Type System
+### Nominal Type System
 
 Apart from AST, the parser provides one more way of representing types: nominal type system. Nominal type system has several advantages in comparison with AST: it allows to
 
@@ -733,7 +733,7 @@ PetCollection
 RandomPet
 ```
 
-###Supertypes and Subtypes
+### Supertypes and Subtypes
 The `TypeDeclaration.type()` method provides information about extended types. It returns an array os strings which are either names of supertypes or expressions which defines supertypes.
 
 ```js
@@ -854,7 +854,7 @@ Bird
 
 In case you need a complete set of subtypes including direct and indirect ones, you should call the `ITypeDefinition.allSubTypes()` method.
 
-###Properties of Object Types
+### Properties of Object Types
 
 Properties of `ObjectTypeDeclaration` can be obtained by means of `properties` method, which returns an array of `TypeDeclaration`:
 
@@ -1101,7 +1101,7 @@ type: Pet (object)
         type: any (object)
 ```
 
-###Union Types
+### Union Types
 Nominal type of union types is represented as `IUnionType` instance. The `IUnionType.leftType()` and `IUnionType.rightType()` methods allow inspection
 union type components:
 
@@ -1154,7 +1154,7 @@ right:
 ```
 
 
-###Body Types
+### Body Types
 
 Consider the following method:
 ```
@@ -1225,7 +1225,7 @@ type: application/json (object)
             type: any (object)
 ```
 
-###Facets
+### Facets
 
 Facets can be interpreted as static properties of type. If a type defines a facet, each of its direct subtypes must fix the facet, i.e. provide a value for it. Facets are defined just the same way as RAML types. Example of string facet definition and fixing can be seen in the following RAML specification:
 ```
@@ -1338,7 +1338,7 @@ fixeded facets: {
 All the above sets of facets contain user defined facets, but not the built in facets.
 
 
-##Annotations
+## Annotations
 
 In order to extract AST nodes, which describe annotaton types, we can use `Api.annotationTypes()` method, returning an array of `AnnotationTypeDeclaration`:
 
