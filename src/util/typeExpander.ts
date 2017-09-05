@@ -866,7 +866,7 @@ export function dumpFacets(te: TypeEntry, result: any) {
 }
 
 
-export function dumpType(t:typeSystem.IParsedType,typeExpansionRecursionDepth:number){
+export function dumpType(t:typeSystem.IParsedType,typeExpansionRecursionDepth=0){
     let he = createHierarchyEntry(t,typeExpansionRecursionDepth);
     let ee = expandHierarchy(he,he.branchingRegistry());
     let result = dump(ee);
