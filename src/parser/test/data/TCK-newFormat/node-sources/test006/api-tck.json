@@ -7,7 +7,9 @@
         "sourceMap": {
           "scalarsSources": {
             "description": [
-              "description.txt"
+              {
+                "path": "description.txt"
+              }
             ]
           },
           "path": "api.raml"

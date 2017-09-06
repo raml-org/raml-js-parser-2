@@ -15,13 +15,19 @@
                 "sourceMap": {
                   "scalarsSources": {
                     "schema": [
-                      "subdir/scheme.json"
+                      {
+                        "path": "subdir/scheme.json"
+                      }
                     ],
                     "example": [
-                      "invalid.json"
+                      {
+                        "path": "invalid.json"
+                      }
                     ],
                     "schemaContent": [
-                      "subdir/scheme.json"
+                      {
+                        "path": "subdir/scheme.json"
+                      }
                     ]
                   },
                   "path": "apiInvalid0.raml"

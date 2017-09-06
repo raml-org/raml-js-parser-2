@@ -1432,10 +1432,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/users-example.json"
+                          {
+                            "path": "examples/users-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/users-schema.json"
+                          {
+                            "path": "schemas/users-schema.json"
+                          }
                         ]
                       },
                       "path": "resourceTypes/usersListing.raml"
@@ -1631,10 +1635,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/media-search-example.json"
+                          {
+                            "path": "examples/media-search-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/media-search-schema.json"
+                          {
+                            "path": "schemas/media-search-schema.json"
+                          }
                         ]
                       },
                       "path": "resourceTypes/mediaSearch.raml"
@@ -1957,10 +1965,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/ok-status-example.json"
+                          {
+                            "path": "examples/ok-status-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/ok-status-schema.json"
+                          {
+                            "path": "schemas/ok-status-schema.json"
+                          }
                         ]
                       },
                       "path": "resourceTypes/secured.raml"
@@ -2066,10 +2078,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/ok-status-example.json"
+                          {
+                            "path": "examples/ok-status-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/ok-status-schema.json"
+                          {
+                            "path": "schemas/ok-status-schema.json"
+                          }
                         ]
                       },
                       "path": "resourceTypes/secured.raml"
@@ -2888,10 +2904,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/feed-example.json"
+                          {
+                            "path": "examples/feed-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/media-search-schema.json"
+                          {
+                            "path": "schemas/media-search-schema.json"
+                          }
                         ]
                       },
                       "path": "resourceTypes/feedsListing.raml"
@@ -3552,10 +3572,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/media-example.json"
+                              {
+                                "path": "examples/media-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/media-schema.json"
+                              {
+                                "path": "schemas/media-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -4012,10 +4036,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/media-comment-example.json"
+                                  {
+                                    "path": "examples/media-comment-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/media-comment-schema.json"
+                                  {
+                                    "path": "schemas/media-comment-schema.json"
+                                  }
                                 ]
                               },
                               "path": "api.raml"
@@ -4295,10 +4323,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/ok-status-example.json"
+                                  {
+                                    "path": "examples/ok-status-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/ok-status-schema.json"
+                                  {
+                                    "path": "schemas/ok-status-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/secured.raml"
@@ -4721,10 +4753,14 @@
                                 "sourceMap": {
                                   "scalarsSources": {
                                     "example": [
-                                      "examples/ok-status-example.json"
+                                      {
+                                        "path": "examples/ok-status-example.json"
+                                      }
                                     ],
                                     "schemaContent": [
-                                      "schemas/ok-status-schema.json"
+                                      {
+                                        "path": "schemas/ok-status-schema.json"
+                                      }
                                     ]
                                   },
                                   "path": "resourceTypes/secured.raml"
@@ -5213,10 +5249,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/media-likes-example.json"
+                                  {
+                                    "path": "examples/media-likes-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/media-likes-schema.json"
+                                  {
+                                    "path": "schemas/media-likes-schema.json"
+                                  }
                                 ]
                               },
                               "path": "api.raml"
@@ -5496,10 +5536,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/ok-status-example.json"
+                                  {
+                                    "path": "examples/ok-status-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/ok-status-schema.json"
+                                  {
+                                    "path": "schemas/ok-status-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/secured.raml"
@@ -5715,10 +5759,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/ok-status-example.json"
+                                  {
+                                    "path": "examples/ok-status-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/ok-status-schema.json"
+                                  {
+                                    "path": "schemas/ok-status-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/secured.raml"
@@ -6274,10 +6322,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/media-search-example.json"
+                              {
+                                "path": "examples/media-search-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/media-search-schema.json"
+                              {
+                                "path": "schemas/media-search-schema.json"
+                              }
                             ]
                           },
                           "path": "resourceTypes/mediaSearch.raml"
@@ -7004,10 +7056,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/media-search-example.json"
+                              {
+                                "path": "examples/media-search-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/media-search-schema.json"
+                              {
+                                "path": "schemas/media-search-schema.json"
+                              }
                             ]
                           },
                           "path": "resourceTypes/mediaSearch.raml"
@@ -7922,10 +7978,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/tag-example.json"
+                              {
+                                "path": "examples/tag-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/tag-schema.json"
+                              {
+                                "path": "schemas/tag-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -8437,10 +8497,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/tags-recent-media-example.json"
+                                  {
+                                    "path": "examples/tags-recent-media-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/tags-recent-media-schema.json"
+                                  {
+                                    "path": "schemas/tags-recent-media-schema.json"
+                                  }
                                 ]
                               },
                               "path": "api.raml"
@@ -9229,10 +9293,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/tags-search-example.json"
+                              {
+                                "path": "examples/tags-search-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/tags-search-schema.json"
+                              {
+                                "path": "schemas/tags-search-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -10172,10 +10240,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/user-example.json"
+                              {
+                                "path": "examples/user-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/user-schema.json"
+                              {
+                                "path": "schemas/user-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -10626,10 +10698,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/users-example.json"
+                                  {
+                                    "path": "examples/users-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/users-schema.json"
+                                  {
+                                    "path": "schemas/users-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/usersListing.raml"
@@ -11101,10 +11177,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/users-example.json"
+                                  {
+                                    "path": "examples/users-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/users-schema.json"
+                                  {
+                                    "path": "schemas/users-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/usersListing.raml"
@@ -11636,10 +11716,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/feed-example.json"
+                                  {
+                                    "path": "examples/feed-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/media-search-schema.json"
+                                  {
+                                    "path": "schemas/media-search-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/feedsListing.raml"
@@ -12341,10 +12425,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/relationship-example.json"
+                                  {
+                                    "path": "examples/relationship-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/relationships-schema.json"
+                                  {
+                                    "path": "schemas/relationships-schema.json"
+                                  }
                                 ]
                               },
                               "path": "api.raml"
@@ -12624,10 +12712,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/relationship-post-example.json"
+                                  {
+                                    "path": "examples/relationship-post-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/relationships-schema.json"
+                                  {
+                                    "path": "schemas/relationships-schema.json"
+                                  }
                                 ]
                               },
                               "path": "api.raml"
@@ -13161,10 +13253,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/users-example.json"
+                              {
+                                "path": "examples/users-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/users-schema.json"
+                              {
+                                "path": "schemas/users-schema.json"
+                              }
                             ]
                           },
                           "path": "resourceTypes/usersListing.raml"
@@ -13613,10 +13709,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/user-example.json"
+                              {
+                                "path": "examples/user-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/user-schema.json"
+                              {
+                                "path": "schemas/user-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -14011,10 +14111,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/feed-example.json"
+                                  {
+                                    "path": "examples/feed-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/media-search-schema.json"
+                                  {
+                                    "path": "schemas/media-search-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/feedsListing.raml"
@@ -14675,10 +14779,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/users-example.json"
+                                  {
+                                    "path": "examples/users-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/users-schema.json"
+                                  {
+                                    "path": "schemas/users-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/usersListing.raml"
@@ -15283,10 +15391,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/feed-example.json"
+                                  {
+                                    "path": "examples/feed-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/media-search-schema.json"
+                                  {
+                                    "path": "schemas/media-search-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/feedsListing.raml"
@@ -16308,10 +16420,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/location-example.json"
+                              {
+                                "path": "examples/location-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/location-schema.json"
+                              {
+                                "path": "schemas/location-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -16819,10 +16935,14 @@
                             "sourceMap": {
                               "scalarsSources": {
                                 "example": [
-                                  "examples/feed-example.json"
+                                  {
+                                    "path": "examples/feed-example.json"
+                                  }
                                 ],
                                 "schemaContent": [
-                                  "schemas/media-search-schema.json"
+                                  {
+                                    "path": "schemas/media-search-schema.json"
+                                  }
                                 ]
                               },
                               "path": "resourceTypes/feedsListing.raml"
@@ -17654,10 +17774,14 @@
                         "sourceMap": {
                           "scalarsSources": {
                             "example": [
-                              "examples/locations-example.json"
+                              {
+                                "path": "examples/locations-example.json"
+                              }
                             ],
                             "schemaContent": [
-                              "schemas/locations-schema.json"
+                              {
+                                "path": "schemas/locations-schema.json"
+                              }
                             ]
                           },
                           "path": "api.raml"
@@ -19169,10 +19293,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/subscriptionsGet-example.json"
+                          {
+                            "path": "examples/subscriptionsGet-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/subscriptionsGet-schema.json"
+                          {
+                            "path": "schemas/subscriptionsGet-schema.json"
+                          }
                         ]
                       },
                       "path": "api.raml"
@@ -19472,10 +19600,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/subscriptionPost-example.json"
+                          {
+                            "path": "examples/subscriptionPost-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/subscriptionPost-schema.json"
+                          {
+                            "path": "schemas/subscriptionPost-schema.json"
+                          }
                         ]
                       },
                       "path": "api.raml"
@@ -19994,10 +20126,14 @@
                     "sourceMap": {
                       "scalarsSources": {
                         "example": [
-                          "examples/subscriptionsDelete-example.json"
+                          {
+                            "path": "examples/subscriptionsDelete-example.json"
+                          }
                         ],
                         "schemaContent": [
-                          "schemas/subscriptionsDelete-schema.json"
+                          {
+                            "path": "schemas/subscriptionsDelete-schema.json"
+                          }
                         ]
                       },
                       "path": "api.raml"
@@ -20409,7 +20545,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "docs/authentication.md"
+              {
+                "path": "docs/authentication.md"
+              }
             ]
           },
           "path": "api.raml"
@@ -20421,7 +20559,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "docs/headline.md"
+              {
+                "path": "docs/headline.md"
+              }
             ]
           },
           "path": "api.raml"

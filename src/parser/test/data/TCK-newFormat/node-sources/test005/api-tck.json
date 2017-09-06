@@ -8,7 +8,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "doc1.txt"
+              {
+                "path": "doc1.txt"
+              }
             ]
           },
           "path": "api.raml"
@@ -20,7 +22,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "doc2.txt"
+              {
+                "path": "doc2.txt"
+              }
             ]
           },
           "path": "api.raml"

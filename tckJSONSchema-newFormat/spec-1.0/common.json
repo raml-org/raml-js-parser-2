@@ -15,7 +15,7 @@
         }
       }
     },
-    "HasSource": {
+    "ElementSourceInfo": {
       "allOf": [
         {
           "$ref": "#/definitions/SourceInfo"
@@ -24,20 +24,30 @@
           "type": "object",
           "properties": {
             "scalarsSources": {
-              "type": "array",
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/SourceInfo"
+              "type": "object",
+              "patternProperties": {
+                ".+": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/SourceInfo"
+                  }
                 }
               }
             }
-          },
-          "__METADATA__": {
-            "type": "object"
           }
         }
       ]
+    },
+    "HasSource": {
+      "type": "object",
+      "properties": {
+        "sourceMap": {
+          "$ref": "#/definitions/ElementSourceInfo"
+        },
+        "__METADATA__": {
+          "type": "object"
+        }
+      }
     },
     "Annotable": {
       "allOf": [

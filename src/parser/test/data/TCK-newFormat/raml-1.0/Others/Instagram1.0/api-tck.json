@@ -21002,7 +21002,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "docs/authentication.md"
+              {
+                "path": "docs/authentication.md"
+              }
             ]
           },
           "path": "api.raml"
@@ -21014,7 +21016,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "docs/headline.md"
+              {
+                "path": "docs/headline.md"
+              }
             ]
           },
           "path": "api.raml"

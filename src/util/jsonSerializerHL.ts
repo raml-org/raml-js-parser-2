@@ -335,7 +335,7 @@ export class JsonSerializer {
                                     scalarsAnnotations[pName] = sAnnotations;
                                 }
                                 if(sPaths.filter(x=>x!=null).length>0){
-                                    scalarsSources[pName] = sPaths;
+                                    scalarsSources[pName] = sPaths.map(x=>{return {path:x}});
                                 }
                             }
                             if (universeHelpers.isTypeDeclarationDescendant(definition)
@@ -360,7 +360,7 @@ export class JsonSerializer {
                                 if(!(<hlImpl.ASTPropImpl>attr).isFromKey()) {
                                     let sPath = actualPath(attr, true);
                                     if (sPath) {
-                                        scalarsSources[pName] = [sPath];
+                                        scalarsSources[pName] = [ { path: sPath }];
                                     }
                                 }
                             }

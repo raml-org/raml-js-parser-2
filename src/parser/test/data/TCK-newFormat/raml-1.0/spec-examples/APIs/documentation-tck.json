@@ -19,7 +19,9 @@
         "sourceMap": {
           "scalarsSources": {
             "content": [
-              "docs/legal.markdown"
+              {
+                "path": "docs/legal.markdown"
+              }
             ]
           },
           "path": "documentation.raml"

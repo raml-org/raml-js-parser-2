@@ -4,7 +4,9 @@
     "sourceMap": {
       "scalarsSources": {
         "title": [
-          "../../../../../../../../relative.md"
+          {
+            "path": "../../../../../../../../relative.md"
+          }
         ]
       },
       "path": "api.raml"

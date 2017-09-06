@@ -132,7 +132,7 @@
                   },
                   {
                     "name": "searchable",
-                    "structuredValue": null
+                    "value": null
                   }
                 ],
                 "name": "kind",

@@ -108,7 +108,9 @@
         "sourceMap": {
           "scalarsSources": {
             "description": [
-              "resourceTypes/description.txt"
+              {
+                "path": "resourceTypes/description.txt"
+              }
             ]
           },
           "path": "resourceTypes/rt3.raml"
@@ -294,7 +296,9 @@
         "sourceMap": {
           "scalarsSources": {
             "description": [
-              "resourceTypes/description.txt"
+              {
+                "path": "resourceTypes/description.txt"
+              }
             ]
           },
           "path": "api.raml"
