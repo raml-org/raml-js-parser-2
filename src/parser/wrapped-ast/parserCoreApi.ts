@@ -95,6 +95,17 @@ export interface LoadOptions {
      */
     expandTypes?: boolean
 
+    /**
+     * Types may have recursion points in their definition graphs, i.e.
+     *
+     *  MyType:
+     *  properties:
+     *    p1?: MyType
+     *    p2: MyType[]
+     *
+     * If the option is undefined or equals zero, the type expansion process does not expand recursion points.
+     * In other case it expands them with 'typeExpansionRecursionDepth' option decremented by one.
+     */
     typeExpansionRecursionDepth?:number
 
     /**
