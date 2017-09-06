@@ -814,6 +814,16 @@ var transformers: TransformMatches[] = [
         var paramCase = changeCase.param(arg);
 
         return paramCase.toUpperCase();
+    }),
+
+    new TransformMatches("sentencecase", (arg: string) => {
+        if(!arg) {
+            return arg;
+        }
+
+        var result = changeCase.sentenceCase(arg);
+
+        return result[0].toUpperCase() + result.substring(1);
     })
 ];
 
@@ -1239,7 +1249,7 @@ var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
 
 var possibleMethodNames;
 
-function isPossibleMethodName(n:string){
+export function isPossibleMethodName(n:string){
     if(!possibleMethodNames){
         possibleMethodNames = {};
         var methodType = def.getUniverse("RAML10").type(def.universesInfo.Universe10.Method.name);

@@ -55,6 +55,18 @@
     "code" : "UNKNOWN_NODE",
     "message" : "Unknown node: '{{name}}'"
   },
+  "INVALID_PROPERTY_USAGE" : {
+    "code" : "INVALID_PROPERTY_USAGE",
+    "message" : "{{ramlVersion}} does not allow using '{{propName}}' property within {{typeName | !pluralize |!sentencecase | !lowercase}}"
+  },
+  "INVALID_SUBRESOURCE_USAGE" : {
+    "code" : "INVALID_SUBRESOURCE_USAGE",
+    "message" : "Subresources are not allowed in {{typeName | !pluralize |!sentencecase | !lowercase}}"
+  },
+  "INVALID_METHOD_USAGE" : {
+    "code" : "INVALID_METHOD_USAGE",
+    "message" : "Declaring methods is not allowed in {{typeName | !pluralize |!sentencecase | !lowercase}}"
+  },
   "RECURSIVE_DEFINITION" : {
     "code" : "RECURSIVE_DEFINITION",
     "message" : "Recursive definition: '{{name}}'"

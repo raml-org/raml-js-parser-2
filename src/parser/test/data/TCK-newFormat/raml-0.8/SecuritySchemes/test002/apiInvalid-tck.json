@@ -86,8 +86,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "UNKNOWN_NODE",
-      "message": "Unknown node: 'get'",
+      "code": "INVALID_METHOD_USAGE",
+      "message": "Declaring methods is not allowed in security scheme parts",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -103,8 +103,8 @@
       }
     },
     {
-      "code": "UNKNOWN_NODE",
-      "message": "Unknown node: 'queryString'",
+      "code": "INVALID_PROPERTY_USAGE",
+      "message": "RAML 0.8 does not allow using 'queryString' property within security scheme parts",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

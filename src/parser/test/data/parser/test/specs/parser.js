@@ -4593,7 +4593,7 @@ describe('Parser', function() {
         '/:',
         '  type: collection'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/Unknown node: '\/bar'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Subresources are not allowed in resource types/).and.notify(done);
     });
 
     it('should fail if type dictionary has no keys', function(done) {

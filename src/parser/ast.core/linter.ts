@@ -26,6 +26,7 @@ import services=def
 import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
 import expander=require("./expander")
+import expanderLL=require("./expanderLL")
 import builder = require('./builder')
 import search = require("../../search/search-interface")
 import rtypes=def.rt;
@@ -506,7 +507,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
         else {
             var issue = restrictUnknownNodeError(node);
             if(!issue){
-                issue = createIssue1(messageRegistry.UNKNOWN_NODE, {name : node.name()}, node);
+                issue = createUnknownNodeIssue(node);
             }
             v.accept(issue);
         }
@@ -542,6 +543,53 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
 
     return true;
 }
+
+function createUnknownNodeIssue(node:hlimpl.BasicASTNode):hl.ValidationIssue {
+    let parentNode = node.parent();
+    let issue:hl.ValidationIssue;
+    if (parentNode) {
+        let d = parentNode.definition();
+        if(d) {
+            let propName = node.name();
+            let typeName = d.nameId();
+            if(expanderLL.isPossibleMethodName(propName)){
+                issue = createIssue1(
+                    messageRegistry.INVALID_METHOD_USAGE, { typeName: typeName }, node);
+            }
+            else if (propName.charAt(0) == "/") {
+                issue = createIssue1(
+                    messageRegistry.INVALID_SUBRESOURCE_USAGE, { typeName: typeName }, node);
+            }
+            else {
+                let u = d && d.universe();
+                if (u) {
+                    let propExists = PropertyNamesRegistry.getInstance().hasProperty(propName);
+                    if (propExists) {
+                        let uVersion: string
+                        if (u.version() == "RAML10") {
+                            uVersion = "RAML 1.0";
+                        }
+                        else if (u.version() == "RAML08") {
+                            uVersion = "RAML 0.8";
+                        }
+                        if (uVersion) {
+                            issue = createIssue1(
+                                messageRegistry.INVALID_PROPERTY_USAGE, {
+                                    propName: propName,
+                                    typeName: typeName,
+                                    ramlVersion: uVersion
+                                }, node);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (!issue) {
+        issue = createIssue1(messageRegistry.UNKNOWN_NODE, {name: node.name()}, node);
+    }
+    return issue;
+};
 
 function createIssueForQueryDeclarations(node: ll.ILowLevelASTNode | hl.IParseResult, parentNode: hl.IParseResult, isQueryParamsDeclaration: boolean): hl.ValidationIssue {
     var asLowLevel:ll.ILowLevelASTNode = <ll.ILowLevelASTNode>node;
@@ -4549,10 +4597,10 @@ export interface Message{
 }
 
 export function applyTemplate(messageEntry:Message, params:any):string {
-    var result = "";
-    var msg = messageEntry.message;
-    var prev = 0;
-    for (var ind = msg.indexOf("{{"); ind >= 0; ind = msg.indexOf("{{", prev)) {
+    let result = "";
+    let msg = messageEntry.message;
+    let prev = 0;
+    for (let ind = msg.indexOf("{{"); ind >= 0; ind = msg.indexOf("{{", prev)) {
         result += msg.substring(prev, ind);
         prev = msg.indexOf("}}", ind);
         if (prev < 0) {
@@ -4560,11 +4608,17 @@ export function applyTemplate(messageEntry:Message, params:any):string {
             break;
         }
         ind += "{{".length;
-        var paramName = msg.substring(ind, prev);
+        let paramString = msg.substring(ind, prev);
+        let paramSegments = paramString.split('|');
+        let paramName = paramSegments[0].trim();
+        let functions = expander.getTransformersForOccurence(paramString);
         prev += "}}".length;
-        var paramValue = params[paramName];
+        let paramValue = params[paramName];
         if (paramValue === undefined) {
             throw new Error(applyTemplate(messageRegistry.MESSAGE_PARAMETER_NO_VALUE, {paramName: paramName}));
+        }
+        for(let f of functions) {
+            paramValue = f(paramValue);
         }
         result += paramValue;
     }
@@ -4684,3 +4738,38 @@ function checkIfIncludeTagIsMissing(
         return false;
     }
 };
+
+class PropertyNamesRegistry{
+
+    private static instance:PropertyNamesRegistry;
+
+    public static getInstance():PropertyNamesRegistry{
+        if(!PropertyNamesRegistry.instance){
+            PropertyNamesRegistry.instance = new PropertyNamesRegistry();
+        }
+        return PropertyNamesRegistry.instance;
+    }
+
+    constructor(){
+        this.init();
+    }
+
+    private propertiesMap:{[key:string]:boolean} = {};
+
+    private init(){
+        let universeNames = def.getUniverse.availableUniverses();
+        for(let un of universeNames){
+            let u = def.getUniverse(un);
+            for(let t of u.types()){
+                for(let p of t.properties()){
+                    this.propertiesMap[p.nameId()] = true;
+                }
+            }
+        }
+    }
+
+    public hasProperty(pName:string){
+        return this.propertiesMap[pName];
+    }
+
+}

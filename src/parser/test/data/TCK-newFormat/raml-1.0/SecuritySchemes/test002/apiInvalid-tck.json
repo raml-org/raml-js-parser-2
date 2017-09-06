@@ -86,8 +86,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "UNKNOWN_NODE",
-      "message": "Unknown node: 'get'",
+      "code": "INVALID_METHOD_USAGE",
+      "message": "Declaring methods is not allowed in security scheme parts",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
