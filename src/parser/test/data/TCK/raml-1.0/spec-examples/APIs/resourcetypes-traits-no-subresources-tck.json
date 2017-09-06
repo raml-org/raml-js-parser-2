@@ -22,8 +22,8 @@
   },
   "errors": [
     {
-      "code": "UNKNOWN_NODE",
-      "message": "Unknown node: '/groups'",
+      "code": "INVALID_SUBRESOURCE_USAGE",
+      "message": "Subresources are not allowed in resource types",
       "path": "resourcetypes-traits-no-subresources.raml",
       "range": {
         "start": {

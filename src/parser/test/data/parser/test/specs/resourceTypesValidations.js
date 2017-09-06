@@ -231,7 +231,7 @@ describe('Resource Types Validations', function () {
       '  get:',
       '    description: Get'
     ]);
-    raml.load(definition).should.be.rejectedWith("Unknown node: '/resource'").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("Subresources are not allowed in resource types").and.notify(done);
   });
 
   it('should succeed when given a usage property', function (done) {
@@ -247,7 +247,7 @@ describe('Resource Types Validations', function () {
       'post:',
       '  usage: This resourceType should be used for any collection of items'
     ]);
-    raml.load(definition).should.be.rejectedWith("Unknown node: 'usage'").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("RAML 0.8 does not allow using 'usage' property within methods").and.notify(done);
   });
 
   describe('Optional Properties', function () {
@@ -476,7 +476,7 @@ describe('Resource Types Validations', function () {
         '  get:',
         '    summary: Get'
       ]);
-      raml.load(definition).should.be.rejectedWith("Unknown node: '/resource'").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Subresources are not allowed in resource types").and.notify(done);
     });
   });
 
@@ -634,13 +634,13 @@ describe('Trait Validations', function () {
   //FIXTEST changed message from /property: 'is' is invalid in a trait/
   it('should fail when given an "is" property', function (done) {
     var definition = traitSnippet([ 'is: [someTrait]']);
-    raml.load(definition).should.be.rejectedWith("Unknown node: 'is'").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("RAML 0.8 does not allow using 'is' property within traits").and.notify(done);
   });
 
   //FIXTEST changed message from /property: 'type' is invalid in a trait/
   it('should fail when given a "type" property', function (done) {
     var definition = traitSnippet([ 'type: [someType]']);
-    raml.load(definition).should.be.rejectedWith("Unknown node: 'type'").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("RAML 0.8 does not allow using 'type' property within traits").and.notify(done);
   });
 
   //FIXTEST error message changed from /property: 'usage\?' is invalid in a trait/
@@ -655,13 +655,13 @@ describe('Trait Validations', function () {
     //FIXTEST changed message from /property: 'type\?' is invalid in a trait/
     it('should fail when given a "type?" property', function (done) {
       var definition = traitSnippet([ 'type?: collection']);
-      raml.load(definition).should.be.rejectedWith("Unknown node: 'type'").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("RAML 0.8 does not allow using 'type' property within traits").and.notify(done);
     });
 
     //FIXTEST /property: 'is\?' is invalid in a trait/
     it('should fail when given an "is?" property', function (done) {
       var definition = traitSnippet([ 'is?: [secured]']);
-      raml.load(definition).should.be.rejectedWith("Unknown node: 'is'").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("RAML 0.8 does not allow using 'is' property within traits").and.notify(done);
     });
 
     describe('method properties', function () {

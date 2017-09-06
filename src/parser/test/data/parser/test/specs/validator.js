@@ -206,7 +206,7 @@ describe('Validator', function () {
       '/:',
       '   protocols:',
       '       - HTTP'
-    ].join('\n')).should.be.rejectedWith("Unknown node: 'protocols'").and.notify(done);
+    ].join('\n')).should.be.rejectedWith("RAML 0.8 does not allow using 'protocols' property within resources").and.notify(done);
   });
 
   //it('should not allow parameter key to be used as a name for resource type', function (done) {

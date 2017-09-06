@@ -720,6 +720,16 @@ var transformers: TransformMatches[] = [
         var paramCase = changeCase.param(arg);
 
         return paramCase.toUpperCase();
+    }),
+
+    new TransformMatches("sentencecase", (arg: string) => {
+        if(!arg) {
+            return arg;
+        }
+
+        var result = changeCase.sentenceCase(arg);
+
+        return result[0].toUpperCase() + result.substring(1);
     })
 ];
 
