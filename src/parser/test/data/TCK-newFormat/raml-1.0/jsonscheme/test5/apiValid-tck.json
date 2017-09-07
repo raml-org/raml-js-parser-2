@@ -5,6 +5,9 @@
         "name": "MyType",
         "displayName": "MyType",
         "schemaPath": "scheme.json#/definitions/InnerType",
+        "sourceMap": {
+          "path": "scheme.json#/definitions/InnerType"
+        },
         "type": [
           "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
         ],
@@ -16,10 +19,7 @@
           }
         },
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "c2NoZW1lLmpzb24vL2RlZmluaXRpb25zL0lubmVyVHlwZQ.json"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "title": "Api",

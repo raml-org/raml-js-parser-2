@@ -10,6 +10,9 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schema.json",
+                "sourceMap": {
+                  "path": "schema.json"
+                },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -34,10 +37,7 @@
                   "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"boolean\"\n}\n"
                 ],
                 "mediaType": "application/json",
-                "typePropertyKind": "JSON",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "JSON"
               }
             ],
             "method": "get",

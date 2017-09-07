@@ -12,6 +12,9 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "schemaPath": "list.json",
+                    "sourceMap": {
+                      "path": "list.json"
+                    },
                     "type": [
                       "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"id\": \"list.json\",\n  \"type\": \"object\",\n  \"allOf\": [\n    {\n      \"$ref\": \"#/definitions/a\"\n    }\n  ]  ,\n  \"definitions\": {\n    \"b\": {\n      \"id\": \"#b\",\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": \"integer\"\n        },\n        \"type\": {\n          \"type\": \"string\"\n        }\n      }\n    },\n\t\"a\":{\n\t  \"id\": \"#a\",\n\t  \"type\": \"object\",\n\t  \"allOf\": [\n\t    {\n\t      \"$ref\": \"#/definitions/b\"\n\t    }\n\t  ],\n\t  \"properties\": {\n\t  \t  \"a\": {\n\t      \"$ref\": \"#/definitions/b\"\n\t    }\n\t  },\n\t  \"required\": [\"a\"]\n\t}\n  }\n}"
                     ],
@@ -23,10 +26,7 @@
                       }
                     },
                     "mediaType": "application/json",
-                    "typePropertyKind": "JSON",
-                    "sourceMap": {
-                      "path": "resourceType.raml"
-                    }
+                    "typePropertyKind": "JSON"
                   }
                 ],
                 "sourceMap": {

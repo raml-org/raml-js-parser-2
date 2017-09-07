@@ -440,7 +440,14 @@ export class JsonSerializer {
 
                                     relativePath = relativePath.replace(/\\/g, '/');
 
-                                    result["schemaPath"] = relativePath + postfix;
+                                    let schemaPath = relativePath + postfix;
+                                    result["schemaPath"] = schemaPath;
+                                    let sourceMap = result.sourceMap;
+                                    if(!sourceMap){
+                                        sourceMap = {};
+                                        result.sourceMap = sourceMap;
+                                    }
+                                    sourceMap.path = schemaPath;
                                 }
                             }
                         }
@@ -494,7 +501,9 @@ export class JsonSerializer {
                     sourceMap = {};
                     result.sourceMap = sourceMap;
                 }
-                sourceMap.path = unitPath;
+                if(!sourceMap.path) {
+                    sourceMap.path = unitPath;
+                }
             }
         }
         else if (_node.isAttr()) {

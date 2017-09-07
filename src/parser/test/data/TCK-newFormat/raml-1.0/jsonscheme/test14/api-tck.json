@@ -5,6 +5,9 @@
         "name": "externalType",
         "displayName": "externalType",
         "schemaPath": "schemas/A.json",
+        "sourceMap": {
+          "path": "schemas/A.json"
+        },
         "type": [
           "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
         ],
@@ -29,10 +32,7 @@
           "{\"p1\":false,\"p2\":15}"
         ],
         "mediaType": "application/json",
-        "typePropertyKind": "JSON",
-        "sourceMap": {
-          "path": "api.raml"
-        }
+        "typePropertyKind": "JSON"
       }
     ],
     "title": "test API",
@@ -45,6 +45,9 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schemas/A.json",
+                "sourceMap": {
+                  "path": "schemas/A.json"
+                },
                 "type": [
                   "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
                 ],
@@ -69,10 +72,7 @@
                   "{\"p1\":false,\"p2\":15}"
                 ],
                 "mediaType": "application/json",
-                "typePropertyKind": "JSON",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "JSON"
               }
             ],
             "method": "post",

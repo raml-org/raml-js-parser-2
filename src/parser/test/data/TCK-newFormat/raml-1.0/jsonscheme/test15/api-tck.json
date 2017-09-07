@@ -13,6 +13,9 @@
                 "name": "type",
                 "displayName": "type",
                 "schemaPath": "schemas/A.json",
+                "sourceMap": {
+                  "path": "schemas/A.json"
+                },
                 "type": [
                   "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
                 ],
@@ -24,10 +27,7 @@
                   }
                 },
                 "mediaType": "application/json",
-                "typePropertyKind": "JSON",
-                "sourceMap": {
-                  "path": "api.raml"
-                }
+                "typePropertyKind": "JSON"
               }
             ],
             "__METADATA__": {
@@ -89,6 +89,9 @@
                         "name": "type",
                         "displayName": "type",
                         "schemaPath": "schemas/A.json",
+                        "sourceMap": {
+                          "path": "schemas/A.json"
+                        },
                         "type": [
                           "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
                         ],
@@ -100,10 +103,7 @@
                           }
                         },
                         "mediaType": "application/json",
-                        "typePropertyKind": "JSON",
-                        "sourceMap": {
-                          "path": "api.raml"
-                        }
+                        "typePropertyKind": "JSON"
                       }
                     ],
                     "__METADATA__": {

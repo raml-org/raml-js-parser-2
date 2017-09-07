@@ -5,6 +5,9 @@
         "name": "SomeType",
         "displayName": "SomeType",
         "schemaPath": "schema.xsd#",
+        "sourceMap": {
+          "path": "schema.xsd#"
+        },
         "type": [
           "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n  <xs:complexType name=\"City\">\n    <xs:sequence>\n      <xs:element name=\"country_name\" type=\"xs:string\"/>\n      <xs:element name=\"population\" type=\"xs:decimal\"/>\n    </xs:sequence>\n  </xs:complexType>\n  <xs:element name=\"city\" type=\"City\"/>\n<xs:element name=\"c2NoZW1hLnhzZC8\" requestedname=\"\" extraelement=\"true\"/></xs:schema>"
         ],
@@ -26,10 +29,7 @@
           "<country><country_name1>France</country_name1>\n<population>59.7</population></country>\n"
         ],
         "mediaType": "application/xml",
-        "typePropertyKind": "XML",
-        "sourceMap": {
-          "path": "apiInvalid.raml"
-        }
+        "typePropertyKind": "XML"
       }
     ],
     "title": "Blah",
