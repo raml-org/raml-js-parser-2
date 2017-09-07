@@ -84,7 +84,7 @@ export interface Resource08 extends ResourceBase08{
     /**
      * For nested resources, URI of the parent resource relative to base URI of the Api.
      * For top level resources it is empty string
-     */    
+     */
     parentUri?: string
 
     /**

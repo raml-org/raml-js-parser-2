@@ -98,15 +98,19 @@
                             }
                         },
                         "absoluteUri": {
+                            "description": "Absolute URI of the resource",
                             "type": "string"
                         },
                         "completeRelativeUri": {
+                            "description": "URI relative to base URI of the Api",
                             "type": "string"
                         },
                         "parentUri": {
+                            "description": "For nested resources, URI of the parent resource relative to base URI of the Api. For top level resources it is empty string",
                             "type": "string"
                         },
                         "absoluteParentUri": {
+                            "description": "For nested resources, absolute URI of the parent resource. For top level resources it is base URI of the Api or empty string if base Uri is undefined.",
                             "type": "string"
                         }
                     }
