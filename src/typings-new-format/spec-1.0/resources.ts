@@ -29,12 +29,26 @@ export interface Resource10 extends ResourceBase10 {
      */
     relativeUriPathSegments: string[]
 
+    /**
+     * Absolute URI of the resource
+     */
     absoluteUri: string
 
+    /**
+     * URI relative to base URI of the Api
+     */
     completeRelativeUri: string
 
+    /**
+     * For nested resources, URI of the parent resource relative to base URI of the Api.
+     * For top level resources it is empty string
+     */
     parentUri?: string
 
+    /**
+     * For nested resources, absolute URI of the parent resource.
+     * For top level resources it is base URI of the Api or empty string if base Uri is undefined.
+     */
     absoluteParentUri?: string
 
 }
