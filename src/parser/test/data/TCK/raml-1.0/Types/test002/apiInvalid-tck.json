@@ -144,7 +144,7 @@
     },
     {
       "code": "TYPE_EXPECTED",
-      "message": "number is expected",
+      "message": "Expected type 'number' but got 'string'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

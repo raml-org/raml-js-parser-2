@@ -62,7 +62,7 @@
   "errors": [
     {
       "code": "TYPE_EXPECTED",
-      "message": "number is expected",
+      "message": "Expected type 'number' but got 'array'",
       "path": "api.raml",
       "range": {
         "start": {
