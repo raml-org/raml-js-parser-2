@@ -28,7 +28,7 @@
         "mediaType": "application/xml",
         "typePropertyKind": "XML",
         "sourceMap": {
-          "path": "apiInvalid.raml"
+          "path": "schema.xsd#City"
         }
       }
     ],

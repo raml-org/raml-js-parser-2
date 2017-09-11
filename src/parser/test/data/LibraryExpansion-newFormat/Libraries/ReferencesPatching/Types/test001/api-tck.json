@@ -27,7 +27,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
         "sourceMap": {
-          "path": "lib/library.raml"
+          "path": "schemas/locale.xsd"
         }
       },
       {

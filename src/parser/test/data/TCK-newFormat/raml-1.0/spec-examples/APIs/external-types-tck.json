@@ -19,7 +19,7 @@
         "mediaType": "application/json",
         "typePropertyKind": "JSON",
         "sourceMap": {
-          "path": "external-types.raml"
+          "path": "schemas/person.json"
         }
       }
     ],

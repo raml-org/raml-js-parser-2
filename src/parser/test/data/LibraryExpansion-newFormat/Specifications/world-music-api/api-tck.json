@@ -3766,7 +3766,7 @@
                         "mediaType": "application/xml",
                         "typePropertyKind": "XML",
                         "sourceMap": {
-                          "path": "api.raml"
+                          "path": "schemas/songs.xsd"
                         }
                       }
                     ],
