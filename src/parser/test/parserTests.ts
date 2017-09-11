@@ -211,13 +211,13 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex6.raml"),["Required property 'c' is missing"]);
     })
     it ("example in model" ,function(){
-        testErrors(util.data("parser/examples/ex7.raml"), ["string is expected","string is expected","Required property 'c' is missing"]);
+        testErrors(util.data("parser/examples/ex7.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'","Required property 'c' is missing"]);
     })
     it ("another kind of examples" ,function(){
-        testErrors(util.data("parser/examples/ex13.raml"), ["boolean is expected"]);
+        testErrors(util.data("parser/examples/ex13.raml"), ["Expected type 'boolean' but got 'number'"]);
     })
     it ("example in parameter" ,function(){
-        testErrors(util.data("parser/examples/ex8.raml"), ["boolean is expected"]);
+        testErrors(util.data("parser/examples/ex8.raml"), ["Expected type 'boolean' but got 'string'"]);
     })
 
     it('Should correctly serialize multiple examples to JSON',function(){
@@ -238,16 +238,16 @@ describe('Parser regression tests', function () {
     });
 
     it ("checking that node is actually primitive" ,function(){
-        testErrors(util.data("parser/examples/ex9.raml"), ["string is expected"]);
+        testErrors(util.data("parser/examples/ex9.raml"), ["Expected type 'string' but got 'object'"]);
     })
     it ("map" ,function(){
         testErrors(util.data("parser/examples/ex10.raml"));
     })
     it ("map1" ,function(){
-        testErrors(util.data("parser/examples/ex11.raml"), ["number is expected"]);
+        testErrors(util.data("parser/examples/ex11.raml"), ["Expected type 'number' but got 'string'"]);
     })
     it ("map2" ,function(){
-        testErrors(util.data("parser/examples/ex12.raml"),["number is expected"]);
+        testErrors(util.data("parser/examples/ex12.raml"),["Expected type 'number' but got 'string'"]);
     })
     it ("objects are closed" ,function(){
         testErrors(util.data("parser/examples/ex14.raml"), ["Unknown property: 'z'"]);
@@ -406,7 +406,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a.raml"), ["value should be one of: 'W', 'A'"]);
     })
     it ("annotations2" ,function(){
-        testErrors(util.data("parser/annotations/a2.raml"), ["boolean is expected"]);
+        testErrors(util.data("parser/annotations/a2.raml"), ["Expected type 'boolean' but got 'string'"]);
     })
     it ("annotations3" ,function(){
         testErrors(util.data("parser/annotations/a3.raml"), ["Required property 'items' is missing"]);
@@ -421,7 +421,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a6.raml"));
     })
     it ("annotations7" ,function(){
-        testErrors(util.data("parser/annotations/a7.raml"), ["boolean is expected"]);
+        testErrors(util.data("parser/annotations/a7.raml"), ["Expected type 'boolean' but got 'string'"]);
     })
     it ("annotations8" ,function(){
         testErrors(util.data("parser/annotations/a8.raml"));
@@ -433,10 +433,10 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a10.raml"));
     })
     it ("annotations11" ,function(){
-        testErrors(util.data("parser/annotations/a11.raml"), ["object is expected"]);
+        testErrors(util.data("parser/annotations/a11.raml"), ["Expected type 'object' but got 'string'"]);
     })
     it ("annotations12" ,function(){
-        testErrors(util.data("parser/annotations/a12.raml"), ["number is expected"]);
+        testErrors(util.data("parser/annotations/a12.raml"), ["Expected type 'number' but got 'string'"]);
     })
     it ("annotations13" ,function(){
         testErrors(util.data("parser/annotations/a13.raml"));
@@ -478,7 +478,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a26.raml"));
     })
     it ("annotations27 (annotated scalar (validation))" ,function(){
-        testErrors(util.data("parser/annotations/a27.raml"),["number is expected"]);
+        testErrors(util.data("parser/annotations/a27.raml"),["Expected type 'number' but got 'string'"]);
     })
     it ("annotations28 (annotated scalar (unknown))" ,function(){
         testErrors(util.data("parser/annotations/a28.raml"),["unknown annotation: 'z2'"]);
@@ -571,7 +571,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/tr10.raml"),["Required property 'y' is missing"]);//Ok for now lets improve later
     })
     it ("runtime types value1" ,function(){
-        testErrors(util.data("parser/typexpressions/tr11.raml"),["object is expected"]);//Ok for now lets improve later
+        testErrors(util.data("parser/typexpressions/tr11.raml"),["Expected type 'object' but got 'string'"]);//Ok for now lets improve later
     })
     it ("runtime types value2" ,function(){
         testErrors(util.data("parser/typexpressions/tr12.raml"));//Ok for now lets improve later
@@ -676,7 +676,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/facets/f1.raml"));
     })
     it ("facets1" ,function(){
-        testErrors(util.data("parser/facets/f2.raml"), ["string is expected"]);
+        testErrors(util.data("parser/facets/f2.raml"), ["Expected type 'string' but got 'number'"]);
     })
     it ("redeclare buildin" ,function(){
         testErrors(util.data("parser/facets/f3.raml"),["redefining a built in type: datetime"]);
@@ -685,10 +685,10 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
     it ("custom facets validator" ,function(){
-        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","object is expected"]);
+        testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'","Expected type 'object' but got 'string'"]);
     })
     it ("custom facets validator2" ,function(){
-        testErrors(util.data("commonLibrary/api2.raml"),["object is expected"]);
+        testErrors(util.data("commonLibrary/api2.raml"),["Expected type 'object' but got 'string'"]);
     })
     //it ("custom facets validator3" ,function(){
     //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/parser/test/data/commonLibrary/common.raml"]);

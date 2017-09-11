@@ -402,7 +402,7 @@
   "errors": [
     {
       "code": "TYPE_EXPECTED",
-      "message": "boolean is expected",
+      "message": "Expected type 'boolean' but got 'number'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -420,7 +420,7 @@
     },
     {
       "code": "TYPE_EXPECTED",
-      "message": "number is expected",
+      "message": "Expected type 'number' but got 'boolean'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -438,7 +438,7 @@
     },
     {
       "code": "TYPE_EXPECTED",
-      "message": "boolean is expected",
+      "message": "Expected type 'boolean' but got 'number'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

@@ -77,7 +77,7 @@
   "errors": [
     {
       "code": "TYPE_EXPECTED",
-      "message": "string is expected",
+      "message": "Expected type 'string' but got 'number'",
       "path": "api.raml",
       "range": {
         "start": {
@@ -94,7 +94,7 @@
     },
     {
       "code": "TYPE_EXPECTED",
-      "message": "number is expected",
+      "message": "Expected type 'number' but got 'string'",
       "path": "api.raml",
       "range": {
         "start": {
@@ -111,7 +111,7 @@
     },
     {
       "code": "TYPE_EXPECTED",
-      "message": "boolean is expected",
+      "message": "Expected type 'boolean' but got 'number'",
       "path": "api.raml",
       "range": {
         "start": {

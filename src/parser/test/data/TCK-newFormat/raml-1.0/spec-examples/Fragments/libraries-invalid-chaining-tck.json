@@ -59,8 +59,8 @@
   "type": "ResourceType",
   "errors": [
     {
-      "code": "INHERITING_UNKNOWN_TYPE",
-      "message": "Inheriting from unknown type",
+      "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Inheriting the 'files.file-type.File' type imported through a library chain. Library chaining is not allowed.",
       "path": "libraries-invalid-chaining.raml",
       "range": {
         "start": {

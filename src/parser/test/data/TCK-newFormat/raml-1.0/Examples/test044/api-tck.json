@@ -111,7 +111,7 @@
   "errors": [
     {
       "code": "TYPE_EXPECTED",
-      "message": "boolean is expected",
+      "message": "Expected type 'boolean' but got 'string'",
       "path": "api.raml",
       "range": {
         "start": {

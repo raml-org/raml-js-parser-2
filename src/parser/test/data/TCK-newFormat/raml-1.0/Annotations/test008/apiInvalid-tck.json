@@ -117,7 +117,7 @@
   "errors": [
     {
       "code": "TYPE_EXPECTED",
-      "message": "object is expected",
+      "message": "Expected type 'object' but got 'string'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

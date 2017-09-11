@@ -210,7 +210,7 @@
   "errors": [
     {
       "code": "TYPE_EXPECTED",
-      "message": "string is expected",
+      "message": "Expected type 'string' but got 'number'",
       "path": "api.raml",
       "range": {
         "start": {
