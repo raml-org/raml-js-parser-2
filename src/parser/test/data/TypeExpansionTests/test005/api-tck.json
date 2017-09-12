@@ -27,7 +27,8 @@
               "name": "//",
               "required": false
             }
-          ]
+          ],
+          "maxProperties": 15
         },
         "sourceMap": {
           "path": "api.raml"
@@ -59,7 +60,8 @@
               "name": "//",
               "required": false
             }
-          ]
+          ],
+          "maxProperties": 10
         },
         "sourceMap": {
           "path": "api.raml"

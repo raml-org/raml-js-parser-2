@@ -3,6 +3,9 @@
     "types": [
       {
         "name": "T1",
+        "type": [
+          "union"
+        ],
         "anyOf": [
           {
             "name": "T1",

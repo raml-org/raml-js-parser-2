@@ -57,6 +57,7 @@ var testFilesLibExpand = [
   'dist/parser/test/longivityTestsUserTyping.js',
   'dist/parser/test/unfoldTypes.js',
   'dist/parser/test/typeExpansionTests.js',
+    'dist/parser/test/ramlToolBeltTypeExpansionTests.js',
   // // //
   'src/parser/test/data/parser/test/specs/optionals.js',
   'src/parser/test/data/parser/test/specs/parser.js',

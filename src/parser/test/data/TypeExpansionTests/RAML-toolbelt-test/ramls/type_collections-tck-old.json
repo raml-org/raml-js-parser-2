@@ -1,0 +1,166 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "ValidConstraintsInheritance": {
+          "name": "ValidConstraintsInheritance",
+          "displayName": "ValidConstraintsInheritance",
+          "typePropertyKind": "INPLACE",
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "minLength": 4,
+              "maxLength": 9,
+              "enum": [
+                "Jane",
+                "John"
+              ]
+            },
+            "age": {
+              "name": "age",
+              "displayName": "age",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "minimum": 19,
+              "maximum": 98
+            },
+            "cats": {
+              "name": "cats",
+              "displayName": "cats",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "array"
+              ],
+              "required": true,
+              "items": [
+                "string"
+              ],
+              "minItems": 2,
+              "maxItems": 4
+            },
+            "bio": {
+              "name": "bio",
+              "displayName": "bio",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "minProperties": 2,
+              "maxProperties": 9
+            }
+          },
+          "minProperties": 2,
+          "maxProperties": 9,
+          "type": {
+            "name": "type",
+            "displayName": "type",
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "name": {
+                "name": "name",
+                "displayName": "name",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": false,
+                "pattern": "foobar",
+                "minLength": 3,
+                "maxLength": 10,
+                "enum": [
+                  "Jane",
+                  "John",
+                  "Markus"
+                ]
+              },
+              "age": {
+                "name": "age",
+                "displayName": "age",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "minimum": 18,
+                "maximum": 99
+              },
+              "dob": {
+                "name": "dob",
+                "displayName": "dob",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "datetime"
+                ],
+                "required": true,
+                "format": "rfc2616"
+              },
+              "cats": {
+                "name": "cats",
+                "displayName": "cats",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "array"
+                ],
+                "required": true,
+                "uniqueItems": true,
+                "items": [
+                  "string"
+                ],
+                "minItems": 1,
+                "maxItems": 5
+              },
+              "bio": {
+                "name": "bio",
+                "displayName": "bio",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "minProperties": 1,
+                "maxProperties": 10
+              }
+            },
+            "minProperties": 1,
+            "maxProperties": 10,
+            "additionalProperties": false
+          }
+        }
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "PATTERN_VIOLATION",
+      "message": "String should match to 'foobar'",
+      "path": "type_collections.raml",
+      "range": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "position": 499
+        },
+        "end": {
+          "line": 27,
+          "column": 8,
+          "position": 503
+        }
+      }
+    }
+  ]
+}

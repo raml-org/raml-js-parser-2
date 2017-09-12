@@ -97,6 +97,9 @@
       },
       {
         "name": "T4",
+        "type": [
+          "union"
+        ],
         "anyOf": [
           {
             "name": "T4",
@@ -201,6 +204,9 @@
       },
       {
         "name": "MyComplexType",
+        "type": [
+          "union"
+        ],
         "anyOf": [
           {
             "name": "MyComplexType",

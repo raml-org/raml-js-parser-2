@@ -112,6 +112,8 @@ export interface TypeEntry extends Entry{
     isRecursionPoint():boolean;
 
     examples():typeSystem.IExample[]
+
+    meta():typeSystem.ITypeFacet[];
 }
 
 export class AbstractTypeEntry implements TypeEntry{
@@ -202,16 +204,9 @@ export class AbstractTypeEntry implements TypeEntry{
     }
 
     allFacets(){
-        if(this._original){
-            return this._original.allFacets();
-        }
-        else{
-            let result:typeSystem.ITypeFacet[] = [];
-            for(let st of this.superTypes()){
-                st.allFacets().forEach(x=>result.push(x));
-            }
-            return result;
-        }
+        let meta = this.meta();
+        let result = meta.filter(x=>x.kind()!=def.tsInterfaces.MetaInformationKind.FacetDeclaration);
+        return result;
     }
 
     isRecursionPoint():boolean{
@@ -220,6 +215,21 @@ export class AbstractTypeEntry implements TypeEntry{
 
     examples():typeSystem.IExample[]{
         return this._original != null ? this._original.examples() : [];
+    }
+
+    meta(){
+        let result:typeSystem.ITypeFacet[] = [];
+        if(this._original){
+            result = this._original.allFacets();
+        }
+        else{
+            for(let st of this.superTypes()){
+                st.allFacets().forEach(x=>result.push(x));
+            }
+        }
+        result = result.filter(x=>x.kind()!=def.tsInterfaces.MetaInformationKind.Example
+                                && x.kind()!=def.tsInterfaces.MetaInformationKind.Examples);
+        return result;
     }
 }
 
@@ -712,6 +722,7 @@ export function dump(te:TypeEntry):any{
         let ute = <UnionTypeEntry>te;
         let options = ute.options();
         if(options.length>0){
+            result.type = [ "union" ];
             let anyOf:any[] = [];
             result.anyOf = anyOf;
             for(let o of options){
@@ -790,6 +801,7 @@ export function dump(te:TypeEntry):any{
     }
     let annotations = te.original() && te.original().annotations();
     dumpAnnotations(annotations,result);
+    dumpMeta(te,result);
     return result;
 }
 
@@ -854,7 +866,7 @@ export function dumpFacets(te: TypeEntry, result: any) {
         let fArr = facetsMap[fn];
         let val: any;
         if (fArr.length == 1) {
-            let val = fArr[0].value();
+            val = fArr[0].value();
         }
         else {
             val = mergeFacetValues(fArr);
@@ -897,4 +909,47 @@ function mergeFacetValues(arr:typeSystem.ITypeFacet[]):any{
     }
     return c.value();
 
+}
+
+function dumpMeta(te:TypeEntry,result:any){
+
+    for(let m of te.meta()){
+        let name = m.facetName();
+        if (MetaNamesProvider.getInstance().hasProperty(name)) {
+            if (!result.hasOwnProperty(name)) {
+                result[name] = m.value();
+            }
+        }
+    }
+}
+
+class MetaNamesProvider{
+
+    private static instance:MetaNamesProvider = new MetaNamesProvider();
+
+    public static getInstance():MetaNamesProvider{
+        if(!MetaNamesProvider.instance){
+            MetaNamesProvider.instance = new MetaNamesProvider();
+        }
+        return MetaNamesProvider.instance;
+    }
+
+    constructor(){
+        this.init();
+    }
+
+    private map:{[key:string]:boolean} = {};
+
+    private init(){
+        let t = def.getUniverse("RAML10").type(def.universesInfo.Universe10.TypeDeclaration.name);
+        for(let p of t.properties()){
+            if(p.nameId()!=def.universesInfo.Universe10.TypeDeclaration.properties.schema.name) {
+                this.map[p.nameId()] = true;
+            }
+        }
+    }
+
+    public hasProperty(n:string):boolean{
+        return this.map.hasOwnProperty(n);
+    }
 }

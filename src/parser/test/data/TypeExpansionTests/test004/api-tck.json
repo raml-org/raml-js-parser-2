@@ -69,6 +69,9 @@
       },
       {
         "name": "T4",
+        "type": [
+          "union"
+        ],
         "anyOf": [
           {
             "name": "T4",
@@ -147,6 +150,9 @@
           "array"
         ],
         "items": {
+          "type": [
+            "union"
+          ],
           "anyOf": [
             {
               "name": "T2",

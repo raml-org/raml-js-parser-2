@@ -155,6 +155,9 @@
       },
       {
         "name": "T4",
+        "type": [
+          "union"
+        ],
         "anyOf": [
           {
             "name": "T4",

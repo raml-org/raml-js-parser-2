@@ -8,13 +8,17 @@
         ],
         "properties": [
           {
-            "name": "p1",
             "type": [
               "string"
             ],
+            "displayName": "Test Property 0",
+            "description": "test property 0",
+            "name": "p1",
             "required": true
           }
         ],
+        "displayName": "Test Type 0",
+        "description": "test type 0",
         "sourceMap": {
           "path": "api.raml"
         }
@@ -26,20 +30,26 @@
         ],
         "properties": [
           {
-            "name": "p2",
             "type": [
               "string"
             ],
+            "displayName": "Test Property 1",
+            "description": "test property 1",
+            "name": "p2",
             "required": true
           },
           {
-            "name": "p1",
             "type": [
               "string"
             ],
+            "displayName": "Test Property 0",
+            "description": "test property 0",
+            "name": "p1",
             "required": true
           }
         ],
+        "displayName": "Test Type 1",
+        "description": "test type 1",
         "sourceMap": {
           "path": "api.raml"
         }
@@ -51,19 +61,26 @@
         ],
         "properties": [
           {
-            "name": "p3",
             "type": [
               "string"
             ],
+            "displayName": "Test Property 2",
+            "description": "test property 2",
+            "name": "p3",
             "required": true
           }
         ],
+        "displayName": "Test Type 2",
+        "description": "test type 2",
         "sourceMap": {
           "path": "api.raml"
         }
       },
       {
         "name": "T4",
+        "type": [
+          "union"
+        ],
         "anyOf": [
           {
             "name": "T4",
@@ -72,27 +89,35 @@
             ],
             "properties": [
               {
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 3",
+                "description": "test property 3",
                 "name": "p4",
-                "type": [
-                  "string"
-                ],
                 "required": true
               },
               {
+                "type": [
+                  "string"
+                ],
+                "displayName": "Test Property 1",
+                "description": "test property 1",
                 "name": "p2",
-                "type": [
-                  "string"
-                ],
                 "required": true
               },
               {
-                "name": "p1",
                 "type": [
                   "string"
                 ],
+                "displayName": "Test Property 0",
+                "description": "test property 0",
+                "name": "p1",
                 "required": true
               }
-            ]
+            ],
+            "displayName": "Test Type 1",
+            "description": "test type 1"
           },
           {
             "name": "T4",
@@ -101,22 +126,30 @@
             ],
             "properties": [
               {
-                "name": "p4",
                 "type": [
                   "string"
                 ],
+                "displayName": "Test Property 3",
+                "description": "test property 3",
+                "name": "p4",
                 "required": true
               },
               {
-                "name": "p3",
                 "type": [
                   "string"
                 ],
+                "displayName": "Test Property 2",
+                "description": "test property 2",
+                "name": "p3",
                 "required": true
               }
-            ]
+            ],
+            "displayName": "Test Type 2",
+            "description": "test type 2"
           }
         ],
+        "displayName": "Test Type 3",
+        "description": "test type 3",
         "sourceMap": {
           "path": "api.raml"
         }
