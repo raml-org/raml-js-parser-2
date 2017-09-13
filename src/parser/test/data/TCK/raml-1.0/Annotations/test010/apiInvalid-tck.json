@@ -86,8 +86,8 @@
   },
   "errors": [
     {
-      "code": "UNRESOLVED_REFERENCE",
-      "message": "Reference: 'suborg1' can not be resolved",
+      "code": "UNKNOWN_ANNOTATION_TYPE",
+      "message": "Using unknown annotation type: 'suborg1'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

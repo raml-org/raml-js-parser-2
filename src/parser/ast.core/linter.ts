@@ -2123,12 +2123,13 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
         var referencedToName = typeToName[expected] || nameForNonReference(astNode);
         var parameters = {
             referencedToName: referencedToName,
-            ref: vl
+            ref: vl,
+            typeName: vl
         }
         var code = referencedToName ? messageRegistry.UNRECOGNIZED_ELEMENT
             : messageRegistry.UNRESOLVED_REFERENCE;
 
-        var spesializedMessage = specializeReferenceError(code, pr, astNode)
+        var spesializedMessage = specializeReferenceError(code, pr, astNode, vl);
         let toWarning = pr.range().key()===universes.Universe08.SchemaString;
         if(!checkIfIncludeTagIsMissing(astNode, cb, spesializedMessage.code, toWarning)) {
             cb.accept(createIssue1(spesializedMessage, parameters, astNode, toWarning));
@@ -2281,7 +2282,7 @@ function checkResourceTypeReference(property:def.Property, astNode:hl.IAttribute
  * @returns {string}
  */
 function specializeReferenceError(originalMessage: any,
-                                  property:def.Property, astNode:hl.IAttribute):any {
+                                  property:def.Property, astNode:hl.IAttribute, value:any):any {
     if (property.nameId()=="type"&&property.domain().universe().version()=="RAML08"){
         if (property.domain().isAssignableFrom(universes.Universe08.Parameter.name)) {
             return messageRegistry.TYPES_VARIETY_RESTRICTION;
@@ -2291,8 +2292,16 @@ function specializeReferenceError(originalMessage: any,
     if (astNode.parent() != null && universeHelpers.isSecuritySchemaType(astNode.parent().definition())) {
         return messageRegistry.UNRECOGNIZED_SECURITY_SCHEME;
     }
-
-
+    if(universeHelpers.isAnnotationsProperty(property)){
+        let typeCollction = astNode.parent().types();
+        let reg = typeCollction && typeCollction.getAnnotationTypeRegistry();
+        if(reg && reg.getByChain(value)){
+            return messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE;
+        }
+        else{
+            return messageRegistry.UNKNOWN_ANNOTATION_TYPE;
+        }
+    }
     return originalMessage;
 }
 
@@ -2598,7 +2607,33 @@ class FixedFacetsValidator implements NodeValidator {
 
             var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
-                validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath(node,e).node, false)));
+                if(universeHelpers.isAnnotationsProperty(node.property())){
+                    validateObject.getErrors().forEach(e=>{
+                        if(e.getMessage()=="nothing"){
+                            let typeCollction = node.parent().types();
+                            let reg = typeCollction && typeCollction.getAnnotationTypeRegistry();
+                            let sVal = new hlimpl.StructuredValue(node.lowLevel(),node.parent(),node.property());
+                            let aName = sVal.valueName();
+                            let chained = rof.allFacets().filter(x=>x.kind()==def.tsInterfaces.MetaInformationKind.ImportedByChain);
+                            if(chained.length>0 && reg && reg.getByChain(aName)){
+                                let chainedType = chained[0].value();
+                                v.accept(createIssue1(
+                                    messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE,
+                                    {typeName: aName, chainedType: chainedType}, node));
+                            }
+                            else{
+                                v.accept(createIssue1(
+                                    messageRegistry.UNKNOWN_ANNOTATION_TYPE,{typeName: aName}, node));
+                            }
+                        }
+                        else{
+                            v.accept(createIssue(e.getCode(), e.getMessage(), mapPath(node,e).node, false))
+                        }
+                    });
+                }
+                else{
+                    validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath(node,e).node, false)));
+                }
             }
         }
     }
