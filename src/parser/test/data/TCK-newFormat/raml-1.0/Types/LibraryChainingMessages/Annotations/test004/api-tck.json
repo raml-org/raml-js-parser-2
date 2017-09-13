@@ -1,19 +1,22 @@
 {
   "specification": {
-    "annotations": {
-      "A": {
+    "annotations": [
+      {
         "name": "A",
-        "structuredValue": "stringValue"
+        "value": "stringValue"
       }
-    },
+    ],
     "uses": [
       {
         "key": "lib1",
-        "value": "./lib1.raml"
+        "value": "./lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "annotationTypes": {
-      "A": {
+    "annotationTypes": [
+      {
         "name": "A",
         "displayName": "A",
         "type": [
@@ -27,10 +30,16 @@
           }
         },
         "mediaType": "application/raml+yaml",
-        "typePropertyKind": "TYPE_EXPRESSION"
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
-    "title": "test API"
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",

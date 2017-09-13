@@ -118,8 +118,8 @@
   "type": "Api",
   "errors": [
     {
-      "code": "UNRESOLVED_REFERENCE",
-      "message": "Reference: 'lib1.MyAnnotationType' can not be resolved",
+      "code": "UNKNOWN_ANNOTATION_TYPE",
+      "message": "Using unknown annotation type: 'lib1.MyAnnotationType'",
       "path": "C:/GIT-repos/raml-org/raml-js-parser-2/src/parser/test/data/LibraryExpansion-newFormat/LibraryAnnotations/test002/lib.raml",
       "range": {
         "start": {

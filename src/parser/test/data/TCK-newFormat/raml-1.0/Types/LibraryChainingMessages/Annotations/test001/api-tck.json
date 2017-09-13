@@ -1,18 +1,24 @@
 {
   "specification": {
-    "annotations": {
-      "lib1.lib2.A2": {
+    "annotations": [
+      {
         "name": "lib1.lib2.A2",
-        "structuredValue": "stringValue"
+        "value": "stringValue"
       }
-    },
+    ],
     "uses": [
       {
         "key": "lib1",
-        "value": "./lib1.raml"
+        "value": "./lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
