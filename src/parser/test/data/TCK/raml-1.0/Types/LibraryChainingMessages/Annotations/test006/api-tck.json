@@ -1,0 +1,121 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib1.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "A": {
+          "name": "A",
+          "displayName": "A",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "lib1.lib2.T2"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "annotations": {
+                      "A": {
+                        "structuredValue": null,
+                        "name": "A"
+                      }
+                    },
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 2,
+          "position": 75
+        },
+        "end": {
+          "line": 8,
+          "column": 3,
+          "position": 76
+        }
+      }
+    },
+    {
+      "code": "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE",
+      "message": "Annotation type 'A' depends on 'lib1.lib2.T2' imported through a library chain. Library chainig is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 16,
+          "column": 12,
+          "position": 190
+        },
+        "end": {
+          "line": 16,
+          "column": 15,
+          "position": 193
+        }
+      }
+    }
+  ]
+}

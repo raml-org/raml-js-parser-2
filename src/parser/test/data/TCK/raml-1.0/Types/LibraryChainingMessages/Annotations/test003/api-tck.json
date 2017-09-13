@@ -1,0 +1,85 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib1.raml"
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "annotations": {
+                      "lib1.lib2.A2": {
+                        "structuredValue": "stringValue",
+                        "name": "lib1.lib2.A2"
+                      }
+                    },
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "object"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE",
+      "message": "Annotation type 'lib1.lib2.A2' imported through a library chain. Library chainig is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 12,
+          "position": 154
+        },
+        "end": {
+          "line": 13,
+          "column": 26,
+          "position": 168
+        }
+      }
+    }
+  ]
+}

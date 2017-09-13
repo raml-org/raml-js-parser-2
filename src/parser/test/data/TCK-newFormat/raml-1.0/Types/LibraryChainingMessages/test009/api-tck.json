@@ -1,0 +1,137 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib1.raml"
+      }
+    ],
+    "types": {
+      "MyType1": {
+        "name": "MyType1",
+        "displayName": "MyType1",
+        "type": [
+          "lib1.lib2.T2"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "MyType2": {
+        "name": "MyType2",
+        "displayName": "MyType2",
+        "facets": {
+          "facet1": {
+            "name": "facet1",
+            "displayName": "facet1",
+            "type": [
+              "lib1.lib2.T2"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "facet2": {
+            "name": "facet2",
+            "displayName": "facet2",
+            "type": [
+              "MyType1"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 2,
+          "position": 65
+        },
+        "end": {
+          "line": 8,
+          "column": 9,
+          "position": 72
+        }
+      }
+    },
+    {
+      "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE",
+      "message": "Property 'facet1' refers to type 'lib1.lib2.T2' imported through a library chain. Library chainig is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 6,
+          "position": 116
+        },
+        "end": {
+          "line": 11,
+          "column": 12,
+          "position": 122
+        }
+      }
+    },
+    {
+      "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE_SUPERTYPE",
+      "message": "Property 'facet2' type depends on 'lib1.lib2.T2' type imported through a library chain. Library chainig is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 6,
+          "position": 143
+        },
+        "end": {
+          "line": 12,
+          "column": 12,
+          "position": 149
+        }
+      }
+    }
+  ]
+}

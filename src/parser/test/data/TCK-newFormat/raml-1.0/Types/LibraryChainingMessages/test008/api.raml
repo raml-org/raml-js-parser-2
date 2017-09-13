@@ -1,0 +1,17 @@
+#%RAML 1.0
+
+title: test API
+
+uses:
+  lib1: ./lib1.raml
+
+types:
+  MyType1: lib1.lib2.T2
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/json: lib1.lib2.T2 | string
+          application/xml: MyType1 | string

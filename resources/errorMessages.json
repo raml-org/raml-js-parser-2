@@ -627,5 +627,21 @@
   "METHOD_MUST_BE_OVERRIDDEN" : {
     "code" : "METHOD_MUST_BE_OVERRIDDEN",
     "message" : "The method must be overridden"
+  },
+  "UNKNOWN_ANNOTATION_TYPE" : {
+    "code" : "UNKNOWN_ANNOTATION_TYPE",
+    "message": "Using unknown annotation type: '{{typeName}}'"
+  },
+  "UNKNOWN_ANNOTATION_TYPE" : {
+    "code" : "UNKNOWN_ANNOTATION_TYPE",
+    "message": "Using unknown annotation type: '{{typeName}}'"
+  },
+  "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE" : {
+    "code" : "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE",
+    "message": "Annotation type '{{typeName}}' imported through a library chain. Library chainig is not allowed."
+  },
+  "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE" : {
+    "code" : "LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE",
+    "message": "Annotation type '{{typeName}}' depends on '{{chainedType}}' imported through a library chain. Library chainig is not allowed."
   }
 }
