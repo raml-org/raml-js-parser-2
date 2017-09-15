@@ -65,7 +65,7 @@
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "anyOf": [
-                  "<<parentType>><<resourcePathName>>-errors",
+                  "error-types.<<parentType>>-<<resourcePathName>>-errors",
                   "string"
                 ],
                 "sourceMap": {

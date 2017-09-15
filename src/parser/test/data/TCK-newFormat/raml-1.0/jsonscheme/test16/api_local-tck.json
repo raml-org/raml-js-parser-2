@@ -3,13 +3,16 @@
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "schemaPath": "schemas/schema1.json",
+                "sourceMap": {
+                  "path": "schemas/schema1.json"
+                },
                 "type": [
                   "{\n\t\"$schema\": \"http://json-schema.org/draft-04/schema#\",\n\t\"id\": \"schema1.json\",\n\t\"type\": \"object\",\n\t\"allOf\": [\n\t\t{\n\t\t\t\"$ref\": \"schema2.json\"\n\t\t},\n\t\t{\n\t\t\t\"properties\":\t{\n\t\t\t\t\"type\":\t{\n\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"required\":\t[\n\t\t\t\t\"type\"\n\t\t\t]\n\t\t}\n\t]\n}\n"
                 ],
@@ -31,13 +34,21 @@
                     "name": null
                   }
                 ],
+                "simplifiedExamples": [
+                  "{\"name\":\"stringValue1\",\"type\":\"stringValue2\",\"active\":true}"
+                ],
                 "mediaType": "application/json",
                 "typePropertyKind": "JSON"
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api_local.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -52,9 +63,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api_local.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api_local.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
