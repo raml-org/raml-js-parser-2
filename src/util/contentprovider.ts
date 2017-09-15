@@ -80,7 +80,7 @@ export class ContentProvider {
 
     private toRelativeIfNeeded(normaized:any|any) {
         var unitPath = normaized;
-        if (path.isAbsolute(normaized) && !isWebPath(normaized)) {
+        if (path.isAbsolute(normaized) && !isWebPath(normaized) && !isWebPath(this.unit.absolutePath())) {
             unitPath = path.relative(path.dirname(this.unit.absolutePath()), normaized);
         }
         return unitPath;

@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Test API
+
+/resource:
+  post:
+    body:
+      application/json:
+        type: !include schemas/schema1.json
+        example: |
+          {
+            "name": "stringValue1",
+            "type": "stringValue2",
+            "active": true
+          }

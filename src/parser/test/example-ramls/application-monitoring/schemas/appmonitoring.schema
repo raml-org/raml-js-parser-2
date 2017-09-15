@@ -14,7 +14,9 @@
     },
     "rules": {
       "type": "array",
-      "$ref": "appmonitor-rule"
+      "items": {
+        "$ref": "appmonitor-rule.schema"
+      }
     }
   }
 }

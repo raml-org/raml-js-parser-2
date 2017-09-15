@@ -24,7 +24,9 @@
       }
     },
     "actions": {
-      "$ref": "appmonitor-action",
+      "items": {
+        "$ref": "appmonitor-action.schema"
+      },
       "type": "array"
     }
   }

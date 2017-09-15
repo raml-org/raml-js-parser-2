@@ -14,10 +14,10 @@
       "enum": ["workerCount", "workerSize"]
     },
     "minScale": {
-      "type": "integer"
+      "type": "number"
     },
     "maxScale": {
-      "type": "integer"
+      "type": "number"
     },
     "webhookUrl": {
       "type": "string"
