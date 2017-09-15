@@ -100,7 +100,7 @@ securitySchemes:
               Success
             body:
               application/json:
-                schema: appmonitor-rule.schema
+                schema: appmonitor-rule
                 example: !include examples/appmonitor-rule.json
       put:
         securedBy: [ oauth_2_0 ]
@@ -116,7 +116,7 @@ securitySchemes:
               Success
             body:
               application/json:
-                schema: appmonitor-rule.schema
+                schema: appmonitor-rule
                 example: !include examples/appmonitor-rule.json
       delete:
         securedBy: [ oauth_2_0 ]

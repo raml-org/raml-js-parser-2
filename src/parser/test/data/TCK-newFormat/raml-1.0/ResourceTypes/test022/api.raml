@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: test API
+mediaType: [ "application/json" ]
+uses:
+  app: lib.raml
+resourceTypes:
+  collection:
+    get:
+      responses:
+        200:
+          body: "<<resourcePathName|!singularize>>.<<resourcePathName|!singularize|!uppercamelcase>>[]"
+    post:
+      body: "<<resourcePathName|!singularize>>.<<resourcePathName|!singularize|!uppercamelcase>>Create"
+      responses:
+        200:
+          body: "<<resourcePathName|!singularize>>.<<resourcePathName|!singularize|!uppercamelcase>>"
+/apps:
+  type: collection

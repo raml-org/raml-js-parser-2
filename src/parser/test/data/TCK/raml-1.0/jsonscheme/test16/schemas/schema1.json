@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "schema1.json",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "schema2.json"
+		},
+		{
+			"properties":	{
+				"type":	{
+					"type": "string"
+				}
+			},
+			"required":	[
+				"type"
+			]
+		}
+	]
+}

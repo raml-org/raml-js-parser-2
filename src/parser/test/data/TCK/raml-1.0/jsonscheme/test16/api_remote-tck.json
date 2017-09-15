@@ -1,0 +1,63 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "JSON",
+                "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/develop/src/parser/test/data/TCK/raml-1.0/jsonscheme/test16/schemas/schema1.json",
+                "type": [
+                  "{\n\t\"$schema\": \"http://json-schema.org/draft-04/schema#\",\n\t\"id\": \"schema1.json\",\n\t\"type\": \"object\",\n\t\"allOf\": [\n\t\t{\n\t\t\t\"$ref\": \"schema2.json\"\n\t\t},\n\t\t{\n\t\t\t\"properties\":\t{\n\t\t\t\t\"type\":\t{\n\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"required\":\t[\n\t\t\t\t\"type\"\n\t\t\t]\n\t\t}\n\t]\n}\n"
+                ],
+                "example": {
+                  "name": "stringValue1",
+                  "type": "stringValue2",
+                  "active": true
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"name\": \"stringValue1\",\n  \"type\": \"stringValue2\",\n  \"active\": true\n}\n",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "name": "stringValue1",
+                    "type": "stringValue2",
+                    "active": true
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}

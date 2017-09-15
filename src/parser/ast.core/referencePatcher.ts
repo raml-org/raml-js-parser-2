@@ -1000,11 +1000,12 @@ export function unescapeTemplateParameters(str:string,substitutions:{[key:string
     var resultingString = "";
     var prev = 0;
     for(var i = str.indexOf(PARAM_OCCURENCE_STR); i>=0 ; i = str.indexOf(PARAM_OCCURENCE_STR,prev)){
+        resultingString += str.substring(prev,i);
         prev = str.indexOf(PARAM_OCCURENCE_STR,i+1);
-        prev += PARAM_OCCURENCE_STR.length;
         if(prev<0){
             return { status: ParametersEscapingStatus.ERROR };
         }
+        prev += PARAM_OCCURENCE_STR.length;
         var substitution = str.substring(i,prev);
         var originalParamOccurence = substitutions[substitution];
         if(originalParamOccurence==null){

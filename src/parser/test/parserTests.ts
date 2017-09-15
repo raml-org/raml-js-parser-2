@@ -78,11 +78,6 @@ describe('Parser integration tests',function(){
     it ("application monitoring",function(){
         this.timeout(15000)
         testErrors(util.data("../example-ramls/application-monitoring/api.raml"),[
-            "Unrecognized schema: 'appmonitor-rule.schema'",
-            "Invalid JSON schema: Reference has not been resolved during compilation: appmonitor-rule",
-            "Unrecognized schema: 'appmonitor-rule.schema'",
-            "Invalid JSON schema: Reference has not been resolved during compilation: appmonitor-action",
-                                             "Invalid JSON schema: Reference has not been resolved during compilation: appmonitor-action",
             "Unrecognized schema: 'appmonitor'"
         ]);
     });

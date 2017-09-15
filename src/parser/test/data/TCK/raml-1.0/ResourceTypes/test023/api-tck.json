@@ -1,0 +1,132 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "newtesttype": {
+          "name": "newtesttype",
+          "displayName": "newtesttype",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "field": "value"
+          },
+          "properties": {
+            "field": {
+              "name": "field",
+              "displayName": "field",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"field\": \"value\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "field": "value"
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "TestResorceType": {
+          "name": "TestResorceType",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<objectName | !lowercase>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Allows to create new <<objectName | !singularize>>",
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "newtesttype"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Allows to create new newTestType",
+            "method": "post"
+          }
+        ],
+        "type": {
+          "TestResorceType": {
+            "objectName": "newTestType"
+          }
+        },
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ],
+        "absoluteUri": "/test"
+      }
+    ]
+  },
+  "errors": []
+}

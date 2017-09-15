@@ -89,6 +89,7 @@ var extractUsedParamNames = function (strV:string,isKey=false) {
         ps = pos + 2;
         var directiveIndex = parameterUsage.indexOf("|");
         if (directiveIndex != -1) {
+            isFull = false;
             parameterUsage = parameterUsage.substring(0, directiveIndex);
         }
         parameterUsage = parameterUsage.trim();
