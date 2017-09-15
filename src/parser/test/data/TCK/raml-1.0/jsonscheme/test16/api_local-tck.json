@@ -14,7 +14,7 @@
                 "typePropertyKind": "JSON",
                 "schemaPath": "schemas/schema1.json",
                 "type": [
-                  "{\r\n\t\"$schema\": \"http://json-schema.org/draft-04/schema#\",\r\n\t\"id\": \"schema1.json\",\r\n\t\"type\": \"object\",\r\n\t\"allOf\": [\r\n\t\t{\r\n\t\t\t\"$ref\": \"schema2.json\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"properties\":\t{\r\n\t\t\t\t\"type\":\t{\r\n\t\t\t\t\t\"type\": \"string\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"required\":\t[\r\n\t\t\t\t\"type\"\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}\r\n"
+                  "{\n\t\"$schema\": \"http://json-schema.org/draft-04/schema#\",\n\t\"id\": \"schema1.json\",\n\t\"type\": \"object\",\n\t\"allOf\": [\n\t\t{\n\t\t\t\"$ref\": \"schema2.json\"\n\t\t},\n\t\t{\n\t\t\t\"properties\":\t{\n\t\t\t\t\"type\":\t{\n\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"required\":\t[\n\t\t\t\t\"type\"\n\t\t\t]\n\t\t}\n\t]\n}\n"
                 ],
                 "example": {
                   "name": "stringValue1",
