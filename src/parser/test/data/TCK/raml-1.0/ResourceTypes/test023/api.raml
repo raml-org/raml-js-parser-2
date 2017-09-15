@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: test
+types:
+  newtesttype:
+    type: object
+    properties:
+      field: string
+    example:
+      field: value
+resourceTypes:
+  TestResorceType:
+    post:
+      description: Allows to create new <<objectName | !singularize>>
+      body:
+        application/json:
+          type: <<objectName | !lowercase>>
+/test:
+  type: {TestResorceType: {objectName: newTestType}}
