@@ -1,4 +1,4 @@
-/// <reference path="../../typings/main.d.ts" />
+
 import _ = require("underscore");
 import xmlutil = require('./xmlutil');
 import contentprovider = require('./contentprovider');

@@ -7938,7 +7938,7 @@ export function loadApi(apiPath:string,extensionsAndOverlays:string[], options?:
 
 export function loadApi(apiPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<Api>{
 
-        return apiLoader.loadApiAsync(apiPath,arg1,arg2);
+        return <Promise<Api>>apiLoader.loadApiAsync(apiPath,arg1,arg2);
 }
 
 /**

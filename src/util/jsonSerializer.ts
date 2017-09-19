@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 var universe = require("../parser/tools/universe");
 import coreApi = require("../parser/wrapped-ast/parserCoreApi");
 import core = require("../parser/wrapped-ast/parserCore");

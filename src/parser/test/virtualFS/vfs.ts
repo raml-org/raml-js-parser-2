@@ -223,7 +223,7 @@ export function getInstance():decl.LocalStorageFileSystem{
           }
 
           localStorageHelper.set(path, file);
-          deferred.resolve();
+          deferred.resolve(null);
 
         }, delay);
 
@@ -264,7 +264,7 @@ export function getInstance():decl.LocalStorageFileSystem{
               }
             });
 
-          deferred.resolve();
+          deferred.resolve(null);
         }, delay);
 
 
@@ -308,7 +308,7 @@ export function getInstance():decl.LocalStorageFileSystem{
           }
 
           localStorageHelper.remove(path);
-          deferred.resolve();
+          deferred.resolve(null);
         }, delay);
 
         return deferred.promise;
@@ -363,7 +363,7 @@ export function getInstance():decl.LocalStorageFileSystem{
             });
           }
 
-          deferred.resolve();
+          deferred.resolve(null);
         }, delay);
 
         return deferred.promise;

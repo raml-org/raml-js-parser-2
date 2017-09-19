@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import ll=require("../lowLevelAST");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import hl=require("../highLevelAST");

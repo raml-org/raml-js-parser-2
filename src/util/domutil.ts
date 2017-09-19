@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import Opt = require("../Opt");
 
 export function childrenOf( elm: HTMLElement ): Element[] {

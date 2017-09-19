@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 
 export function isMultiLine(s: string): boolean {
     return s && s.indexOf('\n') >= 0;
@@ -191,7 +190,9 @@ export class TextRange {
         }
         while(pos < this.contents.length-1) {
             var nextchar = this.contents[pos];
-            if(nextchar != ' ' || nextchar == '\r' || nextchar == '\n') break;
+            if(nextchar != ' '){
+                break;
+            }
             pos++;
         }
         return new TextRange(this.contents, this.start, pos);

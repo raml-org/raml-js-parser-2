@@ -1,5 +1,3 @@
-/// <reference path="../../../../typings/main.d.ts" />
-
 import resolverApi = require("../../jsyaml/resolversApi");
 import fs = require("fs");
 import path = require("path");

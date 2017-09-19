@@ -1,5 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
-
 import _ = require("underscore");
 import Opt = require("../Opt");
 

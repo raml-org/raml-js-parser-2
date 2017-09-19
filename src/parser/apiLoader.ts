@@ -1,5 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
-
 import RamlWrapper1= require("../parser/artifacts/raml10parserapi")
 import RamlWrapper1Impl= require("../parser/artifacts/raml10parser")
 
@@ -205,7 +203,7 @@ export function loadApiAsync(apiPath:string,arg1?:string[]|parserCoreApi.Options
         //     //TODO check that loaded RAML is API
         //     return Promise.reject("Specified RAML is not API");
         // } else {
-        return loadedRaml;
+        return <RamlWrapper1.Api|RamlWrapper08.Api>loadedRaml;
         // }
     })
 }
@@ -311,12 +309,12 @@ function fetchAndLoadApiAsyncHL(project: jsyaml.Project, unitName : string, opti
         try {
             var api = toApi(x, options);
             if (options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length) {
-                return Promise.reject(toError(api));
+                return Promise.reject<hl.IHighLevelNode>(toError(api));
             }
             return api;
         }
         catch(err){
-            return Promise.reject(err);
+            return Promise.reject<hl.IHighLevelNode>(err);
         }
     });
 }

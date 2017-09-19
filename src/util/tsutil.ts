@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import ts = require("typescript");
 
 // https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API

@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-/// <reference path="../../../typings/main.d.ts" />
 import assert = require("assert")
 import services=require("../definition-system/ramlServices");
 import apiLoader = require("../apiLoader")

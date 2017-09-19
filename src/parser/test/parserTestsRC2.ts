@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import assert = require("assert")
 import ll=require("../lowLevelAST")
 import yll=require("../jsyaml/jsyaml2lowLevel")

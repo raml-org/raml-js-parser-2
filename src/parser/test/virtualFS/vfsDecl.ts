@@ -49,6 +49,8 @@ export interface LocalStorageHelper {
     get(path:string):any
 
     remove(path:string):void
+
+    clear():void;
 }
 
 export interface LocalStorageFileSystem {
