@@ -21,6 +21,8 @@ import util = require("./test-utils")
 import tools = require("./testTools")
 import index = require("../../index");
 
+import parserIndex = require("../../index")
+
 //describe('Low level model', function() {
 describe('Parser integration tests',function(){
 
@@ -680,10 +682,10 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
     it ("custom facets validator" ,function(){
-        testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'","Expected type 'object' but got 'string'"]);
+        testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'"]);
     })
     it ("custom facets validator2" ,function(){
-        testErrors(util.data("commonLibrary/api2.raml"),["Expected type 'object' but got 'string'"]);
+        testErrors(util.data("commonLibrary/api2.raml"),[]);
     })
     //it ("custom facets validator3" ,function(){
     //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/parser/test/data/commonLibrary/common.raml"]);
@@ -1528,8 +1530,12 @@ function testErrorsEnd(p:string) {
 
 export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
     console.log("Starting test errors for " + p)
-    var api=util.loadApi(p);
-    api = util.expandHighIfNeeded(api);
+    // var api=util.loadApi(p);
+    // api = util.expandHighIfNeeded(api);
+
+    let topLevel = parserIndex.loadRAMLSync(p, []);
+    let api = topLevel.highLevel();
+    api = util.expandHighIfNeeded(<any>api);
 
     var errors:any=util.validateNode(api);
     if (ignoreWarnings){
