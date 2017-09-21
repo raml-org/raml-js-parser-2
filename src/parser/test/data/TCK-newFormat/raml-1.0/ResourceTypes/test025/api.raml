@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: test
+
+resourceTypes:
+  rt1:
+    put:
+      <<param2>>:
+  rt2:
+    type:
+      rt1:
+        param2: <<param1>>
+    delete:
+      <<param1>>:
+
+/resource:
+  type: { rt2: { param1: "param1" } }

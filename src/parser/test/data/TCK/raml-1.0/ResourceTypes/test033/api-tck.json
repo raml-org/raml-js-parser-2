@@ -1,0 +1,311 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib1.raml"
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib2.raml"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p1": {
+                    "name": "p1",
+                    "displayName": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<type1>>[]"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        }
+      },
+      {
+        "rt2": {
+          "type": {
+            "rt1": {
+              "type1": "<<type2>>"
+            }
+          },
+          "name": "rt2",
+          "delete": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p2": {
+                    "name": "p2",
+                    "displayName": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<type2>>[]"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "delete"
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p2": {
+                    "name": "p2",
+                    "displayName": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "array"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "items": "lib1.lib2.T2"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "delete"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p1": {
+                    "name": "p1",
+                    "displayName": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "array"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "items": "lib1.lib2.T2"
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "type": {
+          "rt2": {
+            "type2": "lib1.lib2.T2"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "ARRAY_COMPONENT_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Array component type 'lib1.lib2.T2' imported through a library chain. Library chaining is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 10,
+          "position": 153
+        },
+        "end": {
+          "line": 13,
+          "column": 12,
+          "position": 155
+        }
+      },
+      "trace": [
+        {
+          "code": "ARRAY_COMPONENT_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+          "message": "Array component type 'lib1.lib2.T2' imported through a library chain. Library chaining is not allowed.",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 23,
+              "column": 0,
+              "position": 293
+            },
+            "end": {
+              "line": 23,
+              "column": 9,
+              "position": 302
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "ARRAY_COMPONENT_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Array component type 'lib1.lib2.T2' imported through a library chain. Library chaining is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 21,
+          "column": 10,
+          "position": 276
+        },
+        "end": {
+          "line": 21,
+          "column": 12,
+          "position": 278
+        }
+      },
+      "trace": [
+        {
+          "code": "ARRAY_COMPONENT_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+          "message": "Array component type 'lib1.lib2.T2' imported through a library chain. Library chaining is not allowed.",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 23,
+              "column": 0,
+              "position": 293
+            },
+            "end": {
+              "line": 23,
+              "column": 9,
+              "position": 302
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

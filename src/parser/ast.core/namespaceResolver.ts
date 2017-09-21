@@ -430,7 +430,7 @@ export class NamespaceResolver{
                 let templateCollection = <ElementsCollection>(<any>uModel)[type];
                 if (templateCollection && ElementsCollection.isInstance(templateCollection)) {
                     let tModel = templateCollection.getTemplateModel(name);
-                    if(!tModel.isInitialized()){
+                    if(tModel && !tModel.isInitialized()){
                         initTemplateModel(tModel,this,passed);
                     }
                     return tModel

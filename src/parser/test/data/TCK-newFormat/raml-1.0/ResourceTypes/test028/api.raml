@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: test
+
+mediaType: application/json
+
+resourceTypes:
+  rt1:
+    put:
+      body: <<type2>>
+  rt2:
+    type:
+      rt1:
+        type2: <<type1>>
+    delete:
+      body: <<type1>>
+
+/resource:
+  type: { rt2: { type1: "invalidType" } }

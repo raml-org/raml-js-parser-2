@@ -7,6 +7,10 @@
     "code" : "UNUSED_PARAMETER",
     "message" : "Unused parameter: '{{paramName}}'"
   },
+  "UNUSED_PARAMETER_MISSING_SEPARATING_SPACE" : {
+    "code" : "UNUSED_PARAMETER_MISSING_SEPARATING_SPACE",
+    "message" : "Unused parameter: '{{paramName}}'. Probably, separating space is missing after colon and supposed mapping is '{{correctMapping}}'"
+  },
   "INVALID_PROPERTY_OWNER_TYPE": {
     "code" : "INVALID_PROPERTY_OWNER_TYPE",
     "message" : "Property '{{propName}}' can only be used if type is {{namesStr}}"
@@ -627,10 +631,6 @@
   "METHOD_MUST_BE_OVERRIDDEN" : {
     "code" : "METHOD_MUST_BE_OVERRIDDEN",
     "message" : "The method must be overridden"
-  },
-  "UNKNOWN_ANNOTATION_TYPE" : {
-    "code" : "UNKNOWN_ANNOTATION_TYPE",
-    "message": "Using unknown annotation type: '{{typeName}}'"
   },
   "UNKNOWN_ANNOTATION_TYPE" : {
     "code" : "UNKNOWN_ANNOTATION_TYPE",

@@ -255,14 +255,14 @@ function isSecuredBy(d:hl.IProperty){
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
  */
-function typeOfContainingTemplate(h:hl.IParseResult):string{
+export function typeOfContainingTemplate(h:hl.IParseResult):def.ITypeDefinition{
     if(!h.isElement()){
         h = h.parent();
     }
     let declRoot = h && h.asElement();
     while (declRoot){
         if (declRoot.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
-            return declRoot.definition().nameId();
+            return declRoot.definition();
         }
         var np=declRoot.parent();
         if (!np){
@@ -289,7 +289,16 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                 issue = createIssue1(messageRegistry.INVALID_PARAMETER_NAME, { paramName : paramName}, node);
             }
             else {
-                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node, true);
+                let colonIndex = paramName.indexOf(":");
+                if(hlimpl.BasicASTNode.isInstance(node)&&colonIndex>=0){
+                    let correctMapping = `${paramName.substring(0,colonIndex+1)} ${paramName.substring(colonIndex+1)}`;
+                    issue = createIssue1(messageRegistry.UNUSED_PARAMETER_MISSING_SEPARATING_SPACE, {
+                        paramName : paramName,
+                        correctMapping: correctMapping}, node, true);
+                }
+                else {
+                    issue = createIssue1(messageRegistry.UNUSED_PARAMETER, {paramName: paramName}, node, true);
+                }
             }
         }
 
@@ -2105,10 +2114,16 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
 
     var adapter = (<def.Property>pr).getAdapter(services.RAMLPropertyService);
 
-    var valid = isValidPropertyValue(pr,vl,astNode.parent());
+    let parentNode = astNode.parent();
+    let valid = false;
+    let hasChaining = proxy.LowLevelCompositeNode.isInstance(astNode.lowLevel())
+        && (<proxy.LowLevelProxyNode>astNode.lowLevel()).getMeta("chaining");
 
-    if(!valid && astNode.lowLevel().unit().absolutePath() !== astNode.parent().lowLevel().unit().absolutePath()) {
-        valid = isValidPropertyValue(pr,vl, <hl.IHighLevelNode>hlimpl.fromUnit((<any>astNode).lowLevel().unit()));
+    if(!hasChaining) {
+        valid = isValidPropertyValue(pr, vl, parentNode);
+        if (!valid && astNode.lowLevel().unit().absolutePath() !== parentNode.lowLevel().unit().absolutePath()) {
+            valid = isValidPropertyValue(pr, vl, <hl.IHighLevelNode>hlimpl.fromUnit((<any>astNode).lowLevel().unit()));
+        }
     }
 
     if (!valid) {
@@ -2293,9 +2308,13 @@ function specializeReferenceError(originalMessage: any,
         return messageRegistry.UNRECOGNIZED_SECURITY_SCHEME;
     }
     if(universeHelpers.isAnnotationsProperty(property)){
+
+        let hasChaining = proxy.LowLevelCompositeNode.isInstance(astNode.lowLevel())
+            && (<proxy.LowLevelProxyNode>astNode.lowLevel()).getMeta("chaining");
+
         let typeCollction = astNode.parent().types();
         let reg = typeCollction && typeCollction.getAnnotationTypeRegistry();
-        if(reg && reg.getByChain(value)){
+        if(hasChaining || reg && reg.getByChain(value)){
             return messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE;
         }
         else{
@@ -3903,7 +3922,7 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 var template = typeOfContainingTemplate(attr.parent());
                 if (template) {
                     if (prop.isValueProperty()) {
-                        var templateNamePlural = toReadableName(template,true,true);
+                        var templateNamePlural = toReadableName(template.nameId(),true,true);
                         var issue = createIssue1(messageRegistry.OPTIONAL_SCLARAR_PROPERTIES_10,{
                             templateNamePlural:templateNamePlural,
                             propName: attr.name()
@@ -4449,8 +4468,9 @@ export function createIssue1(
     isWarning:boolean=false,
     internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue {
 
-    var msg = applyTemplate(<Message>messageEntry,parameters);
-    return createIssue(messageEntry.code, msg, node, isWarning, internalRange);
+    let msg = applyTemplate(<Message>messageEntry,parameters);
+    let inKey = KeyErrorsRegistry.getInstance().isKeyError(messageEntry.code);
+    return createIssue(messageEntry.code, msg, node, isWarning, internalRange,false,inKey);
 }
 
 export function createIssue(
@@ -4459,7 +4479,8 @@ export function createIssue(
     node:hl.IParseResult,
     isWarning:boolean=false,
     internalRange?:def.rt.tsInterfaces.RangeObject,
-    forceScalar = false):hl.ValidationIssue{
+    forceScalar = false,
+    inKey=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -4467,7 +4488,7 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                let paramsChain = proxyNode.transformer() && proxyNode.transformer().paramNodesChain(proxyNode);
+                let paramsChain = proxyNode.transformer() && proxyNode.transformer().paramNodesChain(proxyNode,inKey);
                 if(paramsChain && paramsChain.length>0){
                     if(node.lowLevel().valueKind()!=node.lowLevel().resolvedValueKind()) {
                         original = localError(node, issueCode, isWarning, message, false, pr, null, internalRange,forceScalar);
@@ -4803,8 +4824,57 @@ class PropertyNamesRegistry{
         }
     }
 
-    public hasProperty(pName:string){
-        return this.propertiesMap[pName];
+    public hasProperty(pName:string):boolean{
+        return this.propertiesMap[pName]||false;
+    }
+
+}
+
+class KeyErrorsRegistry{
+
+    private static instance:KeyErrorsRegistry;
+
+    public static getInstance():KeyErrorsRegistry{
+        if(!KeyErrorsRegistry.instance){
+            KeyErrorsRegistry.instance = new KeyErrorsRegistry();
+        }
+        return KeyErrorsRegistry.instance;
+    }
+
+    constructor(){
+        this.init();
+    }
+
+    private codesMap:{[key:string]:boolean} = {};
+
+    private init() {
+        let keyErrorsArray: any = [
+            messageRegistry.NODE_KEY_IS_A_MAP,
+            messageRegistry.NODE_KEY_IS_A_SEQUENCE,
+            messageRegistry.UNKNOWN_NODE,
+            messageRegistry.INVALID_PROPERTY_USAGE,
+            messageRegistry.INVALID_SUBRESOURCE_USAGE,
+            messageRegistry.INVALID_METHOD_USAGE,
+            messageRegistry.SPACES_IN_KEY,
+            messageRegistry.UNKNOWN_ANNOTATION,
+            messageRegistry.INVALID_ANNOTATION_LOCATION,
+            messageRegistry.KEYS_SHOULD_BE_UNIQUE,
+            messageRegistry.ALREADY_EXISTS,
+            messageRegistry.ALREADY_EXISTS_IN_CONTEXT,
+            messageRegistry.PROPERTY_USED,
+            messageRegistry.PARENT_PROPERTY_USED,
+            messageRegistry.UNKNOWN_ANNOTATION_TYPE,
+            messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE,
+            messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE
+        ];
+        for (let me of keyErrorsArray) {
+            this.codesMap[me.code] = true;
+        }
+
+    }
+
+    public isKeyError(code:string):boolean{
+        return this.codesMap[code]||false;
     }
 
 }

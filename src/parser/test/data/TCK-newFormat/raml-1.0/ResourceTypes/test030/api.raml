@@ -1,0 +1,20 @@
+#%RAML 1.0
+title: test
+
+uses:
+  lib1: ./lib1.raml
+
+resourceTypes:
+  rt1:
+    put:
+      (<<annotationType2>>): val1
+  rt2:
+    type:
+      rt1:
+        annotationType2: <<annotationType1>>
+    delete:
+      (<<annotationType1>>): val2
+
+/resource:
+
+  type: { rt2: { annotationType1: lib1.lib2.A2 } }

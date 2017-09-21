@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: test
+
+resourceTypes:
+  rt1:
+    put:
+      (<<annotationType2>>):
+  rt2:
+    type:
+      rt1:
+        annotationType2: <<annotationType1>>
+    delete:
+      (<<annotationType1>>):
+
+/resource:
+  type: { rt2: { annotationType1: "invalidType" } }

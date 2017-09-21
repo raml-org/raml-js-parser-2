@@ -1014,7 +1014,7 @@ export interface ParseNode {
 
     kind(): number
 
-
+    getMeta(key:string): any
 }
 
 
@@ -1182,6 +1182,11 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
     
     node():ll.ILowLevelASTNode{
         return this._node;
+    }
+
+    getMeta(key:string):any{
+        return proxy.LowLevelProxyNode.isInstance(this._node)
+            && (<proxy.LowLevelProxyNode>this._node).getMeta(key);
     }
 }
 export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{

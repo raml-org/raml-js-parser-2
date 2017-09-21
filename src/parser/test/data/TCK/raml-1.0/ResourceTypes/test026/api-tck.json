@@ -1,0 +1,194 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "put": {
+            "annotations": {
+              "<<annotationType2>>": {
+                "structuredValue": null,
+                "name": "<<annotationType2>>"
+              }
+            },
+            "method": "put"
+          }
+        }
+      },
+      {
+        "rt2": {
+          "type": {
+            "rt1": {
+              "annotationType2": "<<annotationType1>>"
+            }
+          },
+          "name": "rt2",
+          "delete": {
+            "annotations": {
+              "<<annotationType1>>": {
+                "structuredValue": null,
+                "name": "<<annotationType1>>"
+              }
+            },
+            "method": "delete"
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "invalidType": {
+                "structuredValue": null,
+                "name": "invalidType"
+              }
+            },
+            "method": "delete"
+          },
+          {
+            "annotations": {
+              "invalidType": {
+                "structuredValue": null,
+                "name": "invalidType"
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "type": {
+          "rt2": {
+            "annotationType1": "invalidType"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "UNKNOWN_ANNOTATION_TYPE",
+      "message": "Using unknown annotation type: 'invalidType'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 6,
+          "position": 61
+        },
+        "end": {
+          "line": 6,
+          "column": 27,
+          "position": 82
+        }
+      },
+      "trace": [
+        {
+          "code": "UNKNOWN_ANNOTATION_TYPE",
+          "message": "Using unknown annotation type: 'invalidType'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 10,
+              "column": 25,
+              "position": 137
+            },
+            "end": {
+              "line": 10,
+              "column": 44,
+              "position": 156
+            }
+          },
+          "trace": [
+            {
+              "code": "UNKNOWN_ANNOTATION_TYPE",
+              "message": "Using unknown annotation type: 'invalidType'",
+              "path": "api.raml",
+              "range": {
+                "start": {
+                  "line": 15,
+                  "column": 34,
+                  "position": 244
+                },
+                "end": {
+                  "line": 15,
+                  "column": 47,
+                  "position": 257
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "UNKNOWN_ANNOTATION_TYPE",
+      "message": "Using unknown annotation type: 'invalidType'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 6,
+          "position": 175
+        },
+        "end": {
+          "line": 12,
+          "column": 27,
+          "position": 196
+        }
+      },
+      "trace": [
+        {
+          "code": "UNKNOWN_ANNOTATION_TYPE",
+          "message": "Using unknown annotation type: 'invalidType'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 15,
+              "column": 34,
+              "position": 244
+            },
+            "end": {
+              "line": 15,
+              "column": 47,
+              "position": 257
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "UNRESOLVED_REFERENCE",
+      "message": "Reference: 'invalidType' can not be resolved",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 17,
+          "position": 227
+        },
+        "end": {
+          "line": 15,
+          "column": 32,
+          "position": 242
+        }
+      }
+    }
+  ]
+}

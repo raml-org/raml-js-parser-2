@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: test
+
+annotationTypes:
+  a1:
+
+resourceTypes:
+  rt1:
+    put:
+      (<<annotationType2>>): 15
+  rt2:
+    type:
+      rt1:
+        annotationType2: <<annotationType1>>
+    delete:
+      (<<annotationType1>>): 17
+
+/resource:
+  type: { rt2: { annotationType1: a1 } }

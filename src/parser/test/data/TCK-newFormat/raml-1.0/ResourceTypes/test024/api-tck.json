@@ -1,0 +1,217 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "rt": {
+        "methods": {
+          "delete": {
+            "description": "<<param1>> <<param2>> <<param3>>",
+            "method": "delete"
+          }
+        },
+        "name": "rt"
+      }
+    },
+    "title": "test API",
+    "resources": [
+      {
+        "methods": {
+          "delete": {
+            "description": "<<param1>> stringValue2 stringValue3",
+            "method": "delete"
+          }
+        },
+        "type": {
+          "rt": {
+            "param1:\"stringValue1\"": null,
+            "param2": "stringValue2",
+            "param3": "stringValue3"
+          }
+        },
+        "relativeUri": "/resource1",
+        "displayName": "/resource1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource1"
+        ],
+        "absoluteUri": "/resource1",
+        "completeRelativeUri": "/resource1",
+        "parentUri": ""
+      },
+      {
+        "methods": {
+          "delete": {
+            "description": "stringValue1 <<param2>> stringValue3",
+            "method": "delete"
+          }
+        },
+        "type": {
+          "rt": {
+            "param1": "stringValue1",
+            "param2:'stringValue2'": null,
+            "param3": "stringValue3"
+          }
+        },
+        "relativeUri": "/resource2",
+        "displayName": "/resource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource2"
+        ],
+        "absoluteUri": "/resource2",
+        "completeRelativeUri": "/resource2",
+        "parentUri": ""
+      },
+      {
+        "methods": {
+          "delete": {
+            "description": "stringValue1 stringValue2 <<param3>>",
+            "method": "delete"
+          }
+        },
+        "type": {
+          "rt": {
+            "param1": "stringValue1",
+            "param2": "stringValue2",
+            "param3:stringValue3": null
+          }
+        },
+        "relativeUri": "/resource3",
+        "displayName": "/resource3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource3"
+        ],
+        "absoluteUri": "/resource3",
+        "completeRelativeUri": "/resource3",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "VALUE_NOT_PROVIDED",
+      "message": "Value is not provided for parameter: 'param1'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 10,
+          "position": 135
+        },
+        "end": {
+          "line": 8,
+          "column": 12,
+          "position": 137
+        }
+      }
+    },
+    {
+      "code": "UNUSED_PARAMETER_MISSING_SEPARATING_SPACE",
+      "message": "Unused parameter: 'param1:\"stringValue1\"'. Probably, separating space is missing after colon and supposed mapping is 'param1: \"stringValue1\"'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 15,
+          "position": 140
+        },
+        "end": {
+          "line": 8,
+          "column": 36,
+          "position": 161
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "VALUE_NOT_PROVIDED",
+      "message": "Value is not provided for parameter: 'param2'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 10,
+          "position": 232
+        },
+        "end": {
+          "line": 10,
+          "column": 12,
+          "position": 234
+        }
+      }
+    },
+    {
+      "code": "UNUSED_PARAMETER_MISSING_SEPARATING_SPACE",
+      "message": "Unused parameter: 'param2:'stringValue2''. Probably, separating space is missing after colon and supposed mapping is 'param2: 'stringValue2''",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 39,
+          "position": 261
+        },
+        "end": {
+          "line": 10,
+          "column": 60,
+          "position": 282
+        }
+      },
+      "isWarning": true
+    },
+    {
+      "code": "VALUE_NOT_PROVIDED",
+      "message": "Value is not provided for parameter: 'param3'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 10,
+          "position": 329
+        },
+        "end": {
+          "line": 12,
+          "column": 12,
+          "position": 331
+        }
+      }
+    },
+    {
+      "code": "UNUSED_PARAMETER_MISSING_SEPARATING_SPACE",
+      "message": "Unused parameter: 'param3:stringValue3'. Probably, separating space is missing after colon and supposed mapping is 'param3: stringValue3'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 63,
+          "position": 382
+        },
+        "end": {
+          "line": 12,
+          "column": 82,
+          "position": 401
+        }
+      },
+      "isWarning": true
+    }
+  ]
+}

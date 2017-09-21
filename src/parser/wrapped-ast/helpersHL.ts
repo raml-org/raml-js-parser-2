@@ -303,8 +303,8 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
         if(isProxy){
             if(!proxy.LowLevelProxyNode.isInstance(x.lowLevel())) {
                 x = exp.createHighLevelNode(x, false);
+                rp.process(x,hlNode,true,true);
             }
-            rp.process(x,hlNode,true,true);
         }
         if(serializeMetadata&&p!=nodePath){
             (<core.NodeMetadataImpl>x.wrapperNode().meta()).setCalculated();
