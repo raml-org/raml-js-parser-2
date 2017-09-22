@@ -97,6 +97,9 @@ export const transitions = {
             "$action" : "$TypeDeclaration",
             "$toChildren" : true
         },
+        "queryString" : {
+            "$action" : "$TypeDeclaration"
+        },
         "headers" : {
             "$action" : "$TypeDeclaration",
             "$toChildren" : true
@@ -132,6 +135,9 @@ export const transitions = {
         "queryParameters" : {
             "$action" : "$TypeDeclaration",
             "$toChildren" : true
+        },
+        "queryString" : {
+            "$action" : "$TypeDeclaration"
         },
         "headers" : {
             "$action" : "$TypeDeclaration",
