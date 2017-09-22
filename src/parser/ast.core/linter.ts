@@ -1240,16 +1240,19 @@ class CompositePropertyValidator implements PropertyValidator{
 
         var pr = checkPropertyQuard(node, v);
         var vl=node.value();
-        var ramlVersion = node.parent().definition().universe().version();
-        var isInsideTemplate = typeOfContainingTemplate(node.parent())!=null;
-        if (!node.property().range().hasStructure()){
-            if (hlimpl.StructuredValue.isInstance(vl)&&!(<def.Property>node.property()).isSelfNode()){
+        let nodeParent = node.parent();
+        let pDef = nodeParent.definition();
+        var ramlVersion = pDef.universe().version();
+        var isInsideTemplate = typeOfContainingTemplate(nodeParent)!=null;
+        let nodeProperty = node.property();
+        if (!nodeProperty.range().hasStructure()){
+            if (hlimpl.StructuredValue.isInstance(vl)&&!(<def.Property>nodeProperty).isSelfNode()){
 
                 //TODO THIS SHOULD BE MOVED TO TYPESYSTEM FOR STS AT SOME MOMENT
-                if (isTypeOrSchema(node.property())){
-                    if (node.property().domain().key()==universes.Universe08.BodyLike){
+                if (isTypeOrSchema(nodeProperty)){
+                    if (nodeProperty.domain().key()==universes.Universe08.BodyLike){
                         var structValue=<hlimpl.StructuredValue>vl;
-                        var newNode=new hlimpl.ASTNodeImpl(node.lowLevel(),node.parent(),<hl.INodeDefinition>node.parent().definition().universe().type(universes.Universe08.BodyLike.name),node.property());
+                        var newNode=new hlimpl.ASTNodeImpl(node.lowLevel(),nodeParent,<hl.INodeDefinition>pDef.universe().type(universes.Universe08.BodyLike.name),nodeProperty);
                         newNode.validate(v);
                         return;
                     }
@@ -1261,12 +1264,12 @@ class CompositePropertyValidator implements PropertyValidator{
             }
             else {
                 var vk=node.lowLevel().valueKind();
-                if (node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF&&!node.property().getAdapter(services.RAMLPropertyService).isKey()){
-                    if ((!node.property().isMultiValue())) {
-                        var k=node.property().range().key();
+                if (node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF&&!nodeProperty.getAdapter(services.RAMLPropertyService).isKey()){
+                    if (!nodeProperty.isMultiValue()&&!(universeHelpers.isApiType(pDef)&&universeHelpers.isTitleProperty(nodeProperty))) {
+                        var k=nodeProperty.range().key();
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
-                            if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((node.property().isRequired()||node.property().nameId()=="mediaType")&&(vk==null||vk===undefined))) {
-                                if (!node.property().domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
+                            if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((nodeProperty.isRequired()||universeHelpers.isMediaTypeProperty(nodeProperty))&&(vk==null||vk===undefined))) {
+                                if (!nodeProperty.domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
                                     v.accept(createIssue1(messageRegistry.STRING_EXPECTED,
                                         {propName: node.name()}, node));
                                 }
@@ -1313,16 +1316,16 @@ class CompositePropertyValidator implements PropertyValidator{
 
         new MethodBodyValidator().validate(node, v);
 
-        if ((node.property().range().key() == universes.Universe08.MimeType||
-            node.property().range().key() == universes.Universe10.MimeType)||
-            (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name
-            &&node.parent().property().nameId()==
+        if ((nodeProperty.range().key() == universes.Universe08.MimeType||
+            nodeProperty.range().key() == universes.Universe10.MimeType)||
+            (nodeProperty.nameId()==universes.Universe10.TypeDeclaration.properties.name.name
+            &&nodeParent.property().nameId()==
             universes.Universe10.MethodBase.properties.body.name)) {//FIXME
             new MediaTypeValidator().validate(node,v);
             return;
         }
 
-        if (isExampleProp(node.property())||isDefaultValueProp(node.property())){
+        if (isExampleProp(nodeProperty)||isDefaultValueProp(nodeProperty)){
             // if (ramlVersion=="RAML08"){
             //     var llv=node.lowLevel().value();
             //     if (node.lowLevel().children().length>0){
@@ -1333,7 +1336,7 @@ class CompositePropertyValidator implements PropertyValidator{
             // }
             new ExampleAndDefaultValueValidator().validate(node, v);
         }
-        if (isSecuredBy(node.property())){
+        if (isSecuredBy(nodeProperty)){
             if (ramlVersion=="RAML08"){
                 var np=node.lowLevel().parent();
                 var ysc=yaml.Kind.SEQ;
@@ -1399,9 +1402,9 @@ class CompositePropertyValidator implements PropertyValidator{
                 }
             }
         }
-        if (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
+        if (nodeProperty.nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
             //TODO MOVE TO DEF SYSTEM
-            var nameId = node.parent().property()&&node.parent().property().nameId();
+            var nameId = nodeParent.property()&&nodeParent.property().nameId();
             if (nameId == universes.Universe08.Resource.properties.uriParameters.name
                 || nameId == universes.Universe08.Resource.properties.baseUriParameters.name) {
 //                    new UrlParameterNameValidator().validate(node, v);
@@ -1409,7 +1412,7 @@ class CompositePropertyValidator implements PropertyValidator{
             }
         }
 
-        var range =node.property().range().key();
+        var range =nodeProperty.range().key();
         if (range==universes.Universe08.RelativeUriString||range==universes.Universe10.RelativeUriString){
             new UriValidator().validate(node,v);
             return;
@@ -1421,7 +1424,7 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
         if ("pattern" == node.name() && universes.Universe10.StringType == node.definition().key()
-            && node.parent().definition().isAssignableFrom("StringTypeDeclaration")) {
+            && pDef.isAssignableFrom("StringTypeDeclaration")) {
             validateRegexp(node.value(), v, node);
         }
         if ("name" == node.name() && universes.Universe10.StringType == node.definition().key()
@@ -1429,11 +1432,11 @@ class CompositePropertyValidator implements PropertyValidator{
             && (<string>node.value()).indexOf("[") == 0
             && (<string>node.value()).lastIndexOf("]") == (<string>node.value()).length - 1) {
 
-            if(hlimpl.ASTNodeImpl.isInstance(node.parent()) &&
-                universes.Universe10.ObjectTypeDeclaration.properties.properties.name == (<hlimpl.ASTNodeImpl>node.parent()).property().nameId()){
+            if(hlimpl.ASTNodeImpl.isInstance(nodeParent) &&
+                universes.Universe10.ObjectTypeDeclaration.properties.properties.name == (<hlimpl.ASTNodeImpl>nodeParent).property().nameId()){
 
-                if (hlimpl.ASTNodeImpl.isInstance(node.parent().parent()) &&
-                    universes.Universe10.ObjectTypeDeclaration == (<hlimpl.ASTNodeImpl>node.parent().parent()).definition().key()) {
+                if (hlimpl.ASTNodeImpl.isInstance(nodeParent.parent()) &&
+                    universes.Universe10.ObjectTypeDeclaration == (<hlimpl.ASTNodeImpl>nodeParent.parent()).definition().key()) {
                     var cleanedValue = (<string>node.value()).substr(1, (<string>node.value()).length - 2)
                     validateRegexp(cleanedValue, v, node);
                 }
@@ -2497,14 +2500,10 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 var nm = node.attr(x.nameId());
                 var gotValue = false;
                 if (nm!=null){
-                    if(nm.lowLevel().kind()==yaml.Kind.SCALAR
-                        ||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR
-                        ||nm.lowLevel().kind()==yaml.Kind.INCLUDE_REF
-                        ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF
-                        ||(nm.lowLevel().valueKind()===null&&!isInlinedTemplate)){
-                        //if(nm.value()!=null){
-                        gotValue = true;
-                        //}
+                    if(nm.lowLevel().kind()==yaml.Kind.SCALAR||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR){
+                        if(nm.value()!=null){
+                            gotValue = true;
+                        }
                     }
                     else if (nm.lowLevel().children().length!=0) {
                         gotValue = true;

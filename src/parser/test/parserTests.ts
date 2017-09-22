@@ -1283,8 +1283,11 @@ describe('Property override tests',function(){
     it ("documentation should be a sequence",function(){
         testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["Property 'documentation' should be a sequence"]);
     });
-    it ("missed title value should report only one message",function(){
-        testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);
+    it ("Title value must be specified in 0.8",function(){
+        testErrors(util.data("parser/custom/missedTitle.raml"),["Missing required property 'title'"]);
+    });
+    it ("Title value must be specified in 1.0",function(){
+        testErrors(util.data("parser/custom/missedTitle10.raml"),["Missing required property 'title'"]);
     });
     it ("expander not halted by this sample any more",function(){
         testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),10);
