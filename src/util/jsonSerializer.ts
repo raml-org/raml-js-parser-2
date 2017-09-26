@@ -722,6 +722,7 @@ class ParametersTransformer extends ArrayToMapTransformer{
             new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isHeadersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isHeadersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isResponseType,universeHelpers.isHeadersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isBodyLikeType,universeHelpers.isFormParametersProperty)
         ]),"name");
     }
