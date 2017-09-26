@@ -472,7 +472,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
     }
 
     if (node.isUnknown()){
-        if (node.name().indexOf("<<")!=-1){
+        if ((typeof node.name() === "string") && node.name().indexOf("<<") >= 0){
             if (typeOfContainingTemplate(parentNode)!=null){
                 new TraitVariablesValidator().validateName(node,v);
                 return false;
@@ -514,6 +514,11 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             }
         }
         else {
+            let i0 = (typeof node.name() === "string") ? node.name().indexOf("<<") : -1;
+            if(i0>0 && typeOfContainingTemplate(parentNode)
+                && node.name().indexOf(">>",i0)){
+                return false;
+            }
             var issue = restrictUnknownNodeError(node);
             if(!issue){
                 issue = createUnknownNodeIssue(node);
@@ -1867,7 +1872,7 @@ class MediaTypeValidator implements PropertyValidator{
                 }
             }
             if(typeOfContainingTemplate(node)!=null){
-                if(v.indexOf("<<")>=0){
+                if((typeof v === "string") && v.indexOf("<<")>=0){
                     return;
                 }
             }
@@ -2102,6 +2107,11 @@ function isValidPropertyValue(pr:def.Property,vl:string,c:hl.IHighLevelNode):boo
     return mm[vl]!=null;
 }
 function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl.ValidationAcceptor):boolean {
+
+    let paramStart = (typeof vl === "string") ? vl.indexOf("<<") : -1;
+    if (paramStart >= 0 && vl.indexOf(">>", paramStart) >= 0 && typeOfContainingTemplate(astNode) != null) {
+        return;
+    }
 
     checkTraitReference(pr, astNode, cb);
     checkResourceTypeReference(pr, astNode, cb);
