@@ -1,43 +1,73 @@
 {
   "specification": {
-    "resourceTypes": {
-      "rt1": {
-        "methods": {
-          "put": {
-            "method": "put"
+    "resourceTypes": [
+      {
+        "methods": [
+          {
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
-        "name": "rt1"
+        ],
+        "name": "rt1",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
-      "rt2": {
-        "methods": {
-          "delete": {
-            "method": "delete"
+      {
+        "methods": [
+          {
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt1": {
-            "param2": "<<param1>>"
-          }
+          "name": "rt1",
+          "parameters": [
+            {
+              "name": "param2",
+              "value": "<<param1>>"
+            }
+          ]
         },
-        "name": "rt2"
+        "name": "rt2",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    },
+    ],
     "title": "test",
     "resources": [
       {
-        "methods": {
-          "delete": {
-            "method": "delete"
+        "methods": [
+          {
+            "method": "delete",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
-          "put": {
-            "method": "put"
+          {
+            "method": "put",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "type": {
-          "rt2": {
-            "param1": "param1"
-          }
+          "name": "rt2",
+          "parameters": [
+            {
+              "name": "param1",
+              "value": "param1"
+            }
+          ]
         },
         "relativeUri": "/resource",
         "displayName": "/resource",
@@ -53,9 +83,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
