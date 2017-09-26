@@ -46,6 +46,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     protected _valueOverride:string;
 
+    protected _meta:{[key:string]:any};
+
     hasInnerIncludeError(){
         return this._originalNode.hasInnerIncludeError();
     }
@@ -275,6 +277,15 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
             return null;
         }
         return tr.definingUnitSequence(key);
+    }
+
+    addMeta(key:string,value:any){
+        this._meta = this._meta || {};
+        this._meta[key] = value;
+    }
+
+    getMeta(key:string):any{
+        return this._meta && this._meta[key];
     }
 }
 
@@ -842,6 +853,9 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
         var key = super.key(raw);
         if(this.transformer()!=null) {
             var transformed = this.transformer().transform(key).value;
+            if(impl.ASTNode.isInstance(transformed)||LowLevelProxyNode.isInstance(transformed)){
+                return JSON.stringify((<ll.ILowLevelASTNode>transformed).dumpToObject());
+            }
             return (typeof(transformed)=="object") ? null : transformed;
         }
         return key;
@@ -867,7 +881,7 @@ export interface ValueTransformer{
 
     includePath(node:ll.ILowLevelASTNode):string
 
-    paramNodesChain(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
+    paramNodesChain(node:ll.ILowLevelASTNode,inKey:boolean):ll.ILowLevelASTNode[]
 
     definingUnitSequence(str:string):ll.ICompilationUnit[]
 }

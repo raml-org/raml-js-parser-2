@@ -21,6 +21,8 @@ import util = require("./test-utils")
 import tools = require("./testTools")
 import index = require("../../index");
 
+import parserIndex = require("../../index")
+
 //describe('Low level model', function() {
 describe('Parser integration tests',function(){
 
@@ -680,10 +682,10 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
     it ("custom facets validator" ,function(){
-        testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'","Expected type 'object' but got 'string'"]);
+        testErrors(util.data("commonLibrary/api.raml"), ["Expected type 'string' but got 'number'","Expected type 'string' but got 'number'"]);
     })
     it ("custom facets validator2" ,function(){
-        testErrors(util.data("commonLibrary/api2.raml"),["Expected type 'object' but got 'string'"]);
+        testErrors(util.data("commonLibrary/api2.raml"),[]);
     })
     //it ("custom facets validator3" ,function(){
     //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/parser/test/data/commonLibrary/common.raml"]);
@@ -1281,8 +1283,11 @@ describe('Property override tests',function(){
     it ("documentation should be a sequence",function(){
         testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["Property 'documentation' should be a sequence"]);
     });
-    it ("missed title value should report only one message",function(){
-        testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);
+    it ("Title value must be specified in 0.8",function(){
+        testErrors(util.data("parser/custom/missedTitle.raml"),["Missing required property 'title'"]);
+    });
+    it ("Title value must be specified in 1.0",function(){
+        testErrors(util.data("parser/custom/missedTitle10.raml"),["Missing required property 'title'"]);
     });
     it ("expander not halted by this sample any more",function(){
         testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),10);
@@ -1528,8 +1533,12 @@ function testErrorsEnd(p:string) {
 
 export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
     console.log("Starting test errors for " + p)
-    var api=util.loadApi(p);
-    api = util.expandHighIfNeeded(api);
+    // var api=util.loadApi(p);
+    // api = util.expandHighIfNeeded(api);
+
+    let topLevel = parserIndex.loadRAMLSync(p, []);
+    let api = topLevel.highLevel();
+    api = util.expandHighIfNeeded(<any>api);
 
     var errors:any=util.validateNode(api);
     if (ignoreWarnings){

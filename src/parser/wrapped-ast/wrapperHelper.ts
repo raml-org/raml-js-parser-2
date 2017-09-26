@@ -196,8 +196,8 @@ function findTemplates(a:core.BasicNode,filter) {
         if(isProxy){
             if(!(proxy.LowLevelProxyNode.isInstance(x.lowLevel()))) {
                 x = exp.createHighLevelNode(x, false);
+                new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
             }
-            new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
         }
         if(p!=nodePath){
             topLevelNode = factory.buildWrapperNode(x,false);

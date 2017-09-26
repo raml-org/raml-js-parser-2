@@ -1,0 +1,155 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "put": {
+            "method": "put",
+            "<<param2>>": null
+          }
+        }
+      },
+      {
+        "rt2": {
+          "type": {
+            "rt1": {
+              "param2": "<<param1>>"
+            }
+          },
+          "name": "rt2",
+          "delete": {
+            "method": "delete",
+            "<<param1>>": null
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "method": "delete"
+          },
+          {
+            "method": "put"
+          }
+        ],
+        "type": {
+          "rt2": {
+            "param1": "param1"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "UNKNOWN_NODE",
+      "message": "Unknown node: 'param1'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 6,
+          "column": 6,
+          "position": 61
+        },
+        "end": {
+          "line": 6,
+          "column": 16,
+          "position": 71
+        }
+      },
+      "trace": [
+        {
+          "code": "UNKNOWN_NODE",
+          "message": "Unknown node: 'param1'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 10,
+              "column": 16,
+              "position": 117
+            },
+            "end": {
+              "line": 10,
+              "column": 26,
+              "position": 127
+            }
+          },
+          "trace": [
+            {
+              "code": "UNKNOWN_NODE",
+              "message": "Unknown node: 'param1'",
+              "path": "api.raml",
+              "range": {
+                "start": {
+                  "line": 15,
+                  "column": 25,
+                  "position": 195
+                },
+                "end": {
+                  "line": 15,
+                  "column": 33,
+                  "position": 203
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "UNKNOWN_NODE",
+      "message": "Unknown node: 'param1'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 6,
+          "position": 146
+        },
+        "end": {
+          "line": 12,
+          "column": 16,
+          "position": 156
+        }
+      },
+      "trace": [
+        {
+          "code": "UNKNOWN_NODE",
+          "message": "Unknown node: 'param1'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 15,
+              "column": 25,
+              "position": 195
+            },
+            "end": {
+              "line": 15,
+              "column": 33,
+              "position": 203
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

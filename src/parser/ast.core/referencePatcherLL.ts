@@ -97,6 +97,9 @@ export const transitions = {
             "$action" : "$TypeDeclaration",
             "$toChildren" : true
         },
+        "queryString" : {
+            "$action" : "$TypeDeclaration"
+        },
         "headers" : {
             "$action" : "$TypeDeclaration",
             "$toChildren" : true
@@ -132,6 +135,9 @@ export const transitions = {
         "queryParameters" : {
             "$action" : "$TypeDeclaration",
             "$toChildren" : true
+        },
+        "queryString" : {
+            "$action" : "$TypeDeclaration"
         },
         "headers" : {
             "$action" : "$TypeDeclaration",
@@ -572,6 +578,11 @@ function patchAnnotationNameAction(node:ll.ILowLevelASTNode, state:State){
         state.referencePatcher.registerPatchedReference(patchedReference);
         if(!state.registerOnly) {
             pNode.setKeyOverride(`(${patchedReference.value()})`);
+            if(patchedReference.isChained()){
+                pNode.addMeta("chaining",[
+                    {value:patchedReference.value(),kind:'annotationRef'}
+                    ]);
+            }
         }
     }
     return false;
@@ -684,6 +695,7 @@ export class ReferencePatcher {
         var appendedAttrUnit = state.appendUnitIfNeeded(node);
 
         let newValue:string;
+        let chainingData:any=[];
         if (gotExpression) {
             var expressionPatchFailed = false;
             var expr = typeExpressions.parse(stringToPatch);
@@ -725,6 +737,12 @@ export class ReferencePatcher {
                         lit.value = patched.value();
                         gotPatch = true;
                         this.registerPatchedReference(patched);
+                        if(patched.isChained()){
+                            chainingData.push({
+                                kind: 'type',
+                                value: lit.value
+                            });
+                        }
                     }
                 }
             });
@@ -744,10 +762,19 @@ export class ReferencePatcher {
             if (patched != null) {
                 this.registerPatchedReference(patched);
                 newValue = patched.value();
+                if(patched.isChained()) {
+                    chainingData.push({
+                        kind: 'type',
+                        value: newValue
+                    });
+                }
             }
         }
         if (newValue != null && !state.registerOnly) {
             llNode.setValueOverride(newValue);
+            if(chainingData.length>0){
+                llNode.addMeta("chaining",chainingData);
+            }
         }
         if (appendedAttrUnit) {
             state.popUnit();
@@ -777,7 +804,7 @@ export class ReferencePatcher {
                     var newVal = this.resolveReferenceValueBasic(val, state, collectionName, tr.unitsChain);
                     if (newVal == null) {
                         newVal = new referencePatcherHL.PatchedReference(
-                            null, val, collectionName, state.rootUnit, referencePatcherHL.PatchMode.DEFAULT);
+                            null, val, collectionName, state.rootUnit, false, referencePatcherHL.PatchMode.DEFAULT);
                     }
                     let referencedUnit:ll.ICompilationUnit;
                     let newNS = newVal.namespace();
@@ -834,22 +861,23 @@ export class ReferencePatcher {
             return;
         }
 
-        var ind = value.lastIndexOf(".");
+        let ind = value.lastIndexOf(".");
 
-        var referencedUnit:ll.ICompilationUnit;
-        var plainName:string;
+        let referencedUnit:ll.ICompilationUnit;
+        let plainName:string;
+        let oldNS:string;
         var units = unitsOverride || state.units;
         if (ind >= 0) {
-            var oldNS = value.substring(0, ind);
+            oldNS = value.substring(0, ind);
             plainName = value.substring(ind + 1);
 
-            for (var i = units.length; i > 0; i--) {
-                var localUnit = units[i - 1];
-                var nsMap = state.resolver.nsMap(localUnit);
-                if (nsMap == null) {
-                    continue;
-                }
-                var info = nsMap[oldNS];
+            for (let i = units.length; i > 0; i--) {
+                let localUnit = units[i - 1];
+                let nsMap = this.libExpMode
+                    ? state.resolver.expandedNSMap(localUnit)
+                    : state.resolver.nsMap(localUnit);
+
+                let info = nsMap && nsMap[oldNS];
                 if (info == null) {
                     continue;
                 }
@@ -866,14 +894,40 @@ export class ReferencePatcher {
             plainName = value;
             referencedUnit = units[units.length - 1];
         }
-        if (referencedUnit == null){
+        if (referencedUnit == null && !this.libExpMode){
+            if(oldNS && oldNS.length>0) {
+                let chainedUnit:ll.ICompilationUnit;
+                for (let i = units.length; i > 0; i--) {
+                    let localUnit = units[i - 1];
+                    let expandedNSMap = state.resolver.expandedNSMap(localUnit);
+
+                    let info = expandedNSMap && expandedNSMap[oldNS];
+                    if (info == null) {
+                        continue;
+                    }
+                    chainedUnit = info.unit;
+                    if (chainedUnit != null) {
+                        break;
+                    }
+                }
+                if(chainedUnit!=null){
+                    let usesInfo = state.resolver.resolveNamespace(state.rootUnit, chainedUnit);
+                    if (usesInfo != null) {
+                        let newNS = usesInfo.namespace();
+                        if (gotQuestion) {
+                            plainName += "?";
+                        }
+                        return new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, chainedUnit, true, this.mode);
+                    }
+                }
+            }
             return null;
         }
         if(referencedUnit.absolutePath() == state.rootUnit.absolutePath()) {
             if(oldNS==null||oldNS.length==0){
                 return null;
             }
-            return new referencePatcherHL.PatchedReference(null, plainName, collectionName, referencedUnit, this.mode);
+            return new referencePatcherHL.PatchedReference(null, plainName, collectionName, referencedUnit, false, this.mode);
         }
         var usesInfo = state.resolver.resolveNamespace(state.rootUnit, referencedUnit);
         if (usesInfo == null) {
@@ -893,7 +947,7 @@ export class ReferencePatcher {
         if (gotQuestion) {
             plainName += "?";
         }
-        return new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, referencedUnit, this.mode);
+        return new referencePatcherHL.PatchedReference(newNS, plainName, collectionName, referencedUnit, false, this.mode);
     }
 
     patchNodeName(node:ll.ILowLevelASTNode, state:State, collectionName:string) {
@@ -957,7 +1011,7 @@ export class ReferencePatcher {
                 if(templatesCollection) {
                     if (newValue == null && stringToPatch.indexOf(".") < 0) {
                         newValue = new referencePatcherHL.PatchedReference(
-                            "", stringToPatch, templatesCollection, state.rootUnit, referencePatcherHL.PatchMode.DEFAULT);
+                            "", stringToPatch, templatesCollection, state.rootUnit, false, referencePatcherHL.PatchMode.DEFAULT);
                     }
                     if (newValue) {
                         var tModel = state.resolver.getComponent(
@@ -1074,7 +1128,12 @@ export class ReferencePatcher {
         collectionMap[ref.name()] = ref;
     }
 
+    private libExpMode:boolean;
+
     expandLibraries(api:proxy.LowLevelCompositeNode,excessive=false){
+
+        let lem = this.libExpMode;
+        this.libExpMode = true;
 
         if(api.actual().libExpanded){
             return;
@@ -1142,6 +1201,7 @@ export class ReferencePatcher {
         this.patchUses(api,resolver);
         api.actual().libExpanded = true;
         //this.resetHighLevel(api);
+        this.libExpMode = lem;
     }
 
     private patchDependencies(api:proxy.LowLevelCompositeNode,excessive:boolean):boolean {

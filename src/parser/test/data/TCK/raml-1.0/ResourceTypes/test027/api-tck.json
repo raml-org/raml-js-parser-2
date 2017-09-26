@@ -1,0 +1,180 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "put": {
+            "annotations": {
+              "<<annotationType2>>": {
+                "structuredValue": 15,
+                "name": "<<annotationType2>>"
+              }
+            },
+            "method": "put"
+          }
+        }
+      },
+      {
+        "rt2": {
+          "type": {
+            "rt1": {
+              "annotationType2": "<<annotationType1>>"
+            }
+          },
+          "name": "rt2",
+          "delete": {
+            "annotations": {
+              "<<annotationType1>>": {
+                "structuredValue": 17,
+                "name": "<<annotationType1>>"
+              }
+            },
+            "method": "delete"
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "a1": {
+          "name": "a1",
+          "displayName": "a1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "a1": {
+                "structuredValue": 17,
+                "name": "a1"
+              }
+            },
+            "method": "delete"
+          },
+          {
+            "annotations": {
+              "a1": {
+                "structuredValue": 15,
+                "name": "a1"
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "type": {
+          "rt2": {
+            "annotationType1": "a1"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "Expected type 'string' but got 'number'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 9,
+          "column": 6,
+          "position": 85
+        },
+        "end": {
+          "line": 9,
+          "column": 27,
+          "position": 106
+        }
+      },
+      "trace": [
+        {
+          "code": "TYPE_EXPECTED",
+          "message": "Expected type 'string' but got 'number'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 17,
+              "column": 0,
+              "position": 229
+            },
+            "end": {
+              "line": 17,
+              "column": 9,
+              "position": 238
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "Expected type 'string' but got 'number'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 15,
+          "column": 6,
+          "position": 202
+        },
+        "end": {
+          "line": 15,
+          "column": 27,
+          "position": 223
+        }
+      },
+      "trace": [
+        {
+          "code": "TYPE_EXPECTED",
+          "message": "Expected type 'string' but got 'number'",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 17,
+              "column": 0,
+              "position": 229
+            },
+            "end": {
+              "line": 17,
+              "column": 9,
+              "position": 238
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: test API
+
+resourceTypes:
+  rt:
+    delete:
+      description: <<param1>> <<param2>> <<param3>>
+/resource1:
+  type: { rt: {param1:"stringValue1", param2: 'stringValue2', param3: stringValue3}}
+/resource2:
+  type: { rt: {param1: "stringValue1", param2:'stringValue2', param3: stringValue3}}
+/resource3:
+  type: { rt: {param1: "stringValue1", param2: 'stringValue2', param3:stringValue3}}

@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: test
+
+uses:
+  lib1: ./lib1.raml
+
+mediaType: application/json
+
+resourceTypes:
+  rt1:
+    put:
+      body:
+        properties:
+          p1: string|<<type1>>
+  rt2:
+    type:
+      rt1:
+        type1: <<type2>>
+    delete:
+      body:
+        properties:
+          p2: string|<<type2>>
+
+/resource:
+  type: { rt2: { type2: lib1.lib2.T2 } }
+  get:
+    body: lib1.lib2.T2|string

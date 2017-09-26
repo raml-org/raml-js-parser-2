@@ -592,7 +592,8 @@ export class TraitsAndResourceTypesExpander {
                 else {
                     for(let x of value.children()){
                         let llNode = referencePatcher.toOriginal(x);
-                        if (x.resolvedValueKind() == yaml.Kind.SCALAR) {
+                        let resolvedValueKind = x.resolvedValueKind();
+                        if (resolvedValueKind == yaml.Kind.SCALAR||resolvedValueKind) {
                             scalarParamValues[x.key()] = llNode.value();
                             scalarParams[x.key()] = llNode;
                         }
@@ -1029,8 +1030,8 @@ export class ValueTransformer implements proxy.ValueTransformer{
         return null;
     }
 
-    substitutionNode(node:ll.ILowLevelASTNode,chain:ll.ILowLevelASTNode[]=[]) {
-        var paramName = this.paramName(node);
+    substitutionNode(node:ll.ILowLevelASTNode,chain:ll.ILowLevelASTNode[]=[],inKey=false) {
+        var paramName = this.paramName(node,inKey);
         let result = paramName && (this.scalarParams[paramName]||this.structuredParams[paramName]);
         if(!result){
             return null;
@@ -1042,16 +1043,29 @@ export class ValueTransformer implements proxy.ValueTransformer{
         return result;
     }
 
-    paramNodesChain(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]{
+    paramNodesChain(node:ll.ILowLevelASTNode,inKey:boolean):ll.ILowLevelASTNode[]{
         let chain:ll.ILowLevelASTNode[]=[];
-        this.substitutionNode(referencePatcher.toOriginal(node),chain);
+        this.substitutionNode(referencePatcher.toOriginal(node),chain,inKey);
         return chain.length > 0 ? chain : null;
     }
 
-    private paramName(node:ll.ILowLevelASTNode):string {
-        var paramName:string = null;
-        if (node.valueKind() == yaml.Kind.SCALAR) {
-            var val = ("" + node.value()).trim();
+    private paramName(node:ll.ILowLevelASTNode,inKey:boolean):string {
+        let val:string;
+        if(inKey){
+            if (node.kind() == yaml.Kind.MAPPING) {
+                val = ("" + node.key()).trim();
+            }
+        }
+        else {
+            if (node.valueKind() == yaml.Kind.SCALAR) {
+                val = ("" + node.value()).trim();
+            }
+        }
+        let paramName:string;
+        if (val) {
+            if (util.stringStartsWith(val, "(") && util.stringEndsWith(val, ")")) {
+                val = val.substring(1,val.length-1);
+            }
             if (util.stringStartsWith(val, "<<") && util.stringEndsWith(val, ">>")) {
                 paramName = val.substring(2, val.length - 2);
             }
@@ -1205,8 +1219,8 @@ export class DefaultTransformer extends ValueTransformer{
         return this.delegate != null ? this.delegate.resolvedValueKind(node) : null;
     }
 
-    substitutionNode(node:ll.ILowLevelASTNode,chain:ll.ILowLevelASTNode[]=[]) {
-        return this.delegate ? this.delegate.substitutionNode(node,chain) : null;
+    substitutionNode(node:ll.ILowLevelASTNode,chain:ll.ILowLevelASTNode[]=[],inKey=false) {
+        return this.delegate ? this.delegate.substitutionNode(node,chain,inKey) : null;
     }
 
     _definingUnitSequence(str:string):ll.ICompilationUnit[]{

@@ -255,14 +255,14 @@ function isSecuredBy(d:hl.IProperty){
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
  */
-function typeOfContainingTemplate(h:hl.IParseResult):string{
+export function typeOfContainingTemplate(h:hl.IParseResult):def.ITypeDefinition{
     if(!h.isElement()){
         h = h.parent();
     }
     let declRoot = h && h.asElement();
     while (declRoot){
         if (declRoot.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
-            return declRoot.definition().nameId();
+            return declRoot.definition();
         }
         var np=declRoot.parent();
         if (!np){
@@ -289,7 +289,16 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                 issue = createIssue1(messageRegistry.INVALID_PARAMETER_NAME, { paramName : paramName}, node);
             }
             else {
-                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node, true);
+                let colonIndex = paramName.indexOf(":");
+                if(hlimpl.BasicASTNode.isInstance(node)&&colonIndex>=0){
+                    let correctMapping = `${paramName.substring(0,colonIndex+1)} ${paramName.substring(colonIndex+1)}`;
+                    issue = createIssue1(messageRegistry.UNUSED_PARAMETER_MISSING_SEPARATING_SPACE, {
+                        paramName : paramName,
+                        correctMapping: correctMapping}, node, true);
+                }
+                else {
+                    issue = createIssue1(messageRegistry.UNUSED_PARAMETER, {paramName: paramName}, node, true);
+                }
             }
         }
 
@@ -463,7 +472,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
     }
 
     if (node.isUnknown()){
-        if (node.name().indexOf("<<")!=-1){
+        if ((typeof node.name() === "string") && node.name().indexOf("<<") >= 0){
             if (typeOfContainingTemplate(parentNode)!=null){
                 new TraitVariablesValidator().validateName(node,v);
                 return false;
@@ -505,6 +514,11 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             }
         }
         else {
+            let i0 = (typeof node.name() === "string") ? node.name().indexOf("<<") : -1;
+            if(i0>0 && typeOfContainingTemplate(parentNode)
+                && node.name().indexOf(">>",i0)){
+                return false;
+            }
             var issue = restrictUnknownNodeError(node);
             if(!issue){
                 issue = createUnknownNodeIssue(node);
@@ -1231,16 +1245,19 @@ class CompositePropertyValidator implements PropertyValidator{
 
         var pr = checkPropertyQuard(node, v);
         var vl=node.value();
-        var ramlVersion = node.parent().definition().universe().version();
-        var isInsideTemplate = typeOfContainingTemplate(node.parent())!=null;
-        if (!node.property().range().hasStructure()){
-            if (hlimpl.StructuredValue.isInstance(vl)&&!(<def.Property>node.property()).isSelfNode()){
+        let nodeParent = node.parent();
+        let pDef = nodeParent.definition();
+        var ramlVersion = pDef.universe().version();
+        var isInsideTemplate = typeOfContainingTemplate(nodeParent)!=null;
+        let nodeProperty = node.property();
+        if (!nodeProperty.range().hasStructure()){
+            if (hlimpl.StructuredValue.isInstance(vl)&&!(<def.Property>nodeProperty).isSelfNode()){
 
                 //TODO THIS SHOULD BE MOVED TO TYPESYSTEM FOR STS AT SOME MOMENT
-                if (isTypeOrSchema(node.property())){
-                    if (node.property().domain().key()==universes.Universe08.BodyLike){
+                if (isTypeOrSchema(nodeProperty)){
+                    if (nodeProperty.domain().key()==universes.Universe08.BodyLike){
                         var structValue=<hlimpl.StructuredValue>vl;
-                        var newNode=new hlimpl.ASTNodeImpl(node.lowLevel(),node.parent(),<hl.INodeDefinition>node.parent().definition().universe().type(universes.Universe08.BodyLike.name),node.property());
+                        var newNode=new hlimpl.ASTNodeImpl(node.lowLevel(),nodeParent,<hl.INodeDefinition>pDef.universe().type(universes.Universe08.BodyLike.name),nodeProperty);
                         newNode.validate(v);
                         return;
                     }
@@ -1252,12 +1269,12 @@ class CompositePropertyValidator implements PropertyValidator{
             }
             else {
                 var vk=node.lowLevel().valueKind();
-                if (node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF&&!node.property().getAdapter(services.RAMLPropertyService).isKey()){
-                    if ((!node.property().isMultiValue())) {
-                        var k=node.property().range().key();
+                if (node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF&&!nodeProperty.getAdapter(services.RAMLPropertyService).isKey()){
+                    if (!nodeProperty.isMultiValue()&&!(universeHelpers.isApiType(pDef)&&universeHelpers.isTitleProperty(nodeProperty))) {
+                        var k=nodeProperty.range().key();
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
-                            if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((node.property().isRequired()||node.property().nameId()=="mediaType")&&(vk==null||vk===undefined))) {
-                                if (!node.property().domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
+                            if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((nodeProperty.isRequired()||universeHelpers.isMediaTypeProperty(nodeProperty))&&(vk==null||vk===undefined))) {
+                                if (!nodeProperty.domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
                                     v.accept(createIssue1(messageRegistry.STRING_EXPECTED,
                                         {propName: node.name()}, node));
                                 }
@@ -1304,16 +1321,16 @@ class CompositePropertyValidator implements PropertyValidator{
 
         new MethodBodyValidator().validate(node, v);
 
-        if ((node.property().range().key() == universes.Universe08.MimeType||
-            node.property().range().key() == universes.Universe10.MimeType)||
-            (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name
-            &&node.parent().property().nameId()==
+        if ((nodeProperty.range().key() == universes.Universe08.MimeType||
+            nodeProperty.range().key() == universes.Universe10.MimeType)||
+            (nodeProperty.nameId()==universes.Universe10.TypeDeclaration.properties.name.name
+            &&nodeParent.property().nameId()==
             universes.Universe10.MethodBase.properties.body.name)) {//FIXME
             new MediaTypeValidator().validate(node,v);
             return;
         }
 
-        if (isExampleProp(node.property())||isDefaultValueProp(node.property())){
+        if (isExampleProp(nodeProperty)||isDefaultValueProp(nodeProperty)){
             // if (ramlVersion=="RAML08"){
             //     var llv=node.lowLevel().value();
             //     if (node.lowLevel().children().length>0){
@@ -1324,7 +1341,7 @@ class CompositePropertyValidator implements PropertyValidator{
             // }
             new ExampleAndDefaultValueValidator().validate(node, v);
         }
-        if (isSecuredBy(node.property())){
+        if (isSecuredBy(nodeProperty)){
             if (ramlVersion=="RAML08"){
                 var np=node.lowLevel().parent();
                 var ysc=yaml.Kind.SEQ;
@@ -1390,9 +1407,9 @@ class CompositePropertyValidator implements PropertyValidator{
                 }
             }
         }
-        if (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
+        if (nodeProperty.nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
             //TODO MOVE TO DEF SYSTEM
-            var nameId = node.parent().property()&&node.parent().property().nameId();
+            var nameId = nodeParent.property()&&nodeParent.property().nameId();
             if (nameId == universes.Universe08.Resource.properties.uriParameters.name
                 || nameId == universes.Universe08.Resource.properties.baseUriParameters.name) {
 //                    new UrlParameterNameValidator().validate(node, v);
@@ -1400,7 +1417,7 @@ class CompositePropertyValidator implements PropertyValidator{
             }
         }
 
-        var range =node.property().range().key();
+        var range =nodeProperty.range().key();
         if (range==universes.Universe08.RelativeUriString||range==universes.Universe10.RelativeUriString){
             new UriValidator().validate(node,v);
             return;
@@ -1412,7 +1429,7 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
         if ("pattern" == node.name() && universes.Universe10.StringType == node.definition().key()
-            && node.parent().definition().isAssignableFrom("StringTypeDeclaration")) {
+            && pDef.isAssignableFrom("StringTypeDeclaration")) {
             validateRegexp(node.value(), v, node);
         }
         if ("name" == node.name() && universes.Universe10.StringType == node.definition().key()
@@ -1420,11 +1437,11 @@ class CompositePropertyValidator implements PropertyValidator{
             && (<string>node.value()).indexOf("[") == 0
             && (<string>node.value()).lastIndexOf("]") == (<string>node.value()).length - 1) {
 
-            if(hlimpl.ASTNodeImpl.isInstance(node.parent()) &&
-                universes.Universe10.ObjectTypeDeclaration.properties.properties.name == (<hlimpl.ASTNodeImpl>node.parent()).property().nameId()){
+            if(hlimpl.ASTNodeImpl.isInstance(nodeParent) &&
+                universes.Universe10.ObjectTypeDeclaration.properties.properties.name == (<hlimpl.ASTNodeImpl>nodeParent).property().nameId()){
 
-                if (hlimpl.ASTNodeImpl.isInstance(node.parent().parent()) &&
-                    universes.Universe10.ObjectTypeDeclaration == (<hlimpl.ASTNodeImpl>node.parent().parent()).definition().key()) {
+                if (hlimpl.ASTNodeImpl.isInstance(nodeParent.parent()) &&
+                    universes.Universe10.ObjectTypeDeclaration == (<hlimpl.ASTNodeImpl>nodeParent.parent()).definition().key()) {
                     var cleanedValue = (<string>node.value()).substr(1, (<string>node.value()).length - 2)
                     validateRegexp(cleanedValue, v, node);
                 }
@@ -1855,7 +1872,7 @@ class MediaTypeValidator implements PropertyValidator{
                 }
             }
             if(typeOfContainingTemplate(node)!=null){
-                if(v.indexOf("<<")>=0){
+                if((typeof v === "string") && v.indexOf("<<")>=0){
                     return;
                 }
             }
@@ -2091,6 +2108,11 @@ function isValidPropertyValue(pr:def.Property,vl:string,c:hl.IHighLevelNode):boo
 }
 function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl.ValidationAcceptor):boolean {
 
+    let paramStart = (typeof vl === "string") ? vl.indexOf("<<") : -1;
+    if (paramStart >= 0 && vl.indexOf(">>", paramStart) >= 0 && typeOfContainingTemplate(astNode) != null) {
+        return;
+    }
+
     checkTraitReference(pr, astNode, cb);
     checkResourceTypeReference(pr, astNode, cb);
 
@@ -2105,10 +2127,16 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
 
     var adapter = (<def.Property>pr).getAdapter(services.RAMLPropertyService);
 
-    var valid = isValidPropertyValue(pr,vl,astNode.parent());
+    let parentNode = astNode.parent();
+    let valid = false;
+    let hasChaining = proxy.LowLevelCompositeNode.isInstance(astNode.lowLevel())
+        && (<proxy.LowLevelProxyNode>astNode.lowLevel()).getMeta("chaining");
 
-    if(!valid && astNode.lowLevel().unit().absolutePath() !== astNode.parent().lowLevel().unit().absolutePath()) {
-        valid = isValidPropertyValue(pr,vl, <hl.IHighLevelNode>hlimpl.fromUnit((<any>astNode).lowLevel().unit()));
+    if(!hasChaining) {
+        valid = isValidPropertyValue(pr, vl, parentNode);
+        if (!valid && astNode.lowLevel().unit().absolutePath() !== parentNode.lowLevel().unit().absolutePath()) {
+            valid = isValidPropertyValue(pr, vl, <hl.IHighLevelNode>hlimpl.fromUnit((<any>astNode).lowLevel().unit()));
+        }
     }
 
     if (!valid) {
@@ -2293,9 +2321,13 @@ function specializeReferenceError(originalMessage: any,
         return messageRegistry.UNRECOGNIZED_SECURITY_SCHEME;
     }
     if(universeHelpers.isAnnotationsProperty(property)){
+
+        let hasChaining = proxy.LowLevelCompositeNode.isInstance(astNode.lowLevel())
+            && (<proxy.LowLevelProxyNode>astNode.lowLevel()).getMeta("chaining");
+
         let typeCollction = astNode.parent().types();
         let reg = typeCollction && typeCollction.getAnnotationTypeRegistry();
-        if(reg && reg.getByChain(value)){
+        if(hasChaining || reg && reg.getByChain(value)){
             return messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE;
         }
         else{
@@ -2478,14 +2510,10 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 var nm = node.attr(x.nameId());
                 var gotValue = false;
                 if (nm!=null){
-                    if(nm.lowLevel().kind()==yaml.Kind.SCALAR
-                        ||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR
-                        ||nm.lowLevel().kind()==yaml.Kind.INCLUDE_REF
-                        ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF
-                        ||(nm.lowLevel().valueKind()===null&&!isInlinedTemplate)){
-                        //if(nm.value()!=null){
-                        gotValue = true;
-                        //}
+                    if(nm.lowLevel().kind()==yaml.Kind.SCALAR||nm.lowLevel().resolvedValueKind()==yaml.Kind.SCALAR){
+                        if(nm.value()!=null){
+                            gotValue = true;
+                        }
                     }
                     else if (nm.lowLevel().children().length!=0) {
                         gotValue = true;
@@ -3903,7 +3931,7 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 var template = typeOfContainingTemplate(attr.parent());
                 if (template) {
                     if (prop.isValueProperty()) {
-                        var templateNamePlural = toReadableName(template,true,true);
+                        var templateNamePlural = toReadableName(template.nameId(),true,true);
                         var issue = createIssue1(messageRegistry.OPTIONAL_SCLARAR_PROPERTIES_10,{
                             templateNamePlural:templateNamePlural,
                             propName: attr.name()
@@ -4449,8 +4477,9 @@ export function createIssue1(
     isWarning:boolean=false,
     internalRange?:def.rt.tsInterfaces.RangeObject):hl.ValidationIssue {
 
-    var msg = applyTemplate(<Message>messageEntry,parameters);
-    return createIssue(messageEntry.code, msg, node, isWarning, internalRange);
+    let msg = applyTemplate(<Message>messageEntry,parameters);
+    let inKey = KeyErrorsRegistry.getInstance().isKeyError(messageEntry.code);
+    return createIssue(messageEntry.code, msg, node, isWarning, internalRange,false,inKey);
 }
 
 export function createIssue(
@@ -4459,7 +4488,8 @@ export function createIssue(
     node:hl.IParseResult,
     isWarning:boolean=false,
     internalRange?:def.rt.tsInterfaces.RangeObject,
-    forceScalar = false):hl.ValidationIssue{
+    forceScalar = false,
+    inKey=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -4467,7 +4497,7 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                let paramsChain = proxyNode.transformer() && proxyNode.transformer().paramNodesChain(proxyNode);
+                let paramsChain = proxyNode.transformer() && proxyNode.transformer().paramNodesChain(proxyNode,inKey);
                 if(paramsChain && paramsChain.length>0){
                     if(node.lowLevel().valueKind()!=node.lowLevel().resolvedValueKind()) {
                         original = localError(node, issueCode, isWarning, message, false, pr, null, internalRange,forceScalar);
@@ -4803,8 +4833,57 @@ class PropertyNamesRegistry{
         }
     }
 
-    public hasProperty(pName:string){
-        return this.propertiesMap[pName];
+    public hasProperty(pName:string):boolean{
+        return this.propertiesMap[pName]||false;
+    }
+
+}
+
+class KeyErrorsRegistry{
+
+    private static instance:KeyErrorsRegistry;
+
+    public static getInstance():KeyErrorsRegistry{
+        if(!KeyErrorsRegistry.instance){
+            KeyErrorsRegistry.instance = new KeyErrorsRegistry();
+        }
+        return KeyErrorsRegistry.instance;
+    }
+
+    constructor(){
+        this.init();
+    }
+
+    private codesMap:{[key:string]:boolean} = {};
+
+    private init() {
+        let keyErrorsArray: any = [
+            messageRegistry.NODE_KEY_IS_A_MAP,
+            messageRegistry.NODE_KEY_IS_A_SEQUENCE,
+            messageRegistry.UNKNOWN_NODE,
+            messageRegistry.INVALID_PROPERTY_USAGE,
+            messageRegistry.INVALID_SUBRESOURCE_USAGE,
+            messageRegistry.INVALID_METHOD_USAGE,
+            messageRegistry.SPACES_IN_KEY,
+            messageRegistry.UNKNOWN_ANNOTATION,
+            messageRegistry.INVALID_ANNOTATION_LOCATION,
+            messageRegistry.KEYS_SHOULD_BE_UNIQUE,
+            messageRegistry.ALREADY_EXISTS,
+            messageRegistry.ALREADY_EXISTS_IN_CONTEXT,
+            messageRegistry.PROPERTY_USED,
+            messageRegistry.PARENT_PROPERTY_USED,
+            messageRegistry.UNKNOWN_ANNOTATION_TYPE,
+            messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE,
+            messageRegistry.LIBRARY_CHAINIG_IN_ANNOTATION_TYPE_SUPERTYPE
+        ];
+        for (let me of keyErrorsArray) {
+            this.codesMap[me.code] = true;
+        }
+
+    }
+
+    public isKeyError(code:string):boolean{
+        return this.codesMap[code]||false;
     }
 
 }

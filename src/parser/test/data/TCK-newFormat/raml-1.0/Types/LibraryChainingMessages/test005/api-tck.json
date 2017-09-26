@@ -100,8 +100,8 @@
       }
     },
     {
-      "code": "UNKNOWN_ARRAY_COMPONENT",
-      "message": "Referring to unknown type 'lib1.lib2.T2' as an array component type",
+      "code": "ARRAY_COMPONENT_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Array component type 'lib1.lib2.T2' imported through a library chain. Library chaining is not allowed.",
       "path": "api.raml",
       "range": {
         "start": {

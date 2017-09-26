@@ -4,6 +4,7 @@ import jsyaml=require("../jsyaml/jsyaml2lowLevel")
 import defs=require("raml-definition-system")
 import hl=require("../highLevelAST")
 import ll=require("../lowLevelAST")
+import linter = require("./linter");
 import yaml=require("yaml-ast-parser")
 import _=require("underscore")
 import def=defs
@@ -15,6 +16,7 @@ import universes=require("../tools/universe")
 import universeHelpers=require("../tools/universeHelpers")
 import services=defs
 import ramlTypes=defs.rt;
+import referencePatcher = require("./referencePatcher");
 var messageRegistry = require("../../../resources/errorMessages");
 
 var mediaTypeParser = require("media-typer");
@@ -841,14 +843,42 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
             }
             else {
-                if(!(proxy.LowLevelCompositeNode.isInstance(x))
-                    ||(<proxy.LowLevelCompositeNode>x).primaryNode()!=null) {
+                let unknownNode = new hlimpl.BasicASTNode(x, aNode);
 
-                    res.push(new hlimpl.BasicASTNode(x, aNode));
-                    //error
+                let addUnknownNode = !proxy.LowLevelCompositeNode.isInstance(x)
+                    ||(<proxy.LowLevelCompositeNode>x).primaryNode()!=null;
+                if(!addUnknownNode) {
+                    let tType = linter.typeOfContainingTemplate(unknownNode);
+                    let i0 = key ? key.indexOf("<<") : -1;
+                    let hasParams = i0>=0 && key.indexOf(">>",i0)>=0;
+                    if(tType){
+                        if(!hasParams){
+                            addUnknownNode = true;
+                        }
+                    }
+                    else{
+                        addUnknownNode = true;
+                        if (universeHelpers.isMethodType(aNode.definition())) {
+                            tType = aNode.definition().universe().type(def.universesInfo.Universe10.Trait.name);
+                        }
+                        else if (universeHelpers.isResourceType(aNode.definition())) {
+                            tType = aNode.definition().universe().type(def.universesInfo.Universe10.ResourceType.name);
+                        }
+                        if(tType){
+                            if(tType.property(key)!=null){
+                                addUnknownNode = false;
+                            }
+                        }
+                        if(addUnknownNode && hasParams){
+                            addUnknownNode = !definedInTemplate(aNode);
+                        }
+                    }
+                }
+                if(addUnknownNode){
+                    res.push(unknownNode);
                 }
             }
-        })
+        });
         var rNode = aNode.reusedNode();
         if(rNode&&aNode.lowLevel().valueKind()!=yaml.Kind.SEQ){
             var cObj = {};
@@ -1329,4 +1359,30 @@ function match(t:hl.ITypeDefinition, r:hl.IParseResult,alreadyFound:hl.ITypeDefi
         }
     })
     return matches;
+}
+
+function definedInTemplate(n:hl.IParseResult){
+    let rootDef = n.root().definition();
+    if(universeHelpers.isTraitType(rootDef)||universeHelpers.isResourceTypeType(rootDef)){
+        return true;
+    }
+    if(!rootDef || !(universeHelpers.isLibraryBaseSibling(rootDef)
+        || universeHelpers.isApiType(rootDef))){
+        return false;
+    }
+    let llNode = n.lowLevel();
+    if(proxy.LowLevelProxyNode.isInstance(llNode)){
+        llNode = referencePatcher.toOriginal(llNode);
+    }
+    let collectionNode:ll.ILowLevelASTNode;
+    while(llNode.parent()){
+        collectionNode = llNode;
+        llNode = llNode.parent();
+    }
+    let cKey = collectionNode && collectionNode.key();
+    if(cKey == def.universesInfo.Universe10.LibraryBase.properties.traits.name
+        || cKey == def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
+        return true;
+    }
+    return false;
 }

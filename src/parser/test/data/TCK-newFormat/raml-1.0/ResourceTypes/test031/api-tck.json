@@ -1,0 +1,240 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib1.raml"
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib2.raml"
+      }
+    ],
+    "resourceTypes": {
+      "rt1": {
+        "methods": {
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "<<type1>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "put"
+          }
+        },
+        "name": "rt1"
+      },
+      "rt2": {
+        "methods": {
+          "delete": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "<<type2>>"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "delete"
+          }
+        },
+        "type": {
+          "rt1": {
+            "type1": "<<type2>>"
+          }
+        },
+        "name": "rt2"
+      }
+    },
+    "title": "test",
+    "mediaType": [
+      "application/json"
+    ],
+    "resources": [
+      {
+        "methods": {
+          "delete": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib1.lib2.T2"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "delete"
+          },
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib1.lib2.T2"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION"
+              }
+            },
+            "method": "put"
+          }
+        },
+        "type": {
+          "rt2": {
+            "type2": "lib1.lib2.T2"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": [
+    {
+      "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 11,
+          "column": 6,
+          "position": 117
+        },
+        "end": {
+          "line": 11,
+          "column": 10,
+          "position": 121
+        }
+      },
+      "trace": [
+        {
+          "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+          "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 15,
+              "column": 15,
+              "position": 176
+            },
+            "end": {
+              "line": 15,
+              "column": 24,
+              "position": 185
+            }
+          },
+          "trace": [
+            {
+              "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+              "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+              "path": "api.raml",
+              "range": {
+                "start": {
+                  "line": 21,
+                  "column": 24,
+                  "position": 257
+                },
+                "end": {
+                  "line": 21,
+                  "column": 36,
+                  "position": 269
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+      "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 6,
+          "position": 204
+        },
+        "end": {
+          "line": 17,
+          "column": 10,
+          "position": 208
+        }
+      },
+      "trace": [
+        {
+          "code": "INHERITING_TYPE_IMPORTED_THROUGH_LIBRARY_CHAIN",
+          "message": "Inheriting the 'lib1.lib2.T2' type imported through a library chain. Library chaining is not allowed.",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 21,
+              "column": 24,
+              "position": 257
+            },
+            "end": {
+              "line": 21,
+              "column": 36,
+              "position": 269
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

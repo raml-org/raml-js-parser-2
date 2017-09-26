@@ -4,13 +4,9 @@ types:
   script: string
 annotationTypes:
   LibraryLocation:
-    properties:
-      value: url
+    type: url
   FacetInstanceValidator:
-    properties:
-      value: script
+    type: script
   TypeValidator:
-    properties:
-      value: script
-(LibraryLocation):
-  value: http://raml.org/library/common.raml
+    type: script
+(LibraryLocation): http://raml.org/library/common.raml

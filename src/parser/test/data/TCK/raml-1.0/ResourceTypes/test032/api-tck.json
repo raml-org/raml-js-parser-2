@@ -1,0 +1,328 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "./lib1.raml"
+      },
+      {
+        "key": "lib1.lib2",
+        "value": "lib2.raml"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "put": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p1": {
+                    "name": "p1",
+                    "displayName": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<type1>>"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        }
+      },
+      {
+        "rt2": {
+          "type": {
+            "rt1": {
+              "type1": "<<type2>>"
+            }
+          },
+          "name": "rt2",
+          "delete": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p2": {
+                    "name": "p2",
+                    "displayName": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<type2>>"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "delete"
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p2": {
+                    "name": "p2",
+                    "displayName": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "lib1.lib2.T2"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "delete"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "p1": {
+                    "name": "p1",
+                    "displayName": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "lib1.lib2.T2"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "type": {
+          "rt2": {
+            "type2": "lib1.lib2.T2"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE_SUPERTYPE",
+      "message": "Property 'p1' type depends on 'lib1.lib2.T2' type imported through a library chain. Library chainig is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 13,
+          "column": 10,
+          "position": 153
+        },
+        "end": {
+          "line": 13,
+          "column": 12,
+          "position": 155
+        }
+      },
+      "trace": [
+        {
+          "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE_SUPERTYPE",
+          "message": "Property 'p1' type depends on 'lib1.lib2.T2' type imported through a library chain. Library chainig is not allowed.",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 17,
+              "column": 15,
+              "position": 210
+            },
+            "end": {
+              "line": 17,
+              "column": 24,
+              "position": 219
+            }
+          },
+          "trace": [
+            {
+              "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE_SUPERTYPE",
+              "message": "Property 'p1' type depends on 'lib1.lib2.T2' type imported through a library chain. Library chainig is not allowed.",
+              "path": "api.raml",
+              "range": {
+                "start": {
+                  "line": 25,
+                  "column": 24,
+                  "position": 325
+                },
+                "end": {
+                  "line": 25,
+                  "column": 36,
+                  "position": 337
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE_SUPERTYPE",
+      "message": "Property 'p2' type depends on 'lib1.lib2.T2' type imported through a library chain. Library chainig is not allowed.",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 21,
+          "column": 10,
+          "position": 274
+        },
+        "end": {
+          "line": 21,
+          "column": 12,
+          "position": 276
+        }
+      },
+      "trace": [
+        {
+          "code": "LIBRARY_CHAINIG_IN_PROPERTY_TYPE_SUPERTYPE",
+          "message": "Property 'p2' type depends on 'lib1.lib2.T2' type imported through a library chain. Library chainig is not allowed.",
+          "path": "api.raml",
+          "range": {
+            "start": {
+              "line": 25,
+              "column": 24,
+              "position": 325
+            },
+            "end": {
+              "line": 25,
+              "column": 36,
+              "position": 337
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
