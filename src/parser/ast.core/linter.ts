@@ -1,6 +1,3 @@
-
-/// <reference path="../../../typings/main.d.ts" />
-
 import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
 import json= require ("../jsyaml/json2lowLevel")
 var stringify=require("json-stable-stringify")
@@ -1501,6 +1498,7 @@ class ValidationError extends Error{
 
     constructor(public messageEntry:any, public parameters:any={}){
         super();
+        this.getClassIdentifier = ValidationError.prototype.getClassIdentifier;
     }
 }
 
@@ -1584,7 +1582,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return tm;
             }
             else if (tm instanceof Error){
-                tm.isWarning = true;
+                (<any>tm).isWarning = true;
                 if(!isJSONorXML) {
                     (<any>tm).canBeRef = true;
                 }
@@ -2408,7 +2406,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
                     cb.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
-                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
+                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,(<any>validation).isWarning));
                 }
                 validation = null;
             }

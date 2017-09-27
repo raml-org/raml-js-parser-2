@@ -1,3 +1,4 @@
+/// <reference path="../../../typings/main.d.ts" />
 import RamlWrapper = require('../artifacts/raml10parserapi')
 import RamlWrapperImpl = require('../artifacts/raml10parser')
 

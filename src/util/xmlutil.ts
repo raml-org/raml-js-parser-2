@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 var DomParser = require("xmldom");
 import util = require("./index");
 

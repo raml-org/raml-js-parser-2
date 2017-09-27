@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import def=require("raml-definition-system")
 import _=require("underscore")
 import fs=require("fs")

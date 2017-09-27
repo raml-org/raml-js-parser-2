@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import apiLoader = require("../parser/apiLoader");
 import RamlWrapper = require("../parser/artifacts/raml08parserapi")
 import RamlWrapper1= require("../parser/artifacts/raml10parserapi")

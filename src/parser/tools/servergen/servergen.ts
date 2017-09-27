@@ -1,4 +1,3 @@
-/// <reference path="../../../../typings/main.d.ts" />
 import fs = require("fs")
 import path = require("path")
 import mkdirp = require('mkdirp');
@@ -48,7 +47,7 @@ export class ServerGenerator {
 	renderFile(source: string, dest: string, context: any) {
 		var text = this.render(source, context);
 		//console.log('generated: ' + text);
-		fs.writeFileSync(dest, text, 'utf-8');
+		fs.writeFileSync(dest, text, {encoding:'utf-8'});
 	}
 
 	generateSchema(type: parser.ObjectTypeDeclaration): any {

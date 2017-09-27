@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import index = require("../../index");
 import assert = require("assert");
 import RamlWrapper = require("../artifacts/raml10parserapi");

@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import ll=require("../lowLevelAST");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import hl=require("../highLevelAST");
@@ -823,8 +822,8 @@ export class ValueTransformer implements proxy.ValueTransformer{
 
                 var originalString = str.substring(i0,prev);
 
-                var val;
-                var paramName;
+                var val:any;
+                var paramName:string;
 
                 var transformers = getTransformersForOccurence(paramOccurence);
 

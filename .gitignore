@@ -22,8 +22,6 @@ npm-debug.log
 
 !/src/devUtil/documentation/theme.js
 
-/typings/
-
 /dist/
 
 /coverage

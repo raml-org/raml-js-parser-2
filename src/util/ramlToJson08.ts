@@ -279,7 +279,7 @@ function serializeParameters(_m:Array<RamlWrapper.Parameter>, defaultKind?:strin
                 var key = parameter.optional() ? parameterName + "?" : parameterName;
                 if (parametersJson[key]){
                     var sm=parametersJson[key];
-                    if (typeof sm=='array'){
+                    if (Array.isArray(sm)){
                         sm.push(parameterJson)
                     }
                     else{

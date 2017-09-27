@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 /**
  * Created by kor on 05/05/15.
  */

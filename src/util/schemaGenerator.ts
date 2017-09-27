@@ -1,7 +1,6 @@
 /**
  * Created by Sviridov on 5/1/2015.
  */
-/// <reference path="../../typings/main.d.ts" />
 
 export class JsonSchemaGenerator {
 

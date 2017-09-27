@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import Opt = require('../Opt');
 import util = require('../util/index');
 import fs = require("fs");

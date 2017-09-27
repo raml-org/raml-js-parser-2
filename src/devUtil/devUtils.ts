@@ -1,5 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
-
 import modulesDetector = require("./linkedModuleDetector")
 import cp = require('child_process')
 

@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import tckUtil = require("./scripts/tckUtil")
 
 describe('TCK tests',function() {

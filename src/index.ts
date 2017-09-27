@@ -110,7 +110,7 @@ function optionsForContent(content:string,
 
             contentAsync(pathStr:string):Promise<string>{
                 if (pathStr === (filePath || path.resolve("/","#local.raml")).replace(/\\/,"/")){
-                    return Promise.resolve(content);
+                    return Promise.resolve<string>(content);
                 }
                 if (arg2){
                     if (arg2.fsResolver){

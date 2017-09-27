@@ -1,5 +1,3 @@
-/// <reference path="../typings/main.d.ts" />
-
 import invariant = require('invariant')
 
 var exists = ( v ) => ( v != null )

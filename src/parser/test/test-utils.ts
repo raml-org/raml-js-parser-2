@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import index = require("../../index");
 import assert = require("assert")
 import fs = require("fs")
@@ -465,8 +464,8 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
   var api = null;
   if (!extensions || extensions.length == 0) {
     api = loadApi(data(masterPath));
-    if (global.isExpanded & <any>api.wrapperNode){
-      api = (<any>api.wrapperNode()).expand(global.isLibExpanded).highLevel();
+    if ((<any>global).isExpanded & <any>api.wrapperNode){
+      api = (<any>api.wrapperNode()).expand((<any>global).isLibExpanded).highLevel();
     }
     if (mode != null) {
       api.setMergeMode(mode?hlimpl.OverlayMergeMode.MERGE : hlimpl.OverlayMergeMode.AGGREGATE);
@@ -530,7 +529,7 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
 
 export function expandHighIfNeeded(original : high.ASTNodeImpl) : high.ASTNodeImpl {
 
-  if(!global.isExpanded) return original;
+  if(!(<any>global).isExpanded) return original;
 
   if (!original) return original;
 
@@ -541,13 +540,13 @@ export function expandHighIfNeeded(original : high.ASTNodeImpl) : high.ASTNodeIm
 
   if ((<any>wrapper).expand == null) return original;
 
-  return <high.ASTNodeImpl>((<any>wrapper).expand(global.isLibExpanded)).highLevel();
+  return <high.ASTNodeImpl>((<any>wrapper).expand((<any>global).isLibExpanded)).highLevel();
 }
 
 
 export function expandWrapperIfNeeded(original : RamlWrapper.Api | RamlWrapper08.Api) : RamlWrapper.Api | RamlWrapper08.Api {
-  if(!global.isExpanded) return original;
+  if(!(<any>global).isExpanded) return original;
 
-  return (<RamlWrapper.Api>original).expand(global.isLibExpanded);
+  return (<RamlWrapper.Api>original).expand((<any>global).isLibExpanded);
 }
 

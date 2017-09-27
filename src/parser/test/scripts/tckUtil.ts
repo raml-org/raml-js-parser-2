@@ -1,4 +1,3 @@
-/// <reference path="../../../../typings/main.d.ts" />
 import fs = require("fs")
 import path = require("path")
 import index = require("../../../index")
@@ -722,7 +721,6 @@ function fileContent(suiteStrings:string[],filePath:string,title:string) {
     return `/**
  * ATTENTION !!! The file is generated. Manual changes will be overridden by the nearest build.
  */
-/// <reference path="${relTypingsPath}" />
 import tckUtil = require("${relTckUtilPath}")
 
 describe('${title}',function(){

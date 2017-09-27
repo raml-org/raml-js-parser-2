@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import def=require("raml-definition-system")
 import td=require("ts-model")
 import util=require("../util/index")
@@ -386,7 +385,7 @@ export class ParserGenerator{
         paramName:string,
         paramType:string,
         body:string,
-        comment?:string, isStatic=false):td.TSAPIElementDeclaration {
+        comment?:string, isStatic?:boolean):td.TSAPIElementDeclaration {
 
         var existing = this.getExistingMethods(dcl, methodName);
         existing.forEach(x=>dcl.removeChild(x));
@@ -814,7 +813,7 @@ export function loadApi(apiPath:string,extensionsAndOverlays:string[], options?:
 `:''}
 export function loadApi(apiPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<Api>{
 
-        return apiLoader.loadApiAsync(apiPath,arg1,arg2);
+        return <Promise<Api>>apiLoader.loadApiAsync(apiPath,arg1,arg2);
 }
 
 ${this.ramlVersion=='RAML10'?

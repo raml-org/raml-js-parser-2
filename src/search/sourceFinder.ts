@@ -1,5 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
-
 import def=require("raml-definition-system")
 import ramlTypes=def.rt;
 import hl=require("../parser/highLevelAST")

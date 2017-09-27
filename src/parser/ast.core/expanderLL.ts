@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import ll=require("../lowLevelAST");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import hl=require("../highLevelAST");
@@ -587,10 +586,10 @@ export class TraitsAndResourceTypesExpander {
             let ds = new DefaultTransformer(<any>r, null, unitsChain);
             if (hasParams) {
                 if (this.ramlVersion == 'RAML08') {
-                    value.children().forEach(x=>scalarParamValues[x.key()] = x.value());
+                    (<ll.ILowLevelASTNode>value).children().forEach(x=>scalarParamValues[x.key()] = x.value());
                 }
                 else {
-                    for(let x of value.children()){
+                    for(let x of (<ll.ILowLevelASTNode>value).children()){
                         let llNode = referencePatcher.toOriginal(x);
                         let resolvedValueKind = x.resolvedValueKind();
                         if (resolvedValueKind == yaml.Kind.SCALAR||resolvedValueKind) {
