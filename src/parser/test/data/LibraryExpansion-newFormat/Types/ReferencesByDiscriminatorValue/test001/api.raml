@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: test API
+
+uses:
+  lib: ./lib.raml
+
+types:
+  MyArrayType:
+    type: lib.Base[]
+    example:
+      - kind: t1
+        value: 15
+      - kind: t2
+        value: 17

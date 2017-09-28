@@ -110,6 +110,7 @@ export class ReferencePatcher{
             var appended = this.appendUnitIfNeeded(ch,units);
             this.patchReferences(ch,rootNode,resolver,units);
             this.popUnitIfNeeded(units,appended);
+            ch.lowLevel()["libProcessed"] = true;
         }
         if(isNode){
             isNode.filterChildren();
@@ -847,7 +848,8 @@ export class ReferencePatcher{
 
     private patchDependencies(api:hl.IHighLevelNode,excessive:boolean):boolean {
         var result = false;
-        var apiPath = api.lowLevel().unit().absolutePath();
+        let rootUnit = api.lowLevel().unit();
+        let apiPath = rootUnit.absolutePath();
         for (var ch of api.children()) {
             if (!ch.isElement()||ch.lowLevel()["libProcessed"]) {
                 continue;
@@ -878,6 +880,34 @@ export class ReferencePatcher{
                 var chName = chNode.name();
                 if (depCollection[chName] == null) {
                     continue;
+                }
+                if(pName==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+                    let discriminator = chNode.attr(
+                        def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminator.name);
+                    if(discriminator){
+                        let localType = chNode.localType();
+                        if(localType){
+                            let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
+                            for(let st of localType.allSubTypes()){
+                                let typeName = st.nameId();
+                                if(!typeName){
+                                    continue;
+                                }
+                                let unit = typeUnit(st);
+                                if(!unit){
+                                    continue;
+                                }
+                                let usesInfo = resolver.resolveNamespace(rootUnit,unit);
+                                if(!usesInfo){
+                                    continue;
+                                }
+                                let ns = usesInfo.namespace();
+                                let ref = new PatchedReference(ns,typeName,
+                                    def.universesInfo.Universe10.LibraryBase.properties.types.name,unit,false,this.mode);
+                                this.registerPatchedReference(ref);
+                            }
+                        }
+                    }
                 }
             }
             this.process(chNode, api, true, true);
@@ -1386,3 +1416,25 @@ var isExternalType = function (localType:def.ITypeDefinition) {
     }
     return isExternal;
 };
+
+export function typeUnit(t:hl.ITypeDefinition|def.rt.IParsedType):ll.ICompilationUnit{
+    let src = t.getExtra("SOURCE");
+    let llNode:ll.ILowLevelASTNode;
+    if(hlimpl.LowLevelWrapperForTypeSystem.isInstance(src)){
+        llNode = (<hlimpl.LowLevelWrapperForTypeSystem>src).node();
+    }
+    else if(hlimpl.ASTNodeImpl.isInstance(src)){
+        llNode = (<hl.IHighLevelNode>src).lowLevel();
+    }
+    else if(jsyaml.ASTNode.isInstance(src)
+        ||proxy.LowLevelProxyNode.isInstance(src)
+        ||json.AstNode.isInstance(src)){
+
+        let llNode = <ll.ILowLevelASTNode>src;
+    }
+    if(!llNode){
+        return null;
+    }
+    let unit = llNode.unit();
+    return unit;
+}

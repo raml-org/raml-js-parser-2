@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+
+types:
+  Base:
+    discriminator: kind
+    properties:
+      kind: string
+      value: number
+  T1:
+    type: Base
+    discriminatorValue: t1
+  T2:
+    type: Base
+    discriminatorValue: t2    

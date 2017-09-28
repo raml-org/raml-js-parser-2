@@ -579,14 +579,14 @@ export class LibraryExpander{
         if(lib==null){
             return null;
         }
-        if(proxy.LowLevelCompositeNode.isInstance(lib.highLevel().lowLevel())){
-            lib = <RamlWrapper.Library>lib.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();
-        }
+        // if(proxy.LowLevelCompositeNode.isInstance(lib.highLevel().lowLevel())){
+        //     lib = <RamlWrapper.Library>lib.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();
+        // }
         let expander = new TraitsAndResourceTypesExpander();
         let rp = new referencePatcher.ReferencePatcher();
         let hlNode:hl.IHighLevelNode = expander.createHighLevelNode(lib.highLevel(),true,rp,true);
         rp.process(hlNode);
-        rp.expandLibraries(hlNode);
+        rp.expandLibraries(hlNode,true);
         let result = <RamlWrapper.Library>hlNode.wrapperNode();
         return result;
     }

@@ -1,0 +1,150 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyArrayType": {
+          "name": "MyArrayType",
+          "displayName": "MyArrayType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "array"
+          ],
+          "example": [
+            {
+              "kind": "t1",
+              "value": 15
+            },
+            {
+              "kind": "t2",
+              "value": 17
+            }
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "[\n  {\n    \"kind\": \"t1\",\n    \"value\": 15\n  },\n  {\n    \"kind\": \"t2\",\n    \"value\": 17\n  }\n]",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
+              {
+                "kind": "t1",
+                "value": 15
+              },
+              {
+                "kind": "t2",
+                "value": 17
+              }
+            ]
+          },
+          "items": "lib.Base"
+        }
+      },
+      {
+        "lib.Base": {
+          "name": "Base",
+          "displayName": "Base",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "kind": {
+              "name": "kind",
+              "displayName": "kind",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "value": {
+              "name": "value",
+              "displayName": "value",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "discriminator": "kind",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib.T1": {
+          "name": "T1",
+          "displayName": "T1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "lib.Base"
+          ],
+          "discriminatorValue": "t1",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib.T2": {
+          "name": "T2",
+          "displayName": "T2",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "lib.Base"
+          ],
+          "discriminatorValue": "t2",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}

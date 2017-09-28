@@ -642,9 +642,9 @@ export class LibraryExpander{
         if(lib==null){
             return null;
         }
-        if(proxy.LowLevelCompositeNode.isInstance(lib.lowLevel())){
-            lib = lib.lowLevel().unit().highLevel().asElement();
-        }
+        // if(proxy.LowLevelCompositeNode.isInstance(lib.lowLevel())){
+        //     lib = lib.lowLevel().unit().highLevel().asElement();
+        // }
         let expander = new TraitsAndResourceTypesExpander();
         let rp = new referencePatcher.ReferencePatcher();
         let hlNode:hl.IHighLevelNode = expander.createHighLevelNode(lib,true,rp,true);

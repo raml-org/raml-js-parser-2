@@ -9,6 +9,7 @@ import ll=require("../lowLevelAST")
 import yll=require("../jsyaml/jsyaml2lowLevel")
 import high = require("../highLevelImpl")
 import def = require("raml-definition-system")
+import universeHelpers = require("../tools/universeHelpers");
 
 import hl=require("../highLevelAST")
 import t3 = require("../artifacts/raml10parser")
@@ -531,11 +532,15 @@ export function expandHighIfNeeded(original : high.ASTNodeImpl) : high.ASTNodeIm
 
   if(!(<any>global).isExpanded) return original;
 
+  if(universeHelpers.isLibraryType(original.definition())&&!(<any>global).isLibExpanded){
+    return original;
+  }
+
   if (!original) return original;
 
   if ((<any>original).wrapperNode == null) return original;
 
-  var wrapper = original.wrapperNode();
+  let wrapper = original.wrapperNode();
   if (wrapper == null) return original;
 
   if ((<any>wrapper).expand == null) return original;

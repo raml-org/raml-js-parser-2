@@ -1129,6 +1129,8 @@ export class ReferencePatcher {
 
     private libExpMode:boolean;
 
+    private needTypesReset = false;
+
     expandLibraries(api:proxy.LowLevelCompositeNode,excessive=false){
 
         let lem = this.libExpMode;
@@ -1199,13 +1201,17 @@ export class ReferencePatcher {
         }
         this.removeUses(api);
         api.actual().libExpanded = true;
-        //this.resetHighLevel(api);
+        if(this.needTypesReset) {
+            this.resetHighLevel(api);
+        }
+
         this.libExpMode = lem;
     }
 
     private patchDependencies(api:proxy.LowLevelCompositeNode,excessive:boolean):boolean {
         var result = false;
-        var apiPath = api.unit().absolutePath();
+        let rootUnit = api.unit();
+        let apiPath = rootUnit.absolutePath();
         for (var c of api.children()) {
             var collectionName = c.key();
             var typeName = collectionNames[collectionName];
@@ -1230,8 +1236,39 @@ export class ReferencePatcher {
                     if (depCollection == null) {
                         continue;
                     }
-                    if (depCollection[chNode.key()] == null) {
+                    let ref = depCollection[chNode.key()];
+                    if (ref == null) {
                         continue;
+                    }
+                    if(collectionName==def.universesInfo.Universe10.LibraryBase.properties.types.name){
+                        let discriminator = chNode.children().filter(x=> x.key() ==
+                            def.universesInfo.Universe10.ObjectTypeDeclaration.properties.discriminator.name);
+                        if(discriminator.length>0){
+                            this.needTypesReset = true;
+                            let types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
+                            let localType = types.getTypeRegistry().getByChain(ref.value());
+                            if(localType){
+                                let resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
+                                for(let st of localType.allSubTypes()){
+                                    let typeName = st.name();
+                                    if(!typeName){
+                                        continue;
+                                    }
+                                    let unit = referencePatcherHL.typeUnit(st);
+                                    if(!unit){
+                                        continue;
+                                    }
+                                    let usesInfo = resolver.resolveNamespace(rootUnit,unit);
+                                    if(!usesInfo){
+                                        continue;
+                                    }
+                                    let ns = usesInfo.namespace();
+                                    let ref = new referencePatcherHL.PatchedReference(ns,typeName,
+                                        def.universesInfo.Universe10.LibraryBase.properties.types.name,unit,false,this.mode);
+                                    this.registerPatchedReference(ref);
+                                }
+                            }
+                        }
                     }
                 }
                 this.process(chNode, api, typeName, true, true);
