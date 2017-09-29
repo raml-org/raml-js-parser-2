@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+title: Test
+
+types:
+  Hello:
+    type: object
+    properties:
+      first?: string
+      last?: string
+    examples:
+      full:
+                            first: Karl
+                            last: Popper
+                          only-first:
+                            first: Karl
+                          only-last:
+                            last: Popper
+      minimal:

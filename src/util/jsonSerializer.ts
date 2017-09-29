@@ -509,6 +509,10 @@ export class JsonSerializer {
             }
             else {
                 var val = this.dumpInternal(value);
+                if(core.TypeInstanceImpl.isInstance(value)){
+                    obj[propName] = val;
+                    return;
+                }
                 if (val == null && core.BasicNodeImpl.isInstance(node) && !this.isDefined(node, propName)) {
                     return;
                 }
