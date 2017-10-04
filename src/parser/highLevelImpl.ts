@@ -102,6 +102,8 @@ export class BasicASTNode implements hl.IParseResult {
 
     protected _jsonCache:any;
 
+    protected _valueSource:hl.IParseResult;
+
     public static isInstance(instance : any) : instance is BasicASTNode {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
@@ -250,11 +252,18 @@ export class BasicASTNode implements hl.IParseResult {
         this.values[name]=v;
     }
 
+    setValueSource(n:hl.IParseResult){
+        this._valueSource = n;
+    }
+
     computedValue(name:string):any{
         var vl=this.values[name];
         if (!vl){
             if(this.parent()) {
                 return this.parent().computedValue(name)
+            }
+            else if(this._valueSource){
+                return this._valueSource.computedValue(name);
             }
             else if(this.isElement()){
                 let master = this.asElement().getMaster();
@@ -1013,6 +1022,8 @@ export interface ParseNode {
     kind(): number
 
     getMeta(key:string): any
+
+    addMeta(key:string,value:any)
 }
 
 
@@ -1046,6 +1057,8 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
             }
         }
     }
+
+    private ownMeta:{[key:string]:any};
 
     contentProvider() {
         var root = this._node && this._node.includeBaseUnit() && ((this._node.includePath && this._node.includePath()) ? this._node.includeBaseUnit().resolve(this._node.includePath()) : this._node.includeBaseUnit());
@@ -1183,8 +1196,18 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
     }
 
     getMeta(key:string):any{
+        if(this.ownMeta && this.ownMeta.hasOwnProperty(key)){
+            return this.ownMeta[key];
+        }
         return proxy.LowLevelProxyNode.isInstance(this._node)
             && (<proxy.LowLevelProxyNode>this._node).getMeta(key);
+    }
+
+    addMeta(key:string,value:any){
+        if(!this.ownMeta){
+            this.ownMeta = {};
+        }
+        this.ownMeta[key] = value;
     }
 }
 export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
@@ -1347,9 +1370,13 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     parsedType():rTypes.IParsedType{
 
         if (!this._ptype){
+            let llWrapper = new LowLevelWrapperForTypeSystem(this.lowLevel(), this);
+            if(linter.typeOfContainingTemplate(this)){
+                markTemplateTypes(llWrapper);
+            }
             if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
                 var isParametrizedType:boolean = this.isParametrizedType();
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),true,false,false,isParametrizedType);
+                this._ptype = rTypes.parseTypeFromAST(this.name(), llWrapper, this.types(),true,false,false,isParametrizedType);
             }
             else {
                 var annotation=this.property()&&this.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name;
@@ -1363,7 +1390,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                     }
                 }
 
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),false,annotation,tl);
+                this._ptype = rTypes.parseTypeFromAST(this.name(), llWrapper, this.types(),false,annotation,tl);
             }
 
             if (this.property() && universeHelpers.isTypesProperty(this.property())
@@ -2616,4 +2643,116 @@ function basicError(x:hl.ValidationIssue,node:hl.IHighLevelNode):hl.RamlParserEr
         eObj.trace = x.extras.map(y=>basicError(y,node));
     }
     return eObj;
+}
+
+function markTemplateTypes(node:ParseNode){
+    if(node.kind()==yaml.Kind.SCALAR){
+        if(checkIfHasTeplateParams(node.value())){
+            node.addMeta("skipValidation", true);
+        }
+        return;
+    }
+    let typeNode = node.childWithKey(def.universesInfo.Universe10.TypeDeclaration.properties.type.name);
+    let schemaNode = node.childWithKey(def.universesInfo.Universe10.TypeDeclaration.properties.schema.name);
+
+    let typeNodes:ParseNode[] = [];
+    if(typeNode) {
+        if (typeNode.kind() == yaml.Kind.SEQ) {
+            typeNodes = typeNodes.concat(typeNode.children());
+        }
+        else {
+            typeNodes.push(typeNode);
+        }
+    }
+    if(schemaNode) {
+        if (schemaNode && schemaNode.kind() == yaml.Kind.SEQ) {
+            typeNodes = typeNodes.concat(schemaNode.children());
+        }
+        else {
+            typeNodes.push(schemaNode);
+        }
+    }
+    let skipValidation = false;
+    for(let tn of typeNodes){
+        if(tn.kind()==yaml.Kind.SCALAR){
+            let val = tn.value();
+            skipValidation = skipValidation||checkIfHasTeplateParams(val);
+        }
+        else if(tn.kind()==yaml.Kind.MAP||tn.kind()==yaml.Kind.MAPPING){
+            markTemplateTypes(tn);
+        }
+    }
+    for(let ch of node.children()){
+        let chKey = ch.key();
+        if(checkIfHasTeplateParams(chKey)){
+            ch.addMeta("skipValidation", true);
+        }
+        else if(typeof ch.value() === "string"){
+            if(checkIfHasTeplateParams(ch.value())){
+                ch.addMeta("skipValidation", true);
+            }
+        }
+        else if(chKey && chKey.length>0
+            && chKey.charAt(0)=="(" && chKey.charAt(chKey.length-1)==")"){
+            if(hasTemplateArgs((<LowLevelWrapperForTypeSystem>ch).node())){
+                ch.addMeta("skipValidation", true);
+            }
+        }
+    }
+    if(skipValidation){
+        node.addMeta("skipValidation", true);
+    }
+    let pNode = node.childWithKey(def.universesInfo.Universe10.ObjectTypeDeclaration.properties.properties.name);
+    checkTypePropertiesForTemplateParameters(pNode);
+    let fNode = node.childWithKey(def.universesInfo.Universe10.TypeDeclaration.properties.facets.name);
+    checkTypePropertiesForTemplateParameters(fNode);
+
+    let iNode = node.childWithKey(def.universesInfo.Universe10.ArrayTypeDeclaration.properties.items.name);
+    if(iNode){
+        if(iNode.kind()==yaml.Kind.SCALAR){
+            if(checkIfHasTeplateParams(iNode.value())){
+                iNode.addMeta("skipValidation", true);
+            }
+        }
+        else if(iNode.kind()==yaml.Kind.MAP||iNode.kind()==yaml.Kind.MAPPING){
+            for(let p of iNode.children()){
+                markTemplateTypes(p);
+            }
+        }
+    }
+
+}
+
+function checkTypePropertiesForTemplateParameters(propertiesNode: ParseNode) {
+    if (propertiesNode) {
+        for (let p of propertiesNode.children()) {
+            markTemplateTypes(p);
+        }
+    }
+}
+
+function checkIfHasTeplateParams(value:any){
+    if(typeof value === "string") {
+        let i0 = value.indexOf("<<");
+        if (i0 >= 0 && value.indexOf(">>", i0) > 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function hasTemplateArgs(node:ll.ILowLevelASTNode):boolean{
+    var vl=node.value();
+    if (typeof vl=="string"){
+        if (vl.indexOf("<<")!=-1){
+            return true;
+        }
+    }
+    var x=node.children();
+    for( var i=0;i< x.length;i++){
+        if (hasTemplateArgs(x[i])){
+            return true;
+        }
+    }
+    return false;
 }

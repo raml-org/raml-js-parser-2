@@ -60,15 +60,15 @@
         "methods": [
           {
             "queryParameters": {
-              "param": {
-                "name": "param",
-                "displayName": "param",
+              "<<queryParamName>>": {
+                "name": "<<queryParamName>>",
+                "displayName": "<<queryParamName>>",
                 "typePropertyKind": "TYPE_EXPRESSION",
                 "type": [
                   "string"
                 ],
                 "required": true,
-                "description": "This is a param value parameter.",
+                "description": "This is a <<queryParamName>> value parameter.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
@@ -105,11 +105,7 @@
               }
             },
             "is": [
-              {
-                "pagination": {
-                  "queryParamName": "param"
-                }
-              }
+              "pagination"
             ],
             "method": "get"
           }
@@ -130,5 +126,23 @@
       }
     ]
   },
-  "errors": []
+  "errors": [
+    {
+      "code": "VALUE_NOT_PROVIDED",
+      "message": "Value is not provided for parameter: 'queryParamName'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 10,
+          "position": 113
+        },
+        "end": {
+          "line": 8,
+          "column": 20,
+          "position": 123
+        }
+      }
+    }
+  ]
 }

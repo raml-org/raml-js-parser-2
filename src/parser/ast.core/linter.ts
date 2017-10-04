@@ -787,21 +787,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         node.unmarkCh();
     }
 }
-function hasTemplateArgs(node:ll.ILowLevelASTNode):boolean{
-    var vl=node.value();
-    if (typeof vl=="string"){
-        if (vl.indexOf("<<")!=-1){
-            return true;
-        }
-    }
-    var x=node.children();
-    for( var i=0;i< x.length;i++){
-        if (hasTemplateArgs(x[i])){
-            return true;
-        }
-    }
-    return false;
-}
+
 var createLibraryIssue = function (attr:hl.IAttribute, hlNode:hl.IHighLevelNode) {
     var start = hlNode.lowLevel().start();
     var usesNodes:hl.IHighLevelNode[] = [];
@@ -891,8 +877,12 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                         return;
                     }
 
-                    rs.highLevel().validate(
-                        hlimpl.createBasicValidationAcceptor(issues, rs.highLevel()));
+                    let hlNode = rs.highLevel().asElement();
+                    let toValidate = new hlimpl.ASTNodeImpl(
+                        hlNode.lowLevel(),hlNode.parent(),hlNode.definition(),hlNode.property());
+                    toValidate.setValueSource(highLevelNode);
+                    toValidate.validate(
+                        hlimpl.createBasicValidationAcceptor(issues, toValidate));
                     if (issues.length>0){
                         var brand=createLibraryIssue(vn, highLevelNode);
                         issues.forEach(x=> {
@@ -921,11 +911,6 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             }
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
-            if (typeOfContainingTemplate(highLevelNode)){
-                if (hasTemplateArgs(highLevelNode.lowLevel())) {
-                    return;
-                }
-            }
             highLevelNode.attrs().forEach(a=>{
                 var range =a.property().range().key();
                 if (range==universes.Universe08.RelativeUriString||range==universes.Universe10.RelativeUriString){
