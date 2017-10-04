@@ -1,0 +1,139 @@
+{
+  "specification": {
+    "types": {
+      "MyArrayType": {
+        "name": "MyArrayType",
+        "displayName": "MyArrayType",
+        "type": [
+          "array"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "examples": [
+          {
+            "value": [
+              {
+                "kind": "t1",
+                "value": 15
+              },
+              {
+                "kind": "t2",
+                "value": 17
+              }
+            ],
+            "strict": true,
+            "name": null
+          }
+        ],
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION",
+        "items": "lib.Base"
+      },
+      "lib.Base": {
+        "name": "Base",
+        "displayName": "Base",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "kind": {
+            "name": "kind",
+            "displayName": "kind",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "value": {
+            "name": "value",
+            "displayName": "value",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "discriminator": "kind",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "lib.T1": {
+        "name": "T1",
+        "displayName": "T1",
+        "type": [
+          "lib.Base"
+        ],
+        "discriminatorValue": "t1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "lib.T2": {
+        "name": "T2",
+        "displayName": "T2",
+        "type": [
+          "lib.Base"
+        ],
+        "discriminatorValue": "t2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

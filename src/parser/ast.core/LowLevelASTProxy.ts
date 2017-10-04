@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import ll=require("../lowLevelAST")
 import hl=require("../highLevelAST")
 import hlImpl=require("../highLevelImpl")

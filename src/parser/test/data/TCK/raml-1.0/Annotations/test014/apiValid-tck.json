@@ -49,12 +49,12 @@
       {
         "meta": {
           "name": "meta",
-          "displayName": "Resource metadata. Used to add any general metadata to a resource without strong typing",
+          "displayName": "Resource metadata",
           "typePropertyKind": "TYPE_EXPRESSION",
           "type": [
             "string"
           ],
-          "description": "Metadata for this resource",
+          "description": "Metadata for this resource. Used to add any general metadata to a resource without strong typing",
           "allowedTargets": [
             "Resource"
           ],

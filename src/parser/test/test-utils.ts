@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import index = require("../../index");
 import assert = require("assert")
 import fs = require("fs")
@@ -10,6 +9,7 @@ import ll=require("../lowLevelAST")
 import yll=require("../jsyaml/jsyaml2lowLevel")
 import high = require("../highLevelImpl")
 import def = require("raml-definition-system")
+import universeHelpers = require("../tools/universeHelpers");
 
 import hl=require("../highLevelAST")
 import t3 = require("../artifacts/raml10parser")
@@ -465,8 +465,8 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
   var api = null;
   if (!extensions || extensions.length == 0) {
     api = loadApi(data(masterPath));
-    if (global.isExpanded & <any>api.wrapperNode){
-      api = (<any>api.wrapperNode()).expand(global.isLibExpanded).highLevel();
+    if ((<any>global).isExpanded & <any>api.wrapperNode){
+      api = (<any>api.wrapperNode()).expand((<any>global).isLibExpanded).highLevel();
     }
     if (mode != null) {
       api.setMergeMode(mode?hlimpl.OverlayMergeMode.MERGE : hlimpl.OverlayMergeMode.AGGREGATE);
@@ -530,24 +530,28 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
 
 export function expandHighIfNeeded(original : high.ASTNodeImpl) : high.ASTNodeImpl {
 
-  if(!global.isExpanded) return original;
+  if(!(<any>global).isExpanded) return original;
+
+  if(universeHelpers.isLibraryType(original.definition())&&!(<any>global).isLibExpanded){
+    return original;
+  }
 
   if (!original) return original;
 
   if ((<any>original).wrapperNode == null) return original;
 
-  var wrapper = original.wrapperNode();
+  let wrapper = original.wrapperNode();
   if (wrapper == null) return original;
 
   if ((<any>wrapper).expand == null) return original;
 
-  return <high.ASTNodeImpl>((<any>wrapper).expand(global.isLibExpanded)).highLevel();
+  return <high.ASTNodeImpl>((<any>wrapper).expand((<any>global).isLibExpanded)).highLevel();
 }
 
 
 export function expandWrapperIfNeeded(original : RamlWrapper.Api | RamlWrapper08.Api) : RamlWrapper.Api | RamlWrapper08.Api {
-  if(!global.isExpanded) return original;
+  if(!(<any>global).isExpanded) return original;
 
-  return (<RamlWrapper.Api>original).expand(global.isLibExpanded);
+  return (<RamlWrapper.Api>original).expand((<any>global).isLibExpanded);
 }
 

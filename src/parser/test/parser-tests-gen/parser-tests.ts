@@ -1,4 +1,3 @@
-/// <reference path="../../../../typings/main.d.ts" />
 import assert = require("assert")
 import util = require("../test-utils")
 

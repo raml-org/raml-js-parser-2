@@ -38,10 +38,6 @@ Clone repository: `git clone https://github.com/raml-org/raml-js-parser-2.git`
 
 Install modules: `npm install`
 
-Install typings CLI if needed: `npm install typings --global`
-
-Install parser typings: `typings install`
-
 Build : `npm run build`
 
 Generate browser package: `npm run generateBrowserVersion`, this will generate the package in `browserVersion` folder.
@@ -50,19 +46,16 @@ To generate debug-friendly browser package: `npm run generateBrowserVersionDev`
 
 ## Setting up parser development environment
 
-Install typings CLI if needed: `npm install typings --global`
-
 Clone repositories:
 * `git clone https://github.com/mulesoft-labs/yaml-ast-parser.git`
 * `git clone https://github.com/mulesoft-labs/ts-model.git`
 * `git clone https://github.com/mulesoft-labs/ts-structure-parser.git`
-* `git clone https://github.com/raml-org/typesystem-ts.git`
+* `git clone https://github.com/raml-org/raml-typesystem.git`
 * `git clone https://github.com/raml-org/raml-definition-system.git`
 * `git clone https://github.com/raml-org/raml-js-parser-2.git`
 
 For each repository, preserving the order:
 * Install modules: `npm install`
-* Install typings: `typings install`
 * Set up npm link: `npm link`
 
 For each repository, preserving the order:

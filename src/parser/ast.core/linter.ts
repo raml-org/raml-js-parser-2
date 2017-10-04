@@ -1,6 +1,3 @@
-
-/// <reference path="../../../typings/main.d.ts" />
-
 import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
 import json= require ("../jsyaml/json2lowLevel")
 var stringify=require("json-stable-stringify")
@@ -472,7 +469,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
     }
 
     if (node.isUnknown()){
-        if (node.name().indexOf("<<")!=-1){
+        if ((typeof node.name() === "string") && node.name().indexOf("<<") >= 0){
             if (typeOfContainingTemplate(parentNode)!=null){
                 new TraitVariablesValidator().validateName(node,v);
                 return false;
@@ -514,6 +511,11 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             }
         }
         else {
+            let i0 = (typeof node.name() === "string") ? node.name().indexOf("<<") : -1;
+            if(i0>0 && typeOfContainingTemplate(parentNode)
+                && node.name().indexOf(">>",i0)){
+                return false;
+            }
             var issue = restrictUnknownNodeError(node);
             if(!issue){
                 issue = createUnknownNodeIssue(node);
@@ -1496,6 +1498,7 @@ class ValidationError extends Error{
 
     constructor(public messageEntry:any, public parameters:any={}){
         super();
+        this.getClassIdentifier = ValidationError.prototype.getClassIdentifier;
     }
 }
 
@@ -1579,7 +1582,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return tm;
             }
             else if (tm instanceof Error){
-                tm.isWarning = true;
+                (<any>tm).isWarning = true;
                 if(!isJSONorXML) {
                     (<any>tm).canBeRef = true;
                 }
@@ -1867,7 +1870,7 @@ class MediaTypeValidator implements PropertyValidator{
                 }
             }
             if(typeOfContainingTemplate(node)!=null){
-                if(v.indexOf("<<")>=0){
+                if((typeof v === "string") && v.indexOf("<<")>=0){
                     return;
                 }
             }
@@ -2102,6 +2105,11 @@ function isValidPropertyValue(pr:def.Property,vl:string,c:hl.IHighLevelNode):boo
     return mm[vl]!=null;
 }
 function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl.ValidationAcceptor):boolean {
+
+    let paramStart = (typeof vl === "string") ? vl.indexOf("<<") : -1;
+    if (paramStart >= 0 && vl.indexOf(">>", paramStart) >= 0 && typeOfContainingTemplate(astNode) != null) {
+        return;
+    }
 
     checkTraitReference(pr, astNode, cb);
     checkResourceTypeReference(pr, astNode, cb);
@@ -2398,7 +2406,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
                     cb.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
-                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
+                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,(<any>validation).isWarning));
                 }
                 validation = null;
             }

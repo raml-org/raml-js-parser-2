@@ -624,12 +624,12 @@ export class HTTPResolverImpl implements resolversApi.HTTPResolver {
             url: url
         }).then(x=>{
             if(!x){
-                return Promise.reject(new Error(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url})));
+                return Promise.reject<Response>(new Error(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url})));
             }
             var result = this.toResponse(x, url);
             return result;
         },x=>{
-            return Promise.reject(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url}));
+            return Promise.reject<Response>(linter.applyTemplate(messageRegistry.UNABLE_TO_EXECUTE_GET, {url:url}));
         });
     }
 
@@ -692,7 +692,7 @@ export class FSResolverImpl implements ExtendedFSResolver{
         return new Promise(function(reject,resolve){
             fs.readdir(path,(err,files)=>{
                 if(err!=null){
-                    return reject(err);
+                    return Promise.reject<string[]>(err);
                 }
                 resolve(files);
             });
@@ -1159,7 +1159,12 @@ export class Project implements lowlevel.IProject{
                 });
             }
             else {
-                cnt = new HTTPResolverImpl().getResourceAsync(apath);
+                cnt = new HTTPResolverImpl().getResourceAsync(apath).then(x=>{
+                    if(x.errorMessage){
+                        return Promise.reject<string>(x.errorMessage);
+                    }
+                    return x.content;
+                });
             }
         }
         else {
@@ -1180,13 +1185,18 @@ export class Project implements lowlevel.IProject{
                     var resp = this._httpResolver.getResourceAsync(apath);
                     cnt = resp.then(x=>{
                         if(x.errorMessage){
-                            return <Promise<string>>Promise.reject(new Error(x.errorMessage));
+                            return Promise.reject<string>(new Error(x.errorMessage));
                         }
                         return x.content;
                     });
                 }
                 else {
-                    cnt = new HTTPResolverImpl().getResourceAsync(apath);
+                    cnt = new HTTPResolverImpl().getResourceAsync(apath).then(x=>{
+                        if(x.errorMessage){
+                            return Promise.reject<string>(new Error(x.errorMessage));
+                        }
+                        return x.content;
+                    });
                 }
             }
             else {
@@ -1199,7 +1209,7 @@ export class Project implements lowlevel.IProject{
         var relPath = (lowlevel.isWebPath(this.rootPath)==lowlevel.isWebPath(apath))?path.relative(this.rootPath,apath):apath;
         return cnt.then(x=>{
             if(x == null){
-                return Promise.reject(new Error(linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE,{path: apath})));
+                return Promise.reject<lowlevel.ICompilationUnit>(new Error(linter.applyTemplate(messageRegistry.CAN_NOT_RESOLVE,{path: apath})));
             }
             var tl=util.stringStartsWith(x,"#%RAML");
             var unit=new CompilationUnit(relPath,x,tl,this,apath);
@@ -1207,9 +1217,9 @@ export class Project implements lowlevel.IProject{
             return unit;
         }, err=>{
             if (typeof (err) == "object" && err instanceof Error) {
-                return Promise.reject(err);
+                return Promise.reject<lowlevel.ICompilationUnit>(err);
             } else {
-                return Promise.reject(new Error(err.toString()))
+                return Promise.reject<lowlevel.ICompilationUnit>(new Error(err.toString()))
             }
         }).then((unit: lowlevel.ICompilationUnit) => {
             if(unit.isRAMLUnit()) {

@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 /**
  * Created by kor on 05/05/15.
  */
@@ -7,6 +5,7 @@ import yaml=require("yaml-ast-parser")
 import lowlevel=require("../lowLevelAST")
 import highlevel=require("../highLevelAST")
 import hlimpl=require("../highLevelImpl")
+import _ = require("underscore");
 
 import util=require("../../util/index")
 import llImpl=require("./jsyaml2lowLevel")
@@ -136,6 +135,20 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
 //}
 
 export class AstNode implements lowlevel.ILowLevelASTNode{
+
+    private static CLASS_IDENTIFIER = "json2LowLeve.AstNode";
+
+    public static isInstance(instance : any) : instance is AstNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),AstNode.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(AstNode.CLASS_IDENTIFIER);
+    }
 
     keyKind(){
 

@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 import ll=require("../lowLevelAST")
 import path = require("path")
 import universes = require("../tools/universe");

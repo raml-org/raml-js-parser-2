@@ -120,8 +120,8 @@
             "responses": {
               "201": {
                 "code": "201",
-                "headers": [
-                  {
+                "headers": {
+                  "Location": {
                     "name": "Location",
                     "displayName": "Location",
                     "typePropertyKind": "TYPE_EXPRESSION",
@@ -143,7 +143,7 @@
                       }
                     }
                   }
-                ]
+                }
               }
             },
             "description": "Add an item",
@@ -286,8 +286,8 @@
             "responses": {
               "201": {
                 "code": "201",
-                "headers": [
-                  {
+                "headers": {
+                  "Location": {
                     "name": "Location",
                     "displayName": "Location",
                     "typePropertyKind": "TYPE_EXPRESSION",
@@ -309,7 +309,7 @@
                       }
                     }
                   }
-                ]
+                }
               }
             },
             "description": "Add an item",

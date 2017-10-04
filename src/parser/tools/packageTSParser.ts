@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 import Opt = require('../../Opt');
 import util = require('../../util/index');
 import fs = require("fs");
@@ -277,7 +276,7 @@ function generateDocumentation(dstPath:string,tmpFolder){
 
 function getRamlModuleCode():string{
 
-    return `/// <reference path="../../typings/main.d.ts" />
+    return `
 import apiLoader = require('../../src/ramlscript/apiLoader');
 import json2lowlevel = require('../../src/parser/jsyaml/json2lowLevel')
 import RamlWrapper = require('../../src/parser/artifacts/raml10parser')

@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
 import defs=require("raml-definition-system")
 import hl=require("../highLevelAST")
@@ -849,9 +847,10 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     ||(<proxy.LowLevelCompositeNode>x).primaryNode()!=null;
                 if(!addUnknownNode) {
                     let tType = linter.typeOfContainingTemplate(unknownNode);
+                    let i0 = key ? key.indexOf("<<") : -1;
+                    let hasParams = i0>=0 && key.indexOf(">>",i0)>=0;
                     if(tType){
-                        let i0 = key.indexOf("<<");
-                        if(i0<0 || key.indexOf("<<",i0)<0){
+                        if(!hasParams){
                             addUnknownNode = true;
                         }
                     }
@@ -867,6 +866,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                             if(tType.property(key)!=null){
                                 addUnknownNode = false;
                             }
+                        }
+                        if(addUnknownNode && hasParams){
+                            addUnknownNode = !definedInTemplate(aNode);
                         }
                     }
                 }
@@ -1345,4 +1347,30 @@ function match(t:hl.ITypeDefinition, r:hl.IParseResult,alreadyFound:hl.ITypeDefi
         }
     })
     return matches;
+}
+
+function definedInTemplate(n:hl.IParseResult){
+    let rootDef = n.root().definition();
+    if(universeHelpers.isTraitType(rootDef)||universeHelpers.isResourceTypeType(rootDef)){
+        return true;
+    }
+    if(!rootDef || !(universeHelpers.isLibraryBaseSibling(rootDef)
+        || universeHelpers.isApiType(rootDef))){
+        return false;
+    }
+    let llNode = n.lowLevel();
+    if(proxy.LowLevelProxyNode.isInstance(llNode)){
+        llNode = referencePatcher.toOriginal(llNode);
+    }
+    let collectionNode:ll.ILowLevelASTNode;
+    while(llNode.parent()){
+        collectionNode = llNode;
+        llNode = llNode.parent();
+    }
+    let cKey = collectionNode && collectionNode.key();
+    if(cKey == def.universesInfo.Universe10.LibraryBase.properties.traits.name
+        || cKey == def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name){
+        return true;
+    }
+    return false;
 }

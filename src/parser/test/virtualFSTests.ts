@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
 'use strict';
 var vfs = require("./virtualFS/vfs");
 

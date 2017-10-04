@@ -29,8 +29,8 @@
             "responses": {
               "203": {
                 "code": "203",
-                "headers": [
-                  {
+                "headers": {
+                  "Retry-After": {
                     "name": "Retry-After",
                     "displayName": "Retry-After",
                     "typePropertyKind": "TYPE_EXPRESSION",
@@ -54,7 +54,7 @@
                       "structuredValue": 10
                     }
                   }
-                ]
+                }
               }
             },
             "body": {

@@ -1,5 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
-
 //helper to find a sub-hierarchy of fs-linked modules from a list, including real fs locations
 
 import fs = require("fs");
