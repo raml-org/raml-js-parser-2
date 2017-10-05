@@ -193,7 +193,7 @@ describe('Resource Types', function () {
         '       description: <<resourcePathName>>',
         '/a/b/c:',
         '   type: type1'
-    ].join('\n')).should.eventually.to.have.deep.property('resources[0].description', 'c').and.notify(done);
+    ].join('\n')).should.eventually.have.nested.property('resources[0].description', 'c').and.notify(done);
   });
 
   //it('should provide reserved <<resourcePathName>> parameter when there are variables in the URI', function (done) {

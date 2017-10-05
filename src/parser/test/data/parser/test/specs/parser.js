@@ -1611,7 +1611,7 @@ describe('Parser', function() {
           '      header1:',
           '        required: true'
         ].join('\n'))
-          .should.eventually.have.deep.property('resources[0].methods[0].headers.header1.required', true)
+          .should.eventually.have.nested.property('resources[0].methods[0].headers.header1.required', true)
           .and.notify(done)
         ;
       });
@@ -1788,7 +1788,7 @@ describe('Parser', function() {
           '      queryParameter1:',
           '        required: true'
         ].join('\n'))
-          .should.eventually.have.deep.property('resources[0].methods[0].queryParameters.queryParameter1.required', true)
+          .should.eventually.have.nested.property('resources[0].methods[0].queryParameters.queryParameter1.required', true)
           .and.notify(done)
         ;
       });
@@ -1994,7 +1994,7 @@ describe('Parser', function() {
           '          formParameter1:',
           '            required: true'
         ].join('\n'))
-          .should.eventually.have.deep.property('resources[0].methods[0].body.application/x-www-form-urlencoded.formParameters.formParameter1.required', true)
+          .should.eventually.have.nested.property('resources[0].methods[0].body.application/x-www-form-urlencoded.formParameters.formParameter1.required', true)
           .and.notify(done)
         ;
       });
@@ -2149,7 +2149,7 @@ describe('Parser', function() {
           '          header1:',
           '            required: true'
         ].join('\n'))
-          .should.eventually.have.deep.property('resources[0].methods[0].responses.200.headers.header1.required', true)
+          .should.eventually.have.nested.property('resources[0].methods[0].responses.200.headers.header1.required', true)
           .and.notify(done)
         ;
       });
@@ -8085,7 +8085,7 @@ describe('Parser', function() {
             '        body:',
             '          example: 2'
           ].join('\n')
-        ).should.eventually.have.deep.property('resources[0].resources[0].methods[0].body.application/json').and.notify(done);
+        ).should.eventually.have.nested.property('resources[0].resources[0].methods[0].body.application/json').and.notify(done);
       });
 //    });
 //
@@ -8441,7 +8441,7 @@ describe('Parser', function() {
             '          body:',
             '            example: 2'
           ].join('\n')
-        ).should.eventually.have.deep.property('resources[0].resources[0].methods[0].responses.200.body.application/json').and.notify(done);
+        ).should.eventually.have.nested.property('resources[0].resources[0].methods[0].responses.200.body.application/json').and.notify(done);
       });
 //    });
 //  });

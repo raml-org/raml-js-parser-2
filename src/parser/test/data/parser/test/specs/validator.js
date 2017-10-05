@@ -653,7 +653,7 @@ describe('Validator', function () {
             'title: Title',
             '/:',
             '  ' + httpMethod + ':'
-          ].join('\n')).should.eventually.have.deep.property('resources[0].methods[0].method', httpMethod).and.notify(done);
+          ].join('\n')).should.eventually.have.nested.property('resources[0].methods[0].method', httpMethod).and.notify(done);
         });
       })(httpMethod);
     });

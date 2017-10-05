@@ -30,7 +30,7 @@ describe('Transformations', function () {
         raml.load(getRAML(
           'baseUri: http://base.uri/{baseUriParameter1}'
         ))
-          .should.eventually.have.deep.property('baseUriParameters.baseUriParameter1.required', true)
+          .should.eventually.have.nested.property('baseUriParameters.baseUriParameter1.required', true)
           .and.notify(done)
         ;
       });
@@ -39,7 +39,7 @@ describe('Transformations', function () {
         raml.load(getRAML(
           '/{uriParameter1}:'
         ))
-          .should.eventually.have.deep.property('resources[0].uriParameters.uriParameter1.required', true)
+          .should.eventually.have.nested.property('resources[0].uriParameters.uriParameter1.required', true)
           .and.notify(done)
         ;
       });
@@ -53,7 +53,7 @@ describe('Transformations', function () {
           '    headers:',
           '      header1: {}'
         ))
-          .should.eventually.have.deep.property('resources[0].methods[0].headers.header1')
+          .should.eventually.have.nested.property('resources[0].methods[0].headers.header1')
           .that.not.have.property('required')
           .and.notify(done)
         ;
@@ -68,7 +68,7 @@ describe('Transformations', function () {
           '        headers:',
           '          header1:'
         ))
-          .should.eventually.have.deep.property('resources[0].methods[0].responses.200.headers.header1')
+          .should.eventually.have.nested.property('resources[0].methods[0].responses.200.headers.header1')
           .that.not.have.property('required')
           .and.notify(done)
         ;
@@ -81,7 +81,7 @@ describe('Transformations', function () {
           '    queryParameters:',
           '      queryParameter1:'
         ))
-          .should.eventually.have.deep.property('resources[0].methods[0].queryParameters.queryParameter1')
+          .should.eventually.have.nested.property('resources[0].methods[0].queryParameters.queryParameter1')
           .that.not.have.property('required')
           .and.notify(done)
         ;
@@ -96,7 +96,7 @@ describe('Transformations', function () {
           '        formParameters:',
           '          formParameter1:'
         ))
-          .should.eventually.have.deep.property('resources[0].methods[0].body.application/x-www-form-urlencoded.formParameters.formParameter1')
+          .should.eventually.have.nested.property('resources[0].methods[0].body.application/x-www-form-urlencoded.formParameters.formParameter1')
           .that.not.have.property('required')
           .and.notify(done)
         ;

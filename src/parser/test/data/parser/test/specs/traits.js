@@ -184,7 +184,7 @@ describe('Traits', function () {
         '   get:',
         '       is:',
         '         - trait1:'
-    ].join('\n')).should.eventually.to.have.deep.property('resources[0].methods[0].description', 'c').and.notify(done);
+    ].join('\n')).should.eventually.have.nested.property('resources[0].methods[0].description', 'c').and.notify(done);
   });
 
   //it('should provide reserved <<resourcePathName>> parameter', function (done) {
