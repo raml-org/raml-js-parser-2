@@ -828,9 +828,8 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     else if (node.isElement()){
         if((<hlimpl.ASTNodeImpl>node).invalidSequence){
             var pName = node.property().nameId();
-            var propName = changeCase.sentenceCase(pluralize.singular(pName));
             v.acceptUnique(createLLIssue1(messageRegistry.SEQUENCE_NOT_ALLOWED_10,
-                { propName: propName },node.lowLevel().parent().parent(),node,false));
+                { propName: pName },node.lowLevel().parent().parent(),node,false));
         }
 
         var highLevelNode = node.asElement();
@@ -3888,7 +3887,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
 }
 
 var toReadableName = function (template:string, toLowerCase?:boolean, pluralize_?:boolean) {
-    var templateName = changeCase.sentence(template);
+    var templateName = changeCase.sentence(template).toLowerCase();
     if(!toLowerCase) {
         templateName =  changeCase.ucFirst(templateName);
     }
@@ -3914,9 +3913,8 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 var template = typeOfContainingTemplate(attr.parent());
                 if (template) {
                     if (prop.isValueProperty()) {
-                        var templateNamePlural = toReadableName(template.nameId(),true,true);
                         var issue = createIssue1(messageRegistry.OPTIONAL_SCLARAR_PROPERTIES_10,{
-                            templateNamePlural:templateNamePlural,
+                            templateName:template.nameId(),
                             propName: attr.name()
                         }, attr, false);
                         v.accept(issue);
@@ -3929,11 +3927,10 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
             var prop = aNode.property();
             var allowsQuestion = aNode.allowsQuestion();
             if(!allowsQuestion){
-                var propName = prop ? toReadableName(prop.nameId(),true,true) : 'API root';
                 aNode.optionalProperties().forEach(x=>{
                     aNode.children().forEach(y=>{
                         var parameters = {
-                            propName: propName,
+                            propName: prop.nameId(),
                             oPropName: y.lowLevel().key()
                         };
                         var issue = createIssue1(messageRegistry.OPTIONAL_PROPERTIES_10,
