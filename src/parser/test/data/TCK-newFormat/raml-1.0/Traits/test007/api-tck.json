@@ -30,7 +30,7 @@
               "path": "pagination.raml"
             }
           },
-          "offset": {
+          {
             "name": "offset",
             "displayName": "offset",
             "type": [
@@ -49,7 +49,10 @@
               }
             },
             "mediaType": "application/raml+yaml",
-            "typePropertyKind": "TYPE_EXPRESSION"
+            "typePropertyKind": "TYPE_EXPRESSION",
+            "sourceMap": {
+              "path": "pagination.raml"
+            }
           }
         ],
         "name": "pagination",
@@ -90,7 +93,6 @@
                 "sourceMap": {
                   "path": "pagination.raml"
                 }
-                "typePropertyKind": "TYPE_EXPRESSION"
               },
               {
                 "name": "offset",
@@ -111,14 +113,21 @@
                   }
                 },
                 "mediaType": "application/raml+yaml",
-                "typePropertyKind": "TYPE_EXPRESSION"
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "sourceMap": {
+                  "path": "pagination.raml"
+                }
               }
-            },
+            ],
             "is": [
               {
-                "pagination": {
-                  "queryParamName": "param"
-                }
+                "name": "pagination",
+                "parameters": [
+                  {
+                    "name": "queryParamName",
+                    "value": "param"
+                  }
+                ]
               }
             ],
             "method": "get",

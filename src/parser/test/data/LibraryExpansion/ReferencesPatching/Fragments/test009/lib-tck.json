@@ -2,12 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Library",
   "specification": {
-    "uses": [
-      {
-        "key": "lib",
-        "value": "lib.raml"
-      }
-    ],
     "types": [
       {
         "ownType": {
