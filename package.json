@@ -91,7 +91,7 @@
     "dev-env-installer": "^0.0.14",
     "atom-text-typer" : "0.0.1",
     "rimraf": "*",
-    "raml-1-parser-test-utils": "^1.0.7",
+    "raml-1-parser-test-utils": "^1.0.10",
     "gulp-istanbul" : "*"
   },
   "browser": {
