@@ -14,7 +14,7 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/raml-typesystem.git",
-    "gitBranch": "develop"
+    "gitBranch": "backport"
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
