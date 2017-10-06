@@ -1,0 +1,343 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt": {
+          "name": "rt",
+          "post": {
+            "body": {
+              "application/json": {
+                "annotations": {
+                  "a1": {
+                    "structuredValue": "<<param01>>",
+                    "name": "a1"
+                  },
+                  "a2": {
+                    "structuredValue": {
+                      "p1": "<<param02>>",
+                      "p2": "<<param03>>",
+                      "<<param04>>": "stringValue"
+                    },
+                    "name": "a2"
+                  },
+                  "<<param05>>": {
+                    "structuredValue": "stringValue",
+                    "name": "<<param05>>"
+                  }
+                },
+                "name": "application/json",
+                "displayName": "application/json",
+                "facets": {
+                  "f1": {
+                    "name": "f1",
+                    "displayName": "f1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<param09>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  },
+                  "<<param10>>": {
+                    "name": "<<param10>>",
+                    "displayName": "<<param10>>",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  },
+                  "f2": {
+                    "name": "f2",
+                    "displayName": "f2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "unknownType"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "<<param06>>"
+                ],
+                "properties": {
+                  "p1": {
+                    "name": "p1",
+                    "displayName": "p1",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "<<param11>>"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "<<param12>>": {
+                    "name": "<<param12>>",
+                    "displayName": "<<param12>>",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "p2": {
+                    "annotations": {
+                      "a1": {
+                        "structuredValue": "<<param13>>",
+                        "name": "a1"
+                      },
+                      "a2": {
+                        "structuredValue": {
+                          "p1": "<<param14>>",
+                          "p2": "<<param15>>",
+                          "<<param16>>": "stringValue"
+                        },
+                        "name": "a2"
+                      },
+                      "<<param17>>": {
+                        "structuredValue": "stringValue",
+                        "name": "<<param17>>"
+                      }
+                    },
+                    "name": "p2",
+                    "displayName": "p2",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "p3": {
+                    "annotations": {
+                      "a1": {
+                        "structuredValue": 15,
+                        "name": "a1"
+                      }
+                    },
+                    "name": "p3",
+                    "displayName": "p3",
+                    "typePropertyKind": "TYPE_EXPRESSION",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "maxProperties": 5,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "<<param08>>": {
+                  "something": "anything"
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "a1": {
+          "name": "a1",
+          "displayName": "a1",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "a2": {
+          "name": "a2",
+          "displayName": "a2",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "p2": {
+              "name": "p2",
+              "displayName": "p2",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": "UNKNOWN_IN_PROPERTY_DEFINITION",
+      "message": "Property 'f2' refers to unknown type 'unknownType'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 29,
+          "column": 12,
+          "position": 568
+        },
+        "end": {
+          "line": 29,
+          "column": 14,
+          "position": 570
+        }
+      }
+    },
+    {
+      "code": "TYPE_EXPECTED",
+      "message": "Expected type 'string' but got 'number'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 41,
+          "column": 14,
+          "position": 910
+        },
+        "end": {
+          "line": 41,
+          "column": 18,
+          "position": 914
+        }
+      }
+    },
+    {
+      "code": "UNKNOWN_FACET",
+      "message": "Specifying unknown facet: 'invalidFacet'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 44,
+          "column": 10,
+          "position": 978
+        },
+        "end": {
+          "line": 44,
+          "column": 22,
+          "position": 990
+        }
+      }
+    }
+  ]
+}

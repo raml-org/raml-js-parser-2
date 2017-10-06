@@ -725,7 +725,7 @@ export interface INodeValidationPlugin{
  * Retrieve a list of registered node validation plugins
  */
 export function getNodeValidationPlugins():INodeValidationPlugin[]{
-    var rv:any = global.ramlValidation;
+    var rv:any = (<any>global).ramlValidation;
     if(rv){
         var nodeValidators = rv.nodeValidators;
         if(Array.isArray(nodeValidators)){
@@ -739,7 +739,7 @@ export function getNodeValidationPlugins():INodeValidationPlugin[]{
  * Retrieve a list of registered annotation node validation plugins
  */
 export function getNodeAnnotationValidationPlugins():ASTAnnotationValidationPlugin[]{
-    var rv:any = global.ramlValidation;
+    var rv:any = (<any>global).ramlValidation;
     if(rv){
         var astAnnotationValidators = rv.astAnnotationValidators;
         if(Array.isArray(astAnnotationValidators)){

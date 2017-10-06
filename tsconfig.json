@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "lib": [ "dom", "es2015", "scripthost", "es2015.promise" ],
     "declaration": true,
     "noImplicitAny": false,
     "moduleResolution": "node",
@@ -11,7 +12,6 @@
   },
   "exclude": [
     "node_modules",
-    "typings",
-    "custom_typings"
+    "typings"
   ]
 }

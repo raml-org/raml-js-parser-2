@@ -1,0 +1,148 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "pagination": {
+          "queryParameters": {
+            "<<queryParamName>>": {
+              "name": "<<queryParamName>>",
+              "displayName": "<<queryParamName>>",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "description": "This is a <<queryParamName>> value parameter.",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "offset": {
+              "name": "offset",
+              "displayName": "offset",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "description": "Skip over a number of elements by specifying an offset value for the query",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "pagination"
+        }
+      }
+    ],
+    "title": "API Animals & People!",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "<<queryParamName>>": {
+                "name": "<<queryParamName>>",
+                "displayName": "<<queryParamName>>",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "description": "This is a <<queryParamName>> value parameter.",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "offset": {
+                "name": "offset",
+                "displayName": "offset",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "description": "Skip over a number of elements by specifying an offset value for the query",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "pagination"
+            ],
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/some",
+        "displayName": "/some",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "some"
+        ],
+        "absoluteUri": "/some"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "VALUE_NOT_PROVIDED",
+      "message": "Value is not provided for parameter: 'queryParamName'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 8,
+          "column": 10,
+          "position": 113
+        },
+        "end": {
+          "line": 8,
+          "column": 20,
+          "position": 123
+        }
+      }
+    }
+  ]
+}

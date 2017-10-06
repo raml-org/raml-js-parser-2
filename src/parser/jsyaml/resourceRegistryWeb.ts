@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 var cache = {};
 
 function doRequest(method, url, options) {
@@ -10,7 +8,7 @@ function doRequest(method, url, options) {
     request.open(method, url, false);
 
     request.onload = function () {
-        response = this.responseText;
+        response = (<any>this).responseText;
     };
 
     request.send();

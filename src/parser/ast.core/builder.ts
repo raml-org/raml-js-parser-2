@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
 import defs=require("raml-definition-system")
 import hl=require("../highLevelAST")

@@ -1,7 +1,4 @@
 
-import pr=require("../../util/promise")
-export type Promise<T>=pr.Promise<T>;
-
 /**
  * Must provide either page content or error message
  */

@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import core = require("../parser/wrapped-ast/parserCore");
 import proxy = require("../parser/ast.core/LowLevelASTProxy");
 import yaml = require("yaml-ast-parser");

@@ -4574,7 +4574,7 @@ export function loadApi(apiPath:string, options?:coreApi.Options):Promise<Api>;
 
 export function loadApi(apiPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<Api>{
 
-        return apiLoader.loadApiAsync(apiPath,arg1,arg2);
+        return <Promise<Api>>apiLoader.loadApiAsync(apiPath,arg1,arg2);
 }
 
 

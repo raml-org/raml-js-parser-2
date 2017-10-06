@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 import ll=require("../lowLevelAST")
 import path = require("path")
 import universes = require("../tools/universe");
@@ -589,10 +587,18 @@ export class UnitModel{
 
 
 function extendsValue(u:ll.ICompilationUnit){
-
     var node = u.ast();
     var eNode = _.find(node.children(), x=>x.key()==universes.Universe10.Extension.properties.extends.name);
-    return eNode && eNode.value();
+    
+    var result = eNode && eNode.value();
+    
+    var newUnit = u.resolve(result);
+
+    if(newUnit === u) {
+        return null;
+    }
+    
+    return result;
 }
 
 var transitionsMap: referencepatcherLL.TransitionMap;

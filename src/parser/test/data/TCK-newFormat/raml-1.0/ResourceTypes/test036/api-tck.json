@@ -1,0 +1,254 @@
+{
+  "specification": {
+    "resourceTypes": {
+      "rt": {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "annotations": {
+                  "a1": {
+                    "name": "a1",
+                    "structuredValue": "<<param01>>"
+                  },
+                  "a2": {
+                    "name": "a2",
+                    "structuredValue": {
+                      "p1": "<<param02>>",
+                      "p2": "<<param03>>",
+                      "<<param04>>": "stringValue"
+                    }
+                  },
+                  "<<param05>>": {
+                    "name": "<<param05>>",
+                    "structuredValue": "stringValue"
+                  }
+                },
+                "name": "application/json",
+                "displayName": "application/json",
+                "facets": {
+                  "f1": {
+                    "name": "f1",
+                    "displayName": "f1",
+                    "type": [
+                      "<<param09>>"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "<<param10>>": {
+                    "name": "<<param10>>",
+                    "displayName": "<<param10>>",
+                    "type": [
+                      "string"
+                    ],
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "type": [
+                  "<<param06>>"
+                ],
+                "properties": {
+                  "p1": {
+                    "name": "p1",
+                    "displayName": "p1",
+                    "type": [
+                      "<<param11>>"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "<<param12>>": {
+                    "name": "<<param12>>",
+                    "displayName": "<<param12>>",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  },
+                  "p2": {
+                    "annotations": {
+                      "a1": {
+                        "name": "a1",
+                        "structuredValue": "<<param13>>"
+                      },
+                      "a2": {
+                        "name": "a2",
+                        "structuredValue": {
+                          "p1": "<<param14>>",
+                          "p2": "<<param15>>",
+                          "<<param16>>": "stringValue"
+                        }
+                      },
+                      "<<param17>>": {
+                        "name": "<<param17>>",
+                        "structuredValue": "stringValue"
+                      }
+                    },
+                    "name": "p2",
+                    "displayName": "p2",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "mediaType": "application/raml+yaml",
+                    "typePropertyKind": "TYPE_EXPRESSION"
+                  }
+                },
+                "maxProperties": 5,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "<<param08>>": {
+                  "something": "anything"
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "name": "rt"
+      }
+    },
+    "annotationTypes": {
+      "a1": {
+        "name": "a1",
+        "displayName": "a1",
+        "type": [
+          "string"
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      },
+      "a2": {
+        "name": "a2",
+        "displayName": "a2",
+        "type": [
+          "object"
+        ],
+        "properties": {
+          "p1": {
+            "name": "p1",
+            "displayName": "p1",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          },
+          "p2": {
+            "name": "p2",
+            "displayName": "p2",
+            "type": [
+              "number"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            },
+            "mediaType": "application/raml+yaml",
+            "typePropertyKind": "TYPE_EXPRESSION"
+          }
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            }
+          }
+        },
+        "mediaType": "application/raml+yaml",
+        "typePropertyKind": "TYPE_EXPRESSION"
+      }
+    },
+    "title": "test API"
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}

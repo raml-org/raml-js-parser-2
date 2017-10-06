@@ -1,7 +1,5 @@
-/// <reference path="../../../typings/main.d.ts" />
-import fs =require("fs");
+import fs = require("fs-extra");
 import path=require("path")
-var wrench=require("wrench")
 import util=require("../../util/index")
 import mkdirp=require("mkdirp")
 let messageRegistry = require("../../../resources/errorMessages");
@@ -162,7 +160,7 @@ class ExistingModule implements Module{
     //small change
 
     private copyContent(srcFolder:string,destFolder:string){
-        wrench.copyDirSyncRecursive(srcFolder,destFolder, {forceDelete: true})
+        fs.copySync(srcFolder,destFolder, {overwrite: true})
     }
 
     content():string[] {
@@ -229,7 +227,7 @@ export class DependencyManager {
         var srcTypingsPath = path.resolve(srcProjectRoot, 'typings');
         var dstTypingsPath = path.resolve(path.resolve(dstProjectRoot, dstDepsFolder), 'typings');
         mkdirp.sync(dstTypingsPath);
-        wrench.copyDirSyncRecursive(srcTypingsPath, dstTypingsPath, {forceDelete: true});
+        fs.copySync(srcTypingsPath, dstTypingsPath, {overwrite: true});
 
         var tsd_d_ts_Path = path.resolve(dstTypingsPath, 'main.d.ts');
         var ts_d_ts_Content:string = fs.readFileSync(tsd_d_ts_Path).toString()

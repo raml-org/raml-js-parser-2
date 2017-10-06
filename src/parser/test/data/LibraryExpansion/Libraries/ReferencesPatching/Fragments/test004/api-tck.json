@@ -59,6 +59,24 @@
         }
       },
       {
+        "lib0.MyStringType": {
+          "name": "MyStringType",
+          "displayName": "MyStringType",
+          "typePropertyKind": "TYPE_EXPRESSION",
+          "type": [
+            "string"
+          ],
+          "maxLength": 32,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      },
+      {
         "lib.MyType": {
           "name": "MyType",
           "displayName": "MyType",

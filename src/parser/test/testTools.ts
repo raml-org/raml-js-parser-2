@@ -1,6 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
-
 export function getLength(obj:any):number{
 
     if(obj==null){

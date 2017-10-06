@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 var universe = require("../parser/tools/universe");
 import coreApi = require("../parser/wrapped-ast/parserCoreApi");
 import core = require("../parser/wrapped-ast/parserCore");
@@ -510,6 +509,10 @@ export class JsonSerializer {
             }
             else {
                 var val = this.dumpInternal(value);
+                if(core.TypeInstanceImpl.isInstance(value)){
+                    obj[propName] = val;
+                    return;
+                }
                 if (val == null && core.BasicNodeImpl.isInstance(node) && !this.isDefined(node, propName)) {
                     return;
                 }

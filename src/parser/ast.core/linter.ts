@@ -1,6 +1,3 @@
-
-/// <reference path="../../../typings/main.d.ts" />
-
 import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
 import json= require ("../jsyaml/json2lowLevel")
 var stringify=require("json-stable-stringify")
@@ -790,21 +787,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         node.unmarkCh();
     }
 }
-function hasTemplateArgs(node:ll.ILowLevelASTNode):boolean{
-    var vl=node.value();
-    if (typeof vl=="string"){
-        if (vl.indexOf("<<")!=-1){
-            return true;
-        }
-    }
-    var x=node.children();
-    for( var i=0;i< x.length;i++){
-        if (hasTemplateArgs(x[i])){
-            return true;
-        }
-    }
-    return false;
-}
+
 var createLibraryIssue = function (attr:hl.IAttribute, hlNode:hl.IHighLevelNode) {
     var start = hlNode.lowLevel().start();
     var usesNodes:hl.IHighLevelNode[] = [];
@@ -845,9 +828,8 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     else if (node.isElement()){
         if((<hlimpl.ASTNodeImpl>node).invalidSequence){
             var pName = node.property().nameId();
-            var propName = changeCase.sentenceCase(pluralize.singular(pName));
             v.acceptUnique(createLLIssue1(messageRegistry.SEQUENCE_NOT_ALLOWED_10,
-                { propName: propName },node.lowLevel().parent().parent(),node,false));
+                { propName: pName },node.lowLevel().parent().parent(),node,false));
         }
 
         var highLevelNode = node.asElement();
@@ -894,8 +876,12 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                         return;
                     }
 
-                    rs.highLevel().validate(
-                        hlimpl.createBasicValidationAcceptor(issues, rs.highLevel()));
+                    let hlNode = rs.highLevel().asElement();
+                    let toValidate = new hlimpl.ASTNodeImpl(
+                        hlNode.lowLevel(),hlNode.parent(),hlNode.definition(),hlNode.property());
+                    toValidate.setValueSource(highLevelNode);
+                    toValidate.validate(
+                        hlimpl.createBasicValidationAcceptor(issues, toValidate));
                     if (issues.length>0){
                         var brand=createLibraryIssue(vn, highLevelNode);
                         issues.forEach(x=> {
@@ -924,11 +910,6 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             }
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
-            if (typeOfContainingTemplate(highLevelNode)){
-                if (hasTemplateArgs(highLevelNode.lowLevel())) {
-                    return;
-                }
-            }
             highLevelNode.attrs().forEach(a=>{
                 var range =a.property().range().key();
                 if (range==universes.Universe08.RelativeUriString||range==universes.Universe10.RelativeUriString){
@@ -1501,6 +1482,7 @@ class ValidationError extends Error{
 
     constructor(public messageEntry:any, public parameters:any={}){
         super();
+        this.getClassIdentifier = ValidationError.prototype.getClassIdentifier;
     }
 }
 
@@ -1584,7 +1566,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return tm;
             }
             else if (tm instanceof Error){
-                tm.isWarning = true;
+                (<any>tm).isWarning = true;
                 if(!isJSONorXML) {
                     (<any>tm).canBeRef = true;
                 }
@@ -2408,7 +2390,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
                     cb.accept(createIssue2(<ValidationError>validation,node));
                 }
                 else {
-                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,validation.isWarning));
+                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node,(<any>validation).isWarning));
                 }
                 validation = null;
             }
@@ -3905,7 +3887,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
 }
 
 var toReadableName = function (template:string, toLowerCase?:boolean, pluralize_?:boolean) {
-    var templateName = changeCase.sentence(template);
+    var templateName = changeCase.sentence(template).toLowerCase();
     if(!toLowerCase) {
         templateName =  changeCase.ucFirst(templateName);
     }
@@ -3931,9 +3913,8 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 var template = typeOfContainingTemplate(attr.parent());
                 if (template) {
                     if (prop.isValueProperty()) {
-                        var templateNamePlural = toReadableName(template.nameId(),true,true);
                         var issue = createIssue1(messageRegistry.OPTIONAL_SCLARAR_PROPERTIES_10,{
-                            templateNamePlural:templateNamePlural,
+                            templateName:template.nameId(),
                             propName: attr.name()
                         }, attr, false);
                         v.accept(issue);
@@ -3946,11 +3927,10 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
             var prop = aNode.property();
             var allowsQuestion = aNode.allowsQuestion();
             if(!allowsQuestion){
-                var propName = prop ? toReadableName(prop.nameId(),true,true) : 'API root';
                 aNode.optionalProperties().forEach(x=>{
                     aNode.children().forEach(y=>{
                         var parameters = {
-                            propName: propName,
+                            propName: prop.nameId(),
                             oPropName: y.lowLevel().key()
                         };
                         var issue = createIssue1(messageRegistry.OPTIONAL_PROPERTIES_10,

@@ -1,4 +1,3 @@
-// /// <reference path="../../../typings/main.d.ts" />
 // import _=require("underscore")
 // import assert = require("assert")
 // import fs = require("fs")

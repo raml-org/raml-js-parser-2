@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/main.d.ts" />
-
 import assert = require("assert")
 import RamlWrapper = require("../artifacts/raml10parserapi")
 import RamlWrapperImpl = require("../artifacts/raml10parser")
@@ -12,8 +10,7 @@ describe('Extension API', function () {
     this.timeout(15000);
     it('Api', function (done) {
         var opt = apiLoader.loadApi(
-            path.resolve(__dirname,"./data/extensions/librarybooks_spain.raml"),
-            { expandTraitsAndResourceTypes: false });
+            path.resolve(__dirname,"./data/extensions/librarybooks_spain.raml"));
 
         // var opt = apiLoader.loadApi1(path.resolve(__dirname,"./data/helperTestApi.raml"));
         assert(opt.isDefined());
@@ -29,7 +26,7 @@ describe('Extension API', function () {
         var pathToRes = overlay.highLevel().lowLevel().unit().absolutePath();
         var newPath = path.resolve(path.dirname(pathToRes), overlay.extends());
 
-        var opt2 = apiLoader.loadApi(newPath, { expandTraitsAndResourceTypes: false });
+        var opt2 = apiLoader.loadApi(newPath);
         assert(opt2.isDefined());
         assert(RamlWrapperImpl.ApiImpl.isInstance(opt2.getOrThrow()));
         var api2 = <RamlWrapper.Api>opt2.getOrThrow();
