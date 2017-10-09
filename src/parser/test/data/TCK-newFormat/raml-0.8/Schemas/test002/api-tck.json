@@ -15,10 +15,10 @@
         "SongName": "{\n  \"type\": \"string\"\n}\n"
       },
       {
-        "Included1": "{\r\n  \"type\": \"object\",\r\n  \"properties\": {\r\n    \"p1\": {\"type\": \"string\"},\r\n    \"p2\": {\"type\": \"number\"}\r\n  }\r\n}"
+        "Included1": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
       },
       {
-        "Included2": "{\r\n  \"type\": \"object\",\r\n  \"properties\": {\r\n    \"q1\": {\"type\": \"string\"},\r\n    \"q2\": {\"type\": \"number\"}\r\n  }\r\n}"
+        "Included2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
       }
     ]
   },
