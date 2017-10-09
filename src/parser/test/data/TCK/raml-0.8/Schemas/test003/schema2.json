@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "properties": {
+    "q1": {"type": "string"},
+    "q2": {"type": "number"}
+  }
+}

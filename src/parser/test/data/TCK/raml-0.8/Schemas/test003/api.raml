@@ -1,0 +1,49 @@
+#%RAML 0.8
+title: test API
+
+schemas:
+  - SongId: '{ "type": "integer" }'
+    SongDuration: '{ "type": "number" }'
+  - SongType: |
+      {
+        "type": "string",
+        "enum": [ "jazz", "pop" ]
+      }
+    SongName: |
+      {
+        "type": "string"
+      }
+  - Included1: !include schema1.json
+    Included2: !include schema2.json
+
+resourceTypes:
+  - rt:
+      post:
+        body:
+          application/json:
+            schema: Included1
+      put:
+        body:
+          application/json:
+            schema: Included2
+
+/resource:
+  type: rt
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: SongId
+      201:
+        body:
+          application/json:
+            schema: SongDuration
+      202:
+        body:
+          application/json:
+            schema: SongType
+      203:
+        body:
+          application/json:
+            schema: SongName
