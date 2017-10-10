@@ -54,7 +54,7 @@ tckUtil.generateMochaSuite(
     mochaFileLibExpand,
     dataRoot,
     'Library Expansion Tests',
-    { expandLib: true }
+    { expandLib: true, serializeMetadata:true }
 );
 
 tckUtil.generateMochaSuite(
@@ -62,7 +62,7 @@ tckUtil.generateMochaSuite(
     path.resolve(tckUtil.projectFolder(),"src/parser/test/TCK2-newFormat.ts"),
     dataRoot,
     'Complete TCK Test Set For New JSON Format',
-    { newFormat: true }
+    { newFormat: true, serializeMetadata:true }
 );
 
 tckUtil.generateMochaSuite(
@@ -70,7 +70,7 @@ tckUtil.generateMochaSuite(
     path.resolve(tckUtil.projectFolder(),"src/parser/test/libraryExpansion-newFormat.ts"),
     dataRoot,
     'Library Expansion Tests For NEW JSON Format',
-    { newFormat: true, expandLib: true }
+    { newFormat: true, expandLib: true, serializeMetadata:true }
 );
 
 tckUtil.generateMochaSuite(
@@ -78,7 +78,7 @@ tckUtil.generateMochaSuite(
     path.resolve(tckUtil.projectFolder(),"src/parser/test/unfoldTypes.ts"),
     dataRoot,
     'Types Unfolding Tests',
-    { newFormat: true, expandExpressions: true, typeReferences: true }
+    { newFormat: true, expandExpressions: true, typeReferences: true, serializeMetadata:true }
 );
 
 tckUtil.generateMochaSuite(
@@ -86,5 +86,5 @@ tckUtil.generateMochaSuite(
     path.resolve(tckUtil.projectFolder(),"src/parser/test/unfoldTypesLibExpand.ts"),
     dataRoot,
     'Types Unfolding Tests (LibExpand)',
-    { newFormat: true, expandExpressions: true, typeReferences: true, expandLib: true }
+    { newFormat: true, expandExpressions: true, typeReferences: true, expandLib: true, serializeMetadata:true }
 );
