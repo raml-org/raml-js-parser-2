@@ -75,6 +75,11 @@ export interface Options2 {
     unfoldTypes?:boolean
 
     /**
+     * Whether to replace type names by references
+     */
+    typeReferences?:boolean
+
+    /**
      * Module used for operations with file system
      **/
     fsResolver?:resolversApi.FSResolver

@@ -36,7 +36,8 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
             rootNodeDetails: true,
             attributeDefaults: true,
             serializeMetadata: true,
-            unfoldTypes: options.unfoldTypes
+            unfoldTypes: options.unfoldTypes,
+            typeReferences: options.typeReferences
         });
     });
 }
@@ -48,7 +49,8 @@ export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object
         rootNodeDetails: true,
         attributeDefaults: true,
         serializeMetadata: true,
-        unfoldTypes: options.unfoldTypes
+        unfoldTypes: options.unfoldTypes,
+        typeReferences: options.typeReferences
     });
 }
 

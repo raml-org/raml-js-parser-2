@@ -19,6 +19,7 @@ npm-debug.log
 /src/parser/test/TCK2-newFormat.ts
 /src/parser/test/libraryExpansion-newFormat.ts
 /src/parser/test/unfoldTypes.ts
+/src/parser/test/unfoldTypesLibExpand.ts
 
 !/src/devUtil/documentation/theme.js
 

@@ -1,0 +1,181 @@
+{
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "resourceTypes": {
+      "lib.rt": {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "array"
+                ],
+                "items": [
+                  "(lib.T1 | <<param1>>)[] | (lib.T3 | <<param2>>)"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "unfolded": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "type": [
+                    "array"
+                  ],
+                  "items": [
+                    {
+                      "type": [
+                        "union"
+                      ],
+                      "options": [
+                        {
+                          "type": [
+                            "array"
+                          ],
+                          "items": {
+                            "type": [
+                              "union"
+                            ],
+                            "options": [
+                              "lib.raml#/specification/types/T1",
+                              "<<param1>>"
+                            ]
+                          }
+                        },
+                        "lib.raml#/specification/types/T3",
+                        "<<param2>>"
+                      ]
+                    }
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "name": "lib.rt",
+        "__METADATA__": {
+          "calculated": true
+        }
+      }
+    },
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": {
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "array"
+                ],
+                "items": [
+                  "(lib.T1 | lib.T2)[] | (lib.T3 | lib.T4)"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "mediaType": "application/raml+yaml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "unfolded": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "type": [
+                    "array"
+                  ],
+                  "items": [
+                    {
+                      "type": [
+                        "union"
+                      ],
+                      "options": [
+                        {
+                          "type": [
+                            "array"
+                          ],
+                          "items": {
+                            "type": [
+                              "union"
+                            ],
+                            "options": [
+                              "lib.raml#/specification/types/T1",
+                              "lib.raml#/specification/types/T2"
+                            ]
+                          }
+                        },
+                        "lib.raml#/specification/types/T3",
+                        "lib.raml#/specification/types/T4"
+                      ]
+                    }
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      }
+                    }
+                  },
+                  "mediaType": "application/raml+yaml",
+                  "typePropertyKind": "TYPE_EXPRESSION"
+                }
+              }
+            },
+            "method": "post"
+          }
+        },
+        "type": {
+          "lib.rt": {
+            "param1": "lib.T2",
+            "param2": "lib.T4"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
+      }
+    ]
+  },
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "errors": []
+}
