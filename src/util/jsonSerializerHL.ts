@@ -1386,7 +1386,7 @@ class TypeTransformer extends BasicTransformation{
             let str = expr;
             var gotExpression = referencePatcher.checkExpression(str);
             if (!gotExpression) {
-                let ref = this.typeReference(node, expr);
+                let ref = this.options.typeReferences ? this.typeReference(node, expr) : expr;
                 resultingArray.push(ref);
                 continue;
             }
@@ -1399,10 +1399,12 @@ class TypeTransformer extends BasicTransformation{
                     str = escapeData.resultingString;
                     gotExpression = referencePatcher.checkExpression(str);
                     if(!gotExpression){
+                        resultingArray.push(expr);
                         continue;
                     }
                 }
                 else if (escapeData.status == referencePatcher.ParametersEscapingStatus.ERROR){
+                    resultingArray.push(expr);
                     continue;
                 }
             }
@@ -1410,10 +1412,12 @@ class TypeTransformer extends BasicTransformation{
             try {
                 parsedExpression = typeExpressions.parse(str);
             } catch (exception) {
+                resultingArray.push(expr);
                 continue;
             }
 
             if (!parsedExpression) {
+                resultingArray.push(expr);
                 continue;
             }
             let exprObj = this.expressionToObject(parsedExpression,escapeData,node);
@@ -1506,7 +1510,7 @@ class TypeTransformer extends BasicTransformation{
 
     private typeReference(node: hl.IParseResult, result: string) {
         if(!result){
-            return "$error";
+            return result;
         }
         let rootNode = this.owner.astRoot();
         let types = rootNode.isElement() && rootNode.asElement().types();
