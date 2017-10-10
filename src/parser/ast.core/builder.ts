@@ -599,8 +599,16 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                 }
                                 chld.forEach(y=> {
                                     //TODO TRACK GROUP KEY
-                                    var cld = y.children()
-                                    if (!y.key() && cld.length == 1) {
+                                    let cld = y.children();
+                                    if(cld.length > 0 && aNode.universe().version() == "RAML08"
+                                        && universeHelpers.isSchemasProperty(p)){
+                                        for(let c of cld){
+                                            let node = new hlimpl.ASTNodeImpl(c, aNode, <any> range, p);
+                                            node._allowQuestion = allowsQuestion;
+                                            rs.push(node);
+                                        }
+                                    }
+                                    else if (!y.key() && cld.length == 1) {
                                         if (aNode.universe().version() != "RAML10"||aNode.parent()) {
                                             var node = new hlimpl.ASTNodeImpl(cld[0], aNode, <any> range, p);
                                             node._allowQuestion = allowsQuestion;

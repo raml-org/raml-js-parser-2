@@ -1,6 +1,7 @@
 import fs = require("fs")
 import path = require("path")
 import index = require("../../../index")
+import util = require("../../../util/index")
 import testUtil = require("../test-utils")
 import hlImpl = require("../../highLevelImpl");
 import mappings = require("./messageMappings")
@@ -352,14 +353,13 @@ export function testAPILibExpandNewFormat(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string){
 
-    doTestAPI(
-        apiPath,
-        extensions,
-        tckJsonPath,
-        true,
-        false,
-        true,
-        true,true);
+    return doTestAPI({
+        apiPath: apiPath,
+        extensions: extensions,
+        tckJsonPath: tckJsonPath,
+        newFormat: true,
+        expandLib: true,
+    }, true,true);
 
 }
 
@@ -424,6 +424,7 @@ export interface TestOptions{
     regenerteJSON?:boolean,
     expandLib?:boolean,
     expandExpressions?:boolean,
+    typeReferences?:boolean,
     newFormat?:boolean,
     serializeMetadata?:boolean,
     expandTypes?: boolean,
@@ -431,18 +432,7 @@ export interface TestOptions{
 }
 
 export function testAPIScript(o:TestOptions){
-    return doTestAPI(
-        o.apiPath,
-        o.extensions,
-        o.tckJsonPath,
-        o.newFormat,
-        o.regenerteJSON,
-        true,
-        true,
-        o.expandLib,
-        o.expandExpressions,
-        o.serializeMetadata,
-        o);
+    return doTestAPI(o,true,true);
 
 }
 
@@ -454,7 +444,12 @@ export function testAPINewFormat(
     doAssert:boolean = true,
     expandLib:boolean = false):TestResult{
 
-    return doTestAPI(apiPath,extensions,tckJsonPath,true,false,true,true,false);
+    return doTestAPI({
+        apiPath: apiPath,
+        extensions: extensions,
+        tckJsonPath: tckJsonPath,
+        newFormat: true
+    }, true,true);
 
 }
 export function testAPI(
@@ -465,27 +460,29 @@ export function testAPI(
     doAssert:boolean = true,
     expandLib:boolean = false):TestResult{
     
-    return doTestAPI(apiPath,extensions,tckJsonPath,false,regenerteJSON,callTests,doAssert,expandLib);
+    return doTestAPI({
+        apiPath: apiPath,
+        extensions: extensions,
+        tckJsonPath: tckJsonPath,
+        newFormat: false,
+        regenerteJSON: regenerteJSON,
+        expandLib: expandLib
+    }, callTests,doAssert);
     
-    }
-function doTestAPI(
-    apiPath:string, extensions?:string[],
-    tckJsonPath?:string,
-    newFormat = false,
-    regenerteJSON:boolean=false,
-    callTests:boolean=true,
-    doAssert:boolean = true,
-    expandLib:boolean = false,
-    expandExpressions = false,
-    serializeMetadata = true,
-    o:TestOptions={}):TestResult{
+}
 
+function doTestAPI(o:TestOptions,callTests:boolean,doAssert:boolean):TestResult{
+    o = o || {};
+
+    let apiPath = o.apiPath;
     if(apiPath){
         apiPath = testUtil.data(apiPath);
     }
+    let extensions = o.extensions;
     if(extensions){
         extensions = extensions.map(x=>testUtil.data(x));
     }
+    let tckJsonPath = o.tckJsonPath;
     if(!tckJsonPath){
         tckJsonPath = defaultJSONPath(apiPath);
     }
@@ -493,14 +490,16 @@ function doTestAPI(
         tckJsonPath = testUtil.data(tckJsonPath);
     }
     var json:any;
-    if(newFormat||expandExpressions){
+    if(o.newFormat||o.expandExpressions){
         if(extensions && extensions.length>0){
             apiPath = extensions[extensions.length-1];
         }
         json = index.loadSync(apiPath,{
-            expandLibraries: expandLib,
-            serializeMetadata: serializeMetadata,
+            expandLibraries: o.expandLib,
+            serializeMetadata: o.serializeMetadata,
             expandTypes: o.expandTypes,
+            expandExpressions: o.expandExpressions,
+            typeReferences: o.typeReferences,
             typeExpansionRecursionDepth: o.recursionDepth,
             sourceMap: true
         });
@@ -509,9 +508,9 @@ function doTestAPI(
         var api = index.loadRAMLSync(apiPath, extensions);
         let expanded;
         if(universeHelpers.isApiSibling(api.definition())){
-            expanded = api["expand"](expandLib);
+            expanded = api["expand"](o.expandLib);
         }
-        else if(expandLib){
+        else if(o.expandLib){
             expanded = api["expand"]();;
         }
         else{
@@ -519,14 +518,14 @@ function doTestAPI(
         }
 
         (<any>expanded).setAttributeDefaults(true);
-        json = expanded.toJSON({rootNodeDetails: true, serializeMetadata: serializeMetadata});
+        json = expanded.toJSON({rootNodeDetails: true, serializeMetadata: o.serializeMetadata});
     }
 
     if(!tckJsonPath){
         tckJsonPath = defaultJSONPath(apiPath);
     }
 
-    if(regenerteJSON) {
+    if(o.regenerteJSON) {
         serializeTestJSON(tckJsonPath, json);
     }
     if(!fs.existsSync(tckJsonPath)){
@@ -606,9 +605,7 @@ export function generateMochaSuite(
     dstPath:string,
     dataRoot:string,
     mochaSuiteTitle:string,
-    libExpand:boolean=false,
-    newFormat=false,
-    expandExpressions = false){
+    o?:TestOptions){
 
     var dirs = iterateFolder(folderAbsPath);
     var map:{[key:string]:Test[]} = {};
@@ -634,7 +631,7 @@ export function generateMochaSuite(
         if(title==null){
             continue;
         }
-        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand,newFormat,expandExpressions);
+        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],o);
         suiteStrings.push(suiteStr);
     }
     var content = fileContent(suiteStrings,dstPath,mochaSuiteTitle);
@@ -653,11 +650,9 @@ function dumpSuite(
     title:string,
     dataRoot:string,
     tests:Test[],
-    libExpand:boolean,
-    newFormat:boolean,
-    expandExpressions:boolean):string{
+    o:TestOptions):string{
 
-    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand,newFormat,expandExpressions));
+    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,o));
 
     var testsStr = dumpedTests.join("\n\n");
     return`describe('${title}',function(){
@@ -667,33 +662,22 @@ ${testsStr}
 });`
 }
 
-function dumpTest(test:Test,dataRoot:string,libExpand:boolean,newFormat:boolean,expandExpressions:boolean):string{
+function dumpTest(test:Test,dataRoot:string,o:TestOptions):string{
 
-
-    var relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
-    let options:TestOptions = {
-        apiPath: relMasterPath,
-    }
+    let relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
+    let options:TestOptions = o ? util.deepCopy(o) : {};
+    options.apiPath = relMasterPath;
 
     if(test.extensionsAndOverlays()) {
-        var relArr = test.extensionsAndOverlays().map(x=>path.relative(dataRoot, x).replace(/\\/g,'/'));
+        let relArr = test.extensionsAndOverlays().map(x=>path.relative(dataRoot, x).replace(/\\/g,'/'));
         options.extensions = relArr;
     }
-    var jsonPath = test.jsonPath() ? path.relative(dataRoot,test.jsonPath()).replace(/\\/g,'/'):null;
+    let jsonPath = test.jsonPath() ? path.relative(dataRoot,test.jsonPath()).replace(/\\/g,'/'):null;
     if(jsonPath!=null){
         options.tckJsonPath = jsonPath;
     }
-    if(libExpand){
-        options.expandLib = true;
-    }
-    if(newFormat){
-        options.newFormat = true;
-    }
-    if(expandExpressions){
-        options.expandExpressions = true;
-    }
 
-    var testMethod = 'testAPIScript';
+    let testMethod = 'testAPIScript';
 
     return`    it("${path.basename(path.dirname(test.masterPath()))}/${path.basename(test.masterPath())}", function () {
         this.timeout(20000);

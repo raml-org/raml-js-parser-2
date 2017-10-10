@@ -1,0 +1,28 @@
+{
+  "specification": {
+    "title": "test API",
+    "schemas": [
+      {
+        "SongId": "{ \"type\": \"integer\" }"
+      },
+      {
+        "SongDuration": "{ \"type\": \"number\" }"
+      },
+      {
+        "SongType": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n"
+      },
+      {
+        "SongName": "{\n  \"type\": \"string\"\n}\n"
+      },
+      {
+        "Included1": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
+      },
+      {
+        "Included2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
+      }
+    ]
+  },
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "errors": []
+}

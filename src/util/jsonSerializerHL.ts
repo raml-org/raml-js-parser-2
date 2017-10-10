@@ -8,6 +8,8 @@ import llImpl = require("../parser/jsyaml/jsyaml2lowLevel");
 import hlImpl = require("../parser/highLevelImpl");
 import builder = require("../parser/ast.core/builder");
 import expander=require("../parser/ast.core/expanderHL");
+import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
+import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
 import typeExpander = require("./typeExpander");
 
@@ -73,7 +75,7 @@ export class JsonSerializer {
         this.nodeTransformers = [
             new MethodsTransformer(),
             new ResourcesTransformer(),
-            new TypeTransformer(this.options),
+            new TypeTransformer(this.options,this),
             new UsesDeclarationTransformer(this),
             new SimpleNamesTransformer(),
             new TemplateParametrizedPropertiesTransformer(),
@@ -128,7 +130,11 @@ export class JsonSerializer {
 
     private helpersMap:{[key:string]:HelperMethod};
 
+    private _astRoot:hl.IParseResult;
+
     private init(node:hl.IParseResult){
+
+        this._astRoot = node;
 
         this.helpersMap = {
             "baseUriParameters" :  baseUriParametersHandler,
@@ -153,6 +159,10 @@ export class JsonSerializer {
                 this.helpersMap["resourceTypes"] = new TemplatesHandler(helpersLL.allResourceTypes(eNode, false));
             }
         }
+    }
+
+    astRoot():hl.IParseResult{
+        return this._astRoot;
     }
 
     private dispose(){
@@ -255,7 +265,7 @@ export class JsonSerializer {
                         let llNode = ch.lowLevel();
                         let key = llNode.key();
                         if (key) {
-                            //obj[key] = llNode.dumpToObject(); 
+                            //obj[key] = llNode.dumpToObject();
                         }
                     }
                 }
@@ -663,6 +673,8 @@ export interface SerializeOptions{
     expandSecurity?:boolean
 
     expandExpressions?:boolean
+
+    typeReferences?:boolean
 
     expandTypes?:boolean
 
@@ -1266,7 +1278,7 @@ class MethodsTransformer extends BasicTransformation{
 
 class TypeTransformer extends BasicTransformation{
 
-    constructor(private options:SerializeOptions = {}){
+    constructor(private options:SerializeOptions = {},private owner:JsonSerializer){
         super(universes.Universe10.TypeDeclaration.name,null,true);
     }
 
@@ -1280,7 +1292,6 @@ class TypeTransformer extends BasicTransformation{
             let pt = node.asElement().parsedType();
             return typeExpander.dumpType(pt,this.options.typeExpansionRecursionDepth);
         }
-
 
         var isArray = Array.isArray(_value);
         if(isArray && _value.length==0){
@@ -1399,22 +1410,22 @@ class TypeTransformer extends BasicTransformation{
             value["typePropertyKind"] = "INPLACE";
         }
         if(this.options.expandExpressions) {
-            this.processExpressions(value);
+            this.processExpressions(value,node);
         }
         return _value;
     }
 
-    private processExpressions(value:any):any{
-        this.parseExpressions(value);
+    private processExpressions(value:any,node:hl.IParseResult):any{
+        this.parseExpressions(value,node);
     }
 
-    private parseExpressions(obj){
+    private parseExpressions(obj,node:hl.IParseResult){
         let typeValue = obj.type;
         let isSingleString = Array.isArray(typeValue)
             && typeof typeValue[0] == "string";
 
-        this.parseExpressionsForProperty(obj,"items");
-        this.parseExpressionsForProperty(obj,"type");
+        this.parseExpressionsForProperty(obj,"items", node);
+        this.parseExpressionsForProperty(obj,"type", node);
 
         if(isSingleString){
             let newTypeValue = obj.type[0];
@@ -1426,7 +1437,7 @@ class TypeTransformer extends BasicTransformation{
         }
     }
 
-    private parseExpressionsForProperty(obj:any, prop:string){
+    private parseExpressionsForProperty(obj:any, prop:string,node:hl.IParseResult){
 
         let value = obj[prop];
         if(!value){
@@ -1439,7 +1450,7 @@ class TypeTransformer extends BasicTransformation{
                     obj.prop = value.unfolded;
                 }
                 else {
-                    this.parseExpressions(value);
+                    this.parseExpressions(value,node);
                 }
                 return;
             }
@@ -1456,16 +1467,18 @@ class TypeTransformer extends BasicTransformation{
                     expr = expr.unfolded;
                 }
                 else {
-                    this.parseExpressions(expr);
+                    this.parseExpressions(expr,node);
                 }
             }
-            resultingArray.push(expr);
             if(typeof expr != "string"){
+                resultingArray.push(expr);
                 continue;
             }
             let str = expr;
             var gotExpression = referencePatcher.checkExpression(str);
             if (!gotExpression) {
+                let ref = this.typeReference(node, expr);
+                resultingArray.push(ref);
                 continue;
             }
             let escapeData:referencePatcher.EscapeData = {
@@ -1494,15 +1507,18 @@ class TypeTransformer extends BasicTransformation{
             if (!parsedExpression) {
                 continue;
             }
-            let exprObj = this.expressionToObject(parsedExpression,escapeData);
+            let exprObj = this.expressionToObject(parsedExpression,escapeData,node);
             if(exprObj!=null){
-                resultingArray[i] = exprObj;
+                resultingArray.push(exprObj);
             }
         }
         obj[prop] = isSingleString ? resultingArray[0] : resultingArray;
     }
 
-    private expressionToObject(expr:typeExpressions.BaseNode, escapeData:referencePatcher.EscapeData):any{
+    private expressionToObject(
+        expr:typeExpressions.BaseNode,
+        escapeData:referencePatcher.EscapeData,
+        node:hl.IParseResult):any{
 
         let result:any;
         let arr = 0;
@@ -1515,9 +1531,9 @@ class TypeTransformer extends BasicTransformation{
                 if(unescapeData.status==referencePatcher.ParametersEscapingStatus.OK){
                     result = unescapeData.resultingString;
                 }
-                else if(unescapeData.status==referencePatcher.ParametersEscapingStatus.ERROR){
-                    result = null;
-                }
+            }
+            if(this.options.typeReferences){
+                result = this.typeReference(node, result);
             }
         }
         else if(expr.type=="union"){
@@ -1532,7 +1548,7 @@ class TypeTransformer extends BasicTransformation{
                     result = null;
                     break;
                 }
-                let c1 = this.expressionToObject(c,escapeData);
+                let c1 = this.expressionToObject(c,escapeData,node);
                 result.anyOf.push(c1);
             }
             result.anyOf = _.unique(result.anyOf).sort()
@@ -1540,7 +1556,7 @@ class TypeTransformer extends BasicTransformation{
         else if(expr.type=="parens"){
             let parens = <typeExpressions.Parens>expr;
             arr = parens.arr;
-            result = this.expressionToObject(parens.expr,escapeData);
+            result = this.expressionToObject(parens.expr,escapeData,node);
         }
         if(result!=null) {
             while (arr-- > 0) {
@@ -1578,6 +1594,58 @@ class TypeTransformer extends BasicTransformation{
         return result;
     }
 
+
+    private typeReference(node: hl.IParseResult, result: string) {
+        if(!result){
+            return "$error";
+        }
+        let rootNode = this.owner.astRoot();
+        let types = rootNode.isElement() && rootNode.asElement().types();
+        let t = types && types.getTypeRegistry().getByChain(result);
+        if (!t) {
+            // let i0 = result.indexOf("<<");
+            // if(i0>=0 && result.indexOf(">>",i0)>=0 && linter.typeOfContainingTemplate(node)){
+            //
+            // }
+            // else {
+            //
+            // }
+        }
+        else if (t.isBuiltin()) {
+
+        }
+        else {
+            let src = t.getExtra(typeSystem.SOURCE_EXTRA);
+            let llNode: ll.ILowLevelASTNode;
+            if (hlImpl.BasicASTNode.isInstance(src)) {
+                llNode = src.lowLevel();
+            }
+            else if (jsyaml.ASTNode.isInstance(src)
+                || llJson.AstNode.isInstance(src)
+                || proxy.LowLevelProxyNode.isInstance(src)) {
+                llNode = src;
+            }
+            else if (hlImpl.LowLevelWrapperForTypeSystem.isInstance(src)) {
+                llNode = src.node();
+            }
+            let llRoot = rootNode.lowLevel();
+            if(llRoot.actual().libExpanded){
+                result = "#/specification/types/" + t.name();
+            }
+            else {
+                let location = "";
+                let rootUnit = llRoot.unit();
+                let unit = llNode.unit();
+                if (unit.absolutePath() != rootUnit.absolutePath()) {
+                    let resolver = (<jsyaml.Project>unit.project()).namespaceResolver();
+                    let d = resolver.expandedPathMap(rootUnit)[unit.absolutePath()];
+                    location = location + d.includePath;
+                }
+                result = location + "#/specification/types/" + t.name();
+            }
+        }
+        return result;
+    }
 }
 
 class SimpleNamesTransformer extends MatcherBasedTransformation{
