@@ -3,24 +3,51 @@
     "title": "test API",
     "schemas": [
       {
-        "SongId": "{ \"type\": \"integer\" }"
+        "value": "{ \"type\": \"integer\" }",
+        "name": "SongId",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "SongDuration": "{ \"type\": \"number\" }"
+        "value": "{ \"type\": \"number\" }",
+        "name": "SongDuration",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "SongType": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n"
+        "value": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n",
+        "name": "SongType",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "SongName": "{\n  \"type\": \"string\"\n}\n"
+        "value": "{\n  \"type\": \"string\"\n}\n",
+        "name": "SongName",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "Included1": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
+        "value": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}",
+        "name": "Included1",
+        "sourceMap": {
+          "path": "schema1.json"
+        }
       },
       {
-        "Included2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
+        "value": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}",
+        "name": "Included2",
+        "sourceMap": {
+          "path": "schema2.json"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML08",
   "type": "Api",

@@ -3,21 +3,23 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Test API",
     "resources": [
       {
-        "methods": {
-          "post": {
-            "body": {
-              "application/json": {
+        "methods": [
+          {
+            "body": [
+              {
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "(lib.T1|lib.T2)[]|lib.T3[]",
-                  "((lib.T4|lib.T1)|lib.T3)[]"
+                  "union"
                 ],
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -28,68 +30,45 @@
                 },
                 "mediaType": "application/raml+yaml",
                 "typePropertyKind": "TYPE_EXPRESSION",
-                "unfolded": {
-                  "name": "application/json",
-                  "displayName": "application/json",
-                  "type": [
-                    {
-                      "type": [
-                        "union"
-                      ],
-                      "options": [
-                        {
-                          "type": [
-                            "array"
-                          ],
-                          "items": {
-                            "type": [
-                              "union"
-                            ],
-                            "options": [
-                              "lib.raml#/specification/types/T1",
-                              "lib.raml#/specification/types/T2"
-                            ]
-                          }
-                        },
-                        {
-                          "type": [
-                            "array"
-                          ],
-                          "items": "lib.raml#/specification/types/T3"
-                        }
-                      ]
-                    },
-                    {
-                      "type": [
-                        "array"
-                      ],
-                      "items": {
+                "anyOf": [
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": [
+                      {
                         "type": [
                           "union"
                         ],
-                        "options": [
-                          "lib.raml#/specification/types/T4",
+                        "anyOf": [
                           "lib.raml#/specification/types/T1",
-                          "lib.raml#/specification/types/T3"
+                          "lib.raml#/specification/types/T2"
                         ]
                       }
-                    }
-                  ],
-                  "__METADATA__": {
-                    "primitiveValuesMeta": {
-                      "displayName": {
-                        "calculated": true
-                      }
-                    }
+                    ]
                   },
-                  "mediaType": "application/raml+yaml",
-                  "typePropertyKind": "TYPE_EXPRESSION"
+                  {
+                    "type": [
+                      "array"
+                    ],
+                    "items": [
+                      "lib.raml#/specification/types/T3"
+                    ]
+                  }
+                ],
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
-            },
-            "method": "post"
+            ],
+            "method": "post",
+            "parentUri": "/resource",
+            "absoluteParentUri": "/resource",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
-        },
+        ],
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
@@ -104,9 +83,16 @@
         ],
         "absoluteUri": "/resource",
         "completeRelativeUri": "/resource",
-        "parentUri": ""
+        "parentUri": "",
+        "absoluteParentUri": "",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "ramlVersion": "RAML10",
   "type": "Api",
