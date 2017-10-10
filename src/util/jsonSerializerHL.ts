@@ -7,7 +7,6 @@ import hlImpl = require("../parser/highLevelImpl");
 import jsyaml = require("../parser/jsyaml/jsyaml2lowLevel");
 import llJson = require("../parser/jsyaml/json2lowLevel");
 import referencePatcher=require("../parser/ast.core/referencePatcher");
-import linter = require("../parser/ast.core/linter");
 
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
