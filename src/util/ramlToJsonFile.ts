@@ -5,12 +5,8 @@ import Opt= require("../Opt")
 import fs = require('fs');
 var mkdirp = require('mkdirp');
 var path = require('path');
-var converter = require('./ramlToJson08');
-var converter1 = require('./ramlToJson10');
 var jsonSerializer = require('./jsonSerializer');
-import parserCore = require('../parser/wrapped-ast/parserCore');
 import parserCoreApi = require('../parser/wrapped-ast/parserCoreApi');
-import util = require("../parser/test/test-utils")
 
 export interface Options extends parserCoreApi.Options{
 

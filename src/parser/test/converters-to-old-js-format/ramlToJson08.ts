@@ -1,12 +1,12 @@
-import RamlWrapper = require("../parser/artifacts/raml08parserapi")
-import core = require("../parser/wrapped-ast/parserCore")
+import RamlWrapper = require("../../artifacts/raml08parserapi")
+import core = require("../../wrapped-ast/parserCore")
 var path = require('path');
-var tools =require("../parser/test/testTools")
+var tools =require("../testTools")
 var _ =require("underscore")
-var defaultCalculator = require("../parser/wrapped-ast/defaultCalculator")
-import services = require("../parser/definition-system/ramlServices")
-import hl = require("../parser/highLevelAST")
-let messageRegistry = require("../../resources/errorMessages");
+var defaultCalculator = require("../../wrapped-ast/defaultCalculator")
+import services = require("../../definition-system/ramlServices")
+import hl = require("../../highLevelAST")
+let messageRegistry = require("../../../../resources/errorMessages");
 
 export function convertToJson(api, transform: boolean){
     var addTransformations = transform;

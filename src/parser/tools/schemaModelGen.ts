@@ -1,10 +1,7 @@
 import def=require("raml-definition-system")
 import _=require("underscore")
-import fs=require("fs")
 import hl=require("../highLevelAST")
-import high = require("../highLevelImpl")
 import textutil = require('../../util/textutil')
-import util = require("../test/test-utils")
 import wrapper=require("../artifacts/raml10parser")
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
 
