@@ -1,15 +1,15 @@
-// import RamlWrapper = require("../parser/artifacts/raml10parserapi")
-// import RamlWrapperImpl = require("../parser/artifacts/raml10parser")
+// import RamlWrapper = require("../../artifacts/raml10parserapi")
+// import RamlWrapperImpl = require("../../artifacts/raml10parser")
 // var path = require('path');
-// var tools =require("../parser/test/testTools")
+// var tools =require("../testTools")
 // var _ =require("underscore")
-// import hlImpl = require("../parser/highLevelImpl")
-// import hl = require("../parser/highLevelAST")
+// import hlImpl = require("../../highLevelImpl")
+// import hl = require("../../highLevelAST")
 // import definitionSystem = require("raml-definition-system")
-// var universe = require("../parser/tools/universe");
-// import ramlService = require("../parser/definition-system/ramlServices")
-// import core = require("../parser/wrapped-ast/parserCore");
-// import coreApi = require("../parser/wrapped-ast/parserCoreApi");
+// var universe = require("../../tools/universe");
+// import ramlService = require("../../definition-system/ramlServices")
+// import core = require("../../wrapped-ast/parserCore");
+// import coreApi = require("../../wrapped-ast/parserCoreApi");
 //
 // export function convertToJson(api, transform: boolean, serializeMeta?:boolean):any{
 //     return new RamlToJSonConverter10(serializeMeta).convertToJson(api,transform);
