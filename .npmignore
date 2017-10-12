@@ -1,6 +1,12 @@
 /*
 !/dist
 
+/dist/devUtil
+/dist/browserVersionGenerator
+/dist/parser/devTools
+/dist/parser/test
+/dist/topLevelGenerator
+
 /documentation/*
 !/documentation/GettingStarted.md
 
