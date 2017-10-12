@@ -14,7 +14,7 @@ export function isScheme(content) {
     try {
         var schemeObject = JSON.parse(content);
 
-        return schemeObject['$schema'];
+        return schemeObject && (typeof schemeObject === "object");
     } catch(exception) {
         return xmlutil.isXmlScheme(content);
     }
