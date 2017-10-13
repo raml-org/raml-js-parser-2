@@ -27,10 +27,16 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiValid.raml"
+              },
               "<<isRequired>>": "<<value>>"
             }
           },
-          "name": "helloNightmare"
+          "name": "helloNightmare",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       }
     ],
@@ -49,6 +55,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -83,6 +92,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -95,6 +107,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -137,6 +152,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
@@ -160,12 +178,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "relativeUri": "/animals",
@@ -177,12 +204,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "animals"
         ],
         "absoluteUri": "/animals"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

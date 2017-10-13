@@ -21,11 +21,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "integer-type.raml"
           }
         }
       }
     ],
-    "title": "Integer Type"
+    "title": "Integer Type",
+    "sourceMap": {
+      "path": "integer-type.raml"
+    }
   },
   "errors": []
 }

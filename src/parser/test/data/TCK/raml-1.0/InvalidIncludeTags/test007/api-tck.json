@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -35,6 +38,9 @@
                     "displayName": "application/xml",
                     "typePropertyKind": "XML",
                     "schemaPath": "schema.xsd",
+                    "sourceMap": {
+                      "path": "schema.xsd"
+                    },
                     "schema": [
                       "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"country\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"country_name\" type=\"xs:string\"/>\n        <xs:element name=\"population\" type=\"xs:decimal\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                     ],
@@ -53,9 +59,15 @@
                       "value": "./example.xml",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "./example.xml"
+                      "structuredValue": "./example.xml",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "201": {
@@ -77,12 +89,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -94,12 +115,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

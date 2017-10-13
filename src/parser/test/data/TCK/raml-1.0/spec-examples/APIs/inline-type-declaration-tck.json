@@ -36,6 +36,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "inline-type-declaration.raml"
                         }
                       },
                       "lastname": {
@@ -55,6 +58,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "inline-type-declaration.raml"
                         }
                       },
                       "age": {
@@ -74,6 +80,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "inline-type-declaration.raml"
                         }
                       }
                     },
@@ -83,12 +92,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "inline-type-declaration.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "inline-type-declaration.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "inline-type-declaration.raml"
+            }
           }
         ],
         "uriParameters": {
@@ -113,6 +131,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "inline-type-declaration.raml"
             }
           }
         },
@@ -125,13 +146,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "inline-type-declaration.raml"
+        },
         "relativeUriPathSegments": [
           "users",
           "{id}"
         ],
         "absoluteUri": "/users/{id}"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "inline-type-declaration.raml"
+    }
   },
   "errors": []
 }

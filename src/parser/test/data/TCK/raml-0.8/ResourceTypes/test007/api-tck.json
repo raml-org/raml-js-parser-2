@@ -7,25 +7,40 @@
       {
         "myResourceType": {
           "name": "myResourceType",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "<<param1>>": "<<param1value>>",
           "post": {
             "responses": {
               "200": {
                 "code": "200",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "<<param5>>": "<<param5value>>"
               },
               "<<param4>>": {
                 "code": "<<param4>>",
                 "body": {
                   "application/json": {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "body": {
               "application/json": {
                 "name": "application/json",
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "<<param3>>": "<<param3value>>"
               }
             },
@@ -51,6 +66,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "param1": {
@@ -75,15 +93,24 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "<<prop1>>": "<<prop1Value>>"
               }
             },
             "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "<<param2>>": "<<param2value>>"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

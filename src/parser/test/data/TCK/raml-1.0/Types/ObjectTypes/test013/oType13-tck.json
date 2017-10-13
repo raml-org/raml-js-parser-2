@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType13.raml"
               }
             }
           },
@@ -38,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "oType13.raml"
           }
         }
       },
@@ -75,6 +81,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType13.raml"
               }
             }
           },
@@ -84,6 +93,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "oType13.raml"
           },
           "structuredExample": {
             "value": "{\n  \"put\": {\n    \"name\": \"update method\"\n  },\n  \"post\": {\n    \"name\": \"create method\"\n  }\n}",
@@ -96,12 +108,18 @@
               "post": {
                 "name": "create method"
               }
+            },
+            "sourceMap": {
+              "path": "oType13.raml"
             }
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType13.raml"
+    }
   },
   "errors": []
 }

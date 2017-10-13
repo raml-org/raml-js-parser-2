@@ -34,6 +34,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiValid.raml"
         }
       }
     },
@@ -51,7 +54,13 @@
             "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
             "authorizationGrants": [
               "client_credentials"
-            ]
+            ],
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -62,6 +71,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiValid.raml"
     }
   },
   "errors": []

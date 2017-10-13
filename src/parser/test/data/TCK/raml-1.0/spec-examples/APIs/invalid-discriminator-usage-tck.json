@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "invalid-discriminator-usage.raml"
           }
         }
       },
@@ -40,6 +43,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "invalid-discriminator-usage.raml"
           }
         }
       },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "invalid-discriminator-usage.raml"
           }
         }
       }
@@ -96,6 +105,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "invalid-discriminator-usage.raml"
                         }
                       }
                     },
@@ -109,12 +121,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "invalid-discriminator-usage.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "invalid-discriminator-usage.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "invalid-discriminator-usage.raml"
+            }
           }
         ],
         "relativeUri": "/inline",
@@ -126,12 +147,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "invalid-discriminator-usage.raml"
+        },
         "relativeUriPathSegments": [
           "inline"
         ],
         "absoluteUri": "/inline"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "invalid-discriminator-usage.raml"
+    }
   },
   "errors": [
     {

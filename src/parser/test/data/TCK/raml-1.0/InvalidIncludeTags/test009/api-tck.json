@@ -19,11 +19,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "https://example.com/examples/message.yaml",
             "strict": true,
             "name": null,
-            "structuredValue": "https://example.com/examples/message.yaml"
+            "structuredValue": "https://example.com/examples/message.yaml",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -43,11 +49,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "http://example.com/examples/message.yml",
             "strict": true,
             "name": null,
-            "structuredValue": "http://example.com/examples/message.yml"
+            "structuredValue": "http://example.com/examples/message.yml",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -67,11 +79,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "/examples/message.raml",
             "strict": true,
             "name": null,
-            "structuredValue": "/examples/message.raml"
+            "structuredValue": "/examples/message.raml",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -111,6 +129,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -121,13 +142,22 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "../examples/message.yaml",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "../examples/message.yaml"
+                      "structuredValue": "../examples/message.yaml",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "201": {
@@ -159,6 +189,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -169,13 +202,22 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "examples/message.raml",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "examples/message.raml"
+                      "structuredValue": "examples/message.raml",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "202": {
@@ -207,6 +249,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -217,17 +262,29 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "examples/message.yml",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "examples/message.yml"
+                      "structuredValue": "examples/message.yml",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -239,12 +296,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

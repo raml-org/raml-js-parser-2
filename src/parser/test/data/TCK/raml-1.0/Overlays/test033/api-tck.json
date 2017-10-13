@@ -5,12 +5,18 @@
     "uses": [
       {
         "key": "library",
-        "value": "https://somewrongurl.blah"
+        "value": "https://somewrongurl.blah",
+        "sourceMap": {
+          "path": "NewOverlay.raml"
+        }
       }
     ],
     "title": "Blah",
     "version": "v1",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": [
     {

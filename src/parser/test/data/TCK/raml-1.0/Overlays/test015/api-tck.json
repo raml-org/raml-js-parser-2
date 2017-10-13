@@ -31,19 +31,31 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewOverlay.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"content\": 9\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {
                         "content": 9
+                      },
+                      "sourceMap": {
+                        "path": "NewOverlay.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewOverlay.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "NewOverlay.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -55,13 +67,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewOverlay.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
     ],
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": []
 }

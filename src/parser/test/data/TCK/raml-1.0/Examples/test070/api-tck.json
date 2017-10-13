@@ -38,6 +38,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"data\": [\n    {\n      \"a\": 1,\n      \"b\": 2,\n      \"c\": 3\n    }\n  ]\n}",
                       "strict": true,
@@ -50,14 +53,23 @@
                             "c": 3
                           }
                         ]
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "description": "Test",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/foo",
@@ -69,12 +81,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "foo"
         ],
         "absoluteUri": "/foo"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

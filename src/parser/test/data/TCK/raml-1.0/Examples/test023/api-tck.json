@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -45,12 +48,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"a\": 5\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "a": 5
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -87,6 +96,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"message\": 4,\n  \"vlue\": 3\n}",
                       "strict": true,
@@ -94,13 +106,22 @@
                       "structuredValue": {
                         "message": 4,
                         "vlue": 3
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/hello",
@@ -112,12 +133,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "hello"
         ],
         "absoluteUri": "/hello"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

@@ -37,6 +37,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -49,6 +52,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -68,11 +74,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
     ],
-    "title": "MyApi"
+    "title": "MyApi",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

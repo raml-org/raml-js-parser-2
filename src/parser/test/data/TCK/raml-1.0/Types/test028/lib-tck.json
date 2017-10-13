@@ -17,10 +17,16 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

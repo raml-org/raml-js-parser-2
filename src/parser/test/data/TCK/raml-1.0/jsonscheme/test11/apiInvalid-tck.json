@@ -9,6 +9,9 @@
           "displayName": "MyType",
           "typePropertyKind": "JSON",
           "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json",
+          "sourceMap": {
+            "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test11/remoteScheme.json"
+          },
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            },\n            \"required\" : [ \"innerTypeName\" ]\n        }\n    },\n    \"required\" : [ \"name\" ]\n}"
           ],
@@ -48,6 +51,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"name\": \"somename\",\n  \"child\": {\n    \"innerTypeName1\": \"anothername\"\n  }\n}",
                   "strict": true,
@@ -57,11 +63,17 @@
                     "child": {
                       "innerTypeName1": "anothername"
                     }
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -73,12 +85,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

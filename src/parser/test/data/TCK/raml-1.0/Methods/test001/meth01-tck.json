@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "meth01.raml"
           }
         }
       }
@@ -45,12 +48,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "meth01.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth01.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth01.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -62,12 +74,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth01.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth01.raml"
+    }
   },
   "errors": []
 }

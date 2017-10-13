@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "methResp04.raml"
               }
             }
           },
@@ -42,12 +45,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "methResp04.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"field\": \"value\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "field": "value"
+            },
+            "sourceMap": {
+              "path": "methResp04.raml"
             }
           }
         }
@@ -75,12 +84,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp04.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "methResp04.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "methResp04.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -92,12 +110,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "methResp04.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "methResp04.raml"
+    }
   },
   "errors": []
 }

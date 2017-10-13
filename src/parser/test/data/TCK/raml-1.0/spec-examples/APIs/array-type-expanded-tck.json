@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "array-type-expanded.raml"
               }
             }
           },
@@ -38,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "array-type-expanded.raml"
           }
         }
       },
@@ -60,11 +66,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "array-type-expanded.raml"
           }
         }
       }
     ],
-    "title": "Expanded Array Type with Example"
+    "title": "Expanded Array Type with Example",
+    "sourceMap": {
+      "path": "array-type-expanded.raml"
+    }
   },
   "errors": []
 }

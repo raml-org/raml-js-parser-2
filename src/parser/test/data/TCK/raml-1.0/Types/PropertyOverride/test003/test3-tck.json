@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test3.raml"
               }
             }
           },
@@ -41,6 +44,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test3.raml"
           }
         }
       },
@@ -70,6 +76,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test3.raml"
               }
             }
           },
@@ -79,6 +88,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test3.raml"
           }
         }
       },
@@ -108,6 +120,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test3.raml"
               }
             }
           },
@@ -120,6 +135,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test3.raml"
           }
         }
       },
@@ -149,6 +167,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test3.raml"
               }
             }
           },
@@ -161,6 +182,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test3.raml"
           }
         }
       },
@@ -190,6 +214,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test3.raml"
               }
             }
           },
@@ -199,11 +226,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test3.raml"
           }
         }
       }
     ],
-    "title": "test"
+    "title": "test",
+    "sourceMap": {
+      "path": "test3.raml"
+    }
   },
   "errors": [
     {

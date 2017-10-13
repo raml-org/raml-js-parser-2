@@ -27,12 +27,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp02.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "methResp02.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "methResp02.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -44,12 +53,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "methResp02.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "methResp02.raml"
+    }
   },
   "errors": []
 }

@@ -6,16 +6,25 @@
     "mediaType": "application/json",
     "schemas": [
       {
-        "t1": "{}"
+        "t1": "{}",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "t2": "{}"
+        "t2": "{}",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
       {
         "collection": {
           "name": "collection",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -24,12 +33,21 @@
                   "application/json": {
                     "name": "application/json",
                     "schema": "t1",
-                    "schemaContent": "{}"
+                    "schemaContent": "{}",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -47,7 +65,10 @@
                   "application/xml": {
                     "name": "application/xml",
                     "schema": "t2",
-                    "schemaContent": "{}"
+                    "schemaContent": "{}",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   },
                   "application/json": {
                     "name": "application/json",
@@ -59,12 +80,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/schemes",
@@ -75,12 +105,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "schemes"
         ],
         "absoluteUri": "/schemes"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

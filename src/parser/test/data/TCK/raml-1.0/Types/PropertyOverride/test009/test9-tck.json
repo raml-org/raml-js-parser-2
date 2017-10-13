@@ -21,6 +21,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test9.raml"
               }
             }
           },
@@ -37,6 +40,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test9.raml"
           }
         }
       },
@@ -58,6 +64,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test9.raml"
               }
             }
           },
@@ -71,11 +80,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test9.raml"
           }
         }
       }
     ],
-    "title": "test"
+    "title": "test",
+    "sourceMap": {
+      "path": "test9.raml"
+    }
   },
   "errors": [
     {

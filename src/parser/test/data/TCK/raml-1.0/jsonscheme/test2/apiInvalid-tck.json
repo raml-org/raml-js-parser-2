@@ -9,6 +9,9 @@
           "displayName": "MyType",
           "typePropertyKind": "JSON",
           "schemaPath": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test2/remoteScheme.json",
+          "sourceMap": {
+            "path": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/parser/test/data/parser/jsonscheme/test2/remoteScheme.json"
+          },
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"id\":\"asd\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        }\n    },\n    \"required\": [ \"name\" ]\n}"
           ],
@@ -45,17 +48,26 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"name1\": \"somename\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
                     "name1": "somename"
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -67,12 +79,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

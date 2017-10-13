@@ -22,6 +22,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "structuredExample": {
             "value": "[\n  \"some string\",\n  \"another string\"\n]",
             "strict": true,
@@ -29,13 +32,19 @@
             "structuredValue": [
               "some string",
               "another string"
-            ]
+            ],
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
           "items": "string"
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

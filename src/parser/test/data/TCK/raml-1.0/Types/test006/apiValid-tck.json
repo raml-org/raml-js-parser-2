@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "property2": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -60,6 +66,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -89,6 +98,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "property4": {
@@ -108,6 +120,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -120,6 +135,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -137,6 +155,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -176,6 +197,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "union2": {
@@ -195,6 +219,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -204,6 +231,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           },
           "structuredExample": {
             "value": "{\n  \"union1\": {\n    \"property1\": \"blahblah\",\n    \"property2\": \"blahblah\"\n  },\n  \"union2\": {\n    \"property3\": \"blahblah\",\n    \"property4\": \"blahblah\"\n  }\n}",
@@ -218,12 +248,18 @@
                 "property3": "blahblah",
                 "property4": "blahblah"
               }
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

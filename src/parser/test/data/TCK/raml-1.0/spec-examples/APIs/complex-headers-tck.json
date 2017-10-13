@@ -34,11 +34,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                },
                 "structuredExample": {
                   "value": "230-OCTO",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "230-OCTO"
+                  "structuredValue": "230-OCTO",
+                  "sourceMap": {
+                    "path": "complex-headers.raml"
+                  }
                 }
               },
               "__METADATA__": {
@@ -50,10 +56,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "complex-headers.raml"
               }
             }
           },
-          "name": "chargeable"
+          "name": "chargeable",
+          "sourceMap": {
+            "path": "complex-headers.raml"
+          }
         }
       },
       {
@@ -83,15 +95,24 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "complex-headers.raml"
+              },
               "structuredExample": {
                 "value": "abcdefghijklmnop",
                 "strict": true,
                 "name": null,
-                "structuredValue": "abcdefghijklmnop"
+                "structuredValue": "abcdefghijklmnop",
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                }
               }
             }
           },
-          "name": "traceable"
+          "name": "traceable",
+          "sourceMap": {
+            "path": "complex-headers.raml"
+          }
         }
       }
     ],
@@ -133,11 +154,17 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "complex-headers.raml"
+                  },
                   "structuredExample": {
                     "value": "230-OCTO",
                     "strict": true,
                     "name": null,
-                    "structuredValue": "230-OCTO"
+                    "structuredValue": "230-OCTO",
+                    "sourceMap": {
+                      "path": "complex-headers.raml"
+                    }
                   }
                 },
                 "__METADATA__": {
@@ -150,6 +177,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                },
                 "structuredExample": {
                   "value": "[\n  \"18-FINANCE\",\n  \"200-MISC\"\n]",
                   "strict": true,
@@ -157,7 +187,10 @@
                   "structuredValue": [
                     "18-FINANCE",
                     "200-MISC"
-                  ]
+                  ],
+                  "sourceMap": {
+                    "path": "complex-headers.raml"
+                  }
                 }
               },
               "X-Tracker": {
@@ -184,11 +217,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "complex-headers.raml"
+                },
                 "structuredExample": {
                   "value": "gfr456d03ygh38s2",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "gfr456d03ygh38s2"
+                  "structuredValue": "gfr456d03ygh38s2",
+                  "sourceMap": {
+                    "path": "complex-headers.raml"
+                  }
                 }
               }
             },
@@ -197,7 +236,10 @@
               "traceable"
             ],
             "description": "The HTTP interaction will look like\n\nGET /users HTTP/1.1\nX-Dept: 18-FINANCE\nX-Dept: 200-MISC\nX-Tracker: gfr456d03ygh38s2\n",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "complex-headers.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -209,12 +251,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "complex-headers.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "complex-headers.raml"
+    }
   },
   "errors": []
 }

@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -46,18 +49,27 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"d\": \"a\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "d": "a"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

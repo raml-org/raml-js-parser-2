@@ -36,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -49,6 +52,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": null\n    }\n  }\n}",
             "strict": true,
@@ -59,12 +65,18 @@
                   "someProperty": null
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

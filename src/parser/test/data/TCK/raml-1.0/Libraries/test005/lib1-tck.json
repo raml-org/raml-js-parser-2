@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "lib1.raml"
+        }
       }
     ],
     "types": [
@@ -50,6 +53,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib1.raml"
               }
             }
           },
@@ -62,6 +68,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib1.raml"
           },
           "structuredExample": {
             "value": "{\n  \"p1\": {\n    \"p2\": {\n      \"p1\": {\n        \"p2\": {\n          \"p1\": {\n            \"p2\": {\n              \"p1\": null\n            }\n          }\n        }\n      }\n    }\n  }\n}",
@@ -81,11 +90,17 @@
                   }
                 }
               }
+            },
+            "sourceMap": {
+              "path": "lib1.raml"
             }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib1.raml"
+    }
   },
   "errors": []
 }

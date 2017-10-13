@@ -7,7 +7,10 @@
     "protocols": [
       "HTTP",
       "https1"
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

@@ -5,13 +5,19 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libs/lib.raml"
+        "value": "libs/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
       {
         "rt": {
           "name": "rt",
+          "sourceMap": {
+            "path": "fragments/rt.raml"
+          },
           "post": {
             "body": {
               "application/json": {
@@ -27,10 +33,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "fragments/rt.raml"
+            }
           }
         }
       }
@@ -54,10 +66,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "fragments/rt.raml"
+            }
           }
         ],
         "type": "rt",
@@ -70,12 +88,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

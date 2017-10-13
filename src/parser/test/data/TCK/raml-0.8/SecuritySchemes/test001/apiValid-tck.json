@@ -8,10 +8,16 @@
       {
         "auth": {
           "name": "auth",
-          "type": "x-sls"
+          "type": "x-sls",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

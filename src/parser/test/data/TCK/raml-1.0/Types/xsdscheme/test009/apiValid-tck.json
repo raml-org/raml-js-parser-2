@@ -9,6 +9,9 @@
           "displayName": "SomeType",
           "typePropertyKind": "XML",
           "schemaPath": "root.xsd",
+          "sourceMap": {
+            "path": "root.xsd"
+          },
           "type": [
             "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n\n<xs:include schemaLocation = \"schema1.xsd\"/>\n\n<xs:simpleType name=\"stringtype\">\n  <xs:restriction base=\"xs:string\"/>\n</xs:simpleType>\n\n<xs:simpleType name=\"inttype\">\n  <xs:restriction base=\"xs:positiveInteger\"/>\n</xs:simpleType>\n\n<xs:simpleType name=\"dectype\">\n  <xs:restriction base=\"xs:decimal\"/>\n</xs:simpleType>\n\n<xs:simpleType name=\"orderidtype\">\n  <xs:restriction base=\"xs:string\">\n    <xs:pattern value=\"[0-9]{6}\"/>\n  </xs:restriction>\n</xs:simpleType>\n\n<xs:complexType name=\"shiptotype\">\n  <xs:sequence>\n    <xs:element name=\"name\" type=\"stringtype\"/>\n    <xs:element name=\"address\" type=\"stringtype\"/>\n    <xs:element name=\"city\" type=\"stringtype\"/>\n    <xs:element name=\"country\" type=\"stringtype\"/>\n  </xs:sequence>\n</xs:complexType>\n\n<xs:complexType name=\"itemtype\">\n  <xs:sequence>\n    <xs:element name=\"title\" type=\"stringtype\"/>\n    <xs:element name=\"note\" type=\"stringtype\" minOccurs=\"0\"/>\n    <xs:element name=\"quantity\" type=\"inttype\"/>\n    <xs:element name=\"price\" type=\"dectype\"/>\n  </xs:sequence>\n</xs:complexType>\n\n<xs:complexType name=\"shipordertype\">\n  <xs:sequence>\n    <xs:element name=\"remoteref\" type=\"remotetype\"/>\n    <xs:element name=\"orderperson\" type=\"stringtype\"/>\n    <xs:element name=\"shipto\" type=\"shiptotype\"/>\n    <xs:element name=\"item\" maxOccurs=\"unbounded\" type=\"itemtype\"/>\n  </xs:sequence>\n  <xs:attribute name=\"orderid\" type=\"orderidtype\" use=\"required\"/>\n</xs:complexType>\n\n<xs:element name=\"shiporder\" type=\"shipordertype\"/>\n\n</xs:schema>\n"
           ],
@@ -24,12 +27,18 @@
             "value": "<shiporder orderid=\"123456\">\n  <remoteref>\n    <someProp> </someProp>\n  </remoteref>\n  <orderperson></orderperson>\n\n  <shipto>\n    <name>blah</name>\n\n    <address>blah</address>\n    <city>blah</city>\n    <country>blah</country>\n  </shipto>\n  <item>\n    <title></title>\n    <note></note>\n    <quantity>1</quantity>\n    <price>100500</price>\n  </item>\n</shiporder>\n",
             "strict": true,
             "name": null,
-            "structuredValue": "<shiporder orderid=\"123456\">\n  <remoteref>\n    <someProp> </someProp>\n  </remoteref>\n  <orderperson></orderperson>\n\n  <shipto>\n    <name>blah</name>\n\n    <address>blah</address>\n    <city>blah</city>\n    <country>blah</country>\n  </shipto>\n  <item>\n    <title></title>\n    <note></note>\n    <quantity>1</quantity>\n    <price>100500</price>\n  </item>\n</shiporder>\n"
+            "structuredValue": "<shiporder orderid=\"123456\">\n  <remoteref>\n    <someProp> </someProp>\n  </remoteref>\n  <orderperson></orderperson>\n\n  <shipto>\n    <name>blah</name>\n\n    <address>blah</address>\n    <city>blah</city>\n    <country>blah</country>\n  </shipto>\n  <item>\n    <title></title>\n    <note></note>\n    <quantity>1</quantity>\n    <price>100500</price>\n  </item>\n</shiporder>\n",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

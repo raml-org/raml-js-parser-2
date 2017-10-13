@@ -28,6 +28,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "security-schemes.raml"
                 }
               }
             },
@@ -50,19 +53,31 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "security-schemes.raml"
                 }
               }
             },
             "responses": [
               {
                 "code": "401",
-                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n",
+                "sourceMap": {
+                  "path": "security-schemes.raml"
+                }
               },
               {
                 "code": "403",
-                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n"
+                "description": "Bad OAuth request (wrong consumer key, bad nonce, expired\ntimestamp...). Unfortunately, re-authenticating the user won't help here.\n",
+                "sourceMap": {
+                  "path": "security-schemes.raml"
+                }
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "security-schemes.raml"
+            }
           },
           "settings": {
             "accessTokenUri": "https://api.dropbox.com/1/oauth2/token",
@@ -70,7 +85,13 @@
             "authorizationGrants": [
               "authorization_code",
               "implicit"
-            ]
+            ],
+            "sourceMap": {
+              "path": "security-schemes.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "security-schemes.raml"
           }
         }
       },
@@ -82,7 +103,13 @@
           "settings": {
             "requestTokenUri": "https://api.dropbox.com/1/oauth/request_token",
             "authorizationUri": "https://www.dropbox.com/1/oauth/authorize",
-            "tokenCredentialsUri": "https://api.dropbox.com/1/oauth/access_token"
+            "tokenCredentialsUri": "https://api.dropbox.com/1/oauth/access_token",
+            "sourceMap": {
+              "path": "security-schemes.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "security-schemes.raml"
           }
         }
       }
@@ -118,6 +145,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "security-schemes.raml"
         }
       }
     },
@@ -130,6 +160,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "security-schemes.raml"
     }
   },
   "errors": []

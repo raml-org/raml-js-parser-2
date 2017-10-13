@@ -27,6 +27,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "application/vnd.xara": {
@@ -45,6 +48,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "audio/EVRCB": {
@@ -63,6 +69,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "audio/vnd.dts": {
@@ -81,6 +90,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "image/tiff": {
@@ -99,6 +111,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "message/global": {
@@ -117,6 +132,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "model/vnd.moml+xml": {
@@ -135,6 +153,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "multipart/voice-message": {
@@ -153,6 +174,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "text/turtle": {
@@ -171,6 +195,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "video/JPEG": {
@@ -189,6 +216,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   },
                   "mime/type": {
@@ -207,12 +237,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "methResp03.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "methResp03.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "methResp03.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -224,12 +263,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "methResp03.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "methResp03.raml"
+    }
   },
   "errors": [
     {

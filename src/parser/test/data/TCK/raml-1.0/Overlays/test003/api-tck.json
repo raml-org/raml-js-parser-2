@@ -3,7 +3,10 @@
   "type": "Overlay",
   "specification": {
     "title": "Pet Shop Overlay",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": []
 }

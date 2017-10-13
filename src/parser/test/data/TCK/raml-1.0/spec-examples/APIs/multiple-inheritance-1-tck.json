@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "multiple-inheritance-1.raml"
               }
             }
           },
@@ -38,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-1.raml"
           }
         }
       },
@@ -67,6 +73,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "multiple-inheritance-1.raml"
               }
             }
           },
@@ -76,6 +85,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-1.raml"
           }
         }
       },
@@ -94,11 +106,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-1.raml"
           }
         }
       }
     ],
-    "title": "Simple Mulitple Inheritance"
+    "title": "Simple Mulitple Inheritance",
+    "sourceMap": {
+      "path": "multiple-inheritance-1.raml"
+    }
   },
   "errors": []
 }

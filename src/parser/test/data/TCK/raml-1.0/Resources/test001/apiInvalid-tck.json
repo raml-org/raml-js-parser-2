@@ -32,8 +32,14 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
@@ -47,6 +53,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         ],
@@ -74,6 +83,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
                 },
@@ -87,6 +99,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             ],
@@ -98,6 +113,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             },
             "relativeUriPathSegments": [
               "anotherChild"
@@ -111,6 +129,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
         },
         "relativeUriPathSegments": [
           "someChildUri"
@@ -127,6 +148,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "someChildUri",
           "anotherChild"
@@ -140,6 +164,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "errors": [

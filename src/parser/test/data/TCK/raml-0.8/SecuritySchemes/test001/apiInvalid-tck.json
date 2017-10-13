@@ -8,10 +8,16 @@
       {
         "auth": {
           "name": "auth",
-          "type": "n-sls"
+          "type": "n-sls",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

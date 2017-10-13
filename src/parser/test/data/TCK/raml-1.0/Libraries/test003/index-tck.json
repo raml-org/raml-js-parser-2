@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "files",
-        "value": "libraries/files.raml"
+        "value": "libraries/files.raml",
+        "sourceMap": {
+          "path": "index.raml"
+        }
       }
     ],
     "traits": [
@@ -14,6 +17,9 @@
           "name": "files.hello",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "libraries/files.raml"
           }
         }
       }
@@ -22,11 +28,17 @@
       {
         "file": {
           "name": "file",
+          "sourceMap": {
+            "path": "files-resource.raml"
+          },
           "get": {
             "is": [
               "files.hello"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "files-resource.raml"
+            }
           }
         }
       }
@@ -39,7 +51,10 @@
             "is": [
               "files.hello"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "files-resource.raml"
+            }
           }
         ],
         "type": "file",
@@ -52,12 +67,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "index.raml"
+        },
         "relativeUriPathSegments": [
           "files"
         ],
         "absoluteUri": "/files"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "index.raml"
+    }
   },
   "errors": []
 }

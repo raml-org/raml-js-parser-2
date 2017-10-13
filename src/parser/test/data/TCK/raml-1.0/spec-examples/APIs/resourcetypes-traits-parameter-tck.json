@@ -27,10 +27,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "resourcetypes-traits-parameter.raml"
               }
             }
           },
-          "name": "secured"
+          "name": "secured",
+          "sourceMap": {
+            "path": "resourcetypes-traits-parameter.raml"
+          }
         }
       },
       {
@@ -57,10 +63,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "resourcetypes-traits-parameter.raml"
               }
             }
           },
-          "name": "paged"
+          "name": "paged",
+          "sourceMap": {
+            "path": "resourcetypes-traits-parameter.raml"
+          }
         }
       }
     ],
@@ -68,6 +80,9 @@
       {
         "searchableCollection": {
           "name": "searchableCollection",
+          "sourceMap": {
+            "path": "resourcetypes-traits-parameter.raml"
+          },
           "get": {
             "queryParameters": {
               "<<queryParamName>>": {
@@ -91,6 +106,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
                 }
               },
               "<<fallbackParamName>>": {
@@ -114,10 +132,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameter.raml"
+            }
           }
         }
       }
@@ -150,6 +174,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
                 }
               },
               "digest_all_fields": {
@@ -173,6 +200,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
                 }
               },
               "access_token": {
@@ -196,6 +226,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
                 }
               },
               "numPages": {
@@ -219,6 +252,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameter.raml"
                 }
               }
             },
@@ -234,7 +270,10 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameter.raml"
+            }
           }
         ],
         "type": {
@@ -252,12 +291,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "resourcetypes-traits-parameter.raml"
+        },
         "relativeUriPathSegments": [
           "books"
         ],
         "absoluteUri": "/books"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "resourcetypes-traits-parameter.raml"
+    }
   },
   "errors": []
 }

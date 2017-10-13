@@ -6,14 +6,20 @@
     "traits": [
       {
         "tr1": {
-          "name": "tr1"
+          "name": "tr1",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
     "resourceTypes": [
       {
         "rt1": {
-          "name": "rt1"
+          "name": "rt1",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -34,7 +40,10 @@
                   "param": "stringValue"
                 }
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -45,12 +54,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

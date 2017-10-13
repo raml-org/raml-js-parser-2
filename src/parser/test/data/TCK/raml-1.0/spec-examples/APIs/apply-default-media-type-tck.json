@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apply-default-media-type.raml"
           }
         }
       },
@@ -40,6 +43,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apply-default-media-type.raml"
           }
         }
       }
@@ -72,6 +78,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "apply-default-media-type.raml"
+                    },
                     "items": "Person"
                   },
                   "application/xml": {
@@ -88,12 +97,21 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "apply-default-media-type.raml"
+                    },
                     "items": "Person"
                   }
+                },
+                "sourceMap": {
+                  "path": "apply-default-media-type.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apply-default-media-type.raml"
+            }
           }
         ],
         "relativeUri": "/list",
@@ -104,6 +122,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apply-default-media-type.raml"
         },
         "relativeUriPathSegments": [
           "list"
@@ -127,10 +148,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apply-default-media-type.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "apply-default-media-type.raml"
+            }
           }
         ],
         "relativeUri": "/send",
@@ -142,12 +169,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apply-default-media-type.raml"
+        },
         "relativeUriPathSegments": [
           "send"
         ],
         "absoluteUri": "/send"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apply-default-media-type.raml"
+    }
   },
   "errors": []
 }

@@ -20,11 +20,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "default-type-object.raml"
           }
         }
       }
     ],
-    "title": "Default type object"
+    "title": "Default type object",
+    "sourceMap": {
+      "path": "default-type-object.raml"
+    }
   },
   "errors": []
 }

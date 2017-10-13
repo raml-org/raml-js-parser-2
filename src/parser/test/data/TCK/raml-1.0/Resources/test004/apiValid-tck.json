@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "age": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -92,6 +101,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"name\": \"john\",\n  \"age\": 34\n}",
                       "strict": true,
@@ -99,9 +111,15 @@
                       "structuredValue": {
                         "name": "john",
                         "age": 34
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
@@ -115,6 +133,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         ],
@@ -136,6 +157,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         },
@@ -147,6 +171,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiValid.raml"
         },
         "relativeUriPathSegments": [
           "someChildUri",
@@ -161,6 +188,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiValid.raml"
     }
   },
   "errors": []

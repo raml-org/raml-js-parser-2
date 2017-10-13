@@ -32,8 +32,14 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
@@ -47,6 +53,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         ],
@@ -72,6 +81,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           },
           "blah": {
@@ -91,6 +103,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         },
@@ -102,6 +117,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
         },
         "relativeUriPathSegments": [
           "someChildUri",
@@ -116,6 +134,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "errors": [

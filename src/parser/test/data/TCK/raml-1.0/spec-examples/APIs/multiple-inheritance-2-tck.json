@@ -18,6 +18,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-2.raml"
           }
         }
       },
@@ -36,6 +39,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-2.raml"
           }
         }
       },
@@ -54,11 +60,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-inheritance-2.raml"
           }
         }
       }
     ],
-    "title": "Mulitple Inheritance using the types"
+    "title": "Mulitple Inheritance using the types",
+    "sourceMap": {
+      "path": "multiple-inheritance-2.raml"
+    }
   },
   "errors": []
 }

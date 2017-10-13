@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "input.raml"
           }
         }
       },
@@ -40,6 +43,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "input.raml"
           }
         }
       },
@@ -61,11 +67,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "input.raml"
           }
         }
       }
     ],
-    "title": "TestRAML"
+    "title": "TestRAML",
+    "sourceMap": {
+      "path": "input.raml"
+    }
   },
   "errors": [
     {

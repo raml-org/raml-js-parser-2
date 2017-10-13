@@ -8,9 +8,15 @@
           "description": "A collection resource",
           "name": "collection",
           "usage": "Use this to describe a resource that lists items",
+          "sourceMap": {
+            "path": "resourceTypes/collection.raml"
+          },
           "get": {
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
           "post": {
             "responses": {
@@ -37,13 +43,22 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         }
       }
@@ -54,7 +69,10 @@
         "methods": [
           {
             "description": "Retrieve all items",
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           },
           {
             "responses": {
@@ -81,13 +99,22 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
             "description": "Add an item",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": "collection",
@@ -101,12 +128,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "fragments-simple.raml"
+        },
         "relativeUriPathSegments": [
           "products"
         ],
         "absoluteUri": "/products"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "fragments-simple.raml"
+    }
   },
   "errors": []
 }

@@ -49,6 +49,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "api.raml"
+              },
               "items": "number"
             },
             "items2": {
@@ -69,6 +72,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               },
               "items": "number"
             },
@@ -91,6 +97,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "api.raml"
+              },
               "items": "number"
             }
           },
@@ -103,6 +112,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           },
           "structuredExample": {
             "value": "{\n  \"items\": [\n    1,\n    2,\n    3\n  ],\n  \"items2\": [\n    3,\n    1,\n    4,\n    5\n  ],\n  \"items3\": [\n    1,\n    2,\n    1\n  ]\n}",
@@ -125,12 +137,18 @@
                 2,
                 1
               ]
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

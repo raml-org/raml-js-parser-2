@@ -27,6 +27,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "trailing-slashes.raml"
+                },
                 "relativeUriPathSegments": [
                   "groups",
                   "",
@@ -42,6 +45,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "trailing-slashes.raml"
+            },
             "relativeUriPathSegments": [
               "users",
               ""
@@ -56,6 +62,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "trailing-slashes.raml"
+        },
         "relativeUriPathSegments": [],
         "absoluteUri": "//api.test.com//common//"
       }
@@ -66,6 +75,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "trailing-slashes.raml"
     }
   },
   "errors": []

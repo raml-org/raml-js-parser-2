@@ -22,7 +22,10 @@
               "required": true,
               "xml": {
                 "attribute": true,
-                "name": "fullname"
+                "name": "fullname",
+                "sourceMap": {
+                  "path": "xml-facet.raml"
+                }
               },
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -33,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "xml-facet.raml"
               }
             },
             "addresses": {
@@ -44,7 +50,10 @@
               ],
               "required": true,
               "xml": {
-                "wrapped": true
+                "wrapped": true,
+                "sourceMap": {
+                  "path": "xml-facet.raml"
+                }
               },
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -55,6 +64,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "xml-facet.raml"
               },
               "items": "Address"
             }
@@ -68,6 +80,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "xml-facet.raml"
           }
         }
       },
@@ -97,6 +112,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "xml-facet.raml"
               }
             },
             "city": {
@@ -116,6 +134,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "xml-facet.raml"
               }
             }
           },
@@ -128,11 +149,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "xml-facet.raml"
           }
         }
       }
     ],
-    "title": "XML facet"
+    "title": "XML facet",
+    "sourceMap": {
+      "path": "xml-facet.raml"
+    }
   },
   "errors": []
 }

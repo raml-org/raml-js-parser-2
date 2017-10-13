@@ -41,6 +41,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "input": {
@@ -63,6 +66,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "output": {
@@ -85,6 +91,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -97,10 +106,16 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           "__METADATA__": {
             "primitiveValuesMeta": {}
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -135,6 +150,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

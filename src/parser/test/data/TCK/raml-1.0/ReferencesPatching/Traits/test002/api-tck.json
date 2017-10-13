@@ -5,11 +5,17 @@
     "uses": [
       {
         "key": "typesLib",
-        "value": "libraries/types.raml"
+        "value": "libraries/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib2",
-        "value": "libraries/annotations.raml"
+        "value": "libraries/annotations.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -35,10 +41,16 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/trait.raml"
               }
             }
           },
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "traits/trait.raml"
+          }
         }
       }
     ],
@@ -77,6 +89,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
                   "strict": true,
@@ -84,6 +99,9 @@
                   "structuredValue": {
                     "p1": "stringValue",
                     "p2": 10
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 }
               }
@@ -98,6 +116,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -113,6 +134,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
@@ -125,6 +149,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "bodies.raml"
               }
             },
             "lastName": {
@@ -54,6 +57,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "bodies.raml"
               }
             }
           },
@@ -66,6 +72,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "bodies.raml"
           }
         }
       }
@@ -90,10 +99,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "bodies.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "bodies.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -104,6 +119,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "bodies.raml"
         },
         "relativeUriPathSegments": [
           "users"
@@ -142,6 +160,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "bodies.raml"
                     }
                   },
                   "deptCode": {
@@ -161,6 +182,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "bodies.raml"
                     }
                   }
                 },
@@ -173,6 +197,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "bodies.raml"
                 }
               },
               "text/xml": {
@@ -180,6 +207,9 @@
                 "displayName": "text/xml",
                 "typePropertyKind": "XML",
                 "schemaPath": "schemas/group.xsd",
+                "sourceMap": {
+                  "path": "schemas/group.xsd"
+                },
                 "type": [
                   "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"group\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"name\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                 ],
@@ -192,7 +222,10 @@
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "bodies.raml"
+            }
           }
         ],
         "relativeUri": "/groups",
@@ -204,12 +237,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "bodies.raml"
+        },
         "relativeUriPathSegments": [
           "groups"
         ],
         "absoluteUri": "/groups"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "bodies.raml"
+    }
   },
   "errors": []
 }

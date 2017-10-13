@@ -19,15 +19,24 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib.raml"
+          },
           "structuredExample": {
             "value": "false",
             "strict": true,
             "name": null,
-            "structuredValue": false
+            "structuredValue": false,
+            "sourceMap": {
+              "path": "lib.raml"
+            }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

@@ -1,0 +1,50 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "sourceMap": {
+            "path": "rt3.raml"
+          },
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "rt3.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "rt3.raml"
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

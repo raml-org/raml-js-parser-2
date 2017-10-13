@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -53,6 +59,9 @@
               "structuredValue": {
                 "nilProp_1": null,
                 "nilProp_2": null
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             {
@@ -62,6 +71,9 @@
               "structuredValue": {
                 "nilProp_1": null,
                 "nilProp_2": null
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             {
@@ -71,6 +83,9 @@
               "structuredValue": {
                 "nilProp_1": null,
                 "nilProp_2": null
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             {
@@ -80,6 +95,9 @@
               "structuredValue": {
                 "nilProp_1": null,
                 "nilProp_2": null
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           ],
@@ -101,6 +119,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "nilProp_2": {
@@ -120,6 +141,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -132,11 +156,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

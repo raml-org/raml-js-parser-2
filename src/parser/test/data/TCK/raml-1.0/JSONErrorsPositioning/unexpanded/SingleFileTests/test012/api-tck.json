@@ -15,7 +15,10 @@
             {
               "value": "{\"arrayProp\":[{\"prop1\":13,\"prop2\": true},{\"prop1\": 13\"prop2\":false}]}",
               "strict": true,
-              "name": "ex1"
+              "name": "ex1",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "value": "{\"arrayProp\":[{\"prop1\": 13,\"prop2\": false},{\"prop1\": 13,\"prop2\": false}]}",
@@ -32,6 +35,9 @@
                     "prop2": false
                   }
                 ]
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           ],
@@ -41,11 +47,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

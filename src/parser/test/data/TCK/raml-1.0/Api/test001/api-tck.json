@@ -2,7 +2,10 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "title": "test"
+    "title": "test",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

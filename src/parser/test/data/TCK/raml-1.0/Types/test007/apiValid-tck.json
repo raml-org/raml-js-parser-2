@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -58,6 +61,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "unionArray2": {
@@ -77,6 +83,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -86,6 +95,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           },
           "structuredExample": {
             "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
@@ -102,12 +114,18 @@
                 "blah",
                 "blah"
               ]
+            },
+            "sourceMap": {
+              "path": "apiValid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

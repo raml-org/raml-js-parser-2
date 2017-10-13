@@ -5,9 +5,15 @@
     "title": "test API",
     "schemas": [
       {
-        "example-schema": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n"
+        "example-schema": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

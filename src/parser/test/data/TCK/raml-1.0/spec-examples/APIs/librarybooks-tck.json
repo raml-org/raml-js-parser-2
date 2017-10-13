@@ -7,7 +7,10 @@
       {
         "methods": [
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "librarybooks.raml"
+            }
           }
         ],
         "description": "The collection of library books",
@@ -20,6 +23,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        },
         "relativeUriPathSegments": [
           "books"
         ],
@@ -29,13 +35,22 @@
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books"
+        "content": "Automated access to books",
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books."
+        "content": "Please respect copyrights on our books.",
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "librarybooks.raml"
+    }
   },
   "errors": []
 }

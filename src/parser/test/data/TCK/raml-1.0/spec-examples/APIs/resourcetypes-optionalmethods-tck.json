@@ -6,6 +6,9 @@
       {
         "corpResource": {
           "name": "corpResource",
+          "sourceMap": {
+            "path": "resourcetypes-optionalmethods.raml"
+          },
           "post": {
             "headers": {
               "X-Chargeback": {
@@ -25,6 +28,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-optionalmethods.raml"
                 }
               }
             },
@@ -32,6 +38,9 @@
             "method": "post",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourcetypes-optionalmethods.raml"
             }
           }
         }
@@ -42,7 +51,10 @@
       {
         "methods": [
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourcetypes-optionalmethods.raml"
+            }
           },
           {
             "headers": {
@@ -63,11 +75,17 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-optionalmethods.raml"
                 }
               }
             },
             "description": "Some info about post method.",
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourcetypes-optionalmethods.raml"
+            }
           }
         ],
         "type": {
@@ -84,6 +102,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "resourcetypes-optionalmethods.raml"
+        },
         "relativeUriPathSegments": [
           "servers"
         ],
@@ -92,7 +113,10 @@
       {
         "methods": [
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourcetypes-optionalmethods.raml"
+            }
           }
         ],
         "type": "corpResource",
@@ -105,12 +129,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "resourcetypes-optionalmethods.raml"
+        },
         "relativeUriPathSegments": [
           "queues"
         ],
         "absoluteUri": "/queues"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "resourcetypes-optionalmethods.raml"
+    }
   },
   "errors": []
 }

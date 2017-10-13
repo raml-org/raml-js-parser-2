@@ -36,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "null-type-union.raml"
               }
             },
             "comment": {
@@ -55,6 +58,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "null-type-union.raml"
               }
             }
           },
@@ -65,6 +71,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "null-type-union.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"Fred\",\n  \"comment\": null\n}",
             "strict": true,
@@ -72,12 +81,18 @@
             "structuredValue": {
               "name": "Fred",
               "comment": null
+            },
+            "sourceMap": {
+              "path": "null-type-union.raml"
             }
           }
         }
       }
     ],
-    "title": "Using null type and union"
+    "title": "Using null type and union",
+    "sourceMap": {
+      "path": "null-type-union.raml"
+    }
   },
   "errors": []
 }

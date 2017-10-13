@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "object-type-short.raml"
               }
             },
             "age": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "object-type-short.raml"
               }
             }
           },
@@ -60,12 +66,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "object-type-short.raml"
           }
         }
       }
     ],
     "title": "My API With Types",
-    "description": "This RAML illustrates a type declaration that uses shortcuts to restrict its object properties."
+    "description": "This RAML illustrates a type declaration that uses shortcuts to restrict its object properties.",
+    "sourceMap": {
+      "path": "object-type-short.raml"
+    }
   },
   "errors": []
 }

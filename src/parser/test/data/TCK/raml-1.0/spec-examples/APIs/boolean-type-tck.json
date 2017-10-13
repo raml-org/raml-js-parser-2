@@ -17,11 +17,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "boolean-type.raml"
           }
         }
       }
     ],
-    "title": "Boolean Type"
+    "title": "Boolean Type",
+    "sourceMap": {
+      "path": "boolean-type.raml"
+    }
   },
   "errors": []
 }

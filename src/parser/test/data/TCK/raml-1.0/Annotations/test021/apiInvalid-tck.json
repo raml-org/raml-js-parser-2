@@ -20,6 +20,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -44,7 +47,13 @@
             },
             "requestTokenUri": "https://example.com/requesttoken",
             "authorizationUri": "https://example.com/authorize",
-            "tokenCredentialsUri": "https://example.com/credentials"
+            "tokenCredentialsUri": "https://example.com/credentials",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -61,6 +70,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "errors": [

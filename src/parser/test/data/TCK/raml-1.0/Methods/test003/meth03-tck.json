@@ -7,25 +7,46 @@
       {
         "methods": [
           {
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           },
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           },
           {
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           },
           {
-            "method": "options"
+            "method": "options",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           },
           {
-            "method": "head"
+            "method": "head",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           },
           {
-            "method": "patch"
+            "method": "patch",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           },
           {
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "meth03.raml"
+            }
           }
         ],
         "relativeUri": "/methods",
@@ -37,12 +58,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth03.raml"
+        },
         "relativeUriPathSegments": [
           "methods"
         ],
         "absoluteUri": "/methods"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth03.raml"
+    }
   },
   "errors": [
     {

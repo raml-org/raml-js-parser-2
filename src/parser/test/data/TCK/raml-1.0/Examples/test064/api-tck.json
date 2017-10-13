@@ -41,6 +41,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -54,6 +57,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"body\": {\n    \"id\": 7\n  }\n}",
                       "strict": true,
@@ -62,13 +68,22 @@
                         "body": {
                           "id": 7
                         }
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/login",
@@ -80,12 +95,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "login"
         ],
         "absoluteUri": "/login"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

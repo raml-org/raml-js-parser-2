@@ -19,19 +19,31 @@
     "uses": [
       {
         "key": "lib2",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "o2.raml"
+        }
       },
       {
         "key": "lib1",
-        "value": "lib1.raml"
+        "value": "lib1.raml",
+        "sourceMap": {
+          "path": "o1.raml"
+        }
       },
       {
         "key": "lib0",
-        "value": "lib0.raml"
+        "value": "lib0.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "test API",
-    "extends": "o1.raml"
+    "extends": "o1.raml",
+    "sourceMap": {
+      "path": "o2.raml"
+    }
   },
   "errors": []
 }

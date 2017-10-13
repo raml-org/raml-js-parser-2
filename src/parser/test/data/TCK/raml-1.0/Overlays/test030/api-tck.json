@@ -26,12 +26,18 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
           "name": "tr1",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -62,13 +68,19 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
             "is": [
               "tr1"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -80,13 +92,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
     ],
-    "extends": "o1.raml"
+    "extends": "o1.raml",
+    "sourceMap": {
+      "path": "o2.raml"
+    }
   },
   "errors": []
 }

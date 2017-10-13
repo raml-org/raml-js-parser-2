@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewOverlay.raml"
               }
             }
           },
@@ -41,12 +44,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "NewOverlay.raml"
           }
         }
       }
     ],
     "title": "Pet Shop Overlay",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": []
 }

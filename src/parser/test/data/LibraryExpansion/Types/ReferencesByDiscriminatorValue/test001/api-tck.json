@@ -28,6 +28,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "[\n  {\n    \"kind\": \"t1\",\n    \"value\": 15\n  },\n  {\n    \"kind\": \"t2\",\n    \"value\": 17\n  }\n]",
             "strict": true,
@@ -41,7 +44,10 @@
                 "kind": "t2",
                 "value": 17
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           "items": "lib.Base"
         }
@@ -72,6 +78,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             },
             "value": {
@@ -91,6 +100,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             }
           },
@@ -104,6 +116,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
@@ -122,6 +137,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
@@ -140,11 +158,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

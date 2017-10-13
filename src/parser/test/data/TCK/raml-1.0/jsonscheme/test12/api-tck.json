@@ -9,6 +9,9 @@
           "displayName": "Foo",
           "typePropertyKind": "JSON",
           "schemaPath": "schema.json#Foo",
+          "sourceMap": {
+            "path": "schema.json#Foo"
+          },
           "type": [
             "{\n  \"$ref\": \"./schema.json#/Foo\"\n}"
           ],
@@ -47,6 +50,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"id\": 1,\n  \"name\": \"stringValue\",\n  \"ownerName\": \"stringValue\"\n}",
                   "strict": true,
@@ -55,11 +61,17 @@
                     "id": 1,
                     "name": "stringValue",
                     "ownerName": "stringValue"
+                  },
+                  "sourceMap": {
+                    "path": "api.raml"
                   }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -71,12 +83,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

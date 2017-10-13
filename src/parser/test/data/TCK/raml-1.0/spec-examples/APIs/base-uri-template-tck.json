@@ -33,6 +33,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "base-uri-template.raml"
         }
       }
     },
@@ -45,6 +48,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "base-uri-template.raml"
     }
   },
   "errors": []

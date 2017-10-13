@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       },
@@ -49,6 +52,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "dependencies/type.raml"
               }
             },
             "p2": {
@@ -68,13 +74,19 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "dependencies/type.raml"
               }
             }
           },
           "uses": [
             {
               "key": "lib",
-              "value": "../lib.raml"
+              "value": "../lib.raml",
+              "sourceMap": {
+                "path": "dependencies/type.raml"
+              }
             }
           ],
           "__METADATA__": {
@@ -86,10 +98,16 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "dependencies/type.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

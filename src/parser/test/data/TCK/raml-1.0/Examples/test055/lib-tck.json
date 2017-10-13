@@ -36,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             },
             "size": {
@@ -55,6 +58,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             }
           },
@@ -65,6 +71,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "lib.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"Fred\",\n  \"size\": 0\n}",
             "strict": true,
@@ -72,11 +81,17 @@
             "structuredValue": {
               "name": "Fred",
               "size": 0
+            },
+            "sourceMap": {
+              "path": "lib.raml"
             }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

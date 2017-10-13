@@ -6,6 +6,9 @@
       {
         "thingy": {
           "name": "thingy",
+          "sourceMap": {
+            "path": "parameter-as-key-rt-mediatype.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -24,12 +27,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "parameter-as-key-rt-mediatype.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "parameter-as-key-rt-mediatype.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "parameter-as-key-rt-mediatype.raml"
+            }
           }
         }
       }
@@ -56,12 +68,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "parameter-as-key-rt-mediatype.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "parameter-as-key-rt-mediatype.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "parameter-as-key-rt-mediatype.raml"
+            }
           }
         ],
         "type": {
@@ -78,12 +99,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "parameter-as-key-rt-mediatype.raml"
+        },
         "relativeUriPathSegments": [
           "books"
         ],
         "absoluteUri": "/books"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "parameter-as-key-rt-mediatype.raml"
+    }
   },
   "errors": []
 }

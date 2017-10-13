@@ -15,12 +15,21 @@
                   "application/json": {
                     "name": "application/json",
                     "schema": "{\"name\": \"someName\"}\n",
-                    "schemaContent": "{\"name\": \"someName\"}\n"
+                    "schemaContent": "{\"name\": \"someName\"}\n",
+                    "sourceMap": {
+                      "path": "methResp06.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "methResp06.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "methResp06.raml"
+            }
           }
         ],
         "displayName": "/test",
@@ -31,12 +40,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "methResp06.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "methResp06.raml"
+    }
   },
   "errors": []
 }

@@ -13,10 +13,23 @@
                 "name": "application/json",
                 "schema": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"boolean\"\n}\n",
                 "example": "true",
-                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"boolean\"\n}\n"
+                "schemaContent": "{\n  \"id\": \"http://api.reference/configLogLevel.schema\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Log Level\",\n  \"type\": \"boolean\"\n}\n",
+                "sourceMap": {
+                  "scalarsSources": {
+                    "schema": [
+                      {
+                        "path": "schema.json"
+                      }
+                    ]
+                  },
+                  "path": "api.raml"
+                }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -27,12 +40,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

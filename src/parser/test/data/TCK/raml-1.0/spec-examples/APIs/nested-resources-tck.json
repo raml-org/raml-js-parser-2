@@ -16,12 +16,18 @@
           {
             "relativeUri": "/public",
             "displayName": "Public Gists",
+            "sourceMap": {
+              "path": "nested-resources.raml"
+            },
             "relativeUriPathSegments": [
               "public"
             ],
             "absoluteUri": "https://api.github.com/gists/public"
           }
         ],
+        "sourceMap": {
+          "path": "nested-resources.raml"
+        },
         "relativeUriPathSegments": [
           "gists"
         ],
@@ -34,6 +40,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "nested-resources.raml"
     }
   },
   "errors": []

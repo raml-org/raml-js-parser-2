@@ -18,6 +18,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test5.raml"
           }
         }
       },
@@ -36,6 +39,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test5.raml"
           }
         }
       },
@@ -65,6 +71,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test5.raml"
               }
             }
           },
@@ -77,6 +86,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test5.raml"
           }
         }
       },
@@ -106,6 +118,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "test5.raml"
               }
             }
           },
@@ -115,11 +130,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "test5.raml"
           }
         }
       }
     ],
-    "title": "test"
+    "title": "test",
+    "sourceMap": {
+      "path": "test5.raml"
+    }
   },
   "errors": []
 }

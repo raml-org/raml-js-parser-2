@@ -17,6 +17,9 @@
               "strict": true,
               "structuredValue": {
                 "p1": 5
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             {
@@ -24,6 +27,9 @@
               "strict": true,
               "structuredValue": {
                 "p1": 8
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           ],
@@ -45,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -57,10 +66,16 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

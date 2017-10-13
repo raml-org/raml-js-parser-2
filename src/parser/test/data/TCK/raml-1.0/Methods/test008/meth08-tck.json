@@ -9,7 +9,10 @@
           {
             "responses": {
               "201": {
-                "code": "201"
+                "code": "201",
+                "sourceMap": {
+                  "path": "meth08.raml"
+                }
               }
             },
             "body": {
@@ -29,6 +32,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth08.raml"
                 }
               }
             },
@@ -37,7 +43,10 @@
               "FTP",
               "SMTP"
             ],
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth08.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -49,12 +58,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth08.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth08.raml"
+    }
   },
   "errors": [
     {

@@ -6,7 +6,10 @@
       {
         "bar": {
           "name": "bar",
-          "usage": "bar usage"
+          "usage": "bar usage",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -50,6 +53,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -59,6 +65,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -72,6 +81,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -84,12 +96,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "baz"
         ],
         "absoluteUri": "https://example.com/baz"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

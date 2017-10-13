@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "myTypes.raml"
           }
         }
       },
@@ -40,11 +43,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "myTypes.raml"
           }
         }
       }
     ],
-    "title": "My API with Types"
+    "title": "My API with Types",
+    "sourceMap": {
+      "path": "includes.raml"
+    }
   },
   "errors": []
 }

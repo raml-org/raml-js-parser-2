@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "types",
-        "value": "types.raml"
+        "value": "types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -35,11 +38,17 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/acceptCallback.raml"
+              },
               "structuredExample": {
                 "value": "callbackFunction",
                 "strict": true,
                 "name": null,
-                "structuredValue": "callbackFunction"
+                "structuredValue": "callbackFunction",
+                "sourceMap": {
+                  "path": "traits/acceptCallback.raml"
+                }
               }
             }
           },
@@ -54,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "traits/acceptCallback.raml"
           }
         }
       },
@@ -78,6 +90,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByGeoPoint.raml"
               }
             },
             "lng": {
@@ -98,6 +113,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByGeoPoint.raml"
               }
             },
             "distance": {
@@ -120,6 +138,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByGeoPoint.raml"
               }
             }
           },
@@ -134,6 +155,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "traits/limitableByGeoPoint.raml"
           }
         }
       },
@@ -160,11 +184,17 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "traits/limitable.raml"
+              },
               "structuredExample": {
                 "value": "1",
                 "strict": true,
                 "name": null,
-                "structuredValue": 1
+                "structuredValue": 1,
+                "sourceMap": {
+                  "path": "traits/limitable.raml"
+                }
               }
             }
           },
@@ -179,6 +209,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "traits/limitable.raml"
           }
         }
       },
@@ -203,6 +236,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByTime.raml"
               }
             },
             "min_timestamp": {
@@ -223,6 +259,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableByTime.raml"
               }
             }
           },
@@ -237,6 +276,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "traits/limitableByTime.raml"
           }
         }
       },
@@ -261,6 +303,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableById.raml"
               }
             },
             "max_id": {
@@ -281,6 +326,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "traits/limitableById.raml"
               }
             }
           },
@@ -295,6 +343,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "traits/limitableById.raml"
           }
         }
       }
@@ -313,6 +364,9 @@
             }
           ],
           "name": "usersListing",
+          "sourceMap": {
+            "path": "resourceTypes/usersListing.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -357,6 +411,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/usersListing.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
                       "strict": true,
@@ -385,9 +442,15 @@
                             "last_name": "Tiddy"
                           }
                         ]
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/usersListing.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/usersListing.raml"
                 }
               }
             },
@@ -407,6 +470,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/usersListing.raml"
             }
           }
         }
@@ -425,6 +491,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "resourceTypes/mediaSearch.raml"
           },
           "get": {
             "responses": {
@@ -539,6 +608,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/mediaSearch.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"data\": {\n        \"distance\" : 50,\n        \"type\": \"image\",\n        \"users_in_photo\": [{\n            \"user\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n            },\n            \"position\": {\n                \"x\": 0.315,\n                \"y\": 0.9111\n            }\n        }],\n        \"filter\": \"Walden\",\n        \"tags\": [],\n        \"comments\": {\n            \"data\": [{\n                \"created_time\": \"1279332030\",\n                \"text\": \"Love the sign here\",\n                \"from\": {\n                    \"username\": \"mikeyk\",\n                    \"full_name\": \"Mikey Krieger\",\n                    \"id\": \"4\",\n                    \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n                },\n                \"id\": \"8\"\n            }],\n            \"count\": 2\n        },\n        \"caption\": {\n            \"created_time\": \"1296710352\",\n            \"text\": \"Inside le truc #foodtruck\",\n            \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin Systrom\",\n                \"type\": \"user\",\n                \"id\": \"3\"\n            },\n            \"id\": \"26621408\"\n        },\n        \"likes\": {\n            \"count\": 1,\n            \"data\": [{\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikeyk\",\n                \"id\": \"4\",\n                \"profile_picture\": \"...\"\n            }]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"profile_picture\": \"...\",\n            \"bio\": \"...\",\n            \"website\": \"...\",\n            \"id\": \"3\"\n        },\n        \"created_time\": \"1279340983\",\n        \"images\": {\n            \"low_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\n                \"width\": 306,\n                \"height\": 306\n            },\n            \"thumbnail\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\n                \"width\": 150,\n                \"height\": 150\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\n                \"width\": 612,\n                \"height\": 612\n            }\n        },\n        \"id\": \"3\",\n        \"location\": {\n            \"id\": \"id\",\n            \"latitude\": -34,\n            \"longitude\": -53,\n            \"name\": \"some place\"\n        }\n    }\n}\n",
                       "strict": true,
@@ -636,9 +708,15 @@
                             "name": "some place"
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/mediaSearch.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/mediaSearch.raml"
                 }
               }
             },
@@ -653,6 +731,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/mediaSearch.raml"
             }
           }
         }
@@ -670,6 +751,9 @@
             }
           ],
           "name": "secured",
+          "sourceMap": {
+            "path": "resourceTypes/secured.raml"
+          },
           "delete": {
             "responses": {
               "200": {
@@ -698,6 +782,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/secured.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                       "strict": true,
@@ -707,9 +794,15 @@
                           "code": 200
                         },
                         "data": null
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/secured.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/secured.raml"
                 }
               }
             },
@@ -725,6 +818,9 @@
             "method": "delete",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/secured.raml"
             }
           },
           "post": {
@@ -752,6 +848,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/secured.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                       "strict": true,
@@ -761,9 +860,15 @@
                           "code": 200
                         },
                         "data": null
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/secured.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/secured.raml"
                 }
               }
             },
@@ -779,6 +884,9 @@
             "method": "post",
             "__METADATA__": {
               "optional": true
+            },
+            "sourceMap": {
+              "path": "resourceTypes/secured.raml"
             }
           }
         }
@@ -797,11 +905,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "resourceTypes/base.raml"
+          },
           "delete": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "securedBy": [
@@ -816,13 +930,19 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           },
           "post": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "securedBy": [
@@ -837,13 +957,19 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           },
           "get": {
             "responses": {
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "is": [
@@ -862,6 +988,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/base.raml"
             }
           }
         }
@@ -880,6 +1009,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "resourceTypes/feedsListing.raml"
           },
           "get": {
             "responses": {
@@ -1085,6 +1217,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "resourceTypes/feedsListing.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"data\": [\n    {\n      \"distance\": 50,\n      \"location\": {\n        \"id\": \"833\",\n        \"latitude\": 37.77956816727314,\n        \"longitude\": -122.41387367248539,\n        \"street_address\": \"\",\n        \"name\": \"Civic Center BART\"\n      },\n      \"comments\": {\n        \"count\": 16,\n        \"data\": []\n      },\n      \"caption\": {\n        \"created_time\": \"1296710352\",\n        \"text\": \"Inside le truc #foodtruck\",\n        \"from\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin Systrom\",\n          \"type\": \"user\",\n          \"id\": \"3\"\n        },\n        \"id\": \"26621408\"\n      },\n      \"link\": \"http://instagr.am/p/BXsFz/\",\n      \"likes\": {\n        \"count\": 190,\n        \"data\": [\n          {\n            \"username\": \"shayne\",\n            \"full_name\": \"Shayne Sweeney\",\n            \"id\": \"20\",\n            \"profile_picture\": \"...\"\n          },\n          {}\n        ]\n      },\n      \"created_time\": \"1296748524\",\n      \"images\": {\n        \"low_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\n          \"width\": 306,\n          \"height\": 306\n        },\n        \"thumbnail\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\n          \"width\": 150,\n          \"height\": 150\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\n          \"width\": 612,\n          \"height\": 612\n        }\n      },\n      \"type\": \"image\",\n      \"users_in_photo\": [\n        {\n          \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"id\": \"3\",\n            \"profile_picture\": \"...\"\n          },\n          \"position\": {\n            \"x\": 0.315,\n            \"y\": 0.9111\n          }\n        }\n      ],\n      \"filter\": \"Earlybird\",\n      \"tags\": [],\n      \"id\": \"22987123\",\n      \"user\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin S\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n        \"id\": \"3\"\n      }\n    },\n    {\n      \"distance\": 50,\n      \"videos\": {\n        \"low_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\n          \"width\": 480,\n          \"height\": 480\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\n          \"width\": 640,\n          \"height\": 640\n        },\n        \"comments\": {\n          \"data\": [\n            {\n              \"created_time\": \"1279332030\",\n              \"text\": \"Love the sign here\",\n              \"from\": {\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikey Krieger\",\n                \"id\": \"4\",\n                \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n              },\n              \"id\": \"8\"\n            },\n            {\n              \"created_time\": \"1279341004\",\n              \"text\": \"Chilako taco\",\n              \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n              },\n              \"id\": \"3\"\n            }\n          ],\n          \"count\": 2\n        },\n        \"caption\": {\n          \"created_time\": \"1296710352\",\n          \"text\": \"Inside le truc #foodtruck\",\n          \"from\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin Systrom\",\n            \"type\": \"user\",\n            \"id\": \"3\"\n          },\n          \"id\": \"26621408\"\n        },\n        \"likes\": {\n          \"count\": 1,\n          \"data\": [\n            {\n              \"username\": \"mikeyk\",\n              \"full_name\": \"Mikeyk\",\n              \"id\": \"4\",\n              \"profile_picture\": \"...\"\n            }\n          ]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"created_time\": \"1279340983\",\n        \"images\": {\n          \"low_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\n            \"width\": 306,\n            \"height\": 306\n          },\n          \"thumbnail\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\n            \"width\": 150,\n            \"height\": 150\n          },\n          \"standard_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\n            \"width\": 612,\n            \"height\": 612\n          }\n        },\n        \"type\": \"video\",\n        \"users_in_photo\": [],\n        \"filter\": \"Vesper\",\n        \"tags\": [],\n        \"id\": \"363839373298\",\n        \"user\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin S\",\n          \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n          \"id\": \"3\"\n        },\n        \"location\": {\n          \"id\": \"833\",\n          \"latitude\": 37.77956816727314,\n          \"longitude\": -122.41387367248539,\n          \"street_address\": \"\",\n          \"name\": \"Civic Center BART\"\n        }\n      }\n    }\n  ]\n}\n",
                       "strict": true,
@@ -1273,9 +1408,15 @@
                             }
                           }
                         ]
+                      },
+                      "sourceMap": {
+                        "path": "resourceTypes/feedsListing.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/feedsListing.raml"
                 }
               }
             },
@@ -1290,6 +1431,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "resourceTypes/feedsListing.raml"
             }
           }
         }
@@ -1324,8 +1468,14 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "securitySchemes/oauth_2_0.raml"
                 }
               }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
             }
           },
           "settings": {
@@ -1339,7 +1489,13 @@
               "comments",
               "relationships",
               "likes"
-            ]
+            ],
+            "sourceMap": {
+              "path": "securitySchemes/oauth_2_0.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "securitySchemes/oauth_2_0.raml"
           }
         }
       },
@@ -1373,14 +1529,26 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "securitySchemes/clientId.raml"
+                },
                 "structuredExample": {
                   "value": "9e0dbc0a3b8d436ca65ae2df9825c893",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "9e0dbc0a3b8d436ca65ae2df9825c893"
+                  "structuredValue": "9e0dbc0a3b8d436ca65ae2df9825c893",
+                  "sourceMap": {
+                    "path": "securitySchemes/clientId.raml"
+                  }
                 }
               }
+            },
+            "sourceMap": {
+              "path": "securitySchemes/clientId.raml"
             }
+          },
+          "sourceMap": {
+            "path": "securitySchemes/clientId.raml"
           }
         }
       }
@@ -1416,6 +1584,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
     },
@@ -1460,11 +1631,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -1490,11 +1667,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -1515,13 +1698,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -1546,6 +1738,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -1576,6 +1771,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -1606,11 +1804,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -1636,11 +1840,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -1661,13 +1871,22 @@
                                   "calculated": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -1697,6 +1916,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   {
@@ -1724,6 +1946,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/secured.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                               "strict": true,
@@ -1733,14 +1958,23 @@
                                   "code": 200
                                 },
                                 "data": null
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/secured.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/secured.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "body": {
@@ -1770,6 +2004,9 @@
                                   "insertedAsDefault": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
                             }
                           }
                         },
@@ -1782,6 +2019,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -1805,6 +2045,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -1855,6 +2098,9 @@
                                     }
                                   }
                                 },
+                                "sourceMap": {
+                                  "path": "resourceTypes/secured.raml"
+                                },
                                 "structuredExample": {
                                   "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                                   "strict": true,
@@ -1864,15 +2110,24 @@
                                       "code": 200
                                     },
                                     "data": null
+                                  },
+                                  "sourceMap": {
+                                    "path": "resourceTypes/secured.raml"
                                   }
                                 }
                               }
                             },
-                            "description": "Comment removed."
+                            "description": "Comment removed.",
+                            "sourceMap": {
+                              "path": "api.raml"
+                            }
                           },
                           "503": {
                             "code": "503",
-                            "description": "Server Unavailable. Check Your Rate Limits.\n"
+                            "description": "Server Unavailable. Check Your Rate Limits.\n",
+                            "sourceMap": {
+                              "path": "resourceTypes/base.raml"
+                            }
                           }
                         },
                         "protocols": [
@@ -1895,6 +2150,9 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     ],
@@ -1931,6 +2189,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -1942,6 +2203,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     },
                     "relativeUriPathSegments": [
                       "{commentId}"
@@ -1955,6 +2219,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "relativeUriPathSegments": [
                   "comments"
@@ -1985,11 +2252,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -2015,11 +2288,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -2040,13 +2319,22 @@
                                   "calculated": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -2076,6 +2364,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   {
@@ -2103,6 +2394,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/secured.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                               "strict": true,
@@ -2112,15 +2406,24 @@
                                   "code": 200
                                 },
                                 "data": null
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/secured.raml"
                               }
                             }
                           }
                         },
-                        "description": "Successfully liked a media object\n"
+                        "description": "Successfully liked a media object\n",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -2143,6 +2446,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   {
@@ -2173,6 +2479,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/secured.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                               "strict": true,
@@ -2182,18 +2491,30 @@
                                   "code": 200
                                 },
                                 "data": null
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/secured.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/secured.raml"
                         }
                       },
                       "204": {
                         "code": "204",
-                        "description": "Like removed succesfully\n"
+                        "description": "Like removed succesfully\n",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -2216,6 +2537,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -2242,6 +2566,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "relativeUriPathSegments": [
                   "likes"
                 ],
@@ -2257,6 +2584,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{mediaId}"
@@ -2285,6 +2615,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByTime.raml"
                     }
                   },
                   "min_timestamp": {
@@ -2305,6 +2638,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByTime.raml"
                     }
                   },
                   "lat": {
@@ -2325,6 +2661,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByGeoPoint.raml"
                     }
                   },
                   "lng": {
@@ -2345,6 +2684,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByGeoPoint.raml"
                     }
                   },
                   "distance": {
@@ -2367,6 +2709,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByGeoPoint.raml"
                     }
                   },
                   "count": {
@@ -2389,11 +2734,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -2419,11 +2770,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -2539,6 +2896,9 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "resourceTypes/mediaSearch.raml"
+                        },
                         "structuredExample": {
                           "value": "{\n    \"data\": {\n        \"distance\" : 50,\n        \"type\": \"image\",\n        \"users_in_photo\": [{\n            \"user\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n            },\n            \"position\": {\n                \"x\": 0.315,\n                \"y\": 0.9111\n            }\n        }],\n        \"filter\": \"Walden\",\n        \"tags\": [],\n        \"comments\": {\n            \"data\": [{\n                \"created_time\": \"1279332030\",\n                \"text\": \"Love the sign here\",\n                \"from\": {\n                    \"username\": \"mikeyk\",\n                    \"full_name\": \"Mikey Krieger\",\n                    \"id\": \"4\",\n                    \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n                },\n                \"id\": \"8\"\n            }],\n            \"count\": 2\n        },\n        \"caption\": {\n            \"created_time\": \"1296710352\",\n            \"text\": \"Inside le truc #foodtruck\",\n            \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin Systrom\",\n                \"type\": \"user\",\n                \"id\": \"3\"\n            },\n            \"id\": \"26621408\"\n        },\n        \"likes\": {\n            \"count\": 1,\n            \"data\": [{\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikeyk\",\n                \"id\": \"4\",\n                \"profile_picture\": \"...\"\n            }]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"profile_picture\": \"...\",\n            \"bio\": \"...\",\n            \"website\": \"...\",\n            \"id\": \"3\"\n        },\n        \"created_time\": \"1279340983\",\n        \"images\": {\n            \"low_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\n                \"width\": 306,\n                \"height\": 306\n            },\n            \"thumbnail\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\n                \"width\": 150,\n                \"height\": 150\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\n                \"width\": 612,\n                \"height\": 612\n            }\n        },\n        \"id\": \"3\",\n        \"location\": {\n            \"id\": \"id\",\n            \"latitude\": -34,\n            \"longitude\": -53,\n            \"name\": \"some place\"\n        }\n    }\n}\n",
                           "strict": true,
@@ -2636,14 +2996,23 @@
                                 "name": "some place"
                               }
                             }
+                          },
+                          "sourceMap": {
+                            "path": "resourceTypes/mediaSearch.raml"
                           }
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/mediaSearch.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -2670,6 +3039,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -2689,6 +3061,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "search"
@@ -2719,11 +3094,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -2749,11 +3130,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -2869,6 +3256,9 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "resourceTypes/mediaSearch.raml"
+                        },
                         "structuredExample": {
                           "value": "{\n    \"data\": {\n        \"distance\" : 50,\n        \"type\": \"image\",\n        \"users_in_photo\": [{\n            \"user\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n            },\n            \"position\": {\n                \"x\": 0.315,\n                \"y\": 0.9111\n            }\n        }],\n        \"filter\": \"Walden\",\n        \"tags\": [],\n        \"comments\": {\n            \"data\": [{\n                \"created_time\": \"1279332030\",\n                \"text\": \"Love the sign here\",\n                \"from\": {\n                    \"username\": \"mikeyk\",\n                    \"full_name\": \"Mikey Krieger\",\n                    \"id\": \"4\",\n                    \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n                },\n                \"id\": \"8\"\n            }],\n            \"count\": 2\n        },\n        \"caption\": {\n            \"created_time\": \"1296710352\",\n            \"text\": \"Inside le truc #foodtruck\",\n            \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin Systrom\",\n                \"type\": \"user\",\n                \"id\": \"3\"\n            },\n            \"id\": \"26621408\"\n        },\n        \"likes\": {\n            \"count\": 1,\n            \"data\": [{\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikeyk\",\n                \"id\": \"4\",\n                \"profile_picture\": \"...\"\n            }]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"profile_picture\": \"...\",\n            \"bio\": \"...\",\n            \"website\": \"...\",\n            \"id\": \"3\"\n        },\n        \"created_time\": \"1279340983\",\n        \"images\": {\n            \"low_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_6.jpg\",\n                \"width\": 306,\n                \"height\": 306\n            },\n            \"thumbnail\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_5.jpg\",\n                \"width\": 150,\n                \"height\": 150\n            },\n            \"standard_resolution\": {\n                \"url\": \"http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg\",\n                \"width\": 612,\n                \"height\": 612\n            }\n        },\n        \"id\": \"3\",\n        \"location\": {\n            \"id\": \"id\",\n            \"latitude\": -34,\n            \"longitude\": -53,\n            \"name\": \"some place\"\n        }\n    }\n}\n",
                           "strict": true,
@@ -2966,14 +3356,23 @@
                                 "name": "some place"
                               }
                             }
+                          },
+                          "sourceMap": {
+                            "path": "resourceTypes/mediaSearch.raml"
                           }
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/mediaSearch.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -2998,6 +3397,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -3018,6 +3420,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "relativeUriPathSegments": [
               "popular"
             ],
@@ -3033,6 +3438,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "media"
@@ -3071,11 +3479,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -3101,11 +3515,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -3126,13 +3546,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -3157,6 +3586,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -3187,6 +3619,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -3215,6 +3650,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "max_id": {
@@ -3235,6 +3673,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "count": {
@@ -3257,11 +3698,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -3287,11 +3734,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -3312,13 +3765,22 @@
                                   "calculated": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -3344,6 +3806,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -3364,6 +3829,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "relativeUriPathSegments": [
                   "media",
                   "recent"
@@ -3380,6 +3848,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{tagName}"
@@ -3410,11 +3881,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "nofilter",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "nofilter"
+                      "structuredValue": "nofilter",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   },
                   "count": {
@@ -3437,11 +3914,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -3467,11 +3950,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -3492,13 +3981,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -3523,6 +4021,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -3543,6 +4044,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "relativeUriPathSegments": [
               "search"
             ],
@@ -3558,6 +4062,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "tags"
@@ -3596,11 +4103,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -3626,11 +4139,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -3651,13 +4170,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -3682,6 +4210,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -3712,6 +4243,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -3742,11 +4276,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -3772,11 +4312,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -3823,6 +4369,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/usersListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
                               "strict": true,
@@ -3851,14 +4400,23 @@
                                     "last_name": "Tiddy"
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/usersListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/usersListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -3888,6 +4446,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -3909,6 +4470,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "relativeUriPathSegments": [
                   "follows"
@@ -3939,11 +4503,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -3969,11 +4539,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -4020,6 +4596,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/usersListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
                               "strict": true,
@@ -4048,14 +4627,23 @@
                                     "last_name": "Tiddy"
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/usersListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/usersListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -4085,6 +4673,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -4106,6 +4697,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "relativeUriPathSegments": [
                   "followed-by"
@@ -4134,6 +4728,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "max_id": {
@@ -4154,6 +4751,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "max_timestamp": {
@@ -4174,6 +4774,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableByTime.raml"
                         }
                       },
                       "min_timestamp": {
@@ -4194,6 +4797,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableByTime.raml"
                         }
                       },
                       "count": {
@@ -4216,11 +4822,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -4246,11 +4858,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -4457,6 +5075,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/feedsListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n  \"data\": [\n    {\n      \"distance\": 50,\n      \"location\": {\n        \"id\": \"833\",\n        \"latitude\": 37.77956816727314,\n        \"longitude\": -122.41387367248539,\n        \"street_address\": \"\",\n        \"name\": \"Civic Center BART\"\n      },\n      \"comments\": {\n        \"count\": 16,\n        \"data\": []\n      },\n      \"caption\": {\n        \"created_time\": \"1296710352\",\n        \"text\": \"Inside le truc #foodtruck\",\n        \"from\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin Systrom\",\n          \"type\": \"user\",\n          \"id\": \"3\"\n        },\n        \"id\": \"26621408\"\n      },\n      \"link\": \"http://instagr.am/p/BXsFz/\",\n      \"likes\": {\n        \"count\": 190,\n        \"data\": [\n          {\n            \"username\": \"shayne\",\n            \"full_name\": \"Shayne Sweeney\",\n            \"id\": \"20\",\n            \"profile_picture\": \"...\"\n          },\n          {}\n        ]\n      },\n      \"created_time\": \"1296748524\",\n      \"images\": {\n        \"low_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\n          \"width\": 306,\n          \"height\": 306\n        },\n        \"thumbnail\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\n          \"width\": 150,\n          \"height\": 150\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\n          \"width\": 612,\n          \"height\": 612\n        }\n      },\n      \"type\": \"image\",\n      \"users_in_photo\": [\n        {\n          \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"id\": \"3\",\n            \"profile_picture\": \"...\"\n          },\n          \"position\": {\n            \"x\": 0.315,\n            \"y\": 0.9111\n          }\n        }\n      ],\n      \"filter\": \"Earlybird\",\n      \"tags\": [],\n      \"id\": \"22987123\",\n      \"user\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin S\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n        \"id\": \"3\"\n      }\n    },\n    {\n      \"distance\": 50,\n      \"videos\": {\n        \"low_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\n          \"width\": 480,\n          \"height\": 480\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\n          \"width\": 640,\n          \"height\": 640\n        },\n        \"comments\": {\n          \"data\": [\n            {\n              \"created_time\": \"1279332030\",\n              \"text\": \"Love the sign here\",\n              \"from\": {\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikey Krieger\",\n                \"id\": \"4\",\n                \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n              },\n              \"id\": \"8\"\n            },\n            {\n              \"created_time\": \"1279341004\",\n              \"text\": \"Chilako taco\",\n              \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n              },\n              \"id\": \"3\"\n            }\n          ],\n          \"count\": 2\n        },\n        \"caption\": {\n          \"created_time\": \"1296710352\",\n          \"text\": \"Inside le truc #foodtruck\",\n          \"from\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin Systrom\",\n            \"type\": \"user\",\n            \"id\": \"3\"\n          },\n          \"id\": \"26621408\"\n        },\n        \"likes\": {\n          \"count\": 1,\n          \"data\": [\n            {\n              \"username\": \"mikeyk\",\n              \"full_name\": \"Mikeyk\",\n              \"id\": \"4\",\n              \"profile_picture\": \"...\"\n            }\n          ]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"created_time\": \"1279340983\",\n        \"images\": {\n          \"low_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\n            \"width\": 306,\n            \"height\": 306\n          },\n          \"thumbnail\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\n            \"width\": 150,\n            \"height\": 150\n          },\n          \"standard_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\n            \"width\": 612,\n            \"height\": 612\n          }\n        },\n        \"type\": \"video\",\n        \"users_in_photo\": [],\n        \"filter\": \"Vesper\",\n        \"tags\": [],\n        \"id\": \"363839373298\",\n        \"user\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin S\",\n          \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n          \"id\": \"3\"\n        },\n        \"location\": {\n          \"id\": \"833\",\n          \"latitude\": 37.77956816727314,\n          \"longitude\": -122.41387367248539,\n          \"street_address\": \"\",\n          \"name\": \"Civic Center BART\"\n        }\n      }\n    }\n  ]\n}\n",
                               "strict": true,
@@ -4645,14 +5266,23 @@
                                     }
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/feedsListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/feedsListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -4679,6 +5309,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -4698,6 +5331,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "relativeUriPathSegments": [
                   "media",
@@ -4729,11 +5365,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -4759,11 +5401,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -4784,13 +5432,22 @@
                                   "calculated": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -4820,6 +5477,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   {
@@ -4847,6 +5507,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "api.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"meta\": {\n        \"code\": 200\n    },\n    \"data\": null\n}\n",
                               "strict": true,
@@ -4856,14 +5519,23 @@
                                   "code": 200
                                 },
                                 "data": null
+                              },
+                              "sourceMap": {
+                                "path": "api.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "body": {
@@ -4904,6 +5576,9 @@
                                   "insertedAsDefault": true
                                 }
                               }
+                            },
+                            "sourceMap": {
+                              "path": "api.raml"
                             }
                           }
                         },
@@ -4916,6 +5591,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -4939,6 +5617,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -4965,6 +5646,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "relativeUriPathSegments": [
                   "relationship"
                 ],
@@ -4980,6 +5664,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{userId}"
@@ -5010,11 +5697,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "some query",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "some query"
+                      "structuredValue": "some query",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   },
                   "count": {
@@ -5037,11 +5730,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "10",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 10
+                      "structuredValue": 10,
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -5067,11 +5766,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -5118,6 +5823,9 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "resourceTypes/usersListing.raml"
+                        },
                         "structuredExample": {
                           "value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
                           "strict": true,
@@ -5146,14 +5854,23 @@
                                 "last_name": "Tiddy"
                               }
                             ]
+                          },
+                          "sourceMap": {
+                            "path": "resourceTypes/usersListing.raml"
                           }
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/usersListing.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -5183,6 +5900,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -5204,6 +5924,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "search"
@@ -5234,11 +5957,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -5264,11 +5993,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -5289,13 +6024,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -5325,6 +6069,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -5367,6 +6114,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "max_id": {
@@ -5387,6 +6137,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "count": {
@@ -5409,11 +6162,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -5439,11 +6198,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -5650,6 +6415,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/feedsListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n  \"data\": [\n    {\n      \"distance\": 50,\n      \"location\": {\n        \"id\": \"833\",\n        \"latitude\": 37.77956816727314,\n        \"longitude\": -122.41387367248539,\n        \"street_address\": \"\",\n        \"name\": \"Civic Center BART\"\n      },\n      \"comments\": {\n        \"count\": 16,\n        \"data\": []\n      },\n      \"caption\": {\n        \"created_time\": \"1296710352\",\n        \"text\": \"Inside le truc #foodtruck\",\n        \"from\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin Systrom\",\n          \"type\": \"user\",\n          \"id\": \"3\"\n        },\n        \"id\": \"26621408\"\n      },\n      \"link\": \"http://instagr.am/p/BXsFz/\",\n      \"likes\": {\n        \"count\": 190,\n        \"data\": [\n          {\n            \"username\": \"shayne\",\n            \"full_name\": \"Shayne Sweeney\",\n            \"id\": \"20\",\n            \"profile_picture\": \"...\"\n          },\n          {}\n        ]\n      },\n      \"created_time\": \"1296748524\",\n      \"images\": {\n        \"low_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\n          \"width\": 306,\n          \"height\": 306\n        },\n        \"thumbnail\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\n          \"width\": 150,\n          \"height\": 150\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\n          \"width\": 612,\n          \"height\": 612\n        }\n      },\n      \"type\": \"image\",\n      \"users_in_photo\": [\n        {\n          \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"id\": \"3\",\n            \"profile_picture\": \"...\"\n          },\n          \"position\": {\n            \"x\": 0.315,\n            \"y\": 0.9111\n          }\n        }\n      ],\n      \"filter\": \"Earlybird\",\n      \"tags\": [],\n      \"id\": \"22987123\",\n      \"user\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin S\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n        \"id\": \"3\"\n      }\n    },\n    {\n      \"distance\": 50,\n      \"videos\": {\n        \"low_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\n          \"width\": 480,\n          \"height\": 480\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\n          \"width\": 640,\n          \"height\": 640\n        },\n        \"comments\": {\n          \"data\": [\n            {\n              \"created_time\": \"1279332030\",\n              \"text\": \"Love the sign here\",\n              \"from\": {\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikey Krieger\",\n                \"id\": \"4\",\n                \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n              },\n              \"id\": \"8\"\n            },\n            {\n              \"created_time\": \"1279341004\",\n              \"text\": \"Chilako taco\",\n              \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n              },\n              \"id\": \"3\"\n            }\n          ],\n          \"count\": 2\n        },\n        \"caption\": {\n          \"created_time\": \"1296710352\",\n          \"text\": \"Inside le truc #foodtruck\",\n          \"from\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin Systrom\",\n            \"type\": \"user\",\n            \"id\": \"3\"\n          },\n          \"id\": \"26621408\"\n        },\n        \"likes\": {\n          \"count\": 1,\n          \"data\": [\n            {\n              \"username\": \"mikeyk\",\n              \"full_name\": \"Mikeyk\",\n              \"id\": \"4\",\n              \"profile_picture\": \"...\"\n            }\n          ]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"created_time\": \"1279340983\",\n        \"images\": {\n          \"low_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\n            \"width\": 306,\n            \"height\": 306\n          },\n          \"thumbnail\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\n            \"width\": 150,\n            \"height\": 150\n          },\n          \"standard_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\n            \"width\": 612,\n            \"height\": 612\n          }\n        },\n        \"type\": \"video\",\n        \"users_in_photo\": [],\n        \"filter\": \"Vesper\",\n        \"tags\": [],\n        \"id\": \"363839373298\",\n        \"user\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin S\",\n          \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n          \"id\": \"3\"\n        },\n        \"location\": {\n          \"id\": \"833\",\n          \"latitude\": 37.77956816727314,\n          \"longitude\": -122.41387367248539,\n          \"street_address\": \"\",\n          \"name\": \"Civic Center BART\"\n        }\n      }\n    }\n  ]\n}\n",
                               "strict": true,
@@ -5838,14 +6606,23 @@
                                     }
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/feedsListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/feedsListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -5871,6 +6648,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -5890,6 +6670,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "relativeUriPathSegments": [
                   "feed"
@@ -5920,11 +6703,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -5950,11 +6739,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -6001,6 +6796,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/usersListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
                               "strict": true,
@@ -6029,14 +6827,23 @@
                                     "last_name": "Tiddy"
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/usersListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/usersListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -6066,6 +6873,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -6087,6 +6897,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 },
                 "relativeUriPathSegments": [
                   "requested-by"
@@ -6117,11 +6930,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "api.raml"
+                        },
                         "structuredExample": {
                           "value": "100",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 100
+                          "structuredValue": 100,
+                          "sourceMap": {
+                            "path": "api.raml"
+                          }
                         }
                       },
                       "count": {
@@ -6144,11 +6963,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -6174,11 +6999,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -6385,6 +7216,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/feedsListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n  \"data\": [\n    {\n      \"distance\": 50,\n      \"location\": {\n        \"id\": \"833\",\n        \"latitude\": 37.77956816727314,\n        \"longitude\": -122.41387367248539,\n        \"street_address\": \"\",\n        \"name\": \"Civic Center BART\"\n      },\n      \"comments\": {\n        \"count\": 16,\n        \"data\": []\n      },\n      \"caption\": {\n        \"created_time\": \"1296710352\",\n        \"text\": \"Inside le truc #foodtruck\",\n        \"from\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin Systrom\",\n          \"type\": \"user\",\n          \"id\": \"3\"\n        },\n        \"id\": \"26621408\"\n      },\n      \"link\": \"http://instagr.am/p/BXsFz/\",\n      \"likes\": {\n        \"count\": 190,\n        \"data\": [\n          {\n            \"username\": \"shayne\",\n            \"full_name\": \"Shayne Sweeney\",\n            \"id\": \"20\",\n            \"profile_picture\": \"...\"\n          },\n          {}\n        ]\n      },\n      \"created_time\": \"1296748524\",\n      \"images\": {\n        \"low_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\n          \"width\": 306,\n          \"height\": 306\n        },\n        \"thumbnail\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\n          \"width\": 150,\n          \"height\": 150\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\n          \"width\": 612,\n          \"height\": 612\n        }\n      },\n      \"type\": \"image\",\n      \"users_in_photo\": [\n        {\n          \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"id\": \"3\",\n            \"profile_picture\": \"...\"\n          },\n          \"position\": {\n            \"x\": 0.315,\n            \"y\": 0.9111\n          }\n        }\n      ],\n      \"filter\": \"Earlybird\",\n      \"tags\": [],\n      \"id\": \"22987123\",\n      \"user\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin S\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n        \"id\": \"3\"\n      }\n    },\n    {\n      \"distance\": 50,\n      \"videos\": {\n        \"low_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\n          \"width\": 480,\n          \"height\": 480\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\n          \"width\": 640,\n          \"height\": 640\n        },\n        \"comments\": {\n          \"data\": [\n            {\n              \"created_time\": \"1279332030\",\n              \"text\": \"Love the sign here\",\n              \"from\": {\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikey Krieger\",\n                \"id\": \"4\",\n                \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n              },\n              \"id\": \"8\"\n            },\n            {\n              \"created_time\": \"1279341004\",\n              \"text\": \"Chilako taco\",\n              \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n              },\n              \"id\": \"3\"\n            }\n          ],\n          \"count\": 2\n        },\n        \"caption\": {\n          \"created_time\": \"1296710352\",\n          \"text\": \"Inside le truc #foodtruck\",\n          \"from\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin Systrom\",\n            \"type\": \"user\",\n            \"id\": \"3\"\n          },\n          \"id\": \"26621408\"\n        },\n        \"likes\": {\n          \"count\": 1,\n          \"data\": [\n            {\n              \"username\": \"mikeyk\",\n              \"full_name\": \"Mikeyk\",\n              \"id\": \"4\",\n              \"profile_picture\": \"...\"\n            }\n          ]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"created_time\": \"1279340983\",\n        \"images\": {\n          \"low_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\n            \"width\": 306,\n            \"height\": 306\n          },\n          \"thumbnail\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\n            \"width\": 150,\n            \"height\": 150\n          },\n          \"standard_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\n            \"width\": 612,\n            \"height\": 612\n          }\n        },\n        \"type\": \"video\",\n        \"users_in_photo\": [],\n        \"filter\": \"Vesper\",\n        \"tags\": [],\n        \"id\": \"363839373298\",\n        \"user\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin S\",\n          \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n          \"id\": \"3\"\n        },\n        \"location\": {\n          \"id\": \"833\",\n          \"latitude\": 37.77956816727314,\n          \"longitude\": -122.41387367248539,\n          \"street_address\": \"\",\n          \"name\": \"Civic Center BART\"\n        }\n      }\n    }\n  ]\n}\n",
                               "strict": true,
@@ -6573,14 +7407,23 @@
                                     }
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/feedsListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/feedsListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -6605,6 +7448,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -6625,6 +7471,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "relativeUriPathSegments": [
                   "media",
                   "liked"
@@ -6638,6 +7487,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "self"
@@ -6654,6 +7506,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "users"
@@ -6692,11 +7547,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -6722,11 +7583,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -6747,13 +7614,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -6778,6 +7654,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -6804,6 +7683,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -6832,6 +7714,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "max_id": {
@@ -6852,6 +7737,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableById.raml"
                         }
                       },
                       "max_timestamp": {
@@ -6872,6 +7760,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableByTime.raml"
                         }
                       },
                       "min_timestamp": {
@@ -6892,6 +7783,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "traits/limitableByTime.raml"
                         }
                       },
                       "count": {
@@ -6914,11 +7808,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/limitable.raml"
+                        },
                         "structuredExample": {
                           "value": "1",
                           "strict": true,
                           "name": null,
-                          "structuredValue": 1
+                          "structuredValue": 1,
+                          "sourceMap": {
+                            "path": "traits/limitable.raml"
+                          }
                         }
                       },
                       "callback": {
@@ -6944,11 +7844,17 @@
                             }
                           }
                         },
+                        "sourceMap": {
+                          "path": "traits/acceptCallback.raml"
+                        },
                         "structuredExample": {
                           "value": "callbackFunction",
                           "strict": true,
                           "name": null,
-                          "structuredValue": "callbackFunction"
+                          "structuredValue": "callbackFunction",
+                          "sourceMap": {
+                            "path": "traits/acceptCallback.raml"
+                          }
                         }
                       }
                     },
@@ -7155,6 +8061,9 @@
                                 }
                               }
                             },
+                            "sourceMap": {
+                              "path": "resourceTypes/feedsListing.raml"
+                            },
                             "structuredExample": {
                               "value": "{\n  \"data\": [\n    {\n      \"distance\": 50,\n      \"location\": {\n        \"id\": \"833\",\n        \"latitude\": 37.77956816727314,\n        \"longitude\": -122.41387367248539,\n        \"street_address\": \"\",\n        \"name\": \"Civic Center BART\"\n      },\n      \"comments\": {\n        \"count\": 16,\n        \"data\": []\n      },\n      \"caption\": {\n        \"created_time\": \"1296710352\",\n        \"text\": \"Inside le truc #foodtruck\",\n        \"from\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin Systrom\",\n          \"type\": \"user\",\n          \"id\": \"3\"\n        },\n        \"id\": \"26621408\"\n      },\n      \"link\": \"http://instagr.am/p/BXsFz/\",\n      \"likes\": {\n        \"count\": 190,\n        \"data\": [\n          {\n            \"username\": \"shayne\",\n            \"full_name\": \"Shayne Sweeney\",\n            \"id\": \"20\",\n            \"profile_picture\": \"...\"\n          },\n          {}\n        ]\n      },\n      \"created_time\": \"1296748524\",\n      \"images\": {\n        \"low_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_6.jpg\",\n          \"width\": 306,\n          \"height\": 306\n        },\n        \"thumbnail\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_5.jpg\",\n          \"width\": 150,\n          \"height\": 150\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distillery.s3.amazonaws.com/media/2011/02/03/efc502667a554329b52d9a6bab35b24a_7.jpg\",\n          \"width\": 612,\n          \"height\": 612\n        }\n      },\n      \"type\": \"image\",\n      \"users_in_photo\": [\n        {\n          \"user\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin S\",\n            \"id\": \"3\",\n            \"profile_picture\": \"...\"\n          },\n          \"position\": {\n            \"x\": 0.315,\n            \"y\": 0.9111\n          }\n        }\n      ],\n      \"filter\": \"Earlybird\",\n      \"tags\": [],\n      \"id\": \"22987123\",\n      \"user\": {\n        \"username\": \"kevin\",\n        \"full_name\": \"Kevin S\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n        \"id\": \"3\"\n      }\n    },\n    {\n      \"distance\": 50,\n      \"videos\": {\n        \"low_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_102.mp4\",\n          \"width\": 480,\n          \"height\": 480\n        },\n        \"standard_resolution\": {\n          \"url\": \"http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4\",\n          \"width\": 640,\n          \"height\": 640\n        },\n        \"comments\": {\n          \"data\": [\n            {\n              \"created_time\": \"1279332030\",\n              \"text\": \"Love the sign here\",\n              \"from\": {\n                \"username\": \"mikeyk\",\n                \"full_name\": \"Mikey Krieger\",\n                \"id\": \"4\",\n                \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n              },\n              \"id\": \"8\"\n            },\n            {\n              \"created_time\": \"1279341004\",\n              \"text\": \"Chilako taco\",\n              \"from\": {\n                \"username\": \"kevin\",\n                \"full_name\": \"Kevin S\",\n                \"id\": \"3\",\n                \"profile_picture\": \"...\"\n              },\n              \"id\": \"3\"\n            }\n          ],\n          \"count\": 2\n        },\n        \"caption\": {\n          \"created_time\": \"1296710352\",\n          \"text\": \"Inside le truc #foodtruck\",\n          \"from\": {\n            \"username\": \"kevin\",\n            \"full_name\": \"Kevin Systrom\",\n            \"type\": \"user\",\n            \"id\": \"3\"\n          },\n          \"id\": \"26621408\"\n        },\n        \"likes\": {\n          \"count\": 1,\n          \"data\": [\n            {\n              \"username\": \"mikeyk\",\n              \"full_name\": \"Mikeyk\",\n              \"id\": \"4\",\n              \"profile_picture\": \"...\"\n            }\n          ]\n        },\n        \"link\": \"http://instagr.am/p/D/\",\n        \"created_time\": \"1279340983\",\n        \"images\": {\n          \"low_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_6.jpg\",\n            \"width\": 306,\n            \"height\": 306\n          },\n          \"thumbnail\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_5.jpg\",\n            \"width\": 150,\n            \"height\": 150\n          },\n          \"standard_resolution\": {\n            \"url\": \"http://distilleryimage2.ak.instagram.com/11f75f1cd9cc11e2a0fd22000aa8039a_7.jpg\",\n            \"width\": 612,\n            \"height\": 612\n          }\n        },\n        \"type\": \"video\",\n        \"users_in_photo\": [],\n        \"filter\": \"Vesper\",\n        \"tags\": [],\n        \"id\": \"363839373298\",\n        \"user\": {\n          \"username\": \"kevin\",\n          \"full_name\": \"Kevin S\",\n          \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_3_75sq_1295574122.jpg\",\n          \"id\": \"3\"\n        },\n        \"location\": {\n          \"id\": \"833\",\n          \"latitude\": 37.77956816727314,\n          \"longitude\": -122.41387367248539,\n          \"street_address\": \"\",\n          \"name\": \"Civic Center BART\"\n        }\n      }\n    }\n  ]\n}\n",
                               "strict": true,
@@ -7343,14 +8252,23 @@
                                     }
                                   }
                                 ]
+                              },
+                              "sourceMap": {
+                                "path": "resourceTypes/feedsListing.raml"
                               }
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "resourceTypes/feedsListing.raml"
                         }
                       },
                       "503": {
                         "code": "503",
-                        "description": "Server Unavailable. Check Your Rate Limits.\n"
+                        "description": "Server Unavailable. Check Your Rate Limits.\n",
+                        "sourceMap": {
+                          "path": "resourceTypes/base.raml"
+                        }
                       }
                     },
                     "protocols": [
@@ -7377,6 +8295,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 ],
@@ -7397,6 +8318,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "relativeUriPathSegments": [
                   "media",
                   "recent"
@@ -7413,6 +8337,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{locId}"
@@ -7444,6 +8371,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "foursquare_id": {
@@ -7467,6 +8397,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "lat": {
@@ -7487,6 +8420,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByGeoPoint.raml"
                     }
                   },
                   "lng": {
@@ -7507,6 +8443,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByGeoPoint.raml"
                     }
                   },
                   "distance": {
@@ -7529,6 +8468,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "traits/limitableByGeoPoint.raml"
                     }
                   },
                   "count": {
@@ -7551,11 +8493,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/limitable.raml"
+                    },
                     "structuredExample": {
                       "value": "1",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 1
+                      "structuredValue": 1,
+                      "sourceMap": {
+                        "path": "traits/limitable.raml"
+                      }
                     }
                   },
                   "callback": {
@@ -7581,11 +8529,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "traits/acceptCallback.raml"
+                    },
                     "structuredExample": {
                       "value": "callbackFunction",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "callbackFunction"
+                      "structuredValue": "callbackFunction",
+                      "sourceMap": {
+                        "path": "traits/acceptCallback.raml"
+                      }
                     }
                   }
                 },
@@ -7606,13 +8560,22 @@
                               "calculated": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "503": {
                     "code": "503",
-                    "description": "Server Unavailable. Check Your Rate Limits.\n"
+                    "description": "Server Unavailable. Check Your Rate Limits.\n",
+                    "sourceMap": {
+                      "path": "resourceTypes/base.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -7638,6 +8601,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -7658,6 +8624,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "api.raml"
+            },
             "relativeUriPathSegments": [
               "search"
             ],
@@ -7673,6 +8642,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "locations"
@@ -7703,11 +8675,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "0",
                   "strict": true,
                   "name": null,
-                  "structuredValue": 0
+                  "structuredValue": 0,
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               },
               "count": {
@@ -7730,11 +8708,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/limitable.raml"
+                },
                 "structuredExample": {
                   "value": "1",
                   "strict": true,
                   "name": null,
-                  "structuredValue": 1
+                  "structuredValue": 1,
+                  "sourceMap": {
+                    "path": "traits/limitable.raml"
+                  }
                 }
               },
               "callback": {
@@ -7760,21 +8744,33 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/acceptCallback.raml"
+                },
                 "structuredExample": {
                   "value": "callbackFunction",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "callbackFunction"
+                  "structuredValue": "callbackFunction",
+                  "sourceMap": {
+                    "path": "traits/acceptCallback.raml"
+                  }
                 }
               }
             },
             "responses": {
               "200": {
-                "code": "200"
+                "code": "200",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               },
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "protocols": [
@@ -7799,6 +8795,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -7829,6 +8828,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         },
@@ -7843,6 +8845,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "geographies",
@@ -7874,6 +8879,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "client_secret": {
@@ -7894,6 +8902,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "count": {
@@ -7916,11 +8927,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/limitable.raml"
+                },
                 "structuredExample": {
                   "value": "1",
                   "strict": true,
                   "name": null,
-                  "structuredValue": 1
+                  "structuredValue": 1,
+                  "sourceMap": {
+                    "path": "traits/limitable.raml"
+                  }
                 }
               },
               "callback": {
@@ -7946,11 +8963,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "traits/acceptCallback.raml"
+                },
                 "structuredExample": {
                   "value": "callbackFunction",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "callbackFunction"
+                  "structuredValue": "callbackFunction",
+                  "sourceMap": {
+                    "path": "traits/acceptCallback.raml"
+                  }
                 }
               }
             },
@@ -7971,13 +8994,22 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "protocols": [
@@ -7998,6 +9030,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -8018,13 +9053,22 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "body": {
@@ -8054,6 +9098,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "client_secret": {
@@ -8074,6 +9121,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "object": {
@@ -8103,6 +9153,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "object_id": {
@@ -8126,6 +9179,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "aspect": {
@@ -8149,6 +9205,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "callback_url": {
@@ -8169,6 +9228,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "lat": {
@@ -8186,6 +9248,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "lng": {
@@ -8206,6 +9271,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   },
                   "radius": {
@@ -8226,6 +9294,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -8238,6 +9309,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -8259,6 +9333,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -8281,6 +9358,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "client_secret": {
@@ -8301,6 +9381,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "id": {
@@ -8324,6 +9407,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "object": {
@@ -8354,6 +9440,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -8374,13 +9463,22 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "503": {
                 "code": "503",
-                "description": "Server Unavailable. Check Your Rate Limits.\n"
+                "description": "Server Unavailable. Check Your Rate Limits.\n",
+                "sourceMap": {
+                  "path": "resourceTypes/base.raml"
+                }
               }
             },
             "protocols": [
@@ -8397,6 +9495,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -8417,6 +9518,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "subscriptions"
         ],
@@ -8426,11 +9530,31 @@
     "documentation": [
       {
         "title": "Authentication",
-        "content": "Instagram’s API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-12) for simple, but effective authentication and authorization. OAuth 2.0 is much easier to use than previous schemes; developers can start using the Instagram API almost immediately. The one thing to keep in mind is that all requests to the API must be made over SSL (https:// not http://)\n\n## Do you need to authenticate?\n\nFor the most part, Instagram’s API only requires the use of a _client_id). A client_id simply associates your server, script, or program with a specific application. However, some requests require authentication - specifically requests made on behalf of a user. Authenticated requests require an _access_token_. These tokens are unique to a user and should be stored securely. Access tokens may expire at any time in the future.\n\nNote that in many situations, you may not need to authenticate users at all. For instance, you may request popular photos without authenticating (i.e. you do not need to provide an access_token; just use your client ID with your request). We only require authentication in cases where your application is making requests on behalf of a user (commenting, liking, browsing a user’s feed, etc.).\n\n## Receiving an access_token\n\nIn order to receive an access_token, you must do the following:\n\n- Direct the user to our authorization url.\n  * If the user is not logged in, they will be asked to log in.\n  * The user will be asked if they’d like to give your application access to his/her Instagram data.\n- The server will redirect the user in one of two ways that you choose:\n  * *Server-side* flow (reccommended):Redirect the user to a URI of your choice. Take the provided \n     code parameter and exchange it for an access_token by POSTing the code to our access_token url.\n  * *Implicit flow*: Instead of handling a code, we include the access_token as a fragment (#) in the URL.          This method allows applications without any server component to receive an access_token with ease.\n\n## Server-side (Explicit) Flow\n\nUsing the server-side flow is quite easy. Simply follow these steps:\n\n### Step One: Direct your user to our authorization URL\n\n```\nhttps://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code\n```\n\n*Note:* You may provide an optional *scope* parameter to request additional permissions outside of the “basic” permissions scope. [Learn more about scope](http://instagram.com/developer/authentication/#scope).\n\n*Note*: You may provide an optional *state* parameter to carry through any server-specific state you need to, for example, protect against CSRF issues.\n\nAt this point, we present the user with a login screen and then a confirmation screen where they approve your app’s access to his/her Instagram data.\n\n### Step Two: Receive the redirect from Instagram\n\nOnce a user successfully authenticates and authorizes your application, we will redirect the user to your redirect_uri with a code parameter that you’ll use in step three.\n\n```\nhttp://your-redirect-uri?code=CODE\n```\n\nNote that your redirect URI's host and path MUST match exactly (including trailing slashes) to your registered redirect_uri. You may also include additional query parameters in the supplied redirect_uri, if you need to vary your behavior dynamically. Examples:\n\n|REGISTERED REDIRECT URI           |REDIRECT URI SENT TO /AUTHORIZE                |VALID?|\n|----------------------------------|-----------------------------------------------|------|\n|http://yourcallback.com/          |http://yourcallback.com/                       |yes   |\n|http://yourcallback.com/          |http://yourcallback.com/?this=that             |yes   |\n|http://yourcallback.com/?this=that|http://yourcallback.com/                       |no    |\n|http://yourcallback.com/?this=that|http://yourcallback.com/?this=that&another=true|yes   |\n|http://yourcallback.com/?this=that|http://yourcallback.com/?another=true&this=that|no    |\n|http://yourcallback.com/callback  |http://yourcallback.com/                       |no    |\n|http://yourcallback.com/callback  |http://yourcallback.com/callback/?type=mobile  |yes   |\n\nIf your request for approval is denied by the user, then we will redirect the user to your *redirect_uri* with the following parameters:\n\n* *error*: access_denied\n\n* *error_reason*: user_denied\n\n* *error_description*: The user denied your request\n\n```\nhttp://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request\n```\n\nIt is your responsibility to fail gracefully in this situation and display a corresponding error message to your user.\n\n### Step Three: Request the access_token\n\nIn the previous step, you’ll have received a code which you’ll have to exchange in order to receive an access_token for the user. In order to make this exchange, you simply have to POST this code, along with some app identification parameters to our access_token endpoint. Here are the required parameters:\n\n* *client_id*: your client id\n* *client_secret*: your client secret\n* *grant_type*: authorization_code is currently the only supported value\nredirect_uri: the redirect_uri you used in the authorization request. Note: this has to be the same value as in the authorization request.\n* *code*: the exact code you received during the authorization step.\n\nFor example, you could request an access_token like so:\n\n```\ncurl \\-F 'client_id=CLIENT-ID' \\\n    -F 'client_secret=CLIENT-SECRET' \\\n    -F 'grant_type=authorization_code' \\\n    -F 'redirect_uri=YOUR-REDIRECT-URI' \\\n    -F 'code=CODE' \\https://api.instagram.com/oauth/access_token\n```\n\nIf successful, this call will return a neatly packaged OAuth Token that you can use to make authenticated calls to the API. We also include the user who just authenticated for your convenience:\n\n```json\n{\n    \"access_token\": \"fb2e77d.47a0479900504cb3ab4a1f626d174d2d\",\n    \"user\": {\n        \"id\": \"1574083\",\n        \"username\": \"snoopdogg\",\n        \"full_name\": \"Snoop Dogg\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1574083_75sq_1295469061.jpg\"\n    }\n}\n```\n\nNote that we do not include an expiry time. Our access_tokens have no explicit expiry, though your app should handle the case that either the user revokes access or we expire the token after some period of time. In this case, your response’s meta will contain an “error_type=OAuthAccessTokenError”. In other words: do do not assume your access_token is valid forever.\n\n##Client-Side (Implicit) Authentication\n\nIf you’re building an app that does not have a server component (a purely javascript app, for instance), you’ll notice that it’s impossible to complete step three above to receive your access_token without also having to ship your client secret. You should never ship your client secret onto devices you don’t control. Then how do you get an access_token? Well the smart folks in charge of the OAuth 2.0 spec anticipated this problem and created the Implicit Authentication Flow.\n\n### Step One: Direct your user to our authorization URL\n\n```\nhttps://instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token\n```\n\nAt this point, we present the user with a login screen and then a confirmation screen where they approve your app’s access to their Instagram data. Note that unlike the explicit flow the response type here is “token”.\n\n### Step Two: Receive the access_token via the URL fragment\n\nOnce the user has authenticated and then authorized your application, we’ll redirect them to your redirect_uri with the access_token in the url fragment. It’ll look like so:\n\n```\nhttp://your-redirect-uri#access_token=ACCESS-TOKEN\n```\n\nSimply grab the access_token off the URL fragment and you’re good to go. If the user chooses not to authorize your application, you’ll receive the same error response as in the explicit flow\n\n## Scope (Permissions)\n\nThe OAuth 2.0 spec allows you to specify the scope of the access you’re requesting from the user. Currently, all apps have basic read access by default. If all you want to do is access data then you do not need to specify a scope (the “basic” scope will be granted automatically).\n\nHowever, if you plan on asking for extended access such as liking, commenting, or managing friendships, you’ll have to specify these scopes in your authorization request. Here are the scopes we currently support:\n\n* basic - to read any and all data related to a user (e.g. following/followed-by lists, photos, etc.) (granted by default)\n* comments - to create or delete comments on a user’s behalf\n* relationships - to follow and unfollow users on a user’s behalf\n* likes - to like and unlike items on a user’s behalf\n\nYou should only request the scope you need at the time of authorization. If in the future you require additional scope, you may forward the user to the authorization URL with that additional scope to be granted. If you attempt to perform a request with an access token that isn’t authorized for that scope, you will receive an OAuthPermissionsException error return.\n\nIf you’d like to request multiple scopes at once, simply separate the scopes by a space. In the url, this equates to an escaped space (“+”). So if you’re requesting the likes and comments permission, the parameter will look like this:\n\n```\nscope=likes+comments\n```\n\nNote that an empty scope parameter (scope=) is invalid; you must either omit the scope, or specify a non-empty scope list."
+        "content": "Instagram’s API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-12) for simple, but effective authentication and authorization. OAuth 2.0 is much easier to use than previous schemes; developers can start using the Instagram API almost immediately. The one thing to keep in mind is that all requests to the API must be made over SSL (https:// not http://)\n\n## Do you need to authenticate?\n\nFor the most part, Instagram’s API only requires the use of a _client_id). A client_id simply associates your server, script, or program with a specific application. However, some requests require authentication - specifically requests made on behalf of a user. Authenticated requests require an _access_token_. These tokens are unique to a user and should be stored securely. Access tokens may expire at any time in the future.\n\nNote that in many situations, you may not need to authenticate users at all. For instance, you may request popular photos without authenticating (i.e. you do not need to provide an access_token; just use your client ID with your request). We only require authentication in cases where your application is making requests on behalf of a user (commenting, liking, browsing a user’s feed, etc.).\n\n## Receiving an access_token\n\nIn order to receive an access_token, you must do the following:\n\n- Direct the user to our authorization url.\n  * If the user is not logged in, they will be asked to log in.\n  * The user will be asked if they’d like to give your application access to his/her Instagram data.\n- The server will redirect the user in one of two ways that you choose:\n  * *Server-side* flow (reccommended):Redirect the user to a URI of your choice. Take the provided \n     code parameter and exchange it for an access_token by POSTing the code to our access_token url.\n  * *Implicit flow*: Instead of handling a code, we include the access_token as a fragment (#) in the URL.          This method allows applications without any server component to receive an access_token with ease.\n\n## Server-side (Explicit) Flow\n\nUsing the server-side flow is quite easy. Simply follow these steps:\n\n### Step One: Direct your user to our authorization URL\n\n```\nhttps://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code\n```\n\n*Note:* You may provide an optional *scope* parameter to request additional permissions outside of the “basic” permissions scope. [Learn more about scope](http://instagram.com/developer/authentication/#scope).\n\n*Note*: You may provide an optional *state* parameter to carry through any server-specific state you need to, for example, protect against CSRF issues.\n\nAt this point, we present the user with a login screen and then a confirmation screen where they approve your app’s access to his/her Instagram data.\n\n### Step Two: Receive the redirect from Instagram\n\nOnce a user successfully authenticates and authorizes your application, we will redirect the user to your redirect_uri with a code parameter that you’ll use in step three.\n\n```\nhttp://your-redirect-uri?code=CODE\n```\n\nNote that your redirect URI's host and path MUST match exactly (including trailing slashes) to your registered redirect_uri. You may also include additional query parameters in the supplied redirect_uri, if you need to vary your behavior dynamically. Examples:\n\n|REGISTERED REDIRECT URI           |REDIRECT URI SENT TO /AUTHORIZE                |VALID?|\n|----------------------------------|-----------------------------------------------|------|\n|http://yourcallback.com/          |http://yourcallback.com/                       |yes   |\n|http://yourcallback.com/          |http://yourcallback.com/?this=that             |yes   |\n|http://yourcallback.com/?this=that|http://yourcallback.com/                       |no    |\n|http://yourcallback.com/?this=that|http://yourcallback.com/?this=that&another=true|yes   |\n|http://yourcallback.com/?this=that|http://yourcallback.com/?another=true&this=that|no    |\n|http://yourcallback.com/callback  |http://yourcallback.com/                       |no    |\n|http://yourcallback.com/callback  |http://yourcallback.com/callback/?type=mobile  |yes   |\n\nIf your request for approval is denied by the user, then we will redirect the user to your *redirect_uri* with the following parameters:\n\n* *error*: access_denied\n\n* *error_reason*: user_denied\n\n* *error_description*: The user denied your request\n\n```\nhttp://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request\n```\n\nIt is your responsibility to fail gracefully in this situation and display a corresponding error message to your user.\n\n### Step Three: Request the access_token\n\nIn the previous step, you’ll have received a code which you’ll have to exchange in order to receive an access_token for the user. In order to make this exchange, you simply have to POST this code, along with some app identification parameters to our access_token endpoint. Here are the required parameters:\n\n* *client_id*: your client id\n* *client_secret*: your client secret\n* *grant_type*: authorization_code is currently the only supported value\nredirect_uri: the redirect_uri you used in the authorization request. Note: this has to be the same value as in the authorization request.\n* *code*: the exact code you received during the authorization step.\n\nFor example, you could request an access_token like so:\n\n```\ncurl \\-F 'client_id=CLIENT-ID' \\\n    -F 'client_secret=CLIENT-SECRET' \\\n    -F 'grant_type=authorization_code' \\\n    -F 'redirect_uri=YOUR-REDIRECT-URI' \\\n    -F 'code=CODE' \\https://api.instagram.com/oauth/access_token\n```\n\nIf successful, this call will return a neatly packaged OAuth Token that you can use to make authenticated calls to the API. We also include the user who just authenticated for your convenience:\n\n```json\n{\n    \"access_token\": \"fb2e77d.47a0479900504cb3ab4a1f626d174d2d\",\n    \"user\": {\n        \"id\": \"1574083\",\n        \"username\": \"snoopdogg\",\n        \"full_name\": \"Snoop Dogg\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1574083_75sq_1295469061.jpg\"\n    }\n}\n```\n\nNote that we do not include an expiry time. Our access_tokens have no explicit expiry, though your app should handle the case that either the user revokes access or we expire the token after some period of time. In this case, your response’s meta will contain an “error_type=OAuthAccessTokenError”. In other words: do do not assume your access_token is valid forever.\n\n##Client-Side (Implicit) Authentication\n\nIf you’re building an app that does not have a server component (a purely javascript app, for instance), you’ll notice that it’s impossible to complete step three above to receive your access_token without also having to ship your client secret. You should never ship your client secret onto devices you don’t control. Then how do you get an access_token? Well the smart folks in charge of the OAuth 2.0 spec anticipated this problem and created the Implicit Authentication Flow.\n\n### Step One: Direct your user to our authorization URL\n\n```\nhttps://instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token\n```\n\nAt this point, we present the user with a login screen and then a confirmation screen where they approve your app’s access to their Instagram data. Note that unlike the explicit flow the response type here is “token”.\n\n### Step Two: Receive the access_token via the URL fragment\n\nOnce the user has authenticated and then authorized your application, we’ll redirect them to your redirect_uri with the access_token in the url fragment. It’ll look like so:\n\n```\nhttp://your-redirect-uri#access_token=ACCESS-TOKEN\n```\n\nSimply grab the access_token off the URL fragment and you’re good to go. If the user chooses not to authorize your application, you’ll receive the same error response as in the explicit flow\n\n## Scope (Permissions)\n\nThe OAuth 2.0 spec allows you to specify the scope of the access you’re requesting from the user. Currently, all apps have basic read access by default. If all you want to do is access data then you do not need to specify a scope (the “basic” scope will be granted automatically).\n\nHowever, if you plan on asking for extended access such as liking, commenting, or managing friendships, you’ll have to specify these scopes in your authorization request. Here are the scopes we currently support:\n\n* basic - to read any and all data related to a user (e.g. following/followed-by lists, photos, etc.) (granted by default)\n* comments - to create or delete comments on a user’s behalf\n* relationships - to follow and unfollow users on a user’s behalf\n* likes - to like and unlike items on a user’s behalf\n\nYou should only request the scope you need at the time of authorization. If in the future you require additional scope, you may forward the user to the authorization URL with that additional scope to be granted. If you attempt to perform a request with an access token that isn’t authorized for that scope, you will receive an OAuthPermissionsException error return.\n\nIf you’d like to request multiple scopes at once, simply separate the scopes by a space. In the url, this equates to an escaped space (“+”). So if you’re requesting the likes and comments permission, the parameter will look like this:\n\n```\nscope=likes+comments\n```\n\nNote that an empty scope parameter (scope=) is invalid; you must either omit the scope, or specify a non-empty scope list.",
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              {
+                "path": "docs/authentication.md"
+              }
+            ]
+          },
+          "path": "api.raml"
+        }
       },
       {
         "title": "Headline",
-        "content": "Instagram is a popular image sharing mobile service. The first version of the Instagram API is an exciting step forward towards making it easier for users to have open access to their Instagram data."
+        "content": "Instagram is a popular image sharing mobile service. The first version of the Instagram API is an exciting step forward towards making it easier for users to have open access to their Instagram data.",
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              {
+                "path": "docs/headline.md"
+              }
+            ]
+          },
+          "path": "api.raml"
+        }
       }
     ],
     "__METADATA__": {
@@ -8439,6 +9563,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

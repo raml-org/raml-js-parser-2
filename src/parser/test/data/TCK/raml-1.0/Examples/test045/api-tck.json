@@ -21,6 +21,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -44,7 +47,10 @@
                   "structuredValue": [
                     "230-OCTO",
                     "InvalidHere"
-                  ]
+                  ],
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               ],
               "required": true,
@@ -58,10 +64,16 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "api.raml"
+              },
               "items": "dept_code"
             }
           },
-          "name": "chargeable"
+          "name": "chargeable",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -86,7 +98,10 @@
                     "structuredValue": [
                       "230-OCTO",
                       "InvalidHere"
-                    ]
+                    ],
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 ],
                 "required": true,
@@ -100,13 +115,19 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "items": "dept_code"
               }
             },
             "is": [
               "chargeable"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -118,12 +139,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {
