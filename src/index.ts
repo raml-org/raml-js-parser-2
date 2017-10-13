@@ -1,6 +1,7 @@
 import parserCore = require("./parser/wrapped-ast/parserCoreApi")
 import apiLoader = require("./parser/apiLoader")
 import path = require("path")
+export import jsonTypings = require("./typings-new-format/raml");
 
 var PromiseConstructor = require('promise-polyfill');
 
@@ -20,7 +21,7 @@ export import api08 = require("./parser/artifacts/raml08parserapi")
  * @param options Load options
  * @return Object representation of the specification wrapped into a Promise.
  **/
-export function load(ramlPath:string,options?:parserCore.Options2):Promise<Object>{
+export function load(ramlPath:string,options?:parserCore.Options2):Promise<jsonTypings.RAMLParseResult>{
     return apiLoader.load(ramlPath,options);
 }
 
@@ -30,7 +31,7 @@ export function load(ramlPath:string,options?:parserCore.Options2):Promise<Objec
  * @param options Load options
  * @return Object representation of the specification.
  **/
-export function loadSync(ramlPath:string,options?:parserCore.Options2):Object{
+export function loadSync(ramlPath:string,options?:parserCore.Options2):jsonTypings.RAMLParseResult{
     return apiLoader.loadSync(ramlPath,options);
 }
 

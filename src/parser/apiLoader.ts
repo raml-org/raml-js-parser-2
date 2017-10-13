@@ -4,7 +4,7 @@ import RamlWrapper1Impl= require("../parser/artifacts/raml10parser")
 import RamlWrapper08= require("../parser/artifacts/raml08parserapi")
 
 import path=require("path")
-import fs=require("fs")
+import jsonTypings = require("../typings-new-format/raml");
 import Opt = require('../Opt')
 import jsyaml=require("../parser/jsyaml/jsyaml2lowLevel")
 import hl=require("../parser/highLevelAST")
@@ -29,7 +29,7 @@ export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../parser/definition-system/universeProvider")
 
-export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Object>{
+export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<jsonTypings.RAMLParseResult>{
     options = options || {};
     return parse(ramlPath,options).then(expanded=>{
         return jsonSerializerHL.dump(expanded,{
@@ -42,7 +42,7 @@ export function load(ramlPath:string,options?:parserCoreApi.Options2):Promise<Ob
     });
 }
 
-export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):Object{
+export function loadSync(ramlPath:string,options?:parserCoreApi.Options2):jsonTypings.RAMLParseResult{
     options = options || {};
     let expanded = parseSync(ramlPath,options);
     return jsonSerializerHL.dump(expanded,{
