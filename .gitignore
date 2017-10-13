@@ -24,6 +24,7 @@ npm-debug.log
 !/src/devUtil/documentation/theme.js
 
 /dist/
+/standalone-typings/
 
 /coverage
 coverage.zip

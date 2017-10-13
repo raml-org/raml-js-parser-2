@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
-    "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite && npm run removeMainDTSLinks",
+    "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite && npm run removeMainDTSLinks && npm run extractTypings",
     "generateTopLevel": "node dist/topLevelGenerator/buildParsers.js",
     "generateTckSuite": "node dist/parser/test/scripts/generateTCKMocha.js && npm run compile",
     "tck": "node dist/parser/test/scripts/launchTCKRepo.js",
@@ -20,7 +20,8 @@
     "buildBrowserPublishNpm": "node generateBrowserVersion.js --type 'npm'",
     "buildBrowserPublishBower": "node generateBrowserVersion.js --type 'bower'",
     "validateTCKSchema": "node dist/parser/test/scripts/schema/schemaTCKValidator.js",
-    "platformTests": "node dist/parser/test/scripts/platformTests.js"
+    "platformTests": "node dist/parser/test/scripts/platformTests.js",
+    "extractTypings": "node ./dist/devUtil/extractTypings.js"
   },
   "dependencies": {
     "base64url": "^2.0.0",
