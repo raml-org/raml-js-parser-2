@@ -338,7 +338,7 @@ export class JsonSerializer {
                                     let sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x, null,rp));
                                     gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length > 0;
                                     sAnnotations.push(sAnnotations1);
-                                    sPaths.push(actualPath(x,true));
+                                    sPaths.push(hlImpl.actualPath(x,true));
                                 });
                                 if (gotScalarAnnotations) {
                                     scalarsAnnotations[pName] = sAnnotations;
@@ -367,7 +367,7 @@ export class JsonSerializer {
                                     }
                                 }
                                 if(!(<hlImpl.ASTPropImpl>attr).isFromKey()) {
-                                    let sPath = actualPath(attr, true);
+                                    let sPath = hlImpl.actualPath(attr, true);
                                     if (sPath) {
                                         scalarsSources[pName] = [ { path: sPath }];
                                     }
@@ -504,7 +504,7 @@ export class JsonSerializer {
                 result = applyTransformersMap(eNode, nodeProperty || eNode.property(), result, this.nodeTransformersMap);
             }
             if(this.options.sourceMap && typeof result == "object") {
-                let unitPath = actualPath(eNode);
+                let unitPath = hlImpl.actualPath(eNode);
                 let sourceMap = result.sourceMap;
                 if(!sourceMap){
                     sourceMap = {};
@@ -2307,39 +2307,3 @@ function mergeObjects(o1:Object,o2:Object):Object{
     return o1;
 }
 
-function actualPath(node: hl.IParseResult,checkIfDifferent=false) {
-    let llNode = node.lowLevel();
-    let nodeUnit = llNode.unit();
-    let unit = nodeUnit;
-    let projectPath = unit.project().getRootPath();
-    let unitPath:string;
-    while (llNode.kind() == yaml.Kind.INCLUDE_REF || llNode.valueKind() == yaml.Kind.INCLUDE_REF) {
-        let iPath = llNode.includePath();
-        let iUnit = unit.resolve(iPath);
-        if (iUnit) {
-            unit = iUnit;
-            if (unit.isRAMLUnit()) {
-                llNode = unit.ast();
-            }
-            else {
-                break;
-            }
-        }
-        else{
-            unitPath = iPath;
-            break;
-        }
-    }
-    if(!unitPath) {
-        unitPath = unit.absolutePath();
-    }
-    if(checkIfDifferent){
-        if(nodeUnit.absolutePath()==unitPath){
-            return null;
-        }
-    }
-    if (!ll.isWebPath(unitPath)) {
-        unitPath = path.relative(projectPath, unitPath).replace(/\\/g, '/');
-    }
-    return unitPath;
-}
