@@ -27,6 +27,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "security-schemes-pass.raml"
                 }
               }
             },
@@ -48,9 +51,18 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "security-schemes-pass.raml"
                 }
               }
+            },
+            "sourceMap": {
+              "path": "security-schemes-pass.raml"
             }
+          },
+          "sourceMap": {
+            "path": "security-schemes-pass.raml"
           }
         }
       }
@@ -86,6 +98,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "security-schemes-pass.raml"
         }
       }
     },
@@ -98,6 +113,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "security-schemes-pass.raml"
     }
   },
   "errors": []

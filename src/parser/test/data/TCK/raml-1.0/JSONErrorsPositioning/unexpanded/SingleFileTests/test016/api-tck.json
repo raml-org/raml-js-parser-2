@@ -16,19 +16,28 @@
               "value": "123123",
               "strict": true,
               "name": "ex1",
-              "structuredValue": "123123"
+              "structuredValue": "123123",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "value": "123123",
               "strict": true,
               "name": "ex2",
-              "structuredValue": "123123"
+              "structuredValue": "123123",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "value": "123123",
               "strict": true,
               "name": "ex3",
-              "structuredValue": 123123
+              "structuredValue": 123123,
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "__METADATA__": {
@@ -37,11 +46,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

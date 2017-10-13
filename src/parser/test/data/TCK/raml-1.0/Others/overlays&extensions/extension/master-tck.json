@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "decls",
-        "value": "lib/decls.raml"
+        "value": "lib/decls.raml",
+        "sourceMap": {
+          "path": "extension.raml"
+        }
       }
     ],
     "title": "ApiExtension",
@@ -34,6 +37,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "extension.raml"
             }
           }
         ],
@@ -46,6 +52,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "extension.raml"
+        },
         "relativeUriPathSegments": [
           "items"
         ],
@@ -56,10 +65,16 @@
           {
             "responses": {
               "200": {
-                "code": "200"
+                "code": "200",
+                "sourceMap": {
+                  "path": "master.raml"
+                }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "master.raml"
+            }
           }
         ],
         "relativeUri": "/elements",
@@ -70,6 +85,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "master.raml"
         },
         "relativeUriPathSegments": [
           "elements"
@@ -84,6 +102,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "extension.raml"
     }
   },
   "errors": []

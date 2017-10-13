@@ -30,6 +30,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "responses.raml"
               }
             },
             "vendorName": {
@@ -52,6 +55,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "responses.raml"
               }
             }
           },
@@ -64,6 +70,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "responses.raml"
           }
         }
       }
@@ -103,6 +112,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "responses.raml"
                         }
                       }
                     },
@@ -112,12 +124,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "responses.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "responses.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "responses.raml"
+            }
           },
           {
             "responses": {
@@ -146,11 +167,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    },
                     "structuredExample": {
                       "value": "/invoices/45612",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "/invoices/45612"
+                      "structuredValue": "/invoices/45612",
+                      "sourceMap": {
+                        "path": "responses.raml"
+                      }
                     }
                   }
                 },
@@ -160,6 +187,9 @@
                     "displayName": "application/json",
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemas/invoice.json",
+                    "sourceMap": {
+                      "path": "schemas/invoice.json"
+                    },
                     "type": [
                       "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"accountID\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"amount\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"accountID\", \"amount\"]\n}\n"
                     ],
@@ -176,6 +206,9 @@
                     "displayName": "text/xml",
                     "typePropertyKind": "XML",
                     "schemaPath": "schemas/invoice.xsd",
+                    "sourceMap": {
+                      "path": "schemas/invoice.xsd"
+                    },
                     "type": [
                       "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n  <xs:element name=\"invoice\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"accountID\" type=\"xs:string\"/>\n        <xs:element name=\"amount\" type=\"xs:string\"/>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                     ],
@@ -187,6 +220,9 @@
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "responses.raml"
                 }
               },
               "422": {
@@ -223,6 +259,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "responses.raml"
                         }
                       }
                     },
@@ -236,15 +275,24 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "responses.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"error\": \"Amount cannot be negative\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {
                         "error": "Amount cannot be negative"
+                      },
+                      "sourceMap": {
+                        "path": "responses.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "responses.raml"
                 }
               }
             },
@@ -262,10 +310,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "responses.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "responses.raml"
+            }
           }
         ],
         "relativeUri": "/invoices",
@@ -277,12 +331,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "responses.raml"
+        },
         "relativeUriPathSegments": [
           "invoices"
         ],
         "absoluteUri": "/invoices"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "responses.raml"
+    }
   },
   "errors": []
 }

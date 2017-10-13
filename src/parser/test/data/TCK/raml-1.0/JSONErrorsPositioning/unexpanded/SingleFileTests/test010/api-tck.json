@@ -27,6 +27,9 @@
                     "prop2": false
                   }
                 ]
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             {
@@ -44,6 +47,9 @@
                     "prop2": false
                   }
                 ]
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           ],
@@ -53,11 +59,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

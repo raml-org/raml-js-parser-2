@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "ll",
-        "value": "ll.raml"
+        "value": "ll.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -35,6 +38,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -44,11 +50,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

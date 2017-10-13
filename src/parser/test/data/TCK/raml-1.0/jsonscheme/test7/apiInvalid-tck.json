@@ -9,6 +9,9 @@
           "displayName": "MyType",
           "typePropertyKind": "JSON",
           "schemaPath": "scheme.json#/definitions/InnerType",
+          "sourceMap": {
+            "path": "scheme.json#/definitions/InnerType"
+          },
           "type": [
             "{\n  \"$ref\": \"scheme.json#/definitions/InnerType\"\n}"
           ],
@@ -45,17 +48,26 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"innerTypeName1\": \"somenam\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
                     "innerTypeName1": "somenam"
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -67,12 +79,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

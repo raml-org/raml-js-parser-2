@@ -5,7 +5,10 @@
     "title": "test API",
     "schemas": [
       {
-        "MyType": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+        "MyType": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resources": [
@@ -18,10 +21,16 @@
                 "name": "application/json",
                 "schema": "MyType",
                 "example": "{\n  \"arrayProp\": [\n     {\n               \"prop1\": 13,\n        \"prop2\"   :          true\n      },          {\n    \"prop1\": 13,\n                 \"prop2\": false\n      }\n           ]\n}\n",
-                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/res1",
@@ -31,6 +40,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "res1"
@@ -46,10 +58,16 @@
                 "name": "application/json",
                 "schema": "MyType",
                 "example": "{\n           \"arrayProp\": [\n      {\n  \"prop1\": 13\n                \"prop2\": false\n          }        , {\n        \"prop1\": 13,\n              \"prop2\": false\n                }\n       ]\n}\n",
-                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n"
+                "schemaContent": "{\n  \"$schema\": \"http://json-schema.org/draft-04/\",\n             \"type\": \"object\",\n\"properties\": {\n              \"arrayProp\": {\n      \"items\": {\n                 \"type\": \"object\",  \"properties\": {\n          \"prop1\": { \"type\": \"number\" },\n                       \"prop2\": { \"type\": \"boolean\" }\n        },\n        \"additionalProperties\": false\n      }\n                }\n  }\n}\n",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/res2",
@@ -60,12 +78,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "res2"
         ],
         "absoluteUri": "/res2"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

@@ -9,6 +9,9 @@
           "displayName": "MyType",
           "typePropertyKind": "JSON",
           "schemaPath": "scheme.json",
+          "sourceMap": {
+            "path": "scheme.json"
+          },
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"required\":[\"name\"],\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n        },\n        \"child\": {\n          \"$ref\": \"#/definitions/InnerType\"\n        }\n    },\n    \"definitions\":{\n        \"InnerType\":{\n            \"type\":\"object\",\n            \"required\":[\"innerTypeName\"],\n            \"properties\":{\n                \"innerTypeName\":{\n                    \"type\":\"string\"\n                }\n            }\n        }\n    }\n}\n"
           ],
@@ -48,6 +51,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"name\": \"somename\",\n  \"child\": {\n    \"innerTypeName\": \"anothername\"\n  }\n}",
                   "strict": true,
@@ -57,11 +63,17 @@
                     "child": {
                       "innerTypeName": "anothername"
                     }
+                  },
+                  "sourceMap": {
+                    "path": "apiValid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -73,12 +85,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

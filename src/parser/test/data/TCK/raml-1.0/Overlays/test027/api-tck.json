@@ -7,7 +7,10 @@
       {
         "methods": [
           {
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "description": "La colección de libros de la biblioteca",
@@ -20,6 +23,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "overlay.raml"
+        },
         "relativeUriPathSegments": [
           "books"
         ],
@@ -29,15 +35,24 @@
     "documentation": [
       {
         "title": "Introducción",
-        "content": "El acceso automatizado a los libros"
+        "content": "El acceso automatizado a los libros",
+        "sourceMap": {
+          "path": "overlay.raml"
+        }
       },
       {
         "title": "Licencias",
-        "content": "Por favor respeta los derechos de autor de los libros"
+        "content": "Por favor respeta los derechos de autor de los libros",
+        "sourceMap": {
+          "path": "overlay.raml"
+        }
       }
     ],
     "usage": "Spanish localization",
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "overlay.raml"
+    }
   },
   "errors": []
 }

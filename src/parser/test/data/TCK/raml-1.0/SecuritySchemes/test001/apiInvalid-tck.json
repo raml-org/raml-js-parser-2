@@ -6,12 +6,18 @@
       {
         "auth": {
           "name": "auth",
-          "type": "n-sls"
+          "type": "n-sls",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          }
         }
       }
     ],
     "title": "New API",
-    "version": "v1"
+    "version": "v1",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

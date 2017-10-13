@@ -27,11 +27,17 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "true",
                   "strict": true,
                   "name": null,
-                  "structuredValue": true
+                  "structuredValue": true,
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               },
               "param2": {
@@ -53,15 +59,24 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "stringValue",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "stringValue"
+                  "structuredValue": "stringValue",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -73,12 +88,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

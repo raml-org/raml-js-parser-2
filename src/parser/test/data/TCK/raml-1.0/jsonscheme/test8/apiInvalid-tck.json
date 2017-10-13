@@ -9,6 +9,9 @@
           "displayName": "MyType",
           "typePropertyKind": "JSON",
           "schemaPath": "subdir/scheme.json",
+          "sourceMap": {
+            "path": "subdir/scheme.json"
+          },
           "type": [
             "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
           ],
@@ -48,6 +51,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName1\": \"anothername\"\n  }\n}",
                   "strict": true,
@@ -57,11 +63,17 @@
                     "child": {
                       "childName1": "anothername"
                     }
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -73,12 +85,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

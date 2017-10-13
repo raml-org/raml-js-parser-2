@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "union-type-multiple-inheritance.raml"
               }
             }
           },
@@ -38,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "union-type-multiple-inheritance.raml"
           }
         }
       },
@@ -67,6 +73,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "union-type-multiple-inheritance.raml"
               }
             },
             "color": {
@@ -86,6 +95,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "union-type-multiple-inheritance.raml"
               }
             }
           },
@@ -95,6 +107,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "union-type-multiple-inheritance.raml"
           }
         }
       },
@@ -124,6 +139,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "union-type-multiple-inheritance.raml"
               }
             },
             "fangs": {
@@ -143,6 +161,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "union-type-multiple-inheritance.raml"
               }
             }
           },
@@ -152,6 +173,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "union-type-multiple-inheritance.raml"
           }
         }
       },
@@ -170,11 +194,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "union-type-multiple-inheritance.raml"
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "union-type-multiple-inheritance.raml"
+    }
   },
   "errors": []
 }

@@ -25,6 +25,7 @@ import factory08 = require("./artifacts/raml08factory")
 import universeHelpers = require("./tools/universeHelpers")
 import resourceRegistry = require("./jsyaml/resourceRegistry")
 import rTypes=defs.rt;
+import path=require("path");
 type NodeClass=def.NodeClass;
 type IAttribute=high.IAttribute
 
@@ -2755,4 +2756,56 @@ function hasTemplateArgs(node:ll.ILowLevelASTNode):boolean{
         }
     }
     return false;
+}
+
+export function actualPath(node: hl.IParseResult,checkIfDifferent=false) {
+    let llNode = node.lowLevel();
+    let ownPath = llNode.unit().absolutePath();
+    let unit = actualUnit(llNode);
+    let unitPath:string;
+    if((llNode.kind() == yaml.Kind.INCLUDE_REF || llNode.valueKind() == yaml.Kind.INCLUDE_REF)
+        && unit.absolutePath() == ownPath && llNode.includePath()){
+        unitPath = llNode.includePath();
+    }
+    else if (unit.isRAMLUnit() && unit.ast()) {
+        let iPath = unit.ast().includePath();
+        if(iPath){
+            unitPath = iPath;
+        }
+    }
+    if(!unitPath) {
+        unitPath = unit.absolutePath();
+    }
+    if(checkIfDifferent){
+        if(ownPath==unitPath){
+            return null;
+        }
+    }
+    if (!ll.isWebPath(unitPath)) {
+        let projectPath = unit.project().getRootPath();
+        unitPath = path.relative(projectPath, unitPath).replace(/\\/g, '/');
+    }
+    return unitPath;
+}
+
+export function actualUnit(llNode:ll.ILowLevelASTNode) {
+    let nodeUnit = llNode.unit();
+    let unit = nodeUnit;
+    while (llNode.kind() == yaml.Kind.INCLUDE_REF || llNode.valueKind() == yaml.Kind.INCLUDE_REF) {
+        let iPath = llNode.includePath();
+        let iUnit = unit.resolve(iPath);
+        if (iUnit) {
+            unit = iUnit;
+            if (unit.isRAMLUnit()) {
+                llNode = unit.ast();
+            }
+            else {
+                break;
+            }
+        }
+        else{
+            break;
+        }
+    }
+    return unit;
 }

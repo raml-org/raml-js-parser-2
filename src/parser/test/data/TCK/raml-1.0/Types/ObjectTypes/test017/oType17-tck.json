@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType17.raml"
               }
             }
           },
@@ -41,11 +44,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "oType17.raml"
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType17.raml"
+    }
   },
   "errors": []
 }

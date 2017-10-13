@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "/.*/": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -57,6 +63,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -90,12 +99,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "assets"
         ],
         "absoluteUri": "/assets"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

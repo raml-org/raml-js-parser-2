@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "AWS",
-        "value": "aws-lib.raml"
+        "value": "aws-lib.raml",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        }
       }
     ],
     "securitySchemes": [
@@ -35,9 +38,18 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apigateway.raml"
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apigateway.raml"
             }
+          },
+          "sourceMap": {
+            "path": "apigateway.raml"
           }
         }
       }
@@ -117,6 +129,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apigateway.raml"
                 }
               },
               "longitude": {
@@ -135,6 +150,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apigateway.raml"
                 }
               }
             },
@@ -148,12 +166,18 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "apigateway-aws-overlay.raml"
             }
           }
         ],
         "description": "The Products endpoint returns information about the *Uber* products\noffered at a given location. The response includes the display name\nand other details about each product, and lists the products in the\nproper display order.\n",
         "relativeUri": "/products",
         "displayName": "Product Types",
+        "sourceMap": {
+          "path": "apigateway-aws-overlay.raml"
+        },
         "relativeUriPathSegments": [
           "products"
         ],
@@ -167,6 +191,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apigateway-aws-overlay.raml"
     }
   },
   "errors": []

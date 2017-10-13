@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "meth02.raml"
           }
         }
       }
@@ -28,7 +31,10 @@
           {
             "responses": {
               "201": {
-                "code": "201"
+                "code": "201",
+                "sourceMap": {
+                  "path": "meth02.raml"
+                }
               }
             },
             "body": {
@@ -47,10 +53,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth02.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth02.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -62,12 +74,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth02.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth02.raml"
+    }
   },
   "errors": []
 }

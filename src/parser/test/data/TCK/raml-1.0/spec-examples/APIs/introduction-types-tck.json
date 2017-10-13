@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types.raml"
               }
             },
             "lastname": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types.raml"
               }
             },
             "age": {
@@ -67,6 +73,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "introduction-types.raml"
               }
             }
           },
@@ -76,6 +85,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "introduction-types.raml"
           }
         }
       }
@@ -102,12 +114,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "introduction-types.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "introduction-types.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "introduction-types.raml"
+            }
           }
         ],
         "uriParameters": {
@@ -132,6 +153,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "introduction-types.raml"
             }
           }
         },
@@ -144,13 +168,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "introduction-types.raml"
+        },
         "relativeUriPathSegments": [
           "users",
           "{id}"
         ],
         "absoluteUri": "/users/{id}"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "introduction-types.raml"
+    }
   },
   "errors": []
 }

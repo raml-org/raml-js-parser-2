@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "workItem.raml"
               }
             },
             "reference": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "workItem.raml"
               }
             },
             "weight": {
@@ -67,6 +73,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "workItem.raml"
               }
             },
             "workItmes": {
@@ -87,6 +96,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "workItem.raml"
+              },
               "items": "workItem"
             }
           },
@@ -96,10 +108,16 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "workItem.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

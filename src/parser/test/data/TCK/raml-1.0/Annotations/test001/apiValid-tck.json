@@ -38,6 +38,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             },
             "items": {
@@ -61,6 +64,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -73,11 +79,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
     ],
-    "title": "H"
+    "title": "H",
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

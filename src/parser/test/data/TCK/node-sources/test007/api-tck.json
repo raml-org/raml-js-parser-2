@@ -1,0 +1,304 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libraries/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
+      }
+    ],
+    "traits": [
+      {
+        "lib.trait1": {
+          "queryParameters": {
+            "param1": {
+              "name": "param1",
+              "displayName": "param1",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "traits/tr.raml"
+              }
+            }
+          },
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "typePropertyKind": "TYPE_EXPRESSION",
+              "type": [
+                "string"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              },
+              "sourceMap": {
+                "path": "traits/tr.raml"
+              }
+            }
+          },
+          "name": "lib.trait1",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "sourceMap": {
+            "path": "traits/tr.raml"
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib.resourceType1": {
+          "description": "string value 1\n",
+          "name": "lib.resourceType1",
+          "sourceMap": {
+            "scalarsSources": {
+              "description": [
+                {
+                  "path": "resourceTypes/description.txt"
+                }
+              ]
+            },
+            "path": "resourceTypes/rt3.raml"
+          },
+          "__METADATA__": {
+            "calculated": true
+          },
+          "get": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/rt3.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "resourceTypes/rt3.raml"
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/rt3.raml"
+                }
+              }
+            },
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          },
+          {
+            "queryParameters": {
+              "param2": {
+                "name": "param2",
+                "displayName": "param2",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "boolean"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "number"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "traits/tr.raml"
+                }
+              }
+            },
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "object"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
+                }
+              },
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "typePropertyKind": "TYPE_EXPRESSION",
+                "type": [
+                  "string"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "sourceMap": {
+                  "path": "traits/tr.raml"
+                }
+              }
+            },
+            "is": [
+              "lib.trait1"
+            ],
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          }
+        ],
+        "type": "lib.resourceType1",
+        "description": "string value 1\n",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "sourceMap": {
+          "scalarsSources": {
+            "description": [
+              {
+                "path": "resourceTypes/description.txt"
+              }
+            ]
+          },
+          "path": "api.raml"
+        },
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

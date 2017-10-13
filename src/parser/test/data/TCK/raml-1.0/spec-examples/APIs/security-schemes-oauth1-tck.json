@@ -15,12 +15,21 @@
             "signatures": [
               "HMAC-SHA1",
               "PLAINTEXT"
-            ]
+            ],
+            "sourceMap": {
+              "path": "security-schemes-oauth1.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "security-schemes-oauth1.raml"
           }
         }
       }
     ],
-    "title": "My Sample API"
+    "title": "My Sample API",
+    "sourceMap": {
+      "path": "security-schemes-oauth1.raml"
+    }
   },
   "errors": []
 }

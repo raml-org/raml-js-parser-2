@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -51,6 +57,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -68,11 +77,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

@@ -13,10 +13,28 @@
                 "name": "application/json",
                 "schema": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n",
                 "example": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName\": \"anothername\"\n  }\n}\n",
-                "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n"
+                "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"required\":[\"parentName\"],\n    \"properties\":{\n        \"parentName\": {\"type\": \"string\"},\n        \"child\": {\"$ref\": \"subdir/scheme.json#\"}\n    }\n}\n",
+                "sourceMap": {
+                  "scalarsSources": {
+                    "schema": [
+                      {
+                        "path": "subdir/scheme.json"
+                      }
+                    ],
+                    "example": [
+                      {
+                        "path": "valid.json"
+                      }
+                    ]
+                  },
+                  "path": "apiValid0.raml"
+                }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid0.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -27,12 +45,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid0.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid0.raml"
+    }
   },
   "errors": []
 }

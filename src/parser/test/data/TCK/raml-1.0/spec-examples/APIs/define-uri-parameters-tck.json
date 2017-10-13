@@ -20,6 +20,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "define-uri-parameters.raml"
+        },
         "relativeUriPathSegments": [
           "user"
         ],
@@ -51,6 +54,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "define-uri-parameters.raml"
                 }
               }
             },
@@ -62,6 +68,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "define-uri-parameters.raml"
             },
             "relativeUriPathSegments": [
               "{userId}"
@@ -76,6 +85,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "define-uri-parameters.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
@@ -88,6 +100,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "define-uri-parameters.raml"
     }
   },
   "errors": []

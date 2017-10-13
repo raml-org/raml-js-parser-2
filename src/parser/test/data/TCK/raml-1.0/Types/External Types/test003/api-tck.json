@@ -17,11 +17,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

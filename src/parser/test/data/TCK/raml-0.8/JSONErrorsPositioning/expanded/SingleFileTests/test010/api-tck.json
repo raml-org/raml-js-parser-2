@@ -5,7 +5,10 @@
     "title": "test API",
     "schemas": [
       {
-        "MyType": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+        "MyType": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -13,10 +16,16 @@
         "tr": {
           "body": {
             "application/json": {
-              "name": "application/json"
+              "name": "application/json",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           },
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
@@ -30,10 +39,16 @@
                 "name": "application/json",
                 "schema": "MyType",
                 "example": "{\"arrayProp\":[{\"prop1\":13,\"prop2\": true},{\"prop1\": 13,\"prop2\":123123}]}",
-                "schemaContent": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}"
+                "schemaContent": "{\"$schema\":\"http://json-schema.org/draft-04/\",\"type\":\"object\",\"properties\":{\"arrayProp\":{\"items\": {\"type\": \"object\",\"properties\": {\"prop1\": { \"type\": \"number\"},\"prop2\":{\"type\":\"boolean\"}},\"additionalProperties\":false}}}}",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/res1",
@@ -44,12 +59,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "res1"
         ],
         "absoluteUri": "/res1"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

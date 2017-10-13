@@ -22,6 +22,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "file-type.raml"
           }
         }
       },
@@ -43,11 +46,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "file-type.raml"
           }
         }
       }
     ],
-    "title": "File Type"
+    "title": "File Type",
+    "sourceMap": {
+      "path": "file-type.raml"
+    }
   },
   "errors": []
 }

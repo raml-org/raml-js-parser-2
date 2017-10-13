@@ -27,12 +27,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "default-type-any.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "default-type-any.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "default-type-any.raml"
+            }
           }
         ],
         "relativeUri": "/customers",
@@ -44,12 +53,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "default-type-any.raml"
+        },
         "relativeUriPathSegments": [
           "customers"
         ],
         "absoluteUri": "/customers"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "default-type-any.raml"
+    }
   },
   "errors": []
 }

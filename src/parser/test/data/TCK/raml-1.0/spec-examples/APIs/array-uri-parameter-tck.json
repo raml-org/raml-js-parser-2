@@ -36,6 +36,9 @@
                         "calculated": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "array-uri-parameter.raml"
                   }
                 },
                 "__METADATA__": {
@@ -47,6 +50,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "array-uri-parameter.raml"
                 }
               }
             },
@@ -58,6 +64,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "array-uri-parameter.raml"
             },
             "relativeUriPathSegments": [
               "{userIds}"
@@ -72,12 +81,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "array-uri-parameter.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "array-uri-parameter.raml"
+    }
   },
   "errors": []
 }

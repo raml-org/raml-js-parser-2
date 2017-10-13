@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -65,13 +71,22 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "./example.json",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "./example.json"
+                      "structuredValue": "./example.json",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "201": {
@@ -92,11 +107,17 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "examples/example.json",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "examples/example.json"
+                      "structuredValue": "examples/example.json",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   },
                   "text/plain": {
@@ -114,13 +135,22 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "example.json",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "example.json"
+                      "structuredValue": "example.json",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "202": {
@@ -142,12 +172,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -159,12 +198,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

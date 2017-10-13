@@ -20,11 +20,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "string-type.raml"
           }
         }
       }
     ],
-    "title": "String Type"
+    "title": "String Type",
+    "sourceMap": {
+      "path": "string-type.raml"
+    }
   },
   "errors": []
 }

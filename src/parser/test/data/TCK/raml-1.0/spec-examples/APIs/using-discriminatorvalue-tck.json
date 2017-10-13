@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "using-discriminatorvalue.raml"
               }
             },
             "kind": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "using-discriminatorvalue.raml"
               }
             }
           },
@@ -58,6 +64,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "using-discriminatorvalue.raml"
           }
         }
       },
@@ -87,6 +96,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "using-discriminatorvalue.raml"
               }
             }
           },
@@ -97,6 +109,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "using-discriminatorvalue.raml"
           }
         }
       },
@@ -126,6 +141,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "using-discriminatorvalue.raml"
               }
             }
           },
@@ -136,11 +154,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "using-discriminatorvalue.raml"
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "using-discriminatorvalue.raml"
+    }
   },
   "errors": []
 }

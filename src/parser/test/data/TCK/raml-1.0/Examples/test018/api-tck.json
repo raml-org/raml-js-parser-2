@@ -23,11 +23,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "d",
             "strict": true,
             "name": null,
-            "structuredValue": "d"
+            "structuredValue": "d",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -51,16 +57,25 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "d1111",
             "strict": true,
             "name": null,
-            "structuredValue": "d1111"
+            "structuredValue": "d1111",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

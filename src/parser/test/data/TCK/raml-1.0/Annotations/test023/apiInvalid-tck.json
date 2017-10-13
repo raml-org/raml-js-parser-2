@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -29,6 +32,9 @@
           "name": "z"
         }
       ]
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "errors": [

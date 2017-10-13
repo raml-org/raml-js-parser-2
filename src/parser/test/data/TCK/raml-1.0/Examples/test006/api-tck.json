@@ -34,6 +34,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "y": {
@@ -53,6 +56,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -66,6 +72,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"x\": 1,\n  \"y\": 3,\n  \"z\": \"5 2\"\n}",
             "strict": true,
@@ -74,12 +83,18 @@
               "x": 1,
               "y": 3,
               "z": "5 2"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "title": "Test API"
+    "title": "Test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

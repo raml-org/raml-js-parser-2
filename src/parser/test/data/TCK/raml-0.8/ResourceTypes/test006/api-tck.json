@@ -34,6 +34,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
     },
@@ -42,13 +45,19 @@
     ],
     "schemas": [
       {
-        "member": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+        "member": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
       {
         "collection": {
           "name": "collection",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -57,12 +66,21 @@
                   "application/json": {
                     "name": "application/json",
                     "schema": "<<schema>>",
-                    "schemaContent": "<<schema>>"
+                    "schemaContent": "<<schema>>",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -84,8 +102,14 @@
                   "application/json": {
                     "name": "application/json",
                     "schema": "member",
-                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n"
+                    "schemaContent": "{\n  \"$schema\" : \"http://json-schema.org\",\n  \"type\": \"object\",\n  \"description\": \"The canonical member representation\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"firstName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"lastName\": {\n      \"type\": \"string\",\n      \"required\": true\n    },\n    \"birthDate\": {\n      \"type\": \"date\",\n      \"required\": true\n    }\n  }\n}\n",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -99,6 +123,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -109,6 +136,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "members"
@@ -122,6 +152,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": [

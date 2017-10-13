@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "base.raml"
           }
         }
       }
@@ -59,12 +65,18 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "trait.raml"
               }
             }
           },
           "name": "foo",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "trait.raml"
           }
         }
       }
@@ -92,13 +104,19 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "trait.raml"
                 }
               }
             },
             "is": [
               "foo"
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/foobar",
@@ -110,13 +128,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "foobar"
         ],
         "absoluteUri": "/foobar"
       }
     ],
-    "extends": "./base.raml"
+    "extends": "./base.raml",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

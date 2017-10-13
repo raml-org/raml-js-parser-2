@@ -27,6 +27,9 @@
                           "content": {
                             "name": 7
                           }
+                        },
+                        "sourceMap": {
+                          "path": "NewOverlay.raml"
                         }
                       }
                     ],
@@ -39,12 +42,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "NewOverlay.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewOverlay.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "NewOverlay.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -56,13 +68,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewOverlay.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
     ],
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": []
 }

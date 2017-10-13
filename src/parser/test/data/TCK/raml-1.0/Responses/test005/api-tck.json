@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -49,6 +52,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -59,12 +65,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"id\": \"userId\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "id": "userId"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -99,6 +111,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -109,6 +124,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"id\": \"userId\",\n  \"username\": \"name\"\n}",
             "strict": true,
@@ -116,6 +134,9 @@
             "structuredValue": {
               "id": "userId",
               "username": "name"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -159,6 +180,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "api.raml"
                         }
                       }
                     },
@@ -169,6 +193,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"username\": \"base\",\n  \"id\": \"any text\"\n}",
                       "strict": true,
@@ -176,13 +203,22 @@
                       "structuredValue": {
                         "username": "base",
                         "id": "any text"
+                      },
+                      "sourceMap": {
+                        "path": "api.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -194,12 +230,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

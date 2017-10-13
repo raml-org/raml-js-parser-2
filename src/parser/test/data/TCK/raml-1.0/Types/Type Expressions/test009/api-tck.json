@@ -21,6 +21,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -46,14 +49,23 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
-          "name": "chargeable"
+          "name": "chargeable",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
-    "title": "Test named parameters"
+    "title": "Test named parameters",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

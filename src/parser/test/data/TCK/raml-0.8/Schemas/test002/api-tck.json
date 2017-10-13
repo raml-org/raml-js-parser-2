@@ -5,24 +5,45 @@
     "title": "test API",
     "schemas": [
       {
-        "SongId": "{ \"type\": \"integer\" }"
+        "SongId": "{ \"type\": \"integer\" }",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "SongDuration": "{ \"type\": \"number\" }"
+        "SongDuration": "{ \"type\": \"number\" }",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "SongType": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n"
+        "SongType": "{\n  \"type\": \"string\",\n  \"enum\": [ \"jazz\", \"pop\" ]\n}\n",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "SongName": "{\n  \"type\": \"string\"\n}\n"
+        "SongName": "{\n  \"type\": \"string\"\n}\n",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
-        "Included1": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}"
+        "Included1": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"p1\": {\"type\": \"string\"},\n    \"p2\": {\"type\": \"number\"}\n  }\n}",
+        "sourceMap": {
+          "path": "schema1.json"
+        }
       },
       {
-        "Included2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}"
+        "Included2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"q1\": {\"type\": \"string\"},\n    \"q2\": {\"type\": \"number\"}\n  }\n}",
+        "sourceMap": {
+          "path": "schema2.json"
+        }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

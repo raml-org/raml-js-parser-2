@@ -37,6 +37,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -49,6 +52,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -78,6 +84,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -90,6 +99,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -118,10 +130,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
-          "name": "trait1"
+          "name": "trait1",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          }
         }
       }
     ],
@@ -143,11 +161,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
     ],
-    "title": "MyApi"
+    "title": "MyApi",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

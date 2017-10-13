@@ -33,6 +33,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-facets-single-example.raml"
               }
             },
             "body": {
@@ -52,6 +55,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-facets-single-example.raml"
               }
             },
             "name": {
@@ -71,6 +77,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-facets-single-example.raml"
               }
             },
             "comment": {
@@ -90,6 +99,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-facets-single-example.raml"
               }
             }
           },
@@ -102,6 +114,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "additional-facets-single-example.raml"
           },
           "structuredExample": {
             "annotations": {
@@ -116,6 +131,9 @@
             "structuredValue": {
               "title": "Attention needed",
               "body": "You have been added to group 274"
+            },
+            "sourceMap": {
+              "path": "additional-facets-single-example.raml"
             }
           }
         }
@@ -136,11 +154,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "additional-facets-single-example.raml"
           }
         }
       }
     ],
-    "title": "Single example with additional facets"
+    "title": "Single example with additional facets",
+    "sourceMap": {
+      "path": "additional-facets-single-example.raml"
+    }
   },
   "errors": []
 }

@@ -36,6 +36,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType03.raml"
               }
             },
             "initial_comments": {
@@ -55,6 +58,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType03.raml"
               }
             },
             "user": {
@@ -74,6 +80,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType03.raml"
               }
             },
             "time_stamp": {
@@ -93,6 +102,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType03.raml"
               }
             },
             "created": {
@@ -112,6 +124,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType03.raml"
               }
             }
           },
@@ -124,6 +139,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "oType03.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"comment_id\": 2,\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528,\n  \"created\": 1422378528\n}",
             "strict": true,
@@ -134,12 +152,18 @@
               "user": "Raml",
               "time_stamp": 1422378528,
               "created": 1422378528
+            },
+            "sourceMap": {
+              "path": "oType03.raml"
             }
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType03.raml"
+    }
   },
   "errors": [
     {

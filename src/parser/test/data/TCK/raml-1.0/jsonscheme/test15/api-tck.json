@@ -21,6 +21,9 @@
               "displayName": "type",
               "typePropertyKind": "JSON",
               "schemaPath": "schemas/A.json",
+              "sourceMap": {
+                "path": "schemas/A.json"
+              },
               "type": [
                 "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
               ],
@@ -38,6 +41,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           "__METADATA__": {
@@ -47,6 +53,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"p1\": false,\n  \"p2\": 15\n}",
             "strict": true,
@@ -54,6 +63,9 @@
             "structuredValue": {
               "p1": false,
               "p2": 15
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -82,6 +94,9 @@
                     "displayName": "type",
                     "typePropertyKind": "JSON",
                     "schemaPath": "schemas/A.json",
+                    "sourceMap": {
+                      "path": "schemas/A.json"
+                    },
                     "type": [
                       "{\n   \"type\" : \"object\",\n   \"properties\": {\n      \"p1\": {\n         \"$ref\": \"#/definitions/type1\"\n      },\n      \"P2\": {\n         \"$ref\": \"./B.json#/definitions/type2\"\n      }\n   },\n   \"definitions\":{\n      \"type1\" : {\n         \"type\" : \"boolean\"\n      }\n   }\n}\n"
                     ],
@@ -100,6 +115,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "api.raml"
+                  },
                   "structuredExample": {
                     "value": "{\n  \"p1\": false,\n  \"p2\": 15\n}",
                     "strict": true,
@@ -107,6 +125,9 @@
                     "structuredValue": {
                       "p1": false,
                       "p2": 15
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -116,10 +137,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/res",
@@ -131,12 +158,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "res"
         ],
         "absoluteUri": "/res"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

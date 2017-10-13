@@ -23,10 +23,16 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
-          "name": "box"
+          "name": "box",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       {
@@ -49,6 +55,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -68,6 +77,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           "body": {
@@ -87,17 +99,26 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
           "is": [
             "box"
           ],
-          "name": "container"
+          "name": "container",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
-    "title": "Traits"
+    "title": "Traits",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

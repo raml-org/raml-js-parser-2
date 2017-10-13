@@ -6,6 +6,9 @@
       {
         "rt1": {
           "name": "rt1",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "put": {
             "annotations": {
               "<<annotationType2>>": {
@@ -13,7 +16,10 @@
                 "name": "<<annotationType2>>"
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -25,6 +31,9 @@
             }
           },
           "name": "rt2",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "delete": {
             "annotations": {
               "<<annotationType1>>": {
@@ -32,7 +41,10 @@
                 "name": "<<annotationType1>>"
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -55,6 +67,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -70,7 +85,10 @@
                 "name": "a1"
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "annotations": {
@@ -79,7 +97,10 @@
                 "name": "a1"
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -96,12 +117,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

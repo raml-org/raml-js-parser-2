@@ -1,0 +1,48 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "traits": [
+      {
+        "trait1": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "sourceMap": {
+                "path": "trait1.raml"
+              }
+            }
+          },
+          "name": "trait1",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "sourceMap": {
+            "path": "trait1.raml"
+          }
+        }
+      },
+      {
+        "trait2": {
+          "body": {
+            "application/xml": {
+              "name": "application/xml",
+              "sourceMap": {
+                "path": "trait2.raml"
+              }
+            }
+          },
+          "name": "trait2",
+          "sourceMap": {
+            "path": "trait2.raml"
+          }
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

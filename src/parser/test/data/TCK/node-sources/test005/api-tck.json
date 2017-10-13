@@ -1,0 +1,41 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "documentation": [
+      {
+        "title": "section1",
+        "content": "string value 1\n",
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              {
+                "path": "doc1.txt"
+              }
+            ]
+          },
+          "path": "api.raml"
+        }
+      },
+      {
+        "title": "section2",
+        "content": "string value 2\n",
+        "sourceMap": {
+          "scalarsSources": {
+            "content": [
+              {
+                "path": "doc2.txt"
+              }
+            ]
+          },
+          "path": "api.raml"
+        }
+      }
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
+  },
+  "errors": []
+}

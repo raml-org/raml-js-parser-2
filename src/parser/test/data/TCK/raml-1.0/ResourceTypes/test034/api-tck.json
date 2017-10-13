@@ -5,17 +5,26 @@
     "uses": [
       {
         "key": "lib1",
-        "value": "./lib1.raml"
+        "value": "./lib1.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib1.lib2",
-        "value": "lib2.raml"
+        "value": "lib2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
       {
         "rt1": {
           "name": "rt1",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "put": {
             "body": {
               "application/json": {
@@ -43,6 +52,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -55,10 +67,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       },
@@ -70,6 +88,9 @@
             }
           },
           "name": "rt2",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "delete": {
             "body": {
               "application/json": {
@@ -97,6 +118,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -109,10 +133,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -137,10 +167,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "body": {
@@ -169,6 +205,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -181,10 +220,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "body": {
@@ -213,6 +258,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -225,10 +273,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -245,12 +299,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

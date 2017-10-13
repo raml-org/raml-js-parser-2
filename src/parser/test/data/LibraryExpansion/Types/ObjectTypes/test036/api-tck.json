@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -46,6 +49,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -55,6 +61,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -90,6 +99,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewLibrary.raml"
               }
             },
             "kind": {
@@ -109,6 +121,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewLibrary.raml"
               }
             },
             "price": {
@@ -128,6 +143,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewLibrary.raml"
               }
             },
             "color": {
@@ -155,6 +173,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewLibrary.raml"
               }
             }
           },
@@ -169,6 +190,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "NewLibrary.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"Snoopy\",\n  \"kind\": \"Mammal\",\n  \"price\": 100,\n  \"color\": \"White\"\n}",
             "strict": true,
@@ -178,6 +202,9 @@
               "kind": "Mammal",
               "price": 100,
               "color": "White"
+            },
+            "sourceMap": {
+              "path": "NewLibrary.raml"
             }
           }
         }
@@ -218,6 +245,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -239,8 +269,14 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "items": "NewLibrary.Pet"
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -254,6 +290,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -271,6 +310,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -284,6 +326,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -295,7 +340,10 @@
               {
                 "responses": {
                   "204": {
-                    "code": "204"
+                    "code": "204",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -308,6 +356,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               {
@@ -325,6 +376,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -338,6 +392,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -363,6 +420,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -374,6 +434,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -387,6 +450,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "pets"
@@ -414,8 +480,14 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "items": "Bird"
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -429,6 +501,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -446,6 +521,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -459,6 +537,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -470,7 +551,10 @@
               {
                 "responses": {
                   "204": {
-                    "code": "204"
+                    "code": "204",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -483,6 +567,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               {
@@ -500,6 +587,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -513,6 +603,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -538,6 +631,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -549,6 +645,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -562,6 +661,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "birds"
@@ -589,8 +691,14 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "items": "Mammal"
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -604,6 +712,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -621,6 +732,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -634,6 +748,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -645,7 +762,10 @@
               {
                 "responses": {
                   "204": {
-                    "code": "204"
+                    "code": "204",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -658,6 +778,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               {
@@ -675,6 +798,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -688,6 +814,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             ],
@@ -713,6 +842,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -724,6 +856,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -738,6 +873,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "mammals"
         ],
@@ -750,6 +888,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

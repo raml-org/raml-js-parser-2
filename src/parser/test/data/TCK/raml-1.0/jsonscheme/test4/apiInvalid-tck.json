@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -46,6 +49,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"child\": {\n    \"name1\": \"somename\"\n  }\n}",
                   "strict": true,
@@ -54,11 +60,17 @@
                     "child": {
                       "name1": "somename"
                     }
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -70,12 +82,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

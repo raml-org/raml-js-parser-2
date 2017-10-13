@@ -34,6 +34,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         }
       }
     },
@@ -54,8 +57,14 @@
                     "name": "application/json",
                     "schema": "{}",
                     "example": "{}",
-                    "schemaContent": "{}"
+                    "schemaContent": "{}",
+                    "sourceMap": {
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -64,7 +73,10 @@
                 "name": "application/json",
                 "schema": "{}",
                 "example": "{}",
-                "schemaContent": "{}"
+                "schemaContent": "{}",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             },
             "protocols": [
@@ -77,6 +89,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -87,6 +102,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "resource"
@@ -100,6 +118,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

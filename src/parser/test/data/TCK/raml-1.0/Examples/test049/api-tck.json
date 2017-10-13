@@ -35,6 +35,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -47,6 +50,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           },
           "structuredExample": {
             "annotations": {
@@ -68,6 +74,9 @@
             "description": "example of ObjectType3",
             "structuredValue": {
               "prop1": "value1"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -88,6 +97,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -105,11 +117,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
     ],
-    "title": "Example API test 04"
+    "title": "Example API test 04",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

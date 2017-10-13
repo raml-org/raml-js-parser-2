@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/libA.raml"
           }
         }
       },
@@ -51,6 +57,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/libB.raml"
           }
         }
       }
@@ -63,7 +72,10 @@
               "param1": "Monkey"
             }
           },
-          "name": "resourceType"
+          "name": "resourceType",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       {
@@ -74,12 +86,18 @@
               "param2": "Monkey"
             }
           },
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "lib/libA.raml"
+          }
         }
       },
       {
         "lib.lib.rt": {
           "name": "rt",
+          "sourceMap": {
+            "path": "lib/libB.raml"
+          },
           "post": {
             "body": {
               "application/json": {
@@ -95,6 +113,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               },
               "application/xml": {
@@ -110,6 +131,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               },
               "text/plain": {
@@ -125,6 +149,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               },
               "atom/xml": {
@@ -140,14 +167,23 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

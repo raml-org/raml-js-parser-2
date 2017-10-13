@@ -6,6 +6,9 @@
       {
         "collection": {
           "name": "collection",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -29,17 +32,29 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "<<exampleCollection>>",
                       "strict": true,
                       "name": null,
-                      "structuredValue": "<<exampleCollection>>"
+                      "structuredValue": "<<exampleCollection>>",
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -99,6 +114,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "api.raml"
+                    },
                     "structuredExample": {
                       "value": "[\n  {\n    \"ID\": 1,\n    \"code\": \"ER38sd\",\n    \"price\": 400,\n    \"departureDate\": \"2016/03/20\",\n    \"origin\": \"MUA\",\n    \"destination\": \"SFO\",\n    \"emptySeats\": 0,\n    \"plane\": {\n      \"type\": \"Boeing 737\",\n      \"totalSeats\": 150\n    }\n  },\n  {\n    \"ID\": 2,\n    \"code\": \"ER45if\",\n    \"price\": 345.99,\n    \"departureDate\": \"2016/02/11\",\n    \"origin\": \"MUA\",\n    \"destination\": \"LAX\",\n    \"emptySeats\": 52,\n    \"plane\": {\n      \"type\": \"Boeing 777\",\n      \"totalSeats\": 300\n    }\n  }\n]",
                       "strict": true,
@@ -130,13 +148,22 @@
                             "totalSeats": 300
                           }
                         }
-                      ]
+                      ],
+                      "sourceMap": {
+                        "path": "api.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -180,12 +207,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "flights"
         ],
         "absoluteUri": "/flights"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

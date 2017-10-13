@@ -5,7 +5,10 @@
     "traits": [
       {
         "lib.boolean": {
-          "name": "boolean"
+          "name": "boolean",
+          "sourceMap": {
+            "path": "lib/lib.raml"
+          }
         }
       }
     ],
@@ -16,7 +19,10 @@
           "securedBy": [
             "lib.number"
           ],
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       {
@@ -28,7 +34,10 @@
             "lib.oauth",
             "lib.number"
           ],
-          "name": "number"
+          "name": "number",
+          "sourceMap": {
+            "path": "lib/lib.raml"
+          }
         }
       }
     ],
@@ -36,16 +45,25 @@
       {
         "lib.oauth": {
           "name": "oauth",
-          "type": "OAuth 2.0"
+          "type": "OAuth 2.0",
+          "sourceMap": {
+            "path": "lib/lib.raml"
+          }
         }
       },
       {
         "lib.number": {
           "name": "number",
-          "type": "Basic Authentication"
+          "type": "Basic Authentication",
+          "sourceMap": {
+            "path": "lib/lib.raml"
+          }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

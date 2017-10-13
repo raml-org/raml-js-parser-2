@@ -12,7 +12,13 @@
             "authorizationUri": "https://www.dropbox.com/1/oauth2/authorize",
             "authorizationGrants": [
               "client_credentials"
-            ]
+            ],
+            "sourceMap": {
+              "path": "api.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -43,13 +49,19 @@
                         "value": "<doc><property1>value1</property1></doc>\n",
                         "strict": true,
                         "name": "one",
-                        "structuredValue": "<doc><property1>value1</property1></doc>\n"
+                        "structuredValue": "<doc><property1>value1</property1></doc>\n",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       },
                       {
                         "value": "<doc><property2>value2</property2></doc>\n",
                         "strict": true,
                         "name": "two",
-                        "structuredValue": "<doc><property2>value2</property2></doc>\n"
+                        "structuredValue": "<doc><property2>value2</property2></doc>\n",
+                        "sourceMap": {
+                          "path": "api.raml"
+                        }
                       }
                     ],
                     "__METADATA__": {
@@ -61,8 +73,14 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -80,6 +98,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         ],
@@ -91,6 +112,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "resource"
@@ -104,6 +128,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

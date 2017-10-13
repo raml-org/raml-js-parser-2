@@ -15,7 +15,13 @@
               "authorization_code",
               "refresh_token",
               "urn:ietf:params:oauth:grant-type:saml2-bearer"
-            ]
+            ],
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -51,6 +57,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
         }
       }
     },
@@ -63,6 +72,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "errors": [

@@ -18,11 +18,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "items": "SomeType"
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

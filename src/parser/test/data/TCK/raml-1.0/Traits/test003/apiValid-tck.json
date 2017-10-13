@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -41,6 +44,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -70,6 +76,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -82,6 +91,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -111,6 +123,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -123,6 +138,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       },
@@ -152,6 +170,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -164,6 +185,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -185,10 +209,16 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
-          "name": "RTTrait"
+          "name": "RTTrait",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       },
       {
@@ -222,6 +252,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     },
                     "traitProperty2": {
@@ -241,6 +274,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     },
                     "traitProperty1_3": {
@@ -260,6 +296,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     }
                   },
@@ -272,12 +311,21 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "apiValid.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
-          "name": "Trait1"
+          "name": "Trait1",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       },
       {
@@ -311,6 +359,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     },
                     "traitProperty2": {
@@ -330,6 +381,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     },
                     "traitProperty2_3": {
@@ -349,6 +403,9 @@
                             "insertedAsDefault": true
                           }
                         }
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     }
                   },
@@ -361,12 +418,21 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "apiValid.raml"
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
-          "name": "Trait2"
+          "name": "Trait2",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       }
     ],
@@ -374,6 +440,9 @@
       {
         "ResourceType1": {
           "name": "ResourceType1",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "put": {
             "is": [
               {
@@ -382,13 +451,19 @@
                 }
               }
             ],
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       },
       {
         "ResourceType2": {
           "name": "ResourceType2",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          },
           "put": {
             "is": [
               {
@@ -397,7 +472,10 @@
                 }
               }
             ],
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         }
       }
@@ -436,6 +514,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       },
                       "traitProperty2": {
@@ -455,6 +536,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       },
                       "traitProperty1_3": {
@@ -474,6 +558,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       },
                       "traitProperty2_3": {
@@ -493,6 +580,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       }
                     },
@@ -505,8 +595,14 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
@@ -528,12 +624,18 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiValid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"rtTypeProperty2\": \"stringValue\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
                     "rtTypeProperty2": "stringValue"
+                  },
+                  "sourceMap": {
+                    "path": "apiValid.raml"
                   }
                 }
               }
@@ -545,7 +647,10 @@
                 }
               }
             ],
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           },
           {
             "responses": {
@@ -583,6 +688,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       },
                       "traitProperty2": {
@@ -602,6 +710,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       },
                       "traitProperty1_3": {
@@ -621,6 +732,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       },
                       "traitProperty2_3": {
@@ -640,6 +754,9 @@
                               "insertedAsDefault": true
                             }
                           }
+                        },
+                        "sourceMap": {
+                          "path": "apiValid.raml"
                         }
                       }
                     },
@@ -653,6 +770,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "apiValid.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"traitProperty1\": true,\n  \"traitProperty2\": 1,\n  \"traitProperty1_3\": \"stringValue1\",\n  \"traitProperty2_3\": \"stringValue2\"\n}",
                       "strict": true,
@@ -662,13 +782,22 @@
                         "traitProperty2": 1,
                         "traitProperty1_3": "stringValue1",
                         "traitProperty2_3": "stringValue2"
+                      },
+                      "sourceMap": {
+                        "path": "apiValid.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "is": [
@@ -685,12 +814,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

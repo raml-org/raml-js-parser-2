@@ -9,6 +9,9 @@
           "value": "libraries/files.raml"
         }
       ],
+      "sourceMap": {
+        "path": "libraries-invalid-chaining.raml"
+      },
       "get": {
         "responses": {
           "200": {
@@ -27,15 +30,24 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "libraries-invalid-chaining.raml"
                 }
               }
+            },
+            "sourceMap": {
+              "path": "libraries-invalid-chaining.raml"
             }
           }
         },
         "is": [
           "files.drm"
         ],
-        "method": "get"
+        "method": "get",
+        "sourceMap": {
+          "path": "libraries-invalid-chaining.raml"
+        }
       }
     }
   },

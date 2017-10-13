@@ -34,6 +34,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "lib.raml"
                   }
                 }
               },
@@ -43,13 +46,22 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib.raml"
               }
             }
           },
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "lib.raml"
+          }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "lib.raml"
+    }
   },
   "errors": []
 }

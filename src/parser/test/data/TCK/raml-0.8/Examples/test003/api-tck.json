@@ -12,7 +12,10 @@
             "displayName": "code",
             "type": "string",
             "required": false,
-            "repeat": false
+            "repeat": false,
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         },
         "methods": [
@@ -32,10 +35,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/single-query-record/{code}",
@@ -46,13 +55,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "single-query-record",
           "{code}"
         ],
         "absoluteUri": "/single-query-record/{code}"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

@@ -25,6 +25,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
@@ -47,20 +50,32 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiValid.raml"
               }
             }
           },
-          "name": "SomeTrait"
+          "name": "SomeTrait",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       },
       {
         "Trait1": {
           "responses": {
             "200": {
-              "code": "200"
+              "code": "200",
+              "sourceMap": {
+                "path": "apiValid.raml"
+              }
             }
           },
-          "name": "Trait1"
+          "name": "Trait1",
+          "sourceMap": {
+            "path": "apiValid.raml"
+          }
         }
       }
     ],
@@ -74,8 +89,14 @@
                 "code": "200",
                 "body": {
                   "application/json": {
-                    "name": "application/json"
+                    "name": "application/json",
+                    "sourceMap": {
+                      "path": "apiValid.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
@@ -99,6 +120,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
@@ -122,6 +146,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiValid.raml"
                 }
               }
             },
@@ -133,7 +160,10 @@
                   "headerName": "c"
                 }
               }
-            ]
+            ],
+            "sourceMap": {
+              "path": "apiValid.raml"
+            }
           }
         ],
         "displayName": "/resource",
@@ -144,12 +174,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

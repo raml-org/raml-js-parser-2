@@ -34,6 +34,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "api.raml"
                     }
                   }
                 },
@@ -43,10 +46,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -62,6 +71,9 @@
                 }
               }
             },
+            "sourceMap": {
+              "path": "NewOverlay.raml"
+            },
             "relativeUriPathSegments": [
               "resource2"
             ],
@@ -75,13 +87,19 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "NewOverlay.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
     ],
-    "extends": "api.raml"
+    "extends": "api.raml",
+    "sourceMap": {
+      "path": "NewOverlay.raml"
+    }
   },
   "errors": [
     {

@@ -33,13 +33,19 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "protocols.raml"
         }
       }
     },
     "protocols": [
       "HTTP",
       "HTTPS"
-    ]
+    ],
+    "sourceMap": {
+      "path": "protocols.raml"
+    }
   },
   "errors": []
 }

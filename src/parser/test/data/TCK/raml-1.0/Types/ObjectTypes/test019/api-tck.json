@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             },
             "title": {
@@ -51,6 +54,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -61,18 +67,27 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"eleo\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "name": "eleo"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "title": "properties with trailing question marks"
+    "title": "properties with trailing question marks",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

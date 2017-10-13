@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -35,11 +38,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "items": "Person"
         }
       }
     ],
-    "title": "Dropbox API"
+    "title": "Dropbox API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

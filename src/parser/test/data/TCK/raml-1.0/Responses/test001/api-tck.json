@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -42,12 +45,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"field\": \"value\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "field": "value"
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
@@ -60,10 +69,16 @@
           {
             "responses": {
               "200": {
-                "code": "200"
+                "code": "200",
+                "sourceMap": {
+                  "path": "api.raml"
+                }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -75,12 +90,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

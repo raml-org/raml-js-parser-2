@@ -38,6 +38,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "overlay-monitoring.raml"
                   }
                 },
                 "unitOfMeasure": {
@@ -65,6 +68,9 @@
                         "insertedAsDefault": true
                       }
                     }
+                  },
+                  "sourceMap": {
+                    "path": "overlay-monitoring.raml"
                   }
                 }
               },
@@ -80,6 +86,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "overlay-monitoring.raml"
               }
             },
             "script": {
@@ -102,6 +111,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "overlay-monitoring.raml"
               }
             }
           },
@@ -114,6 +126,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "overlay-monitoring.raml"
           }
         }
       }
@@ -135,7 +150,10 @@
                 "name": "monitor"
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "overlay-monitoring.raml"
+            }
           }
         ],
         "description": "The collection of library books",
@@ -148,6 +166,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "overlay-monitoring.raml"
+        },
         "relativeUriPathSegments": [
           "books"
         ],
@@ -157,15 +178,24 @@
     "documentation": [
       {
         "title": "Introduction",
-        "content": "Automated access to books"
+        "content": "Automated access to books",
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       },
       {
         "title": "Licensing",
-        "content": "Please respect copyrights on our books."
+        "content": "Please respect copyrights on our books.",
+        "sourceMap": {
+          "path": "librarybooks.raml"
+        }
       }
     ],
     "usage": "Hints for monitoring the library books API",
-    "extends": "librarybooks.raml"
+    "extends": "librarybooks.raml",
+    "sourceMap": {
+      "path": "overlay-monitoring.raml"
+    }
   },
   "errors": []
 }

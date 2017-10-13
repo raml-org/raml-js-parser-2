@@ -17,12 +17,28 @@
                     "name": "application/xml",
                     "schema": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}\n",
                     "example": "examples/test.json",
-                    "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}\n"
+                    "schemaContent": "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\":\"object\",\n    \"properties\":{\n        \"name\":{\n            \"type\":\"string\"\n\n        }\n    },\n    \"required\":[\"name\"]\n}\n",
+                    "sourceMap": {
+                      "scalarsSources": {
+                        "schema": [
+                          {
+                            "path": "schemas/scheme.json"
+                          }
+                        ]
+                      },
+                      "path": "api.raml"
+                    }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "displayName": "/hierarchy",
@@ -33,12 +49,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "hierarchy"
         ],
         "absoluteUri": "/hierarchy"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

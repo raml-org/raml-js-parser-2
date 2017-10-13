@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -51,6 +54,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -64,6 +70,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"c\": {\n    \"i\": 2\n  }\n}",
             "strict": true,
@@ -72,12 +81,18 @@
               "c": {
                 "i": 2
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           }
         }
       }
     ],
-    "title": "A"
+    "title": "A",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

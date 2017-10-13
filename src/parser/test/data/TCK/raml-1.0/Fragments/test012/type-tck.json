@@ -32,6 +32,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "dependencies/ownPropertyType.raml"
             }
           },
           "p4": {
@@ -51,6 +54,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "dependencies/ownPropertyType.raml"
             }
           }
         },
@@ -63,6 +69,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "dependencies/ownPropertyType.raml"
         }
       },
       "ownProp2": {
@@ -88,6 +97,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "type.raml"
             }
           }
         },
@@ -116,6 +128,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "dependencies/ownPropertyType.raml"
               }
             },
             "p4": {
@@ -135,6 +150,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "dependencies/ownPropertyType.raml"
               }
             }
           },
@@ -144,6 +162,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "dependencies/ownPropertyType.raml"
           }
         },
         "__METADATA__": {
@@ -155,6 +176,9 @@
               "insertedAsDefault": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "type.raml"
         }
       }
     },
@@ -183,6 +207,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "dependencies/supertype.raml"
           }
         },
         "p2": {
@@ -202,6 +229,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "dependencies/supertype.raml"
           }
         }
       },
@@ -211,6 +241,9 @@
             "insertedAsDefault": true
           }
         }
+      },
+      "sourceMap": {
+        "path": "dependencies/supertype.raml"
       }
     },
     "__METADATA__": {
@@ -219,6 +252,9 @@
           "insertedAsDefault": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "type.raml"
     }
   },
   "errors": []

@@ -33,6 +33,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "template-uri-1.raml"
         }
       }
     },
@@ -69,6 +72,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "template-uri-1.raml"
                 }
               }
             },
@@ -80,6 +86,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "template-uri-1.raml"
             },
             "relativeUriPathSegments": [
               "{jobId}"
@@ -94,6 +103,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "template-uri-1.raml"
+        },
         "relativeUriPathSegments": [
           "jobs"
         ],
@@ -106,6 +118,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "template-uri-1.raml"
     }
   },
   "errors": []

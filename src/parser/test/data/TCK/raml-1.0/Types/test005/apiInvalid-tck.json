@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -38,6 +41,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -67,6 +73,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -77,6 +86,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -122,6 +134,9 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
+              },
               "items": "AnotherType"
             }
           },
@@ -134,6 +149,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           },
           "structuredExample": {
             "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": \"not number\"\n    },\n    {\n      \"name1\": \"Jane\",\n      \"age\": 28\n    },\n    {\n      \"name\": \"Alex\"\n    }\n  ]\n}",
@@ -153,12 +171,18 @@
                   "name": "Alex"
                 }
               ]
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

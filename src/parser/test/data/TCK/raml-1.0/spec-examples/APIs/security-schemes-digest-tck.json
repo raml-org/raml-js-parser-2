@@ -7,7 +7,10 @@
         "digest": {
           "name": "digest",
           "type": "Digest Authentication",
-          "description": "This API supports DigestSecurityScheme Authentication.\n"
+          "description": "This API supports DigestSecurityScheme Authentication.\n",
+          "sourceMap": {
+            "path": "security-schemes-digest.raml"
+          }
         }
       }
     ],
@@ -42,6 +45,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "security-schemes-digest.raml"
         }
       }
     },
@@ -54,6 +60,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "security-schemes-digest.raml"
     }
   },
   "errors": []

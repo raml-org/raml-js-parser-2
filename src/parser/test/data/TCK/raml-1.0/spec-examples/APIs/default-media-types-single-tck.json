@@ -4,7 +4,10 @@
   "specification": {
     "title": "New API",
     "description": "This RAML illustrates a single value default media type.",
-    "mediaType": "application/json"
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "default-media-types-single.raml"
+    }
   },
   "errors": []
 }

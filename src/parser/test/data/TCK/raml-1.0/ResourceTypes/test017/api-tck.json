@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "types",
-        "value": "types.raml"
+        "value": "types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
@@ -17,6 +20,9 @@
             }
           },
           "name": "standardResponse",
+          "sourceMap": {
+            "path": "resourceTypes/collection.raml"
+          },
           "post": {
             "responses": {
               "201": {
@@ -35,8 +41,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
@@ -54,10 +66,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         }
       },
@@ -69,6 +87,9 @@
             }
           },
           "name": "collection",
+          "sourceMap": {
+            "path": "resourceTypes/collection.raml"
+          },
           "post": {
             "responses": {
               "201": {
@@ -87,8 +108,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
@@ -106,10 +133,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         }
       }
@@ -136,8 +169,14 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourceTypes/collection.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
@@ -155,10 +194,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourceTypes/collection.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourceTypes/collection.raml"
+            }
           }
         ],
         "type": {
@@ -175,12 +220,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "folders"
         ],
         "absoluteUri": "/folders"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

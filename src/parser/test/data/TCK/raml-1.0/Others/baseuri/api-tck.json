@@ -3,7 +3,10 @@
   "type": "Api",
   "specification": {
     "title": "A",
-    "baseUri": null
+    "baseUri": null,
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

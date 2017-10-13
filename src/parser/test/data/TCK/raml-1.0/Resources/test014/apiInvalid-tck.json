@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -41,6 +44,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -70,6 +76,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -82,6 +91,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       }
@@ -91,6 +103,9 @@
         "ResourceTypeWithParams": {
           "type": "<<resourceTypeParam>>",
           "name": "ResourceTypeWithParams",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -122,6 +137,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
                 },
@@ -132,6 +150,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"propertyFromType2\": \"stringValue2\"\n}",
                   "strict": true,
@@ -139,17 +160,26 @@
                   "structuredValue": {
                     "propertyFromResourceType1": "stringValue1",
                     "propertyFromType2": "stringValue2"
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         }
       },
       {
         "ResourceType1": {
           "name": "ResourceType1",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -177,6 +207,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
                 },
@@ -189,16 +222,25 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         }
       },
       {
         "ResourceType2": {
           "name": "ResourceType2",
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "get": {
             "body": {
               "application/json": {
@@ -226,6 +268,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
                 },
@@ -238,10 +283,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         }
       }
@@ -282,6 +333,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   },
                   "propertyFromResourceType1": {
@@ -301,6 +355,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "apiInvalid.raml"
                     }
                   }
                 },
@@ -311,6 +368,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "apiInvalid.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"extraProperty\": \"stringValue3\",\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"propertyFromType2\": \"stringValue2\"\n}",
                   "strict": true,
@@ -319,11 +379,17 @@
                     "extraProperty": "stringValue3",
                     "propertyFromResourceType1": "stringValue1",
                     "propertyFromType2": "stringValue2"
+                  },
+                  "sourceMap": {
+                    "path": "apiInvalid.raml"
                   }
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
           }
         ],
         "type": {
@@ -341,12 +407,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

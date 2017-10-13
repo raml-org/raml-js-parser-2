@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType02.raml"
               }
             },
             "initial_comments": {
@@ -51,6 +54,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType02.raml"
               }
             }
           },
@@ -62,18 +68,27 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "oType02.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"initial_comments\": \"oo\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "initial_comments": "oo"
+            },
+            "sourceMap": {
+              "path": "oType02.raml"
             }
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType02.raml"
+    }
   },
   "errors": [
     {

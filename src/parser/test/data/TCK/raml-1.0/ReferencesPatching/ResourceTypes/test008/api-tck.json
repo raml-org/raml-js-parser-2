@@ -5,23 +5,38 @@
     "uses": [
       {
         "key": "rt",
-        "value": "lib/resource-types.raml"
+        "value": "lib/resource-types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.ty",
-        "value": "lib/types.raml"
+        "value": "lib/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.tr",
-        "value": "lib/traits.raml"
+        "value": "lib/traits.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.lib",
-        "value": "lib/libA.raml"
+        "value": "lib/libA.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "rt.lib.lib",
-        "value": "lib/libB.raml"
+        "value": "lib/libB.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -39,6 +54,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -68,6 +86,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/traits.raml"
+                  },
                   "structuredExample": {
                     "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
                     "strict": true,
@@ -75,9 +96,15 @@
                     "structuredValue": {
                       "code": "abc123",
                       "message": "Bad request"
+                    },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
                     }
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/traits.raml"
               }
             },
             "500": {
@@ -101,6 +128,9 @@
                       }
                     }
                   },
+                  "sourceMap": {
+                    "path": "lib/traits.raml"
+                  },
                   "structuredExample": {
                     "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
                     "strict": true,
@@ -108,15 +138,24 @@
                     "structuredValue": {
                       "code": "xyz123",
                       "message": "Server error"
+                    },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
                     }
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "lib/traits.raml"
               }
             }
           },
           "name": "rt.tr.ResponseCommonErrors",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib/traits.raml"
           }
         }
       }
@@ -127,6 +166,9 @@
           "name": "rt.lib.lib.rt",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib/libB.raml"
           },
           "get": {
             "responses": {
@@ -148,17 +190,29 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    },
                     "structuredExample": {
                       "value": "8",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 8
+                      "structuredValue": 8,
+                      "sourceMap": {
+                        "path": "lib/libB.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
           "post": {
             "responses": {
@@ -182,19 +236,31 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"p1\": \"stringValue\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {
                         "p1": "stringValue"
+                      },
+                      "sourceMap": {
+                        "path": "lib/libB.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
           "put": {
             "responses": {
@@ -214,12 +280,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           }
         }
       },
@@ -234,6 +309,9 @@
           "name": "rt.lib.rt",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib/libA.raml"
           }
         }
       },
@@ -249,6 +327,9 @@
           "__METADATA__": {
             "calculated": true
           },
+          "sourceMap": {
+            "path": "lib/resource-types.raml"
+          },
           "get": {
             "is": [
               {
@@ -257,7 +338,10 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           },
           "delete": {
             "responses": {
@@ -277,12 +361,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "lib/resource-types.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/resource-types.raml"
                 }
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           }
         }
       }
@@ -312,13 +405,22 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    },
                     "structuredExample": {
                       "value": "8",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 8
+                      "structuredValue": 8,
+                      "sourceMap": {
+                        "path": "lib/libB.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               },
               "400": {
@@ -342,6 +444,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"code\": \"abc123\",\n  \"message\": \"Bad request\"\n}\n",
                       "strict": true,
@@ -349,9 +454,15 @@
                       "structuredValue": {
                         "code": "abc123",
                         "message": "Bad request"
+                      },
+                      "sourceMap": {
+                        "path": "lib/traits.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/traits.raml"
                 }
               },
               "500": {
@@ -375,6 +486,9 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/traits.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"code\": \"xyz123\",\n  \"message\": \"Server error\"\n}\n",
                       "strict": true,
@@ -382,9 +496,15 @@
                       "structuredValue": {
                         "code": "xyz123",
                         "message": "Server error"
+                      },
+                      "sourceMap": {
+                        "path": "lib/traits.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/traits.raml"
                 }
               }
             },
@@ -395,7 +515,10 @@
                 }
               }
             ],
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           },
           {
             "responses": {
@@ -415,12 +538,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "lib/resource-types.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/resource-types.raml"
                 }
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "lib/resource-types.raml"
+            }
           },
           {
             "responses": {
@@ -444,19 +576,31 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
+                    },
                     "structuredExample": {
                       "value": "{\n  \"p1\": \"stringValue\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {
                         "p1": "stringValue"
+                      },
+                      "sourceMap": {
+                        "path": "lib/libB.raml"
                       }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
           {
             "responses": {
@@ -476,12 +620,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "lib/libB.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "lib/libB.raml"
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           }
         ],
         "type": {
@@ -500,12 +653,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "products"
         ],
         "absoluteUri": "/products"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

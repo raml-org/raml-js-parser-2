@@ -26,6 +26,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "types-pattern-properties.raml"
               }
             },
             "age": {
@@ -42,6 +45,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "types-pattern-properties.raml"
               }
             },
             "/^note\\d+$/": {
@@ -61,6 +67,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "types-pattern-properties.raml"
               }
             }
           },
@@ -73,12 +82,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "types-pattern-properties.raml"
           }
         }
       }
     ],
     "title": "My API With Types",
-    "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n"
+    "description": "This RAML illustrates pattern properties restricting the property names of\nany additional properties inside a type instance.\n",
+    "sourceMap": {
+      "path": "types-pattern-properties.raml"
+    }
   },
   "errors": []
 }

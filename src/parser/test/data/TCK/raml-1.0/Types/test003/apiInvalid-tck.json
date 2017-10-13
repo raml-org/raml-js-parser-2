@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -42,12 +45,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"somestring\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "name": "somestring"
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
@@ -78,6 +87,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -91,6 +103,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
           }
         }
       },
@@ -126,6 +141,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -136,6 +154,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"someProperty\": {\n    \"name\": \"stringValue\",\n    \"age\": \"123s\"\n  }\n}",
             "strict": true,
@@ -145,12 +166,18 @@
                 "name": "stringValue",
                 "age": "123s"
               }
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

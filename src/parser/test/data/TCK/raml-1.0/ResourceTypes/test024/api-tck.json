@@ -6,9 +6,15 @@
       {
         "rt": {
           "name": "rt",
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "delete": {
             "description": "<<param1>> <<param2>> <<param3>>",
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         }
       }
@@ -19,7 +25,10 @@
         "methods": [
           {
             "description": "<<param1>> stringValue2 stringValue3",
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -38,6 +47,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource1"
         ],
@@ -47,7 +59,10 @@
         "methods": [
           {
             "description": "stringValue1 <<param2>> stringValue3",
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -66,6 +81,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource2"
         ],
@@ -75,7 +93,10 @@
         "methods": [
           {
             "description": "stringValue1 stringValue2 <<param3>>",
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           }
         ],
         "type": {
@@ -94,12 +115,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource3"
         ],
         "absoluteUri": "/resource3"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": [
     {

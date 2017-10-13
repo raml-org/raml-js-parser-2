@@ -10,7 +10,10 @@
               "param1": "Monkey"
             }
           },
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       },
       {
@@ -21,7 +24,10 @@
               "param2": "lib.Monkey"
             }
           },
-          "name": "rt"
+          "name": "rt",
+          "sourceMap": {
+            "path": "lib/libA.raml"
+          }
         }
       },
       {
@@ -41,6 +47,9 @@
             }
           },
           "name": "rt",
+          "sourceMap": {
+            "path": "lib/libB.raml"
+          },
           "get": {
             "annotations": {
               "<<param1>>": {
@@ -48,7 +57,10 @@
                 "name": "<<param1>>"
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
           "post": {
             "annotations": {
@@ -57,7 +69,10 @@
                 "name": "<<param2>>"
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
           "put": {
             "annotations": {
@@ -66,7 +81,10 @@
                 "name": "lib.lib.Monkey"
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           },
           "delete": {
             "annotations": {
@@ -83,7 +101,10 @@
                 "name": "lib.lib.Monkey"
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "lib/libB.raml"
+            }
           }
         }
       }
@@ -103,6 +124,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -120,6 +144,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/libA.raml"
           }
         }
       },
@@ -137,10 +164,16 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "lib/libB.raml"
           }
         }
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

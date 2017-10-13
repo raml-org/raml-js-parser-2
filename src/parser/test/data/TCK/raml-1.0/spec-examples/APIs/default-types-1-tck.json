@@ -17,11 +17,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "default-types-1.raml"
           }
         }
       }
     ],
-    "title": "Default Types 1"
+    "title": "Default Types 1",
+    "sourceMap": {
+      "path": "default-types-1.raml"
+    }
   },
   "errors": []
 }

@@ -17,6 +17,9 @@
           "insertedAsDefault": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "annotation1.raml"
     }
   },
   "errors": []

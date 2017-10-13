@@ -18,11 +18,17 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "api.raml"
+          },
           "items": "string"
         }
       }
     ],
-    "title": "Dropbox API"
+    "title": "Dropbox API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

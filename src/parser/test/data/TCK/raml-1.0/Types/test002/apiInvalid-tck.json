@@ -32,6 +32,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -42,12 +45,18 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name\": \"somestring\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "name": "somestring"
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
@@ -82,6 +91,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "apiInvalid.raml"
               }
             }
           },
@@ -92,6 +104,9 @@
               }
             }
           },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          },
           "structuredExample": {
             "value": "{\n  \"name1\": \"somestring\",\n  \"age\": \"stringValue\"\n}",
             "strict": true,
@@ -99,12 +114,18 @@
             "structuredValue": {
               "name1": "somestring",
               "age": "stringValue"
+            },
+            "sourceMap": {
+              "path": "apiInvalid.raml"
             }
           }
         }
       }
     ],
-    "title": "API"
+    "title": "API",
+    "sourceMap": {
+      "path": "apiInvalid.raml"
+    }
   },
   "errors": [
     {

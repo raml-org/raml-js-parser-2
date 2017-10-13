@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -41,6 +44,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -57,13 +63,19 @@
               "value": "null\n",
               "strict": true,
               "name": "ex1",
-              "structuredValue": "null\n"
+              "structuredValue": "null\n",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             },
             {
               "value": "null\n",
               "strict": true,
               "name": "ex2",
-              "structuredValue": "null\n"
+              "structuredValue": "null\n",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "__METADATA__": {
@@ -72,6 +84,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -90,7 +105,10 @@
               "name": "ex3",
               "displayName": "Nilable Type Example",
               "description": "Example for the nilable type",
-              "structuredValue": "null\n"
+              "structuredValue": "null\n",
+              "sourceMap": {
+                "path": "api.raml"
+              }
             }
           ],
           "__METADATA__": {
@@ -99,6 +117,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -106,11 +127,17 @@
     "traits": [
       {
         "tr": {
-          "name": "tr"
+          "name": "tr",
+          "sourceMap": {
+            "path": "api.raml"
+          }
         }
       }
     ],
-    "title": "test API"
+    "title": "test API",
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

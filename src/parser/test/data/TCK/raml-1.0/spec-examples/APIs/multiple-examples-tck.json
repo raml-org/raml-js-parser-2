@@ -19,6 +19,9 @@
               "structuredValue": {
                 "title": "Attention needed",
                 "body": "You have been added to group 274"
+              },
+              "sourceMap": {
+                "path": "multiple-examples.raml"
               }
             },
             {
@@ -28,6 +31,9 @@
               "structuredValue": {
                 "name": "log item",
                 "comment": "permission check"
+              },
+              "sourceMap": {
+                "path": "multiple-examples.raml"
               }
             }
           ],
@@ -49,6 +55,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "multiple-examples.raml"
               }
             },
             "body": {
@@ -68,6 +77,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "multiple-examples.raml"
               }
             },
             "name": {
@@ -87,6 +99,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "multiple-examples.raml"
               }
             },
             "comment": {
@@ -106,6 +121,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "multiple-examples.raml"
               }
             }
           },
@@ -118,11 +136,17 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "multiple-examples.raml"
           }
         }
       }
     ],
-    "title": "Multiple examples"
+    "title": "Multiple examples",
+    "sourceMap": {
+      "path": "multiple-examples.raml"
+    }
   },
   "errors": []
 }

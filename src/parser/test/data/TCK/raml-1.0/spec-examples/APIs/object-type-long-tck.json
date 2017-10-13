@@ -26,6 +26,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "object-type-long.raml"
               }
             },
             "age": {
@@ -42,6 +45,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "object-type-long.raml"
               }
             }
           },
@@ -54,12 +60,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "object-type-long.raml"
           }
         }
       }
     ],
     "title": "My API With Types",
-    "description": "This RAML illustrates a type declaration that uses facets to restrict its object properties."
+    "description": "This RAML illustrates a type declaration that uses facets to restrict its object properties.",
+    "sourceMap": {
+      "path": "object-type-long.raml"
+    }
   },
   "errors": []
 }

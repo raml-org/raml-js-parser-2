@@ -8,7 +8,14 @@
           "name": "oauth_1_0",
           "type": "OAuth 1.0",
           "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
-          "settings": {}
+          "settings": {
+            "sourceMap": {
+              "path": "apiInvalid.raml"
+            }
+          },
+          "sourceMap": {
+            "path": "apiInvalid.raml"
+          }
         }
       }
     ],
@@ -43,6 +50,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "apiInvalid.raml"
         }
       }
     },
@@ -55,6 +65,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "apiInvalid.raml"
     }
   },
   "errors": [

@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "types/users.raml"
           }
         }
       },
@@ -40,6 +43,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "types/user.raml"
           }
         }
       }
@@ -71,16 +77,25 @@
                   }
                 }
               },
+              "sourceMap": {
+                "path": "resourcetypes-traits-parameterfunctions.raml"
+              },
               "structuredExample": {
                 "value": "<<methodName>>=h8duh3uhhu38",
                 "strict": true,
                 "name": null,
-                "structuredValue": "<<methodName>>=h8duh3uhhu38"
+                "structuredValue": "<<methodName>>=h8duh3uhhu38",
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameterfunctions.raml"
+                }
               }
             }
           },
           "description": "Some requests require authentication",
-          "name": "secured"
+          "name": "secured",
+          "sourceMap": {
+            "path": "resourcetypes-traits-parameterfunctions.raml"
+          }
         }
       }
     ],
@@ -88,6 +103,9 @@
       {
         "collection": {
           "name": "collection",
+          "sourceMap": {
+            "path": "resourcetypes-traits-parameterfunctions.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -106,12 +124,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourcetypes-traits-parameterfunctions.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameterfunctions.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameterfunctions.raml"
+            }
           },
           "post": {
             "responses": {
@@ -131,18 +158,30 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourcetypes-traits-parameterfunctions.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameterfunctions.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameterfunctions.raml"
+            }
           }
         }
       },
       {
         "member": {
           "name": "member",
+          "sourceMap": {
+            "path": "resourcetypes-traits-parameterfunctions.raml"
+          },
           "get": {
             "responses": {
               "200": {
@@ -161,19 +200,31 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "resourcetypes-traits-parameterfunctions.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "resourcetypes-traits-parameterfunctions.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "resourcetypes-traits-parameterfunctions.raml"
+            }
           }
         }
       }
     ],
     "title": "Example API",
     "version": "v1",
-    "mediaType": "application/json"
+    "mediaType": "application/json",
+    "sourceMap": {
+      "path": "resourcetypes-traits-parameterfunctions.raml"
+    }
   },
   "errors": []
 }

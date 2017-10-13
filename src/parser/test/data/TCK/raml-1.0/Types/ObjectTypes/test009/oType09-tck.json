@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType09.raml"
               }
             }
           },
@@ -38,11 +41,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "oType09.raml"
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType09.raml"
+    }
   },
   "errors": []
 }

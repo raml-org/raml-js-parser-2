@@ -5,21 +5,33 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libs/types.raml"
+        "value": "libs/types.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "types2",
-        "value": "libs/types2.raml"
+        "value": "libs/types2.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       },
       {
         "key": "lib0",
-        "value": "libs/lib.raml"
+        "value": "libs/lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "resourceTypes": [
       {
         "rt": {
           "name": "rt",
+          "sourceMap": {
+            "path": "fragments/rt.raml"
+          },
           "post": {
             "body": {
               "application/json": {
@@ -55,6 +67,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "fragments/rt.raml"
                     }
                   },
                   "rootLibProperty": {
@@ -74,6 +89,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "fragments/rt.raml"
                     }
                   }
                 },
@@ -87,6 +105,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
                   "strict": true,
@@ -98,11 +119,17 @@
                     "rootLibProperty": {
                       "integerProperty": 5
                     }
+                  },
+                  "sourceMap": {
+                    "path": "fragments/rt.raml"
                   }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "fragments/rt.raml"
+            }
           }
         }
       }
@@ -128,15 +155,24 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "api.raml"
+                },
                 "structuredExample": {
                   "value": "stringValue",
                   "strict": true,
                   "name": null,
-                  "structuredValue": "stringValue"
+                  "structuredValue": "stringValue",
+                  "sourceMap": {
+                    "path": "api.raml"
+                  }
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "api.raml"
+            }
           },
           {
             "body": {
@@ -173,6 +209,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "fragments/rt.raml"
                     }
                   },
                   "rootLibProperty": {
@@ -192,6 +231,9 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "fragments/rt.raml"
                     }
                   }
                 },
@@ -205,6 +247,9 @@
                     }
                   }
                 },
+                "sourceMap": {
+                  "path": "fragments/rt.raml"
+                },
                 "structuredExample": {
                   "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
                   "strict": true,
@@ -216,11 +261,17 @@
                     "rootLibProperty": {
                       "integerProperty": 5
                     }
+                  },
+                  "sourceMap": {
+                    "path": "fragments/rt.raml"
                   }
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "fragments/rt.raml"
+            }
           }
         ],
         "type": "rt",
@@ -233,12 +284,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }

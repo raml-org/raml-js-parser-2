@@ -32,6 +32,9 @@
                   "insertedAsDefault": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "uri-parameters-ext.raml"
             }
           }
         },
@@ -44,12 +47,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "uri-parameters-ext.raml"
+        },
         "relativeUriPathSegments": [
           "users{ext}"
         ],
         "absoluteUri": "/users{ext}"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "uri-parameters-ext.raml"
+    }
   },
   "errors": []
 }

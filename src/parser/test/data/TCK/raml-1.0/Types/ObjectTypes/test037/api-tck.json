@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "NewLibrary",
-        "value": "NewLibrary.raml"
+        "value": "NewLibrary.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "types": [
@@ -23,6 +26,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       },
@@ -52,6 +58,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "api.raml"
               }
             }
           },
@@ -61,6 +70,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "api.raml"
           }
         }
       }
@@ -86,6 +98,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewLibrary.raml"
               }
             },
             "priceMoreThen": {
@@ -105,12 +120,18 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "NewLibrary.raml"
               }
             }
           },
           "name": "NewLibrary.FilterableByPrice",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "NewLibrary.raml"
           }
         }
       }
@@ -121,6 +142,9 @@
           "name": "NewLibrary.Collection",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "NewLibrary.raml"
           },
           "get": {
             "responses": {
@@ -140,12 +164,21 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "NewLibrary.raml"
+            }
           },
           "post": {
             "body": {
@@ -162,10 +195,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "NewLibrary.raml"
+            }
           }
         }
       },
@@ -175,13 +214,22 @@
           "__METADATA__": {
             "calculated": true
           },
+          "sourceMap": {
+            "path": "NewLibrary.raml"
+          },
           "delete": {
             "responses": {
               "204": {
-                "code": "204"
+                "code": "204",
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
+                }
               }
             },
-            "method": "delete"
+            "method": "delete",
+            "sourceMap": {
+              "path": "NewLibrary.raml"
+            }
           },
           "put": {
             "body": {
@@ -198,10 +246,16 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
-            "method": "put"
+            "method": "put",
+            "sourceMap": {
+              "path": "NewLibrary.raml"
+            }
           }
         }
       }
@@ -241,6 +295,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               },
               "priceLessThen": {
@@ -260,6 +317,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               },
               "priceMoreThen": {
@@ -279,6 +339,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -300,8 +363,14 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "items": "NewLibrary.Pet"
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -318,6 +387,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -335,6 +407,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -348,6 +423,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "NewLibrary.raml"
             }
           }
         ],
@@ -364,7 +442,10 @@
               {
                 "responses": {
                   "204": {
-                    "code": "204"
+                    "code": "204",
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -377,6 +458,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               },
               {
@@ -394,6 +478,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
                     }
                   }
                 },
@@ -407,6 +494,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             ],
@@ -437,6 +527,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -448,6 +541,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -461,6 +557,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "pets"
@@ -488,6 +587,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               },
               "priceMoreThen": {
@@ -507,6 +609,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -528,8 +633,14 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "items": "Bird"
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -546,6 +657,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -563,6 +677,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -576,6 +693,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "NewLibrary.raml"
             }
           }
         ],
@@ -592,7 +712,10 @@
               {
                 "responses": {
                   "204": {
-                    "code": "204"
+                    "code": "204",
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -605,6 +728,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               },
               {
@@ -622,6 +748,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
                     }
                   }
                 },
@@ -635,6 +764,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             ],
@@ -665,6 +797,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -676,6 +811,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -689,6 +827,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "api.raml"
         },
         "relativeUriPathSegments": [
           "birds"
@@ -716,6 +857,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               },
               "priceMoreThen": {
@@ -735,6 +879,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -756,8 +903,14 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    },
                     "items": "Mammal"
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -774,6 +927,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             }
           },
           {
@@ -791,6 +947,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             },
@@ -804,6 +963,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "NewLibrary.raml"
             }
           }
         ],
@@ -820,7 +982,10 @@
               {
                 "responses": {
                   "204": {
-                    "code": "204"
+                    "code": "204",
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
+                    }
                   }
                 },
                 "protocols": [
@@ -833,6 +998,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               },
               {
@@ -850,6 +1018,9 @@
                           "calculated": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "NewLibrary.raml"
                     }
                   }
                 },
@@ -863,6 +1034,9 @@
                       "calculated": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "NewLibrary.raml"
                 }
               }
             ],
@@ -893,6 +1067,9 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "api.raml"
                 }
               }
             },
@@ -904,6 +1081,9 @@
                   "calculated": true
                 }
               }
+            },
+            "sourceMap": {
+              "path": "api.raml"
             },
             "relativeUriPathSegments": [
               "{id}"
@@ -918,6 +1098,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "mammals"
         ],
@@ -930,6 +1113,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

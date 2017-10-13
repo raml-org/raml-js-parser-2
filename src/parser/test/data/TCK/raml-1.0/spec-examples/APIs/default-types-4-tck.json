@@ -27,12 +27,21 @@
                           "insertedAsDefault": true
                         }
                       }
+                    },
+                    "sourceMap": {
+                      "path": "default-types-4.raml"
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "default-types-4.raml"
                 }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "default-types-4.raml"
+            }
           }
         ],
         "relativeUri": "/resource",
@@ -44,12 +53,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "default-types-4.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "default-types-4.raml"
+    }
   },
   "errors": []
 }

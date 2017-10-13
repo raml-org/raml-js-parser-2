@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "meth04.raml"
           }
         }
       }
@@ -47,13 +50,22 @@
                         }
                       }
                     },
+                    "sourceMap": {
+                      "path": "meth04.raml"
+                    },
                     "structuredExample": {
                       "value": "10",
                       "strict": true,
                       "name": null,
-                      "structuredValue": 10
+                      "structuredValue": 10,
+                      "sourceMap": {
+                        "path": "meth04.raml"
+                      }
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth04.raml"
                 }
               }
             },
@@ -73,10 +85,16 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "sourceMap": {
+                  "path": "meth04.raml"
                 }
               }
             },
-            "method": "post"
+            "method": "post",
+            "sourceMap": {
+              "path": "meth04.raml"
+            }
           }
         ],
         "relativeUri": "/test",
@@ -88,12 +106,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "meth04.raml"
+        },
         "relativeUriPathSegments": [
           "test"
         ],
         "absoluteUri": "/test"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "meth04.raml"
+    }
   },
   "errors": []
 }

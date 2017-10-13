@@ -20,6 +20,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "apiValid.raml"
           }
         }
       }
@@ -49,6 +52,9 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "assets"
         ],
@@ -77,12 +83,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "apiValid.raml"
+        },
         "relativeUriPathSegments": [
           "foods"
         ],
         "absoluteUri": "/foods"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "apiValid.raml"
+    }
   },
   "errors": []
 }

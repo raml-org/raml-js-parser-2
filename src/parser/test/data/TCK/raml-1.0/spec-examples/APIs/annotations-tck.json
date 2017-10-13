@@ -17,6 +17,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations.raml"
           }
         }
       },
@@ -34,6 +37,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations.raml"
           }
         }
       },
@@ -51,6 +57,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations.raml"
           }
         }
       },
@@ -68,6 +77,9 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations.raml"
           }
         }
       },
@@ -88,6 +100,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations.raml"
           }
         }
       },
@@ -122,6 +137,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "annotations.raml"
               }
             },
             "signature": {
@@ -142,6 +160,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "annotations.raml"
               }
             }
           },
@@ -154,6 +175,9 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "annotations.raml"
           }
         }
       }
@@ -180,6 +204,9 @@
               "calculated": true
             }
           }
+        },
+        "sourceMap": {
+          "path": "annotations.raml"
         },
         "relativeUriPathSegments": [
           "groups"
@@ -222,10 +249,16 @@
             },
             "responses": {
               "200": {
-                "code": "200"
+                "code": "200",
+                "sourceMap": {
+                  "path": "annotations.raml"
+                }
               }
             },
-            "method": "get"
+            "method": "get",
+            "sourceMap": {
+              "path": "annotations.raml"
+            }
           }
         ],
         "relativeUri": "/users",
@@ -237,12 +270,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "annotations.raml"
+        },
         "relativeUriPathSegments": [
           "users"
         ],
         "absoluteUri": "/users"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "annotations.raml"
+    }
   },
   "errors": []
 }

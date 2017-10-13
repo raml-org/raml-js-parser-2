@@ -512,7 +512,11 @@ function doTestAPI(o:TestOptions,callTests:boolean,doAssert:boolean):TestResult{
         }
 
         (<any>expanded).setAttributeDefaults(true);
-        json = expanded.toJSON({rootNodeDetails: true, serializeMetadata: o.serializeMetadata});
+        json = expanded.toJSON({
+            rootNodeDetails: true,
+            serializeMetadata: o.serializeMetadata,
+            sourceMap: true
+        });
     }
 
     if(!tckJsonPath){

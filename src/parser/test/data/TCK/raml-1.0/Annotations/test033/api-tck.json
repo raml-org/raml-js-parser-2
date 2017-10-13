@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "title": "Test API",
@@ -38,6 +41,9 @@
           "calculated": true
         }
       }
+    },
+    "sourceMap": {
+      "path": "api.raml"
     }
   },
   "errors": []

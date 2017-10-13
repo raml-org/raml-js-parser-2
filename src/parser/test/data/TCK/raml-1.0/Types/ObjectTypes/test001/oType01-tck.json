@@ -29,6 +29,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType01.raml"
               }
             },
             "initial_comments": {
@@ -48,6 +51,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "oType01.raml"
               }
             }
           },
@@ -57,11 +63,17 @@
                 "calculated": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "oType01.raml"
           }
         }
       }
     ],
-    "title": "My API With Types"
+    "title": "My API With Types",
+    "sourceMap": {
+      "path": "oType01.raml"
+    }
   },
   "errors": []
 }

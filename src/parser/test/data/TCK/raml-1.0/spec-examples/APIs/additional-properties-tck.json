@@ -26,6 +26,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-properties.raml"
               }
             },
             "age": {
@@ -42,6 +45,9 @@
                     "calculated": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-properties.raml"
               }
             },
             "//": {
@@ -61,6 +67,9 @@
                     "insertedAsDefault": true
                   }
                 }
+              },
+              "sourceMap": {
+                "path": "additional-properties.raml"
               }
             }
           },
@@ -73,12 +82,18 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "sourceMap": {
+            "path": "additional-properties.raml"
           }
         }
       }
     ],
     "title": "My API With Types",
-    "description": "This RAML illustrates an example to restrict all additional properties to be string.\n"
+    "description": "This RAML illustrates an example to restrict all additional properties to be string.\n",
+    "sourceMap": {
+      "path": "additional-properties.raml"
+    }
   },
   "errors": []
 }

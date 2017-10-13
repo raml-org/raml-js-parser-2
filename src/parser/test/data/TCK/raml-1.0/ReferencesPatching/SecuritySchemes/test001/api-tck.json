@@ -5,7 +5,10 @@
     "uses": [
       {
         "key": "lib",
-        "value": "lib.raml"
+        "value": "lib.raml",
+        "sourceMap": {
+          "path": "api.raml"
+        }
       }
     ],
     "traits": [
@@ -14,6 +17,9 @@
           "name": "lib.boolean",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       }
@@ -31,6 +37,9 @@
           "name": "lib.number",
           "__METADATA__": {
             "calculated": true
+          },
+          "sourceMap": {
+            "path": "lib.raml"
           }
         }
       }
@@ -58,12 +67,18 @@
             }
           }
         },
+        "sourceMap": {
+          "path": "api.raml"
+        },
         "relativeUriPathSegments": [
           "resource"
         ],
         "absoluteUri": "/resource"
       }
-    ]
+    ],
+    "sourceMap": {
+      "path": "api.raml"
+    }
   },
   "errors": []
 }
