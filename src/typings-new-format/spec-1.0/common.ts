@@ -1,3 +1,9 @@
+import api = require("./api");
+import datamodel = require("./datamodel");
+import methods = require("./methods");
+import security = require("./security");
+import resources = require("./resources");
+
 export interface SourceInfo{
 
     /**
@@ -129,5 +135,5 @@ export interface RAML10ParseResult {
 
     errors?: Error[]
 
-    specification: FragmentDeclaration
+    specification: api.Api10|api.Overlay|api.Extension|resources.ResourceTypeFragment|methods.TraitFragment|security.SecuritySchemeFragment|datamodel.TypeDeclarationFragment|datamodel.ExampleFragment;
 }

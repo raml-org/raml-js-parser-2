@@ -4,7 +4,7 @@ import RamlWrapper1Impl= require("../parser/artifacts/raml10parser")
 import RamlWrapper08= require("../parser/artifacts/raml08parserapi")
 
 import path=require("path")
-import fs=require("fs")
+import jsonTypings = require("../typings-new-format/raml");
 import Opt = require('../Opt')
 import jsyaml=require("../parser/jsyaml/jsyaml2lowLevel")
 import hl=require("../parser/highLevelAST")
@@ -22,6 +22,7 @@ import jsonSerializerHL = require("../util/jsonSerializerHL")
 import universeHelpers = require("./tools/universeHelpers");
 import search = require("./../search/search-interface");
 import linter=require("./ast.core/linter")
+import resolversApi = require("./jsyaml/resolversApi");
 let messageRegistry = require("../../resources/errorMessages");
 
 export type IHighLevelNode=hl.IHighLevelNode;
@@ -29,26 +30,28 @@ export type IParseResult=hl.IParseResult;
 
 import universeProvider=require("../parser/definition-system/universeProvider")
 
-export function load(ramlPath:string,options?:parserCoreApi.LoadOptions):Promise<Object>{
-    options = options || {};
-    return parse(ramlPath,options).then(expanded=>{
-
-    	let sOptions = toSerializationOptions(options);
-        return jsonSerializerHL.dump(expanded,sOptions);
+export function load(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):Promise<jsonTypings.RAMLParseResult>{
+    let serializeOptions = toNewFormatSerializeOptions(options);
+    return parse(ramlPathOrContent,options).then(expanded=>{
+        return jsonSerializerHL.dump(expanded,serializeOptions);
     });
 }
 
-export function loadSync(ramlPath:string,options?:parserCoreApi.LoadOptions):Object{
-    options = options || {};
-    let expanded = parseSync(ramlPath,options);
-
-    let sOptions = toSerializationOptions(options);
-    return jsonSerializerHL.dump(expanded,sOptions);
+export function loadSync(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):jsonTypings.RAMLParseResult{
+    let serializeOptions = toNewFormatSerializeOptions(options);
+    let expanded = parseSync(ramlPathOrContent,options);
+    return jsonSerializerHL.dump(expanded,serializeOptions);
 }
 
-export function parse(ramlPath:string,options?:parserCoreApi.LoadOptions):Promise<hl.IHighLevelNode>{
+export function parse(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):Promise<hl.IHighLevelNode>{
     options = options || {};
-    return loadRAMLAsyncHL(ramlPath).then(hlNode=>{
+    let filePath = ramlPathOrContent;
+    if(consideredAsRamlContent(ramlPathOrContent)){
+        options = loadOptionsForContent(ramlPathOrContent,options,options.filePath);
+        filePath = virtualFilePath(options);
+    }
+    let loadRAMLOptions = toOldStyleOptions(options);
+    return loadRAMLAsyncHL(filePath,loadRAMLOptions).then(hlNode=>{
         var expanded:hl.IHighLevelNode;
         if(!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
             expanded = expanderLL.expandLibrariesHL(hlNode);
@@ -60,10 +63,16 @@ export function parse(ramlPath:string,options?:parserCoreApi.LoadOptions):Promis
     });
 }
 
-export function parseSync(ramlPath:string,options?:parserCoreApi.LoadOptions):hl.IHighLevelNode{
+export function parseSync(ramlPathOrContent:string,options?:parserCoreApi.LoadOptions):hl.IHighLevelNode{
     options = options || {};
-    var hlNode = loadRAMLInternalHL(ramlPath);
-    var expanded:hl.IHighLevelNode;
+    let filePath = ramlPathOrContent;
+    if(consideredAsRamlContent(ramlPathOrContent)){
+        options = loadOptionsForContent(ramlPathOrContent,options,options.filePath);
+        filePath = virtualFilePath(options);
+    }
+    let loadRAMLOptions = toOldStyleOptions(options);
+    let hlNode = loadRAMLInternalHL(filePath,loadRAMLOptions);
+    let expanded:hl.IHighLevelNode;
     if (!options.hasOwnProperty("expandLibraries") || options.expandLibraries) {
         if(universeHelpers.isLibraryType(hlNode.definition())){
             expanded = expanderLL.expandLibraryHL(hlNode) || hlNode;
@@ -77,20 +86,6 @@ export function parseSync(ramlPath:string,options?:parserCoreApi.LoadOptions):hl
     }
     return expanded;
 }
-
-function toSerializationOptions(options: parserCoreApi.LoadOptions):jsonSerializerHL.SerializeOptions {
-    options = options || {};
-    return {
-        rootNodeDetails: true,
-        attributeDefaults: true,
-        serializeMetadata: options.serializeMetadata || false,
-        expandExpressions: options.expandExpressions,
-        typeReferences: options.typeReferences,
-        expandTypes: options.expandTypes,
-        typeExpansionRecursionDepth: options.typeExpansionRecursionDepth,
-        sourceMap: options.sourceMap
-    };
-};
 
 /***
  * Load API synchronously. Detects RAML version and uses corresponding parser.
@@ -533,4 +528,115 @@ function setAttributeDefaults(api:parserCoreApi.BasicNode,options){
     } else if (api) {
         (<any>api).setAttributeDefaults(true);
     }
+}
+
+export function optionsForContent(
+    content:string,
+    arg2?:parserCoreApi.Options,
+    _filePath?:string):parserCoreApi.Options{
+
+    let filePath = _filePath || virtualFilePath(arg2);
+    let fsResolver = virtualFSResolver(filePath,content,arg2&&arg2.fsResolver);
+    return {
+        fsResolver:fsResolver,
+        httpResolver:arg2?arg2.httpResolver:null,
+        rejectOnErrors:arg2?arg2.rejectOnErrors:false,
+        attributeDefaults:arg2?arg2.attributeDefaults:true
+    }
+}
+
+function toOldStyleOptions(options:parserCoreApi.LoadOptions):parserCoreApi.Options{
+
+    if(!options){
+        return {};
+    }
+    return {
+        fsResolver: options.fsResolver,
+        httpResolver: options.httpResolver,
+        rejectOnErrors: false,
+        attributeDefaults: true
+    };
+}
+
+export function loadOptionsForContent(
+    content:string,
+    arg2?:parserCoreApi.LoadOptions,
+    _filePath?:string):parserCoreApi.LoadOptions{
+
+    let filePath = _filePath || virtualFilePath(arg2);
+    let fsResolver = virtualFSResolver(filePath,content,arg2&&arg2.fsResolver);
+    let result:parserCoreApi.LoadOptions = {
+        fsResolver: fsResolver
+    };
+    if(!arg2){
+        return result;
+    }
+    for(let key of Object.keys(arg2)){
+        if(key != "fsResolver"){
+            result[key] = arg2[key];
+        }
+    }
+    return result;
+}
+
+function consideredAsRamlContent(str:string):boolean{
+    str = str && str.trim();
+    if(!str){
+        return true;
+    }
+    if(str.length<="#%RAML".length){
+        return util.stringStartsWith("#%RAML",str);
+    }
+    else if(util.stringStartsWith(str,"#%RAML")){
+        return true;
+    }
+    return str.indexOf("\n")>=0;
+}
+
+function toNewFormatSerializeOptions(options: parserCoreApi.LoadOptions) {
+    options = options || {};
+    return {
+        rootNodeDetails: true,
+        attributeDefaults: true,
+        serializeMetadata: options.serializeMetadata || false,
+        expandExpressions: options.expandExpressions,
+        typeReferences: options.typeReferences,
+        expandTypes: options.expandTypes,
+        typeExpansionRecursionDepth: options.typeExpansionRecursionDepth,
+        sourceMap: options.sourceMap
+    };
+}
+
+export function virtualFSResolver(
+    filePath: string,
+    content: string,
+    originalResolver: resolversApi.FSResolver):resolversApi.FSResolver {
+
+    if(filePath!=null){
+        filePath = filePath.replace(/\\/g,"/");
+    }
+    return {
+        content(pathStr: string): string {
+            if (pathStr === filePath) {
+                return content;
+            }
+            if (originalResolver) {
+                return originalResolver.content(pathStr);
+            }
+        },
+
+        contentAsync(pathStr: string): Promise<string> {
+            if (pathStr === filePath) {
+                return Promise.resolve<string>(content);
+            }
+            if (originalResolver) {
+                return originalResolver.contentAsync(pathStr);
+            }
+        }
+    };
+}
+
+export function virtualFilePath(opt:parserCoreApi.Options|parserCoreApi.LoadOptions):string{
+    let filePath = (opt && opt.filePath)||path.resolve("/#local.raml");
+    return filePath.replace(/\\/g,"/");
 }

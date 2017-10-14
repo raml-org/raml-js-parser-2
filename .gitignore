@@ -25,6 +25,7 @@ npm-debug.log
 !/src/parser/test/data/TypeExpansionTests/RAML-toolbelt-test/canonical_forms.js
 
 /dist/
+/standalone-typings/
 
 /coverage
 coverage.zip
