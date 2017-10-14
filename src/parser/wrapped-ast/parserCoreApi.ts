@@ -95,4 +95,9 @@ export interface Options2 {
      */
     serializeMetadata?:boolean
 
+    /**
+     * Absolute path of the RAML file. May be used for paths resolving when root
+     * file content is provided directly.
+     */
+    filePath?:string
 }
