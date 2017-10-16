@@ -1,0 +1,9 @@
+#%RAML 1.0 Trait
+
+headers:
+  x-transaction_id:
+    description: |
+      Alle Anfragen enthalten Informationen für spätere Nachvollziehbarkeit im Logging. Die Transaction ID ist unique.
+    type: string
+    required: true
+    example: 'x-transaction_id: "P9V6g4sIsc6TwC2DjQQ9"'

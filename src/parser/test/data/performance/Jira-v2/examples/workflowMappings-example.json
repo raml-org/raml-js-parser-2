@@ -1,0 +1,8 @@
+{
+  "workflow" : "WorkflowName" ,
+  "issueTypes" : [
+    "IssueTypeId" ,
+    "IssueTypeId2"
+  ] ,
+  "defaultMapping" : false
+}

@@ -1,0 +1,95 @@
+{
+  "losID": 2612788294257539584,
+  "losnummer": "823045925336",
+  "losgutscheinID": 2006679592880984320,
+  "basisdaten": {
+    "losart": {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    },
+    "konfiguration": [
+      {
+        "kombination": {
+          "losart": {
+            "key": "5SterneLos",
+            "name": "5 Sterne-Los"
+          },
+          "ziehungsart": {
+            "key": "Geldziehung",
+            "name": "Geldziehung"
+          },
+          "teilnahmeHaeufigkeit": "wöchentlich",
+          "pflichtZiehungsart": true
+        },
+        "spieleinsatz": {
+          "betrag": 6
+        },
+        "stufe": "Stufe 1",
+        "gewinnpotenzialEinmalig": 500000,
+        "gewinnpotenzialMonatlich": 0
+      },
+      {
+        "kombination": {
+          "losart": {
+            "key": "5SterneLos",
+            "name": "5 Sterne-Los"
+          },
+          "ziehungsart": {
+            "key": "Traumhaus",
+            "name": "Traumhaus"
+          },
+          "teilnahmeHaeufigkeit": "wöchentlich",
+          "pflichtZiehungsart": true
+        },
+        "spieleinsatz": {
+          "betrag": 8.5
+        },
+        "stufe": "Stufe 2",
+        "gewinnpotenzialEinmalig": 1000000,
+        "gewinnpotenzialMonatlich": 0
+      }
+    ],
+    "schmuckkartenmotivid": 3353026114226269696
+  },
+  "erweiterteInformationen": {
+    "istAboLos": true,
+    "mitspielberechtigung": true,
+    "anzahlMonatlicheZiehungen": 4,
+    "spieleinsatzProMonat": 14.5
+  },
+  "besitzer": {
+    "kaeuferId": "fd562f68-e470-401f-84d9-46da9d5b2e0c",
+    "beguenstigterId": "74a3b0a0-30e5-41e4-899c-85e916dba440",
+    "letzteAenderungBeguenstigter": "2016-12-20T16:32:48.5+01:00"
+  },
+  "gueltigkeitszeiten": {
+    "datumAktivierung": "2016-11-30",
+    "datumSpielbeginn": "2016-12-06",
+    "datumSpielende": "2017-01-02"
+  },
+  "gewinnpotenziale": {
+    "gewinnpotenzialMonatlich": 0,
+    "gewinnpotenzialEinmalig": 1500000,
+    "gewinnpotenzialZusatzspiel": 0
+  },
+  "finanzdaten": {
+    "zahlungsart": {
+      "zahlungsartID": 326101349220292352,
+      "zahlart": {
+        "name": "bankverbindung",
+        "inhaber": "Timo Testinhaber",
+        "iban": "DE89370400440532013000",
+        "bic": "COBADEFFXXX"
+      }
+    },
+    "auszahlungskonto": {
+      "zahlungsartID": 326101349220292352,
+      "zahlart": {
+        "name": "bankverbindung",
+        "inhaber": "Timo Testinhaber",
+        "iban": "DE89370400440532013000",
+        "bic": "COBADEFFXXX"
+      }
+    }
+  }
+}

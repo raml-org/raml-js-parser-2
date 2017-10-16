@@ -1,0 +1,93 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "visibleFieldNames" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "object" ,
+          "properties" : {
+            "value" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "displayName" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "auto" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "orderable" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "searchable" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "operators" : {
+              "type" : "array" ,
+              "required" : false ,
+              "items" : [
+                {
+                  "type" : "string"
+                }
+              ]
+            } ,
+            "types" : {
+              "type" : "array" ,
+              "required" : false ,
+              "items" : [
+                {
+                  "type" : "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    } ,
+    "visibleFunctionNames" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "object" ,
+          "properties" : {
+            "value" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "displayName" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "types" : {
+              "type" : "array" ,
+              "required" : false ,
+              "items" : [
+                {
+                  "type" : "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    } ,
+    "jqlReservedWords" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "string"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id" : 17218781 ,
+  "name" : "Workflow Scheme Two" ,
+  "description" : "Workflow Scheme Two Description" ,
+  "defaultWorkflow" : "DefaultWorkflowName" ,
+  "issueTypeMappings" : {
+    "IsueTypeId2" : "WorkflowName" ,
+    "IsueTypeId" : "WorkflowName"
+  } ,
+  "originalDefaultWorkflow" : "ParentsDefaultWorkflowName" ,
+  "originalIssueTypeMappings" : {
+    "IssueTypeId" : "WorkflowName2"
+  } ,
+  "draft" : true ,
+  "lastModifiedUser" : {
+    "self" : "http://www.example.com/jira/rest/api/2/user?username=fred" ,
+    "name" : "fred" ,
+    "emailAddress" : "fred@example.com" ,
+    "avatarUrls" : {
+      "24x24" : "http://www.example.com/jira/secure/useravatar?size=small&ownerId=fred" ,
+      "16x16" : "http://www.example.com/jira/secure/useravatar?size=xsmall&ownerId=fred" ,
+      "32x32" : "http://www.example.com/jira/secure/useravatar?size=medium&ownerId=fred" ,
+      "48x48" : "http://www.example.com/jira/secure/useravatar?size=large&ownerId=fred"
+    } ,
+    "displayName" : "Fred F. User" ,
+    "active" : true ,
+    "timeZone" : "Australia/Sydney" ,
+    "groups" : {
+      "size" : 3 ,
+      "items" : [
+      ]
+    }
+  } ,
+  "lastModified" : "Today 12:45" ,
+  "self" : "http://www.example.com/jira/rest/api/2/workflowscheme/17218781/draft"
+}

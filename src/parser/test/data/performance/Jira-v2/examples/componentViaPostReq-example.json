@@ -1,0 +1,8 @@
+{
+  "name" : "Component 1" ,
+  "description" : "This is a JIRA component" ,
+  "leadUserName" : "fred" ,
+  "assigneeType" : "PROJECT_LEAD" ,
+  "isAssigneeTypeValid" : false ,
+  "project" : "PXA"
+}

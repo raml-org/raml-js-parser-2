@@ -1,0 +1,19 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "issueType" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "workflow" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "updateDraftIfNeeded" : {
+      "type" : "boolean" ,
+      "required" : false
+    }
+  }
+}

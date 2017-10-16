@@ -1,0 +1,20 @@
+{
+  "name": "Bezeichnung der Bildvorlage",
+  "losarten": [
+    {
+      "key": "MeinGlueckslos",
+      "name": "Mein Glücks-Los"
+    },
+    {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    }
+  ],
+  "gueltigkeitsZeitraeume": [
+    {
+      "beginDatum": "2016-01-01",
+      "endeDatum": "2016-12-31"
+    }
+  ],
+  "imageUrl": "www.url.de"
+}

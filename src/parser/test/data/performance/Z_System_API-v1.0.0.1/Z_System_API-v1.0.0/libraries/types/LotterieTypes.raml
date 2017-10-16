@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+
+types:
+  StandardDateTime:
+    type: datetime
+    format: rfc3339
+  Losgutschein:
+    type: object
+    properties:
+
+          mailSendeDatum:
+            type: StandardDateTime?

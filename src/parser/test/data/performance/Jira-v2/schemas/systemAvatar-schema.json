@@ -1,0 +1,38 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "system" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "object" ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "owner" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "isSystemAvatar" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "isSelected" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "selected" : {
+              "type" : "boolean" ,
+              "required" : false
+            }
+          }
+        }
+      ]
+    }
+  }
+}

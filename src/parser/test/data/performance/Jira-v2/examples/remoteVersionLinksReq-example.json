@@ -1,0 +1,14 @@
+{
+  "globalId" : "SomeGlobalId" ,
+  "myCustomLinkProperty" : true ,
+  "colors" : [
+    "red" ,
+    "green" ,
+    "blue"
+  ] ,
+  "notes" : [
+    "Remote version links may take any well-formed JSON shape that is desired," ,
+    "provided that they fit within the maximum buffer size allowed," ,
+    "which is currently 32,768 characters."
+  ]
+}

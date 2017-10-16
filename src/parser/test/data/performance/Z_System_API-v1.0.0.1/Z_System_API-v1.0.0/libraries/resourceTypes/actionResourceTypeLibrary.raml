@@ -1,0 +1,74 @@
+#%RAML 1.0 Library
+
+usage: |
+  Bibliothek mit den Standard-Resource-Pattern für Services, die (häufig genutzte) Aktionen auf Resourcen ausführen. Erkennbar sind Aktionen daran, dass Verben anstatt Nomen als Bezeichnung im Resource-Pfad genutzt werden.
+  Aktionen sind beispielsweise 'aktivieren', 'generieren', 'validieren', 'pruefen', 'identifizieren', 'translate', 'convert'.
+
+uses:
+  StandardResourceTypes: resourceTypeLibrary.raml
+  StandardTraits: ../traits/_library-standard-traits.raml
+
+resourceTypes:
+  base-post-201created:
+    type: StandardResourceTypes.base
+    post:
+      description: |
+        <<descriptionPost>>
+      is: [StandardTraits.hasRequestItem: {descriptionRequest : <<descriptionRequestItemPost>>, typeName : <<typeNameRequestItemPost>>, example : <<exampleRequestItemPost>>}, StandardTraits.has201: {description : <<descriptionResponse201Post>>}]
+  base-post-204noContent:
+    type: StandardResourceTypes.base
+    post:
+      description: |
+        <<descriptionPost>>
+      is: [StandardTraits.hasRequestItem: {descriptionRequest : <<descriptionRequestItemPost>>, typeName : <<typeNameRequestItemPost>>, example : <<exampleRequestItemPost>>}, StandardTraits.has204: {description : <<descriptionResponse204Post>>}]
+  base-get:
+    type: StandardResourceTypes.base
+    get:
+      #!include includes/base-get-item.raml
+      description: |
+        <<descriptionGet>>
+      is: [StandardTraits.partial-response-able: {descriptionPartialResponseFeldListe : <<descriptionPartialResponseFeldListe>>}, StandardTraits.has200ResponseItem: {description: <<descriptionResponse200Get>>, typeName: <<typeResponse200Get>>, example: <<exampleResponse200Get>>}]
+
+  # # # # # # # # # #
+  # ACTION Resource Types
+  # # # # # # # # # #
+  aktivieren:
+    type:
+      base-post-201created:
+        descriptionPost: <<descriptionPost>>
+        descriptionRequestItemPost: <<descriptionRequestItemPost>>
+        typeNameRequestItemPost: <<typeNameRequestItemPost>>
+        exampleRequestItemPost: <<exampleRequestItemPost>>
+        descriptionResponse201Post: <<descriptionResponse201Post>>
+  generieren:
+    type:
+      base-post-201created:
+        descriptionPost: <<descriptionPost>>
+        descriptionRequestItemPost: <<descriptionRequestItemPost>>
+        typeNameRequestItemPost: <<typeNameRequestItemPost>>
+        exampleRequestItemPost: <<exampleRequestItemPost>>
+        descriptionResponse201Post: <<descriptionResponse201Post>>
+  validieren:
+    type:
+      base-post-204noContent:
+        descriptionPost: <<descriptionPost>>
+        descriptionRequestItemPost: <<descriptionRequestItemPost>>
+        typeNameRequestItemPost: <<typeNameRequestItemPost>>
+        exampleRequestItemPost: <<exampleRequestItemPost>>
+        descriptionResponse204Post: <<descriptionResponse204Post>>
+  pruefen:
+    type:
+      base-post-204noContent:
+        descriptionPost: <<descriptionPost>>
+        descriptionRequestItemPost: <<descriptionRequestItemPost>>
+        typeNameRequestItemPost: <<typeNameRequestItemPost>>
+        exampleRequestItemPost: <<exampleRequestItemPost>>
+        descriptionResponse204Post: <<descriptionResponse204Post>>
+  identifizieren:
+    type:
+      base-get:
+        descriptionGet: <<descriptionGet>>
+        descriptionPartialResponseFeldListe: <<descriptionPartialResponseFeldListe>>
+        descriptionResponse200Get: <<descriptionResponse200Get>>
+        typeResponse200Get: <<typeResponse200Get>>
+        exampleResponse200Get: <<exampleResponse200Get>>

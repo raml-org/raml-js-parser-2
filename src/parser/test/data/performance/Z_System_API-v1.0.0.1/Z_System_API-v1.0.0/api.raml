@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: System API
+
+uses:
+  LotterieTypes: libraries/types/LotterieTypes.raml
+
+/losgutscheine:
+      put:
+            body:
+              application/json:
+                type: LotterieTypes.Losgutschein
+                example: |
+                  {
+                      "mailSendeDatum" : null
+                    
+                  }

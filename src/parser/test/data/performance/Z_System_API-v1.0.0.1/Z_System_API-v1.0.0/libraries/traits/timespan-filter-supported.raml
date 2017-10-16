@@ -1,0 +1,17 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  beginDatum:
+    description: |
+      <<descriptionBeginDatum>>
+      (Datum im Format nach full-date - RFC 3339)
+    type: date-only
+    required: true
+    example: 2016-05-19
+  endeDatum:
+    description: |
+      <<descriptionEndeDatum>>
+      (Datum im Format nach full-date - RFC 3339)
+    type: date-only
+    required: true
+    example: 2016-05-22

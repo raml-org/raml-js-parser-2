@@ -1,0 +1,97 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "id" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "self" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "globalId" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "application" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "type" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "name" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "relationship" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "object" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "url" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "title" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "summary" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "icon" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "url16x16" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "title" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } ,
+        "status" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "resolved" : {
+              "type" : "boolean" ,
+              "required" : false
+            } ,
+            "icon" : {
+              "type" : "object" ,
+              "required" : false ,
+              "properties" : {
+                "url16x16" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "title" : {
+                  "type" : "string" ,
+                  "required" : false
+                } ,
+                "link" : {
+                  "type" : "string" ,
+                  "required" : false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

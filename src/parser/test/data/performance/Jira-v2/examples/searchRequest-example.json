@@ -1,0 +1,10 @@
+{
+  "jql" : "project = HSP" ,
+  "startAt" : 0 ,
+  "maxResults" : 15 ,
+  "fields" : [
+    "summary" ,
+    "status" ,
+    "assignee"
+  ]
+}

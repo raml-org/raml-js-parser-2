@@ -1,0 +1,20 @@
+{
+  "system" : [
+    {
+      "id" : "1000" ,
+      "owner" : "fred" ,
+      "isSystemAvatar" : true ,
+      "isSelected" : true ,
+      "selected" : true
+    }
+  ] ,
+  "custom" : [
+    {
+      "id" : "1010" ,
+      "owner" : "andrew" ,
+      "isSystemAvatar" : false ,
+      "isSelected" : false ,
+      "selected" : false
+    }
+  ]
+}

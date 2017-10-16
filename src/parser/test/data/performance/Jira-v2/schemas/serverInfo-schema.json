@@ -1,0 +1,48 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "baseUrl" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "version" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "versionNumbers" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "number"
+        }
+      ]
+    } ,
+    "buildNumber" : {
+      "type" : "number" ,
+      "required" : false
+    } ,
+    "buildDate" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "serverTime" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "scmInfo" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "buildPartnerName" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "serverTitle" : {
+      "type" : "string" ,
+      "required" : false
+    }
+  }
+}

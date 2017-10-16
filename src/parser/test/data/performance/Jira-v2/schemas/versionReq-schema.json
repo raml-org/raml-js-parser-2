@@ -1,0 +1,39 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "description" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "name" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "archived" : {
+      "type" : "boolean" ,
+      "required" : false
+    } ,
+    "released" : {
+      "type" : "boolean" ,
+      "required" : false
+    } ,
+    "releaseDate" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "userReleaseDate" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "project" : {
+      "type" : "string" ,
+      "required" : false
+    } ,
+    "projectId" : {
+      "type" : "number" ,
+      "required" : false
+    }
+  }
+}

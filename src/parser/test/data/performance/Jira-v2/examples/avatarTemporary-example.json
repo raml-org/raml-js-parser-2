@@ -1,0 +1,7 @@
+{
+  "cropperWidth" : 120 ,
+  "cropperOffsetX" : 50 ,
+  "cropperOffsetY" : 50 ,
+  "url" : "http://example.com/jira/secure/temporaryavatar?cropped=true" ,
+  "needsCropping" : true
+}

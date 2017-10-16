@@ -1,0 +1,18 @@
+{
+  "type" : {
+    "name" : "Duplicate"
+  } ,
+  "inwardIssue" : {
+    "key" : "HSP-1"
+  } ,
+  "outwardIssue" : {
+    "key" : "MKY-1"
+  } ,
+  "comment" : {
+    "body" : "Linked related issue!" ,
+    "visibility" : {
+      "type" : "group" ,
+      "value" : "jira-users"
+    }
+  }
+}

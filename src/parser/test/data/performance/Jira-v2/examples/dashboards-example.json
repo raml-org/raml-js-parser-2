@@ -1,0 +1,20 @@
+{
+  "startAt" : 10 ,
+  "maxResults" : 10 ,
+  "total" : 143 ,
+  "prev" : "http://www.example.com/jira/rest/api/2/dashboard?startAt=0" ,
+  "next" : "http://www.example.com/jira/rest/api/2/dashboard?startAt=10" ,
+  "dashboards" : [
+    {
+      "id" : "10000" ,
+      "name" : "System Dashboard" ,
+      "self" : "http://www.example.com/jira/rest/api/2/dashboard/10000" ,
+      "view" : "http://www.example.com/jira/secure/Dashboard.jspa?selectPageId=10000"
+    } , {
+      "id" : "20000" ,
+      "name" : "Build Engineering" ,
+      "self" : "http://www.example.com/jira/rest/api/2/dashboard/20000" ,
+      "view" : "http://www.example.com/jira/secure/Dashboard.jspa?selectPageId=20000"
+    }
+  ]
+}

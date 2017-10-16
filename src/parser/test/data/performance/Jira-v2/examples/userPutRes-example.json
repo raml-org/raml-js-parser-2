@@ -1,0 +1,7 @@
+{
+  "self" : "http://www.example.com/jirahttp://www.example.com/jira/rest/api/2/user/charlie" ,
+  "key" : "charlie" ,
+  "name" : "charlie" ,
+  "emailAddress" : "charlie@atlassian.com" ,
+  "displayName" : "Charlie of Atlassian"
+}

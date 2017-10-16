@@ -1,0 +1,8 @@
+{
+  "keys" : [
+    {
+      "self" : "http://www.example.com/jira/rest/api/2/issue/EX-2/properties/issue.support" ,
+      "key" : "issue.support"
+    }
+  ]
+}

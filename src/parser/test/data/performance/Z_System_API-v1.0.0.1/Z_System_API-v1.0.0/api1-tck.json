@@ -1,0 +1,48 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "Datetime format",
+    "mediaType": "application/json",
+    "schemas": [
+      {
+        "example-schema": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n"
+      }
+    ],
+    "resources": [
+      {
+        "relativeUri": "/res",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "schema": "example-schema",
+                    "schemaContent": "{\n  \"type\": \"object\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"description\": \"Test schema showing the issue\",\n  \"properties\": {\n    \"test1\": {\n        \"type\": \"string\",\n        \"description\": \"This property is marked as being required\",\n        \"required\": true\n    }\n  }\n}\n"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/res",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "res"
+        ],
+        "absoluteUri": "/res"
+      }
+    ]
+  },
+  "errors": []
+}

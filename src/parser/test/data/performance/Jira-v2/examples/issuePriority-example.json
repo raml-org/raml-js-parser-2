@@ -1,0 +1,7 @@
+{
+  "self" : "http://www.example.com/jira/rest/api/2/priority/3" ,
+  "statusColor" : "#009900" ,
+  "description" : "Major loss of function." ,
+  "iconUrl" : "http://www.example.com/jira/images/icons/priorities/major.png" ,
+  "name" : "Major"
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "self" : "http://localhost:8090/jira/rest/api/2.0/issueType/3" ,
+    "id" : "3" ,
+    "name" : "Task" ,
+    "subtask" : false ,
+    "statuses" : [
+      {
+        "self" : "http://localhost:8090/jira/rest/api/2.0/status/10000" ,
+        "description" : "The issue is currently being worked on." ,
+        "iconUrl" : "http://localhost:8090/jira/images/icons/progress.gif" ,
+        "name" : "In Progress" ,
+        "id" : "10000"
+      } , {
+        "self" : "http://localhost:8090/jira/rest/api/2.0/status/5" ,
+        "description" : "The issue is closed." ,
+        "iconUrl" : "http://localhost:8090/jira/images/icons/closed.gif" ,
+        "name" : "Closed" ,
+        "id" : "5"
+      }
+    ]
+  }
+]

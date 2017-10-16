@@ -1,0 +1,6 @@
+{
+  "cropperWidth" : 120 ,
+  "cropperOffsetX" : 50 ,
+  "cropperOffsetY" : 50 ,
+  "needsCropping" : false
+}

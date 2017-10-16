@@ -1,0 +1,61 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "type" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "name" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "inwardIssue" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "key" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "outwardIssue" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "key" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    } ,
+    "comment" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "body" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "visibility" : {
+          "type" : "object" ,
+          "required" : false ,
+          "properties" : {
+            "type" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "value" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        }
+      }
+    }
+  }
+}

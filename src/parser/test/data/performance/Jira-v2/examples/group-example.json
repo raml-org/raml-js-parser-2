@@ -1,0 +1,19 @@
+{
+  "name" : "jira-administrators" ,
+  "self" : "http://www.example.com/jira/rest/api/2/group?groupname=jira-administrators" ,
+  "users" : {
+    "size" : 1 ,
+    "items" : [
+      {
+        "self" : "http://www.example.com/jira/rest/api/2/user?username=fred" ,
+        "name" : "fred" ,
+        "displayName" : "Fred F. User" ,
+        "active" : false
+      }
+    ] ,
+    "max-results" : 50 ,
+    "start-index" : 0 ,
+    "end-index" : 0
+  } ,
+  "expand" : "users"
+}

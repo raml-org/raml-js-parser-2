@@ -1,0 +1,14 @@
+{
+  "self" : "http://localhost:8090/jira/rest/api/2.0/status/10000" ,
+  "description" : "The issue is currently being worked on." ,
+  "iconUrl" : "http://localhost:8090/jira/images/icons/progress.gif" ,
+  "name" : "In Progress" ,
+  "id" : "10000" ,
+  "statusCategory" : {
+    "self" : "http://localhost:8090/jira/rest/api/2.0/statuscategory/1" ,
+    "id" : 1 ,
+    "key" : "in-flight" ,
+    "colorName" : "yellow" ,
+    "name" : "In Progress"
+  }
+}

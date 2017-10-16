@@ -1,0 +1,18 @@
+{
+  "MailID": "99999999",
+  "MailRecipentType": "Participant",
+  "AddressLine1": "1234 E MyStreet Pl, ",
+  "AddressLine2": "Unit 999-AB",
+  "City": "MyTown",
+  "State": "AA",
+  "Zip": "99999-9999",
+  "TimeZoneCode": "HAW",
+  "CountryCode": "USA",
+  "ReturnMailStatus": "Y",
+  "MailForwardStatus": "Y",
+  "MailHoldDate": "01/01/1900",
+  "MailSource": "PS EASY",
+  "DoNotSolicitIndicator": "0",
+  "MailCreationDate": "01/01/1900",
+  "BestMailInd": "1"
+}

@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: Healthcare FHIR System API
+version: v1
+baseUri: http://localhost:8081/api
+mediaType: [application/xml+fhir, application/json+fhir]
+
+uses:
+  resourceTypes: resourceTypes.raml
+  traits: traits.raml

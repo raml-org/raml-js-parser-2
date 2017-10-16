@@ -1,0 +1,22 @@
+{
+  "update" : {
+    "comment" : [
+      {
+        "add" : {
+          "body" : "Bug has been fixed."
+        }
+      }
+    ]
+  } ,
+  "fields" : {
+    "assignee" : {
+      "name" : "bob"
+    } ,
+    "resolution" : {
+      "name" : "Fixed"
+    }
+  } ,
+  "transition" : {
+    "id" : "5"
+  }
+}

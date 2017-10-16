@@ -1,0 +1,75 @@
+#%RAML 1.0 Library
+uses:
+  commonType: commonTypes.raml
+  standardDataTypes: standardDataTypes.raml
+
+types:
+  Plan:
+    displayName: Plan Object
+    properties:
+      DataDate: date-only
+      PlanNumber: string
+      OfficialPlanName: string
+      PlanNameShort: string
+      StatusCode: string
+      PlanIRSGroup: string
+      PlanType: string
+      PlanCategory: string
+      Market: string
+      BusinessSegment: string
+
+    examples:
+      Plan1:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-01"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+      Plan2:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-02"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+      Plan3:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-03"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+      Plan4:
+        DataDate: "01/01/1900"
+        PlanNumber: "111111-04"
+        OfficialPlanName: "ABC Industries"
+        PlanNameShort: "ABC Industries"
+        StatusCode: "A"
+        PlanIRSGroup: "401"
+        PlanType: "Startup"
+        PlanCategory: "401C"
+        Market: "401K"
+        BusinessSegment: "Rollup"
+  Plan-Paginated:
+    type: standardDataTypes.Paginated
+    properties:
+      results: Plan[]
+    example:
+      totalSize: 100
+      start: 20
+      limit: 10
+      size: 0
+      results: []

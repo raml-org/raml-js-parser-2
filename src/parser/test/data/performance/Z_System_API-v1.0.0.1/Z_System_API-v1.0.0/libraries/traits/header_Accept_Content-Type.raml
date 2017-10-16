@@ -1,0 +1,21 @@
+#%RAML 1.0 Trait
+
+headers:
+  Accept:
+    description: |
+      HTTP-Standard Parameter.
+      Im default ist application/json akzeptiert.
+      Header Feld nach RFC 7231. Media Types nach  RFC 2046.
+    type: string
+    required: true
+    default: application/json; charset=utf-8
+    example: 'Accept: application/json; charset=utf-8'
+  Content-Type:
+    description: |
+      HTTP-Standard Parameter.
+      Im default ist der Inhalt im Format application/json.
+      Header Feld nach RFC 7231. Media Types nach  RFC 2046.
+    type: string
+    required: true
+    default: application/json; charset=utf-8
+    example: 'Content-Type: application/json; charset=utf-8'

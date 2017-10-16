@@ -1,0 +1,9 @@
+#%RAML 1.0 Trait
+
+responses:
+  304:
+    description: |
+      Not Modified.
+      Antwort eines Services, wenn der HTTP-ETag Parameter sich nicht zum "If-None-Match"-Eintrag des Headers der Anfrage geändert hat. Es wird kein weiterer Inhalt außer dem Header geliefert.
+    headers:
+      !include includes/ETag.raml

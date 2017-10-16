@@ -1,0 +1,34 @@
+{
+  "update" : {
+    "summary" : [
+      {
+        "set" : "Bug in business logic"
+      }
+    ] ,
+    "timetracking" : [
+      {
+        "edit" : {
+          "originalEstimate" : "1w 1d" ,
+          "remainingEstimate" : "4d"
+        }
+      }
+    ] ,
+    "labels" : [
+      {
+        "add" : "triaged"
+      } , {
+        "remove" : "blocker"
+      }
+    ] ,
+    "components" : [
+      {
+        "set" : ""
+      }
+    ]
+  } ,
+  "fields" : {
+    "summary" : "This is a shorthand for a set operation on the summary field" ,
+    "customfield_10010" : 1 ,
+    "customfield_10000" : "This is a shorthand for a set operation on a text custom field"
+  }
+}

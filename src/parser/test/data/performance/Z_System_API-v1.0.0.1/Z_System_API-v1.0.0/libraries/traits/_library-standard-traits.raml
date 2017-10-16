@@ -1,0 +1,23 @@
+#%RAML 1.0 Library
+
+usage: |
+  Bibliothek mit den Standard-Traits.
+
+traits:
+  client-id-required: !include header_client-id-required.raml
+  json-supported: !include header_Accept-Encoding_Content-Encoding.raml
+  gzip-supported: !include header_Accept_Content-Type.raml
+  transaction-id-required: !include transaction-id-required.raml
+  #
+  sort-able: !include sort-able.raml
+  page-able: !include page-able.raml
+  search-able: !include search-able.raml
+  filter-able: !include filter-able.raml
+  partial-response-able: !include partial-response-able.raml
+  #
+  hasRequestItem: !include hasRequestItem.raml
+  hasRequestCollection: !include hasRequestCollection.raml
+  has200ResponseItem: !include has200ResponseItem.raml
+  has200ResponseCollection: !include has200ResponseCollection.raml
+  has201: !include has201.raml
+  has204: !include has204.raml

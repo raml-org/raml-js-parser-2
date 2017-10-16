@@ -1,0 +1,3142 @@
+#%RAML 0.8
+title: Jira
+version: 2
+baseUri: "{protocol}://{domain}/rest/api/{version}"
+securitySchemes:
+  - basic: !include securitySchemes/basic.raml
+schemas:
+  - appProperties: !include schemas/appProperties-schema.json
+  - appPropertyReq: !include schemas/appPropertyReq-schema.json
+  - attachment: !include schemas/attachment-schema.json
+  - attachmentMeta: !include schemas/attachmentMeta-schema.json
+  - settings: !include schemas/settings-schema.json
+  - cropInstructions: !include schemas/cropInstructions-schema.json
+  - systemAvatar: !include schemas/systemAvatar-schema.json
+  - commentPropertiesKeys: !include schemas/commentPropertiesKeys-schema.json
+  - commentProperty: !include schemas/commentProperty-schema.json
+  - componentViaPostReq: !include schemas/componentViaPostReq-schema.json
+  - componentViaPost: !include schemas/componentViaPost-schema.json
+  - componentViaPutReq: !include schemas/componentViaPutReq-schema.json
+  - issueCountBean: !include schemas/issueCountBean-schema.json
+  - customFieldOption: !include schemas/customFieldOption-schema.json
+  - dashboards: !include schemas/dashboards-schema.json
+  - dashboard: !include schemas/dashboard-schema.json
+  - fields: !include schemas/fields-schema.json
+  - fieldReq: !include schemas/fieldReq-schema.json
+  - filterReq: !include schemas/filterReq-schema.json
+  - filter: !include schemas/filter-schema.json
+  - scope: !include schemas/scope-schema.json
+  - filters: !include schemas/filters-schema.json
+  - group: !include schemas/group-schema.json
+  - groupsuggestions: !include schemas/groupsuggestions-schema.json
+  - issueReq: !include schemas/issueReq-schema.json
+  - issue: !include schemas/issue-schema.json
+  - errorMessages: !include schemas/errorMessages-schema.json
+  - issuesReq: !include schemas/issuesReq-schema.json
+  - issues: !include schemas/issues-schema.json
+  - elementErrors: !include schemas/elementErrors-schema.json
+  - updateIssueReq: !include schemas/updateIssueReq-schema.json
+  - representationIssue: !include schemas/representationIssue-schema.json
+  - assignee: !include schemas/assignee-schema.json
+  - issueComments: !include schemas/issueComments-schema.json
+  - commentReq: !include schemas/commentReq-schema.json
+  - comment: !include schemas/comment-schema.json
+  - issueMeta: !include schemas/issueMeta-schema.json
+  - notification: !include schemas/notification-schema.json
+  - remotelink: !include schemas/remotelink-schema.json
+  - remoteReq: !include schemas/remoteReq-schema.json
+  - remoteIssueLink: !include schemas/remoteIssueLink-schema.json
+  - issueLink: !include schemas/issueLink-schema.json
+  - transitions: !include schemas/transitions-schema.json
+  - transitionReq: !include schemas/transitionReq-schema.json
+  - voters: !include schemas/voters-schema.json
+  - watchers: !include schemas/watchers-schema.json
+  - worklogs: !include schemas/worklogs-schema.json
+  - worklog: !include schemas/worklog-schema.json
+  - issueProjects: !include schemas/issueProjects-schema.json
+  - attachments: !include schemas/attachments-schema.json
+  - issueLinkReq: !include schemas/issueLinkReq-schema.json
+  - link: !include schemas/link-schema.json
+  - issueLinkTypes: !include schemas/issueLinkTypes-schema.json
+  - issueLinkTypesReq: !include schemas/issueLinkTypesReq-schema.json
+  - issueLinkType: !include schemas/issueLinkType-schema.json
+  - issueTypes: !include schemas/issueTypes-schema.json
+  - issueType: !include schemas/issueType-schema.json
+  - autoCompleteData: !include schemas/autoCompleteData-schema.json
+  - permission: !include schemas/permission-schema.json
+  - user: !include schemas/user-schema.json
+  - userPutReq: !include schemas/userPutReq-schema.json
+  - userPutRes: !include schemas/userPutRes-schema.json
+  - priorities: !include schemas/priorities-schema.json
+  - issuePriority: !include schemas/issuePriority-schema.json
+  - projects: !include schemas/projects-schema.json
+  - projectRepresentation: !include schemas/projectRepresentation-schema.json
+  - avatar: !include schemas/avatar-schema.json
+  - temporaryAvatar: !include schemas/temporaryAvatar-schema.json
+  - avatars: !include schemas/avatars-schema.json
+  - components: !include schemas/components-schema.json
+  - statuses: !include schemas/statuses-schema.json
+  - versions: !include schemas/versions-schema.json
+  - role: !include schemas/role-schema.json
+  - addActor: !include schemas/addActor-schema.json
+  - actor: !include schemas/actor-schema.json
+  - errorCollection: !include schemas/errorCollection-schema.json
+  - reindex: !include schemas/reindex-schema.json
+  - resolutions: !include schemas/resolutions-schema.json
+  - resolution: !include schemas/resolution-schema.json
+  - tab: !include schemas/tab-schema.json
+  - tabFields: !include schemas/tabFields-schema.json
+  - searchResults: !include schemas/searchResults-schema.json
+  - searchRequest: !include schemas/searchRequest-schema.json
+  - securitylevel: !include schemas/securitylevel-schema.json
+  - serverInfo: !include schemas/serverInfo-schema.json
+  - issueStatuses: !include schemas/issueStatuses-schema.json
+  - issueStatus: !include schemas/issueStatus-schema.json
+  - statusCategories: !include schemas/statusCategories-schema.json
+  - statusCategory: !include schemas/statusCategory-schema.json
+  - userPostReq: !include schemas/userPostReq-schema.json
+  - users: !include schemas/users-schema.json
+  - password: !include schemas/password-schema.json
+  - usersList: !include schemas/usersList-schema.json
+  - versionReq: !include schemas/versionReq-schema.json
+  - positionReq: !include schemas/positionReq-schema.json
+  - version: !include schemas/version-schema.json
+  - issuesUnresolvedCount: !include schemas/issuesUnresolvedCount-schema.json
+  - remoteVersionLinks: !include schemas/remoteVersionLinks-schema.json
+  - remoteVersionLinksReq: !include schemas/remoteVersionLinksReq-schema.json
+  - transitionProperties: !include schemas/transitionProperties-schema.json
+  - transitionPropertyReq: !include schemas/transitionPropertyReq-schema.json
+  - workflowschemeReq: !include schemas/workflowschemeReq-schema.json
+  - workflowscheme: !include schemas/workflowscheme-schema.json
+  - workflowschemePutReq: !include schemas/workflowschemePutReq-schema.json
+  - draft: !include schemas/draft-schema.json
+  - workflowName: !include schemas/workflowName-schema.json
+  - workflowNameReq: !include schemas/workflowNameReq-schema.json
+  - workflowIssueTypeReq: !include schemas/workflowIssueTypeReq-schema.json
+  - workflowIssueType: !include schemas/workflowIssueType-schema.json
+  - workflowMappings: !include schemas/workflowMappings-schema.json
+  - workflowMappingsReq: !include schemas/workflowMappingsReq-schema.json
+  - credentialsReq: !include schemas/credentialsReq-schema.json
+  - credentials: !include schemas/credentials-schema.json
+  - userSession: !include schemas/userSession-schema.json
+  - remoteVersionLink: !include schemas/remoteVersionLink-schema.json
+  - remoteVersionLinkReq: !include schemas/remoteVersionLinkReq-schema.json
+  - avatarTemporary: !include schemas/avatarTemporary-schema.json
+resourceTypes:
+  - base: !include resourceTypes/base.raml
+  - workflowschemeReturned: !include resourceTypes/workflowschemeReturned.raml
+traits:
+  - hasUsername: !include traits/hasUsername.raml
+  - hasKey: !include traits/hasKey.raml
+  - hasExpand: !include traits/hasExpand.raml
+  - hasMaxResults: !include traits/hasMaxResults.raml
+  - hasWorkflowName: !include traits/hasWorkflowName.raml
+  - hasStartAt: !include traits/hasStartAt.raml
+securedBy: [ basic ]
+/application-properties: 
+  type: base
+  get: 
+    is: [ hasKey ]
+    description: Returns an application property.
+    queryParameters: 
+      permissionLevel: 
+        description: when fetching a list specifies the permission level of all items in the list see {@link com.atlassian.jira.bc.admin.ApplicationPropertiesService.EditPermissionLevel}
+      keyFilter: 
+        description: |
+          when fetching a list allows the list to be filtered by the property's start of key e.g. "jira.lf.*" whould fetch only those permissions that are editable and whose keys start with "jira.lf.". This is a regex.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: appProperties
+            example: !include examples/appProperties-example.json
+      400: 
+        description: Returned if the property does not exist or the currently authenticated user does not have permission to view it.
+  /{id}: 
+    type: base
+    put: 
+      description: 'Modify an application property via PUT. The "value" field present in the PUT will override thee existing value.'
+      body: 
+        application/json: 
+          schema: appPropertyReq
+          example: !include examples/appPropertyReq-example.json
+      responses: 
+        200: 
+          description: Returned if the version exists and the currently authenticated user has permission to edit it.
+        403: 
+          description: Returned if the currently authenticated user does not have permission to edit the version.
+        404: 
+          description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+/attachment: 
+  /{id}: 
+    type: base
+    uriParameters: 
+      id: 
+        description: The id of the attachment to delete.
+    get: 
+      description: Returns the meta-data for an attachment, including the URI of the actual attached file.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: attachment
+              example: !include examples/attachment-example.json
+        404: 
+          description: Returned if the attachment with the given id does not exist, or is not accessible by the calling user.
+    delete: 
+      description: Remove an attachment from an issue.
+      responses: 
+        204: 
+          description: Returned if successful.
+        403: 
+          description: "Returned if attachments is disabled or if you don't have permission to remove attachments from this issue."
+        404: 
+          description: Returned if the attachment is not found
+  /meta: 
+    type: base
+    get: 
+      description: Returns the meta informations for an attachments, specifically if they are enabled and the maximum upload size allowed.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: attachmentMeta
+              example: !include examples/attachmentMeta-example.json
+/auditing/settings: 
+  type: base
+  get: 
+    description: Returns current Auditing settings.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: settings
+            example: !include examples/settings-example.json
+  put: 
+    description: Changed current Auditing settings Returns REST representation for the requested group.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: settings
+            example: !include examples/settings-example.json
+      401: 
+        description: Returned if the current user is not a sysadmin.
+/avatar/{type}: 
+  uriParameters: 
+    type: 
+      description: the avatar type
+  /temporaryCrop: 
+    type: base
+    post: 
+      description: Updates the cropping instructions of the temporary avatar.
+      body: 
+        application/json: 
+          schema: cropInstructions
+          example: !include examples/cropInstructions-example.json
+      responses: 
+        201: 
+        400: 
+          description: Returned if the cropping coordinates are invalid
+        500: 
+          description: Returned if an error occurs while cropping the temporary avatar
+  /temporary: 
+    type: base
+    post: 
+      description: Creates temporary avatar
+      queryParameters: 
+        filename: 
+          description: name of file being uploaded
+        size: 
+          description: size of file
+          type: number
+      responses: 
+        201: 
+          body: 
+            application/json: 
+              schema: avatarTemporary
+              example: !include examples/avatarTemporary-example.json
+        400: 
+          description: Valiation failed. For example filesize is beyond max attachment size.
+        403: 
+          description: Returned if the request does not conain a valid XSRF token
+        500: 
+          description: Returned if an error occurs while converting temporary avatar to real avatar
+  /system: 
+    type: base
+    get: 
+      description: Returns all system avatars of the given type.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: systemAvatar
+              example: !include examples/systemAvatar-example.json
+        500: 
+          description: Returned if an error occurs while retrieving the list of avatars.
+/comment/{commentId}/properties: 
+  type: base
+  uriParameters: 
+    commentId: 
+      description: The comment from which keys will be returned.
+  get: 
+    description: Returns the keys of all properties for the comment identified by the key or by the id.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: commentPropertiesKeys
+            example: !include examples/commentPropertiesKeys-example.json
+      400: 
+        description: Returned if the comment key or id is invalid.
+      401: 
+        description: Returned if the calling user is not authenticated.
+      403: 
+        description: Returned if the calling user does not have permission to browse the comment.
+      404: 
+        description: Returned if the comment with given key or id does not exist or if the property with given key is not found.
+  /{propertyKey}: 
+    type: base
+    uriParameters: 
+      propertyKey: 
+        description: The key of the property to remove.
+    get: 
+      description: Returns the value of the property with a given key from the comment identified by the key or by the id. The user who retrieves the property is required to have permissions to read the comment.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: commentProperty
+              example: !include examples/commentProperty-example.json
+        400: 
+          description: Returned if the comment key or id is invalid.
+        401: 
+          description: Returned if the calling user is not authenticated.
+        403: 
+          description: Returned if the calling user does not have permission to browse the comment.
+        404: 
+          description: Returned if the comment with given key or id does not exist or if the property with given key is not found.
+    put: 
+      description: You can use this resource to store a custom data against the comment identified by the key or by the id. The user who stores the data is required to have permissions to administer the comment.
+      responses: 
+        200: 
+          description: Returned if the comment property is successfully updated.
+        201: 
+          description: Returned if the comment property is successfully created.
+        400: 
+          description: Returned if the comment key or id is invalid.
+        401: 
+          description: Returned if the calling user is not authenticated.
+        403: 
+          description: Returned if the calling user does not have permission to administer the comment.
+        404: 
+          description: Returned if the comment with given key or id does not exist.
+    delete: 
+      description: Removes the property from the comment identified by the key or by the id. Ths user removing the property is required to have permissions to administer the comment.
+      responses: 
+        204: 
+        400: 
+          description: Returned if the comment key or id is invalid.
+        401: 
+          description: Returned if the calling user is not authenticated.
+        403: 
+          description: Returned if the calling user does not have permission to edit the comment.
+        404: 
+          description: Returned if the comment with given key or id does not exist or if the property with given key is not found.
+/component: 
+  type: base
+  post: 
+    description: Create a component via POST.
+    body: 
+      application/json: 
+        schema: componentViaPostReq
+        example: !include examples/componentViaPostReq-example.json
+    responses: 
+      201: 
+        body: 
+          application/json: 
+            schema: componentViaPost
+            example: !include examples/componentViaPost-example.json
+      401: 
+        description: Returned if the caller is not logged in and does not have permission to create components in the project.
+      403: 
+        description: Returned if the caller is authenticated and does not have permission to create components in the project.
+      404: 
+        description: Returned if the project does not exist or the currently authenticated user does not have permission to view it.
+  /{id}: 
+    type: base
+    uriParameters: 
+      id: 
+        description: a String containing the component id
+    get: 
+      description: Returns a project component.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: componentViaPost
+              example: !include examples/component-example.json
+        404: 
+          description: Returned if there is no component with the given key, or if the calling user does not have permission to view the component.
+    put: 
+      description: 'Modify a component via PUT. Any fields present in the PUT will override existing values. As a convenience, if a field is not present, it is silently ignored. If leadUserName is an empty string ("") the component lead will be removed.'
+      body: 
+        application/json: 
+          schema: componentViaPutReq
+          example: !include examples/componentViaPutReq-example.json
+      responses: 
+        200: 
+          description: Returned if the component exists and the currently authenticated user has permission to edit it.
+        403: 
+          description: Returned if the currently authenticated user does not have permission to edit the component.
+        404: 
+          description: Returned if the component does not exist or the currently authenticated user does not have permission to view it.
+    delete: 
+      description: Delete a project component.
+      queryParameters: 
+        moveIssuesTo: 
+          description: "The new component applied to issues whose 'id' component will be deleted. If this value is null, then the 'id' component is simply removed from the related isues."
+      responses: 
+        204: 
+          description: Returned if the component is successfully deleted.
+        403: 
+          description: Returned if the currently authenticated user does not have permission to delete the component.
+        404: 
+          description: Returned if the component does not exist or the currently authenticated user does not have permission to view it.
+    /relatedIssueCounts: 
+      type: base
+      get: 
+        description: Returns counts of issues related to this component.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: issueCountBean
+                example: !include examples/issueCountBean-example.json
+          404: 
+            description: Returned if the component does not exist or the currently authenticated user does not have permission to view it.
+/customFieldOption/{id}: 
+  type: base
+  uriParameters: 
+    id: 
+      description: a String containing an Custom Field Option id
+  get: 
+    description: Returns a full representation of the Custom Field Option that has the given id.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: customFieldOption
+            example: !include examples/customFieldOption-example.json
+      404: 
+        description: Returned if the Custom Field Option does not exist, or is not visible to the calling user.
+/dashboard: 
+  type: base
+  get: 
+    is: [ hasMaxResults , hasStartAt ]
+    description: Returns a list of all dashboards, optionally filtering them.
+    queryParameters: 
+      filter: 
+        description: 'an optional filter that is applied to the list of dashboards. Valid values include "favourite" for returning only favourite dashboards, and "my" for returning dashboards that are owned by the calling user.'
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: dashboards
+            example: !include examples/dashboards-example.json
+  /{id}: 
+    type: base
+    get: 
+      description: Returns a single dashboard.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: dashboard
+              example: !include examples/dashboard-example.json
+        404: 
+          description: Returned if there is no dashboard with the specified id, or if the user does not have permission to see it.
+/field: 
+  type: base
+  get: 
+    description: Returns a list of all fields, both System and Custom
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: fields
+            example: !include examples/fields-example.json
+  post: 
+    description: Creates a custom field using a definition (object encapsulating custom field data)
+    body: 
+      application/json: 
+        schema: fieldReq
+        example: !include examples/fieldReq-example.json
+    responses: 
+      201: 
+        description: Returned if custom field was created. {@link FieldBean#DOC_EXAMPLE_CF}
+      400: 
+        description: Returned if the input is invalid (e.g. invalid values).
+      500: 
+        description: Returned if exception occured during custom field creation.
+/filter: 
+  type: base
+  post: 
+    is: [ hasExpand ]
+    description: Creates a new filter, and returns newly created filter. Currently sets permissions just using the users default sharing permissions
+    body: 
+      application/json: 
+        schema: filterReq
+        example: !include examples/filterReq-example.json
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: filter
+            example: !include examples/filter-example.json
+      400: 
+        description: Returned if the input is invalid (e.g. filter name was not provided).
+  /{id}: 
+    type: base
+    get: 
+      is: [ hasExpand ]
+      description: Returns a filter given an id
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: filter
+              example: !include examples/filter-example.json
+        400: 
+          description: Returned if there is a problem looking up the filter given the id
+    put: 
+      is: [ hasExpand ]
+      description: Updates an existing filter, and returns its new value.
+      body: 
+        application/json: 
+          schema: filterReq
+          example: !include examples/filterReq-example.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: filter
+              example: !include examples/filter-example.json
+    delete: 
+      description: Delete a filter.
+      responses: 
+        204: 
+          description: Returned if the filter was removed successfully.
+        400: 
+          description: Returned if an error occurs.
+        401: 
+          description: Returned if the calling user is not authenticated.
+    /columns: 
+      type: base
+      get: 
+        description: Returns the default columns for the given filter. Currently logged in user will be used as the user making such request.
+        responses: 
+          200: 
+            description: Returns a list of columns for configured for the given user
+          404: 
+            description: Returned if the filter does not have any columns.
+          500: 
+            description: Returned if an error occurs while retrieving the column configuration.
+      put: 
+        description: Sets the default columns for the given filter.
+        body: 
+          application/x-www-form-urlencoded: 
+        responses: 
+          200: 
+            description: Returned when the columns are saved successfully
+          500: 
+            description: Returned if an error occurs while retrieving the column configuration.
+      delete: 
+        description: Resets the columns for the given filter such that the filter no longer has its own column config.
+        responses: 
+          204: 
+            description: Returned when the columns are reset/removed successfully
+          500: 
+            description: Returned if an error occurs while retrieving the column configuration.
+  /defaultShareScope: 
+    type: base
+    get: 
+      description: Returns the default share scope of the logged-in user.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: scope
+              example: !include examples/scope-example.json
+        400: 
+          description: Returned if there is a problem looking up preferences for the logged-in user
+    put: 
+      description: Sets the default share scope of the logged-in user. Available values are GLOBAL and PRIVATE.
+      body: 
+        application/json: 
+          schema: scope
+          example: !include examples/scope-example.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: scope
+              example: !include examples/scope-example.json
+        400: 
+          description: Returned if there is a problem setting the preferences for the logged-in user
+  /favourite: 
+    type: base
+    get: 
+      is: [ hasExpand ]
+      description: Returns the favourite filters of the logged-in user.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: filters
+              example: !include examples/filters-example.json
+/group: 
+  type: base
+  get: 
+    is: [ hasExpand ]
+    description: 'Returns REST representation for the requested group. Allows to get list of active users belonging to the specified group and its subgroups if "users" expand option is provided. You can page through users list by using indexes in expand param. For example to get users from index 10 to index 15 use "users[10:15]" expand value. This will return 6 users (if there are at least 16 users in this group). Indexes are 0-based and inclusive.'
+    queryParameters: 
+      groupname: 
+        description: A name of requested group.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: group
+            example: !include examples/group-example.json
+      400: 
+        description: Returned if user requested an empty group name.
+      401: 
+        description: Returned if the current user is not authenticated.
+      403: 
+        description: Returned if the current user does not have administrator permissions.
+      404: 
+        description: Returned if the requested group was not found.
+  post: 
+    description: Creates a group by given group parameter Returns REST representation for the requested group.
+    responses: 
+      201: 
+        body: 
+          application/json: 
+            schema: group
+            example: !include examples/group-example.json
+      400: 
+        description: Returned if user requested an empty group name or group already exists
+      401: 
+        description: Returned if the current user is not authenticated.
+      403: 
+        description: Returned if the current user does not have administrator permissions.
+      500: 
+        description: Returned if the operation is not permitted or error occurs while creating the group.
+  delete: 
+    description: Deletes a group by given group parameter. Returns no content
+    queryParameters: 
+      groupname: 
+        description: a group to delete
+      swapGroup: 
+        description: a group to transfer visibility restrictions of the group that is being deleted
+    responses: 
+      200: 
+        description: Returned if the group was deleted.
+      400: 
+        description: Returned if user requested an group that does not exist.
+      401: 
+        description: Returned if the current user is not authenticated.
+      403: 
+        description: Returned if the current user does not have administrator permissions.
+      404: 
+        description: Returned if the requested group was not found.
+      500: 
+        description: Returned if the operation is not permitted or error occurs while deleting the group.
+  /user: 
+    type: base
+    post: 
+      description: Adds given user to a group. Returns the current state of the group.
+      queryParameters: 
+        groupname: 
+          description: A name of requested group.
+      responses: 
+        201: 
+          body: 
+            application/json: 
+              schema: group
+              example: !include examples/group-example.json
+        400: 
+          description: Returned if user requested an empty group name or the user already belongs to the group.
+        401: 
+          description: Returned if the current user is not authenticated.
+        403: 
+          description: Returned if the current user does not have administrator permissions.
+        404: 
+          description: Returned if the requested group was not found or requested user was not found.
+        500: 
+          description: Returned if the operation is not permitted or error occurs while adding user the group.
+    delete: 
+      is: [ hasUsername ]
+      description: Removes given user from a group. Returns no content
+      queryParameters: 
+        groupname: 
+          description: A name of requested group.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: group
+              example: !include examples/group-example.json
+        400: 
+          description: Returned if user requested an empty group name
+        401: 
+          description: Returned if the current user is not authenticated.
+        403: 
+          description: Returned if the current user does not have administrator permissions.
+        404: 
+          description: Returned if the requested group was not found or the requested user wan not foundor permissions.
+        500: 
+          description: Returned if the operation is not permitted or error occurs while removing user from the group.
+/groups/picker: 
+  type: base
+  get: 
+    is: [ hasMaxResults ]
+    description: 'Returns groups with substrings matching a given query. This is mainly for use with the group picker, so the returned groups contain html to be used as picker suggestions. The groups are also wrapped in a single response object that also contains a header for use in the picker, specifically Showing X of Y matching groups. The number of groups returned is limited by the system property "jira.ajax.autocomplete.limit" The groups will be unique and sorted.'
+    queryParameters: 
+      query: 
+        description: a String to match groups agains
+      exclude: 
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: groupsuggestions
+            example: !include examples/groupsuggestions-example.json
+/groupuserpicker: 
+  type: base
+  get: 
+    is: [ hasMaxResults ]
+    description: Returns a list of users and groups matching query with highlighting. This resource cannot be accessed anonymously.
+    queryParameters: 
+      query: 
+        description: A string used to search username, Name or e-mail address
+      showAvatar: 
+        type: boolean
+      fieldId: 
+        description: The custom field id, if this request comes from a custom field, such as a user picker. Optional.
+      projectId: 
+        description: The list of project ids to further restrict the search This parameter can occur multiple times to pass in multiple project ids. Comma separated value is not supported. This parameter is only used when fieldId is present.
+      issueTypeId: 
+        description: The list of issue type ids to further restrict the search. This parameter can occur multiple times to pass in multiple issue type ids. Comma separated value is not supported. Special values such as -1 (all standard issue types), -2 (all subtask issue types) are supported. This parameter is only used when fieldId is present.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+/issue: 
+  type: base
+  post: 
+    description: Creates an issue or a sub-task from a JSON representation.
+    body: 
+      application/json: 
+        schema: issueReq
+        example: !include examples/issueReq-example.json
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: issue
+            example: !include examples/issue-example.json
+      400: 
+        description: ""
+        body: 
+          application/json: 
+            schema: errorMessages
+            example: !include examples/errorMessages-example.json
+  /bulk: 
+    type: base
+    post: 
+      description: |
+        Creates issues or sub-tasks from a JSON representation.
+        Creates many issues in one bulk operation.
+      body: 
+        application/json: 
+          schema: issuesReq
+          example: !include examples/issuesReq-example.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issues
+              example: !include examples/issues-example.json
+        400: 
+          body: 
+            application/json: 
+              schema: elementErrors
+              example: !include examples/elementErrors-example.json
+  /{issueIdOrKey}: 
+    type: base
+    uriParameters: 
+      issueIdOrKey: 
+        description: a String containing an issue key
+    get: 
+      is: [ hasExpand ]
+      description: Returns a full representation of the issue for the given issue key.
+      queryParameters: 
+        fields: 
+          description: the list of fields to return for the issue. By default, all fields are returned.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: representationIssue
+              example: !include examples/representationIssue-example.json
+    put: 
+      description: Edits an issue from a JSON representation.
+      body: 
+        application/json: 
+          schema: updateIssueReq
+          example: !include examples/updateIssueReq-example.json
+      responses: 
+        200: 
+          description: Returned if it updated the issue succesfully.
+        400: 
+          description: Returned if the requested issue update failed.
+    delete: 
+      description: Delete an issue. If the issue has subtasks you must set the parameter deleteSubtasks=true to delete the issue. You cannot delete an issue without its subtasks also being deleted.
+      queryParameters: 
+        deleteSubtasks: 
+          description: a String of true or false indicating that any subtasks should also be deleted. If the issue has no subtasks this parameter is ignored. If the issue has subtasks and this parameter is missing or false, then the issue will not be deleted and an error will be returned.
+          type: boolean
+      responses: 
+        204: 
+          description: Returned if the issue was removed successfully.
+        400: 
+          description: Returned if an error occurs.
+        401: 
+          description: Returned if the calling user is not authenticated.
+        403: 
+          description: Returned if the calling user does not have permission to delete the issue.
+        404: 
+          description: Returned if the issue does not exist.
+    /assignee: 
+      type: base
+      put: 
+        description: 'Assigns an issue to a user. You can use this resource to assign issues when the user submitting the request has the assign permission but not the edit issue permission. If the name is "-1" automatic assignee is used. A null name will remove the assignee.'
+        body: 
+          application/json: 
+            schema: assignee
+            example: !include examples/assignee-example.json
+        responses: 
+          204: 
+            description: Returned if the issue is successfully assigned.
+          400: 
+            description: Returned if there is a problem with the received user representation.
+          401: 
+            description: Returned if the calling user does not have permission to assign the issue.
+          404: 
+            description: Returned if either the issue or the user does not exist.
+    /comment: 
+      type: base
+      get: 
+        is: [ hasExpand ]
+        description: Returns all comments for an issue.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: issueComments
+                example: !include examples/issueComments-example.json
+          404: 
+            description: Returned if the issue with the given id/key does not exist or if the currently authenticated user does not have permission to view it.
+      post: 
+        is: [ hasExpand ]
+        description: Adds a new comment to an issue.
+        body: 
+          application/json: 
+            schema: commentReq
+            example: !include examples/commentReq-example.json
+        responses: 
+          201: 
+            body: 
+              application/json: 
+                schema: issueComments
+                example: !include examples/comments-example.json
+          400: 
+            description: Returned if the input is invalid (e.g. missing required fields, invalid values, and so forth).
+      /{id}: 
+        type: base
+        get: 
+          is: [ hasExpand ]
+          description: Returns all comments for an issue.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: issueComments
+                  example: !include examples/comments-example.json
+            404: 
+              description: Returned if the issue with the given id/key does not exist or if the currently authenticated user does not have permission to view it.
+        put: 
+          is: [ hasExpand ]
+          description: Updates an existing comment using its JSON representation.
+          body: 
+            application/json: 
+              schema: commentReq
+              example: !include examples/commentReq-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: comment
+                  example: !include examples/comment-example.json
+            404: 
+              description: Returned if the issue with the given id/key does not exist or if the currently authenticated user does not have permission to view it.
+        delete: 
+          description: Deletes an existing comment .
+          responses: 
+            204: 
+              description: Returned if delete was successful
+            400: 
+              description: Returned if the input is invalid (e.g. missing required fields, invalid values, and so forth).
+    /editmeta: 
+      type: base
+      get: 
+        description: Returns the meta data for editing an issue.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: issueMeta
+                example: !include examples/issueMeta-example.json
+          404: 
+            description: Returned if the requested issue is not found or the user does not have permission to view it.
+    /notify: 
+      type: base
+      post: 
+        description: Sends a notification (email) to the list or recipients defined in the request.
+        body: 
+          application/json: 
+            schema: notification
+            example: !include examples/notification-example.json
+        responses: 
+          204: 
+            description: Returned if adding to the mail queue was successful
+          400: 
+            description: Returned if the input is invalid (e.g. missing required fields, invalid values, and so forth).
+          403: 
+            description: Returned is outgoing emails are disabled OR no SMTP server is defined.
+    /remotelink: 
+      type: base
+      get: 
+        description: A REST sub-resource representing the remote issue links on the issue.
+        queryParameters: 
+          globalId: 
+            description: The id of the remote issue link to be returned. If null (not provided) all remote links for the issue are returned.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: remotelink
+                example: !include examples/remotelink-example.json
+          401: 
+            description: Returned if the calling user is not authenticated.
+          403: 
+            description: Returned if the calling user does not have permission to view the remote issue links, or if issue linking is disabled.
+          404: 
+            description: Returned if the issue or remote issue link do not exist.
+      post: 
+        description: Creates or updates a remote issue link from a JSON representation. If a globalId is provided and a remote issue link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created.
+        body: 
+          application/json: 
+            schema: remoteReq
+            example: !include examples/remoteReq-example.json
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: remoteIssueLink
+                example: !include examples/remoteIssueLink-example.json
+          400: 
+            body: 
+              application/json: 
+                schema: errorMessages
+                example: !include examples/errorMessages-example.json
+          401: 
+            description: Returned if the calling user is not authenticated.
+          403: 
+            description: Returned if the calling user does not have permission to create/update the remote issue link, or if issue linking is disabled.
+      delete: 
+        description: Delete the remote issue link with the given global id on the issue.
+        queryParameters: 
+          globalId: 
+            description: the global id of the remote issue link
+        responses: 
+          204: 
+            description: Returned if the remote issue link was removed successfully.
+          401: 
+            description: Returned if the calling user is not authenticated.
+          403: 
+            description: Returned if the calling user does not have permission to delete the remote issue link, or if issue linking is disabled.
+          404: 
+            description: Returned if the issue or remote issue link do not exist.
+      /{linkId}: 
+        type: base
+        get: 
+          description: Get the remote issue link with the given id on the issue.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: issueLink
+                  example: !include examples/issueLink-example.json
+            400: 
+              description: Returned if the linkId is not a valid number, or if the remote issue link with the given id does not belong to the given issue.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to view the remote issue link, or if issue linking is disabled.
+            404: 
+              description: Returned if the issue or remote issue link do not exist.
+        put: 
+          description: Updates a remote issue link from a JSON representation. Any fields not provided are set to null.
+          body: 
+            application/json: 
+              schema: remoteReq
+              example: !include examples/remoteReq-example.json
+          responses: 
+            204: 
+            400: 
+              body: 
+                application/json: 
+                  schema: errorMessages
+                  example: !include examples/errorMessages-example.json
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to update the remote issue link, or if issue linking is disabled
+        delete: 
+          description: Delete the remote issue link with the given id on the issue.
+          responses: 
+            204: 
+              description: Returned if the remote issue link was removed successfully.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to delete the remote issue link, or if issue linking is disabled.
+            404: 
+              description: Returned if the issue or remote issue link do not exist.
+    /transitions: 
+      type: base
+      get: 
+        is: [ hasExpand ]
+        description: Get a list of the transitions possible for this issue by the current user, along with fields that are required and their types.
+        queryParameters: 
+          transitionId: 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: transitions
+                example: !include examples/transitions-example.json
+          404: 
+            description: Returned if the requested issue is not found or the user does not have permission to view it.
+      post: 
+        is: [ hasExpand ]
+        description: Perform a transition on an issue. When performing the transition you can udate or set other issue fields.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: transitionReq
+                example: !include examples/transitionReq-example.json
+          204: 
+            description: Returned if the transition was successful.
+          400: 
+            description: If there is no transition specified.
+          404: 
+            description: The issue does not exist or the user does not have permission to view it
+    /votes: 
+      type: base
+      get: 
+        description: A REST sub-resource representing the voters on the issue.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: voters
+                example: !include examples/voters-example.json
+          404: 
+            description: Returned if the user cannot view the issue in question or voting is disabled.
+      post: 
+        description: Cast your vote in favour of an issue.
+        responses: 
+          204: 
+            description: Nothing is returned on success.
+          404: 
+            description: Returned if the user cannot vote for any reason. (The user is the reporter, the user does not have permission to vote, voting is disabled in the instance, the issue does not exist, etc.)
+      delete: 
+        description: 'Remove your vote from an issue. (i.e. "unvote")'
+        responses: 
+          204: 
+            description: Nothing is returned on success.
+          404: 
+            description: Returned if the user cannot remove a vote for any reason. (The user did not vote on the issue, the user is the reporter, voting is disabled, the issue does not exist, etc.)
+    /watchers: 
+      type: base
+      get: 
+        description: Returns the list of watchers for the issue with the given key.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: watchers
+                example: !include examples/watchers-example.json
+          404: 
+            description: Returned if the requested issue is not found, or the user does not have permission to view it.
+      post: 
+        description: "Adds a user to an issue's watcher list."
+        body: 
+          application/json: 
+        responses: 
+          204: 
+            description: Returned if the watcher was added  successfully.
+          400: 
+            description: Returned if there is a problem with the received user representation.
+          401: 
+            description: "Returned if the calling user does not have permission to add the watcher to the issue's list of watchers."
+          404: 
+            description: Returned if either the issue or the user does not exist.
+      delete: 
+        is: [ hasUsername ]
+        description: "Removes a user from an issue's watcher list."
+        responses: 
+          204: 
+            description: Returned if the watcher was removed successfully.
+          400: 
+            description: Returned if a user name query parameter is not supplied.
+          401: 
+            description: "Returned if the calling user does not have permission to remove the watcher from the issue's list of watchers."
+          404: 
+            description: Returned if either the issue does not exist.
+    /worklog: 
+      type: base
+      get: 
+        description: Returns all work logs for an issue.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: worklogs
+                example: !include examples/worklogs-example.json
+          404: 
+            description: Returned if the issue with the given id/key does not exist or if the currently authenticated user does not have permission to view it.
+      post: 
+        description: Adds a new worklog entry to an issue.
+        queryParameters: 
+          adjustEstimate: 
+            description: (optional) allows you to provide specific instructions to update the remaining time estimate of the issue. Valid values are
+          newEstimate: 
+            description: '(required when "new" is selected for adjustEstimate) the new value for the remaining estimate field. e.g. "2d"'
+          reduceBy: 
+            description: '(required when "manual" is selected for adjustEstimate) the amount to reduce the remaining estimate by e.g. "2d"'
+        body: 
+          application/json: 
+            schema: worklog
+            example: !include examples/worklog-example.json
+        responses: 
+          400: 
+            description: Returned if the input is invalid (e.g. missing required fields, invalid values, and so forth).
+          403: 
+            description: Returned if the calling user does not have permission to add the worklog.
+          201: 
+            description: Returned if add was successful
+      /{id}: 
+        type: base
+        get: 
+          description: Returns a specific worklog.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: worklog
+                  example: !include examples/worklog-example.json
+            404: 
+              description: Returned if the work log with the given id does not exist or if the currently authenticated user does not have permission to view it.
+        put: 
+          description: Updates an existing worklog entry using its JSON representation.
+          queryParameters: 
+            adjustEstimate: 
+              description: (optional) allows you to provide specific instructions to update the remaining time estimate of the issue. Valid values are
+            newEstimate: 
+              description: '(required when "new" is selected for adjustEstimate) the new value for the remaining estimate field.'
+          body: 
+            application/json: 
+              schema: worklog
+              example: !include examples/worklog-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: worklog
+                  example: !include examples/worklog-example.json
+            400: 
+              description: Returned if the input is invalid (e.g. missing required fields, invalid values, and so forth).
+            403: 
+              description: Returned if the calling user does not have permission to update the worklog
+        delete: 
+          description: Deletes an existing worklog entry .
+          queryParameters: 
+            adjustEstimate: 
+              description: (optional) allows you to provide specific instructions to update the remaining time estimate of the issue. Valid values are
+            newEstimate: 
+              description: '(required when "new" is selected for adjustEstimate) the new value for the remaining estimate field. e.g. "2d"'
+            increaseBy: 
+              description: '(required when "manual" is selected for adjustEstimate) the amount to increase the remaining estimate by e.g. "2d"'
+          responses: 
+            204: 
+              description: Returned if delete was successful
+            400: 
+              description: Returned if the input is invalid (e.g. missing required fields, invalid values, and so forth).
+            403: 
+              description: Returned if the calling user does not have permission to delete the worklog
+    /attachments: 
+      type: base
+      post: 
+        description: Add one or more attachments to an issue.
+        body: 
+          multipart/form-data: 
+            formParameters: 
+              file: 
+                description: 'Name of file. A simple example to upload a file called "myfile.txt" to issue'
+                example: file=@myfile.txt
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: attachments
+                example: !include examples/attachments-example.json
+          403: 
+            description: "Returned if attachments is disabled or if you don't have permission to add attachments to this issue."
+          404: 
+            description: Returned if the requested issue is not found, the user does not have permission to view it, or if the attachments exceeds the maximum configured attachment size.
+    /properties: 
+      type: base
+      get: 
+        description: Returns the keys of all properties for the issue identified by the key or by the id.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: commentPropertiesKeys
+                example: !include examples/issuePropertiesKeys-example.json
+          400: 
+            description: Returned if the issue key or id is invalid.
+          401: 
+            description: Returned if the calling user is not authenticated.
+          403: 
+            description: Returned if the calling user does not have permission to view the issue.
+          404: 
+            description: Returned if the issue with given key or id does not exist or if the property with given key is not found.
+      /{propertyKey}: 
+        type: base
+        uriParameters: 
+          propertyKey: 
+            description: the key of the property
+        get: 
+          description: Returns the value of the property with a given key from the issue identified by the key or by the id. The user who retrieves the property is required to have permissions to read the issue.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: commentProperty
+                  example: !include examples/issueProperty-example.json
+            400: 
+              description: Returned if the issue key or id is invalid.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to view the issue.
+            404: 
+              description: Returned if the issue with given key or id does not exist or if the property with given key is not found.
+        put: 
+          description: "Sets the value of the specified issue's property."
+          responses: 
+            200: 
+              description: Returned if the issue property is successfully updated.
+            201: 
+              description: Returned if the issue property is successfully created.
+            400: 
+              description: Returned if the issue key or id is invalid.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to edit the issue.
+            404: 
+              description: Returned if the issue with given key or id does not exist.
+        delete: 
+          description: Removes the property from the issue identified by the key or by the id. Ths user removing the property is required to have permissions to edit the issue.
+          responses: 
+            204: 
+              description: Returned if the issue property was removed successfully.
+            400: 
+              description: Returned if the issue key or id is invalid.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to edit the issue.
+            404: 
+              description: Returned if the issue with given key or id does not exist or if the property with given key is not found.
+  /createmeta: 
+    type: base
+    get: 
+      description: Returns the meta data for creating issues. This includes the available projects, issue types and fields, including field types and whether or not those fields are required. Projects will not be returned if the user does not have permission to create issues in that project.
+      queryParameters: 
+        projectIds: 
+          description: combined with the projectKeys param, lists the projects with which to filter the results. If absent, all projects are returned. This parameter can be specified multiple times, and/or be a comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is not an error, but it will not be in the results.
+        projectKeys: 
+          description: combined with the projectIds param, lists the projects with which to filter the results. If null, all projects are returned. This parameter can be specified multiple times, and/or be a comma-separated list. Specifiying a project that does not exist (or that you cannot create issues in) is not an error, but it will not be in the results.
+        issuetypeIds: 
+          description: combinded with issuetypeNames, lists the issue types with which to filter the results. If null, all issue types are returned. This parameter can be specified multiple times, and/or be a comma-separated list. Specifiying an issue type that does not exist is not an error.
+        issuetypeNames: 
+          description: combinded with issuetypeIds, lists the issue types with which to filter the results. If null, all issue types are returned. This parameter can be specified multiple times, but is NOT interpreted as a comma-separated list. Specifiying an issue type that does not exist is not an error.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issueProjects
+              example: !include examples/issueProjects-example.json
+        403: 
+          description: Returned if the user does not have permission to view any of the requested projects.
+/issueLink: 
+  type: base
+  post: 
+    description: Creates an issue link between two issues. The user requires the link issue permission for the issue which will be linked to another issue. The specified link type in the request is used to create the link and will create a link from the first issue to the second issue using the outward description. It also create a link from the second issue to the first issue using the inward description of the issue link type. It will add the supplied comment to the first issue. The comment can have a restriction who can view it. If group is specified, only users of this group can view this comment, if roleLevel is specified only users who have the specified role can view this comment. The user who creates the issue link needs to belong to the specified group or have the specified role.
+    body: 
+      application/json: 
+        schema: issueLinkReq
+        example: !include examples/issueLinkReq-example.json
+    responses: 
+      200: 
+        description: if the issue link was created successfully.
+      400: 
+        description: "if it can't create the supplied comment. The response will contain an error message indicating why it failed to create the comment. No issue link will be created if it failed to create the comment."
+      401: 
+        description: if the user does not have the link issue permission for the issue, which will be linked to another issue.
+      404: 
+        description: If issue linking is disabled or it failed to find one of the issues (issue might exist, but it is not visible for this user) or it failed to find the specified issue link type.
+      500: 
+        description: if an error occurred when creating the issue link or the comment.
+  /{linkId}: 
+    type: base
+    get: 
+      description: Returns an issue link with the specified id.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: link
+              example: !include examples/link-example.json
+        400: 
+          description: If the specified issue link id is invalid.
+        401: 
+          description: if the user does not have the link issue permission for the issue, which will be linked to another issue.
+        404: 
+          description: "If issue linking is disabled or it failed to find an issue link with the specified id. Either because none exists with this id, or the user doesn't have the permission to see one of the linked issues."
+        500: 
+          description: if an error occurred when creating the issue link or the comment.
+    delete: 
+      description: Deletes an issue link with the specified id. To be able to delete an issue link you must be able to view both issues and must have the link issue permission for at least one of the issues.
+      responses: 
+        200: 
+        204: 
+          description: If it successfully deleted the issue link.
+        400: 
+          description: If the specified issue link id is invalid.
+        401: 
+          description: if the user does not have the link issue permission for the source or destination issue of the issue link.
+        404: 
+          description: "If issue linking is disabled or it failed to find an issue link with the specified id. Either because none exists with this id, or the user doesn't have the permission to see one of the linked issues."
+        500: 
+          description: if an error occurred when deleting the issue link or the comment.
+/issueLinkType: 
+  type: base
+  get: 
+    description: Returns a list of available issue link types, if issue linking is enabled. Each issue link type has an id, a name and a label for the outward and inward link relationship.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: issueLinkTypes
+            example: !include examples/issueLinkTypes-example.json
+      404: 
+        description: Returned if issue linking is disabled.
+  post: 
+    description: Create a new issue link type.
+    body: 
+      application/json: 
+        schema: issueLinkTypesReq
+        example: !include examples/issueLinkTypesReq-example.json
+    responses: 
+      201: 
+        body: 
+          application/json: 
+            schema: issueLinkType
+            example: !include examples/issueLinkType-example.json
+      404: 
+        description: Issue linking is disabled or you do not have permission to create issue link types.
+  /{issueLinkTypeId}: 
+    type: base
+    get: 
+      description: Returns for a given issue link type id all information about this issue link type.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issueLinkType
+              example: !include examples/issueLinkType-example.json
+        404: 
+          description: Returned if issue linking is disabled or no issue link type with the given id exists.
+    put: 
+      description: Update the specified issue link type.
+      body: 
+        application/json: 
+          schema: issueLinkTypesReq
+          example: !include examples/issueLinkTypesReq-example.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issueLinkType
+              example: !include examples/issueLinkType-example.json
+        400: 
+          description: Returned if the supplied id is not a number.
+        404: 
+          description: Returned if issue linking is disabled or no issue link type with the given id exists.
+    delete: 
+      description: Delete the specified issue link type.
+      responses: 
+        204: 
+        404: 
+          description: Returned if issue linking is disabled or no issue link type with the given id exists.
+/issuetype: 
+  type: base
+  get: 
+    description: Returns a list of all issue types visible to the user
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: issueTypes
+            example: !include examples/issueTypes-example.json
+  /{id}: 
+    type: base
+    get: 
+      description: Returns a full representation of the issue type that has the given id.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issueType
+              example: !include examples/issueType-example.json
+        404: 
+          description: Returned if the issue type does not exist, or is not visible to the calling user.
+/jql/autocompletedata: 
+  type: base
+  get: 
+    description: Returns the auto complete data required for JQL searches.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: autoCompleteData
+            example: !include examples/autoCompleteData-example.json
+      401: 
+        description: Returned if the calling user is not authenticated.
+      500: 
+        description: Returned if an error occurs while generating the response.
+/licenseValidator: 
+  type: base
+  description: ""
+  post: 
+    description: A REST endpoint to provide simple validation services for a JIRA license. Typically used by the setup phase of the JIRA application. This will return an object with a list of errors as key, value pairs.
+/mypermissions: 
+  type: base
+  get: 
+    description: Returns all permissions in the system and whether the currently logged in user has them.
+    queryParameters: 
+      projectKey: 
+        description: key of project to scope returned permissions for.
+      projectId: 
+        description: id of project to scope returned permissions for.
+      issueKey: 
+        description: key of the issue to scope returned permissions for.
+      issueId: 
+        description: id of the issue to scope returned permissions for.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: permission
+            example: !include examples/permission-example.json
+      400: 
+        description: Returned if the project or issue id is invalid.
+      404: 
+        description: Returned if the project or issue id or key is not found.
+/mypreferences: 
+  type: base
+  get: 
+    is: [ hasKey ]
+    description: Returns preference of the currently logged in user. Preference key must be provided as input parameter (key).
+    responses: 
+      200: 
+      404: 
+        description: If key parameter is not provided or wrong
+  put: 
+    is: [ hasKey ]
+    description: Sets preference of the currently logged in user. Preference key must be provided as input parameters (key).
+  delete: 
+    is: [ hasKey ]
+    description: Removes preference of the currently logged in user. Preference key must be provided as input parameters (key).
+    responses: 
+      204: 
+        description: If preference is unset
+      404: 
+        description: If key parameter is not provided or wrong
+/myself: 
+  type: base
+  get: 
+    description: Returns currently logged user. This resource cannot be accessed anonymously.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: user
+            example: !include examples/user-example.json
+      403: 
+        description: Returned if the current user is not authenticated.
+      404: 
+        description: Returned if the the user could not be found.
+  put: 
+    description: 'Modify currently logged user. The "value" fields present will override the existing value. Fields skipped in request will not be changed. Only email and display name can be change that way.'
+    body: 
+      application/json: 
+        schema: userPutReq
+        example: !include examples/userPutReq-example.json
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: userPutRes
+            example: !include examples/userPutRes-example.json
+      400: 
+        description: Returned if the request is invalid.
+      403: 
+        description: Returned if the current user is not authenticated.
+      404: 
+        description: Returned if the the user could not be found.
+  /password: 
+    type: base
+    put: 
+      description: Modify caller password.
+      responses: 
+        204: 
+        403: 
+          description: Returned if the caller does not have permission to change the user password.
+        404: 
+          description: Returned if the caller does have permission to change user password but the user does not exist.
+/password/policy: 
+  type: base
+  get: 
+    description: "Returns user-friendly statements governing the system's password policy."
+    queryParameters: 
+      hasOldPassword: 
+        description: "whether or not the user will be required to enter their current password. Use {@code false} (the default) if this is a new user or if an administrator is forcibly changing another user's password."
+        type: boolean
+    responses: 
+      200: 
+        description: Returns an array of message strings.
+  /createUser: 
+    type: base
+    post: 
+      description: Create user
+  /updateUser: 
+    type: base
+    post: 
+/priority: 
+  type: base
+  get: 
+    description: Returns a list of all issue priorities.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: priorities
+            example: !include examples/priorities-example.json
+  /{id}: 
+    type: base
+    get: 
+      description: Returns an issue priority.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issuePriority
+              example: !include examples/issuePriority-example.json
+        404: 
+          description: Returned if the issue priority does not exist or is not visible to the calling user.
+/project: 
+  type: base
+  get: 
+    description: Returns all projects which are visible for the currently logged in user. If no user is logged in, it returns the list of projects that are visible when using anonymous access.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: projects
+            example: !include examples/projects-example.json
+      500: 
+        description: Returned if an error occurs while retrieving the list of projects.
+  /{projectIdOrKey}: 
+    type: base
+    get: 
+      is: [ hasExpand ]
+      description: |
+        Contains a full representation of a project in JSON format.
+        All project keys associated with the project will only be returned if expand=projectKeys.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: projectRepresentation
+              example: !include examples/projectRepresentation-example.json
+        404: 
+          description: Returned if the project is not found, or the calling user does not have permission to view it.
+    /avatar: 
+      type: base
+      put: 
+      post: 
+        description: Converts temporary avatar into a real avatar
+        body: 
+          application/json: 
+            schema: cropInstructions
+            example: !include examples/avatarReq-example.json
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: avatar
+                example: !include examples/avatar-example.json
+          400: 
+            description: Returned if the cropping coordinates are invalid
+          403: 
+            description: Returned if the currently authenticated user does not have permission to pick avatar
+          404: 
+            description: Returned if the currently authenticated user does not have EDIT PROJECT permission.
+          500: 
+            description: Returned if an error occurs while converting temporary avatar to real avatar
+      /{id}: 
+        type: base
+        delete: 
+          description: Deletes avatar
+          responses: 
+            204: 
+              description: Returned if the avatar is successfully deleted.
+            403: 
+              description: Returned if the currently authenticated user does not have permission to delete the component.
+            404: 
+              description: Returned if the avatar does not exist or the currently authenticated user does not have permission to delete it.
+      /temporary: 
+        type: base
+        post: 
+          description: |
+            Creates temporary avatar
+            
+            Creates temporary avatar using multipart. The response is sent back as JSON stored in a textarea. This is because the client uses remote iframing to submit avatars using multipart. So we must send them a valid HTML page back from which the client parses the JSON.
+          queryParameters: 
+            filename: 
+              description: name of file being uploaded
+            size: 
+              description: size of file
+          responses: 
+            201: 
+              body: 
+                application/json: 
+                  example: !include examples/avatarTemporary-example.json
+    /avatars: 
+      type: base
+      get: 
+        description: Returns all avatars which are visible for the currently logged in user. The avatars are grouped into system and custom.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: avatars
+                example: !include examples/avatars-example.json
+          404: 
+            description: Returned if the currently authenticated user does not have VIEW PROJECT permission.
+          500: 
+            description: Returned if an error occurs while retrieving the list of avatars.
+    /components: 
+      type: base
+      get: 
+        description: "Contains a full representation of a the specified project's components."
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: components
+                example: !include examples/components-example.json
+          404: 
+            description: Returned if the project is not found, or the calling user does not have permission to view it.
+    /statuses: 
+      type: base
+      get: 
+        description: Get all issue types with valid status values for a project
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: statuses
+                example: !include examples/statuses-example.json
+          400: 
+            description: Returned if the project is not found, or the calling user does not have permission to view it.
+    /versions: 
+      type: base
+      get: 
+        is: [ hasExpand ]
+        description: "Contains a full representation of a the specified project's versions."
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: versions
+                example: !include examples/versions-example.json
+          404: 
+            description: Returned if the project is not found, or the calling user does not have permission to view it.
+    /properties: 
+      type: base
+      get: 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: commentPropertiesKeys
+                example: !include examples/issuePropertiesKeys-example.json
+          400: 
+            description: Returned if the project key or id is invalid.
+          401: 
+            description: Returned if the calling user is not authenticated.
+          403: 
+            description: Returned if the calling user does not have permission to browse the project.
+          404: 
+            description: Returned if the project with given key or id does not exist or if the property with given key is not found.
+      /{propertyKey}: 
+        type: base
+        get: 
+          description: Returns the value of the property with a given key from the project identified by the key or by the id. The user who retrieves the property is required to have permissions to read the project.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: commentProperty
+                  example: !include examples/projectProperty-example.json
+            400: 
+              description: Returned if the project key or id is invalid.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to browse the project.
+            404: 
+              description: Returned if the project with given key or id does not exist or if the property with given key is not found.
+        put: 
+          description: "Sets the value of the specified project's property."
+          responses: 
+            200: 
+              description: Returned if the project property is successfully updated.
+            201: 
+              description: Returned if the project property is successfully created.
+            400: 
+              description: Returned if the project key or id is invalid.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            404: 
+              description: Returned if the project with given key or id does not exist.
+            403: 
+              description: Returned if the calling user does not have permission to administer the project.
+        delete: 
+          description: Removes the property from the project identified by the key or by the id. Ths user removing the property is required to have permissions to administer the project.
+          responses: 
+            204: 
+              description: Returned if the project property was removed successfully.
+            400: 
+              description: Returned if the project key or id is invalid.
+            401: 
+              description: Returned if the calling user is not authenticated.
+            403: 
+              description: Returned if the calling user does not have permission to edit the project.
+            404: 
+              description: Returned if the project with given key or id does not exist or if the property with given key is not found.
+    /role: 
+      type: base
+      get: 
+        description: Contains a list of roles in this project with links to full details.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: role
+                example: !include examples/role-example.json
+          404: 
+            description: Returned if the project is not found, or the calling user does not have permission to view it.
+      /{id}: 
+        type: base
+        get: 
+          description: Details on a given project role.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: actor
+                  example: !include examples/actor-example.json
+            404: 
+              description: Returned if the project or role is not found, or the calling user does not have permission to view it.
+        put: 
+          description: Updates a project role to contain the sent actors.
+          body: 
+            application/json: 
+              schema: addActor
+              example: !include examples/addActor-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: actor
+                  example: !include examples/actor-example.json
+            404: 
+              description: Returned if the actor could not be added to the project role
+        post: 
+          description: Add an actor to a project role.
+          body: 
+            application/json: 
+              schema: addActor
+              example: !include examples/addActor-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: actor
+                  example: !include examples/actor-example.json
+            404: 
+              description: Returned if the actor could not be added to the project role
+        delete: 
+          description: Remove actors from a project role.
+          responses: 
+            204: 
+              description: Returned if the actor was successfully removed from the project role.
+            404: 
+              description: Returned if the project or role is not found, the calling user does not have permission to view it, or does not have permission to modify the actors in the project role.
+/projectvalidate/key: 
+  type: base
+  get: 
+    is: [ hasKey ]
+    description: Validates a project key.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: errorCollection
+            example: !include examples/errorCollection-example.json
+/reindex: 
+  type: base
+  get: 
+    description: Returns information on the system reindexes. If a reindex is currently taking place then information about this reindex is returned.
+    queryParameters: 
+      taskId: 
+        description: the id of an indexing task you wish to obtain details on. If omitted, then defaults to the standard behaviour and returns information on the active reindex task, or the last task to run if no reindex is taking place.
+        type: number
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: reindex
+            example: !include examples/reindex-example.json
+      404: 
+        description: Returned if there is no re-indexing task found
+  post: 
+    description: Kicks off a reindex. Need Admin permissions to perform this reindex.
+    queryParameters: 
+      type: 
+        description: Case insensitive String indicating type of reindex. If omitted, then defaults to BACKGROUND_PREFERRED
+        default: BACKGROUND_PREFERRED
+      indexComments: 
+        description: Indicates that comments should also be reindexed. Not relevant for foreground reindex, where comments are always reindexed.
+        type: boolean
+      indexChangeHistory: 
+        description: Indicates that changeHistory should also be reindexed. Not relevant for foreground reindex, where changeHistory is always reindexed.
+        type: boolean
+    responses: 
+      202: 
+        body: 
+          application/json: 
+            schema: reindex
+            example: !include examples/reindex-example.json
+/resolution: 
+  type: base
+  get: 
+    description: Returns a list of all resolutions.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: resolutions
+            example: !include examples/resolutions-example.json
+  /{id}: 
+    type: base
+    get: 
+      description: Returns a resolution.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: resolution
+              example: !include examples/resolution-example.json
+/screens: 
+  /{screenId}: 
+    /tabs: 
+      type: base
+      get: 
+        description: Returns a list of all tabs for the given screen
+        queryParameters: 
+          projectKey: 
+            description: the key of the project; this parameter is optional
+        responses: 
+          200: 
+            description: Contains a full representation of all visible tabs in JSON.
+          400: 
+            description: Returned if screen does not exist
+          401: 
+            description: Returned if you do not have permissions
+      post: 
+        description: Creates tab for given screen
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: tab
+                example: !include examples/tab-example.json
+          400: 
+            description: Returned if screen does not exist or tab name is invalid
+          401: 
+            description: Returned if you do not have permissions
+      /{tabId}: 
+        type: base
+        put: 
+          description: Renames tab on given screen
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: tab
+                  example: !include examples/tab-example.json
+            400: 
+              description: Returned if screen does not exist or tab name is invalid
+            401: 
+              description: Returned if you do not have permissions
+        delete: 
+          description: Deletes tab to give screen
+          responses: 
+            201: 
+              description: Successfully deleted tab
+            400: 
+              description: Returned if screen or tab does not exist
+            401: 
+              description: Returned if you do not have permissions
+        /fields: 
+          type: base
+          get: 
+            description: Gets all fields for a given tab
+            queryParameters: 
+              projectKey: 
+                description: the key of the project
+            responses: 
+              200: 
+                description: List of fields for given tab
+              400: 
+                description: Returned if screen or tab does not exist
+              401: 
+                description: Returned if you do not have permissions
+          post: 
+            description: Adds field to the given tab
+            responses: 
+              200: 
+                body: 
+                  application/json: 
+                    schema: tabFields
+                    example: !include examples/tabFields-example.json
+              400: 
+                description: Returned if screen,tab or field does not exist.
+              401: 
+                description: Returned if you do not have permissions
+          /{id}: 
+            type: base
+            delete: 
+              description: Removes field from given tab
+              responses: 
+                201: 
+                  description: Successfully removed field from tab
+                400: 
+                  description: Returned if screen or tab does not exist
+                401: 
+                  description: Returned if you do not have permissions
+            /move: 
+              type: base
+              post: 
+                description: Moves field on the given tab
+                body: 
+                  application/json: 
+                responses: 
+                  201: 
+                    description: Successfully moved tab
+                  400: 
+                    description: Returned if screen or tab does not exist. Or move cooridinates invalid.
+                  401: 
+                    description: Returned if you do not have permissions
+        /move/{pos}: 
+          type: base
+          uriParameters: 
+            pos: 
+              description: position of tab
+              type: integer
+          post: 
+            description: Moves tab position
+            responses: 
+              201: 
+                description: Successfully moved tab
+              400: 
+                description: Returned if screen or tab does not exist
+              401: 
+                description: Returned if you do not have permissions
+    /availableFields: 
+      type: base
+      get: 
+        description: "Gets available fields for screen. i.e ones that haven't already been added."
+        responses: 
+          200: 
+            description: List of available fields for screen
+          400: 
+            description: Returned if screen does not exist
+          401: 
+            description: Returned if you do not have permissions
+  /addToDefault/{fieldId}: 
+    type: base
+    post: 
+      description: Adds field or custom field to the default tab
+      responses: 
+        201: 
+        400: 
+          description: Returned if screen, tab or field does not exist or field is already present on a selected tab
+        401: 
+          description: Returned if you do not have administrator permissions
+/search: 
+  type: base
+  get: 
+    is: [ hasExpand , hasMaxResults , hasStartAt ]
+    description: Searches for issues using JQL.
+    queryParameters: 
+      jql: 
+        description: a JQL query string
+      validateQuery: 
+        description: whether to validate the JQL query
+        type: boolean
+        default: true
+      fields: 
+        description: the list of fields to return for each issue. By default, all navigable fields are returned.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: searchResults
+            example: !include examples/searchResults-example.json
+      400: 
+        description: Returned if there is a problem with the JQL query.
+  post: 
+    description: Performs a search using JQL.
+    body: 
+      application/json: 
+        schema: searchRequest
+        example: !include examples/searchRequest-example.json
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: searchResults
+            example: !include examples/searchResults-example.json
+      400: 
+        description: Returned if there is a problem with the JQL query.
+/securitylevel/{id}: 
+  type: base
+  get: 
+    description: Returns a full representation of the security level that has the given id.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: securitylevel
+            example: !include examples/securitylevel-example.json
+      404: 
+        description: Returned if the issue type does not exist, or is not visible to the calling user.
+/serverInfo: 
+  type: base
+  get: 
+    description: Returns general information about the current JIRA server.
+    queryParameters: 
+      doHealthCheck: 
+        type: boolean
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: serverInfo
+            example: !include examples/serverInfo-example.json
+/settings: 
+  /baseUrl: 
+    type: base
+    put: 
+      description: Sets the base URL that is configured for this JIRA instance.
+  /columns: 
+    type: base
+    get: 
+      description: Returns the default system columns for issue navigator. Admin permission will be required.
+      responses: 
+        200: 
+          description: Returns a list of columns for configured for the given user
+          body: 
+            application/json: 
+        403: 
+          description: Returned if the user does not have admin permission
+        500: 
+          description: Returned if an error occurs while retrieving the column configuration.
+    put: 
+      description: Sets the default system columns for issue navigator. Admin permission will be required.
+      body: 
+        application/x-www-form-urlencoded: 
+      responses: 
+        200: 
+          description: Returned when the columns is saved successfully
+        500: 
+          description: Returned if an error occurs while retrieving the column configuration.
+/status: 
+  type: base
+  get: 
+    description: Returns a list of all statuses
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: issueStatuses
+            example: !include examples/issueStatuses-example.json
+      404: 
+        description: Returned if the requested issue status is not found, or the user does not have permission to view it.
+  /{idOrName}: 
+    type: base
+    uriParameters: 
+      idOrName: 
+        description: a numeric Status id or a status name
+    get: 
+      description: Returns a full representation of the Status having the given id or name.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: issueStatus
+              example: !include examples/issueStatus-example.json
+        404: 
+          description: Returned if the requested issue status is not found, or the user does not have permission to view it.
+/statuscategory: 
+  type: base
+  get: 
+    description: Returns a list of all status categories
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: statusCategories
+            example: !include examples/statusCategories-example.json
+      404: 
+        description: Returned if no status categories are found, or the user does not have permission to view them.
+  /{idOrKey}: 
+    type: base
+    get: 
+      description: Returns a full representation of the StatusCategory having the given id or key
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: statusCategory
+              example: !include examples/statusCategory-example.json
+        404: 
+          description: Returned if the requested issue status category is not found, or the user does not have permission to view it.
+/user: 
+  type: base
+  get: 
+    is: [ hasUsername , hasKey ]
+    description: Returns a user. This resource cannot be accessed anonymously.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: user
+            example: !include examples/user-example.json
+      401: 
+        description: Returned if the current user is not authenticated.
+      404: 
+        description: Returned if the requested user is not found.
+  put: 
+    is: [ hasUsername , hasKey ]
+    description: 'Modify user. The "value" fields present will override the existing value. Fields skipped in request will not be changed.'
+    body: 
+      application/json: 
+        schema: userPutReq
+        example: !include examples/userPutReq-example.json
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: userPutRes
+            example: !include examples/userPutRes-example.json
+      400: 
+        description: Returned if the request is invalid.
+      403: 
+        description: Returned if the caller user does not have permission to edit the user.
+      404: 
+        description: Returned if the caller does have permission to edit the user but the user does not exist.
+  post: 
+    description: Create user. By default created user will not be notified with email. If password field is not set then password will be randomly generated.
+    body: 
+      application/json: 
+        schema: userPostReq
+        example: !include examples/userPostReq-example.json
+    responses: 
+      201: 
+        body: 
+          application/json: 
+            schema: userPutRes
+            example: !include examples/userPutRes-example.json
+      400: 
+        description: Returned if the request is invalid.
+      403: 
+        description: Returned if the caller user does not have permission to create the user.
+      500: 
+        description: Returned if the user was not created because of other error.
+  delete: 
+    is: [ hasUsername , hasKey ]
+    description: Removes user.
+    responses: 
+      204: 
+        description: Returned if the user was deleted successfully.
+      400: 
+        description: Returned if the request is invalid or some other server error occurred.
+      403: 
+        description: Returned if the caller does not have permission to remove the user.
+      404: 
+        description: Returned if the caller does have permission to remove user but the user does not exist.
+  /assignable: 
+    /multiProjectSearch: 
+      type: base
+      get: 
+        is: [ hasUsername , hasMaxResults , hasStartAt ]
+        description: Returns a list of users that match the search string and can be assigned issues for all the given projects. This resource cannot be accessed anonymously.
+        queryParameters: 
+          projectKeys: 
+            description: the keys of the projects we are finding assignable users for, comma-separated
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: users
+                example: !include examples/users-example.json
+          401: 
+            description: Returned if the current user is not authenticated.
+          404: 
+            description: Returned if the requested user is not found.
+    /search: 
+      type: base
+      get: 
+        is: [ hasUsername , hasMaxResults , hasStartAt ]
+        description: "Returns a list of users that match the search string. This resource cannot be accessed anonymously. Please note that this resource should be called with an issue key when a list of assignable users is retrieved for editing. For create only a project key should be supplied. The list of assignable users may be incorrect if it's called with the project key for editing."
+        queryParameters: 
+          project: 
+            description: the key of the project we are finding assignable users for
+          issueKey: 
+            description: the issue key for the issue being edited we need to find assignable users for.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: user
+                example: !include examples/user-example.json
+          400: 
+            description: Returned if no project or issue key was provided
+          401: 
+            description: Returned if the current user is not authenticated.
+          404: 
+            description: Returned if the requested user is not found.
+  /avatar: 
+    type: base
+    put: 
+      is: [ hasUsername ]
+      description: Update avatar
+    post: 
+      is: [ hasUsername ]
+      description: Converts temporary avatar into a real avatar
+      body: 
+        application/json: 
+          schema: cropInstructions
+          example: !include examples/avatarReq-example.json
+      responses: 
+        201: 
+          body: 
+            application/json: 
+              schema: avatar
+              example: !include examples/avatar-example.json
+        400: 
+          description: Returned if the cropping coordinates are invalid
+        403: 
+          description: Returned if the currently authenticated user does not have permission to pick avatar
+        404: 
+          description: Returned if the currently authenticated user does not have EDIT PROJECT permission.
+        500: 
+          description: Returned if an error occurs while converting temporary avatar to real avatar
+    /{id}: 
+      type: base
+      delete: 
+        is: [ hasUsername ]
+        description: Deletes avatar
+        responses: 
+          204: 
+            description: Returned if the avatar is successfully deleted.
+          403: 
+            description: Returned if the currently authenticated user does not have permission to delete the avatar.
+          404: 
+            description: Returned if the avatar does not exist or the currently authenticated user does not have permission to delete it.
+    /temporary: 
+      type: base
+      post: 
+        is: [ hasUsername ]
+        description: "Creates temporary avatar. Creating a temporary avatar is part of a 3-step process in uploading a new avatar for a user: upload, crop, confirm."
+        queryParameters: 
+          filename: 
+            description: name of file being uploaded
+            example: filename=mynewavatar.png
+          size: 
+            description: size of file
+        body: 
+          image/png: 
+          image/jpeg: 
+          image/gif: 
+        responses: 
+          201: 
+            body: 
+              application/json: 
+                example: !include examples/avatarTemporary-example.json
+          403: 
+            description: Returned if the request does not conain a valid XSRF token
+          404: 
+            description: Returned if the currently authenticated user does not have EDIT PROJECT permission.
+          500: 
+            description: Returned if an error occurs while converting temporary avatar to real avatar
+  /avatars: 
+    type: base
+    get: 
+      is: [ hasUsername ]
+      description: Returns all avatars which are visible for the currently logged in user.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: avatars
+              example: !include examples/avatars-example.json
+        401: 
+          description: Returned if the current user is not authenticated.
+        404: 
+          description: Returned if the requested user is not found.
+        500: 
+          description: Returned if an error occurs while retrieving the list of avatars.
+  /columns: 
+    type: base
+    get: 
+      is: [ hasUsername ]
+      description: Returns the default columns for the given user. Admin permission will be required to get columns for a user other than the currently logged in user.
+      responses: 
+        200: 
+          description: Returns a list of columns for configured for the given user
+        401: 
+          description: Returned if the current user is not permitted to request the columns for the given user.
+        404: 
+          description: Returned if the requested user is not found.
+        500: 
+          description: Returned if an error occurs while retrieving the column configuration.
+    put: 
+      description: Sets the default columns for the given user. Admin permission will be required to get columns for a user other than the currently logged in user.
+      body: 
+        application/x-www-form-urlencoded: 
+      responses: 
+        200: 
+          description: Returned when the columns is saved successfully
+        500: 
+          description: Returned if an error occurs while retrieving the column configuration.
+    delete: 
+      is: [ hasUsername ]
+      description: Reset the default columns for the given user to the system default. Admin permission will be required to get columns for a user other than the currently logged in user.
+      responses: 
+        204: 
+          description: Returned when the columns are reset successfully
+        401: 
+          description: Returned if the current user is not permitted to request the columns for the given user.
+        500: 
+          description: Returned if an error occurs while resetting the column configuration.
+  /password: 
+    type: base
+    put: 
+      is: [ hasUsername , hasKey ]
+      description: Modify user password.
+      body: 
+        application/json: 
+          schema: password
+          example: !include examples/password-example.json
+      responses: 
+        204: 
+          description: Returned if the user exists and the caller has permission to edit it.
+        403: 
+          description: Returned if the caller does not have permission to change the user password.
+        404: 
+          description: Returned if the caller does have permission to change user password but the user does not exist.
+  /permission/search: 
+    type: base
+    get: 
+      is: [ hasUsername , hasMaxResults , hasStartAt ]
+      description: |
+        Returns a list of active users that match the search string and have all specified permissions for the project or issue.
+        This resource can be accessed by users with ADMINISTER_PROJECT permission for the project or global ADMIN or SYSADMIN rights.
+      queryParameters: 
+        permissions: 
+          description: comma separated list of permissions for project or issue returned users must have, see Permissions JavaDoc for the list of all possible permissions.
+        issueKey: 
+          description: the issue key for the issue for which returned users have specified permissions.
+        projectKey: 
+          description: the optional project key to search for users with if no issueKey is supplied.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: users
+              example: !include examples/users-example.json
+        400: 
+          description: Returned if no project or issue key was provided or when permissions list is empty or contains an invalid entry
+        401: 
+          description: Returned if the current user is not authenticated.
+        403: 
+          description: Returned if the current user does not have admin rights for the project.
+        404: 
+          description: Returned if the requested issue or project is not found.
+  /picker: 
+    type: base
+    get: 
+      is: [ hasMaxResults ]
+      description: Returns a list of users matching query with highlighting. This resource cannot be accessed anonymously.
+      queryParameters: 
+        query: 
+          description: A string used to search username, Name or e-mail address
+        showAvatar: 
+          type: boolean
+        exclude: 
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: usersList
+              example: !include examples/usersList-example.json
+        401: 
+          description: Returned if the current user is not authenticated.
+        404: 
+          description: Returned if the requested user is not found.
+  /search: 
+    type: base
+    get: 
+      is: [ hasUsername , hasMaxResults ]
+      description: Returns a list of users that match the search string. This resource cannot be accessed anonymously.
+      queryParameters: 
+        startAt: 
+          description: the index of the first user to return (0-based)
+        includeActive: 
+          description: If true, then active users are included in the results (default true)
+          type: boolean
+          default: true
+        includeInactive: 
+          description: If true, then inactive users are included in the results (default false)
+          type: boolean
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: users
+              example: !include examples/users-example.json
+        401: 
+          description: Returned if the current user is not authenticated.
+        404: 
+          description: Returned if the requested user is not found.
+  /viewissue/search: 
+    type: base
+    get: 
+      is: [ hasUsername , hasMaxResults , hasStartAt ]
+      description: Returns a list of active users that match the search string. This resource cannot be accessed anonymously. Given an issue key this resource will provide a list of users that match the search string and have the browse issue permission for the issue provided.
+      queryParameters: 
+        projectKey: 
+          description: the optional project key to search for users with if no issueKey is supplied.
+        issueKey: 
+          description: the issue key for the issue being edited we need to find assignable users for.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: users
+              example: !include examples/users-example.json
+        400: 
+          description: Returned if no project or issue key was provided
+        401: 
+          description: Returned if the current user is not authenticated.
+        404: 
+          description: Returned if the requested issue or project is not found.
+/version: 
+  type: base
+  post: 
+    description: Create a version via POST.
+    body: 
+      application/json: 
+        schema: versionReq
+        example: !include examples/versionReq-example.json
+    responses: 
+      201: 
+        body: 
+          application/json: 
+            schema: versionReq
+            example: !include examples/versionReq-example.json
+      403: 
+        description: Returned if the currently authenticated user does not have permission to edit the version.
+      404: 
+        description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+  /{id}: 
+    type: base
+    get: 
+      is: [ hasExpand ]
+      description: Returns a project version.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: version
+              example: !include examples/version-example.json
+        404: 
+          description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+    put: 
+      description: Modify a version via PUT. Any fields present in the PUT will override existing values. As a convenience, if a field is not present, it is silently ignored.
+      body: 
+        application/json: 
+          schema: version
+          example: !include examples/version-example.json
+      responses: 
+        200: 
+          description: Returned if the version exists and the currently authenticated user has permission to edit it.
+        403: 
+          description: Returned if the currently authenticated user does not have permission to edit the version.
+        404: 
+          description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+    delete: 
+      description: Delete a project version.
+      queryParameters: 
+        moveFixIssuesTo: 
+          description: The version to set fixVersion to on issues where the deleted version is the fix version, If null then the fixVersion is removed.
+        moveAffectedIssuesTo: 
+          description: The version to set affectedVersion to on issues where the deleted version is the affected version, If null then the affectedVersion is removed.
+      responses: 
+        204: 
+          description: Returned if the version is successfully deleted.
+        403: 
+          description: Returned if the currently authenticated user does not have permission to delete the version.
+        404: 
+          description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+    /move: 
+      type: base
+      post: 
+        description: |
+          Modify a version's sequence within a project. The move version bean has 2 alternative field value pairs:
+          position
+          An absolute position, which may have a value of 'First', 'Last', 'Earlier' or 'Later'
+          after
+          A version to place this version after. The value should be the self link of another version
+        body: 
+          application/json: 
+            schema: positionReq
+            example: !include examples/positionReq-example.json
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: version
+                example: !include examples/version-example.json
+          404: 
+            description: Returned if the version, or target of the version to move after does not exist or the currently authenticated user does not have permission to view it.
+    /relatedIssueCounts: 
+      type: base
+      get: 
+        description: Returns a bean containing the number of fixed in and affected issues for the given version.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: issueCountBean
+                example: !include examples/issueCountBean-example.json
+          404: 
+            description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+    /unresolvedIssueCount: 
+      type: base
+      get: 
+        description: Returns the number of unresolved issues for the given version
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: issuesUnresolvedCount
+                example: !include examples/issuesUnresolvedCount-example.json
+          404: 
+            description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+    /remotelink: 
+      type: base
+      get: 
+        description: Returns the remote version links associated with the given version ID.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: remoteVersionLinks
+                example: !include examples/remoteVersionLinks-example.json
+          404: 
+            description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+      post: 
+        description: "Create a remote version link via POST. The link's global ID will be taken from the JSON payload if provided; otherwise, it will be generated."
+        body: 
+          application/json: 
+            schema: remoteVersionLinksReq
+            example: !include examples/remoteVersionLinksReq-example.json
+        responses: 
+          201: 
+            description: Returned if the remote version link is created or updated successfully. The document has no content
+          400: 
+            description: Returned if the JSON payload is empty or malformed
+          403: 
+            description: Returned if the currently authenticated user does not have permission to edit the version.
+          404: 
+            description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+      delete: 
+        description: Delete all remote version links for a given version ID.
+        responses: 
+          204: 
+            description: Returned if the remote version links are successfully deleted.
+          403: 
+            description: Returned if the currently authenticated user does not have administrative rights to the project and thereby cannot delete remote links to the version.
+          404: 
+            description: Returned if the version does not exist, the currently authenticated user does not have permission to view it, or the version does not have any remote links to delete
+      /{globalId}: 
+        type: base
+        get: 
+          description: A REST sub-resource representing a remote version link
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: remoteVersionLink
+                  example: !include examples/remoteVersionLink-example.json
+            404: 
+              description: Returned if the version or remote version link does not exist or if the user does not have the BROWSE permission for the project that owns the specified version
+        post: 
+          description: "Create a remote version link via POST. The link's global ID will be taken from the JSON payload if provided; otherwise, it will be generated."
+          body: 
+            application/json: 
+              schema: remoteVersionLinkReq
+              example: !include examples/remoteVersionLinkReq-example.json
+          responses: 
+            201: 
+              body: 
+                application/json: 
+                  schema: remoteVersionLink
+                  example: !include examples/remoteVersionLink-example.json
+            400: 
+              description: Returned if the JSON payload is empty or malformed
+            403: 
+              description: Returned if the currently authenticated user does not have permission to edit the version.
+            404: 
+              description: Returned if the version does not exist or the currently authenticated user does not have permission to view it.
+        delete: 
+          description: Delete a specific remote version link with the given version ID and global ID.
+          responses: 
+            204: 
+              description: Returned if the remote version link is successfully deleted.
+            403: 
+              description: Returned if the currently authenticated user does not have administrative rights to the project and thereby cannot delete remote links to the version.
+            404: 
+              description: Returned if the version does not exist, the currently authenticated user does not have permission to view it, or the version does not have a link for the given global ID
+  /remotelink: 
+    type: base
+    get: 
+      description: Returns the remote version links for a given global ID.
+      queryParameters: 
+        globalId: 
+          description: the global ID of the remote resource that is linked to the versions
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: remoteVersionLinks
+              example: !include examples/remoteVersionLinks-example.json
+/workflow: 
+  type: base
+  get: 
+    is: [ hasWorkflowName ]
+    description: Returns all workflows.
+    responses: 
+      200: 
+        description: Returned if the currently authenticated user has administration permission. Contains a full representation of every workflow.
+      401: 
+        description: Returned if the currently authenticated user does not have administration permission.
+  /{id}/properties: 
+    type: base
+    get: 
+      is: [ hasWorkflowName , hasKey ]
+      description: Return the property or properties associated with a transition.
+      queryParameters: 
+        includeReservedKeys: 
+          description: 'some keys under the "jira." prefix are editable, some are not. Set this to true in order to include the non-editable keys in the response.'
+          type: boolean
+        workflowMode: 
+          description: 'the type of workflow to use. Can either be "live" or "draft".'
+          enum: [ draft , live ]
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: transitionProperties
+              example: !include examples/transitionProperties-example.json
+        403: 
+          description: Returned if the user does not have admin permission
+    put: 
+      is: [ hasWorkflowName , hasKey ]
+      description: Update/add new property to a transition. Trying to update a property that does not exist will result in a new property being added.
+      queryParameters: 
+        workflowMode: 
+          description: 'the type of workflow to use. Can either be "live" or "draft".'
+          enum: [ draft , live ]
+      body: 
+        application/json: 
+          schema: transitionPropertyReq
+          example: !include examples/transitionPropertyReq-example.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: transitionProperties
+              example: !include examples/transitionProperties-example.json
+        304: 
+          description: Returned if no changes were actually made by the request (e.g. trying to delete a property that does not exist).
+        400: 
+          description: Returned if the request is invalid.
+        403: 
+          description: Returned if the user does not have admin permission
+    post: 
+      is: [ hasWorkflowName , hasKey ]
+      description: Add a new property to a transition. Trying to add a property that already exists will fail.
+      queryParameters: 
+        workflowMode: 
+          description: 'the type of workflow to use. Can either be "live" or "draft".'
+          enum: [ draft , live ]
+      body: 
+        application/json: 
+          schema: transitionPropertyReq
+          example: !include examples/transitionPropertyReq-example.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              schema: transitionProperties
+              example: !include examples/transitionProperties-example.json
+        400: 
+          description: Returned if the request is invalid.
+        403: 
+          description: Returned if the user does not have admin permission
+    delete: 
+      is: [ hasWorkflowName , hasKey ]
+      description: Delete a property from the passed transition on the passed workflow. It is not an error to delete a property that does not exist.
+      queryParameters: 
+        workflowMode: 
+          description: 'the type of workflow to use. Can either be "live" or "draft".'
+          enum: [ draft , live ]
+      responses: 
+        200: 
+        304: 
+          description: Returned if no changes were actually made by the request (e.g. trying to delete a property that does not exist).
+        400: 
+          description: Returned if the request is invalid.
+        403: 
+          description: Returned if the user does not have admin permission
+/workflowscheme: 
+  type: workflowschemeReturned
+  post: 
+    description: Create a new workflow scheme. The body contains a representation of the new scheme. Values not passed are assumed to be set to their defaults.
+    responses: 
+      401: 
+        description: Returned if there is no user or if the user has not entered a websudo session.
+  /{id}: 
+    type: workflowschemeReturned
+    get: 
+      description: Returns the requested workflow scheme to the caller.
+      queryParameters: 
+        returnDraftIfExists: 
+          description: "when true indicates that a scheme's draft, if it exists, should be queried instead of the scheme itself."
+          type: boolean
+      responses: 
+        401: 
+          description: Returned if there is no user or if the user has not entered a websudo session.
+        404: 
+          description: Returned if the requested scheme does not exist.
+    put: 
+      description: Update the passed workflow scheme. The body of the request is a representation of the workflow scheme. Values not passed are assumed to indicate no change for that field. The passed representation can have its updateDraftIfNeeded flag set to true to indicate that the draft should be created and/or updated when the actual scheme cannot be edited (e.g. when the scheme is being used by a project). Values not appearing the body will not be touched.
+      responses: 
+        401: 
+          description: Returned if there is no user or if the user has not entered a websudo session.
+        404: 
+          description: Returned if the requested scheme does not exist.
+    delete: 
+      description: Delete the passed workflow scheme.
+      responses: 
+        204: 
+          description: If the scheme was deleted.
+        400: 
+          description: Returned if the requested scheme is active (i.e. being used by JIRA).
+        401: 
+          description: Returned if there is no user or if the user has not entered a websudo session.
+        404: 
+          description: Returned if the requested scheme does not exist.
+    /createdraft: 
+      type: base
+      post: 
+        description: Create a draft for the passed scheme. The draft will be a copy of the state of the parent.
+        responses: 
+          201: 
+            body: 
+              application/json: 
+                schema: draft
+                example: !include examples/draft-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+    /default: 
+      type: base
+      get: 
+        description: Return the default workflow from the passed workflow scheme.
+        queryParameters: 
+          returnDraftIfExists: 
+            description: "when true indicates that a scheme's draft, if it exists, should be queried instead of the scheme itself."
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: workflowName
+                example: !include examples/workflowName-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned when the workflow scheme does not exist.
+      put: 
+        description: Set the default workflow for the passed workflow scheme. The passed representation can have its updateDraftIfNeeded flag set to true to indicate that the draft should be created/updated when the actual scheme cannot be edited.
+        body: 
+          application/json: 
+            schema: workflowNameReq
+            example: !include examples/workflowNameReq-example.json
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: workflowscheme
+                example: !include examples/workflowscheme-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the scheme does not exist.
+      delete: 
+        description: Remove the default workflow from the passed workflow scheme.
+        queryParameters: 
+          updateDraftIfNeeded: 
+            description: when true will create and return a draft when the workflow scheme cannot be edited (e.g. when it is being used by a project).
+            type: boolean
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: workflowscheme
+                example: !include examples/workflowscheme-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the scheme does not exist.
+    /draft: 
+      type: base
+      get: 
+        description: Returns the requested draft workflow scheme to the caller.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: draft
+                example: !include examples/draft-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the requested draft scheme does not exist.
+      put: 
+        description: Update a draft workflow scheme. The draft will created if necessary. The body is a representation of the workflow scheme. Values not passed are assumed to indicate no change for that field.
+        body: 
+          application/json: 
+            schema: workflowschemePutReq
+            example: !include examples/workflowschemePutReq-example.json
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: draft
+                example: !include examples/draft-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the requested draft scheme does not exist.
+      delete: 
+        description: Delete the passed draft workflow scheme.
+        responses: 
+          204: 
+            description: If the scheme was deleted.
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the requested draft scheme does not exist.
+      /default: 
+        type: base
+        get: 
+          description: Return the default workflow from the passed draft workflow scheme to the caller.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: workflowName
+                  example: !include examples/workflowName-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned when the workflow scheme does not exist.
+        put: 
+          description: Set the default workflow for the passed draft workflow scheme.
+          body: 
+            application/json: 
+              schema: workflowNameReq
+              example: !include examples/workflowNameReq-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: draft
+                  example: !include examples/draft-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned when the workflow scheme does not exist.
+        delete: 
+          description: Remove the default workflow from the passed draft workflow scheme.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: draft
+                  example: !include examples/draft-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned when the workflow scheme does not exist.
+      /issuetype/{issueType}: 
+        type: base
+        get: 
+          description: Returns the issue type mapping for the passed draft workflow scheme.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: workflowIssueType
+                  example: !include examples/workflowIssueType-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned if either the requested scheme or issue type does not exist.
+        put: 
+          description: Set the issue type mapping for the passed draft scheme. The passed representation can have its updateDraftIfNeeded flag set to true to indicate that the draft should be created/updated when the actual scheme cannot be edited.
+          body: 
+            application/json: 
+              schema: workflowIssueTypeReq
+              example: !include examples/workflowIssueTypeReq-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: draft
+                  example: !include examples/draft-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned if either the requested scheme or issue type does not exist.
+        delete: 
+          description: Remove the specified issue type mapping from the draft scheme.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: draft
+                  example: !include examples/draft-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned if either the requested scheme or issue type does not exist.
+      /workflow: 
+        type: base
+        get: 
+          is: [ hasWorkflowName ]
+          description: Returns the draft workflow mappings or requested mapping to the caller.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: workflowMappings
+                  example: !include examples/workflowMappings-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned if either the requested scheme or workflow does not exist.
+        put: 
+          is: [ hasWorkflowName ]
+          description: Update the draft scheme to include the passed mapping. The body is a representation of the workflow mapping. Values not passed are assumed to indicate no change for that field.
+          body: 
+            application/json: 
+              schema: workflowMappingsReq
+              example: !include examples/workflowMappingsReq-example.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  schema: workflowscheme
+                  example: !include examples/workflowscheme-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+        delete: 
+          is: [ hasWorkflowName ]
+          description: Delete the passed workflow from the draft workflow scheme.
+          responses: 
+            200: 
+              description: The scheme with the workflow deleted.
+              body: 
+                application/json: 
+                  schema: workflowscheme
+                  example: !include examples/workflowscheme-example.json
+            401: 
+              description: Returned if there is no user or if the user has not entered a websudo session.
+            404: 
+              description: Returned if either the requested scheme or workflow does not exist.
+    /issuetype/{issueType}: 
+      type: workflowschemeReturned
+      get: 
+        description: Returns the issue type mapping for the passed workflow scheme.
+        queryParameters: 
+          returnDraftIfExists: 
+            description: "when true indicates that a scheme's draft, if it exists, should be queried instead of the scheme itself."
+            type: boolean
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: workflowIssueType
+                example: !include examples/workflowIssueType-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if either the requested scheme or workflow does not exist.
+      put: 
+        description: Set the issue type mapping for the passed scheme. The passed representation can have its updateDraftIfNeeded flag set to true to indicate that the draft should be created/updated when the actual scheme cannot be edited.
+        body: 
+          application/json: 
+            schema: workflowIssueTypeReq
+            example: !include examples/workflowIssueTypeReq-example.json
+        responses: 
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if either the requested scheme or workflow does not exist.
+      delete: 
+        description: Remove the specified issue type mapping from the scheme.
+        queryParameters: 
+          updateDraftIfNeeded: 
+            description: when true will create and return a draft when the workflow scheme cannot be edited (e.g. when it is being used by a project).
+            type: boolean
+        responses: 
+          200: 
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if either the requested scheme or workflow does not exist.
+    /workflow: 
+      type: workflowschemeReturned
+      get: 
+        is: [ hasWorkflowName ]
+        description: Returns the workflow mappings or requested mapping to the caller for the passed scheme.
+        queryParameters: 
+          returnDraftIfExists: 
+            description: "when true indicates that a scheme's draft, if it exists, should be queried instead of the scheme itself."
+            type: boolean
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: workflowMappings
+                example: !include examples/workflowMappings-example.json
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the requested scheme or workflow does not exist.
+      put: 
+        is: [ hasWorkflowName ]
+        description: Update the scheme to include the passed mapping. The body is a representation of the workflow mapping. Values not passed are assumed to indicate no change for that field. The passed representation can have its updateDraftIfNeeded flag set to true to indicate that the draft should be created/updated when the actual scheme cannot be edited.
+        body: 
+          application/json: 
+            schema: workflowMappingsReq
+            example: !include examples/workflowMappingsReq-example.json
+        responses: 
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+      delete: 
+        is: [ hasWorkflowName ]
+        description: Delete the passed workflow from the workflow scheme.
+        queryParameters: 
+          updateDraftIfNeeded: 
+            description: flag to indicate if a draft should be created if necessary to delete the workflow from the scheme.
+            type: boolean
+        responses: 
+          200: 
+          401: 
+            description: Returned if there is no user or if the user has not entered a websudo session.
+          404: 
+            description: Returned if the requested scheme or workflow does not exist.
+documentation: 
+  - title: Headline
+    content: !include docs/api/headline.md

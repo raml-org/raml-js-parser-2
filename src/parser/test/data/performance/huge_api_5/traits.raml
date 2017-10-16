@@ -1,0 +1,211 @@
+#%RAML 1.0 Library
+uses:
+  resources: dataTypes/resources.raml
+  bundles: dataTypes/bundles.raml
+traits:
+  allergyIntolerancePOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  appointmentPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  conditionPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  devicePOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  encounterPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  medicationPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  medicationOrderPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  patientPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  observationPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  practitionerPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  schedulePOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  slotPOSTSearch:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          prop1: string
+          prop2: string
+  allergyIntoleranceSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  appointmentSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  conditionSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  deviceSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  encounterSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  medicationSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  medicationOrderSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  observationSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  patientSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  practitionerSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  scheduleSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  slotSearch:
+    queryParameters:
+      prop1: string
+      prop2: string
+  conditionalOperation:
+    queryParameters:
+      prop1: string
+      prop2: string
+  conformance:
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources.Conformance
+          application/xml:
+            type: resources.Conformance
+  create:
+    responses:
+      201:
+        description: Created
+        headers:
+          Location:
+            example: http://xxx/Condidition/123/_history/1
+          Last-Modified: datetime
+          ETag:
+            example: '1.0'
+  delete:
+    responses:
+      204:
+        description: Deleted
+  history:
+    queryParameters:
+      _count:
+        required: false
+      _since:
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: bundles.Bundle
+  read:
+    queryParameters:
+      _format:
+        required: false
+        enum: [application/json, application/xml]
+      _summary:
+        required: false
+        enum: ['true', 'false', text, data]
+    headers:
+      If-Modified-Since:
+        type: string
+        required: false
+      If-None-Match:
+        required: false
+    responses:
+      304:
+        description: Not Modified
+  search:
+    queryParameters:
+      prop1: string
+      prop2: string
+  update:
+    responses:
+      200:
+        description: Updated
+      201:
+        description: Created
+        headers:
+          Location:
+            example: http://xxx/condidition/123/_history/1
+          Last-Modified: datetime
+          ETag:
+            example: '1.0'
+      422:
+        description: |
+          Unprocessable Entity - the proposed resource violated applicable FHIR profiles or server business rules
+  vread:
+    queryParameters:
+      _format:
+        required: false
+        enum: [application/json, application/xml]
+    responses:
+      200:
+        headers:
+          ETag:
+          Last-Modified: string
+        body:
+          application/json:
+            type: resources.Resource

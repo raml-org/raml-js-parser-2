@@ -1,0 +1,50 @@
+#%RAML 1.0
+title: Healthcare FHIR System API
+version: v1
+baseUri: http://localhost:8081/api
+mediaType: [application/xml+fhir, application/json+fhir]
+
+uses:
+  resourceTypes: resourceTypes.raml
+  traits: traits.raml
+### API definition ###
+
+/Slot:
+  type: {
+    resourceTypes.fhirResourceType: {
+      postExample : !include examples/requests/post_slot.json,
+      getExample  : !include examples/responses/get_slot.json,
+    }
+  }
+  get:
+    is: [ traits.slotSearch ]
+  put:
+    is: [ traits.slotSearch ]
+  delete:
+    is: [ traits.slotSearch ]
+
+
+  /_history:
+    type: { resourceTypes.fhirHistory: { bundleName: SlotBundle } }
+
+    is: [ traits.slotSearch ]
+
+
+
+  /{id}:
+    type: {
+      resourceTypes.fhirResource: {
+        getSingleExample: !include examples/responses/get_slot_id.json,
+        putExample: !include examples/requests/put_slot_id.json
+      }
+    }
+    /_history:
+      type: { resourceTypes.fhirHistory: { bundleName: SlotBundle } }
+      /{vid}:
+        type: { resourceTypes.fhirVersionedResource: { resourceName: Slot } }
+  /_search:
+    type: { resourceTypes.fhirSearch: { bundleName: SlotBundle } }
+    get:
+      is: [ traits.slotSearch ]
+    post:
+      is: [ traits.slotPOSTSearch ]

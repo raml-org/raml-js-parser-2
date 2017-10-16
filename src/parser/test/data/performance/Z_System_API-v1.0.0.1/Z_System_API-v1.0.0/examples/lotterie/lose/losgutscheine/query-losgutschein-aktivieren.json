@@ -1,0 +1,17 @@
+{
+  "gutschein": {
+    "losnummer": "932337834275",
+    "code": ""
+  },
+  "losempfänger": {
+    "anrede": "Herr",
+    "vorname":"Max",
+    "nachname": "Musterman",
+    "strasse": "Hauptstrasse 2",
+    "plz":"51234",
+    "ort": "Musterort",
+    "land": "Deutschland",
+    "mail": "maxm@example.com"
+  }
+
+}

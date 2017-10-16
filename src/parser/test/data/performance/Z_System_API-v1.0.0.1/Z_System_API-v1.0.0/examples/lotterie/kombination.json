@@ -1,0 +1,206 @@
+[
+  {
+    "losart": {
+      "key": "Jahreslos500k",
+      "name": "Jahreslos 500.000"
+    },
+    "ziehungsart": {
+      "key": "Geldziehung",
+      "name": "Geldziehung"
+    },
+    "teilnahmeHaeufigkeit": "monatlich",
+    "pflichtZiehungsart": true
+  },
+  {
+    "losart": {
+      "key": "Jahreslos1000k",
+      "name": "Jahreslos 1 Million"
+    },
+    "ziehungsart": {
+      "key": "Geldziehung",
+      "name": "Geldziehung"
+    },
+    "teilnahmeHaeufigkeit": "monatlich",
+    "pflichtZiehungsart": true
+  },
+  {
+    "losart": {
+      "key": "XtraSuperlos",
+      "name": "Xtra-Superlos"
+    },
+    "ziehungsart": {
+      "key": "Geldziehung",
+      "name": "Geldziehung"
+    },
+    "teilnahmeHaeufigkeit": "monatlich",
+    "pflichtZiehungsart": true
+  },
+  {
+    "losart": {
+      "key": "XtraSuperlos",
+      "name": "Xtra-Superlos"
+    },
+    "ziehungsart": {
+      "key": "Traumhaus",
+      "name": "Traumhaus"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": true
+  },
+  {
+    "losart": {
+      "key": "XtraSuperlos",
+      "name": "Xtra-Superlos"
+    },
+    "ziehungsart": {
+      "key": "Haushaltsgeld",
+      "name": "Haushaltsgeld"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "XtraSuperlos",
+      "name": "Xtra-Superlos"
+    },
+    "ziehungsart": {
+      "key": "Rentenziehung",
+      "name": "Rentenziehung"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "XtraSuperlos",
+      "name": "Xtra-Superlos"
+    },
+    "ziehungsart": {
+      "key": "SuperGewinn2Millionen",
+      "name": "Super Gewinn 2 Millionen"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    },
+    "ziehungsart": {
+      "key": "Geldziehung",
+      "name": "Geldziehung"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": true
+  },
+  {
+    "losart": {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    },
+    "ziehungsart": {
+      "key": "Traumhaus",
+      "name": "Traumhaus"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    },
+    "ziehungsart": {
+      "key": "Haushaltsgeld",
+      "name": "Haushaltsgeld"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    },
+    "ziehungsart": {
+      "key": "Rentenziehung",
+      "name": "Rentenziehung"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "5SterneLos",
+      "name": "5 Sterne-Los"
+    },
+    "ziehungsart": {
+      "key": "SuperGewinn2Millionen",
+      "name": "Super Gewinn 2 Millionen"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "MeinGlueckslos",
+      "name": "Mein Glücks-Los"
+    },
+    "ziehungsart": {
+      "key": "Dauergewinn",
+      "name": "Dauergewinn"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "MeinGlueckslos",
+      "name": "Mein Glücks-Los"
+    },
+    "ziehungsart": {
+      "key": "Kombigewinn",
+      "name": "Kombigewinn"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "MeinGlueckslos",
+      "name": "Mein Glücks-Los"
+    },
+    "ziehungsart": {
+      "key": "Sofortgewinn",
+      "name": "Sofortgewinn"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "MeinGlueckslos",
+      "name": "Mein Glücks-Los"
+    },
+    "ziehungsart": {
+      "key": "Zusatzspiel",
+      "name": "Zusatzspiel"
+    },
+    "teilnahmeHaeufigkeit": "wöchentlich",
+    "pflichtZiehungsart": false
+  },
+  {
+    "losart": {
+      "key": "Monatslos",
+      "name": "Monatslos"
+    },
+    "ziehungsart": {
+      "key": "Geldziehung",
+      "name": "Geldziehung"
+    },
+    "teilnahmeHaeufigkeit": "monatlich",
+    "pflichtZiehungsart": true
+  }
+]
