@@ -971,7 +971,7 @@ export function refFinder(root:hl.IHighLevelNode,node:hl.IHighLevelNode,result:h
                 result.push(a);
             }
             //Runtime properties
-            else if (up.lowLevel().start()==node.lowLevel().start()){
+            else if (up && up.lowLevel().start()==node.lowLevel().start()){
                 if (up.lowLevel().unit()==node.lowLevel().unit()) {
                     result.push(a);
                 }
