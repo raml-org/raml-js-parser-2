@@ -354,7 +354,7 @@
                         },
                         "examples": [
                           {
-                            "value": null,
+                            "value": "{\n  \"name\" : \"blah\",\n  \"name2\" : \"blah\",\n  \"name3\" : {\n      proppp: \"123245\"\n  }\n}\n",
                             "strict": true,
                             "name": null
                           }
