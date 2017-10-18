@@ -11,6 +11,9 @@ import def = require('raml-definition-system');
 var su = def.getSchemaUtils();
 
 export function isScheme(content) {
+    if(!content||!content.trim()||content.trim().charAt(0)!="{"){
+        return false;
+    }
     try {
         var schemeObject = JSON.parse(content);
 
@@ -42,8 +45,10 @@ export function startDownloadingReferencesAsync(schemaContent: string, unit: low
 
 export function getReferences(schemaContent, unit) {
     var schemaObject = su.createSchema(schemaContent, new contentprovider.ContentProvider(unit));
-
-    return schemaObject.getMissingReferences([], true);
+    if(schemaObject && schemaObject.getMissingReferences) {
+        return schemaObject.getMissingReferences([], true);
+    }
+    return [];
 }
 
 function getRefs(promise, schemaObject) {
